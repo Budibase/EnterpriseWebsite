@@ -2,7 +2,7 @@
 
 :root {
   --font-sans: "Hanken Grotesk", sans-serif;
-  --font-display: "Hanken Grotesk Wide", sans-serif;
+  --font-display: "Fraunces", sans-serif;
   --ivory-light: rgb(250 250 247 / 1);
   --ivory-medium: rgb(240 238 230 / 1);
   --ivory-dark: rgb(232 230 220 / 1);
@@ -18,6 +18,7 @@
   --sky-medium: rgb(106 155 204 / 1);
   --sky-dark: rgb(70 125 180 / 1);
   --sky-darkest: rgb(33 95 158 / 1);
+  --sky-ink: #044484;
   --sand: rgb(235 219 188 / 1);
   --clay-lightest: rgb(236 211 194 / 1);
   --clay-light: rgb(212 162 127 / 1);
@@ -130,16 +131,17 @@ p a:hover::after {
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 2.8rem;
   line-height: 1;
   margin-bottom: 0.5rem;
+  color: var(--slate-medium);
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Hanken Grotesk Wide";
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-weight: 400;
   color: var(--slate-medium);
   font-feature-settings:
     "ss01" 1,
@@ -278,7 +280,7 @@ button:active {
 }
 
 button.cta {
-  background-color: var(--sky-dark);
+  background-color: var(--sky-ink);
   color: var(--ivory-light);
   font-weight: 500;
   border-radius: 10px;
@@ -287,7 +289,7 @@ button.cta {
 }
 
 button.cta:hover {
-  background-color: var(--sky-darkest);
+  background-color: var(--sky-dark);
   font-weight: 500;
 }
 
