@@ -64,7 +64,7 @@ import Gmail from "@assets/logos/Gmail.svg";
       data-target="tables"
       ><span class="">
         <Grid class="w-4 h-4 text-grass-medium" />
-      </span>Tables</button
+      </span>Action tables</button
     >
   </div>
 </div>
@@ -372,8 +372,8 @@ import Gmail from "@assets/logos/Gmail.svg";
         aria-label="Agent card"
       >
         <div class="grid lg:grid-cols-2 gap-6 items-start">
-          <div class="pointer-events-none select-none">
-            <div class="flex items-center justify-between">
+          <div class="pointer-events-none select-none border">
+            <div class="flex items-center justify-between px-3 py-2">
               <div class="grid overflow-hidden *:col-start-1 *:row-start-1">
                 <div class="flex gap-x-1.5">
                   <div class="bg-lavendar-dark w-5 h-5 rounded-md p-0.5">
@@ -389,12 +389,18 @@ import Gmail from "@assets/logos/Gmail.svg";
               <div
                 class="border font-medium rounded-md px-[3px] py-[0.5px] text-[8px] leading-[11px] lg:rounded-lg lg:px-[5px] lg:py-px lg:text-[12px] lg:leading-4 bg-ivory-medium text-slate-light"
               >
-                Agent
+                Train
               </div>
             </div>
             <p class="mt-2 text-cloud-dark !text-sm">
-              You are in charge of employee offboarding. Do your best to resolve
-              the managers request to offboard the employee mentioned within ...
+              You are the AI Employee Offboarding Agent, responsible for
+              ensuring a smooth transition when an employee leaves the company.
+              Your duties include facilitating the necessary procedures for
+              their exit, such as sending exit surveys, informing the IT
+              department, arranging exit interviews, and revoking system access.
+              Your role is crucial in maintaining security, collecting valuable
+              feedback, and ensuring all parties involved are well-informed and
+              prepared for the transition.
             </p>
             <div class="bg-ivory-light mt-2 p-2 rounded-md">
               <div
@@ -428,9 +434,9 @@ import Gmail from "@assets/logos/Gmail.svg";
           <div id="agent-chat" class="h-full">
             <div class="bg-white border rounded-md flex flex-col h-[360px]">
               <div
-                class="px-3 py-2 border-b border-stone-200 text-sm font-semibold text-slate-dark"
+                class="px-3 py-2 border-stone-200 font-semibold text-slate-dark"
               >
-                Agent Evaluation
+                Chat
               </div>
               <div
                 id="agent-chat-messages"
@@ -439,9 +445,9 @@ import Gmail from "@assets/logos/Gmail.svg";
                 <!-- Initial assistant message -->
                 <div class="flex items-start gap-2">
                   <div
-                    class="shrink-0 bg-lavendar-dark text-white h-6 w-6 rounded-md grid place-items-center text-[10px]"
+                    class="shrink-0 bg-lavendar-dark text-white h-6 w-6 rounded-lg text-lg grid place-items-center text-[10px]"
                   >
-                    A
+                    AO
                   </div>
                   <div
                     class="bg-ivory-medium text-slate-dark rounded-lg px-3 py-2 text-sm max-w-[80%]"
@@ -451,18 +457,13 @@ import Gmail from "@assets/logos/Gmail.svg";
                   </div>
                 </div>
               </div>
-              <form id="agent-chat-form" class="border-t p-2 flex gap-2">
+              <form id="agent-chat-form" class="p-2 flex gap-2">
                 <input
                   id="agent-chat-input"
                   type="text"
                   placeholder="Send a message"
                   class="flex-1 text-sm bg-ivory-light border rounded px-3 py-2 focus:outline-none"
                 />
-                <button
-                  type="submit"
-                  class="px-3 py-2 text-xs rounded-md bg-sky-medium text-white"
-                  >Send</button
-                >
               </form>
             </div>
           </div>
@@ -742,7 +743,7 @@ import Gmail from "@assets/logos/Gmail.svg";
 <div class="absolute left-0 bottom-0 max-md:hidden">
   <img
     src="https://res.cloudinary.com/daog6scxm/image/upload/v1757683141/NewWebsite/images/robot_bird_wjgz7b.webp"
-    alt="sunset tree illustration"
+    alt="robot bird"
     class="w-40"
   />
 </div>
@@ -750,7 +751,7 @@ import Gmail from "@assets/logos/Gmail.svg";
   <img
     src="https://res.cloudinary.com/daog6scxm/image/upload/v1757664193/NewWebsite/images/robot_sunset_mountain_akaeex.webp"
     alt="sunset tree illustration"
-    class="w-125 z-10"
+    class="w-100"
   />
 </div>
 
