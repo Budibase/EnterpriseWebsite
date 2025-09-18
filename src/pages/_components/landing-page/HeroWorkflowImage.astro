@@ -1,10 +1,11 @@
 ---
-import TextBox from "phosphor-astro/TextBox.astro";
-import Path from "phosphor-astro/PathBold.astro";
-import Grid from "phosphor-astro/GridNine.astro";
-import Layout from "phosphor-astro/Layout.astro";
-import Sparkle from "phosphor-astro/Sparkle.astro";
-import PaperPlaneTilt from "phosphor-astro/PaperPlaneTilt.astro";
+import TextBox from "phosphor-astro/TextBoxFill.astro";
+import Path from "phosphor-astro/PathFill.astro";
+import Grid from "phosphor-astro/GridNineFill.astro";
+import Layout from "phosphor-astro/LayoutFill.astro";
+import ChatCircleFill from "phosphor-astro/ChatCircleFill.astro";
+import Sparkle from "phosphor-astro/SparkleFill.astro";
+import PaperPlaneTilt from "phosphor-astro/PaperPlaneTiltFill.astro";
 import { Image } from "astro:assets";
 import Google from "@assets/logos/Google.svg";
 import BBSymbol from "@assets/logos/BBSymbol.svg";
@@ -21,7 +22,7 @@ import Gmail from "@assets/logos/Gmail.svg";
     aria-label="Workflow views"
   >
     <button
-      class="active text-sm px-3 py-1 rounded-md flex flex-row gap-1.5 items-center"
+      class="active text-md px-3 py-1 rounded-md flex flex-row gap-1.5 items-center"
       role="tab"
       aria-selected="true"
       data-target="workflows"
@@ -30,17 +31,17 @@ import Gmail from "@assets/logos/Gmail.svg";
       </span>Workflows</button
     >
     <button
-      class="inactive text-sm px-3 py-1 rounded-md flex flex-row gap-1.5 items-center"
+      class="inactive text-md px-3 py-1 rounded-md flex flex-row gap-1.5 items-center"
       role="tab"
       aria-selected="false"
       data-target="agents"
       ><span class="">
-        <Sparkle class="w-4 h-4 text-lavendar-medium" />
-      </span>Agents</button
+        <ChatCircleFill class="w-4 h-4 text-lavendar-medium" />
+      </span>Chat</button
     >
 
     <button
-      class="inactive text-sm px-3 py-1 rounded-md flex flex-row gap-1.5 items-center"
+      class="inactive text-md px-3 py-1 rounded-md flex flex-row gap-1.5 items-center"
       role="tab"
       aria-selected="false"
       data-target="forms"
@@ -49,7 +50,7 @@ import Gmail from "@assets/logos/Gmail.svg";
       </span>Forms</button
     >
     <button
-      class="inactive text-sm px-3 py-1 rounded-md flex flex-row gap-1.5 items-center"
+      class="inactive text-md px-3 py-1 rounded-md flex flex-row gap-1.5 items-center"
       role="tab"
       aria-selected="false"
       data-target="apps"
@@ -58,13 +59,13 @@ import Gmail from "@assets/logos/Gmail.svg";
       </span>Apps</button
     >
     <button
-      class="inactive text-sm px-3 py-1 rounded-md flex flex-row gap-1.5 items-center"
+      class="inactive text-md px-3 py-1 rounded-md flex flex-row gap-1.5 items-center"
       role="tab"
       aria-selected="false"
       data-target="tables"
       ><span class="">
         <Grid class="w-4 h-4 text-grass-medium" />
-      </span>Action tables</button
+      </span>Approvals</button
     >
   </div>
 </div>
@@ -579,7 +580,7 @@ import Gmail from "@assets/logos/Gmail.svg";
     </div>
 
     <!-- Apps view -->
-    <div id="apps" class="tab-section hidden flex justify-center xl:w-2xl">
+    <div id="apps" class="tab-section hidden flex justify-center w-full">
       <div
         class="relative w-full max-w-[920px] max-h-fit rounded-[10px] p-[7px] border lg:rounded-xl lg:p-[11px] border-stone-300 bg-white shadow-[0px_2px_3px_-2px_rgba(28,40,64,0.10),0px_4px_6px_-2px_rgba(28,40,64,0.04)]"
         aria-label="Apps offboarding"
@@ -742,9 +743,9 @@ import Gmail from "@assets/logos/Gmail.svg";
 
 <div class="absolute left-0 bottom-0 max-md:hidden">
   <img
-    src="https://res.cloudinary.com/daog6scxm/image/upload/v1757683141/NewWebsite/images/robot_bird_wjgz7b.webp"
-    alt="robot bird"
-    class="w-40"
+    src="https://res.cloudinary.com/daog6scxm/image/upload/v1758038885/NewWebsite/images/lock_athzyr.webp"
+    alt="lock"
+    class="w-50"
   />
 </div>
 <div class="absolute right-0 bottom-0 max-xl:hidden">
