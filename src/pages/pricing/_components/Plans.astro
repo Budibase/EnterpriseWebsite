@@ -1,0 +1,251 @@
+---
+import Sparkle from "phosphor-astro/Sparkle.astro";
+import PlusCircle from "phosphor-astro/PlusCircleFill.astro";
+import Cloud from "phosphor-astro/Cloud.astro";
+---
+
+<div class="grid grid-cols-2 max-w-3xl mx-auto">
+  <div class="pricing-card !bg-white !p-2 border">
+    <div class="bg-ivory-light border px-6 py-3 h-full">
+      <div class="flex-col items-center gap-2">
+        <h2 class="!text-2xl !font-normal !text-slate-dark py-2">Community</h2>
+        <p>
+          Choose Community if you are working on personal projects or trying
+          Budibase.
+        </p>
+        <p class="!text-2xl py-2 text-black">Free</p>
+      </div>
+      <ul class="mt-2">
+        <li class="flex items-center gap-2 mt-1">
+          <span>
+            <PlusCircle class="fill-lavendar w-6" />
+          </span>
+          Budibase hosting / Self-hosting
+        </li>
+        <li class="flex items-center gap-2 mt-1">
+          <span>
+            <PlusCircle class="fill-lavendar w-6" />
+          </span>
+          1 creator
+        </li>
+        <li class="flex items-center gap-2 mt-1">
+          <span>
+            <PlusCircle class="fill-lavendar w-6" />
+          </span>
+          1 workspace
+        </li>
+        <li class="flex items-center gap-2 mt-1">
+          <span>
+            <PlusCircle class="fill-lavendar w-6" />
+          </span>
+          Unlimited interfaces
+        </li>
+        <li class="flex items-center gap-2 mt-1">
+          <span>
+            <PlusCircle class="fill-lavendar w-6" />
+          </span>
+          Community support
+        </li>
+        <li class="flex items-center gap-2 mt-1">
+          <span>
+            <PlusCircle class="fill-lavendar w-6" />
+          </span>
+          500 actions (Budibase cloud only)
+        </li>
+      </ul>
+      <button class="w-full free !rounded-4xl my-4">Get started free</button>
+    </div>
+  </div>
+
+  <div class="!bg-white !p-2 border">
+    <div class="bg-ivory-medium border px-6 py-3">
+      <div class="flex-col gap-2">
+        <h2 class="!text-2xl !font-normal py-2">Premium Edition</h2>
+        <p>
+          Choose Premium if you are a professional or part of a small
+          organization.
+        </p>
+        <p class="!text-2xl text-black py-2">$99/mo</p>
+        <ul class="mt-2">
+          <li class="flex items-center gap-2 mt-1">
+            <span>
+              <PlusCircle class="fill-sky w-6" />
+            </span>
+            Budibase hosting / self-hosting
+          </li>
+          <li class="flex items-center gap-2 mt-1">
+            <span>
+              <PlusCircle class="fill-sky w-6" />
+            </span>
+            2 creators
+          </li>
+          <li class="flex items-center gap-2 mt-1">
+            <span>
+              <PlusCircle class="fill-sky w-6" />
+            </span>
+            5 workspaces
+          </li>
+          <li class="flex items-center gap-2 mt-1">
+            <span>
+              <PlusCircle class="fill-sky w-6" />
+            </span>
+            Custom branding
+          </li>
+          <li class="flex items-center gap-2 mt-1">
+            <span>
+              <PlusCircle class="fill-sky w-6" />
+            </span>
+            Custom RBAC
+          </li>
+          <li class="flex items-center gap-2 mt-1">
+            <span>
+              <PlusCircle class="fill-sky w-6" />
+            </span>
+            10,000 actions (Budibase cloud only)
+          </li>
+        </ul>
+        <button class="w-full cta my-4 !rounded-4xl">Contact sales</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="grid grid-cols-2 max-w-3xl mx-auto">
+  <div class="!bg-white !p-2 border">
+    <div class="bg-slate-dark border px-6 py-3">
+      <div class="flex-col gap-2">
+        <h2 class="!text-2xl !font-normal !text-white py-2">
+          Enterprise edition
+        </h2>
+        <p class="text-ivory-light">
+          Choose Enterprise if you are an organization that needs additional
+          security and support.
+        </p>
+        <p class="!text-2xl !text-white py-2">From $5,000/yr</p>
+        <ul class="mt-2">
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Higher limits
+          </li>
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Priority Support
+          </li>
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Audit logs / SCIM / SSO
+          </li>
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Custom roles and user groups
+          </li>
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Environment variables
+          </li>
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Air-gapped deployment
+          </li>
+        </ul>
+        <button class="w-full secondary my-4 !rounded-4xl">Contact sales</button
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="!bg-white !p-2 border">
+    <div class="bg-black border px-6 py-3">
+      <div class="flex-col gap-2">
+        <h2 class="!text-2xl !font-normal !text-white py-2">
+          Partnership edition
+        </h2>
+        <p class="text-ivory-light">
+          Choose Partnership if you are a business using Budibase with multiple
+          organizations.
+        </p>
+        <p class="!text-2xl !text-white py-2">Contact us</p>
+        <ul class="mt-2">
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Everything in Enterprise
+          </li>
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Multi-tenant
+          </li>
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Partner-friendly pricing
+          </li>
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Custom support
+          </li>
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Designated Partner manager
+          </li>
+          <li class="flex items-center gap-2 mt-1 !text-white">
+            <span>
+              <PlusCircle class="fill-cloud w-6" />
+            </span>
+            Private Discord channel
+          </li>
+        </ul>
+        <button class="w-full secondary my-4 !rounded-4xl">Contact sales</button
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  p {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  li {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  button.free {
+    background-color: var(--lavendar-dark);
+    color: var(--ivory-light);
+    font-weight: 500;
+    border-radius: 50px;
+    padding: 4px 8px;
+    transition: 150ms background-color ease-out;
+  }
+</style>

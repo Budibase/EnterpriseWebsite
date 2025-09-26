@@ -1,83 +1,13 @@
 ---
-import Hero from "./_components/Hero.astro";
-import CloudPricing from "./_components/CloudPricing.astro";
-import SelfhostPricing from "./_components/SelfHostPricing.astro";
+import Body from "./_components/Pricing.astro";
+import Nav from "@components/Nav.astro";
 import Layout from "../../layouts/MainLayout.astro";
-import Cloud from "phosphor-astro/CloudFill.astro";
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-  <Hero />
-  <section class="mt-4 container max-w-6xl mx-auto">
-    <div class="flex items-center justify-center">
-      <div class="bg-ivory-dark p-1 rounded-xl inline-flex gap-2">
-        <button
-          id="btn-cloud"
-          type="button"
-          class="active large flex items-center gap-1"
-        >
-          <Cloud class="fill-sky h-5" />
-          Cloud pricing
-        </button>
-        <button
-          id="btn-selfhost"
-          type="button"
-          class="inactive large flex items-center gap-1"
-        >
-          <Cloud class="fill-lavendar h-5" />
-          Self-host pricing
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <div id="pricing-cloud">
-    <CloudPricing />
-  </div>
-  <div id="pricing-selfhost" hidden>
-    <SelfhostPricing />
-  </div>
-
-  <script>
-    const btnCloud = document.getElementById("btn-cloud");
-    const btnSelf = document.getElementById("btn-selfhost");
-    const viewCloud = document.getElementById("pricing-cloud");
-    const viewSelf = document.getElementById("pricing-selfhost");
-
-    function showCloud() {
-      if (viewCloud && viewSelf && btnCloud && btnSelf) {
-        viewCloud.hidden = false;
-        viewSelf.hidden = true;
-        btnCloud.classList.add("active");
-        btnCloud.classList.remove("inactive");
-        btnSelf.classList.remove("active");
-        btnSelf.classList.add("inactive");
-      }
-    }
-
-    function showSelf() {
-      if (viewCloud && viewSelf && btnCloud && btnSelf) {
-        viewCloud.hidden = true;
-        viewSelf.hidden = false;
-        btnCloud.classList.remove("active");
-        btnCloud.classList.add("inactive");
-        btnSelf.classList.add("active");
-        btnSelf.classList.remove("inactive");
-      }
-    }
-
-    btnCloud?.addEventListener("click", showCloud);
-    btnSelf?.addEventListener("click", showSelf);
-
-    // Optional: support hash or query to preselect view
-    const params = new URLSearchParams(location.search);
-    const modeFromQuery = params.get("pricing");
-    const modeFromHash = location.hash.replace("#", "");
-    const initial = (modeFromQuery || modeFromHash || "cloud").toLowerCase();
-    if (initial.includes("self")) {
-      showSelf();
-    } else {
-      showCloud();
-    }
-  </script>
+  <Nav />
+  <Body />
 </Layout>
