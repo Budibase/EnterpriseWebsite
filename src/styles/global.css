@@ -150,7 +150,6 @@ p a:hover::after {
 h1,
 h2 {
   font-family: var(--font-display);
-  font-weight: 300;
   color: var(--slate-medium);
   line-height: 1;
   font-feature-settings:

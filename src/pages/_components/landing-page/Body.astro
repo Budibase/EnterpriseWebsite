@@ -6,7 +6,9 @@ import bbSymbol from "@assets/logos/bbSymbol.svg";
 import Chat from "phosphor-astro/ChatCircleFill.astro";
 import { Image } from "astro:assets";
 import Customers from "@components/Customers.astro";
-import Lightning from "phosphor-astro/Lightning.astro";
+import Lightning from "phosphor-astro/LightningFill.astro";
+import Cloud from "phosphor-astro/Cloud.astro";
+import Github from "phosphor-astro/GithubLogo.astro";
 ---
 
 <div class="mx-auto w-full">
@@ -15,17 +17,18 @@ import Lightning from "phosphor-astro/Lightning.astro";
     style="padding-block: var(--lp-y); min-height: calc(100vh - (var(--lp-y) * 2));"
   >
     <div class="md:col-span-8 w-full h-full flex flex-col justify-between">
-      <h1 class="mt-8 text-3xl 2xl:text-[2.1rem]">
-        Ship AI chat interfaces, dynamic forms and custom apps - with your
-        models, your data, your tools.
+      <h1 class="mt-8 text-3xl 2xl:text-[2.6rem]">
+        Create AI chat interfaces, forms and apps - with your models, data, and
+        tools.
         <!--Budibase is used by top governments and companies to build beautiful AI interfaces
         and dynamic workflows on top of internal models, data and agents.-->
       </h1>
-      <h1 class="mt-10 text-xl 2xl:text-3xl">
+      <h2 class="mt-6 text-xl 2xl:text-lg mb-3">
         Budibase is <a href="https://github.com/Budibase/budibase"
           >open source</a
-        > and used by top governments & companies:
-      </h1>
+        > with over 26,000 Github stars. It's used by 200,000 teams, including top
+        governments & companies:
+      </h2>
       <Customers />
       <div class="flex flex-row mb-8 sm:mb-0 gap-2">
         <a
@@ -38,44 +41,50 @@ import Lightning from "phosphor-astro/Lightning.astro";
         >
           <span class="mx-auto text-lg text-center">Try for free</span>
         </a>
-        <a
-          href="/"
-          type="button"
-          role="link"
-          target="_blank"
-          data-primary-button="true"
-          class=""
-        >
-          <button class="secondary !rounded-4xl mx-auto text-lg text-center"
-            >Self-host</button
-          >
-        </a>
       </div>
 
       <div class="mt-auto">
         <div class="flex flex-col">
           <div class="border-b border-stone-500 py-2">
-            <h2 class="text-lg xl:text-xl 2xl:text-3xl">Why Budibase</h2>
+            <h2 class="text-lg xl:text-xl 2xl:text-3xl">Why choose Budibase</h2>
           </div>
           <div
             class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-auto lg:max-h-11 flex-wrap"
           >
-            <div class="inline-grid flex-row">
-              <Lightning />
-              <p>Speed</p>
+            <div class="inline-flex gap-0.5">
+              <Chat class="fill-lavendar w-4" />
+              <p>AI Chat</p>
             </div>
-            <p class="text-right">Ship AI interfaces in days not months</p>
+            <p class="text-right">We built AI chat so you don't have to</p>
           </div>
+          <div
+            class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-auto lg:max-h-11 flex-wrap"
+          >
+            <div class="inline-flex gap-0.5">
+              <Lightning class="fill-sky w-4" />
+              <p>Dynamic forms</p>
+            </div>
+            <p class="text-right">Collect data securely with dynamic forms</p>
+          </div>
+          <div
+            class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-auto lg:max-h-11 flex-wrap"
+          >
+            <div class="inline-flex gap-0.5">
+              <Lightning class="fill-cloud w-4" />
+              <p>Internal apps</p>
+            </div>
+            <p class="text-right">
+              Save days building internal apps/approval flows
+            </p>
+          </div>
+
           <div
             class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-11 flex-wrap"
           >
-            <p>Open source</p>
-            <p>26,000 Github stars</p>
-          </div>
-          <div
-            class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-11 flex-wrap"
-          >
-            <p>Hosting</p>
+            <div class="inline-flex gap-0.5">
+              <Cloud class="fill-cloud w-4" />
+              <p>Hosting</p>
+            </div>
             <p>Budibase Cloud or self-host</p>
           </div>
           <div
@@ -84,30 +93,18 @@ import Lightning from "phosphor-astro/Lightning.astro";
             <p>Integrations</p>
             <p>LLama, GPT, SQL, and more</p>
           </div>
-          <div
-            class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-11 flex-wrap"
-          >
-            <p>AI Interfaces</p>
-            <p>Chat, Forms, Internal apps</p>
-          </div>
+
           <div
             class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-11 flex-wrap"
           >
             <p>Enterprise ready</p>
             <p>Auth, User mgmt, SSO, & more</p>
           </div>
-
-          <div
-            class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-11 flex-wrap"
-          >
-            <p>Community size</p>
-            <p>200,000</p>
-          </div>
           <div
             class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-11"
           >
-            <p>Deployed interfaces</p>
-            <p>2,000,000</p>
+            <p>Battle tested</p>
+            <p>2,000,000 interfaces deployed</p>
           </div>
         </div>
       </div>
@@ -259,12 +256,11 @@ import Lightning from "phosphor-astro/Lightning.astro";
     display: block;
   }
   h1 {
-    font-weight: 300;
-    line-height: 1.2;
+    line-height: 1;
   }
   h2 {
-    font-weight: 300;
-    line-height: 1.2;
+    line-height: 1.4;
+    font-family: sans-serif;
   }
   p {
     font-size: 14px;
