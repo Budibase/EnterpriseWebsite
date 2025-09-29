@@ -15,11 +15,11 @@ import Github from "phosphor-astro/GithubLogo.astro";
 <div class="mx-auto w-full">
   <div class="lg:grid lg:grid-cols-24 !h-full">
     <aside
-      class="relative md:col-span-7 w-full !h-full min-h-lvh flex flex-col sticky-aside bg-white justify-between"
+      class="relative md:col-span-7 w-full border-r-1 border-stone-200 !h-full min-h-lvh flex flex-col sticky-aside bg-white justify-between"
     >
-      <div>
+      <div id="about">
         <div
-          class="bg-ivory-light flex flex-row justify-between items-center h-8 pl-11 pr-2 border-b-1 border-r-1 border-stone-200"
+          class="bg-ivory-light flex flex-row justify-between items-center h-8 pl-11 pr-2 border-b-1 border-stone-200"
         >
           <div class="flex-row flex gap-3">
             <p class="!text-sm !font-mono text-sky-darkest font-medium">
@@ -40,14 +40,14 @@ import Github from "phosphor-astro/GithubLogo.astro";
             </svg>
           </div>
         </div>
-        <div class="px-11 pt-10 border-r-1 border-stone-200">
-          <h1 class="text-3xl 2xl:text-[2.2rem]">
-            Save weeks building AI chat interfaces, dynamic forms and internal
-            apps - with your models, data, and tools.
+        <div class="px-11 pt-10">
+          <h1 class="text-3xl 2xl:text-3xl">
+            Build AI chat interfaces, dynamic forms and internal apps - with
+            your models, data, and tools.
             <!--Budibase is used by top governments and companies to build beautiful AI interfaces
         and dynamic workflows on top of internal models, data and agents.-->
           </h1>
-          <h2 class="mt-6 text-xl 2xl:text-lg mb-3">
+          <h2 class="mt-6 xl:text-lg">
             Budibase is <a href="https://github.com/Budibase/budibase"
               >open source</a
             > with over 26,000 Github stars. It's used by 200,000 teams, including
@@ -68,79 +68,38 @@ import Github from "phosphor-astro/GithubLogo.astro";
           </div>
         </div>
       </div>
-      <!--
-        <div class="mt-auto">
-          <div class="flex flex-col">
-            <div class="border-b border-stone-500 py-2">
-              <h2 class="text-lg xl:text-xl 2xl:text-3xl">
-                Why choose Budibase
-              </h2>
-            </div>
-            <div
-              class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-auto lg:max-h-11 flex-wrap"
-            >
-              <div class="inline-flex gap-0.5">
-                <Chat class="fill-lavendar w-4" />
-                <p>AI Chat</p>
-              </div>
-              <p class="text-right">We built AI chat so you don't have to</p>
-            </div>
-            <div
-              class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-auto lg:max-h-11 flex-wrap"
-            >
-              <div class="inline-flex gap-0.5">
-                <Lightning class="fill-sky w-4" />
-                <p>Dynamic forms</p>
-              </div>
-              <p class="text-right">Collect data securely with dynamic forms</p>
-            </div>
-            <div
-              class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-auto lg:max-h-11 flex-wrap"
-            >
-              <div class="inline-flex gap-0.5">
-                <Lightning class="fill-cloud w-4" />
-                <p>Internal apps</p>
-              </div>
-              <p class="text-right">
-                Save days building internal apps/approval flows
-              </p>
-            </div>
-
-            <div
-              class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-11 flex-wrap"
-            >
-              <div class="inline-flex gap-0.5">
-                <Cloud class="fill-cloud w-4" />
-                <p>Hosting</p>
-              </div>
-              <p>Budibase Cloud or self-host</p>
-            </div>
-            <div
-              class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-11 flex-wrap"
-            >
-              <p>Integrations</p>
-              <p>LLama, GPT, SQL, and more</p>
-            </div>
-
-            <div
-              class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-11 flex-wrap"
-            >
-              <p>Enterprise ready</p>
-              <p>Auth, User mgmt, SSO, & more</p>
-            </div>
-            <div
-              class="border-b border-stone-500 flex flex-row justify-between py-2 max-h-11"
-            >
-              <p>Battle tested</p>
-              <p>2,000,000 interfaces deployed</p>
-            </div>
+      <div id="news" class="mb-12">
+        <div
+          class="bg-ivory-light flex flex-row justify-between items-center h-8 pl-11 pr-2 border-y-1 border-stone-200"
+        >
+          <div class="flex-row flex gap-3">
+            <p class="!text-sm !font-mono text-sky-darkest font-medium">New</p>
+            <p class="!text-sm !font-mono text-cloud-dark font-medium">
+              Changelog
+            </p>
+            <p class="!text-sm !font-mono text-cloud-dark font-medium">
+              Roadmap
+            </p>
+          </div>
+          <div class="fill-slate">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              fill="#000000"
+              viewBox="0 0 256 256"
+              ><path
+                d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="mx-11 my-5 h-52 bg-sky-darkest"></div>
       </div>
-    --->
-      <div class="bg-lavendar-medium pt-auto">joe</div>
     </aside>
 
     <!--Images--->
-    <div class="lg:col-span-17 flex flex-col h-full aspect-auto">
+    <div id="products" class="lg:col-span-17 flex flex-col h-full aspect-auto">
       <ul
         class="bg-ivory-light flex flex-row items-center !min-h-8 pl-6 pr-2 border-b-1 border-r-1 border-stone-200 gap-3"
         id="hero-tabs"
@@ -160,7 +119,7 @@ import Github from "phosphor-astro/GithubLogo.astro";
         </li>
         <li
           id="tab-forms"
-          class="text-sm p-1"
+          class="text-sm"
           role="tab"
           aria-selected="false"
           tabindex="-1"
@@ -181,24 +140,24 @@ import Github from "phosphor-astro/GithubLogo.astro";
           Apps
         </li>
         <li
-          id="tab-apps"
+          id="tab-enterprise"
           class="text-sm"
           role="tab"
           aria-selected="false"
           tabindex="-1"
-          aria-controls="panel-apps"
-          data-key="apps"
+          aria-controls="panel-enterprise"
+          data-key="enterprise"
         >
           Enterprise
         </li>
         <li
-          id="tab-apps"
+          id="tab-integrations"
           class="text-sm"
           role="tab"
           aria-selected="false"
           tabindex="-1"
-          aria-controls="panel-apps"
-          data-key="apps"
+          aria-controls="panel-integrations"
+          data-key="integrations"
         >
           Integrations
         </li>
@@ -253,6 +212,36 @@ import Github from "phosphor-astro/GithubLogo.astro";
         >
           <div class="hero-image-wrapper">
             <Image id="hero-image-apps" src={heroApps} alt="Apps hero image" />
+          </div>
+        </div>
+        <div
+          id="panel-enterprise"
+          role="tabpanel"
+          aria-labelledby="tab-enterprise"
+          class="panel is-hidden"
+          tabindex="0"
+        >
+          <div class="hero-image-wrapper">
+            <Image
+              id="hero-image-enterprise"
+              src={heroForms}
+              alt="enterprise hero image"
+            />
+          </div>
+        </div>
+        <div
+          id="panel-integrations"
+          role="tabpanel"
+          aria-labelledby="tab-integrations"
+          class="panel is-hidden"
+          tabindex="0"
+        >
+          <div class="hero-image-wrapper">
+            <Image
+              id="hero-image-integrations"
+              src={heroForms}
+              alt="integrations hero image"
+            />
           </div>
         </div>
         <div
@@ -381,10 +370,12 @@ import Github from "phosphor-astro/GithubLogo.astro";
         chat: document.getElementById("panel-chat"),
         forms: document.getElementById("panel-forms"),
         apps: document.getElementById("panel-apps"),
+        enterprise: document.getElementById("panel-enterprise"),
+        integrations: document.getElementById("panel-integrations"),
       };
       const announcer = document.getElementById("hero-announcer");
       const tablist = document.getElementById("hero-tabs");
-      const order = ["chat", "forms", "apps"];
+      const order = ["chat", "forms", "apps", "enterprise", "integrations"];
       let rotateTimer = null;
       let isPaused = false;
       let loopsRemaining = 2; // loop twice
