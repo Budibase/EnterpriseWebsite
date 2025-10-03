@@ -1,5 +1,7 @@
 ---
 import HardDrives from "phosphor-astro/HardDrives.astro";
+import PlusCircle from "phosphor-astro/PlusCircleFill.astro";
+import Sparkle from "phosphor-astro/Sparkle.astro";
 import Cloud from "phosphor-astro/Cloud.astro";
 import CloudPlans from "./Cloud.astro";
 import SelfHost from "./SelfHost.astro";
@@ -14,6 +16,9 @@ import SelfHost from "./SelfHost.astro";
     <ul class="inline-flex flex-row gap-3 bg-ivory-medium rounded-[13px] p-1">
       <li>
         <button
+          id="Cloud button"
+          data-plan="cloud"
+          aria-pressed="true"
           class="bg-white rounded-[12px] py-2 px-2 flex flex-row gap-2 text-sm"
         >
           <Cloud class="w-5" />
@@ -22,6 +27,9 @@ import SelfHost from "./SelfHost.astro";
       </li>
       <li>
         <button
+          id="Self-host button"
+          data-plan="self-host"
+          aria-pressed="false"
           class="bg-transparent rounded-[12px] py-2 px-2 flex flex-row gap-2 text-sm"
         >
           <HardDrives class="w-5" />
@@ -29,8 +37,496 @@ import SelfHost from "./SelfHost.astro";
         </button>
       </li>
     </ul>
+    <ul class="inline-flex flex-row gap-3 bg-ivory-medium rounded-[13px] p-1">
+      <li>
+        <button
+          id="Annual button"
+          data-plan="annual"
+          aria-pressed="true"
+          class="bg-white rounded-[12px] py-2 px-2 flex flex-row gap-2 text-sm"
+        >
+          Annual
+        </button>
+      </li>
+      <li>
+        <button
+          id="Monthly button"
+          data-plan="monthly"
+          aria-pressed="false"
+          class="bg-transparent rounded-[12px] py-2 px-2 flex flex-row gap-2 text-sm"
+        >
+          Monthly
+        </button>
+      </li>
+    </ul>
   </div>
+  <secton id="Cloud pricing" data-section="cloud">
+    <div class="grid grid-cols-3 max-w-6xl gap-4">
+      <div>
+        <div class="p-1 border bg-white rounded-lg">
+          <div class="rounded-md border !border-dashed px-8 py-6">
+            <div class="flex-col items-center gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <div class="bg-sky-dark w-8 h-8 rounded-xl p-1">
+                  <Cloud class="fill-white" />
+                </div>
+                <div>
+                  <h2 class="!text-2xl m-b">Starter</h2>
+                  <p class="font-medium text-cloud-dark !text-sm">
+                    per month with annual subscription discount; $1188 billed up
+                    front. $150 if billed monthly.
+                  </p>
+                </div>
+              </div>
+              <div class="mt-8">
+                <p class="font-medium !text-2xl" data-section="annual">$20</p>
+                <p class="font-medium !text-2xl" data-section="monthly">$30</p>
+                <button class="w-full primary large my-4"
+                  >Try 14-day free trial</button
+                >
+                <ul class="mt-4">
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    1 creator
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    1 workspace
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    1K actions
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    50K BB AI tokens
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Custom branding
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <CloudPlans />
-  <SelfHost />
+      <div>
+        <div class="p-1 border bg-white rounded-4xl">
+          <div class="rounded-[1.8rem] border !border-dashed px-8 py-6">
+            <div class="flex-col items-center gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <div class="bg-sky-dark w-8 h-8 rounded-xl p-1">
+                  <Cloud class="fill-white" />
+                </div>
+                <div>
+                  <h2 class="!text-2xl m-0">Premium</h2>
+                  <p class="font-medium text-cloud-dark !text-sm">
+                    per month with annual subscription discount; $1188 billed up
+                    front. $150 if billed monthly.
+                  </p>
+                </div>
+              </div>
+              <div class="mt-8">
+                <p class="font-medium !text-2xl">$100</p>
+                <p class="font-medium !text-2xl">$150</p>
+
+                <button class="w-full primary large my-4"
+                  >Try 14-day free trial</button
+                >
+                <ul class="mt-4">
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Everything in starter
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    3 creators
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    5 workspaces
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    50K actions
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    1M BB AI tokens
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Synchronous automations
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pricing-card">
+        <div class="p-1 border bg-white rounded-4xl">
+          <div class="border rounded-[1.8rem] !border-dashed px-8 py-6">
+            <div class="flex-col gap-2">
+              <div class="flex items-center gap-2">
+                <div class="bg-sky-dark w-8 h-8 rounded-xl p-1">
+                  <Sparkle class="fill-white" />
+                </div>
+                <div>
+                  <h2 class="!text-2xl m-0">Enterprise</h2>
+                </div>
+              </div>
+              <div class="mt-8">
+                <p class="font-medium !text-2xl">Contact us</p>
+                <p class="font-medium text-cloud-dark !text-sm">
+                  Pricing starts at $10,000, billed annually. Monthly billing
+                  not available.
+                </p>
+                <button class="w-full primary large my-4">Contact sales</button>
+                <ul class="mt-4">
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Higher limits
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Priority support
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Audit logs
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    AD / SCIM
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Enhanced SSO
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Custom roles
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Custom BB AI tokens
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Environment variables
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Air-gapped deployment
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </secton>
+
+  <secton id="Self-host pricing" data-section="self-host" hidden>
+    <div class="grid grid-cols-3 max-w-6xl gap-4">
+      <div>
+        <div class="p-1 border bg-white rounded-lg">
+          <div class="rounded-md border !border-dashed px-8 py-6">
+            <div class="flex-col items-center gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <div class="bg-lavendar-dark w-8 h-8 rounded-xl p-1">
+                  <Cloud class="fill-white" />
+                </div>
+                <div>
+                  <h2 class="!text-2xl mb-2">Community</h2>
+                  <p class="font-medium text-cloud-dark !text-sm">
+                    per month with annual subscription discount; $1188 billed up
+                    front. $150 if billed monthly.
+                  </p>
+                </div>
+              </div>
+              <div class="mt-8">
+                <p class="font-medium !text-2xl">$0</p>
+                <p class="font-medium !text-2xl">$0</p>
+                <button class="w-full primary large my-4">Install</button>
+                <ul class="mt-4">
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    1 creator
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    1 workspace
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    1K actions
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    50K BB AI tokens
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Custom branding
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pricing-card">
+        <div class="p-1 border bg-white rounded-4xl">
+          <div class="border rounded-[1.8rem] !border-dashed px-8 py-6">
+            <div class="flex-col gap-2">
+              <div class="flex items-center gap-2">
+                <div class="bg-lavendar-dark w-8 h-8 rounded-xl p-1">
+                  <Sparkle class="fill-white" />
+                </div>
+                <div>
+                  <h2 class="!text-2xl m-0">Premium</h2>
+                </div>
+              </div>
+              <div class="mt-8">
+                <p class="font-medium !text-2xl">$199</p>
+                <p class="font-medium text-cloud-dark !text-sm">
+                  per month with annual subscription discount; $1188 billed up
+                  front. $150 if billed monthly.
+                </p>
+                <button class="w-full primary large my-4"
+                  >Try 14-day free trial</button
+                >
+                <ul class="mt-4">
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Everything in starter
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    3 creators
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    5 workspaces
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    50K actions
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    1M BB AI tokens
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Synchronous automations
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pricing-card">
+        <div class="p-1 border bg-white rounded-4xl">
+          <div class="border rounded-[1.8rem] !border-dashed px-8 py-6">
+            <div class="flex-col gap-2">
+              <div class="flex items-center gap-2">
+                <div class="bg-lavendar-dark w-8 h-8 rounded-xl p-1">
+                  <Sparkle class="fill-white" />
+                </div>
+                <div>
+                  <h2 class="!text-2xl m-0">Enterprise</h2>
+                </div>
+              </div>
+              <div class="mt-8">
+                <p class="font-medium !text-2xl">Contact us</p>
+                <p class="font-medium text-cloud-dark !text-sm">
+                  Pricing starts at $10,000, billed annually. Monthly billing
+                  not available.
+                </p>
+                <button class="w-full primary large my-4">Contact sales</button>
+                <ul class="mt-4">
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Higher limits
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Priority support
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Audit logs
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    AD / SCIM
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Enhanced SSO
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Custom roles
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Custom BB AI tokens
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Environment variables
+                  </li>
+                  <li class="flex items-center gap-2 mt-1">
+                    <span>
+                      <PlusCircle class="fill-black w-6" />
+                    </span>
+                    Air-gapped deployment
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </secton>
+
+  <script is:inline>
+    if (typeof window !== "undefined") {
+      const cloudButton = document.querySelector('[data-plan="cloud"]');
+      const selfHostButton = document.querySelector('[data-plan="self-host"]');
+      const cloudSection = document.querySelector('[data-section="cloud"]');
+      const selfHostSection = document.querySelector(
+        '[data-section="self-host"]',
+      );
+
+      if (cloudButton && selfHostButton && cloudSection && selfHostSection) {
+        const setButtonState = (button, isActive) => {
+          button.setAttribute("aria-pressed", isActive ? "true" : "false");
+          if (isActive) {
+            button.classList.add("bg-white");
+            button.classList.remove("bg-transparent");
+          } else {
+            button.classList.add("bg-transparent");
+            button.classList.remove("bg-white");
+          }
+        };
+
+        const showCloud = () => {
+          cloudSection.removeAttribute("hidden");
+          selfHostSection.setAttribute("hidden", "");
+          setButtonState(cloudButton, true);
+          setButtonState(selfHostButton, false);
+        };
+
+        const showSelfHost = () => {
+          selfHostSection.removeAttribute("hidden");
+          cloudSection.setAttribute("hidden", "");
+          setButtonState(selfHostButton, true);
+          setButtonState(cloudButton, false);
+        };
+
+        cloudButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          showCloud();
+        });
+
+        selfHostButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          showSelfHost();
+        });
+
+        showCloud();
+      }
+    }
+  </script>
 </section>
