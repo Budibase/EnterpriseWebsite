@@ -1,0 +1,103 @@
+---
+// Reusable Tag component
+// Props:
+// - label: string (required)
+// - variant?: 'primary' | 'secondary' | 'cta' (defaults to 'primary')
+// - size?: 'small' | 'medium' | 'large' (defaults to 'medium')
+// - class?: string (additional classes)
+
+type Variant = "primary" | "secondary" | "cta";
+
+interface Props {
+  label: string;
+  variant?: Variant;
+  size?: "small" | "medium" | "large";
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  label,
+  variant = "primary",
+  size = "medium",
+  class: className = "",
+  ariaLabel,
+} = Astro.props as Props;
+
+const sizeClass = size !== "medium" ? size : "";
+const classes = ["tag", variant, sizeClass, className]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<span class={classes} aria-label={ariaLabel}>
+  <span class="label">{label}</span>
+  <slot />
+  <!-- Slot allows optional inline icon/content -->
+  
+</span>
+
+<style>
+  /* Base tag look */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    cursor: default;
+    font-family: var(--font-mono);
+    font-weight: 400;
+    transition: 150ms background-color ease-out, 150ms color ease-out;
+    border-radius: 4px; /* Fixed radius per requirements */
+    line-height: 1.2;
+  }
+
+  .label {
+    white-space: nowrap;
+  }
+
+  /* Variants (mirrors Button colors, but radius fixed to 4px) */
+  .tag.cta {
+    background-color: var(--color-sky-700);
+    color: white;
+    font-size: 16px;
+    padding: 3px 12px; /* same as Button cta */
+  }
+  .tag.cta:hover {
+    background-color: var(--color-sky-900);
+  }
+
+  .tag.primary {
+    background-color: var(--color-theme-fg);
+    color: var(--color-theme-bg);
+    font-size: 16px;
+    padding: 6px 12px; /* same as Button primary */
+  }
+  .tag.primary:hover {
+    background-color: var(--gray-600);
+  }
+
+  .tag.secondary {
+    background-color: var(--gray-50);
+    color: var(--color-theme-fg);
+    border: 1px solid var(--gray-300);
+    font-size: 16px;
+    padding: 6px 12px; /* same as Button secondary */
+  }
+  .tag.secondary:hover {
+    background-color: var(--gray-100);
+  }
+
+  /* Sizes (match Button paddings) */
+  .tag.small {
+    padding: 4.5px 10px;
+    font-size: 14px;
+  }
+
+  .tag.large {
+    padding: 8px 16px;
+    font-size: 18px;
+  }
+</style>
+

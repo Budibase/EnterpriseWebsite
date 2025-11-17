@@ -15,9 +15,10 @@
     "prettier-plugin-astro": "^0.14.1"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/mdx": "^4.3.10",
+    "@astrojs/netlify": "^6.6.0",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.10.1",
+    "astro": "^5.15.6",
     "date-fns": "^4.1.0",
     "phosphor-astro": "^2.1.0",
     "tailwindcss": "^4.1.11"

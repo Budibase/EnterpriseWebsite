@@ -24,21 +24,21 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  src: url("/src/assets/fonts/Inter-Bold.otf") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/src/assets/fonts/Inter-Bold.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Fraunces Variable";
+  font-family: "Inter Display";
   font-style: normal;
-  font-weight: 100 900; /* full variable range */
-  font-stretch: 75% 125%; /* if supported */
-  src: url("/src/assets/fonts/FrauncesVariable.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  font-weight: 500;
+  src: url("/src/assets/fonts/InterDisplay-Medium.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "InstrumentSerif";
+  font-family: "Inter Display";
   font-style: normal;
   font-weight: 400;
-  src: url("/src/assets/fonts/InstrumentSerif.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/src/assets/fonts/InterDisplay-Regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }

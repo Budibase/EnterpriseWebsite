@@ -2,19 +2,30 @@
 import Favicon from "./Favicon.astro";
 import { ClientRouter } from "astro:transitions";
 const { title = "My Budibase Website", ...props } = Astro.props;
-
+import { Font } from "astro:assets";
 ---
-<link rel="sitemap" href="/sitemap-index.xml">
+
+<link rel="sitemap" href="/sitemap-index.xml" />
 <title>{title}</title>
-<meta name="description" content="Welcome to my new Budibase site!">
+<meta name="description" content="Welcome to my new Budibase site!" />
 
 <!-- Open Graph tags -->
 <meta property="og:title" content="My New Budibase Website" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://www.budibase.com/" />
 <meta property="og:description" content="Welcome to my new Budibase site!" />
-<meta property="og:image" content="https://www.budibase.com/_astro/seo-banner.BZD7kegZ.webp">
-<meta property="og:image:alt" content="">
+<meta
+  property="og:image"
+  content="https://www.budibase.com/_astro/seo-banner.BZD7kegZ.webp"
+/>
+<meta property="og:image:alt" content="" />
 
 <Favicon />
 <ClientRouter />
+<Font cssVariable="--font-roboto" preload />
+
+<style>
+  body {
+    font-family: var(--font-sans);
+  }
+</style>

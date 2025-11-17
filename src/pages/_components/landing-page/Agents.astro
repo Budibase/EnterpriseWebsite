@@ -1,0 +1,39 @@
+---
+import Customers from "@components/Customers.astro";
+import Button from "@components/Button.astro";
+import HeroBackground from "@assets/images/homepage/HeroBackground.png";
+import { Image } from "astro:assets";
+---
+
+<section
+  class="container max-w-7xl mx-auto px-2 lg:px-0 grid grid-cols-12 mt-24 gap-5"
+>
+  <div class="col-span-5">
+    <p class="mb-4 !font-mono !text-sky-700">Agents</p>
+    <h2 class="mb-4">Build AI agents with your data, tools and models</h2>
+    <ul class="gap-4 flex flex-col border">
+      <li class="border-b text-stone-700">
+        Custom-built, impactful tools Agents aren't useful without hyperspecific
+        tools deeply integrated into your core business systems. Use and expand
+        your trusted library of contextual connections right inside Retool.
+      </li>
+      <li class="border-b-stone-200 text-stone-700">
+        Custom-built, impactful tools Agents aren't useful without hyperspecific
+        tools deeply integrated into your core business systems. Use and expand
+        your trusted library of contextual connections right inside Retool.
+      </li>
+      <li class="text-stone-700">
+        Custom-built, impactful tools Agents aren't useful without hyperspecific
+        tools deeply integrated into your core business systems. Use and expand
+        your trusted library of contextual connections right inside Retool.
+      </li>
+    </ul>
+  </div>
+  <div class="col-span-7">
+    <Image
+      class="rounded-md"
+      src={HeroBackground}
+      alt="Newcastle, Northern Ireland"
+    />
+  </div>
+</section>

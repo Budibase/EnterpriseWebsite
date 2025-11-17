@@ -1,0 +1,39 @@
+---
+import Customers from "@components/Customers.astro";
+import Button from "@components/Button.astro";
+import HeroBackground from "@assets/images/homepage/HeroBackground.png";
+import { Image } from "astro:assets";
+---
+
+<section class="container max-w-7xl mx-auto px-2 lg:px-0 flex flex-col mt-24">
+  <!--
+    Build AI agents, chat, automations and apps - with your models, data, and
+    tools.
+    Open-source and built to make your workplace more productive, Budibase is the privacy-first way to
+    build AI agents, chat, apps, & automations.
+  Open-source and built for privacy-first teams, Budibase is the best way to
+  automate workflows with AI.
+  Open-source and built for privacy-first teams, Budibase is the better way to
+  <span class="text-sky-700">automate workflows with AI</span>
+  Open-source and built for privacy-first teams, Budibase is the faster way to
+  <span class="text-sky-700">automate workflows with AI</span>
+  -->
+  <h1 class="max-w-2xl h2">
+    Open-source and built for privacy-first teams, Budibase is the better way to
+
+    <span class="text-sky-700">transform workflows with AI.</span>
+  </h1>
+  <div class="flex flex-row mt-5 sm:mb-0 gap-2">
+    <Button label="Get Budibase free" url="/" variant="primary" size="large" />
+  </div>
+  <div class="my-5">
+    <Customers />
+  </div>
+  <div>
+    <Image
+      class="rounded-md"
+      src={HeroBackground}
+      alt="Newcastle, Northern Ireland"
+    />
+  </div>
+</section>

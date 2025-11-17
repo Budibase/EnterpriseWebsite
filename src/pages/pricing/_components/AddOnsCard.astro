@@ -1,0 +1,39 @@
+---
+// Add-ons list row component
+// Design: simple row with label on the left and price on the right,
+// separated by a subtle divider (see provided reference image).
+// Props:
+// - label: string
+// - price: string (custom display e.g., "$199/mo", "Contact us")
+
+interface Props {
+  label: string;
+  price: string;
+}
+
+const { label, price } = Astro.props as Props;
+---
+
+<div class="addon-row">
+  <div class="label">{label}</div>
+  <div class="price">{price}</div>
+</div>
+
+<style>
+  .addon-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-top: 1px solid var(--gray-200);
+  }
+  .label {
+    font-size: 22px;
+    color: var(--text-primary);
+  }
+  .price {
+    font-size: 22px;
+    color: var(--gray-900);
+    white-space: nowrap;
+  }
+</style>

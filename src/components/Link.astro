@@ -1,0 +1,97 @@
+---
+// Simple anchor link component
+// Props:
+// - label: string (text content)
+// - url: string (href)
+// - target?: string (e.g. '_blank')
+// - variant?: 'primary' | 'secondary' | 'cta' (default 'primary')
+// - size?: 'small' | 'medium' | 'large' (default 'medium')
+// - class?: string (extra classes)
+
+type Variant = "primary" | "secondary" | "cta";
+type Size = "small" | "medium" | "large";
+
+interface Props {
+  label: string;
+  url: string;
+  target?: string;
+  variant?: Variant;
+  size?: Size;
+  class?: string;
+  ariaLabel?: string;
+  rel?: string;
+}
+
+const {
+  label,
+  url,
+  target = "_self",
+  variant = "primary",
+  size = "medium",
+  class: className = "",
+  ariaLabel,
+  rel,
+} = Astro.props as Props;
+
+const sizeClass = size !== "medium" ? size : "";
+const variantClass = variant;
+const ctaColorClass = variant === "cta" ? "text-sky-700" : "";
+const classes = ["alink", sizeClass, variantClass, ctaColorClass, className]
+  .filter(Boolean)
+  .join(" ");
+
+const computedRel =
+  rel ?? (target === "_blank" ? "noopener noreferrer" : undefined);
+---
+
+<a
+  href={url}
+  target={target}
+  rel={computedRel}
+  class={classes}
+  aria-label={ariaLabel}
+>
+  {label}
+  <slot />
+  <!-- allow optional icon/content -->
+</a>
+
+<style>
+  .alink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    transition: color 150ms ease-out;
+  }
+
+  /* Sizes */
+  .alink.small {
+    font-size: 14px;
+  }
+  .alink.medium {
+    font-size: 16px;
+  }
+  .alink.large {
+    font-size: 18px;
+  }
+
+  /* Variants */
+  .alink.primary {
+    color: var(--color-theme-fg);
+  }
+  .alink.primary:hover {
+    color: var(--color-theme-fg);
+  }
+  .alink.secondary {
+    color: var(--text-secondary);
+  }
+  .alink.secondary:hover {
+    color: var(--color-theme-fg);
+  }
+  /* CTA color is applied via Tailwind class 'text-blue-700' */
+
+  .alink:hover {
+    opacity: 0.9;
+  }
+</style>

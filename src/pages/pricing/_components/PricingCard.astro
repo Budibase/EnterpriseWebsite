@@ -1,0 +1,184 @@
+---
+// Reusable Pricing Card component (styled per reference image)
+// Props:
+// - title: string
+// - description?: string
+// - creatorPrice: string | number
+// - userPrice?: string | number
+// - creatorUnit?: string (defaults to '/mo.')
+// - userUnit?: string (defaults to '/mo.')
+// - creatorLabel?: string (defaults to 'per creator')
+// - userLabel?: string (defaults to 'per end user')
+// - features?: string[]
+// - recommended?: boolean (adds inline label)
+// - buttonLabel: string
+// - buttonVariant?: 'primary' | 'secondary' | 'cta'
+// - buttonUrl?: string
+// - buttonSize?: 'small' | 'medium' | 'large' (defaults to 'large')
+import Button from "@components/Button.astro";
+import Check from "phosphor-astro/check.astro";
+
+type ButtonVariant = "primary" | "secondary" | "cta";
+type ButtonSize = "small" | "medium" | "large";
+// features is an array of bullet points
+
+interface Props {
+  title: string;
+  description?: string;
+  creatorPrice: string | number;
+  userPrice?: string | number;
+  creatorUnit?: string;
+  userUnit?: string;
+  creatorLabel?: string;
+  userLabel?: string;
+  features?: string[];
+  recommended?: boolean;
+  buttonLabel: string;
+  buttonVariant?: ButtonVariant;
+  buttonUrl?: string;
+  buttonSize?: ButtonSize;
+}
+
+const {
+  title,
+  description,
+  creatorPrice,
+  userPrice,
+  creatorUnit = "/mo.",
+  userUnit = "/mo.",
+  creatorLabel = "per creator",
+  userLabel = "per end user",
+  features = [],
+  recommended = false,
+  buttonLabel,
+  buttonVariant = "primary",
+  buttonUrl = "#",
+  buttonSize = "medium",
+} = Astro.props as Props;
+
+const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={cardClasses}>
+  <header class="header">
+    <h3>{title}</h3>
+    {
+      recommended && (
+        <span
+          class="text-stone-100 ml-auto px-2 py-0.5 bg-sky-700 text-sm font-mono rounded-md"
+          aria-label="Recommended"
+        >
+          Recommended
+        </span>
+      )
+    }
+  </header>
+
+  <div class="body">
+    <div class="prices">
+      <p class="price-line">
+        <span class="amount"
+          >{
+            typeof creatorPrice === "number" ? `$${creatorPrice}` : creatorPrice
+          }</span
+        >
+        <span class="inline-flex gap-0.5">
+          <span class="text-md text-stone-600">{creatorLabel}</span>
+          <span class="text-md text-stone-600">{creatorUnit}</span>
+        </span>
+      </p>
+      {
+        userPrice !== undefined && (
+          <p class="price-line">
+            <span class="amount">
+              {typeof userPrice === "number" ? `$${userPrice}` : userPrice}
+            </span>
+            <span class="inline-flex gap-0.5">
+              <span class="text-md text-stone-600">{userLabel}</span>
+              <span class="text-md text-stone-600">{userUnit}</span>
+            </span>
+          </p>
+        )
+      }
+    </div>
+    <div class="mt-4">
+      {description && <p class=" !text-stone-600">{description}</p>}
+    </div>
+    {
+      features?.length ? (
+        <ul class="features">
+          {features.map((feat) => (
+            <li class="feature">
+              <span class="check">
+                <Check class="fill-black w-3" />
+              </span>
+              <span class="feature-text">{feat}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null
+    }
+    <div class="cta mt-20">
+      <Button
+        label={buttonLabel}
+        url={buttonUrl}
+        variant={buttonVariant}
+        size={buttonSize}
+      />
+    </div>
+  </div>
+</div>
+
+<style>
+  .pricing-card {
+    background: var(--color-theme-bg-secondary);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .body {
+    margin-top: 20px;
+  }
+
+  .prices {
+    display: block;
+    margin-bottom: 20px;
+  }
+  .price-line {
+    margin: 0;
+    font-size: 22px;
+    color: var(--gray-900);
+  }
+
+  .cta {
+    margin: 32px 0 16px 0;
+  }
+
+  .features {
+    margin: 16px 0 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .check {
+    display: inline-flex;
+  }
+  .feature-text {
+    font-size: 15px;
+  }
+</style>
