@@ -50,7 +50,6 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
 							<li>
 								<BlogPostPreview
 									post={post}
-									isCaseStudy={'isCaseStudy' in post.data}
 									imageLoading={index === 0 ? 'eager' : 'lazy'}
 								/>
 							</li>
