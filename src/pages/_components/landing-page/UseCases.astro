@@ -1,22 +1,57 @@
 ---
 import ProductSection from "@components/cards/ProductSection.astro";
 import HeroBackground from "@assets/images/homepage/HeroBackground.png";
+import Tag from "@components/Tag.astro";
+import Card from "@components/cards/Card.astro";
 ---
-
-<ProductSection
-  tagLabel="/Chat"
-  title="Incident triage"
-  description="Help analysts process, classify, and respond to incidents faster - without sending data outside their network."
-  productImage={HeroBackground}
-  linkLabel="Build an agent"
-  linkUrl="/blog"
-  features={[
-    "Trigger: A new alert or incident record appears (from Budibase form, Splunk, Sentinel, or ServiceNow)",
-    "Agent: Summarizes the incident in plain English",
-    "Agent: Extracts key entities (user, IP, hostname, file)",
-    "Agent: Correlates with threat-intel feeds (VirusTotal, AbuseIPDB",
-    "Agent: Assesses severity and likely cause.",
-    "Output: Structured triage summary, tags the record, and suggests next steps.",
-    "Automation: Creates or updates a ServiceNow/Jira ticket, notifies Slack/Teams, logs the action",
-  ]}
-/>
+<div class="container max-w-7xl mx-auto mt-24">
+  <Tag label="/UseCases" variant="primary" size="small" class="mb-4" />
+  <h2 class="mb-6 text-stone-500!">
+    Real use cases, real solutions,  
+    <span class="text-stone-950">real results.</span>
+  </h2>
+  <div class="grid grid-cols-4 gap-2">
+    <Card
+      team="/Security"
+      label="Incident Triage"
+      description="Help analysts process, classify, and respond to incidents faster."
+      linkUrl="/use-cases/customer-support"
+    />
+    <Card
+      team="/Security"
+      label="Access request"
+      description="Automate the process of granting, reviewing, and revoking access"
+      linkUrl="/use-cases/data-processing"
+    />
+    <Card
+    team="/Security"
+    label="Analyze Crowdstrike alerts"
+    description="Fetch Crowdstrike alerts, analyze them with AI, and create Jira tickets."
+    linkUrl="/use-cases/data-processing"
+  />
+    <Card
+      team="/IT"
+      label="Change management"
+      description="Streamline, validate, and audit IT change requests."
+      linkUrl="/use-cases/workflow-automation"
+    />
+    <Card
+      team="/IT"
+      label="Password reset"
+      description="Automate password resets and account unlocks."
+      linkUrl="/use-cases/content-generation"
+    />
+    <Card
+      team="/IT"
+      label="Employee onboarding"
+      description="Automate onboarding by creating accounts and permissions."
+      linkUrl="/use-cases/content-generation"
+    />
+    <Card
+      team="/IT"
+      label="IT ticket triage"
+      description="Triage incoming IT tickets and assign them to the appropriate team."
+      linkUrl="/use-cases/content-generation"
+    />
+  </div>
+</div>

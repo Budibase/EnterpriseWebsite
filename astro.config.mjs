@@ -3,8 +3,8 @@ import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath } from "node:url";
 import { URL } from "node:url";
-
 import netlify from "@astrojs/netlify";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,7 +25,6 @@ export default defineConfig({
       },
     },
   },
-
   experimental: {
     clientPrerender: true,
     contentIntellisense: true,
@@ -56,4 +55,5 @@ export default defineConfig({
   },
 
   adapter: netlify(),
+  integrations: [sitemap()],
 });

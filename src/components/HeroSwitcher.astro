@@ -223,21 +223,21 @@ const {
 
   .product {
     position: absolute;
-    /* equal space on all sides; centered both axes */
-    --pad: 12px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: calc(100% - (var(--pad) * 2));
-    max-height: calc(100% - (var(--pad) * 2));
-    display: flex;
+    /* 2rem space from all edges of background image */
+    top: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+    left: 2rem;
+    display: none;
     align-items: center;
     justify-content: center;
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
     border-radius: 8px;
     opacity: 0;
     visibility: hidden;
-    display: none;
     transition: opacity 150ms ease-out;
     pointer-events: none;
     z-index: 1;
@@ -245,7 +245,7 @@ const {
   }
 
   .product.is-active {
-    display: block;
+    display: flex;
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
@@ -261,15 +261,9 @@ const {
     height: auto;
     display: block;
     border-radius: 8px;
+    object-fit: contain;
   }
 
-  @media (max-width: 768px) {
-    .product { --pad: 8px; }
-  }
-
-  @media (min-width: 1024px) {
-    .product { --pad: 16px; }
-  }
 </style>
 
 <script define:vars={{ id }}>

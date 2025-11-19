@@ -1,0 +1,46 @@
+---
+import Link from "@components/Link.astro";
+import Tag from "@components/Tag.astro";
+
+interface Props {
+  label: string;
+  description: string;
+  linkUrl: string;
+  team: string;
+}
+
+const { label, description, linkUrl, team } = Astro.props as Props;
+---
+
+<Link url={linkUrl} label="" ariaLabel={label} class="card-link">
+  <div class="bg-secondary ease-in-out duration-50 hover:bg-stone-200! p-4 rounded-md">
+    <div class="card-content">
+      <Tag label={team} variant="secondary" size="small" class="w-fit mb-2" />
+      <h3 class="text-lg!">{label}</h3>
+      <p class="text-stone-500!">{description}</p>
+    </div>
+  </div>
+</Link>
+
+<style>
+  .card-link {
+    display: block !important;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  .card-link :global(.alink) {
+    display: block !important;
+    width: 100%;
+    font-size: 0;
+  }
+
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+</style>
+

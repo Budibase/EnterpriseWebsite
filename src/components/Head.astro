@@ -1,29 +1,86 @@
 ---
 import Favicon from "./Favicon.astro";
 import { ClientRouter } from "astro:transitions";
-const { title = "My Budibase Website", ...props } = Astro.props;
 import { Font } from "astro:assets";
+import '../styles/fonts.css';
+import SEO from './SEO.astro';
+
+export type Props = {
+	title?: string;
+	rawTitle?: string;
+	description?: string;
+	image?: { src: string; alt: string };
+	canonicalURL?: URL | null;
+	pageType?: 'website' | 'article';
+};
+
+const twitterHandle = 'budibase';
+
+const siteInfo = {
+	name: 'Budibase',
+	description: 'Build AI agents and automate internal workflows instantly. The fastest way to automate internal business processes.',
+	image: {
+		src: '/og/social.jpg',
+		alt: 'Budibase - Make work flow',
+	},
+};
+
+const {
+	rawTitle,
+	description = siteInfo.description,
+	image = siteInfo.image,
+	canonicalURL = new URL(Astro.request.url, Astro.site),
+	pageType = 'website',
+} = Astro.props;
+
+const title = rawTitle ?? [Astro.props.title, siteInfo.name].filter(Boolean).join(' | ');
+const resolvedImage = {
+	src: new URL(image.src, Astro.site).toString(),
+	alt: image.alt,
+};
+
+// Simple smartypants-like function for typographic quotes and dashes
+function smartypants(text: string, _mode?: number): string {
+	return text
+		.replace(/'/g, '&#8217;') // apostrophe
+		.replace(/'/g, '&#8216;') // opening single quote
+		.replace(/"/g, '&#8221;') // closing double quote
+		.replace(/"/g, '&#8220;') // opening double quote
+		.replace(/--/g, '&#8212;') // em dash
+		.replace(/-/g, '&#8211;'); // en dash
+}
 ---
 
-<link rel="sitemap" href="/sitemap-index.xml" />
-<title>{title}</title>
-<meta name="description" content="Welcome to my new Budibase site!" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title set:html={smartypants(title, 1)} />
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#8D46E7" />
 
-<!-- Open Graph tags -->
-<meta property="og:title" content="My New Budibase Website" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://www.budibase.com/" />
-<meta property="og:description" content="Welcome to my new Budibase site!" />
-<meta
-  property="og:image"
-  content="https://www.budibase.com/_astro/seo-banner.BZD7kegZ.webp"
-/>
-<meta property="og:image:alt" content="" />
 
+<!-- Font preloads, omit MDIO to improve initial load -->
+<link rel="preload" href="/fonts/InterDisplay-Regular.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/Inter-Medium.woff2" as="font" type="font/woff2" crossorigin />
+
+
+<!-- Low Priority Global Metadata -->
 <Favicon />
-<ClientRouter />
-<Font cssVariable="--font-roboto" preload />
+<link rel="mask-icon" href="/favicon.svg" color="#8D46E7" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS" />
 
+<!-- SEO construct -->
+<SEO
+	name={siteInfo.name}
+	title={title}
+	description={description}
+	image={resolvedImage}
+	twitter={{ handle: twitterHandle }}
+	og={{ type: pageType }}
+	canonicalURL={canonicalURL}
+/>
+<ClientRouter />
 <style>
   body {
     font-family: var(--font-sans);
