@@ -1,0 +1,64 @@
+---
+export type Props = {
+	currentCategory?: string;
+};
+
+const { currentCategory = 'all' } = Astro.props;
+
+const categories = [
+	{ id: 'all', label: 'All posts' },
+	{ id: 'Changelog', label: 'Changelog' },
+	{ id: 'tutorials', label: 'Tutorials' },
+	{ id: 'ai-agents', label: 'AI Agents' },
+	{ id: 'guests', label: 'Guests' },
+];
+---
+
+<aside class="categories-sidebar">
+	<nav>
+		<ul class="categories-list">
+			{
+				categories.map((category) => (
+					<li>
+						<a
+							href={category.id === 'all' ? '/blog' : `/blog/category/${category.id}`}
+							class:list={[
+								'category-link text-stone-500 hover:text-stone-950',
+								currentCategory === category.id && 'text-stone-950',
+							]}
+							data-astro-prefetch
+						>
+							{category.label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+</aside>
+
+<style>
+	.categories-sidebar {
+		width: 100%;
+		max-width: 200px;
+	}
+
+	.categories-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.category-link {
+		display: block;
+		text-decoration: none;
+		transition: background-color 150ms ease-out;
+		line-height: 1.5;
+		font-size: 14px;
+	}
+
+</style>
+

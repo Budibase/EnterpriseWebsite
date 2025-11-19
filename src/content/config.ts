@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { glob } from "astro/loaders"; // Not available with legacy API
+import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
 const seoSchema = z.object({
@@ -22,6 +22,7 @@ const seoSchema = z.object({
 
 export const collections = {
   blog: defineCollection({
+    loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/blog" }),
     schema: z.object({
       title: z.string().describe("The blog post title."),
       description: z
@@ -32,8 +33,21 @@ export const collections = {
       publishDate: z.coerce
         .date()
         .describe(
-          "A date string or YAML date that is compatible with JavaScript’s `new Date()` constructor.",
+          "A date string or YAML date that is compatible with JavaScript's `new Date()` constructor.",
         ),
+      author: z.string().optional().describe("Author name"),
+      profilePic: z.string().optional().describe("Author profile picture URL"),
+      authors: z
+        .array(
+          z.object({
+            name: z.string(),
+            profilePic: z.string().optional(),
+          })
+        )
+        .optional()
+        .describe("Multiple authors"),
+      category: z.string().optional().describe("Blog post category"),
+      featured: z.boolean().default(false).describe("Whether this is a featured post"),
       socialImage: z
         .string()
         .optional()
@@ -56,6 +70,7 @@ export const collections = {
     }),
   }),
   pages: defineCollection({
+    loader: glob({ pattern: "**/*.md", base: "./src/content/pages" }),
     schema: z.object({
       seo: seoSchema,
       pageLayout: z.string(),

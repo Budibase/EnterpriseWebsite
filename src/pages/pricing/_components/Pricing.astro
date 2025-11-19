@@ -5,14 +5,13 @@ import AddOnsCard from "./AddOnsCard.astro";
 import Link from "@components/Link.astro";
 ---
 
-<section class="container max-w-7xl mx-auto flex flex-col items-center mt-28">
+<section class="container max-w-7xl mx-auto flex flex-col mt-24">
   <!--Title section -->
   <h1 class="max-w-2xl
-    text-center
-    mb-4 text-4xl! text-stone-950">
+    mb-4  text-stone-950">
     Pricing
   </h1>
-  <section class="mb-10 text-center mx-auto text-secondary">
+  <div class="mb-6 text-secondary">
     We also have an <span>
       <Link
         url="https://github.com/Budibase/budibase"
@@ -20,9 +19,9 @@ import Link from "@components/Link.astro";
         variant="primary"
       />
     </span>you can self-host.
-  </section>
+  </div>
   <div class="container flex flex-col gap-2">
-    <div class="flex flex-row justify-between flex-wrap gap-2 mx-auto mb-4">
+    <div class="flex flex-row gap-2 mb-4">
       <ul class="inline-flex flex-row bg-secondary rounded-[20px] p-1">
         <li>
           <button
