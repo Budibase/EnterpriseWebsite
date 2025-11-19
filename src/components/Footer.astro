@@ -1,14 +1,9 @@
 ---
 import Link from "@components/Link.astro";
-import Check from "phosphor-astro/CheckCircleFill.astro";
-import Globe from "phosphor-astro/Globe.astro";
+import Check from "phosphor-astro/CheckCircle.astro";
 import Monitor from "phosphor-astro/Monitor.astro";
 import Sun from "phosphor-astro/Sun.astro";
 import Moon from "phosphor-astro/Moon.astro";
-import CaretDown from "phosphor-astro/CaretDown.astro";
-import TwitterLogo from "phosphor-astro/TwitterLogo.astro";
-import LinkedinLogo from "phosphor-astro/LinkedinLogo.astro";
-import YoutubeLogo from "phosphor-astro/YoutubeLogo.astro";
 
 interface FooterLink {
   label: string;
@@ -25,33 +20,31 @@ const footerColumns: FooterColumn[] = [
   {
     title: "Product",
     links: [
-      { label: "Features", url: "/features" },
+      { label: "Chat", url: "/chat" },
+      { label: "Agents", url: "/agents" },
+      { label: "Automations", url: "/automations" },
+      { label: "Apps", url: "/apps" },
       { label: "Enterprise", url: "/enterprise" },
-      { label: "Bugbot", url: "/bugbot" },
-      { label: "CLI", url: "/cli" },
       { label: "Pricing", url: "/pricing" },
+    ],
+  },
+  {
+    title: "Community",
+    links: [
+      { label: "Community", url: "/community" },
+      { label: "Integrations", url: "/blog" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Download", url: "/download" },
-      { label: "Web Agents", url: "/web-agents" },
+      { label: "Blog", url: "/blog" },
       { label: "Changelog", url: "/changelog" },
       { label: "Docs", url: "/docs" },
-      { label: "Forum", url: "/forum" },
-      { label: "Status", url: "/status" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "Careers", url: "/careers" },
-      { label: "Blog", url: "/blog" },
       { label: "Community", url: "/community" },
-      { label: "Students", url: "/students" },
-      { label: "Brand", url: "/brand" },
-      { label: "Anysphere", url: "/anysphere" },
+      { label: "Blog", url: "/blog" },
+      { label: "Status", url: "/status" },
+      { label: "Company", url: "/company" },
     ],
   },
   {
@@ -74,14 +67,14 @@ const footerColumns: FooterColumn[] = [
 ];
 ---
 
-<footer class="footer">
-  <div class="footer-container">
+<footer class="footer  bg-secondary">
+  <div class="footer-container max-w-7xl container mx-auto">
     <!-- Upper section: Navigation columns -->
     <div class="footer-nav">
       {footerColumns.map((column) => (
         <div class="footer-column">
-          <h3 class="footer-column-title">{column.title}</h3>
-          <ul class="footer-links">
+          <p>{column.title}</p>
+          <ul class="text-stone-500! gap-0.5! flex flex-col">
             {column.links.map((link) => (
               <li>
                 <Link
@@ -102,10 +95,22 @@ const footerColumns: FooterColumn[] = [
     <!-- Lower section: Copyright and controls -->
     <div class="footer-bottom">
       <div class="footer-copyright">
-        <span>© 2025 Anysphere, Inc.</span>
+        <span>© 2025 Budibase, Inc.</span>
         <span class="footer-certification">
           <Check class="footer-check-icon" />
           <span>SOC 2 Certified</span>
+        </span>
+        <span class="footer-certification">
+          <Check class="footer-check-icon" />
+          <span>ISO27001 Certified</span>
+        </span>
+        <span class="footer-certification">
+          <Check class="footer-check-icon" />
+          <span>GDPR Compliant</span>
+        </span>
+        <span class="footer-certification">
+          <Check class="footer-check-icon" />
+          <span>Made in Europe</span>
         </span>
       </div>
       <div class="footer-controls">
@@ -133,12 +138,6 @@ const footerColumns: FooterColumn[] = [
             <Moon class="theme-icon" />
           </button>
         </div>
-        <!-- Language selector -->
-        <button class="language-selector" aria-label="Select language">
-          <Globe class="language-icon" />
-          <span>English</span>
-          <CaretDown class="language-caret" />
-        </button>
       </div>
     </div>
   </div>
@@ -146,16 +145,8 @@ const footerColumns: FooterColumn[] = [
 
 <style>
   .footer {
-    background-color: var(--color-theme-bg);
-    border-top: 1px solid var(--gray-200);
     padding: 3rem 0 1.5rem;
     margin-top: auto;
-  }
-
-  .footer-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
   }
 
   .footer-nav {
@@ -169,32 +160,6 @@ const footerColumns: FooterColumn[] = [
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-  }
-
-  .footer-column-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    margin: 0;
-    font-family: var(--font-sans);
-  }
-
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .footer-link {
-    color: var(--text-secondary);
-    font-size: 14px;
-  }
-
-  .footer-link:hover {
-    color: var(--color-theme-fg);
   }
 
   .footer-bottom {
@@ -218,7 +183,7 @@ const footerColumns: FooterColumn[] = [
   .footer-certification {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
   }
 
   .footer-check-icon {
@@ -267,36 +232,6 @@ const footerColumns: FooterColumn[] = [
   .theme-icon {
     width: 16px;
     height: 16px;
-  }
-
-  .language-selector {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--gray-200);
-    border-radius: 6px;
-    background-color: var(--color-theme-bg);
-    cursor: pointer;
-    font-size: 14px;
-    color: var(--color-theme-fg);
-    transition: border-color 150ms ease-out;
-  }
-
-  .language-selector:hover {
-    border-color: var(--gray-300);
-  }
-
-  .language-icon {
-    width: 16px;
-    height: 16px;
-    color: var(--text-secondary);
-  }
-
-  .language-caret {
-    width: 12px;
-    height: 12px;
-    color: var(--text-secondary);
   }
 
   @media (max-width: 768px) {
