@@ -2,6 +2,7 @@
 import bbSymbol from "@assets/logos/BBSymbol.svg";
 import { Image } from "astro:assets";
 import Button from "@components/Button.astro";
+import HeaderDropDown from "@components/HeaderDropDown.astro";
 ---
 
 <nav
@@ -25,6 +26,18 @@ import Button from "@components/Button.astro";
     >
       Products
     </a>
+    <HeaderDropDown label="Products" items={[
+      {
+        href: "/products/agents",
+        icon: "Wrench",
+        label: "Agents",
+      },
+      {
+        href: "/products/agents",
+        icon: "Wrench",
+        label: "Agents",
+      },
+      ]} />
     <a
       target="_self"
       href="/pricing"

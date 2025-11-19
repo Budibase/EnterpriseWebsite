@@ -1,0 +1,25 @@
+---
+import Wrench from "phosphor-astro/Wrench.astro";
+// Add more icon imports as needed
+
+const iconMap: Record<string, any> = {
+	Wrench: Wrench,
+	// Add more icon mappings here as needed
+};
+
+interface Props {
+	name: string;
+	size?: string;
+	class?: string;
+}
+
+const IconComponent = iconMap[Astro.props.name];
+---
+
+{IconComponent && (
+	<IconComponent
+		class={Astro.props.class}
+		style={Astro.props.size ? `width: ${Astro.props.size}px; height: ${Astro.props.size}px;` : undefined}
+	/>
+)}
+
