@@ -1,0 +1,319 @@
+---
+import Link from "@components/Link.astro";
+import Check from "phosphor-astro/CheckCircleFill.astro";
+import Globe from "phosphor-astro/Globe.astro";
+import Monitor from "phosphor-astro/Monitor.astro";
+import Sun from "phosphor-astro/Sun.astro";
+import Moon from "phosphor-astro/Moon.astro";
+import CaretDown from "phosphor-astro/CaretDown.astro";
+import TwitterLogo from "phosphor-astro/TwitterLogo.astro";
+import LinkedinLogo from "phosphor-astro/LinkedinLogo.astro";
+import YoutubeLogo from "phosphor-astro/YoutubeLogo.astro";
+
+interface FooterLink {
+  label: string;
+  url: string;
+  target?: string;
+}
+
+interface FooterColumn {
+  title: string;
+  links: FooterLink[];
+}
+
+const footerColumns: FooterColumn[] = [
+  {
+    title: "Product",
+    links: [
+      { label: "Features", url: "/features" },
+      { label: "Enterprise", url: "/enterprise" },
+      { label: "Bugbot", url: "/bugbot" },
+      { label: "CLI", url: "/cli" },
+      { label: "Pricing", url: "/pricing" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Download", url: "/download" },
+      { label: "Web Agents", url: "/web-agents" },
+      { label: "Changelog", url: "/changelog" },
+      { label: "Docs", url: "/docs" },
+      { label: "Forum", url: "/forum" },
+      { label: "Status", url: "/status" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "Careers", url: "/careers" },
+      { label: "Blog", url: "/blog" },
+      { label: "Community", url: "/community" },
+      { label: "Students", url: "/students" },
+      { label: "Brand", url: "/brand" },
+      { label: "Anysphere", url: "/anysphere" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Terms of Service", url: "/terms" },
+      { label: "Privacy Policy", url: "/privacy" },
+      { label: "Data Use", url: "/data-use" },
+      { label: "Security", url: "/security" },
+    ],
+  },
+  {
+    title: "Connect",
+    links: [
+      { label: "X", url: "https://twitter.com/budibase", target: "_blank" },
+      { label: "LinkedIn", url: "https://linkedin.com/company/budibase", target: "_blank" },
+      { label: "YouTube", url: "https://youtube.com/@budibase", target: "_blank" },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Upper section: Navigation columns -->
+    <div class="footer-nav">
+      {footerColumns.map((column) => (
+        <div class="footer-column">
+          <h3 class="footer-column-title">{column.title}</h3>
+          <ul class="footer-links">
+            {column.links.map((link) => (
+              <li>
+                <Link
+                  label={link.label}
+                  url={link.url}
+                  target={link.target}
+                  variant="secondary"
+                  size="small"
+                  class="footer-link"
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Lower section: Copyright and controls -->
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <span>© 2025 Anysphere, Inc.</span>
+        <span class="footer-certification">
+          <Check class="footer-check-icon" />
+          <span>SOC 2 Certified</span>
+        </span>
+      </div>
+      <div class="footer-controls">
+        <!-- Theme switcher -->
+        <div class="theme-switcher" role="group" aria-label="Theme selection">
+          <button
+            class="theme-button"
+            aria-label="System theme"
+            data-theme="system"
+          >
+            <Monitor class="theme-icon" />
+          </button>
+          <button
+            class="theme-button theme-button-active"
+            aria-label="Light theme"
+            data-theme="light"
+          >
+            <Sun class="theme-icon" />
+          </button>
+          <button
+            class="theme-button"
+            aria-label="Dark theme"
+            data-theme="dark"
+          >
+            <Moon class="theme-icon" />
+          </button>
+        </div>
+        <!-- Language selector -->
+        <button class="language-selector" aria-label="Select language">
+          <Globe class="language-icon" />
+          <span>English</span>
+          <CaretDown class="language-caret" />
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-theme-bg);
+    border-top: 1px solid var(--gray-200);
+    padding: 3rem 0 1.5rem;
+    margin-top: auto;
+  }
+
+  .footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-column-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin: 0;
+    font-family: var(--font-sans);
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-link {
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+
+  .footer-link:hover {
+    color: var(--color-theme-fg);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .footer-copyright {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .footer-certification {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-check-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary);
+  }
+
+  .footer-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .theme-switcher {
+    display: flex;
+    background-color: var(--gray-100);
+    border-radius: 6px;
+    padding: 2px;
+    gap: 2px;
+  }
+
+  .theme-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 150ms ease-out;
+    color: var(--text-secondary);
+  }
+
+  .theme-button:hover {
+    background-color: var(--gray-200);
+  }
+
+  .theme-button-active {
+    background-color: var(--color-theme-bg);
+    color: var(--color-theme-fg);
+  }
+
+  .theme-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .language-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 6px;
+    background-color: var(--color-theme-bg);
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--color-theme-fg);
+    transition: border-color 150ms ease-out;
+  }
+
+  .language-selector:hover {
+    border-color: var(--gray-300);
+  }
+
+  .language-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary);
+  }
+
+  .language-caret {
+    width: 12px;
+    height: 12px;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .footer-nav {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-controls {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+</style>
+
