@@ -18,23 +18,14 @@ import HeaderDropDown from "@components/HeaderDropDown.astro";
         />
       </div>
     </a>
-    <a
-      target="_self"
-      href="/blog"
-      class="text-sm px-1 text-stone-900 hover:text-stone-600"
-      data-astro-prefetch
-    >
-      Products
-    </a>
-    <HeaderDropDown label="Products" items={[
+    <HeaderDropDown 
+    label="Products" items={[
       {
         href: "/products/agents",
-        icon: "Wrench",
         label: "Agents",
       },
       {
         href: "/products/agents",
-        icon: "Wrench",
         label: "Agents",
       },
       ]} />
