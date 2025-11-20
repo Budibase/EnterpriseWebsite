@@ -1,9 +1,7 @@
 ---
 import Link from "@components/Link.astro";
 import Check from "phosphor-astro/CheckCircle.astro";
-import Monitor from "phosphor-astro/Monitor.astro";
-import Sun from "phosphor-astro/Sun.astro";
-import Moon from "phosphor-astro/Moon.astro";
+import ThemeToggle from "@components/ThemeToggle.astro";
 
 interface FooterLink {
   label: string;
@@ -114,30 +112,7 @@ const footerColumns: FooterColumn[] = [
         </span>
       </div>
       <div class="footer-controls">
-        <!-- Theme switcher -->
-        <div class="theme-switcher" role="group" aria-label="Theme selection">
-          <button
-            class="theme-button"
-            aria-label="System theme"
-            data-theme="system"
-          >
-            <Monitor class="theme-icon" />
-          </button>
-          <button
-            class="theme-button theme-button-active"
-            aria-label="Light theme"
-            data-theme="light"
-          >
-            <Sun class="theme-icon" />
-          </button>
-          <button
-            class="theme-button"
-            aria-label="Dark theme"
-            data-theme="dark"
-          >
-            <Moon class="theme-icon" />
-          </button>
-        </div>
+        <ThemeToggle />
       </div>
     </div>
   </div>
@@ -196,42 +171,6 @@ const footerColumns: FooterColumn[] = [
     display: flex;
     align-items: center;
     gap: 1rem;
-  }
-
-  .theme-switcher {
-    display: flex;
-    background-color: var(--gray-100);
-    border-radius: 6px;
-    padding: 2px;
-    gap: 2px;
-  }
-
-  .theme-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border: none;
-    background: transparent;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 150ms ease-out;
-    color: var(--text-secondary);
-  }
-
-  .theme-button:hover {
-    background-color: var(--gray-200);
-  }
-
-  .theme-button-active {
-    background-color: var(--color-theme-bg);
-    color: var(--color-theme-fg);
-  }
-
-  .theme-icon {
-    width: 16px;
-    height: 16px;
   }
 
   @media (max-width: 768px) {

@@ -1,50 +1,24 @@
 @import "tailwindcss";
 
+/* Override dark variant to use class selector instead of prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Landing page vertical padding (each side). Adjust once here. */
   --font-sans: "Inter", sans-serif;
   --font-display: "Inter Display", sans-serif;
-  --color-theme-bg: #f7f7f4;
-  --color-theme-bg-secondary: #f2f1ed;
-  --color-theme-fg: #26251e;
-  --text-primary: var(--color-theme-fg);
-  --text-secondary: color-mix(in oklab, var(--color-theme-fg) 60%, transparent);
-  --gray-50: rgb(250 250 247 / 1);
-  --gray-100: rgb(240 238 230 / 1);
-  --gray-200: rgb(232 230 220 / 1);
-  --gray-300: rgb(229 228 223 / 1);
-  --gray-400: rgb(191 191 186 / 1);
-  --gray-500: rgb(145 145 141 / 1);
-  --gray-600: rgb(102 102 99 / 1);
-  --gray-700: rgb(64 64 62 / 1);
-  --gray-800: rgb(38 38 37 / 1);
-  --gray-900: rgb(25 25 25 / 1);
-  --sky-lightest: rgb(195 218 234 / 1);
-  --sky-light: rgb(137 181 226 / 1);
-  --sky-medium: rgb(106 155 204 / 1);
-  --sky-dark: rgb(70 125 180 / 1);
-  --sky-darker: rgb(45 109 196 / 1);
-  --sky-darkest: rgb(33 95 158 / 1);
-  --sky-ink: #044484;
-  --sand: rgb(235 219 188 / 1);
-  --clay-lightest: rgb(236 211 194 / 1);
-  --clay-light: rgb(212 162 127 / 1);
-  --clay-medium: rgb(217 119 87 / 1);
-  --clay-dark: rgb(200 98 64 / 1);
-  --clay-darkest: rgb(170 67 33 / 1);
-  --grass-lightest: rgb(210 221 195 / 1);
-  --grass-light: rgb(182 199 168 / 1);
-  --grass-medium: rgb(140 161 113 / 1);
-  --grass-dark: rgb(120 140 93 / 1);
-  --grass-darkest: rgb(76 98 47 / 1);
-  --grass-ink: rgb(46 68 17 / 1);
-  --lavendar-lightest: rgb(210 204 239 / 1);
-  --lavendar-light: rgb(189 176 245 / 1);
-  --lavendar-medium: rgb(135 119 209 / 1);
-  --lavendar-dark: rgb(86 69 161 / 1);
-  --lavendar-darkest: rgb(55 37 132 / 1);
-  --color-theme-button-text: var(--color-theme-bg);
-  --color-theme-button-bg: var(--color-theme-fg);
+  --color-theme-bg: var(--color-stone-50);
+  --color-theme-bg-secondary: var(--color-stone-100);
+  --text-primary: var(--color-stone-800);
+  --text-secondary: var(--color-stone-500);
+}
+
+/* Dark mode variables */
+.dark {
+  --color-theme-bg: var(--color-stone-950);
+  --color-theme-bg-secondary: var(--color-stone-900);
+  --text-primary: var(--color-stone-100);
+  --text-secondary: var(--color-stone-400);
 }
 
 *,
@@ -61,7 +35,7 @@ html {
   tab-size: 4;
   -webkit-font-smoothing: antialiased;
   font-family: var(--font-sans);
-  color: var(--color-theme-fg);
+  color: var(--color-stone-900);
   text-rendering: optimizeLegibility;
   font-variant-numeric: normal;
   font-feature-settings:
@@ -69,12 +43,18 @@ html {
     "cv01" 1,
     "liga" 1,
     "calt" 1;
+  transition: background-color 150ms ease-out, color 150ms ease-out;
+}
+
+html.dark {
+  color: var(--color-stone-100);
 }
 
 body {
   margin: 0;
   line-height: inherit;
   background-color: var(--color-theme-bg);
+  transition: background-color 150ms ease-out;
 }
 
 hr {
@@ -105,11 +85,15 @@ p {
 }
 
 p a {
-  color: var(--sky-dark);
+  color: var(--color-sky-800);
   display: inline-block;
   position: relative;
   text-decoration: none;
   opacity: 1;
+}
+
+.dark p a {
+  color: var(--color-sky-400);
 }
 
 p a::after {
@@ -138,6 +122,10 @@ ul, li, ol {
   letter-spacing: -0.15px !important;
   margin: 0 !important;
   list-style: none !important;
+}
+
+.dark ul, .dark li, .dark ol {
+  color: var(--color-stone-400) !important;
 }
 
 h1, .h1 {
@@ -188,11 +176,15 @@ h5 {
 
 p {
   font-family: var(--font-sans);
-  color: var(--text-primary);
+  color: var(--color-stone-900) !important;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: -0.15px !important;
+}
+
+.dark p {
+  color: var(--color-stone-100) !important;
 }
 
 article h1, article h2, article h3, article h4, article h5, article h6 {
@@ -204,6 +196,10 @@ article h1, article h2, article h3, article h4, article h5, article h6 {
   margin: 2.2rem 0 1rem 0;
 }
 
+.dark article h1, .dark article h2, .dark article h3, .dark article h4, .dark article h5, .dark article h6 {
+  color: var(--color-stone-50) !important;
+}
+
 article h3, article h4, article h5, article h6 {
   font-family: var(--font-display);
   color: var(--color-stone-950) !important;
@@ -213,13 +209,21 @@ article h3, article h4, article h5, article h6 {
   margin: 1.6rem 0 0.8rem 0;
 }
 
+.dark article h3, .dark article h4, .dark article h5, .dark article h6 {
+  color: var(--color-stone-50) !important;
+}
+
 article p {
   font-family: var(--font-sans);
-  color: var(--color-stone-600) !important;
+  color: var(--color-stone-800) !important;
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: -0.15px !important;
   margin: .7rem 0;
+}
+
+.dark article p {
+  color: var(--color-stone-200) !important;
 }
 
 article ul, article li, article ol {
@@ -230,9 +234,17 @@ article ul, article li, article ol {
   list-style: disc !important;
 }
 
+.dark article ul, .dark article li, .dark article ol {
+  color: var(--color-stone-400) !important;
+}
+
 article strong {
   font-weight: 400;
   color: var(--color-stone-950) !important;
+}
+
+.dark article strong {
+  color: var(--color-stone-50) !important;
 }
 
 article a {
@@ -246,6 +258,15 @@ article a {
 
 article a:hover {
   color: var(--color-sky-700) !important;
+}
+
+.dark article a {
+  color: var(--color-sky-400) !important;
+  text-decoration-color: var(--color-stone-600) !important;
+}
+
+.dark article a:hover {
+  color: var(--color-sky-300) !important;
 }
 
 .bg-transparent {

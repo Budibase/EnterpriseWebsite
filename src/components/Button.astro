@@ -30,8 +30,37 @@ const {
   size = "medium",
 } = Astro.props as Props;
 
-const sizeClass = size !== "medium" ? size : "";
-const classes = ["btn", variant, sizeClass, className]
+// Build Tailwind classes based on variant and size
+const variantClasses = {
+  primary: "bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 hover:bg-stone-700 dark:hover:bg-stone-200",
+  secondary: "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-700",
+  cta: "bg-sky-700 dark:bg-sky-800 text-stone-50 hover:bg-sky-900 dark:hover:bg-sky-500",
+};
+
+const sizeClasses = {
+  small: "px-2.5 py-[4.5px] text-sm",
+  medium: "px-3 py-1.5 text-base",
+  large: "px-4 py-2 text-lg",
+};
+
+// CTA variant has different padding
+const ctaSizeClasses = {
+  small: "px-3 py-[3px] text-sm",
+  medium: "px-3 py-[3px] text-base",
+  large: "px-3 py-[3px] text-lg",
+};
+
+const baseClasses = "inline-flex items-center justify-center gap-2 rounded-full font-normal transition-all duration-150 active:scale-[0.98] no-underline border-none cursor-pointer font-sans";
+
+// Use special padding for CTA variant
+const paddingClasses = variant === "cta" ? ctaSizeClasses[size] : sizeClasses[size];
+
+const classes = [
+  baseClasses,
+  variantClasses[variant],
+  paddingClasses,
+  className,
+]
   .filter(Boolean)
   .join(" ");
 ---
@@ -39,86 +68,11 @@ const classes = ["btn", variant, sizeClass, className]
 {
   url ? (
     <a href={url} class={classes} aria-label={ariaLabel} role="button">
-      <span class="label">{label}</span>
+      {label}
     </a>
   ) : (
     <button type={type} class={classes} aria-label={ariaLabel}>
-      <span class="label">{label}</span>
+      {label}
     </button>
   )
 }
-
-<style>
-  /* Base button look shared for <a> and <button> */
-  .btn {
-    transition: 150ms;
-    text-transform: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    border: none;
-    cursor: default;
-    font-family: var(--font-sans);
-  }
-
-  .btn:active {
-    transform: scale(0.98);
-  }
-
-  /* Variants mirror src/styles/global.css button styles */
-  .btn.cta {
-    background-color: var(--color-sky-700);
-    color: white;
-    font-weight: 400;
-    font-size: 16px;
-    border-radius: 50px;
-    padding: 3px 12px;
-    transition: 150ms background-color ease-out;
-  }
-  .btn.cta:hover {
-    background-color: var(--color-sky-900);
-  }
-
-  .btn.primary {
-    background-color: var(--color-theme-fg);
-    color: var(--color-theme-bg);
-    font-weight: 400;
-    font-size: 16px;
-    border-radius: 50px;
-    padding: 6px 12px;
-    transition: 150ms background-color ease-out;
-  }
-  .btn.primary:hover {
-    background-color: var(--gray-600);
-  }
-
-  .btn.secondary {
-    background-color: var(--gray-50);
-    color: var(--color-theme-fg);
-    border: 1px solid var(--gray-300);
-    font-weight: 400;
-    font-size: 16px;
-    border-radius: 50px;
-    padding: 6px 12px;
-    transition: 150ms background-color ease-out;
-  }
-  .btn.secondary:hover {
-    background-color: var(--gray-100);
-  }
-
-  /* Sizes */
-  /* Mirrors button.small in global.css */
-  .btn.small {
-    padding: 4.5px 10px;
-    border-radius: 50px;
-    font-size: 14px;
-  }
-  /* Large complements base scale (6px 12px @16px) */
-  .btn.large {
-    padding: 8px 16px;
-    border-radius: 50px;
-    font-size: 18px;
-  }
-</style>

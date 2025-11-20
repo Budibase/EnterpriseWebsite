@@ -24,98 +24,39 @@ const {
   ariaLabel,
 } = Astro.props as Props;
 
-const sizeClass = size !== "medium" ? size : "";
-const classes = ["tag", variant, sizeClass, className]
+// Build Tailwind classes based on variant and size
+const variantClasses = {
+  primary: "bg-stone-50 dark:bg-stone-100 text-stone-900 dark:text-stone-900 hover:bg-stone-200 dark:hover:bg-stone-200",
+  secondary: "bg-stone-200 dark:bg-stone-800 text-stone-900 dark:text-stone-100 hover:bg-stone-300 dark:hover:bg-stone-700",
+  cta: "bg-sky-700 dark:bg-sky-800 text-white dark:text-stone-50 hover:bg-sky-900 dark:hover:bg-sky-500",
+  orange: "bg-orange-600 dark:bg-orange-500 text-white hover:bg-orange-700 dark:hover:bg-orange-400",
+};
+
+const sizeClasses = {
+  "extra-small": "px-1 py-0.5 text-[10px]",
+  small: "px-1.5 py-0.5 text-xs",
+  medium: "px-2 py-1 text-sm",
+  large: "px-2.5 py-1.5 text-lg",
+};
+
+const baseClasses = "inline-flex items-center justify-center gap-2 rounded font-mono font-medium transition-all duration-150 cursor-default whitespace-nowrap";
+
+// Secondary variant has different border-radius
+const radiusClass = variant === "secondary" ? "rounded-md" : "rounded";
+
+const classes = [
+  baseClasses,
+  radiusClass,
+  variantClasses[variant],
+  sizeClasses[size],
+  className,
+]
   .filter(Boolean)
   .join(" ");
 ---
 
 <span class={classes} aria-label={ariaLabel}>
-  <span class="label">{label}</span>
+  {label}
   <slot />
   <!-- Slot allows optional inline icon/content -->
 </span>
-
-<style>
-  /* Base tag look */
-  .tag {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    cursor: default;
-    font-family: var(--font-mono);
-    font-weight: 500;
-    transition:
-      150ms background-color ease-out,
-      150ms color ease-out;
-    border-radius: 4px; /* Fixed radius per requirements */
-    line-height: 1.2;
-  }
-
-  .label {
-    white-space: nowrap;
-  }
-
-  /* Variants (mirrors Button colors, but radius fixed to 4px) */
-  .tag.cta {
-    background-color: var(--color-sky-700);
-    color: white;
-    font-size: 14px;
-    padding: 4px 8px; /* same as Button secondary */
-  }
-  .tag.cta:hover {
-    background-color: var(--color-sky-900);
-  }
-
-  /* New orange variant */
-  .tag.orange {
-    background-color: #ea580c; /* orange-600 */
-    color: #ffffff;
-    font-size: 14px;
-    padding: 4px 8px;
-  }
-  .tag.orange:hover {
-    background-color: #c2410c; /* orange-700 */
-  }
-
-  .tag.primary {
-    background-color: var(--color-theme-fg);
-    color: var(--color-theme-bg);
-    font-size: 14px;
-    padding: 4px 8px; /* same as Button secondary */
-  }
-  .tag.primary:hover {
-    background-color: var(--gray-600);
-  }
-
-  .tag.secondary {
-    background-color: var(--gray-200);
-    color: var(--color-theme-fg);
-    border: none;
-    font-size: 12px;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-weight: 500;
-  }
-  .tag.secondary:hover {
-    background-color: var(--gray-300);
-  }
-
-  /* Sizes (match Button paddings) */
-  .tag.small {
-    padding: 3px 6px;
-    font-size: 12px;
-  }
-
-  .tag.extra-small {
-    padding: 2px 4px;
-    font-size: 10px;
-  }
-
-  .tag.large {
-    padding: 5px 10px;
-    font-size: 18px;
-  }
-</style>

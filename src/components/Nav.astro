@@ -1,20 +1,26 @@
 ---
-import bbSymbol from "@assets/logos/BBSymbol.svg";
+import bbSymbol from "@assets/BBSymbol.svg";
+import bbSymbolWhite from "@assets/BBSymbolWhite.svg";
 import { Image } from "astro:assets";
 import Button from "@components/Button.astro";
 import HeaderDropDown from "@components/HeaderDropDown.astro";
 ---
 
 <nav
-  class="sticky top-0 z-50 bg-stone-100/90 backdrop-blur-md flex justify-between items-center container max-w-7xl px-2 lg:px-0 py-3 flex-wrap mx-auto"
+  class="sticky top-0 z-50 bg-stone-50 dark:bg-stone-950 backdrop-blur-md flex justify-between items-center container max-w-7xl px-2 lg:px-0 py-3 flex-wrap mx-auto transition-colors duration-150"
 >
   <div class="flex flex-wrap items-center gap-5">
     <a href="/">
-      <div class="w-7 mr-2">
+      <div class="w-7 mr-2 relative">
         <Image
           src={bbSymbol}
           alt="Budibase symbol"
-          class="hover:cursor-pointer"
+          class="hover:cursor-pointer dark:hidden"
+        />
+        <Image
+          src={bbSymbolWhite}
+          alt="Budibase symbol"
+          class="hover:cursor-pointer hidden dark:block"
         />
       </div>
     </a>
@@ -32,7 +38,7 @@ import HeaderDropDown from "@components/HeaderDropDown.astro";
     <a
       target="_self"
       href="/pricing"
-      class="text-sm px-1 text-stone-900 hover:text-stone-600"
+      class="text-sm px-1 text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors"
       data-astro-prefetch
     >
       Pricing
@@ -40,7 +46,7 @@ import HeaderDropDown from "@components/HeaderDropDown.astro";
     <a
       target="_self"
       href="/features"
-      class="text-sm px-1 text-stone-900 hover:text-stone-600"
+      class="text-sm px-1 text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors"
       data-astro-prefetch
     >
       Community
@@ -48,7 +54,7 @@ import HeaderDropDown from "@components/HeaderDropDown.astro";
     <a
       target="_self"
       href="/blog"
-      class="text-sm px-1 text-stone-900 hover:text-stone-600"
+      class="text-sm px-1 text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors"
       data-astro-prefetch
     >
       Resources
@@ -58,9 +64,9 @@ import HeaderDropDown from "@components/HeaderDropDown.astro";
     <a
       href="https://github.com/budibase/budibase"
       target="_blank"
-      class="relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm outline-none transition-all hover:bg-stone-200 border-transparent text-xs hidden lg:flex"
+      class="relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm outline-none transition-all hover:bg-stone-200 dark:hover:bg-stone-800 border-transparent text-xs hidden lg:flex"
       ><span class="truncate"
-        ><span class="flex items-center gap-0.5 text-stone-700"
+        ><span class="flex items-center gap-0.5 text-stone-700 dark:text-stone-300"
           ><svg
             class="w-6 h-6"
             viewBox="0 0 17 16"
@@ -78,13 +84,12 @@ import HeaderDropDown from "@components/HeaderDropDown.astro";
     <a
       target="_self"
       href="/blog"
-      class="text-sm px-1 text-stone-900 hover:text-stone-600"
+      class="text-sm px-1 text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors"
       data-astro-prefetch
     >
       Sign in
     </a>
     <Button label="Talk to sales" url="/" variant="secondary" size="small" />
-
     <Button label="Get Budibase free" url="/" variant="primary" size="small" />
   </div>
 </nav>

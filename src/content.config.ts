@@ -8,7 +8,7 @@ const seoSchema = z.object({
   description: z.string().min(15).max(160),
   image: z
     .object({
-      src: z.string().default("/og/social.jpg"),
+      src: z.string().default("/og.png"),
       alt: z.string().default("Make work flow"),
     })
     .default({}),

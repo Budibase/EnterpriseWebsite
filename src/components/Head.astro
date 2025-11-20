@@ -20,7 +20,7 @@ const siteInfo = {
 	name: 'Budibase',
 	description: 'Build AI agents, chat and automate internal workflows instantly. The fastest way to automate internal business processes.',
 	image: {
-		src: '/og/social.jpg',
+		src: '/og.png',
 		alt: 'Budibase - Make work flow',
 	},
 };
@@ -56,6 +56,47 @@ function smartypants(text: string, _mode?: number): string {
 <title set:html={smartypants(title, 1)} />
 <meta name="generator" content={Astro.generator} />
 <meta name="theme-color" content="#8D46E7" />
+<script is:inline>
+  // Prevent flash of unstyled content by applying theme immediately
+  // Solution based on: https://medium.com/@maiowebdesign/astro-dark-mode-flickering-62da94d08ce6
+  (function() {
+    function getEffectiveTheme() {
+      try {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark' || stored === 'light') {
+          return stored;
+        }
+      } catch (e) {
+        // localStorage might not be available
+      }
+      // System preference
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    
+    function applyTheme() {
+      const effectiveTheme = getEffectiveTheme();
+      if (effectiveTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+    
+    // Apply theme immediately before any rendering
+    applyTheme();
+    
+    // Re-apply theme on Astro view transitions (client-side navigation)
+    // Use astro:after-swap instead of astro:page-load to prevent flicker
+    document.addEventListener('astro:after-swap', applyTheme);
+    
+    // Also listen for storage changes (for syncing across tabs)
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'theme') {
+        applyTheme();
+      }
+    });
+  })();
+</script>
 
 
 <!-- Font preloads, omit MDIO to improve initial load -->
