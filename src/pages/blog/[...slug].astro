@@ -1,26 +1,32 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import MarkdownPostLayout from '../../layouts/MarkdownPostLayout.astro';
+import CTA from "@components/CTA.astro";
+
+
+export type Props = {
+	post: CollectionEntry<'blog'>;
+};
 
 export async function getStaticPaths() {
-	// Filter drafts at collection level - Astro best practice
-	const posts = await getCollection('blog', ({ data }) => {
-		return !data.draft;
-	});
-	
-	return posts.map((post) => ({
+	const blog = await getCollection('blog');
+
+	return blog.map((post) => ({
 		params: { slug: post.id },
 		props: { post },
 	}));
 }
 
-interface Props {
-	post: CollectionEntry<'blog'>;
-}
-
-const { post } = Astro.props as Props;
+const { post } = Astro.props;
+const { data } = post;
 const { Content } = await render(post);
+
 ---
 <MarkdownPostLayout frontmatter={post.data}>
-  <Content />
+	<article class="article my-8">
+		<Content />
+	</article>
+	<hr class="border-stone-300">
+	<CTA />
 </MarkdownPostLayout>
+

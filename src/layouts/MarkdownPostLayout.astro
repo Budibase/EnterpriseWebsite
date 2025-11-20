@@ -28,9 +28,7 @@ import { Image } from "astro:assets";
                   </a>
                 <h1 class="mb-4 mt-8">{frontmatter.title}</h1>
                 <p class="text-stone-500!">Written by {frontmatter.author}</p>
-                <div class="article mt-12">
                     <slot />
-                </div>
             </div>
             </div>
           </div>
@@ -48,19 +46,4 @@ import { Image } from "astro:assets";
     height: 100%;
   }
 
-  .article {
-    line-height: 1.5;
-    color: var(--text-primary);
-  }
-
-  .article p {
-    margin-bottom: 1rem;
-    font-size: 14px;
-
-  }
-
-  .article h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
 </style>
