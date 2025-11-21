@@ -135,7 +135,13 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
   .pricing-card {
     background: var(--color-theme-bg-secondary);
     border-radius: 8px;
-    padding: 24px;
+    padding: 20px;
+  }
+
+  @media (min-width: 640px) {
+    .pricing-card {
+      padding: 24px;
+    }
   }
 
   :global(.dark) .pricing-card {
@@ -159,8 +165,14 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
   }
   .price-line {
     margin: 0;
-    font-size: 22px;
+    font-size: 18px;
     color: var(--color-stone-900);
+  }
+
+  @media (min-width: 640px) {
+    .price-line {
+      font-size: 22px;
+    }
   }
 
   :global(.dark) .price-line {
