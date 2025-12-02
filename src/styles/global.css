@@ -3,12 +3,12 @@
 /* Override dark variant to use class selector instead of prefers-color-scheme */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/*
+
 @theme {
   --color-stone-950: oklch(0.1821 0.0139 94.03);
   --color-stone-900: oklch(0.2135 0.0118 91.77);
 }
-*/
+
 
 :root {
   /* Landing page vertical padding (each side). Adjust once here. */
