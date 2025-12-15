@@ -15,13 +15,11 @@ interface Props {
 const { title, description, navItems } = Astro.props;
 ---
 
-<div class="container max-w-7xl mx-auto mt-18 px-2 lg:px-0">
+<div class="container max-w-7xl mx-auto mt-24 px-2 lg:px-0">
 	<div class="platform-layout">
 		<PlatformSidebar {title} {description} {navItems} />
 		<main class="platform-main">
-			<div class="content-card bg-stone-100 dark:bg-stone-900 rounded-lg p-6">
 				<slot />
-			</div>
 		</main>
 	</div>
 </div>
