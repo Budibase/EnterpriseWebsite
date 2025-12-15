@@ -15,7 +15,7 @@ interface Props {
 const { title, description, navItems } = Astro.props;
 ---
 
-<div class="container max-w-7xl mx-auto mt-24 px-4">
+<div class="container max-w-7xl mx-auto mt-18 px-2 lg:px-0">
 	<div class="platform-layout">
 		<PlatformSidebar {title} {description} {navItems} />
 		<main class="platform-main">
@@ -67,7 +67,7 @@ const { title, description, navItems } = Astro.props;
 				return;
 			}
 
-			function activateSection(sectionId) {
+			function activateSection(sectionId: string) {
 				// Remove active class from all nav links
 				navLinks.forEach(function(link) {
 					link.classList.remove('active');
