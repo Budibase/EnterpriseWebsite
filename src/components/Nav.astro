@@ -5,14 +5,26 @@ import { Image } from "astro:assets";
 import Button from "@components/Button.astro";
 import HeaderDropDown from "@components/HeaderDropDown.astro";
 
-const productItems = [
+const platformItems = [
   {
     href: "/chat",
     label: "Chat",
   },
   {
     href: "/agents",
-    label: "Agents\\",
+    label: "Agents",
+  },
+  {
+    href: "/automations",
+    label: "Automations",
+  },
+  {
+    href: "/apps",
+    label: "Apps",
+  },
+  {
+    href: "/tables",
+    label: "Tables",
   },
 ];
 
@@ -64,8 +76,8 @@ const resourcesItems = [
     </a>
     <div class="hidden md:block">
       <HeaderDropDown
-        label="Product"
-        items={productItems}
+        label="Platform"
+        items={platformItems}
       />
     </div>
     <a
@@ -300,7 +312,7 @@ const resourcesItems = [
     <!-- Product Items -->
     <nav class="flex-1 px-4 pt-2">
       <ul class="space-y-4 flex flex-col gap-4">
-        {productItems.map((item) => (
+        {platformItems.map((item) => (
           <li>
             <a
               href={item.href}
