@@ -40,11 +40,11 @@ const { title, description, navItems } = Astro.props;
 	}
 
 	.content-section {
-		display: none;
+		display: none !important;
 	}
 
 	.content-section.active {
-		display: block;
+		display: block !important;
 	}
 
 	@media (max-width: 768px) {
@@ -55,20 +55,15 @@ const { title, description, navItems } = Astro.props;
 	}
 </style>
 
-<script is:inline>
-	(function() {
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
 		function initNavigation() {
-			const layout = document.querySelector('.platform-layout');
-			if (!layout) {
-				setTimeout(initNavigation, 50);
-				return;
-			}
-
-			const navLinks = layout.querySelectorAll('.nav-link');
-			const sections = layout.querySelectorAll('.content-section');
+			// Query from document to ensure we find elements
+			const navLinks = document.querySelectorAll('.platform-layout .nav-link');
+			const sections = document.querySelectorAll('.platform-layout .content-section');
 
 			if (navLinks.length === 0 || sections.length === 0) {
-				setTimeout(initNavigation, 50);
+				setTimeout(initNavigation, 100);
 				return;
 			}
 
@@ -78,9 +73,10 @@ const { title, description, navItems } = Astro.props;
 					link.classList.remove('active');
 				});
 
-				// Remove active class from all sections
+				// Remove active class from all sections and hide them
 				sections.forEach(function(section) {
 					section.classList.remove('active');
+					section.style.display = 'none';
 				});
 
 				// Add active class to the selected nav link
@@ -90,26 +86,35 @@ const { title, description, navItems } = Astro.props;
 					}
 				});
 
-				// Find and activate the matching section by ID
-				// Section IDs are in format: "{sectionId}-section"
-				const targetSectionId = sectionId + '-section';
-				const targetSection = layout.querySelector('#' + targetSectionId);
-				if (targetSection) {
-					targetSection.classList.add('active');
-				}
+				// Find and activate the matching section by data-section attribute
+				sections.forEach(function(section) {
+					if (section.getAttribute('data-section') === sectionId) {
+						section.classList.add('active');
+						section.style.display = 'block';
+					}
+				});
 			}
 
-			// Set up click handlers
-			navLinks.forEach(function(link) {
-				link.addEventListener('click', function(e) {
+			// Set up click handlers using event delegation
+			document.addEventListener('click', function(e) {
+				const link = e.target.closest('.nav-link');
+				if (link) {
 					e.preventDefault();
 					const sectionId = link.getAttribute('data-section');
 					if (sectionId) {
 						activateSection(sectionId);
-						// Update URL hash
 						window.history.pushState(null, '', '#' + sectionId);
 					}
-				});
+				}
+			});
+
+			// Initialize: remove all active classes first
+			sections.forEach(function(section) {
+				section.classList.remove('active');
+				section.style.display = 'none';
+			});
+			navLinks.forEach(function(link) {
+				link.classList.remove('active');
 			});
 
 			// Initialize based on hash or default to first item
@@ -135,12 +140,7 @@ const { title, description, navItems } = Astro.props;
 			});
 		}
 
-		// Start initialization
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', initNavigation);
-		} else {
-			initNavigation();
-		}
-	})();
+		initNavigation();
+	});
 </script>
 
