@@ -1,11 +1,190 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
+import Code from "phosphor-astro/Code.astro";
+import Wrench from "phosphor-astro/Wrench.astro";
+import Eye from "phosphor-astro/Eye.astro";
+import List from "phosphor-astro/List.astro";
+import Rocket from "phosphor-astro/Rocket.astro";
 ---
 
 <Layout>
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-4">Agents</h1>
-    <p>This is the agents page.</p>
-  </div>
+	<div class="container max-w-7xl mx-auto mt-24 px-4">
+		<div class="agents-layout">
+			<aside class="agents-sidebar">
+				<nav>
+					<ul class="nav-list">
+						<li>
+							<a href="#editor" class="nav-link active" data-section="editor">
+								<Code class="nav-icon" />
+								<span>Editor</span>
+							</a>
+						</li>
+						<li>
+							<a href="#tools" class="nav-link" data-section="tools">
+								<Wrench class="nav-icon" />
+								<span>Tools</span>
+							</a>
+						</li>
+						<li>
+							<a href="#preview" class="nav-link" data-section="preview">
+								<Eye class="nav-icon" />
+								<span>Preview</span>
+							</a>
+						</li>
+						<li>
+							<a href="#logs" class="nav-link" data-section="logs">
+								<List class="nav-icon" />
+								<span>Logs</span>
+							</a>
+						</li>
+						<li>
+							<a href="#deploy" class="nav-link" data-section="deploy">
+								<Rocket class="nav-icon" />
+								<span>Deploy</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</aside>
+
+			<main class="agents-main">
+				<div class="content-card bg-stone-100 dark:bg-stone-900 rounded-lg p-6">
+					<div id="editor-section" class="content-section active">
+						<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Editor</h2>
+						<p class="text-stone-600 dark:text-stone-400">Editor content goes here.</p>
+					</div>
+					<div id="tools-section" class="content-section">
+						<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Tools</h2>
+						<p class="text-stone-600 dark:text-stone-400">Tools content goes here.</p>
+					</div>
+					<div id="preview-section" class="content-section">
+						<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Preview</h2>
+						<p class="text-stone-600 dark:text-stone-400">Preview content goes here.</p>
+					</div>
+					<div id="logs-section" class="content-section">
+						<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Logs</h2>
+						<p class="text-stone-600 dark:text-stone-400">Logs content goes here.</p>
+					</div>
+					<div id="deploy-section" class="content-section">
+						<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Deploy</h2>
+						<p class="text-stone-600 dark:text-stone-400">Deploy content goes here.</p>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
 </Layout>
 
+<style>
+	.agents-layout {
+		display: grid;
+		grid-template-columns: 200px 1fr;
+		gap: 4rem;
+		align-items: start;
+	}
+
+	.agents-sidebar {
+		position: sticky;
+		top: 2rem;
+	}
+
+	.nav-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.nav-link {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.5rem 0;
+		text-decoration: none;
+		color: var(--text-secondary);
+		transition: color 150ms ease-out;
+		font-size: 14px;
+	}
+
+	.nav-link:hover {
+		color: var(--text-primary);
+	}
+
+	.nav-link.active {
+		color: var(--text-primary);
+		font-weight: 500;
+	}
+
+	.nav-icon {
+		width: 18px;
+		height: 18px;
+		flex-shrink: 0;
+	}
+
+	.agents-main {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.content-section {
+		display: none;
+	}
+
+	.content-section.active {
+		display: block;
+	}
+
+	@media (max-width: 768px) {
+		.agents-layout {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.agents-sidebar {
+			position: static;
+		}
+
+		.nav-list {
+			flex-direction: row;
+			overflow-x: auto;
+		}
+
+		.nav-link {
+			white-space: nowrap;
+		}
+	}
+</style>
+
+<script>
+	(() => {
+		const navLinks = document.querySelectorAll('.nav-link');
+		const sections = document.querySelectorAll('.content-section');
+
+		function activateSection(sectionId) {
+			navLinks.forEach(link => {
+				const isActive = link.getAttribute('data-section') === sectionId;
+				link.classList.toggle('active', isActive);
+			});
+
+			sections.forEach(section => {
+				const sectionName = section.id.replace('-section', '');
+				section.classList.toggle('active', sectionName === sectionId);
+			});
+		}
+
+		navLinks.forEach(link => {
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				const sectionId = link.getAttribute('data-section');
+				if (sectionId) activateSection(sectionId);
+			});
+		});
+
+		const hash = window.location.hash.slice(1);
+		if (hash) {
+			activateSection(hash);
+		}
+	})();
+</script>
