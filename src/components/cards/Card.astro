@@ -23,7 +23,7 @@ const { label, description, linkUrl, tag } = Astro.props as Props;
     </div>
   </Link>
 ) : (
-  <div class="bg-secondary ease-in-out duration-50 hover:bg-stone-200! dark:hover:bg-stone-800! p-4 rounded-md">
+  <div class="bg-secondary ease-in-out duration-50 p-4 rounded-md">
     <div class="card-content">
       {tag && <Tag label={tag} variant="secondary" size="small" class="w-fit mb-2" />}
       <h3 class="text-lg!">{label}</h3>
