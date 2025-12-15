@@ -5,6 +5,17 @@ import { Image } from "astro:assets";
 import Button from "@components/Button.astro";
 import HeaderDropDown from "@components/HeaderDropDown.astro";
 
+const productItems = [
+  {
+    href: "/chat",
+    label: "Chat",
+  },
+  {
+    href: "/agents",
+    label: "Agents\\",
+  },
+];
+
 const resourcesItems = [
   {
     href: "/docs",
@@ -51,14 +62,12 @@ const resourcesItems = [
         />
       </div>
     </a>
-    <a
-      target="_self"
-      href="/features"
-      class="hidden md:inline-block text-sm px-1 text-stone-800 dark:text-stone-400 hover:text-stone-600 dark:hover:text-stone-100 transition-colors"
-      data-astro-prefetch
-    >
-      Platform
-    </a>
+    <div class="hidden md:block">
+      <HeaderDropDown
+        label="Product"
+        items={productItems}
+      />
+    </div>
     <a
       target="_self"
       href="/features"
@@ -190,13 +199,12 @@ const resourcesItems = [
     <nav class="flex-1 px-4 pt-8">
       <ul class="space-y-6 flex flex-col gap-4">
         <li>
-          <a
-            href="/features"
-            class="block text-stone-900 dark:text-stone-300 text-3xl hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
-            data-astro-prefetch
+          <button
+            id="product-button"
+            class="block text-stone-900 dark:text-stone-300 text-3xl hover:text-stone-600 dark:hover:text-stone-300 transition-colors w-full text-left"
           >
-            Platform
-          </a>
+            Product
+          </button>
         </li>
         <li>
           <a
@@ -236,6 +244,75 @@ const resourcesItems = [
       </ul>
     </nav>
 
+  </div>
+
+  <!-- Product Submenu View -->
+  <div id="product-menu-view" class="h-full hidden">
+    <!-- Header with back button and close button -->
+    <div class="flex justify-between items-center p-4">
+      <button
+        id="back-product-button"
+        class="p-2 text-stone-800 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 rounded transition-colors"
+        aria-label="Back to main menu"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          ></path>
+        </svg>
+      </button>
+      <button
+        id="close-product-button"
+        class="p-2 text-stone-800 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 rounded transition-colors"
+        aria-label="Close menu"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Product Section Title -->
+    <div class="px-4 pt-2">
+      <p class="text-stone-500 dark:text-stone-500! text-base tracking-wide">Product</p>
+    </div>
+
+    <!-- Product Items -->
+    <nav class="flex-1 px-4 pt-2">
+      <ul class="space-y-4 flex flex-col gap-4">
+        {productItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="block text-stone-900 dark:text-stone-300 text-3xl hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
+              data-astro-prefetch
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   </div>
 
   <!-- Resources Submenu View -->
@@ -328,6 +405,24 @@ const resourcesItems = [
     transition: transform 0.3s ease-in-out;
   }
 
+  #product-menu-view {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.3s ease-in-out;
+    background: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #product-menu-view.hidden {
+    transform: translateX(100%);
+    display: none;
+  }
+
+  #product-menu-view:not(.hidden) {
+    transform: translateX(0);
+  }
+
   #resources-menu-view {
     position: absolute;
     inset: 0;
@@ -353,10 +448,14 @@ const resourcesItems = [
     const mobileMenu = document.getElementById('mobile-menu');
     const closeMenuButton = document.getElementById('close-menu-button');
     const closeResourcesButton = document.getElementById('close-resources-button');
+    const closeProductButton = document.getElementById('close-product-button');
     const resourcesButton = document.getElementById('resources-button');
+    const productButton = document.getElementById('product-button');
     const backButton = document.getElementById('back-button');
+    const backProductButton = document.getElementById('back-product-button');
     const mainMenuView = document.getElementById('main-menu-view');
     const resourcesMenuView = document.getElementById('resources-menu-view');
+    const productMenuView = document.getElementById('product-menu-view');
     const menuIcon = document.getElementById('menu-icon');
     const closeIcon = document.getElementById('close-icon');
 
@@ -377,23 +476,35 @@ const resourcesItems = [
       // Reset to main menu view
       mainMenuView?.classList.remove('hidden');
       resourcesMenuView?.classList.add('hidden');
+      productMenuView?.classList.add('hidden');
     }
 
     function showResourcesMenu() {
       mainMenuView?.classList.add('hidden');
       resourcesMenuView?.classList.remove('hidden');
+      productMenuView?.classList.add('hidden');
+    }
+
+    function showProductMenu() {
+      mainMenuView?.classList.add('hidden');
+      productMenuView?.classList.remove('hidden');
+      resourcesMenuView?.classList.add('hidden');
     }
 
     function showMainMenu() {
       mainMenuView?.classList.remove('hidden');
       resourcesMenuView?.classList.add('hidden');
+      productMenuView?.classList.add('hidden');
     }
 
     mobileMenuButton?.addEventListener('click', openMenu);
     closeMenuButton?.addEventListener('click', closeMenu);
     closeResourcesButton?.addEventListener('click', closeMenu);
+    closeProductButton?.addEventListener('click', closeMenu);
     resourcesButton?.addEventListener('click', showResourcesMenu);
+    productButton?.addEventListener('click', showProductMenu);
     backButton?.addEventListener('click', showMainMenu);
+    backProductButton?.addEventListener('click', showMainMenu);
 
     // Close menu when clicking outside (on the overlay background)
     mobileMenu?.addEventListener('click', (e) => {
