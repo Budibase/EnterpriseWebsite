@@ -1,11 +1,46 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
+import PlatformLayout from "@components/PlatformLayout.astro";
+import ChatCircle from "phosphor-astro/ChatCircle.astro";
+import Settings from "phosphor-astro/Gear.astro";
+import Eye from "phosphor-astro/Eye.astro";
+import List from "phosphor-astro/List.astro";
+import Rocket from "phosphor-astro/Rocket.astro";
+
+const navItems = [
+	{ text: "Chat", link: "#chat", sectionId: "chat", icon: ChatCircle },
+	{ text: "Settings", link: "#settings", sectionId: "settings", icon: Settings },
+	{ text: "Preview", link: "#preview", sectionId: "preview", icon: Eye },
+	{ text: "Logs", link: "#logs", sectionId: "logs", icon: List },
+	{ text: "Deploy", link: "#deploy", sectionId: "deploy", icon: Rocket },
+];
 ---
 
 <Layout>
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-4">Chat</h1>
-    <p>This is the chat page.</p>
-  </div>
+	<PlatformLayout
+		title="Chat"
+		description="Deploy AI chat for your users."
+		{navItems}
+	>
+		<div id="chat-section" class="content-section active">
+			<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Chat</h2>
+			<p class="text-stone-600 dark:text-stone-400">Chat content goes here.</p>
+		</div>
+		<div id="settings-section" class="content-section">
+			<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Settings</h2>
+			<p class="text-stone-600 dark:text-stone-400">Settings content goes here.</p>
+		</div>
+		<div id="preview-section" class="content-section">
+			<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Preview</h2>
+			<p class="text-stone-600 dark:text-stone-400">Preview content goes here.</p>
+		</div>
+		<div id="logs-section" class="content-section">
+			<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Logs</h2>
+			<p class="text-stone-600 dark:text-stone-400">Logs content goes here.</p>
+		</div>
+		<div id="deploy-section" class="content-section">
+			<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Deploy</h2>
+			<p class="text-stone-600 dark:text-stone-400">Deploy content goes here.</p>
+		</div>
+	</PlatformLayout>
 </Layout>
-

@@ -1,0 +1,91 @@
+---
+interface NavItem {
+	text: string;
+	link: string;
+	sectionId: string;
+	icon?: any;
+}
+
+interface Props {
+	title: string;
+	description: string;
+	navItems: NavItem[];
+}
+
+const { title, description, navItems } = Astro.props;
+---
+
+<aside class="platform-sidebar">
+	<h1 class="mb-4">{title}</h1>
+	<p class="text-stone-500! dark:text-stone-400! mb-4!">{description}</p>
+	<nav>
+		<ul class="nav-list">
+			{navItems.map((item) => (
+				<li>
+					<a href={item.link} class="nav-link" data-section={item.sectionId}>
+						{item.icon && <item.icon class="nav-icon" />}
+						<span>{item.text}</span>
+					</a>
+				</li>
+			))}
+		</ul>
+	</nav>
+</aside>
+
+<style>
+	.platform-sidebar {
+		position: sticky;
+		top: 2rem;
+	}
+
+	.nav-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.nav-link {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.5rem 0;
+		text-decoration: none;
+		color: var(--text-secondary);
+		transition: color 150ms ease-out;
+		font-size: 14px;
+	}
+
+	.nav-link:hover {
+		color: var(--text-primary);
+	}
+
+	.nav-link.active {
+		color: var(--text-primary);
+		font-weight: 500;
+	}
+
+	.nav-icon {
+		width: 14px;
+		height: 14px;
+		flex-shrink: 0;
+	}
+
+	@media (max-width: 768px) {
+		.platform-sidebar {
+			position: static;
+		}
+
+		.nav-list {
+			flex-direction: row;
+			overflow-x: auto;
+		}
+
+		.nav-link {
+			white-space: nowrap;
+		}
+	}
+</style>
+

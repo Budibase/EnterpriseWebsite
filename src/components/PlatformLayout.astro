@@ -1,0 +1,146 @@
+---
+import PlatformSidebar from "./PlatformSidebar.astro";
+
+interface Props {
+	title: string;
+	description: string;
+	navItems: Array<{
+		text: string;
+		link: string;
+		sectionId: string;
+		icon?: any;
+	}>;
+}
+
+const { title, description, navItems } = Astro.props;
+---
+
+<div class="container max-w-7xl mx-auto mt-24 px-4">
+	<div class="platform-layout">
+		<PlatformSidebar {title} {description} {navItems} />
+		<main class="platform-main">
+			<div class="content-card bg-stone-100 dark:bg-stone-900 rounded-lg p-6">
+				<slot />
+			</div>
+		</main>
+	</div>
+</div>
+
+<style>
+	.platform-layout {
+		display: grid;
+		grid-template-columns: 260px 1fr;
+		gap: 4rem;
+		align-items: start;
+	}
+
+	.platform-main {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.content-section {
+		display: none;
+	}
+
+	.content-section.active {
+		display: block;
+	}
+
+	@media (max-width: 768px) {
+		.platform-layout {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+</style>
+
+<script is:inline>
+	(function() {
+		function initNavigation() {
+			const layout = document.querySelector('.platform-layout');
+			if (!layout) {
+				setTimeout(initNavigation, 50);
+				return;
+			}
+
+			const navLinks = layout.querySelectorAll('.nav-link');
+			const sections = layout.querySelectorAll('.content-section');
+
+			if (navLinks.length === 0 || sections.length === 0) {
+				setTimeout(initNavigation, 50);
+				return;
+			}
+
+			function activateSection(sectionId) {
+				// Remove active class from all nav links
+				navLinks.forEach(function(link) {
+					link.classList.remove('active');
+				});
+
+				// Remove active class from all sections
+				sections.forEach(function(section) {
+					section.classList.remove('active');
+				});
+
+				// Add active class to the selected nav link
+				navLinks.forEach(function(link) {
+					if (link.getAttribute('data-section') === sectionId) {
+						link.classList.add('active');
+					}
+				});
+
+				// Find and activate the matching section by ID
+				// Section IDs are in format: "{sectionId}-section"
+				const targetSectionId = sectionId + '-section';
+				const targetSection = layout.querySelector('#' + targetSectionId);
+				if (targetSection) {
+					targetSection.classList.add('active');
+				}
+			}
+
+			// Set up click handlers
+			navLinks.forEach(function(link) {
+				link.addEventListener('click', function(e) {
+					e.preventDefault();
+					const sectionId = link.getAttribute('data-section');
+					if (sectionId) {
+						activateSection(sectionId);
+						// Update URL hash
+						window.history.pushState(null, '', '#' + sectionId);
+					}
+				});
+			});
+
+			// Initialize based on hash or default to first item
+			const hash = window.location.hash.slice(1);
+			if (hash) {
+				activateSection(hash);
+			} else {
+				const firstLink = navLinks[0];
+				if (firstLink) {
+					const firstSectionId = firstLink.getAttribute('data-section');
+					if (firstSectionId) {
+						activateSection(firstSectionId);
+					}
+				}
+			}
+
+			// Handle hash changes (back/forward navigation)
+			window.addEventListener('hashchange', function() {
+				const newHash = window.location.hash.slice(1);
+				if (newHash) {
+					activateSection(newHash);
+				}
+			});
+		}
+
+		// Start initialization
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initNavigation);
+		} else {
+			initNavigation();
+		}
+	})();
+</script>
+
