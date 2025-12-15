@@ -1,20 +1,5 @@
 ---
-// Reusable Pricing Card component (styled per reference image)
-// Props:
-// - title: string
-// - description?: string
-// - creatorPrice: string | number
-// - userPrice?: string | number
-// - creatorUnit?: string (defaults to '/mo.')
-// - userUnit?: string (defaults to '/mo.')
-// - creatorLabel?: string (defaults to 'per creator')
-// - userLabel?: string (defaults to 'per end user')
-// - features?: string[]
-// - recommended?: boolean (adds inline label)
-// - buttonLabel: string
-// - buttonVariant?: 'primary' | 'secondary' | 'cta'
-// - buttonUrl?: string
-// - buttonSize?: 'small' | 'medium' | 'large' (defaults to 'large')
+
 import Button from "@components/Button.astro";
 import Check from "phosphor-astro/check.astro";
 
@@ -110,7 +95,7 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
       features?.length ? (
         <ul class=" gap-1 flex flex-col">
           {features.map((feat) => (
-            <li class="feature">
+            <li>
               <span class="check">
                 <Check class="fill-stone-700 dark:fill-stone-300 w-3" />
               </span>
@@ -165,16 +150,8 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
   }
   .price-line {
     margin: 0;
-    font-size: 18px;
     color: var(--color-stone-900);
   }
-
-  @media (min-width: 640px) {
-    .price-line {
-      font-size: 22px;
-    }
-  }
-
   :global(.dark) .price-line {
     color: var(--color-stone-100);
   }
@@ -192,7 +169,5 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
   .check {
     display: inline-flex;
   }
-  .feature-text {
-    font-size: 15px;
-  }
+
 </style>

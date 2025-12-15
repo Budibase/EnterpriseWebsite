@@ -4,10 +4,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 
-@theme {
-  --color-stone-950: oklch(0.1821 0.0139 94.03);
-  --color-stone-900: oklch(0.2135 0.0118 91.77);
-}
 
 
 :root {
