@@ -76,7 +76,7 @@ const { title, description, navItems } = Astro.props;
 				// Remove active class from all sections and hide them
 				sections.forEach(function(section) {
 					section.classList.remove('active');
-					section.style.display = 'none';
+					(section as HTMLElement).style.display = 'none';
 				});
 
 				// Add active class to the selected nav link
@@ -90,14 +90,14 @@ const { title, description, navItems } = Astro.props;
 				sections.forEach(function(section) {
 					if (section.getAttribute('data-section') === sectionId) {
 						section.classList.add('active');
-						section.style.display = 'block';
+						(section as HTMLElement).style.display = 'block';
 					}
 				});
 			}
 
 			// Set up click handlers using event delegation
 			document.addEventListener('click', function(e) {
-				const link = e.target.closest('.nav-link');
+				const link = (e.target as HTMLElement)?.closest('.nav-link');
 				if (link) {
 					e.preventDefault();
 					const sectionId = link.getAttribute('data-section');
@@ -111,7 +111,7 @@ const { title, description, navItems } = Astro.props;
 			// Initialize: remove all active classes first
 			sections.forEach(function(section) {
 				section.classList.remove('active');
-				section.style.display = 'none';
+				(section as HTMLElement).style.display = 'none';
 			});
 			navLinks.forEach(function(link) {
 				link.classList.remove('active');
