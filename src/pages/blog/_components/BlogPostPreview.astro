@@ -24,7 +24,7 @@ const tagLabel = post.data.featured ? 'Featured' : post.data.category;
 					}
 					</div>
 					<div class="flex items-center gap-6">
-						<time class="text-inherit! text-sm text-right" datetime={post.data.publishDate.toISOString()}>
+						<time class="text-inherit! text-sm text-right text-stone-500! dark:text-stone-400!" datetime={post.data.publishDate.toISOString()}>
 							{format(post.data.publishDate, 'MMM d, yyyy')}
 						</time>
 						

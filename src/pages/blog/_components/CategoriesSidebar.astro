@@ -1,9 +1,11 @@
 ---
-export type Props = {
+interface Props {
 	currentCategory?: string;
-};
+	title?: string;
+	description?: string;
+}
 
-const { currentCategory = 'all' } = Astro.props;
+const { currentCategory = 'all', title = 'Blog', description = '' } = Astro.props;
 
 const categories = [
 	{ id: 'all', label: 'All posts' },
@@ -15,20 +17,22 @@ const categories = [
 ---
 
 <aside class="categories-sidebar">
+	<h1 class="mb-4 h2">{title}</h1>
+	{description && <p class="text-stone-500! dark:text-stone-400! mb-4!">{description}</p>}
 	<nav>
-		<ul class="categories-list">
+		<ul>
 			{
 				categories.map((category) => (
 					<li>
 						<a
 							href={category.id === 'all' ? '/blog' : `/blog/category/${category.id}`}
 							class:list={[
-								'category-link text-stone-500 hover:text-stone-950 dark:text-stone-400 dark:hover:text-stone-100',
-								currentCategory === category.id && 'text-stone-950! dark:text-stone-100!',
+								"nav-link flex flex-row gap-3 items-center h-8 px-2 rounded text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
+								currentCategory === category.id && "active"
 							]}
 							data-astro-prefetch
 						>
-							{category.label}
+							<span>{category.label}</span>
 						</a>
 					</li>
 				))
@@ -39,26 +43,33 @@ const categories = [
 
 <style>
 	.categories-sidebar {
-		width: 100%;
-		max-width: 200px;
+		position: sticky;
+		top: 2rem;
+		width: 280px;
 	}
 
-	.categories-list {
+	.nav-list {
 		list-style: none;
 		padding: 0;
 		margin: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
 	}
 
-	.category-link {
-		display: block;
-		text-decoration: none;
-		transition: background-color 150ms ease-out;
-		line-height: 1.5;
-		font-size: 14px;
-	}
 
+	@media (max-width: 768px) {
+		.categories-sidebar {
+			position: static;
+		}
+
+		.nav-list {
+			flex-direction: row;
+			overflow-x: auto;
+		}
+
+		.nav-link {
+			white-space: nowrap;
+		}
+	}
 </style>
 

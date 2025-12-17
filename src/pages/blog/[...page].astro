@@ -38,7 +38,6 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
 	image={{ src: '/og/blog.jpg', alt: "What's new in the Budibase ecosystem" }}
 >
 	<div class="mt-24 container max-w-7xl mx-auto">
-		<h1 class="text-2xl font-bold mb-8 text-stone-900 dark:text-stone-100">Blog</h1>
 		<div class="blog-layout">
 			<aside class="blog-sidebar">
 				<CategoriesSidebar currentCategory="all" />
@@ -72,7 +71,7 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
 	.blog-layout {
 		margin: 0 auto;
 		display: grid;
-		grid-template-columns: 200px 1fr;
+		grid-template-columns: 280px 1fr;
 		gap: 4rem;
 		align-items: start;
 	}
