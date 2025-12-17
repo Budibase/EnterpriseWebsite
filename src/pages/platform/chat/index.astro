@@ -2,17 +2,20 @@
 import Layout from "../../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
 import ChatCircle from "phosphor-astro/ChatCircle.astro";
-import Settings from "phosphor-astro/Gear.astro";
+import Code from "phosphor-astro/Code.astro";
 import Eye from "phosphor-astro/Eye.astro";
 import List from "phosphor-astro/List.astro";
-import Rocket from "phosphor-astro/Rocket.astro";
+import Users from "phosphor-astro/Users.astro";
+import HeroBg from "@assets/images/homepage/valley.png";
+import { Image } from "astro:assets";
+import Card from "@components/cards/Card.astro";
 
 const navItems = [
 	{ text: "Chat interface", link: "#chat", sectionId: "chat", icon: ChatCircle },
-	{ text: "Editor", link: "#editor", sectionId: "editor", icon: ChatCircle },
+	{ text: "Editor", link: "#editor", sectionId: "editor", icon: Code },
 	{ text: "Agents", link: "#agents", sectionId: "agents", icon: List },
 	{ text: "Preview", link: "#preview", sectionId: "preview", icon: Eye },
-	{ text: "User management", link: "#user", sectionId: "user", icon: Eye },
+	{ text: "User management", link: "#user", sectionId: "user", icon: Users },
 ];
 ---
 
@@ -22,29 +25,184 @@ const navItems = [
 		description="We built secure AI chat so you don't have to."
 		{navItems}
 	>
-	<div id="editor-section" class="content-section active">
-		<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Chat interface</h2>
-		<p class="text-stone-600 dark:text-stone-400">Chat content goes here.</p>
-	</div>
-		<div id="editor-section" class="content-section active">
-			<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Editor</h2>
-			<p class="text-stone-600 dark:text-stone-400">Chat content goes here.</p>
+		<div id="chat-section" data-section="chat" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Chat interface
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Engage with AI agents in a secure, real-time chat interface designed for seamless conversations and workflow integration.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="Chat interface background"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Real-time messaging"
+					description="Experience instant responses with WebSocket-based real-time communication."
+				/>
+				<Card
+					label="Message history"
+					description="Access and manage conversation history with persistent storage and search."
+				/>
+				<Card
+					label="Multi-agent support"
+					description="Switch between different agents within the same chat interface seamlessly."
+				/>
+			</div>
 		</div>
-		<div id="settings-section" class="content-section">
-			<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Settings</h2>
-			<p class="text-stone-600 dark:text-stone-400">Settings content goes here.</p>
+
+		<div id="editor-section" data-section="editor" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Editor
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Configure your chat settings, customize the interface, and manage chat-specific configurations.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="Chat editor background"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Interface customization"
+					description="Customize the chat UI with themes, colors, and branding options."
+				/>
+				<Card
+					label="System prompts"
+					description="Configure default system prompts and behavior settings for your chat."
+				/>
+				<Card
+					label="Integration settings"
+					description="Manage API endpoints, authentication, and external service connections."
+				/>
+			</div>
 		</div>
-		<div id="agents-section" class="content-section">
-			<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Agents</h2>
-			<p class="text-stone-600 dark:text-stone-400">Logs content goes here.</p>
+
+		<div id="agents-section" data-section="agents" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Agents
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Manage which agents are available in your chat interface and configure their behavior. View the <a href="/platform/agents" class="text-stone-300! hover:text-stone-400! underline! underline-offset-3">agents</a> page for more details.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="Agents in chat background"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Agent selection"
+					description="Choose which agents are available to users in the chat interface."
+				/>
+				<Card
+					label="Shortcuts"
+					description="Create quick shortcuts and predefined prompts for faster agent access."
+				/>
+				<Card
+					label="Agent switching"
+					description="Enable users to switch between different agents during conversations."
+				/>
+			</div>
 		</div>
-		<div id="preview-section" class="content-section">
-			<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Preview</h2>
-			<p class="text-stone-600 dark:text-stone-400">Preview content goes here.</p>
+
+		<div id="preview-section" data-section="preview" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Preview
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Test your chat interface and agent configurations before deploying to production.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="Chat preview background"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Live preview"
+					description="See your chat interface in action with real-time updates as you make changes."
+				/>
+				<Card
+					label="Test conversations"
+					description="Simulate user interactions to validate agent responses and behavior."
+				/>
+				<Card
+					label="Performance metrics"
+					description="Monitor response times and performance during preview testing."
+				/>
+			</div>
 		</div>
-		<div id="user-section" class="content-section">
-			<h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">Deploy</h2>
-			<p class="text-stone-600 dark:text-stone-400">Deploy content goes here.</p>
+
+		<div id="user-section" data-section="user" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					User management
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Manage user access, permissions, and roles for your chat interface with granular control.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="User management background"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Role-based access"
+					description="Control which users can access chat features based on their roles and permissions."
+				/>
+				<Card
+					label="User permissions"
+					description="Set granular permissions for agent access, conversation history, and settings."
+				/>
+				<Card
+					label="Usage tracking"
+					description="Monitor user activity, conversation counts, and resource usage per user."
+				/>
+			</div>
 		</div>
 	</PlatformLayout>
 </Layout>
