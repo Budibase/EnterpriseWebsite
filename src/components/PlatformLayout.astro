@@ -54,38 +54,50 @@ const { title, description, navItems } = Astro.props;
 </style>
 
 <script>
-	document.addEventListener('DOMContentLoaded', function() {
+	(function() {
+		let isInitialized = false;
+		let clickHandler: ((e: Event) => void) | null = null;
+
 		function initNavigation() {
 			// Query from document to ensure we find elements
 			const navLinks = document.querySelectorAll('.platform-layout .nav-link');
 			const sections = document.querySelectorAll('.platform-layout .content-section');
 
 			if (navLinks.length === 0 || sections.length === 0) {
-				setTimeout(initNavigation, 100);
+				// Retry if elements aren't ready yet
+				if (document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', initNavigation);
+				} else {
+					setTimeout(initNavigation, 100);
+				}
 				return;
 			}
 
 			function activateSection(sectionId: string) {
+				// Re-query elements in case DOM changed
+				const currentNavLinks = document.querySelectorAll('.platform-layout .nav-link');
+				const currentSections = document.querySelectorAll('.platform-layout .content-section');
+
 				// Remove active class from all nav links
-				navLinks.forEach(function(link) {
+				currentNavLinks.forEach(function(link) {
 					link.classList.remove('active');
 				});
 
 				// Remove active class from all sections and hide them
-				sections.forEach(function(section) {
+				currentSections.forEach(function(section) {
 					section.classList.remove('active');
 					(section as HTMLElement).style.display = 'none';
 				});
 
 				// Add active class to the selected nav link
-				navLinks.forEach(function(link) {
+				currentNavLinks.forEach(function(link) {
 					if (link.getAttribute('data-section') === sectionId) {
 						link.classList.add('active');
 					}
 				});
 
 				// Find and activate the matching section by data-section attribute
-				sections.forEach(function(section) {
+				currentSections.forEach(function(section) {
 					if (section.getAttribute('data-section') === sectionId) {
 						section.classList.add('active');
 						(section as HTMLElement).style.display = 'block';
@@ -93,18 +105,22 @@ const { title, description, navItems } = Astro.props;
 				});
 			}
 
-			// Set up click handlers using event delegation
-			document.addEventListener('click', function(e) {
-				const link = (e.target as HTMLElement)?.closest('.nav-link');
-				if (link) {
-					e.preventDefault();
-					const sectionId = link.getAttribute('data-section');
-					if (sectionId) {
-						activateSection(sectionId);
-						window.history.pushState(null, '', '#' + sectionId);
+			// Set up click handler using event delegation (only once)
+			if (!isInitialized) {
+				clickHandler = function(e: Event) {
+					const link = (e.target as HTMLElement)?.closest('.platform-layout .nav-link');
+					if (link) {
+						e.preventDefault();
+						const sectionId = link.getAttribute('data-section');
+						if (sectionId) {
+							activateSection(sectionId);
+							window.history.pushState(null, '', '#' + sectionId);
+						}
 					}
-				}
-			});
+				};
+				document.addEventListener('click', clickHandler);
+				isInitialized = true;
+			}
 
 			// Initialize: remove all active classes first
 			sections.forEach(function(section) {
@@ -128,17 +144,68 @@ const { title, description, navItems } = Astro.props;
 					}
 				}
 			}
-
-			// Handle hash changes (back/forward navigation)
-			window.addEventListener('hashchange', function() {
-				const newHash = window.location.hash.slice(1);
-				if (newHash) {
-					activateSection(newHash);
-				}
-			});
 		}
 
-		initNavigation();
-	});
+		// Handle hash changes (back/forward navigation)
+		window.addEventListener('hashchange', function() {
+			const newHash = window.location.hash.slice(1);
+			if (newHash) {
+				const sections = document.querySelectorAll('.platform-layout .content-section');
+				const navLinks = document.querySelectorAll('.platform-layout .nav-link');
+				if (sections.length > 0 && navLinks.length > 0) {
+					// Re-query and activate
+					navLinks.forEach(function(link) {
+						link.classList.remove('active');
+					});
+					sections.forEach(function(section) {
+						section.classList.remove('active');
+						(section as HTMLElement).style.display = 'none';
+					});
+					
+					navLinks.forEach(function(link) {
+						if (link.getAttribute('data-section') === newHash) {
+							link.classList.add('active');
+						}
+					});
+					sections.forEach(function(section) {
+						if (section.getAttribute('data-section') === newHash) {
+							section.classList.add('active');
+							(section as HTMLElement).style.display = 'block';
+						}
+					});
+				}
+			}
+		});
+
+		// Run immediately if DOM is ready, otherwise wait
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initNavigation);
+		} else {
+			initNavigation();
+		}
+
+		// Re-initialize when Astro navigates (listen for navigation events)
+		// This handles client-side navigation via prefetch
+		document.addEventListener('astro:after-swap', initNavigation);
+		
+		// Also observe for DOM changes as a fallback
+		const observer = new MutationObserver(function(mutations) {
+			const hasPlatformLayout = document.querySelector('.platform-layout');
+			if (hasPlatformLayout) {
+				const navLinks = document.querySelectorAll('.platform-layout .nav-link');
+				const sections = document.querySelectorAll('.platform-layout .content-section');
+				if (navLinks.length > 0 && sections.length > 0) {
+					// Debounce to avoid multiple calls
+					clearTimeout((window as any).__platformNavTimeout);
+					(window as any).__platformNavTimeout = setTimeout(initNavigation, 50);
+				}
+			}
+		});
+
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
+		});
+	})();
 </script>
 
