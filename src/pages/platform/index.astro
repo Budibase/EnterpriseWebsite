@@ -1,0 +1,539 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import PlatformLayout from "@components/PlatformLayout.astro";
+import Info from "phosphor-astro/Info.astro";
+import Robot from "phosphor-astro/Robot.astro";
+import ChatCircle from "phosphor-astro/ChatCircle.astro";
+import Path from "phosphor-astro/PathFill.astro";
+import AppWindow from "phosphor-astro/AppWindow.astro";
+import Link from "phosphor-astro/Link.astro";
+import Plugs from "phosphor-astro/Plugs.astro";
+import Database from "phosphor-astro/Database.astro";
+import Sparkle from "phosphor-astro/Sparkle.astro";
+import Cloud from "phosphor-astro/Cloud.astro";
+import HeroBg from "@assets/images/homepage/valley.png";
+import ProductImage from "@assets/images/platform/AgentInstructions2.png";
+import ChatImage from "@assets/images/platform/AgentInChat.png";
+import AutomationImage from "@assets/images/platform/AgentInAutomations.png";
+import { Image } from "astro:assets";
+import Card from "@components/cards/Card.astro";
+
+const navItems = [
+	{
+		items: [
+			{ text: "Overview", link: "#overview", sectionId: "overview", icon: Info },
+		],
+	},
+	{
+		header: "CORE",
+		items: [
+			{ text: "Agents", link: "#agents", sectionId: "agents", icon: Robot },
+			{ text: "Chat", link: "#chat", sectionId: "chat", icon: ChatCircle },
+			{ text: "Automations", link: "#automations", sectionId: "automations", icon: Path },
+			{ text: "Apps", link: "#apps", sectionId: "apps", icon: AppWindow },
+		],
+	},
+	{
+		header: "RESOURCES",
+		items: [
+			{ text: "Integrations", link: "#integrations", sectionId: "integrations", icon: Link },
+			{ text: "API editor", link: "#apis", sectionId: "apis", icon: Plugs },
+			{ text: "Data GUIs", link: "#data", sectionId: "data", icon: Database },
+			{ text: "AI Models", link: "#models", sectionId: "models", icon: Sparkle },
+			{ text: "Hosting", link: "#hosting", sectionId: "hosting", icon: Cloud },
+		],
+	},
+];
+---
+
+<Layout>
+	<PlatformLayout
+		title="Platform"
+		description="The privacy-first platform to build agents, chat, automations, and apps."
+		{navItems}
+	>
+		<!-- Overview Section -->
+		<div id="overview-section" data-section="overview" class="content-section mb-8 active">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Overview
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Explore the Budibase platform and discover how to build powerful applications, automate workflows, deploy AI agents, and create engaging chat experiences.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="Platform overview"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-2"
+			>
+				<Card
+					label="Agents"
+					description="Build agents that plan, act, and work with your models, data, and tools."
+				/>
+				<Card
+					label="Chat"
+					description="Deploy AI chat for your users with secure, real-time conversations."
+				/>
+				<Card
+					label="Automations"
+					description="Automate and orchestrate workflows with visual builders and triggers."
+				/>
+				<Card
+					label="Apps"
+					description="Ship internal tools faster with our powerful app builder platform."
+				/>
+			</div>
+		</div>
+
+		<!-- Agents Section -->
+		<div id="agents-section" data-section="agents" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Agents
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					The privacy-first way to build agents; with your models, data, and tools. Build agents by giving them simple, ordered instructions in a clean, easy-to-use editor.
+				</p>
+
+				<Image
+					src={ProductImage}
+					alt="Agents editor"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Top model access"
+					description="Choose between open models from Mistral, Qwen, Open AI, and more."
+				/>
+				<Card
+					label="Inline tools"
+					description="Improve your agents output by inlining tools within your instructions."
+				/>
+				<Card
+					label="Bindings"
+					description="Bind data from your database, API, or other sources to your agents."
+				/>
+				<Card
+					label="Preview & test"
+					description="Chat with your agent to validate its behavior, tools, and responses before going live."
+				/>
+				<Card
+					label="Execution logs"
+					description="View detailed logs including inputs, outputs, thoughts, and runtime information."
+				/>
+				<Card
+					label="Integration ready"
+					description="Make agents available in Chat and trigger them from Automations workflows."
+				/>
+			</div>
+		</div>
+
+		<!-- Chat Section -->
+		<div id="chat-section" data-section="chat" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Chat
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					We built secure AI chat so you don't have to. Engage with AI agents in a secure, real-time chat interface designed for seamless conversations and workflow integration.
+				</p>
+
+				<Image
+					src={ChatImage}
+					alt="Chat interface"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Real-time messaging"
+					description="Experience instant responses with WebSocket-based real-time communication."
+				/>
+				<Card
+					label="Message history"
+					description="Access and manage conversation history with persistent storage and search."
+				/>
+				<Card
+					label="Multi-agent support"
+					description="Switch between different agents within the same chat interface seamlessly."
+				/>
+				<Card
+					label="Shortcuts"
+					description="Let users trigger agents quickly using predefined prompts."
+				/>
+				<Card
+					label="Forms integration"
+					description="Start conversations with structured input from forms."
+				/>
+				<Card
+					label="RBAC"
+					description="Role-based access controls ensure secure access to chat features."
+				/>
+			</div>
+		</div>
+
+		<!-- Automations Section -->
+		<div id="automations-section" data-section="automations" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Automations
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Automate and orchestrate workflows. Build powerful automation workflows with a visual editor that connects triggers, actions, and conditions.
+				</p>
+
+				<Image
+					src={AutomationImage}
+					alt="Automations workflows"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Visual builder"
+					description="Design workflows visually with drag-and-drop nodes and connections."
+				/>
+				<Card
+					label="Triggers"
+					description="Start workflows with webhooks, schedules, database changes, or manual triggers."
+				/>
+				<Card
+					label="Actions"
+					description="Execute actions like API calls, database operations, email sending, and more."
+				/>
+				<Card
+					label="Conditional logic"
+					description="Add branching logic, loops, and conditional execution to your workflows."
+				/>
+				<Card
+					label="Agent integration"
+					description="Trigger agents from within automations and allow them to take actions."
+				/>
+				<Card
+					label="Error handling"
+					description="Configure retry logic, error notifications, and fallback actions."
+				/>
+			</div>
+		</div>
+
+		<!-- Apps Section -->
+		<div id="apps-section" data-section="apps" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Apps
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Ship internal tools fast with a builder. Build and deploy internal tools quickly with our powerful app builder platform.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="Apps builder"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Rapid development"
+					description="Ship internal tools faster than ever with visual builders and pre-built components."
+				/>
+				<Card
+					label="No-code to code"
+					description="Start with visual builders and extend with custom code when needed."
+				/>
+				<Card
+					label="Visual builder"
+					description="Drag-and-drop interface builder with a rich component library."
+				/>
+				<Card
+					label="Data integration"
+					description="Connect to databases, APIs, and external services seamlessly."
+				/>
+				<Card
+					label="Real-time preview"
+					description="See changes instantly with live preview and hot-reload."
+				/>
+				<Card
+					label="One-click deploy"
+					description="Deploy to production with a single click, no configuration needed."
+				/>
+			</div>
+		</div>
+
+		<!-- Integrations Section -->
+		<div id="integrations-section" data-section="integrations" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Integrations
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Connect Budibase with your favorite tools and services. Seamlessly integrate with popular platforms to extend functionality and streamline workflows.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="Integrations"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Popular integrations"
+					description="Connect with Slack, Google Workspace, Microsoft 365, and hundreds of other popular services."
+				/>
+				<Card
+					label="Pre-built connectors"
+					description="Use ready-made integrations for common services to get started quickly."
+				/>
+				<Card
+					label="Custom integrations"
+					description="Build custom integrations using APIs and webhooks to connect with any service."
+				/>
+				<Card
+					label="OAuth support"
+					description="Secure authentication with OAuth 2.0 for seamless user access to integrated services."
+				/>
+				<Card
+					label="Webhook support"
+					description="Receive real-time updates from external services via webhooks."
+				/>
+				<Card
+					label="Bi-directional sync"
+					description="Keep data synchronized between Budibase and external systems automatically."
+				/>
+			</div>
+		</div>
+
+		<!-- APIs Section -->
+		<div id="apis-section" data-section="apis" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					API editor
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Connect to external and internal APIs to fetch data, perform actions, and integrate with third-party services.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="APIs integration"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="REST APIs"
+					description="Connect to RESTful APIs with support for GET, POST, PUT, DELETE, and custom methods."
+				/>
+				<Card
+					label="Authentication"
+					description="Secure your API connections with OAuth, API keys, bearer tokens, and custom auth methods."
+				/>
+				<Card
+					label="Request/Response handling"
+					description="Transform request payloads and parse response data with built-in JSON, XML, and form data support."
+				/>
+				<Card
+					label="Agent integration"
+					description="Allow agents to call external and internal APIs to fetch data or perform actions."
+				/>
+				<Card
+					label="Automation triggers"
+					description="Trigger automations from webhooks and API endpoints."
+				/>
+				<Card
+					label="Error handling"
+					description="Configure retry logic and error handling for API calls."
+				/>
+			</div>
+		</div>
+
+		<!-- Data Section -->
+		<div id="data-section" data-section="data" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Data GUIs
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Connect to your databases to query, insert, update, and manage data across your applications and agents.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="Database connections"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="SQL databases"
+					description="Connect to PostgreSQL, MySQL, SQL Server, and other SQL databases with native query support."
+				/>
+				<Card
+					label="NoSQL databases"
+					description="Integrate with MongoDB, DynamoDB, and other NoSQL databases for flexible data storage."
+				/>
+				<Card
+					label="Query builder"
+					description="Build complex queries visually or write custom SQL with syntax highlighting and validation."
+				/>
+				<Card
+					label="Connection pooling"
+					description="Efficiently manage database connections with built-in connection pooling and caching."
+				/>
+				<Card
+					label="Data binding"
+					description="Bind database results to your agents and workflows for dynamic, data-driven operations."
+				/>
+				<Card
+					label="Structured data"
+					description="Provide agents with structured data from databases and services to ground their responses."
+				/>
+			</div>
+		</div>
+
+		<!-- Models Section -->
+		<div id="models-section" data-section="models" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					AI Models
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Connect to AI models from leading providers to power your agents with cutting-edge language understanding and generation.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="AI models"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="OpenAI"
+					description="Access GPT-4, GPT-3.5, and other OpenAI models with full API compatibility."
+				/>
+				<Card
+					label="Mistral AI"
+					description="Use Mistral's open models including Mistral 7B and Mixtral for powerful reasoning."
+				/>
+				<Card
+					label="Anthropic"
+					description="Connect to Claude models for advanced conversational AI and long-context understanding."
+				/>
+				<Card
+					label="Local models"
+					description="Run models locally with Ollama, vLLM, and other local inference engines for privacy."
+				/>
+				<Card
+					label="Custom endpoints"
+					description="Connect to any model provider through custom API endpoints and configurations."
+				/>
+				<Card
+					label="Model switching"
+					description="Switch between different models for different use cases and cost optimization."
+				/>
+			</div>
+		</div>
+
+		<!-- Hosting Section -->
+		<div id="hosting-section" data-section="hosting" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Hosting
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Choose the hosting option that fits your needs. Deploy Budibase on your own infrastructure for maximum control, or get started instantly with Budibase Cloud.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="Hosting options"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Self-hosting"
+					description="Deploy on your own infrastructure for maximum control and compliance."
+				/>
+				<Card
+					label="Budibase Cloud"
+					description="Get started instantly with managed hosting."
+				/>
+				<Card
+					label="Docker deployment"
+					description="Deploy easily with Docker containers on any infrastructure you choose."
+				/>
+				<Card
+					label="Kubernetes ready"
+					description="Scale with Kubernetes for production-grade deployments."
+				/>
+				<Card
+					label="Budibase CLI"
+					description="Manage your self-hosted installation with our command-line toolkit."
+					linkUrl="https://docs.budibase.com/docs/budibase-cli-reference"
+				/>
+				<Card
+					label="Backup & recovery"
+					description="Automatic backups and point-in-time recovery for your peace of mind."
+				/>
+			</div>
+		</div>
+	</PlatformLayout>
+</Layout>
+
