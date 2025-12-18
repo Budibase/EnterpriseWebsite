@@ -2,11 +2,11 @@
 import Customers from "@components/Customers.astro";
 import Button from "@components/Button.astro";
 import HeroSwitcher from "@components/HeroSwitcher.astro";
-import HeroBg from "@assets/images/SantaSnow.jpg";
-import ChatImg from "@assets/images/homepage/chat.png";
-import AgentsImg from "@assets/images/homepage/hero.png";
-import AppsImg from "@assets/images/homepage/form.png";
-import AutomationsImg from "@assets/images/homepage/form2.png";
+import AgentPreview from "@assets/images/platform/AgentPreview.png";
+import AgentInChat from "@assets/images/platform/AgentInChat.png";
+import agents from "@assets/images/platform/agents.png";
+import AgentInAutomations from "@assets/images/platform/AgentInAutomations.png";
+import AgentTools from "@assets/images/platform/AgentTools.png";
 import GraphicsCard from "phosphor-astro/LegoSmileyfiLL.astro";
 import ChatCircleDots from "phosphor-astro/ChatCircleFill.astro";
 import Path from "phosphor-astro/PathFill.astro";
@@ -42,12 +42,11 @@ import Table from "phosphor-astro/GridNineFill.astro";
 
   <div class="mt-6 md:mt-10">
     <HeroSwitcher
-      background={HeroBg}
       items={[
         {
           label: "Chat",
-          product: ChatImg,
-          userProduct: ChatImg,
+          product: AgentPreview,
+          userProduct: AgentInChat,
           alt: "Budibase chat",
           icon: ChatCircleDots,
           tagLabel: "New",
@@ -55,7 +54,7 @@ import Table from "phosphor-astro/GridNineFill.astro";
         },
         {
           label: "Agents",
-          product: AgentsImg,
+          product: agents,
           alt: "Budibase agents",
           icon: GraphicsCard,
           tagLabel: "New",
@@ -64,20 +63,20 @@ import Table from "phosphor-astro/GridNineFill.astro";
 
         {
           label: "Automations",
-          product: AutomationsImg,
+          product: AgentInAutomations,
           alt: "Budibase automations",
           icon: Path,
         },
         {
           label: "Apps",
-          product: AppsImg,
-          userProduct: ChatImg,
+          product: AgentTools,
+          userProduct: AgentPreview,
           alt: "Budibase apps",
           icon: Browsers,
         },
         {
           label: "Tables",
-          product: AppsImg,
+          product: AgentTools,
           alt: "Budibase tables",
           icon: Table,
         },

@@ -5,7 +5,6 @@ import ChatCircle from "phosphor-astro/ChatCircle.astro";
 import Code from "phosphor-astro/Code.astro";
 import Eye from "phosphor-astro/Eye.astro";
 import List from "phosphor-astro/List.astro";
-import Users from "phosphor-astro/Users.astro";
 import HeroBg from "@assets/images/homepage/valley.png";
 import { Image } from "astro:assets";
 import Card from "@components/cards/Card.astro";
@@ -15,7 +14,6 @@ const navItems = [
 	{ text: "Editor", link: "#editor", sectionId: "editor", icon: Code },
 	{ text: "Agents", link: "#agents", sectionId: "agents", icon: List },
 	{ text: "Preview", link: "#preview", sectionId: "preview", icon: Eye },
-	{ text: "User management", link: "#user", sectionId: "user", icon: Users },
 ];
 ---
 
@@ -165,42 +163,6 @@ const navItems = [
 				<Card
 					label="Performance metrics"
 					description="Monitor response times and performance during preview testing."
-				/>
-			</div>
-		</div>
-
-		<div id="user-section" data-section="user" class="content-section mb-8">
-			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					User management
-				</h2>
-				<p
-					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
-				>
-					Manage user access, permissions, and roles for your chat interface with granular control.
-				</p>
-
-				<Image
-					src={HeroBg}
-					alt="User management background"
-					class="w-full h-96 object-cover rounded-md"
-				/>
-			</div>
-
-			<div
-				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
-			>
-				<Card
-					label="Role-based access"
-					description="Control which users can access chat features based on their roles and permissions."
-				/>
-				<Card
-					label="User permissions"
-					description="Set granular permissions for agent access, conversation history, and settings."
-				/>
-				<Card
-					label="Usage tracking"
-					description="Monitor user activity, conversation counts, and resource usage per user."
 				/>
 			</div>
 		</div>
