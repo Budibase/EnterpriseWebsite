@@ -1,15 +1,22 @@
 ---
 import PlatformSidebar from "./PlatformSidebar.astro";
 
+interface NavItem {
+	text: string;
+	link: string;
+	sectionId: string;
+	icon?: any;
+}
+
+interface NavGroup {
+	header?: string;
+	items: NavItem[];
+}
+
 interface Props {
 	title: string;
 	description: string;
-	navItems: Array<{
-		text: string;
-		link: string;
-		sectionId: string;
-		icon?: any;
-	}>;
+	navItems: NavItem[] | NavGroup[];
 }
 
 const { title, description, navItems } = Astro.props;
