@@ -2,12 +2,12 @@
 import Layout from "../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
 import Info from "phosphor-astro/Info.astro";
-import Robot from "phosphor-astro/Robot.astro";
+import Memory from "phosphor-astro/Memory.astro";
 import ChatCircle from "phosphor-astro/ChatCircle.astro";
 import Path from "phosphor-astro/PathFill.astro";
-import AppWindow from "phosphor-astro/AppWindow.astro";
+import Browsers from "phosphor-astro/Browsers.astro";
 import Link from "phosphor-astro/Link.astro";
-import Plugs from "phosphor-astro/Plugs.astro";
+import Webhooks from "phosphor-astro/WebhooksLogo.astro";
 import Database from "phosphor-astro/Database.astro";
 import Sparkle from "phosphor-astro/Sparkle.astro";
 import Cloud from "phosphor-astro/Cloud.astro";
@@ -27,18 +27,18 @@ const navItems = [
 	{
 		header: "CORE",
 		items: [
-			{ text: "Agents", link: "#agents", sectionId: "agents", icon: Robot },
+			{ text: "Agents", link: "#agents", sectionId: "agents", icon: Memory },
 			{ text: "Chat", link: "#chat", sectionId: "chat", icon: ChatCircle },
 			{ text: "Automations", link: "#automations", sectionId: "automations", icon: Path },
-			{ text: "Apps", link: "#apps", sectionId: "apps", icon: AppWindow },
+			{ text: "Apps", link: "#apps", sectionId: "apps", icon: Browsers },
 		],
 	},
 	{
 		header: "RESOURCES",
 		items: [
 			{ text: "Integrations", link: "#integrations", sectionId: "integrations", icon: Link },
-			{ text: "API editor", link: "#apis", sectionId: "apis", icon: Plugs },
-			{ text: "Data GUIs", link: "#data", sectionId: "data", icon: Database },
+			{ text: "APIs", link: "#apis", sectionId: "apis", icon: Webhooks },
+			{ text: "Data", link: "#data", sectionId: "data", icon: Database },
 			{ text: "AI Models", link: "#models", sectionId: "models", icon: Sparkle },
 			{ text: "Hosting", link: "#hosting", sectionId: "hosting", icon: Cloud },
 		],

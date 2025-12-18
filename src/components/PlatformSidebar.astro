@@ -6,30 +6,82 @@ interface NavItem {
 	icon?: any;
 }
 
+interface NavGroup {
+	header?: string;
+	items: NavItem[];
+}
+
 interface Props {
 	title: string;
 	description: string;
-	navItems: NavItem[];
+	navItems: NavItem[] | NavGroup[];
 }
 
 const { title, description, navItems } = Astro.props;
+
+// Check if navItems is grouped or flat
+const isGrouped = navItems.length > 0 && 'items' in navItems[0];
+const groupedNavItems = isGrouped ? (navItems as NavGroup[]) : null;
+const flatNavItems = isGrouped ? null : (navItems as NavItem[]);
 ---
 
 <aside class="platform-sidebar">
-	<h1 class="mb-2 h2">{title}</h1>
+	<h1 class="mb-2 text-xl!">{title}</h1>
 	<p class="text-stone-500! dark:text-stone-400! mb-4!">{description}</p>
 	<nav>
 		<ul>
-			{navItems.map((item, index) => (
-				<li>
-					<a href={item.link} class:list={[
-						"nav-link flex flex-row gap-3 items-center h-8 px-3 rounded-md text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
-						index === 0 && "active"
-					]} data-section={item.sectionId}>
-						<span>{item.text}</span>
-					</a>
-				</li>
-			))}
+			{isGrouped ? (
+				groupedNavItems!.map((group, groupIndex) => (
+					<>
+						{group.header && (
+							<li class:list={["nav-group-header", groupIndex > 0 && "nav-group-header-spaced"]}>
+								<span class="text-xs text-stone-600 dark:text-stone-500 uppercase tracking-wider px-3 py-2">
+									{group.header}
+								</span>
+							</li>
+						)}
+						{group.items.map((item, itemIndex) => {
+							const isFirstItem = groupIndex === 0 && itemIndex === 0;
+							const IconComponent = item.icon;
+							return (
+								<li>
+									<a href={item.link} class:list={[
+										"nav-link flex flex-row gap-2 items-center h-8 px-3 rounded-md text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800 text-sm",
+										isFirstItem && "active"
+									]} data-section={item.sectionId}>
+										{IconComponent && (
+											<IconComponent class="nav-icon w-[18px] h-[18px] shrink-0" />
+										)}
+										<span>{item.text}</span>
+									</a>
+								</li>
+							);
+						})}
+						{groupIndex < groupedNavItems!.length - 1 && (
+							<li class="nav-group-divider">
+								<hr class="nav-hr border-stone-200 dark:border-stone-900 border-t my-2" />
+							</li>
+						)}
+					</>
+				))
+			) : (
+				flatNavItems!.map((item, index) => {
+					const IconComponent = item.icon;
+					return (
+						<li>
+							<a href={item.link} class:list={[
+								"nav-link flex flex-row gap-3 items-center h-8 px-3 rounded-md text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
+								index === 0 && "active"
+							]} data-section={item.sectionId}>
+								{IconComponent && (
+									<IconComponent class="nav-icon w-4 h-4 shrink-0" />
+								)}
+								<span>{item.text}</span>
+							</a>
+						</li>
+					);
+				})
+			)}
 		</ul>
 	</nav>
 </aside>
@@ -49,6 +101,27 @@ const { title, description, navItems } = Astro.props;
 		flex-direction: column;
 	}
 
+	.nav-group-header {
+		margin-bottom: 0.5rem !important;
+	}
+
+	.nav-group-header-spaced {
+		margin-top: 0.5rem !important;
+	}
+
+	.nav-icon {
+		width: 18px;
+		height: 18px;
+		color: inherit;
+	}
+
+	.nav-link:hover .nav-icon {
+		color: inherit;
+	}
+
+	.nav-link.active .nav-icon {
+		color: inherit;
+	}
 
 	@media (max-width: 768px) {
 		.platform-sidebar {
