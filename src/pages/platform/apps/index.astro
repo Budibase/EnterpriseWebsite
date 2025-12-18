@@ -1,21 +1,17 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
-import Code from "phosphor-astro/Code.astro";
-import Grid from "phosphor-astro/GridNine.astro";
-import Eye from "phosphor-astro/Eye.astro";
-import List from "phosphor-astro/List.astro";
-import Rocket from "phosphor-astro/Rocket.astro";
+import Info from "phosphor-astro/Info.astro";
+import Sparkle from "phosphor-astro/Sparkle.astro";
+import Briefcase from "phosphor-astro/Briefcase.astro";
 import HeroBg from "@assets/images/homepage/valley.png";
 import { Image } from "astro:assets";
 import Card from "@components/cards/Card.astro";
 
 const navItems = [
-	{ text: "Editor", link: "#editor", sectionId: "editor", icon: Code },
-	{ text: "Builder", link: "#builder", sectionId: "builder", icon: Grid },
-	{ text: "Preview", link: "#preview", sectionId: "preview", icon: Eye },
-	{ text: "Logs", link: "#logs", sectionId: "logs", icon: List },
-	{ text: "Deploy", link: "#deploy", sectionId: "deploy", icon: Rocket },
+	{ text: "Overview", link: "#overview", sectionId: "overview", icon: Info },
+	{ text: "Features", link: "#features", sectionId: "features", icon: Sparkle },
+	{ text: "Use cases", link: "#use-cases", sectionId: "use-cases", icon: Briefcase },
 ];
 ---
 
@@ -25,20 +21,20 @@ const navItems = [
 		description="Ship internal tools fast with a builder."
 		{navItems}
 	>
-		<div id="editor-section" data-section="editor" class="content-section mb-8">
+		<div id="overview-section" data-section="overview" class="content-section mb-8">
 			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
 				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					Editor
+					Overview
 				</h2>
 				<p
 					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
 				>
-					Write and edit code with a powerful editor featuring syntax highlighting, autocomplete, and integrated debugging.
+					Build and deploy internal tools quickly with our powerful app builder platform.
 				</p>
 
 				<Image
 					src={HeroBg}
-					alt="Editor background"
+					alt="Apps overview"
 					class="w-full h-96 object-cover rounded-md"
 				/>
 			</div>
@@ -47,34 +43,34 @@ const navItems = [
 				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
 			>
 				<Card
-					label="Code editor"
-					description="Edit JavaScript, TypeScript, and other code files with full IDE features."
+					label="Rapid development"
+					description="Ship internal tools faster than ever with visual builders and pre-built components."
 				/>
 				<Card
-					label="Syntax highlighting"
-					description="Color-coded syntax for multiple languages with theme support."
+					label="No-code to code"
+					description="Start with visual builders and extend with custom code when needed."
 				/>
 				<Card
-					label="Autocomplete"
-					description="Intelligent code completion with context-aware suggestions."
+					label="Enterprise ready"
+					description="Built for teams with collaboration, version control, and deployment features."
 				/>
 			</div>
 		</div>
 
-		<div id="builder-section" data-section="builder" class="content-section mb-8">
+		<div id="features-section" data-section="features" class="content-section mb-8">
 			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
 				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					Builder
+					Features
 				</h2>
 				<p
 					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
 				>
-					Build internal tools visually with drag-and-drop components, forms, tables, and data bindings.
+					Everything you need to build powerful internal tools and applications.
 				</p>
 
 				<Image
 					src={HeroBg}
-					alt="Builder background"
+					alt="Apps features"
 					class="w-full h-96 object-cover rounded-md"
 				/>
 			</div>
@@ -83,132 +79,76 @@ const navItems = [
 				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
 			>
 				<Card
-					label="Drag-and-drop"
-					description="Build interfaces visually by dragging components onto your canvas."
+					label="Visual builder"
+					description="Drag-and-drop interface builder with a rich component library."
 				/>
 				<Card
-					label="Component library"
-					description="Access a rich library of pre-built components like forms, tables, charts, and more."
+					label="Code editor"
+					description="Full-featured code editor with syntax highlighting and autocomplete."
 				/>
 				<Card
-					label="Data binding"
-					description="Connect components to your data sources with simple bindings and queries."
+					label="Data integration"
+					description="Connect to databases, APIs, and external services seamlessly."
+				/>
+				<Card
+					label="Real-time preview"
+					description="See changes instantly with live preview and hot-reload."
 				/>
 				<Card
 					label="Responsive design"
-					description="Create apps that work seamlessly on desktop, tablet, and mobile devices."
+					description="Build apps that work perfectly on desktop, tablet, and mobile."
 				/>
-				<Card
-					label="Custom components"
-					description="Extend functionality with custom components and integrations."
-				/>
-			</div>
-		</div>
-
-		<div id="preview-section" data-section="preview" class="content-section mb-8">
-			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					Preview
-				</h2>
-				<p
-					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
-				>
-					Preview your app in real-time as you build, with live updates and interactive testing.
-				</p>
-
-				<Image
-					src={HeroBg}
-					alt="Preview background"
-					class="w-full h-96 object-cover rounded-md"
-				/>
-			</div>
-
-			<div
-				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
-			>
-				<Card
-					label="Live preview"
-					description="See changes instantly as you edit with hot-reload functionality."
-				/>
-				<Card
-					label="Device preview"
-					description="Test your app on different screen sizes and device types."
-				/>
-				<Card
-					label="Interactive testing"
-					description="Interact with your app during preview to validate functionality."
-				/>
-			</div>
-		</div>
-
-		<div id="logs-section" data-section="logs" class="content-section mb-8">
-			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					Logs
-				</h2>
-				<p
-					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
-				>
-					Monitor app performance, debug issues, and track user activity with comprehensive logging.
-				</p>
-
-				<Image
-					src={HeroBg}
-					alt="Logs background"
-					class="w-full h-96 object-cover rounded-md"
-				/>
-			</div>
-
-			<div
-				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
-			>
-				<Card
-					label="Application logs"
-					description="View detailed logs of app execution, errors, and performance metrics."
-				/>
-				<Card
-					label="User activity"
-					description="Track user interactions, page views, and feature usage."
-				/>
-				<Card
-					label="Error tracking"
-					description="Monitor and debug errors with stack traces and context information."
-				/>
-			</div>
-		</div>
-
-		<div id="deploy-section" data-section="deploy" class="content-section mb-8">
-			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					Deploy
-				</h2>
-				<p
-					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
-				>
-					Deploy your apps to production with one-click deployment, version control, and environment management.
-				</p>
-
-				<Image
-					src={HeroBg}
-					alt="Deploy background"
-					class="w-full h-96 object-cover rounded-md"
-				/>
-			</div>
-
-			<div
-				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
-			>
 				<Card
 					label="One-click deploy"
-					description="Deploy your app to production with a single click, no configuration needed."
+					description="Deploy to production with a single click, no configuration needed."
+				/>
+			</div>
+		</div>
+
+		<div id="use-cases-section" data-section="use-cases" class="content-section mb-8">
+			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
+					Use cases
+				</h2>
+				<p
+					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
+				>
+					Build a wide variety of internal tools and applications for your organization.
+				</p>
+
+				<Image
+					src={HeroBg}
+					alt="Use cases"
+					class="w-full h-96 object-cover rounded-md"
+				/>
+			</div>
+
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+			>
+				<Card
+					label="Admin dashboards"
+					description="Create powerful admin panels and management interfaces."
 				/>
 				<Card
-					label="Version control"
-					description="Track app versions and rollback to previous versions if needed."
+					label="Data entry forms"
+					description="Build custom forms for data collection and management."
 				/>
 				<Card
-					label="Environment management"
-					description="Deploy to different environments like development, staging, and production."
+					label="Reporting tools"
+					description="Generate reports and analytics dashboards for your team."
+				/>
+				<Card
+					label="Workflow automation"
+					description="Automate business processes with custom workflow apps."
+				/>
+				<Card
+					label="Customer portals"
+					description="Build customer-facing portals and self-service applications."
+				/>
+				<Card
+					label="Internal tools"
+					description="Create custom tools for your team's specific needs."
 				/>
 			</div>
 		</div>
