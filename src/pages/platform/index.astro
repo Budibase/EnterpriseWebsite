@@ -1,14 +1,14 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
-import Info from "phosphor-astro/Info.astro";
+import Circles from "phosphor-astro/Nut.astro";
 import Memory from "phosphor-astro/Memory.astro";
 import ChatCircle from "phosphor-astro/ChatCircle.astro";
 import Path from "phosphor-astro/PathFill.astro";
 import Browsers from "phosphor-astro/Browsers.astro";
-import Link from "phosphor-astro/Link.astro";
+import Link from "phosphor-astro/Cube.astro";
 import Webhooks from "phosphor-astro/WebhooksLogo.astro";
-import Database from "phosphor-astro/Database.astro";
+import Database from "phosphor-astro/GridNine.astro";
 import Sparkle from "phosphor-astro/Sparkle.astro";
 import Cloud from "phosphor-astro/Cloud.astro";
 import HeroBg from "@assets/images/homepage/valley.png";
@@ -21,7 +21,7 @@ import Card from "@components/cards/Card.astro";
 const navItems = [
 	{
 		items: [
-			{ text: "Overview", link: "#overview", sectionId: "overview", icon: Info },
+			{ text: "Overview", link: "#overview", sectionId: "overview", icon: Circles },
 		],
 	},
 	{
@@ -64,11 +64,11 @@ const navItems = [
 					Explore the Budibase platform and discover how to build powerful applications, automate workflows, deploy AI agents, and create engaging chat experiences.
 				</p>
 
-				<Image
-					src={HeroBg}
-					alt="Platform overview"
-					class="w-full h-96 object-cover rounded-md"
-				/>
+			<Image
+				src={ProductImage}
+				alt="Platform overview"
+				class="w-full h-96 object-cover rounded-md"
+			/>
 			</div>
 
 			<div
