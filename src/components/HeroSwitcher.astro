@@ -21,36 +21,32 @@ const {
 ---
 
 <div id={id} class={`hero-switcher ${className ?? ""}`.trim()}>
-  <div class="tabs">
-    <div class="tabs-left" role="tablist" aria-label="Product switcher">
-      {
-        items.map((item, idx) => {
-          const tabId = `${id}-tab-${idx}`;
-          return (
-            <button
-              id={tabId}
-              role="tab"
-              aria-selected={idx === 0 ? "true" : "false"}
-              aria-controls={`${id}-panel-${idx}`}
-              class={`appearance-none bg-transparent border-0 px-2 py-1 text-xs md:text-sm text-stone-500 dark:text-stone-400 border-b border-transparent whitespace-nowrap cursor-pointer inline-flex items-center gap-1.5 transition-colors duration-150 hover:text-stone-950 dark:hover:text-stone-100 flex-shrink-0 ${
-                idx === 0
-                  ? "is-active bg-stone-200 dark:bg-stone-800 text-stone-950 dark:text-stone-50 rounded-lg"
-                  : ""
-              }`.trim()}
-              data-index={idx}
-              type="button"
-              tabindex={idx === 0 ? 0 : -1}
-              onclick={`window.__bbHeroSwitcherSetActive && window.__bbHeroSwitcherSetActive('${id}', ${idx})`}
-            >
-              <span class="tab-label">{item.label}</span>
-            </button>
-          );
-        })
-      }
-    </div>
-    <div class="tabs-right">
-      <slot />
-    </div>
+  <div class="tabs" role="tablist" aria-label="Product switcher">
+    {
+      items.map((item, idx) => {
+        const tabId = `${id}-tab-${idx}`;
+        return (
+          <button
+            id={tabId}
+            role="tab"
+            aria-selected={idx === 0 ? "true" : "false"}
+            aria-controls={`${id}-panel-${idx}`}
+            class={`appearance-none bg-transparent border-0 px-2 py-1 text-xs md:text-sm text-stone-500 dark:text-stone-400 border-b border-transparent whitespace-nowrap cursor-pointer inline-flex items-center gap-1.5 transition-colors duration-150 hover:text-stone-950 dark:hover:text-stone-100 shrink-0 ${
+              idx === 0
+                ? "is-active bg-stone-200 dark:bg-stone-800 text-stone-950 dark:text-stone-50 rounded-lg"
+                : ""
+            }`.trim()}
+            data-index={idx}
+            data-label={item.label}
+            type="button"
+            tabindex={idx === 0 ? 0 : -1}
+            onclick={`window.__bbHeroSwitcherSetActive && window.__bbHeroSwitcherSetActive('${id}', ${idx})`}
+          >
+            <span class="tab-label">{item.label}</span>
+          </button>
+        );
+      })
+    }
   </div>
 
   <div class="media" role="region" aria-label="Product preview">
@@ -63,6 +59,7 @@ const {
           aria-hidden={idx === 0 ? "false" : "true"}
           class={`product ${idx === 0 ? "is-active" : ""}`.trim()}
           data-index={idx}
+          data-label={item.label}
         >
           <Image
             class="product-img"
@@ -83,32 +80,15 @@ const {
 
   .tabs {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    position: relative;
-    z-index: 3;
-    height: inherit;
-    flex-wrap: wrap;
-  }
-  .tabs-left {
-    display: flex;
     gap: 8px;
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    flex-shrink: 0;
+    position: relative;
+    z-index: 3;
   }
-  .tabs-left::-webkit-scrollbar {
-    display: none;
-  }
-  .tabs-right {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  .tabs-right:empty {
+  .tabs::-webkit-scrollbar {
     display: none;
   }
 
@@ -159,7 +139,7 @@ const {
     function init(rootId) {
       const root = document.getElementById(rootId);
       if (!root) return;
-      const tabs = Array.from(root.querySelectorAll('.tabs-left [role="tab"]'));
+      const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
       const products = Array.from(root.querySelectorAll('.product'));
 
       function updateTabClasses(tab, isActive) {
@@ -187,7 +167,6 @@ const {
         });
       }
 
-      // Save on root for manual triggering
       root.__bbSetActive = setActive;
 
       root.addEventListener('click', (e) => {
