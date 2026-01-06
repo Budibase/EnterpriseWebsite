@@ -25,7 +25,6 @@ import Phone from "phosphor-astro/Phone.astro";
 import Bell from "phosphor-astro/Bell.astro";
 import Table from "phosphor-astro/Table.astro";
 import MagnifyingGlass from "phosphor-astro/MagnifyingGlass.astro";
-import Robot from "phosphor-astro/Robot.astro";
 import Gear from "phosphor-astro/Gear.astro";
 import HardDrives from "phosphor-astro/HardDrives.astro";
 import Graph from "phosphor-astro/Graph.astro";
@@ -40,6 +39,8 @@ import OpenAILogo from "@assets/logos/OpenAI.svg";
 import GoogleLogo from "@assets/logos/Google.svg";
 import BambooLogo from "@assets/logos/Bamboo.svg";
 import OktaLogo from "@assets/logos/Okta.svg";
+import LlamaLogo from "@assets/logos/llama.svg";
+import QwenLogo from "@assets/logos/qwen.svg";
 import SlackLogo from "@assets/logos/Slack.svg";
 import TeamsLogo from "@assets/logos/Teams.png";
 import JiraLogo from "@assets/logos/Jira.svg";
@@ -91,14 +92,14 @@ const navItems = platformNavItemsData.map(group => ({
 						<Image src={OpenAILogo} alt="OpenAI" class="w-5 h-5" />
 						<h3 class="text-base!">OpenAI</h3>
 					</div>
-					<div class="integration-card">
-						<Robot class="w-5 h-5 text-stone-600 dark:text-stone-400" />
-						<h3 class="text-base!">Llama</h3>
-					</div>
-					<div class="integration-card">
-						<Robot class="w-5 h-5 text-stone-600 dark:text-stone-400" />
-						<h3 class="text-base!">Qwen</h3>
-					</div>
+				<div class="integration-card">
+					<Image src={LlamaLogo} alt="Llama" class="w-5 h-5" />
+					<h3 class="text-base!">Llama</h3>
+				</div>
+				<div class="integration-card">
+					<Image src={QwenLogo} alt="Qwen" class="w-5 h-5" />
+					<h3 class="text-base!">Qwen</h3>
+				</div>
 					<div class="integration-card">
 						<Sparkle class="w-5 h-5 text-stone-600 dark:text-stone-400" />
 						<h3 class="text-base!">Anthropic</h3>
