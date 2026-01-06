@@ -17,38 +17,50 @@ import Sparkle from "phosphor-astro/Sparkle.astro";
 import Cloud from "phosphor-astro/Cloud.astro";
 import TrendUp from "phosphor-astro/TrendUp.astro";
 
-// Phosphor icons for integrations without logos
-import GithubLogo from "phosphor-astro/GithubLogo.astro";
-import DiscordLogo from "phosphor-astro/DiscordLogo.astro";
-import StripeLogo from "phosphor-astro/StripeLogo.astro";
-import Phone from "phosphor-astro/Phone.astro";
-import Bell from "phosphor-astro/Bell.astro";
-import Table from "phosphor-astro/Table.astro";
-import MagnifyingGlass from "phosphor-astro/MagnifyingGlass.astro";
-import Gear from "phosphor-astro/Gear.astro";
-import HardDrives from "phosphor-astro/HardDrives.astro";
-import Graph from "phosphor-astro/Graph.astro";
-import Leaf from "phosphor-astro/Leaf.astro";
-import Lightning from "phosphor-astro/Lightning.astro";
-import Fire from "phosphor-astro/Fire.astro";
-import CloudArrowUp from "phosphor-astro/CloudArrowUp.astro";
+// Logos
+import DiscordLogoSvg from "@assets/logos/discord.svg";
 
 // Logos
 import MistralLogo from "@assets/logos/Mistral.svg";
-import OpenAILogo from "@assets/logos/OpenAI.svg";
+import OpenAILogo from "@assets/logos/openai.avif";
 import GoogleLogo from "@assets/logos/Google.svg";
 import BambooLogo from "@assets/logos/Bamboo.svg";
-import OktaLogo from "@assets/logos/Okta.svg";
+import OktaLogo from "@assets/logos/okta.jpeg";
 import LlamaLogo from "@assets/logos/llama.svg";
 import QwenLogo from "@assets/logos/qwen.svg";
 import SlackLogo from "@assets/logos/Slack.svg";
-import TeamsLogo from "@assets/logos/Teams.png";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg";
 import JiraLogo from "@assets/logos/Jira.svg";
 import PostgresLogo from "@assets/logos/Postgres.svg";
 import MySQLLogo from "@assets/logos/MYSQL.svg";
 import MSSQLLogo from "@assets/logos/MSSQL.svg";
 import SnowflakeLogo from "@assets/logos/Snowflake.svg";
 import OracleLogo from "@assets/logos/Oracle.svg";
+import AzureOpenAILogo from "@assets/logos/azure-openai.svg";
+import GeminiLogo from "@assets/logos/google-gemini.svg";
+import GroqLogo from "@assets/logos/groq.png";
+import AttioLogo from "@assets/logos/attio.png";
+import AnthropicLogo from "@assets/logos/anthropic.svg";
+import GithubLogoSvg from "@assets/logos/github.svg";
+import GithubLogoWhite from "@assets/logos/githubWhite.png";
+import TwilioLogo from "@assets/logos/twilio.svg";
+import RestApiLogo from "@assets/logos/rest-api.svg";
+import OpenApiLogo from "@assets/logos/openapi.svg";
+import ExaLogo from "@assets/logos/exa.png";
+import ServiceNowLogo from "@assets/logos/servicenow.svg";
+import TavilyLogo from "@assets/logos/tavily.png";
+import PagerDutyLogo from "@assets/logos/pagerduty.jpeg";
+import StripeSvgLogo from "@assets/logos/stripe.svg";
+import SmtpLogo from "@assets/logos/smtp.svg";
+import DatadogLogo from "@assets/logos/datadog.svg";
+import GoogleSheetsLogo from "@assets/logos/google-sheets.svg";
+import CouchDBLogo from "@assets/logos/couchdb.svg";
+import ElasticsearchLogo from "@assets/logos/elasticsearch.svg";
+import MongoDBLogo from "@assets/logos/mongodb.svg";
+import DynamoDBLogo from "@assets/logos/amazon-dynamodb.svg";
+import RedisLogo from "@assets/logos/redis.svg";
+import FirestoreLogo from "@assets/logos/firestore.svg";
+import AmazonS3Logo from "@assets/logos/amazon-s3.svg";
 
 const iconMap: Record<string, any> = {
 	Circles,
@@ -93,20 +105,28 @@ const navItems = platformNavItemsData.map(group => ({
 						<h3 class="text-base!">OpenAI</h3>
 					</div>
 				<div class="integration-card">
-					<Image src={LlamaLogo} alt="Llama" class="w-5 h-5" />
-					<h3 class="text-base!">Llama</h3>
+					<Image src={LlamaLogo} alt="Meta Llama" class="w-5 h-5" />
+					<h3 class="text-base!">Meta Llama</h3>
 				</div>
 				<div class="integration-card">
 					<Image src={QwenLogo} alt="Qwen" class="w-5 h-5" />
 					<h3 class="text-base!">Qwen</h3>
 				</div>
 					<div class="integration-card">
-						<Sparkle class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={AnthropicLogo} alt="Anthropic" class="w-5 h-5" />
 						<h3 class="text-base!">Anthropic</h3>
 					</div>
 					<div class="integration-card">
-						<Image src={GoogleLogo} alt="Gemini" class="w-5 h-5" />
-						<h3 class="text-base!">Gemini</h3>
+						<Image src={GeminiLogo} alt="Google Gemini" class="w-5 h-5" />
+						<h3 class="text-base!">Google Gemini</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={AzureOpenAILogo} alt="Azure OpenAI" class="w-5 h-5" />
+						<h3 class="text-base!">Azure OpenAI</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={GroqLogo} alt="Groq" class="w-5 h-5" />
+						<h3 class="text-base!">Groq</h3>
 					</div>
 				</div>
 			</section>
@@ -120,7 +140,7 @@ const navItems = platformNavItemsData.map(group => ({
 						<h3 class="text-base!">Bamboo</h3>
 					</div>
 					<div class="integration-card">
-						<Gear class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={ServiceNowLogo} alt="ServiceNow" class="w-5 h-5" />
 						<h3 class="text-base!">ServiceNow</h3>
 					</div>
 					<div class="integration-card">
@@ -128,11 +148,12 @@ const navItems = platformNavItemsData.map(group => ({
 						<h3 class="text-base!">Okta</h3>
 					</div>
 					<div class="integration-card">
-						<GithubLogo class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={GithubLogoSvg} alt="GitHub" class="w-5 h-5 dark:hidden" />
+						<Image src={GithubLogoWhite} alt="GitHub" class="w-5 h-5 hidden dark:block" />
 						<h3 class="text-base!">GitHub</h3>
 					</div>
 					<div class="integration-card">
-						<StripeLogo class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={StripeSvgLogo} alt="Stripe" class="w-5 h-5" />
 						<h3 class="text-base!">Stripe</h3>
 					</div>
 					<div class="integration-card">
@@ -140,15 +161,15 @@ const navItems = platformNavItemsData.map(group => ({
 						<h3 class="text-base!">Slack</h3>
 					</div>
 					<div class="integration-card">
-						<DiscordLogo class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={DiscordLogoSvg} alt="Discord" class="w-5 h-5" />
 						<h3 class="text-base!">Discord</h3>
 					</div>
 					<div class="integration-card">
-						<Phone class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={TwilioLogo} alt="Twilio" class="w-5 h-5" />
 						<h3 class="text-base!">Twilio</h3>
 					</div>
 					<div class="integration-card">
-						<Bell class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={PagerDutyLogo} alt="PagerDuty" class="w-5 h-5" />
 						<h3 class="text-base!">PagerDuty</h3>
 					</div>
 					<div class="integration-card">
@@ -160,13 +181,33 @@ const navItems = platformNavItemsData.map(group => ({
 						<h3 class="text-base!">Jira</h3>
 					</div>
 					<div class="integration-card">
-						<MagnifyingGlass class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={ExaLogo} alt="Exa" class="w-5 h-5" />
 						<h3 class="text-base!">Exa</h3>
 					</div>
-					<div class="integration-card">
-						<MagnifyingGlass class="w-5 h-5 text-stone-600 dark:text-stone-400" />
-						<h3 class="text-base!">Tavily</h3>
-					</div>
+				<div class="integration-card">
+					<Image src={TavilyLogo} alt="Tavily" class="w-5 h-5" />
+					<h3 class="text-base!">Tavily</h3>
+				</div>
+				<div class="integration-card">
+					<Image src={RestApiLogo} alt="Custom REST API" class="w-5 h-5" />
+					<h3 class="text-base!">Custom REST API</h3>
+				</div>
+				<div class="integration-card">
+					<Image src={OpenApiLogo} alt="OpenAPI" class="w-5 h-5" />
+					<h3 class="text-base!">OpenAPI</h3>
+				</div>
+				<div class="integration-card">
+					<Image src={SmtpLogo} alt="SMTP" class="w-5 h-5" />
+					<h3 class="text-base!">SMTP</h3>
+				</div>
+				<div class="integration-card">
+					<Image src={DatadogLogo} alt="Datadog" class="w-5 h-5" />
+					<h3 class="text-base!">Datadog</h3>
+				</div>
+				<div class="integration-card">
+					<Image src={AttioLogo} alt="Attio" class="w-5 h-5" />
+					<h3 class="text-base!">Attio</h3>
+				</div>
 				</div>
 			</section>
 
@@ -187,7 +228,7 @@ const navItems = platformNavItemsData.map(group => ({
 						<h3 class="text-base!">MSSQL</h3>
 					</div>
 					<div class="integration-card">
-						<Table class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={GoogleSheetsLogo} alt="Google Sheets" class="w-5 h-5" />
 						<h3 class="text-base!">Google Sheets</h3>
 					</div>
 					<div class="integration-card">
@@ -195,23 +236,23 @@ const navItems = platformNavItemsData.map(group => ({
 						<h3 class="text-base!">Snowflake</h3>
 					</div>
 					<div class="integration-card">
-						<HardDrives class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={CouchDBLogo} alt="CouchDB" class="w-5 h-5" />
 						<h3 class="text-base!">CouchDB</h3>
 					</div>
 					<div class="integration-card">
-						<MagnifyingGlass class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={ElasticsearchLogo} alt="Elasticsearch" class="w-5 h-5" />
 						<h3 class="text-base!">Elasticsearch</h3>
 					</div>
 					<div class="integration-card">
-						<Leaf class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={MongoDBLogo} alt="MongoDB" class="w-5 h-5" />
 						<h3 class="text-base!">MongoDB</h3>
 					</div>
 					<div class="integration-card">
-						<Lightning class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={DynamoDBLogo} alt="DynamoDB" class="w-5 h-5" />
 						<h3 class="text-base!">DynamoDB</h3>
 					</div>
 					<div class="integration-card">
-						<HardDrives class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={RedisLogo} alt="Redis" class="w-5 h-5" />
 						<h3 class="text-base!">Redis</h3>
 					</div>
 					<div class="integration-card">
@@ -219,11 +260,11 @@ const navItems = platformNavItemsData.map(group => ({
 						<h3 class="text-base!">Oracle</h3>
 					</div>
 					<div class="integration-card">
-						<Fire class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={FirestoreLogo} alt="Firestore" class="w-5 h-5" />
 						<h3 class="text-base!">Firestore</h3>
 					</div>
 					<div class="integration-card">
-						<CloudArrowUp class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={AmazonS3Logo} alt="Amazon S3" class="w-5 h-5" />
 						<h3 class="text-base!">Amazon S3</h3>
 					</div>
 				</div>
@@ -234,7 +275,7 @@ const navItems = platformNavItemsData.map(group => ({
 				<h2 class="text-lg! text-stone-900 dark:text-stone-100 mb-4">Vector Stores</h2>
 				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-2">
 					<div class="integration-card">
-						<Graph class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<Image src={PostgresLogo} alt="PGVector" class="w-5 h-5" />
 						<h3 class="text-base!">PGVector</h3>
 					</div>
 				</div>
