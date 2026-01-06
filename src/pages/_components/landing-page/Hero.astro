@@ -26,33 +26,12 @@ import GlobeHemisphereWest from "phosphor-astro/GlobeHemisphereWest.astro";
   <div class="mt-6 md:mt-10">
     <HeroSwitcher
       items={[
-        {
-          label: "Chat",
-          product: AgentPreview,
-          alt: "Budibase chat",
-        },
-        {
-          label: "Agents",
-          product: agents,
-          alt: "Budibase agents",
-        },
-        {
-          label: "Automations",
-          product: AgentInAutomations,
-          alt: "Budibase automations",
-        },
-        {
-          label: "Apps",
-          product: AgentTools,
-          alt: "Budibase apps",
-        },
-        {
-          label: "Tables",
-          product: AgentTools,
-          alt: "Budibase tables",
-        },
-      ]}
-    >
+        { label: "Chat", product: AgentPreview, alt: "Budibase chat" },
+        { label: "Agents", product: agents, alt: "Budibase agents" },
+        { label: "Automations", product: AgentInAutomations, alt: "Budibase automations" },
+        { label: "Apps", product: AgentTools, alt: "Budibase apps" },
+        { label: "Tables", product: AgentTools, alt: "Budibase tables" },
+      ]}>
       <div class="hidden md:flex flex-wrap items-center gap-3 md:gap-4 text-xs text-stone-500 dark:text-stone-400">
         <span class="flex items-center gap-1">
           <Users class="w-4 h-4" />
