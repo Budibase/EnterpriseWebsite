@@ -13,11 +13,11 @@ interface NavGroup {
 
 interface Props {
 	navItems: NavItem[] | NavGroup[];
+	title?: string;
+	description?: string;
 }
 
-const { navItems } = Astro.props;
-const title = "Platform";
-const description = "The privacy-first platform for building agents, chat, automations, and apps.";
+const { navItems, title = "Platform", description = "The privacy-first platform for building agents, chat, automations, and apps." } = Astro.props;
 const currentPath = Astro.url.pathname;
 
 // Check if navItems is grouped or flat
