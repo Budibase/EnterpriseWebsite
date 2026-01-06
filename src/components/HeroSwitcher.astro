@@ -5,6 +5,9 @@ export interface SwitchItem {
   label: string;
   product: ImageMetadata;
   alt?: string;
+  icon?: astroHTML.JSX.Element | any;
+  tagLabel?: string;
+  tagVariant?: string;
 }
 
 interface Props {
@@ -42,6 +45,7 @@ const {
             tabindex={idx === 0 ? 0 : -1}
             onclick={`window.__bbHeroSwitcherSetActive && window.__bbHeroSwitcherSetActive('${id}', ${idx})`}
           >
+            {item.icon && <item.icon class="w-4 h-4" />}
             <span class="tab-label">{item.label}</span>
           </button>
         );

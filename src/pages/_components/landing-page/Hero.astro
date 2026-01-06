@@ -2,16 +2,16 @@
 import Customers from "@components/Customers.astro";
 import Button from "@components/Button.astro";
 import HeroSwitcher from "@components/HeroSwitcher.astro";
-import AgentPreview from "@assets/images/platform/AgentPreview.png";
+import AgentInstructions2 from "@assets/images/platform/AgentInstructions2.png";
 import AgentInChat from "@assets/images/platform/AgentInChat.png";
-import agents from "@assets/images/platform/agents.png";
 import AgentInAutomations from "@assets/images/platform/AgentInAutomations.png";
-import AgentTools from "@assets/images/platform/AgentTools.png";
-import GraphicsCard from "phosphor-astro/LegoSmileyfiLL.astro";
-import ChatCircleDots from "phosphor-astro/ChatCircleFill.astro";
+import ValleyImage from "@assets/images/homepage/valley.png";
+import Memory from "phosphor-astro/Memory.astro";
+import ChatCircle from "phosphor-astro/ChatCircle.astro";
 import Path from "phosphor-astro/PathFill.astro";
-import Browsers from "phosphor-astro/BrowsersFill.astro";
-import Table from "phosphor-astro/GridNineFill.astro";
+import Browsers from "phosphor-astro/Browsers.astro";
+import Database from "phosphor-astro/GridNine.astro";
+import Webhooks from "phosphor-astro/WebhooksLogo.astro";
 import Users from "phosphor-astro/HardDrives.astro";
 import Certificate from "phosphor-astro/Certificate.astro";
 import Check from "phosphor-astro/CheckCircle.astro";
@@ -40,7 +40,7 @@ import GlobeHemisphereWest from "phosphor-astro/GlobeHemisphereWest.astro";
     </span>
     <span class="flex items-center gap-1">
       <Check class="w-4 h-4" />
-      <span>GDPR Compliant</span>
+      <span>Free SSO</span>
     </span>
     <span class="flex items-center gap-1">
       <GlobeHemisphereWest class="w-4 h-4" />
@@ -52,23 +52,21 @@ import GlobeHemisphereWest from "phosphor-astro/GlobeHemisphereWest.astro";
     <HeroSwitcher
       items={[
         {
-          label: "Chat",
-          product: AgentPreview,
-          userProduct: AgentInChat,
-          alt: "Budibase chat",
-          icon: ChatCircleDots,
+          label: "Agents",
+          product: AgentInstructions2,
+          alt: "Budibase agents",
+          icon: Memory,
           tagLabel: "New",
           tagVariant: "secondary",
         },
         {
-          label: "Agents",
-          product: agents,
-          alt: "Budibase agents",
-          icon: GraphicsCard,
+          label: "Chat",
+          product: AgentInChat,
+          alt: "Budibase chat",
+          icon: ChatCircle,
           tagLabel: "New",
           tagVariant: "secondary",
         },
-
         {
           label: "Automations",
           product: AgentInAutomations,
@@ -77,16 +75,21 @@ import GlobeHemisphereWest from "phosphor-astro/GlobeHemisphereWest.astro";
         },
         {
           label: "Apps",
-          product: AgentTools,
-          userProduct: AgentPreview,
+          product: ValleyImage,
           alt: "Budibase apps",
           icon: Browsers,
         },
         {
           label: "Tables",
-          product: AgentTools,
+          product: ValleyImage,
           alt: "Budibase tables",
-          icon: Table,
+          icon: Database,
+        },
+        {
+          label: "API editor",
+          product: ValleyImage,
+          alt: "Budibase API editor",
+          icon: Webhooks,
         },
       ]}
     />
