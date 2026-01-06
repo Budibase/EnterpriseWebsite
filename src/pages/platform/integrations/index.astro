@@ -40,7 +40,7 @@ import AzureOpenAILogo from "@assets/logos/azure-openai.svg";
 import GeminiLogo from "@assets/logos/google-gemini.svg";
 import GroqLogo from "@assets/logos/groq.png";
 import AttioLogo from "@assets/logos/attio.png";
-import AnthropicLogo from "@assets/logos/anthropic.svg";
+import AnthropicLogo from "@assets/logos/anthropic.avif";
 import GithubLogoSvg from "@assets/logos/github.svg";
 import GithubLogoWhite from "@assets/logos/githubWhite.png";
 import TwilioLogo from "@assets/logos/twilio.svg";
@@ -55,7 +55,7 @@ import SmtpLogo from "@assets/logos/smtp.svg";
 import DatadogLogo from "@assets/logos/datadog.svg";
 import GoogleSheetsLogo from "@assets/logos/google-sheets.svg";
 import CouchDBLogo from "@assets/logos/couchdb.svg";
-import ElasticsearchLogo from "@assets/logos/elasticsearch.svg";
+import ElasticsearchLogo from "@assets/logos/elastic.svg";
 import MongoDBLogo from "@assets/logos/mongodb.svg";
 import DynamoDBLogo from "@assets/logos/amazon-dynamodb.svg";
 import RedisLogo from "@assets/logos/redis.svg";
@@ -297,5 +297,9 @@ const navItems = platformNavItemsData.map(group => ({
 
 	:global(.dark) .integration-card {
 		background-color: var(--color-stone-900);
+	}
+
+	.integration-card :global(img) {
+		filter: grayscale(100%);
 	}
 </style>
