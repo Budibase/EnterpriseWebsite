@@ -12,6 +12,7 @@
   --color-theme-bg-secondary: var(--color-stone-100);
   --text-primary: var(--color-stone-800);
   --text-secondary: var(--color-stone-500);
+  --border: color-mix(in oklab, var(--color-stone-200) 2.5%, transparent);
 }
 
 /* Dark mode variables */
