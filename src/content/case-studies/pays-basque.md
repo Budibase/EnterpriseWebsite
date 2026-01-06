@@ -5,7 +5,7 @@ employees: "1,000 - 5,000 employees"
 industry: Public Services
 coverImage: /src/assets/images/case-studies/pays-basque.png
 featured: true
-order: 4
+order: 7
 ---
 
 Thierry is the IT Administrator for a wide-reaching water management network in the Basque Country, covering everything from drinking water to wastewater, rainwater, river, and seawater quality. His role spans hardware, software, and network support for critical infrastructure across multiple regions, keeping essential services online and ensuring their IT operations run smoothly. 

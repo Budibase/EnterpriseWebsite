@@ -8,12 +8,14 @@ author:
   name: Davide Lenzarini
   role: IT Manager
 featured: true
-order: 6
+order: 2
 ---
 
 Budibase has been a great introduction; it allowed us to answer business requirements quickly and resolve the company's unhealthy dependency on spreadsheets.
 
-Schnellecke Logistics, a company focused on developing and innovating faster, utilized Budibase to streamline their application development process. Previously, developing applications took a significant amount of time, but with Budibase, they could create apps in less than an hour.
+Centralization of authentication, quick turnaround time for requests, integration with different database systems has given it the edge and it's now used daily for internal development for those apps that you know you need but don't feel value in losing days of development to reinvent the wheel.
 
-The data import functionality allowed them to transform spreadsheets into web apps in minutes, impressing colleagues with its efficiency.
+Those same apps, with Budibase, are now here in less than an hour. Colleagues were stunned by the data import functionality, seeing a sheet turn into a web app in minutes was the cherry on top.
+
+With Budibase, we are 90% faster at building and deploying internal tools. It's a must-have platform for any IT department.
 

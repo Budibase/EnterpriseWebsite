@@ -8,7 +8,7 @@ author:
   name: Charles Link
   role: Senior Director of Data and Analytics
 featured: true
-order: 5
+order: 6
 ---
 
 Reworld is one of the world’s leading Waste to Energy and Environmental Services companies.  We divert 22+ million tons of waste from landfills every year which dramatically reduces greenhouse gas emissions.  In doing so, Reworld sustainably and cleanly generates over 10MM Megawatts of electricity every year while recovering metals and other materials used in construction.

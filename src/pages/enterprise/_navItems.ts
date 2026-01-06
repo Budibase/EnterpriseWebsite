@@ -35,6 +35,7 @@ export const enterpriseNavItemsData: NavGroup[] = [
 			{ text: "Bulgarian Government", link: "/enterprise/bulgarian-government", sectionId: "bulgarian-government", iconName: "Bank" },
 			{ text: "Herrenknecht", link: "/enterprise/herrenknecht", sectionId: "herrenknecht", iconName: "Gear" },
 			{ text: "Geis", link: "/enterprise/geis", sectionId: "geis", iconName: "Package" },
+			{ text: "Minitab", link: "/enterprise/minitab", sectionId: "minitab", iconName: "ChartBar" },
 		],
 	},
 ];
