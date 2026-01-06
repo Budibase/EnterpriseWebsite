@@ -4,8 +4,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 
-
-
 :root {
   /* Landing page vertical padding (each side). Adjust once here. */
   --font-sans: "Inter", sans-serif;
@@ -244,6 +242,23 @@ article a {
 
 article a:hover {
   color: var(--color-sky-700) !important;
+}
+
+article blockquote {
+  border-left: 3px solid var(--color-stone-300);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--color-stone-700) !important;
+}
+
+.dark article blockquote {
+  border-left-color: var(--color-stone-600);
+  color: var(--color-stone-300) !important;
+}
+
+article blockquote p {
+  color: inherit !important;
 }
 
 .dark article a {
