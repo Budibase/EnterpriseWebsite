@@ -48,6 +48,9 @@ const {
         })
       }
     </div>
+    <div class="tabs-right">
+      <slot />
+    </div>
   </div>
 
   <div class="media" role="region" aria-label="Product preview">
@@ -80,11 +83,13 @@ const {
 
   .tabs {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: space-between;
     gap: 8px;
     position: relative;
     z-index: 3;
     height: inherit;
+    flex-wrap: wrap;
   }
   .tabs-left {
     display: flex;
@@ -93,8 +98,17 @@ const {
     overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    flex-shrink: 0;
   }
   .tabs-left::-webkit-scrollbar {
+    display: none;
+  }
+  .tabs-right {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .tabs-right:empty {
     display: none;
   }
 
