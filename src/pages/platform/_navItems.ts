@@ -29,8 +29,8 @@ export const platformNavItemsData: NavGroup[] = [
 		header: "RESOURCES",
 		items: [
 			{ text: "Integrations", link: "/platform/integrations", sectionId: "integrations", iconName: "Link" },
-			{ text: "APIs", link: "/platform/apis", sectionId: "apis", iconName: "Webhooks" },
-			{ text: "Data", link: "/platform/data", sectionId: "data", iconName: "Database" },
+			{ text: "API editor", link: "/platform/apis", sectionId: "apis", iconName: "Webhooks" },
+			{ text: "Data tables", link: "/platform/data", sectionId: "data", iconName: "Database" },
 			{ text: "AI Models", link: "/platform/models", sectionId: "models", iconName: "Sparkle" },
 			{ text: "Hosting", link: "/platform/hosting", sectionId: "hosting", iconName: "Cloud" },
 		],

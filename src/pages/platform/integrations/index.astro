@@ -2,6 +2,9 @@
 import Layout from "../../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
 import { platformNavItemsData } from "../_navItems";
+import { Image } from "astro:assets";
+
+// Nav icons
 import Circles from "phosphor-astro/Nut.astro";
 import Memory from "phosphor-astro/Memory.astro";
 import ChatCircle from "phosphor-astro/ChatCircle.astro";
@@ -12,9 +15,38 @@ import Webhooks from "phosphor-astro/WebhooksLogo.astro";
 import Database from "phosphor-astro/GridNine.astro";
 import Sparkle from "phosphor-astro/Sparkle.astro";
 import Cloud from "phosphor-astro/Cloud.astro";
-import HeroBg from "@assets/images/homepage/valley.png";
-import { Image } from "astro:assets";
-import Card from "@components/cards/Card.astro";
+
+// Phosphor icons for integrations without logos
+import GithubLogo from "phosphor-astro/GithubLogo.astro";
+import DiscordLogo from "phosphor-astro/DiscordLogo.astro";
+import StripeLogo from "phosphor-astro/StripeLogo.astro";
+import Phone from "phosphor-astro/Phone.astro";
+import Bell from "phosphor-astro/Bell.astro";
+import Table from "phosphor-astro/Table.astro";
+import MagnifyingGlass from "phosphor-astro/MagnifyingGlass.astro";
+import Robot from "phosphor-astro/Robot.astro";
+import Gear from "phosphor-astro/Gear.astro";
+import HardDrives from "phosphor-astro/HardDrives.astro";
+import Graph from "phosphor-astro/Graph.astro";
+import Leaf from "phosphor-astro/Leaf.astro";
+import Lightning from "phosphor-astro/Lightning.astro";
+import Fire from "phosphor-astro/Fire.astro";
+import CloudArrowUp from "phosphor-astro/CloudArrowUp.astro";
+
+// Logos
+import MistralLogo from "@assets/logos/Mistral.svg";
+import OpenAILogo from "@assets/logos/OpenAI.svg";
+import GoogleLogo from "@assets/logos/Google.svg";
+import BambooLogo from "@assets/logos/Bamboo.svg";
+import OktaLogo from "@assets/logos/Okta.svg";
+import SlackLogo from "@assets/logos/Slack.svg";
+import TeamsLogo from "@assets/logos/Teams.png";
+import JiraLogo from "@assets/logos/Jira.svg";
+import PostgresLogo from "@assets/logos/Postgres.svg";
+import MySQLLogo from "@assets/logos/MYSQL.svg";
+import MSSQLLogo from "@assets/logos/MSSQL.svg";
+import SnowflakeLogo from "@assets/logos/Snowflake.svg";
+import OracleLogo from "@assets/logos/Oracle.svg";
 
 const iconMap: Record<string, any> = {
 	Circles,
@@ -41,56 +73,185 @@ const navItems = platformNavItemsData.map(group => ({
 <Layout>
 	<PlatformLayout
 		title="Integrations"
-		description="Connect Budibase with your favorite tools and services."
+		description="Connect Budibase with your favorite tools."
 		{navItems}
 	>
-		<div class="mb-8">
-			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					Integrations
-				</h2>
-				<p
-					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
-				>
-					Connect Budibase with your favorite tools and services. Seamlessly integrate with popular platforms to extend functionality and streamline workflows.
-				</p>
+		<div class="mb-8 space-y-8">
+			<!-- AI Models -->
+			<section>
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100 mb-4">AI Models</h2>
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-2">
+					<div class="integration-card">
+						<Image src={MistralLogo} alt="Mistral" class="w-5 h-5" />
+						<h3 class="text-base!">Mistral</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={OpenAILogo} alt="OpenAI" class="w-5 h-5" />
+						<h3 class="text-base!">OpenAI</h3>
+					</div>
+					<div class="integration-card">
+						<Robot class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Llama</h3>
+					</div>
+					<div class="integration-card">
+						<Robot class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Qwen</h3>
+					</div>
+					<div class="integration-card">
+						<Sparkle class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Anthropic</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={GoogleLogo} alt="Gemini" class="w-5 h-5" />
+						<h3 class="text-base!">Gemini</h3>
+					</div>
+				</div>
+			</section>
 
-				<Image
-					src={HeroBg}
-					alt="Integrations"
-					class="w-full h-96 object-cover rounded-md"
-				/>
-			</div>
+			<!-- Tools and APIs -->
+			<section>
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100 mb-4">Tools and APIs</h2>
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-2">
+					<div class="integration-card">
+						<Image src={BambooLogo} alt="Bamboo" class="w-5 h-5" />
+						<h3 class="text-base!">Bamboo</h3>
+					</div>
+					<div class="integration-card">
+						<Gear class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">ServiceNow</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={OktaLogo} alt="Okta" class="w-5 h-5" />
+						<h3 class="text-base!">Okta</h3>
+					</div>
+					<div class="integration-card">
+						<GithubLogo class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">GitHub</h3>
+					</div>
+					<div class="integration-card">
+						<StripeLogo class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Stripe</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={SlackLogo} alt="Slack" class="w-5 h-5" />
+						<h3 class="text-base!">Slack</h3>
+					</div>
+					<div class="integration-card">
+						<DiscordLogo class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Discord</h3>
+					</div>
+					<div class="integration-card">
+						<Phone class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Twilio</h3>
+					</div>
+					<div class="integration-card">
+						<Bell class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">PagerDuty</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={TeamsLogo} alt="Microsoft Teams" class="w-5 h-5" />
+						<h3 class="text-base!">Microsoft Teams</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={JiraLogo} alt="Jira" class="w-5 h-5" />
+						<h3 class="text-base!">Jira</h3>
+					</div>
+					<div class="integration-card">
+						<MagnifyingGlass class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Exa</h3>
+					</div>
+					<div class="integration-card">
+						<MagnifyingGlass class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Tavily</h3>
+					</div>
+				</div>
+			</section>
 
-			<div
-				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
-			>
-				<Card
-					label="Popular integrations"
-					description="Connect with Slack, Google Workspace, Microsoft 365, and hundreds of other popular services."
-				/>
-				<Card
-					label="Pre-built connectors"
-					description="Use ready-made integrations for common services to get started quickly."
-				/>
-				<Card
-					label="Custom integrations"
-					description="Build custom integrations using APIs and webhooks to connect with any service."
-				/>
-				<Card
-					label="OAuth support"
-					description="Secure authentication with OAuth 2.0 for seamless user access to integrated services."
-				/>
-				<Card
-					label="Webhook support"
-					description="Receive real-time updates from external services via webhooks."
-				/>
-				<Card
-					label="Bi-directional sync"
-					description="Keep data synchronized between Budibase and external systems automatically."
-				/>
-			</div>
+			<!-- Data Stores -->
+			<section>
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100 mb-4">Data Stores</h2>
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-2">
+					<div class="integration-card">
+						<Image src={PostgresLogo} alt="PostgreSQL" class="w-5 h-5" />
+						<h3 class="text-base!">PostgreSQL</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={MySQLLogo} alt="MySQL" class="w-5 h-5" />
+						<h3 class="text-base!">MySQL</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={MSSQLLogo} alt="MSSQL" class="w-5 h-5" />
+						<h3 class="text-base!">MSSQL</h3>
+					</div>
+					<div class="integration-card">
+						<Table class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Google Sheets</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={SnowflakeLogo} alt="Snowflake" class="w-5 h-5" />
+						<h3 class="text-base!">Snowflake</h3>
+					</div>
+					<div class="integration-card">
+						<HardDrives class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">CouchDB</h3>
+					</div>
+					<div class="integration-card">
+						<MagnifyingGlass class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Elasticsearch</h3>
+					</div>
+					<div class="integration-card">
+						<Leaf class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">MongoDB</h3>
+					</div>
+					<div class="integration-card">
+						<Lightning class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">DynamoDB</h3>
+					</div>
+					<div class="integration-card">
+						<HardDrives class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Redis</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={OracleLogo} alt="Oracle" class="w-5 h-5" />
+						<h3 class="text-base!">Oracle</h3>
+					</div>
+					<div class="integration-card">
+						<Fire class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Firestore</h3>
+					</div>
+					<div class="integration-card">
+						<CloudArrowUp class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">Amazon S3</h3>
+					</div>
+				</div>
+			</section>
+
+			<!-- Vector Stores -->
+			<section>
+				<h2 class="text-lg! text-stone-900 dark:text-stone-100 mb-4">Vector Stores</h2>
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-2">
+					<div class="integration-card">
+						<Graph class="w-5 h-5 text-stone-600 dark:text-stone-400" />
+						<h3 class="text-base!">PGVector</h3>
+					</div>
+				</div>
+			</section>
 		</div>
 	</PlatformLayout>
 </Layout>
 
+<style>
+	.integration-card {
+		background-color: var(--color-stone-100);
+		padding: 12px 1rem;
+		border-radius: 0.375rem;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	:global(.dark) .integration-card {
+		background-color: var(--color-stone-900);
+	}
+</style>

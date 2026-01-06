@@ -12,6 +12,10 @@ import ChatCircleDots from "phosphor-astro/ChatCircleFill.astro";
 import Path from "phosphor-astro/PathFill.astro";
 import Browsers from "phosphor-astro/BrowsersFill.astro";
 import Table from "phosphor-astro/GridNineFill.astro";
+import Users from "phosphor-astro/Users.astro";
+import Certificate from "phosphor-astro/Certificate.astro";
+import Check from "phosphor-astro/CheckCircle.astro";
+import GlobeHemisphereWest from "phosphor-astro/GlobeHemisphereWest.astro";
 ---
 
 <section class="container max-w-7xl mx-auto px-2 lg:px-0 flex flex-col mt-8 md:mt-20">
@@ -25,7 +29,24 @@ import Table from "phosphor-astro/GridNineFill.astro";
   <div class="flex flex-row mt-2">
     <Button label="Get Budibase free" url="/" variant="cta" />
   </div>
-  <p class="text-stone-500! dark:text-stone-400! text-xs! mt-3">Join 300,000 teams transforming workflows with AI.</p>
+  <div class="flex flex-wrap items-center gap-3 md:gap-4 text-xs text-stone-500 dark:text-stone-400 mt-3">
+    <span class="flex items-center gap-1">
+      <Users class="w-4 h-4" />
+      <span>300K users</span>
+    </span>
+    <span class="flex items-center gap-1">
+      <Certificate class="w-4 h-4" />
+      <span>ISO 27001 Certified</span>
+    </span>
+    <span class="flex items-center gap-1">
+      <Check class="w-4 h-4" />
+      <span>GDPR Compliant</span>
+    </span>
+    <span class="flex items-center gap-1">
+      <GlobeHemisphereWest class="w-4 h-4" />
+      <span>Made in Europe</span>
+    </span>
+  </div>
 
   <div class="mt-6 md:mt-10">
     <HeroSwitcher

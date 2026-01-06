@@ -1,5 +1,6 @@
 ---
 import PlatformSidebar from "./PlatformSidebar.astro";
+import CTA from "@components/CTA.astro";
 
 interface NavItem {
 	text: string;
@@ -29,6 +30,7 @@ const { title, description, navItems } = Astro.props;
 				<slot />
 		</main>
 	</div>
+	<CTA />
 </div>
 
 <style>
