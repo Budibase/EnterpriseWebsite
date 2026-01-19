@@ -1,9 +1,15 @@
 ---
+import Tag from "@components/Tag.astro";
+
 interface NavItem {
 	text: string;
 	link: string;
 	sectionId: string;
 	icon?: any;
+	tag?: {
+		label: string;
+		variant: "primary" | "secondary" | "cta" | "orange";
+	};
 }
 
 interface NavGroup {
@@ -21,12 +27,12 @@ const { navItems, title = "Platform", description = "The privacy-first platform 
 const currentPath = Astro.url.pathname;
 
 // Check if navItems is grouped or flat
-const isGrouped = navItems.length > 0 && 'items' in navItems[0];
+const isGrouped = navItems.length > 0 && "items" in navItems[0];
 const groupedNavItems = isGrouped ? (navItems as NavGroup[]) : null;
 const flatNavItems = isGrouped ? null : (navItems as NavItem[]);
 
 function isActive(link: string): boolean {
-	return currentPath === link || (link === '/platform' && currentPath === '/platform/');
+	return currentPath === link || (link === "/platform" && currentPath === "/platform/");
 }
 ---
 
@@ -57,6 +63,14 @@ function isActive(link: string): boolean {
 											<IconComponent class="nav-icon w-[18px] h-[18px] shrink-0" />
 										)}
 										<span>{item.text}</span>
+										{item.tag && (
+											<Tag
+												label={item.tag.label}
+												variant={item.tag.variant}
+												size="extra-small"
+												class="ml-auto"
+											/>
+										)}
 									</a>
 								</li>
 							);
@@ -77,11 +91,20 @@ function isActive(link: string): boolean {
 								"nav-link flex flex-row gap-3 items-center h-8 px-3 rounded-md text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
 								isActive(item.link) && "active"
 							]} data-section={item.sectionId}>
-								{IconComponent && (
-									<IconComponent class="nav-icon w-4 h-4 shrink-0" />
-								)}
-								<span>{item.text}</span>
-							</a>
+									{IconComponent && (
+										<IconComponent class="nav-icon w-4 h-4 shrink-0" />
+									)}
+									<span>{item.text}</span>
+									{item.tag && (
+										<Tag
+											label={item.tag.label}
+											variant={item.tag.variant}
+											size="extra-small"
+											class="ml-auto"
+										/>
+									)}
+								</a>
+
 						</li>
 					);
 				})

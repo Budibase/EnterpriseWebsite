@@ -15,7 +15,7 @@ import Webhooks from "phosphor-astro/WebhooksLogo.astro";
 import Users from "phosphor-astro/HardDrives.astro";
 import Certificate from "phosphor-astro/Certificate.astro";
 import Check from "phosphor-astro/CheckCircle.astro";
-import GlobeHemisphereWest from "phosphor-astro/GlobeHemisphereWest.astro";
+import GlobeSimple from "phosphor-astro/GlobeSimple.astro";
 import DogImage from "@assets/images/homepage/dog.png";
 import { Image } from "astro:assets";
 ---
@@ -47,7 +47,7 @@ import { Image } from "astro:assets";
           <span>Free SSO</span>
         </span>
         <span class="flex items-center gap-1">
-          <GlobeHemisphereWest class="w-4 h-4" />
+          <GlobeSimple class="w-4 h-4" />
           <span>Made in Europe</span>
         </span>
       </div>
@@ -65,15 +65,15 @@ import { Image } from "astro:assets";
           product: AgentInstructions2,
           alt: "Budibase agents",
           icon: Memory,
-          tagLabel: "New",
-          tagVariant: "secondary",
+          tagLabel: "Beta",
+          tagVariant: "cta",
         },
         {
           label: "Chat",
           product: AgentInChat,
           alt: "Budibase chat",
           icon: ChatCircle,
-          tagLabel: "New",
+          tagLabel: "Alpha",
           tagVariant: "secondary",
         },
         {

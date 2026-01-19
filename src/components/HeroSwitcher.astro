@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Tag from "@components/Tag.astro";
 
 export interface SwitchItem {
   label: string;
@@ -47,6 +48,14 @@ const {
           >
             {item.icon && <item.icon class="w-4 h-4" />}
             <span class="tab-label">{item.label}</span>
+            {item.tagLabel && (
+              <Tag
+                label={item.tagLabel}
+                variant={item.tagVariant ?? "primary"}
+                size="extra-small"
+                class="ml-1"
+              />
+            )}
           </button>
         );
       })

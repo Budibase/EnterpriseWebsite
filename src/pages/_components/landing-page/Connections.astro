@@ -1,0 +1,254 @@
+---
+import { Image } from "astro:assets";
+
+import AnthropicLogo from "@assets/logos/anthropic.avif";
+import AzureOpenAILogo from "@assets/logos/azure-openai.svg";
+import GoogleLogo from "@assets/logos/Google.svg";
+import GroqLogo from "@assets/logos/groq.png";
+import MistralLogo from "@assets/logos/Mistral.svg";
+import OpenAILogo from "@assets/logos/openai.avif";
+import OpenRouterLogo from "@assets/logos/openrouter.svg";
+
+import AmazonS3Logo from "@assets/logos/amazon-s3.svg";
+import DynamoDBLogo from "@assets/logos/amazon-dynamodb.svg";
+import ElasticsearchLogo from "@assets/logos/elastic.svg";
+import FirestoreLogo from "@assets/logos/firestore.svg";
+import MongoDBLogo from "@assets/logos/mongodb.svg";
+import MySQLLogo from "@assets/logos/MYSQL.svg";
+import PostgresLogo from "@assets/logos/Postgres.svg";
+import SupabaseLogo from "@assets/logos/supbase.png";
+
+import DatadogLogo from "@assets/logos/datadog.svg";
+import GithubLogoSvg from "@assets/logos/github.svg";
+import GithubLogoWhite from "@assets/logos/githubWhite.png";
+import JiraLogo from "@assets/logos/Jira.svg";
+import OpenApiLogo from "@assets/logos/openapi.svg";
+import ServiceNowLogo from "@assets/logos/servicenow.svg";
+import SlackLogo from "@assets/logos/Slack.svg";
+import StripeSvgLogo from "@assets/logos/stripe.svg";
+import TwilioLogo from "@assets/logos/twilio.svg";
+import ZendeskLogo from "@assets/logos/zendesk.svg";
+
+import AnsibleLogo from "@assets/logos/ansible.svg";
+import BrevoLogo from "@assets/logos/brevo.svg";
+import ExaLogo from "@assets/logos/exa.png";
+import PagerDutyLogo from "@assets/logos/pagerduty.jpeg";
+import ResendLogo from "@assets/logos/resend.svg";
+import SmtpLogo from "@assets/logos/smtp.svg";
+import VirusTotalLogo from "@assets/logos/virustotal.svg";
+import WorkableLogo from "@assets/logos/workable.svg";
+
+const modelLogos = [
+  { src: AnthropicLogo, alt: "Anthropic" },
+  { src: AzureOpenAILogo, alt: "Azure OpenAI" },
+  { src: GoogleLogo, alt: "Google" },
+  { src: GroqLogo, alt: "Groq" },
+  { src: MistralLogo, alt: "Mistral" },
+  { src: OpenAILogo, alt: "OpenAI" },
+  { src: OpenRouterLogo, alt: "OpenRouter" },
+];
+
+const dataLogos = [
+  { src: AmazonS3Logo, alt: "Amazon S3" },
+  { src: DynamoDBLogo, alt: "DynamoDB" },
+  { src: ElasticsearchLogo, alt: "Elasticsearch" },
+  { src: FirestoreLogo, alt: "Firestore" },
+  { src: MongoDBLogo, alt: "MongoDB" },
+  { src: MySQLLogo, alt: "MySQL" },
+  { src: PostgresLogo, alt: "PostgreSQL" },
+  { src: SupabaseLogo, alt: "Supabase" },
+];
+
+const apiLogos = [
+  { src: DatadogLogo, alt: "Datadog" },
+  { src: GithubLogoSvg, alt: "GitHub" },
+  { src: JiraLogo, alt: "Jira" },
+  { src: OpenApiLogo, alt: "OpenAPI" },
+  { src: ServiceNowLogo, alt: "ServiceNow" },
+  { src: SlackLogo, alt: "Slack" },
+  { src: StripeSvgLogo, alt: "Stripe" },
+  { src: TwilioLogo, alt: "Twilio" },
+  { src: ZendeskLogo, alt: "Zendesk" },
+];
+
+const operationsLogos = [
+  { src: AnsibleLogo, alt: "Ansible" },
+  { src: BrevoLogo, alt: "Brevo" },
+  { src: ExaLogo, alt: "Exa" },
+  { src: PagerDutyLogo, alt: "PagerDuty" },
+  { src: ResendLogo, alt: "Resend" },
+  { src: SmtpLogo, alt: "SMTP" },
+  { src: VirusTotalLogo, alt: "VirusTotal" },
+  { src: WorkableLogo, alt: "Workable" },
+];
+---
+
+<section class="container max-w-7xl mx-auto mt-12 md:mt-24 px-2 lg:px-0">
+  <div class="connections-shell rounded-3xl border border-[var(--border)] p-5 md:p-7">
+    <div
+      class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,1fr)] lg:grid-rows-2 lg:items-center"
+    >
+      <div class="lg:col-start-1 lg:row-start-1">
+        <div
+          class="relative flex min-h-[220px] items-center justify-center rounded-2xl border border-stone-200/60 bg-white/70 p-4 dark:border-stone-700/40 dark:bg-stone-900/40 lg:min-h-[260px]"
+        >
+          <div class="grid w-full grid-cols-3 gap-2 justify-items-center sm:grid-cols-4">
+            {modelLogos.map(logo => (
+              <div
+                class="flex h-[42px] w-[42px] items-center justify-center rounded-[10px] border border-dashed border-stone-300/70 bg-white p-[6px] dark:border-stone-600/60 dark:bg-stone-900"
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  class="h-full w-full object-contain"
+                  width={26}
+                  height={26}
+                />
+              </div>
+            ))}
+          </div>
+          <div
+            class="mt-4 flex w-full max-w-[220px] flex-col items-center rounded-2xl border border-[var(--border)] bg-white px-4 py-3 text-center shadow-lg dark:bg-stone-900 lg:absolute lg:left-1/2 lg:top-1/2 lg:mt-0 lg:w-auto lg:max-w-none lg:-translate-x-1/2 lg:-translate-y-1/2"
+          >
+            <p class="text-[0.7rem] uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
+              AI models
+            </p>
+            <p class="text-2xl font-semibold text-stone-800 dark:text-stone-100">182</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center lg:col-start-2 lg:row-start-1 lg:row-span-2">
+        <div
+          class="max-w-sm rounded-2xl border border-[var(--border)] bg-white px-6 py-8 text-center shadow-xl dark:bg-stone-900"
+        >
+          <p class="text-lg font-semibold leading-snug text-stone-800 dark:text-stone-100">
+            Your models, your tools, your data, your privacy.
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:col-start-3 lg:row-start-1">
+        <div
+          class="relative flex min-h-[220px] items-center justify-center rounded-2xl border border-stone-200/60 bg-white/70 p-4 dark:border-stone-700/40 dark:bg-stone-900/40 lg:min-h-[260px]"
+        >
+          <div class="grid w-full grid-cols-3 gap-2 justify-items-center sm:grid-cols-4">
+            {apiLogos.map(logo => (
+              <div
+                class="flex h-[42px] w-[42px] items-center justify-center rounded-[10px] border border-dashed border-stone-300/70 bg-white p-[6px] dark:border-stone-600/60 dark:bg-stone-900"
+              >
+                {logo.alt === "GitHub" ? (
+                  <>
+                    <Image
+                      src={GithubLogoSvg}
+                      alt="GitHub"
+                      class="h-full w-full object-contain dark:hidden"
+                      width={26}
+                      height={26}
+                    />
+                    <Image
+                      src={GithubLogoWhite}
+                      alt="GitHub"
+                      class="hidden h-full w-full object-contain dark:block"
+                      width={26}
+                      height={26}
+                    />
+                  </>
+                ) : (
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    class="h-full w-full object-contain"
+                    width={26}
+                    height={26}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+          <div
+            class="mt-4 flex w-full max-w-[220px] flex-col items-center rounded-2xl border border-[var(--border)] bg-white px-4 py-3 text-center shadow-lg dark:bg-stone-900 lg:absolute lg:left-1/2 lg:top-1/2 lg:mt-0 lg:w-auto lg:max-w-none lg:-translate-x-1/2 lg:-translate-y-1/2"
+          >
+            <p class="text-[0.7rem] uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
+              APIs
+            </p>
+            <p class="text-2xl font-semibold text-stone-800 dark:text-stone-100">92</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-start-1 lg:row-start-2">
+        <div
+          class="relative flex min-h-[220px] items-center justify-center rounded-2xl border border-stone-200/60 bg-white/70 p-4 dark:border-stone-700/40 dark:bg-stone-900/40 lg:min-h-[260px]"
+        >
+          <div class="grid w-full grid-cols-3 gap-2 justify-items-center sm:grid-cols-4">
+            {dataLogos.map(logo => (
+              <div
+                class="flex h-[42px] w-[42px] items-center justify-center rounded-[10px] border border-dashed border-stone-300/70 bg-white p-[6px] dark:border-stone-600/60 dark:bg-stone-900"
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  class="h-full w-full object-contain"
+                  width={26}
+                  height={26}
+                />
+              </div>
+            ))}
+          </div>
+          <div
+            class="mt-4 flex w-full max-w-[220px] flex-col items-center rounded-2xl border border-[var(--border)] bg-white px-4 py-3 text-center shadow-lg dark:bg-stone-900 lg:absolute lg:left-1/2 lg:top-1/2 lg:mt-0 lg:w-auto lg:max-w-none lg:-translate-x-1/2 lg:-translate-y-1/2"
+          >
+            <p class="text-[0.7rem] uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
+              Data sources
+            </p>
+            <p class="text-2xl font-semibold text-stone-800 dark:text-stone-100">17</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-start-3 lg:row-start-2">
+        <div
+          class="relative flex min-h-[220px] items-center justify-center rounded-2xl border border-stone-200/60 bg-white/70 p-4 dark:border-stone-700/40 dark:bg-stone-900/40 lg:min-h-[260px]"
+        >
+          <div class="grid w-full grid-cols-3 gap-2 justify-items-center sm:grid-cols-4">
+            {operationsLogos.map(logo => (
+              <div
+                class="flex h-[42px] w-[42px] items-center justify-center rounded-[10px] border border-dashed border-stone-300/70 bg-white p-[6px] dark:border-stone-600/60 dark:bg-stone-900"
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  class="h-full w-full object-contain"
+                  width={26}
+                  height={26}
+                />
+              </div>
+            ))}
+          </div>
+          <div
+            class="mt-4 flex w-full max-w-[220px] flex-col items-center rounded-2xl border border-[var(--border)] bg-white px-4 py-3 text-center shadow-lg dark:bg-stone-900 lg:absolute lg:left-1/2 lg:top-1/2 lg:mt-0 lg:w-auto lg:max-w-none lg:-translate-x-1/2 lg:-translate-y-1/2"
+          >
+            <p class="text-[0.7rem] uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400">
+              Operations
+            </p>
+            <p class="text-2xl font-semibold text-stone-800 dark:text-stone-100">15,642</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .connections-shell {
+    background: linear-gradient(90deg, rgba(39, 39, 42, 0.05) 1px, transparent 1px),
+      linear-gradient(rgba(39, 39, 42, 0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  :global(.dark) .connections-shell {
+    background: linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+      linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  }
+</style>

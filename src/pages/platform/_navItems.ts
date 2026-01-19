@@ -3,6 +3,10 @@ export interface NavItem {
   link: string;
   sectionId: string;
   iconName: string;
+  tag?: {
+    label: string;
+    variant: "primary" | "secondary" | "cta" | "orange";
+  };
 }
 
 export interface NavGroup {
@@ -29,12 +33,20 @@ export const platformNavItemsData: NavGroup[] = [
         link: "/platform/agents",
         sectionId: "agents",
         iconName: "Memory",
+        tag: {
+          label: "Beta",
+          variant: "cta",
+        },
       },
       {
         text: "Chat",
         link: "/platform/chat",
         sectionId: "chat",
         iconName: "ChatCircle",
+        tag: {
+          label: "Alpha",
+          variant: "secondary",
+        },
       },
       {
         text: "Automations",
