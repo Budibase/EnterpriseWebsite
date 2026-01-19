@@ -93,9 +93,9 @@ const collapsedPages = collapseRange(page, pages);
 		background: linear-gradient(247.23deg, rgba(74, 242, 200, 0.2) 0%, rgba(47, 76, 179, 0.2) 100%);
 	}
 
-	@media screen(sm) {
+	@media (min-width: 640px) {
 		[aria-current='page']::before {
-			@apply absolute;
+			position: absolute;
 			content: '';
 			margin: -1px;
 			border-radius: inherit;
@@ -104,7 +104,7 @@ const collapsedPages = collapseRange(page, pages);
 		}
 
 		[aria-current='page']::after {
-			@apply absolute;
+			position: absolute;
 			content: '';
 			border-radius: inherit;
 			background: rgb(35 38 45)
