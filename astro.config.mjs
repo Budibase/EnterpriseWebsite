@@ -16,6 +16,10 @@ export default defineConfig({
     prefetchAll: true,
   },
 
+  redirects: {
+    "/platform/integrations": "/platform/connections",
+  },
+
   vite: {
     plugins: [tailwindcss()],
     resolve: {

@@ -1,0 +1,241 @@
+---
+import Button from "@components/Button.astro";
+import Icon from "@components/Icon.astro";
+import { Image } from "astro:assets";
+
+// Logo imports
+import DiscordLogoSvg from "@assets/logos/discord.svg";
+import MistralLogo from "@assets/logos/Mistral.svg";
+import OpenAILogo from "@assets/logos/openai.avif";
+import OpenRouterLogo from "@assets/logos/openrouter.svg";
+import GoogleLogo from "@assets/logos/Google.svg";
+import BambooLogo from "@assets/logos/Bamboo.svg";
+import OktaLogo from "@assets/logos/okta.jpeg";
+import SlackLogo from "@assets/logos/Slack.svg";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg";
+import JiraLogo from "@assets/logos/Jira.svg";
+import PostgresLogo from "@assets/logos/Postgres.svg";
+import MySQLLogo from "@assets/logos/MYSQL.svg";
+import MSSQLLogo from "@assets/logos/MSSQL.svg";
+import SnowflakeLogo from "@assets/logos/Snowflake.svg";
+import OracleLogo from "@assets/logos/Oracle.svg";
+import AzureOpenAILogo from "@assets/logos/azure-openai.svg";
+import GroqLogo from "@assets/logos/groq.png";
+import AttioLogo from "@assets/logos/attio.png";
+import AnthropicLogo from "@assets/logos/anthropic.avif";
+import GithubLogoSvg from "@assets/logos/github.svg";
+import TwilioLogo from "@assets/logos/twilio.svg";
+import RestApiLogo from "@assets/logos/rest-api.svg";
+import OpenApiLogo from "@assets/logos/openapi.svg";
+import ExaLogo from "@assets/logos/exa.png";
+import ServiceNowLogo from "@assets/logos/servicenow.svg";
+import TavilyLogo from "@assets/logos/tavily.png";
+import PagerDutyLogo from "@assets/logos/pagerduty.jpeg";
+import StripeSvgLogo from "@assets/logos/stripe.svg";
+import SmtpLogo from "@assets/logos/smtp.svg";
+import DatadogLogo from "@assets/logos/datadog.svg";
+import GoogleSheetsLogo from "@assets/logos/google-sheets.svg";
+import CouchDBLogo from "@assets/logos/couchdb.svg";
+import ElasticsearchLogo from "@assets/logos/elastic.svg";
+import MongoDBLogo from "@assets/logos/mongodb.svg";
+import DynamoDBLogo from "@assets/logos/amazon-dynamodb.svg";
+import RedisLogo from "@assets/logos/redis.svg";
+import FirestoreLogo from "@assets/logos/firestore.svg";
+import AmazonS3Logo from "@assets/logos/amazon-s3.svg";
+import SupabaseLogo from "@assets/logos/supbase.png";
+import CleverLogo from "@assets/logos/clever.svg";
+import ConfluenceLogo from "@assets/logos/confluence.svg";
+import FigmaLogo from "@assets/logos/figma.svg";
+import HubSpotLogo from "@assets/logos/hubspot.svg";
+import MicrosoftSharePointLogo from "@assets/logos/microsoft-sharepoint.svg";
+import SplunkLogo from "@assets/logos/splunk.svg";
+import VirusTotalLogo from "@assets/logos/virustotal.svg";
+import ZendeskLogo from "@assets/logos/zendesk.svg";
+import AnsibleLogo from "@assets/logos/ansible.svg";
+import AshbyLogo from "@assets/logos/ashby.svg";
+import BambooHrLogo from "@assets/logos/bamboohr.svg";
+import BanksApiLogo from "@assets/logos/banksapi.svg";
+import BaremetricsLogo from "@assets/logos/baremetrics.svg";
+import BillsbyLogo from "@assets/logos/billsby.svg";
+import BreezyHrLogo from "@assets/logos/breezy-hr.svg";
+import BrevoLogo from "@assets/logos/brevo.svg";
+import BulkSmsLogo from "@assets/logos/bulksms-com.svg";
+import ButtondownLogo from "@assets/logos/buttondown.svg";
+import ClickUpLogo from "@assets/logos/clickup.svg";
+import DeelLogo from "@assets/logos/deel.svg";
+import DixaLogo from "@assets/logos/dixa.svg";
+import DotsLogo from "@assets/logos/dots.svg";
+import FactorialLogo from "@assets/logos/factorial.svg";
+import FastSpringLogo from "@assets/logos/fastspring.svg";
+import FountainLogo from "@assets/logos/fountain.svg";
+import GitLabLogo from "@assets/logos/gitlab.svg";
+import GoodyLogo from "@assets/logos/goody.svg";
+import HelcimLogo from "@assets/logos/helcim.svg";
+import HiBobLogo from "@assets/logos/hibob.svg";
+import HomerunLogo from "@assets/logos/homerun.svg";
+import HypatosLogo from "@assets/logos/hypatos.svg";
+import IntercomLogo from "@assets/logos/intercom.svg";
+import IroncladLogo from "@assets/logos/ironclad.svg";
+import JinaAiLogo from "@assets/logos/jina-ai.svg";
+import JobsoidLogo from "@assets/logos/jobsoid.svg";
+import KeatextAiLogo from "@assets/logos/keatext-ai.svg";
+import KenjoLogo from "@assets/logos/kenjo.svg";
+import LambdaLogo from "@assets/logos/lambda.svg";
+import LobLogo from "@assets/logos/lob.svg";
+import LocalizelyLogo from "@assets/logos/localizely.svg";
+import LogisticsOsLogo from "@assets/logos/logisticsos.svg";
+import MastercardLogo from "@assets/logos/mastercard.svg";
+import MeasureOneLogo from "@assets/logos/measureone.svg";
+import NanonetsLogo from "@assets/logos/nanonets.svg";
+import NotionLogo from "@assets/logos/notion.svg";
+import OysterLogo from "@assets/logos/oyster.svg";
+import PeachPaymentsLogo from "@assets/logos/peach-payments.svg";
+import PinpointLogo from "@assets/logos/pinpoint.svg";
+import PodiumLogo from "@assets/logos/podium.svg";
+import RemoteLogo from "@assets/logos/remote.svg";
+import ResendLogo from "@assets/logos/resend.svg";
+import DockerLogo from "@assets/logos/docker.svg";
+import KubernetesLogo from "@assets/logos/kubernetes.svg";
+import NextcloudLogo from "@assets/logos/nextcloud.svg";
+import LinodeLogo from "@assets/logos/linode.svg";
+import DigitalOceanLogo from "@assets/logos/digital-ocean.svg";
+
+const logos = [
+  { src: DiscordLogoSvg, alt: "Discord" },
+  { src: MistralLogo, alt: "Mistral" },
+  { src: OpenAILogo, alt: "OpenAI" },
+  { src: OpenRouterLogo, alt: "OpenRouter" },
+  { src: GoogleLogo, alt: "Google" },
+  { src: BambooLogo, alt: "Bamboo" },
+  { src: OktaLogo, alt: "Okta" },
+  { src: SlackLogo, alt: "Slack" },
+  { src: TeamsLogo, alt: "Microsoft Teams" },
+  { src: JiraLogo, alt: "Jira" },
+  { src: PostgresLogo, alt: "PostgreSQL" },
+  { src: MySQLLogo, alt: "MySQL" },
+  { src: MSSQLLogo, alt: "MSSQL" },
+  { src: SnowflakeLogo, alt: "Snowflake" },
+  { src: OracleLogo, alt: "Oracle" },
+  { src: AzureOpenAILogo, alt: "Azure OpenAI" },
+  { src: GroqLogo, alt: "Groq" },
+  { src: AttioLogo, alt: "Attio" },
+  { src: AnthropicLogo, alt: "Anthropic" },
+  { src: GithubLogoSvg, alt: "GitHub" },
+  { src: TwilioLogo, alt: "Twilio" },
+  { src: RestApiLogo, alt: "REST API" },
+  { src: OpenApiLogo, alt: "OpenAPI" },
+  { src: ExaLogo, alt: "Exa" },
+  { src: ServiceNowLogo, alt: "ServiceNow" },
+  { src: TavilyLogo, alt: "Tavily" },
+  { src: PagerDutyLogo, alt: "PagerDuty" },
+  { src: StripeSvgLogo, alt: "Stripe" },
+  { src: SmtpLogo, alt: "SMTP" },
+  { src: DatadogLogo, alt: "Datadog" },
+  { src: GoogleSheetsLogo, alt: "Google Sheets" },
+  { src: CouchDBLogo, alt: "CouchDB" },
+  { src: ElasticsearchLogo, alt: "Elasticsearch" },
+  { src: MongoDBLogo, alt: "MongoDB" },
+  { src: DynamoDBLogo, alt: "DynamoDB" },
+  { src: RedisLogo, alt: "Redis" },
+  { src: FirestoreLogo, alt: "Firestore" },
+  { src: AmazonS3Logo, alt: "Amazon S3" },
+  { src: SupabaseLogo, alt: "Supabase" },
+  { src: CleverLogo, alt: "Clever" },
+  { src: ConfluenceLogo, alt: "Confluence" },
+  { src: FigmaLogo, alt: "Figma" },
+  { src: HubSpotLogo, alt: "HubSpot" },
+  { src: MicrosoftSharePointLogo, alt: "Microsoft SharePoint" },
+  { src: SplunkLogo, alt: "Splunk" },
+  { src: VirusTotalLogo, alt: "VirusTotal" },
+  { src: ZendeskLogo, alt: "Zendesk" },
+  { src: AnsibleLogo, alt: "Ansible" },
+  { src: AshbyLogo, alt: "Ashby" },
+  { src: BambooHrLogo, alt: "BambooHR" },
+  { src: BanksApiLogo, alt: "BanksAPI" },
+  { src: BaremetricsLogo, alt: "Baremetrics" },
+  { src: BillsbyLogo, alt: "Billsby" },
+  { src: BreezyHrLogo, alt: "Breezy HR" },
+  { src: BrevoLogo, alt: "Brevo" },
+  { src: BulkSmsLogo, alt: "BulkSMS" },
+  { src: ButtondownLogo, alt: "Buttondown" },
+  { src: ClickUpLogo, alt: "ClickUp" },
+  { src: DeelLogo, alt: "Deel" },
+  { src: DixaLogo, alt: "Dixa" },
+  { src: DotsLogo, alt: "Dots" },
+  { src: FactorialLogo, alt: "Factorial" },
+  { src: FastSpringLogo, alt: "FastSpring" },
+  { src: FountainLogo, alt: "Fountain" },
+  { src: GitLabLogo, alt: "GitLab" },
+  { src: GoodyLogo, alt: "Goody" },
+  { src: HelcimLogo, alt: "Helcim" },
+  { src: HiBobLogo, alt: "HiBob" },
+  { src: HomerunLogo, alt: "Homerun" },
+  { src: HypatosLogo, alt: "Hypatos" },
+  { src: IntercomLogo, alt: "Intercom" },
+  { src: IroncladLogo, alt: "Ironclad" },
+  { src: JinaAiLogo, alt: "Jina AI" },
+  { src: JobsoidLogo, alt: "Jobsoid" },
+  { src: KeatextAiLogo, alt: "Keatext AI" },
+  { src: KenjoLogo, alt: "Kenjo" },
+  { src: LambdaLogo, alt: "Lambda" },
+  { src: LobLogo, alt: "Lob" },
+  { src: LocalizelyLogo, alt: "Localizely" },
+  { src: LogisticsOsLogo, alt: "LogisticsOS" },
+  { src: MastercardLogo, alt: "Mastercard" },
+  { src: MeasureOneLogo, alt: "MeasureOne" },
+  { src: NanonetsLogo, alt: "Nanonets" },
+  { src: NotionLogo, alt: "Notion" },
+  { src: OysterLogo, alt: "Oyster" },
+  { src: PeachPaymentsLogo, alt: "Peach Payments" },
+  { src: PinpointLogo, alt: "Pinpoint" },
+  { src: PodiumLogo, alt: "Podium" },
+  { src: RemoteLogo, alt: "Remote" },
+  { src: ResendLogo, alt: "Resend" },
+  { src: DockerLogo, alt: "Docker" },
+  { src: KubernetesLogo, alt: "Kubernetes" },
+  { src: NextcloudLogo, alt: "Nextcloud" },
+  { src: LinodeLogo, alt: "Linode" },
+  { src: DigitalOceanLogo, alt: "Digital Ocean" },
+];
+---
+
+<div class="mx-auto grid grid-cols-[repeat(15,40px)] grid-rows-[repeat(7,40px)] md:grid-cols-[repeat(15,56px)] md:grid-rows-[repeat(7,56px)] lg:grid-cols-[repeat(15,66px)] lg:grid-rows-[repeat(7,66px)] gap-5">
+  {logos.map((logo, index) => {
+    // Insert text/button block at position 23 (one position to the left of 24)
+    const shouldInsertTextBlock = index === 23;
+    
+    return (
+      <>
+        {shouldInsertTextBlock && (
+          <div 
+            class="col-span-5 row-span-5 flex flex-col items-start justify-center text-left p-6 rounded-lg"
+            style="background-color: rgba(33, 95, 158, 0.2);"
+          >
+            <Icon name="Cube" size="32" class="mb-[6px] text-stone-400" />
+            <div class="h-full flex flex-col justify-between">
+              <h2 class="text-xl mb-0">
+                <span class="text-xl text-stone-400">Integrate seamlessly with your tech stack with over </span>
+                <span class="text-xl text-stone-50">100 connectors and 10,000 operations.</span>
+              </h2>
+              <div class="w-full mt-4">
+                <Button label="See all integrations" url="/platform/connections" variant="primary" class="w-full" />
+              </div>
+            </div>
+          </div>
+        )}
+        <div
+          class="shadow-2 h-[40px] w-[40px] md:h-[56px] md:w-[56px] lg:h-[66px] lg:w-[66px] shrink-0 overflow-hidden rounded-lg bg-secondary p-4 flex items-center justify-center"
+          style="opacity: 1; transition: opacity 300ms;"
+        >
+          <Image
+            src={logo.src}
+            alt={logo.alt}
+            class="w-full h-full grayscale object-contain"
+            width={72}
+            height={72}
+          />
+        </div>
+      </>
+    );
+  })}
+</div>

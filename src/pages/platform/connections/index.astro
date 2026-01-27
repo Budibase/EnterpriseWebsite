@@ -131,6 +131,11 @@ import VerifiableLogo from "@assets/logos/verifiable.svg";
 import VoltIoLogo from "@assets/logos/volt-io.svg";
 import WorkableLogo from "@assets/logos/workable.svg";
 import XLogo from "@assets/logos/x.svg";
+import DockerLogo from "@assets/logos/docker.svg";
+import KubernetesLogo from "@assets/logos/kubernetes.svg";
+import NextcloudLogo from "@assets/logos/nextcloud.svg";
+import LinodeLogo from "@assets/logos/linode.svg";
+import DigitalOceanLogo from "@assets/logos/digital-ocean.svg";
 
 const iconMap: Record<string, any> = {
 	Circles,
@@ -400,6 +405,10 @@ const navItems = platformNavItemsData.map(group => ({
 						<h3 class="text-base!">Notion</h3>
 					</div>
 					<div class="integration-card">
+						<Image src={NextcloudLogo} alt="Nextcloud" class="w-5 h-5" />
+						<h3 class="text-base!">Nextcloud</h3>
+					</div>
+					<div class="integration-card">
 						<Image src={OysterLogo} alt="Oyster" class="w-5 h-5" />
 						<h3 class="text-base!">Oyster</h3>
 					</div>
@@ -617,6 +626,29 @@ const navItems = platformNavItemsData.map(group => ({
 					<div class="integration-card">
 						<Image src={PostgresLogo} alt="PGVector" class="w-5 h-5" />
 						<h3 class="text-base!">PGVector</h3>
+					</div>
+				</div>
+			</section>
+
+			<!-- Deployment options -->
+			<section>
+				<h2 class="text-lg! text-stone-700! dark:text-stone-400! mb-4">Deployment options</h2>
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-2">
+					<div class="integration-card">
+						<Image src={DockerLogo} alt="Docker" class="w-5 h-5" />
+						<h3 class="text-base!">Docker</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={KubernetesLogo} alt="Kubernetes" class="w-5 h-5" />
+						<h3 class="text-base!">Kubernetes</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={LinodeLogo} alt="Linode" class="w-5 h-5" />
+						<h3 class="text-base!">Linode</h3>
+					</div>
+					<div class="integration-card">
+						<Image src={DigitalOceanLogo} alt="Digital Ocean" class="w-5 h-5" />
+						<h3 class="text-base!">Digital Ocean</h3>
 					</div>
 				</div>
 			</section>

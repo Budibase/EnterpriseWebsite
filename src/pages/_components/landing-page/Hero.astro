@@ -16,6 +16,7 @@ import Users from "phosphor-astro/HardDrives.astro";
 import Certificate from "phosphor-astro/Certificate.astro";
 import Check from "phosphor-astro/CheckCircle.astro";
 import GlobeSimple from "phosphor-astro/GlobeSimple.astro";
+import Cube from "phosphor-astro/Cube.astro";
 import { Image } from "astro:assets";
 ---
 
@@ -23,7 +24,7 @@ import { Image } from "astro:assets";
   <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
     <div class="flex-1 flex flex-col items-center text-center">
       <h1 class="max-w-lg h2  text-stone-950 dark:text-stone-50 mb-5">
-          The open-source platform for building<br> AI Agents, Workflows, Chat & Apps.<br>
+          The open-source platform for AI adoption. Build AI Agents, Workflows, Chat & Apps.<br>
           <span class="text-stone-500 dark:text-stone-400">Join 300K privacy-first teams.</span>
       </h1>
       <div class="flex flex-row">
@@ -41,7 +42,7 @@ import { Image } from "astro:assets";
     <HeroSwitcher
       items={[
         {
-          label: "Agents",
+          label: "AI Agents",
           product: AgentInstructions2,
           alt: "Budibase agents",
           icon: Sparkle,
@@ -49,7 +50,7 @@ import { Image } from "astro:assets";
           tagVariant: "cta",
         },
         {
-          label: "Chat",
+          label: "AI Chat",
           product: AgentInChat,
           alt: "Budibase chat",
           icon: ChatCircle,
@@ -57,7 +58,7 @@ import { Image } from "astro:assets";
           tagVariant: "secondary",
         },
         {
-          label: "Automations",
+          label: "AI Workflows",
           product: AgentInAutomations,
           alt: "Budibase automations",
           icon: Path,
@@ -78,7 +79,13 @@ import { Image } from "astro:assets";
           label: "API explorer",
           product: ValleyImage,
           alt: "Budibase API explorer",
-          icon: Webhooks,
+          icon: GlobeSimple,
+        },
+        {
+          label: "10K operations",
+          product: ValleyImage,
+          alt: "10K operations",
+          icon: Cube,
         },
       ]}
     />

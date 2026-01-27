@@ -30,29 +30,62 @@ const {
       {
         items.map((item, idx) => {
           const tabId = `${id}-tab-${idx}`;
+          const baseClasses = [
+            "appearance-none",
+            "bg-transparent",
+            "border-0",
+            "px-2",
+            "py-1",
+            "text-sm",
+            "md:text-base",
+            "text-stone-500",
+            "dark:text-stone-400",
+            "border-b",
+            "border-transparent",
+            "whitespace-nowrap",
+            "cursor-pointer",
+            "inline-flex",
+            "items-center",
+            "gap-1.5",
+            "transition-colors",
+            "duration-150",
+            "hover:text-stone-950",
+            "dark:hover:text-stone-100",
+            "shrink-0",
+            "focus-visible:outline-none",
+            "focus-visible:ring-2",
+            "focus-visible:ring-stone-500",
+            "dark:focus-visible:ring-stone-400",
+            "focus-visible:ring-offset-2",
+            "rounded-lg",
+          ];
+          const activeClasses = idx === 0
+            ? [
+                "is-active",
+                "bg-stone-200",
+                "dark:bg-stone-800",
+                "text-stone-950",
+                "dark:text-stone-50",
+              ]
+            : [];
           return (
             <button
               id={tabId}
               role="tab"
               aria-selected={idx === 0 ? "true" : "false"}
               aria-controls={`${id}-panel-${idx}`}
-              class={`appearance-none bg-transparent border-0 px-2 py-1 text-xs md:text-sm text-stone-500 dark:text-stone-400 border-b border-transparent whitespace-nowrap cursor-pointer inline-flex items-center gap-1.5 transition-colors duration-150 hover:text-stone-950 dark:hover:text-stone-100 shrink-0 ${
-                idx === 0
-                  ? "is-active bg-stone-200 dark:bg-stone-800 text-stone-950 dark:text-stone-50 rounded-lg"
-                  : ""
-              }`.trim()}
+              class={[...baseClasses, ...activeClasses].join(" ")}
               data-index={idx}
               data-label={item.label}
               type="button"
               tabindex={idx === 0 ? 0 : -1}
-              onclick={`window.__bbHeroSwitcherSetActive && window.__bbHeroSwitcherSetActive('${id}', ${idx})`}
             >
               {item.icon && <item.icon class="w-4 h-4" />}
-              <span class="tab-label">{item.label}</span>
+              <span class="tab-label text-sm">{item.label}</span>
               {item.tagLabel && (
                 <Tag
                   label={item.tagLabel}
-                  variant={item.tagVariant ?? "primary"}
+                  variant={item.tagVariant as any ?? "primary"}
                   size="extra-small"
                   class="ml-1"
                 />
@@ -127,7 +160,7 @@ const {
     position: relative;
     width: 100%;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
     margin-top: 10px;
   }
 
@@ -138,7 +171,7 @@ const {
     justify-content: center;
     min-height: 0;
     min-width: 0;
-    overflow: hidden;
+    overflow: visible;
     border-radius: 8px;
     opacity: 0;
     visibility: hidden;
