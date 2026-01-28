@@ -63,8 +63,8 @@ import AddOnsCard from "./AddOnsCard.astro";
 
     <!-- Self-Hosted Plans -->
     <section class="mb-12 md:mb-20" id="self-hosted-plans">
-      <div class="grid grid-cols-1 md:grid-cols-[max-content_max-content] gap-5 justify-center">
-        <div class="min-w-[420px]">
+      <div class="grid grid-cols-1 md:grid-cols-[max-content_max-content_max-content] gap-5 justify-center items-stretch">
+        <div class="min-w-[420px] h-full">
           <PricingCard
             title="Community"
             description="Includes:"
@@ -73,22 +73,44 @@ import AddOnsCard from "./AddOnsCard.astro";
             creatorLabel=""
             recommended={false}
             buttonLabel="Install on-prem"
-            buttonVariant="primary"
+            buttonVariant="cta"
             buttonUrl="https://docs.budibase.com/docs/docker"
             buttonTarget="_blank"
             features={[
               "Unlimited users",
               "SSO",
               "Custom RBAC",
+              "Unlimited automation runs",
             ]}
           />
         </div>
-        <div class="min-w-[420px]">
+        <div class="min-w-[420px] h-full">
+          <PricingCard
+            title="Business"
+            description="Everything in Community, plus:"
+            creatorPrice="From $600"
+            creatorUnit="/ month, billed yearly"
+            creatorLabel=""
+            recommended={false}
+            buttonLabel="Contact sales"
+            buttonVariant="primary"
+            buttonUrl="/signup-plus"
+            features={[
+              "Workspaces",
+              "Enforced SSO",
+              "Environment variables",
+              "User groups",
+              "Custom branding",
+              "Email support",
+            ]}
+          />
+        </div>
+        <div class="min-w-[420px] h-full">
           <PricingCard
             title="Enterprise"
-            description="Everything in Community, plus:"
-            creatorPrice="From $15,000"
-            creatorUnit="/ year"
+            description="Everything in Business, plus:"
+            creatorPrice="From $1250"
+            creatorUnit="/ month, billed yearly"
             creatorLabel=""
             recommended={false}
             buttonLabel="Contact sales"
@@ -96,12 +118,11 @@ import AddOnsCard from "./AddOnsCard.astro";
             buttonUrl="/signup-plus"
             features={[
               "Bulk discounts",
-              "Enforced SSO",
-              "On-premise / Cloud",
               "Active directory / SCIM",
-              "Env variables",
-              "Dedicated Support",
               "Audit Logs",
+              "Import / Export API",
+              "Dedicated support",
+              "SLAs",
             ]}
           />
         </div>
@@ -110,7 +131,7 @@ import AddOnsCard from "./AddOnsCard.astro";
 
     <!-- Cloud Plans -->
     <section class="mb-12 md:mb-20 hidden" id="cloud-plans">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-3">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 justify-center items-stretch">
         <PricingCard
           title="Pro"
           description="Includes:"
@@ -123,14 +144,13 @@ import AddOnsCard from "./AddOnsCard.astro";
           userLabel="per end user"
           recommended={false}
           buttonLabel="Start 14 day free trial"
-          buttonVariant="primary"
+          buttonVariant="cta"
           buttonUrl="/signup-plus"
           features={[
-            "1 Workspace",
-            "10k Automation runs",
+            "50k automation runs",
             "Custom RBAC",
-            "Custom branding",
             "SSO",
+            "Synchronous automations",
           ]}
         />
         <PricingCard
@@ -148,31 +168,50 @@ import AddOnsCard from "./AddOnsCard.astro";
           buttonVariant="cta"
           buttonUrl="/signup-plus"
           features={[
-            "Multiple workspaces",
-            "100k Automation runs",
-            "User groups",
-            "Synchronous automations",
+            "250k automation runs",
+            "Workspaces",
+            "Custom branding",
             "Backups",
           ]}
         />
         <PricingCard
-          title="Enterprise"
+          title="Business"
           description="Everything in Premium, plus:"
-          creatorPrice="From $7,500"
-          creatorUnit="/ year"
+          creatorPrice="From $600"
+          creatorUnit="/ month, billed yearly"
           creatorLabel=""
+          additionalPriceText="Incl 2 creators & 80 end-users"
           recommended={false}
           buttonLabel="Contact sales"
           buttonVariant="primary"
           buttonUrl="/signup-plus"
           features={[
+            "500k automation runs",
+            "Enforced SSO",
+            "User groups",
+            "Email support",
+            "Env variables",
+          ]}
+        />
+        <PricingCard
+          title="Enterprise"
+          description="Everything in Business, plus:"
+          creatorPrice="From $1250"
+          creatorUnit="/ month, billed yearly"
+          creatorLabel=""
+          additionalPriceText="Incl 2 creators & 100 end-users"
+          recommended={false}
+          buttonLabel="Contact sales"
+          buttonVariant="primary"
+          buttonUrl="/signup-plus"
+          features={[
+            "Custom automation runs",
             "Bulk discounts",
             "Enforced SSO",
-            "On-premise / Cloud",
             "Active directory / SCIM",
-            "Env variables",
             "Dedicated Support",
             "Audit Logs",
+            "Import / Export API",
           ]}
         />
       </div>

@@ -17,6 +17,7 @@ interface Props {
   userUnit?: string;
   creatorLabel?: string;
   userLabel?: string;
+  additionalPriceText?: string;
   features?: string[];
   recommended?: boolean;
   buttonLabel: string;
@@ -36,6 +37,7 @@ const {
   userUnit = "/mo.",
   creatorLabel = "per creator",
   userLabel = "per end user",
+  additionalPriceText,
   features = [],
   recommended = false,
   buttonLabel,
@@ -50,7 +52,7 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
   .join(" ");
 ---
 
-<div class={cardClasses} data-billing-plan={billingPlan}>
+<div class={`${cardClasses} h-full flex flex-col`} data-billing-plan={billingPlan}>
   <header class="header">
     <h3 class="text-stone-900 dark:text-stone-100">{title}</h3>
     {
@@ -66,59 +68,64 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
   </header>
 
   <div class="body">
-    <div class="prices">
-      <p class="price-line">
-        <span
-          class="amount"
-          data-base-price={typeof creatorPrice === "number" ? creatorPrice : undefined}
-          >{
-            typeof creatorPrice === "number" ? `$${creatorPrice}` : creatorPrice
-          }</span
-        >
-        <span class="inline-flex gap-0.5">
-          {creatorLabel && (
-            <span class="text-base text-stone-600 dark:text-stone-400">{creatorLabel}</span>
-          )}
-          <span class="text-base text-stone-600 dark:text-stone-400">{creatorUnit}</span>
-        </span>
-      </p>
-      {userPrice !== undefined ? (
+    <div class="header-prices">
+      <div class="prices">
         <p class="price-line">
           <span
             class="amount"
-            data-base-price={typeof userPrice === "number" ? userPrice : undefined}
+            data-base-price={typeof creatorPrice === "number" ? creatorPrice : undefined}
+            >{
+              typeof creatorPrice === "number" ? `$${creatorPrice}` : creatorPrice
+            }</span
           >
-            {typeof userPrice === "number" ? `$${userPrice}` : userPrice}
-          </span>
           <span class="inline-flex gap-0.5">
-            <span class="text-base text-stone-600 dark:text-stone-400">{userLabel}</span>
-            <span class="text-base text-stone-600 dark:text-stone-400">{userUnit}</span>
+            {creatorLabel && (
+              <span class="text-base text-stone-600 dark:text-stone-400">{creatorLabel}</span>
+            )}
+            <span class="text-base text-stone-600 dark:text-stone-400">{creatorUnit}</span>
           </span>
         </p>
-      ) : (
-        <p class="price-line" aria-hidden="true">
-          <span class="amount">&nbsp;</span>
-        </p>
-      )}
+        {userPrice !== undefined && (
+          <p class="price-line">
+            <span
+              class="amount"
+              data-base-price={typeof userPrice === "number" ? userPrice : undefined}
+            >
+              {typeof userPrice === "number" ? `$${userPrice}` : userPrice}
+            </span>
+            <span class="inline-flex gap-0.5">
+              <span class="text-base text-stone-600 dark:text-stone-400">{userLabel}</span>
+              <span class="text-base text-stone-600 dark:text-stone-400">{userUnit}</span>
+            </span>
+          </p>
+        )}
+        {additionalPriceText && (
+          <p class="price-line">
+            <span class="text-base text-stone-600 dark:text-stone-400">{additionalPriceText}</span>
+          </p>
+        )}
+      </div>
     </div>
-    <div class="mt-4">
-      {description && <p class=" text-stone-600! dark:text-stone-400!">{description}</p>}
+    <div class="description-features">
+      <div>
+        {description && <p class=" text-stone-600! dark:text-stone-400!">{description}</p>}
+      </div>
+      {
+        features?.length ? (
+          <ul class=" gap-1 flex flex-col mb-5" aria-label="Plan features">
+            {features.map((feat) => (
+              <li>
+                <span class="check">
+                  <Check class="fill-stone-700 dark:fill-stone-300 w-3" aria-hidden="true" />
+                </span>
+                <span class="feature-text text-stone-900 dark:text-stone-100">{feat}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null
+      }
     </div>
-    {
-      features?.length ? (
-        <ul class=" gap-1 flex flex-col" aria-label="Plan features">
-          {features.map((feat) => (
-            <li>
-              <span class="check">
-                <Check class="fill-stone-700 dark:fill-stone-300 w-3" aria-hidden="true" />
-              </span>
-              <span class="feature-text text-stone-900 dark:text-stone-100">{feat}</span>
-            </li>
-          ))}
-        </ul>
-      ) : null
-    }
-    <div class="cta mt-20">
+    <div class="cta">
       <Button
         label={buttonLabel}
         url={buttonUrl}
@@ -133,8 +140,9 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
 <style>
   .pricing-card {
     background: var(--color-theme-bg-secondary);
-    border-radius: 8px;
+    border-radius: 6px;
     padding: 20px;
+    min-height: 100%;
   }
 
   @media (min-width: 640px) {
@@ -156,14 +164,32 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
 
   .body {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    height: 100%;
+    gap: 20px;
+  }
+  
+  .header-prices {
+    flex-shrink: 0;
+    height: fit-content;
+  }
+  
+  .description-features {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
   }
 
   .prices {
     display: block;
-    margin-bottom: 20px;
   }
   .price-line {
     margin: 0;
+    margin-bottom: 4px;
     color: var(--color-stone-900);
   }
   :global(.dark) .price-line {
@@ -171,7 +197,8 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
   }
 
   .cta {
-    margin: 32px 0 16px 0;
+    flex-shrink: 0;
+    margin-bottom: 16px;
   }
 
   .feature {
