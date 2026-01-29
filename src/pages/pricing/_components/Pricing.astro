@@ -1,12 +1,20 @@
 ---
 /* removed self-host switcher imports */
 import PricingCard from "./PricingCard.astro";
-import AddOnsCard from "./AddOnsCard.astro";
+import CockapooCoin from "@assets/images/pricing/cockapoocoin.png";
+import { Image } from "astro:assets";
 ---
 
-<section class="container max-w-7xl mx-auto flex flex-col mt-12 md:mt-24 px-2 lg:px-0">
+<section class="container max-w-7xl mx-auto flex flex-col mt-8 px-2 lg:px-0">
   <!--Title section -->
   <div class="flex flex-col items-center text-center">
+    <Image
+      src={CockapooCoin}
+      alt="Cockapoo coin"
+      width={100}
+      height={100}
+      class="mb-3"
+    />
     <h1 class="max-w-2xl text-2xl md:text-3xl lg:text-4xl mb-4 text-stone-950 dark:text-stone-100">
       Pricing
     </h1>
@@ -14,13 +22,13 @@ import AddOnsCard from "./AddOnsCard.astro";
   <div class="w-full flex flex-col gap-2">
     <div class="flex flex-row gap-2 mb-4 justify-center">
       <!-- Deployment Type Switcher -->
-      <ul class="inline-flex flex-row bg-secondary rounded-[20px] p-1" id="deployment-switcher">
+      <ul role="group" aria-label="Deployment type" class="inline-flex flex-row bg-secondary rounded-[20px] p-1" id="deployment-switcher">
         <li>
           <button
             id="self-hosted-button"
             data-deployment="self-hosted"
             aria-pressed="true"
-            class="bg-white dark:bg-stone-800 rounded-[19px] py-2 px-2 md:px-4 flex flex-row text-xs md:text-sm text-stone-900 dark:text-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2"
+            class="bg-white dark:bg-stone-800 rounded-[19px] py-3 px-3 md:px-4 flex flex-row text-xs md:text-sm text-stone-900 dark:text-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2 min-h-[44px]"
           >
             Self-hosted
           </button>
@@ -30,20 +38,20 @@ import AddOnsCard from "./AddOnsCard.astro";
             id="budibase-hosted-button"
             data-deployment="cloud"
             aria-pressed="false"
-            class="bg-transparent rounded-[19px] py-2 px-2 md:px-4 flex flex-row text-xs md:text-sm text-stone-600 dark:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2"
+            class="bg-transparent rounded-[19px] py-3 px-3 md:px-4 flex flex-row text-xs md:text-sm text-stone-600 dark:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2 min-h-[44px]"
           >
             Budibase Hosted
           </button>
         </li>
       </ul>
       <!-- Yearly/Monthly Toggle (hidden by default, shown only for cloud) -->
-      <ul class="flex-row bg-secondary rounded-[20px] p-1 hidden" id="billing-toggle">
+      <ul role="group" aria-label="Billing period" class="inline-flex flex-row bg-secondary rounded-[20px] p-1 hidden" id="billing-toggle">
         <li>
           <button
             id="annual-button"
             data-billing="annual"
             aria-pressed="true"
-            class="bg-white dark:bg-stone-800 rounded-[19px] py-2 px-2 md:px-4 flex flex-row text-xs md:text-sm text-stone-900 dark:text-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2"
+            class="bg-white dark:bg-stone-800 rounded-[19px] py-3 px-3 md:px-4 flex flex-row text-xs md:text-sm text-stone-900 dark:text-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2 min-h-[44px]"
           >
             Yearly
           </button>
@@ -53,7 +61,7 @@ import AddOnsCard from "./AddOnsCard.astro";
             id="monthly-button"
             data-billing="monthly"
             aria-pressed="false"
-            class="bg-transparent rounded-[19px] py-2 px-2 md:px-4 flex flex-row text-xs md:text-sm text-stone-600 dark:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2"
+            class="bg-transparent rounded-[19px] py-3 px-3 md:px-4 flex flex-row text-xs md:text-sm text-stone-600 dark:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2 min-h-[44px]"
           >
             Monthly
           </button>
@@ -62,8 +70,8 @@ import AddOnsCard from "./AddOnsCard.astro";
     </div>
 
     <!-- Self-Hosted Plans -->
-    <section class="mb-12 md:mb-20" id="self-hosted-plans">
-      <div class="grid grid-cols-1 md:grid-cols-[max-content_max-content_max-content] gap-5 justify-center items-stretch">
+    <section class="mb-12 md:mb-20" id="self-hosted-plans" aria-hidden="false">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 justify-center items-stretch">
         <div class="min-w-[420px] h-full">
           <PricingCard
             title="Community"
@@ -101,6 +109,8 @@ import AddOnsCard from "./AddOnsCard.astro";
               "Environment variables",
               "User groups",
               "Custom branding",
+              "1 year automation logs",
+              "1 year backups",
               "Email support",
             ]}
           />
@@ -121,8 +131,12 @@ import AddOnsCard from "./AddOnsCard.astro";
               "Active directory / SCIM",
               "Audit Logs",
               "Import / Export API",
-              "Dedicated support",
               "SLAs",
+              "Unlimited automation logs",
+              "Unlimited backups",
+              "Dedicated support",
+              { text: "Airgapped deployment", icon: "plus" },
+              { text: "Professional services", icon: "plus" },
             ]}
           />
         </div>
@@ -130,7 +144,7 @@ import AddOnsCard from "./AddOnsCard.astro";
     </section>
 
     <!-- Cloud Plans -->
-    <section class="mb-12 md:mb-20 hidden" id="cloud-plans">
+    <section class="mb-12 md:mb-20 hidden" id="cloud-plans" aria-hidden="true">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 justify-center items-stretch">
         <PricingCard
           title="Pro"
@@ -147,7 +161,7 @@ import AddOnsCard from "./AddOnsCard.astro";
           buttonVariant="cta"
           buttonUrl="/signup-plus"
           features={[
-            "50k automation runs",
+            "1K automation runs",
             "Custom RBAC",
             "SSO",
             "Synchronous automations",
@@ -168,10 +182,11 @@ import AddOnsCard from "./AddOnsCard.astro";
           buttonVariant="cta"
           buttonUrl="/signup-plus"
           features={[
-            "250k automation runs",
+            "10K automation runs",
+            "1 year automation logs",
+            "1 year backups",
             "Workspaces",
             "Custom branding",
-            "Backups",
           ]}
         />
         <PricingCard
@@ -186,11 +201,13 @@ import AddOnsCard from "./AddOnsCard.astro";
           buttonVariant="primary"
           buttonUrl="/signup-plus"
           features={[
-            "500k automation runs",
+            "50K automation runs",
+            "1 year automation logs",
+            "1 year backups",
             "Enforced SSO",
             "User groups",
-            "Email support",
             "Env variables",
+            "Email support",
           ]}
         />
         <PricingCard
@@ -206,21 +223,19 @@ import AddOnsCard from "./AddOnsCard.astro";
           buttonUrl="/signup-plus"
           features={[
             "Custom automation runs",
-            "Bulk discounts",
-            "Enforced SSO",
+            "Unlimited automation logs",
+            "Unlimited backups",
+            "Flexible pricing",
             "Active directory / SCIM",
-            "Dedicated Support",
             "Audit Logs",
             "Import / Export API",
+            "SLAs",
+            "Dedicated Support",
+            { text: "Airgapped deployment", icon: "plus" },
+            { text: "Professional services", icon: "plus" },
           ]}
         />
       </div>
-    </section>
-    <section class="my-8">
-      <p class="text-xl md:text-2xl! pb-6 text-stone-900 dark:text-stone-100">Enterprise add-ons</p>
-      <AddOnsCard label="Airgapped deployment" price="$10,000 per year" />
-      <AddOnsCard label="1 business day SLA" price="$20,000 per year" />
-      <AddOnsCard label="Professional services" price="$500 per day" />
     </section>
   </div>
 </section>
@@ -256,14 +271,20 @@ import AddOnsCard from "./AddOnsCard.astro";
     if (deploymentType === "self-hosted") {
       // Show self-hosted plans, hide cloud plans and billing toggle
       selfHostedPlans?.classList.remove("hidden");
+      selfHostedPlans?.setAttribute("aria-hidden", "false");
       cloudPlans?.classList.add("hidden");
+      cloudPlans?.setAttribute("aria-hidden", "true");
       billingToggle?.classList.add("hidden");
+      billingToggle?.setAttribute("aria-hidden", "true");
       billingToggle?.classList.remove("inline-flex");
     } else {
       // Show cloud plans and billing toggle, hide self-hosted plans
       selfHostedPlans?.classList.add("hidden");
+      selfHostedPlans?.setAttribute("aria-hidden", "true");
       cloudPlans?.classList.remove("hidden");
+      cloudPlans?.setAttribute("aria-hidden", "false");
       billingToggle?.classList.remove("hidden");
+      billingToggle?.setAttribute("aria-hidden", "false");
       billingToggle?.classList.add("inline-flex");
     }
   };

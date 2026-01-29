@@ -1,0 +1,270 @@
+---
+import Button from "@components/Button.astro";
+---
+
+<style>
+  .decorative-border {
+    background-image: repeating-radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.2) 0px,
+      rgba(0, 0, 0, 0.2) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  }
+  
+  .dark .decorative-border {
+    background-image: repeating-radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.15) 0px,
+      rgba(255, 255, 255, 0.15) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  }
+</style>
+
+<div class="bg-secondary block-section mt-12 md:mt-24">
+  <div class="container relative max-w-7xl mx-auto">
+    <div class="px-2 lg:px-0 pb-0 md:pb-0 pt-0">
+      <div class="blocks">
+        <div class="block-el block-el-convai-integrations-table block-in-view">
+          <div class="flex flex-col items-center justify-center">
+            <!-- Header Section -->
+            <div class="mb-10 flex w-full max-w-3xl flex-col items-center text-center lg:mb-16">
+              <h3 class="h3 mb-4 max-w-2xl text-stone-900 dark:text-stone-100">
+                Integrate seamlessly with your tech stack and the tools you already use
+              </h3>
+              <div class="text-base max-w-xl text-pretty text-stone-500 dark:text-stone-400">
+                Connect agents to your CRM, support desk, calendar, payment system, or telephony provider. Whether it's Salesforce, Stripe, Zendesk, or Twilio, integrations work out of the box with minimal setup
+              </div>
+            </div>
+
+            <!-- Top Decorative Border -->
+            <div class="relative h-12 w-full">
+              <div
+                aria-hidden="true"
+                class="decorative-border absolute top-0 right-0 h-full w-0.5"
+                style="background-size: 100% 6px; opacity: 1; mask-image: linear-gradient(to top, black 0%, black 20%, transparent 100%);"
+              ></div>
+              <div
+                aria-hidden="true"
+                class="decorative-border absolute top-0 left-0 h-full w-0.5"
+                style="background-size: 100% 6px; opacity: 1; mask-image: linear-gradient(to top, black 0%, black 20%, transparent 100%);"
+              ></div>
+            </div>
+
+            <!-- Logo Grid -->
+            <div class="grid w-full max-w-xl grid-cols-3 grid-rows-3 border border-stone-300 dark:border-stone-700">
+              <!-- Row 1 -->
+              <div class="relative flex items-center justify-center p-5 lg:px-[60px] lg:py-8">
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute bottom-0 left-0 h-0.5 w-full"
+                  style="background-size: 6px 100%; opacity: 1;"
+                ></div>
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute top-0 right-0 h-full w-0.5"
+                  style="background-size: 100% 6px; opacity: 1;"
+                ></div>
+                <img
+                  alt="Aston Martin"
+                  loading="lazy"
+                  width="120"
+                  height="40"
+                  decoding="async"
+                  class="h-[30px] w-[90px] transform-gpu object-contain transition-all duration-700 ease-out-slow lg:h-10 lg:w-30"
+                  src="https://eleven-public-cdn.elevenlabs.io/payloadcms/5jedyjtn2s7-Aston Martin Grayed out.svg"
+                  style="color: transparent;"
+                />
+              </div>
+
+              <div class="relative flex items-center justify-center p-5 lg:px-[60px] lg:py-8">
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute bottom-0 left-0 h-0.5 w-full"
+                  style="background-size: 6px 100%; opacity: 1;"
+                ></div>
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute top-0 right-0 h-full w-0.5"
+                  style="background-size: 100% 6px; opacity: 1;"
+                ></div>
+                <img
+                  alt="Stripe"
+                  loading="lazy"
+                  width="120"
+                  height="40"
+                  decoding="async"
+                  class="h-[30px] w-[90px] transform-gpu object-contain transition-all duration-700 ease-out-slow lg:h-10 lg:w-30"
+                  src="https://eleven-public-cdn.elevenlabs.io/payloadcms/hfpt9ea8a2q-Stripe Grayscale-2.svg"
+                  style="color: transparent;"
+                />
+              </div>
+
+              <div class="relative flex items-center justify-center p-5 lg:px-[60px] lg:py-8">
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute bottom-0 left-0 h-0.5 w-full"
+                  style="background-size: 6px 100%; opacity: 1;"
+                ></div>
+                <img
+                  alt="Cal.com"
+                  loading="lazy"
+                  width="120"
+                  height="40"
+                  decoding="async"
+                  class="h-[30px] w-[90px] transform-gpu object-contain transition-all duration-700 ease-out-slow lg:h-10 lg:w-30"
+                  src="https://eleven-public-cdn.elevenlabs.io/payloadcms/pmbdkx5y4af-Cal.com Grayed out-4.svg"
+                  style="color: transparent;"
+                />
+              </div>
+
+              <!-- Row 2 -->
+              <div class="relative flex items-center justify-center p-5 lg:px-[60px] lg:py-8">
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute bottom-0 left-0 h-0.5 w-full"
+                  style="background-size: 6px 100%; opacity: 1;"
+                ></div>
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute top-0 right-0 h-full w-0.5"
+                  style="background-size: 100% 6px; opacity: 1;"
+                ></div>
+                <img
+                  alt="Zendesk"
+                  loading="lazy"
+                  width="120"
+                  height="40"
+                  decoding="async"
+                  class="h-[30px] w-[90px] transform-gpu object-contain transition-all duration-700 ease-out-slow lg:h-10 lg:w-30"
+                  src="https://eleven-public-cdn.elevenlabs.io/payloadcms/2v75qyvqa6z-Zendesk.svg"
+                  style="color: transparent;"
+                />
+              </div>
+
+              <div class="relative flex items-center justify-center p-5 lg:px-[60px] lg:py-8">
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute bottom-0 left-0 h-0.5 w-full"
+                  style="background-size: 6px 100%; opacity: 1;"
+                ></div>
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute top-0 right-0 h-full w-0.5"
+                  style="background-size: 100% 6px; opacity: 1;"
+                ></div>
+                <img
+                  alt="Vonage"
+                  loading="lazy"
+                  width="121"
+                  height="40"
+                  decoding="async"
+                  class="h-[30px] w-[90px] transform-gpu object-contain transition-all duration-700 ease-out-slow lg:h-10 lg:w-30"
+                  src="https://eleven-public-cdn.elevenlabs.io/payloadcms/sxg9snv5oe-Vonage.svg"
+                  style="color: transparent;"
+                />
+              </div>
+
+              <div class="relative flex items-center justify-center p-5 lg:px-[60px] lg:py-8">
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute bottom-0 left-0 h-0.5 w-full"
+                  style="background-size: 6px 100%; opacity: 1;"
+                ></div>
+                <img
+                  alt="n8n"
+                  loading="lazy"
+                  width="121"
+                  height="40"
+                  decoding="async"
+                  class="h-[30px] w-[90px] transform-gpu object-contain transition-all duration-700 ease-out-slow lg:h-10 lg:w-30"
+                  src="https://eleven-public-cdn.elevenlabs.io/payloadcms/nd3cq7m2mea-n8n.svg"
+                  style="color: transparent;"
+                />
+              </div>
+
+              <!-- Row 3 -->
+              <div class="relative flex items-center justify-center p-5 lg:px-[60px] lg:py-8">
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute top-0 right-0 h-full w-0.5"
+                  style="background-size: 100% 6px; opacity: 1;"
+                ></div>
+                <img
+                  alt="Hubspot"
+                  loading="lazy"
+                  width="120"
+                  height="40"
+                  decoding="async"
+                  class="h-[30px] w-[90px] transform-gpu object-contain transition-all duration-700 ease-out-slow lg:h-10 lg:w-30"
+                  src="https://eleven-public-cdn.elevenlabs.io/payloadcms/9425wmi3gvn-Hubspot Grayed out.svg"
+                  style="color: transparent;"
+                />
+              </div>
+
+              <div class="relative flex items-center justify-center p-5 lg:px-[60px] lg:py-8">
+                <div
+                  aria-hidden="true"
+                  class="decorative-border absolute top-0 right-0 h-full w-0.5"
+                  style="background-size: 100% 6px; opacity: 1;"
+                ></div>
+                <img
+                  alt="Salesforce"
+                  loading="lazy"
+                  width="120"
+                  height="41"
+                  decoding="async"
+                  class="h-[30px] w-[90px] transform-gpu object-contain transition-all duration-700 ease-out-slow lg:h-10 lg:w-30"
+                  src="https://eleven-public-cdn.elevenlabs.io/payloadcms/xergy5qxoac-Salesforce Grayscale-1.svg"
+                  style="color: transparent;"
+                />
+              </div>
+
+              <div class="relative flex items-center justify-center p-5 lg:px-[60px] lg:py-8">
+                <img
+                  alt="Twilio"
+                  loading="lazy"
+                  width="120"
+                  height="40"
+                  decoding="async"
+                  class="h-[30px] w-[90px] transform-gpu object-contain transition-all duration-700 ease-out-slow lg:h-10 lg:w-30"
+                  src="https://eleven-public-cdn.elevenlabs.io/payloadcms/t47gn3nrm8i-Twilio Grayscale.svg"
+                  style="color: transparent;"
+                />
+              </div>
+            </div>
+
+            <!-- Bottom Decorative Border -->
+            <div class="relative h-12 w-full">
+              <div
+                aria-hidden="true"
+                class="decorative-border absolute top-0 right-0 h-full w-0.5"
+                style="background-size: 100% 6px; opacity: 1; mask-image: linear-gradient(black 0%, black 20%, transparent 100%);"
+              ></div>
+              <div
+                aria-hidden="true"
+                class="decorative-border absolute top-0 left-0 h-full w-0.5"
+                style="background-size: 100% 6px; opacity: 1; mask-image: linear-gradient(black 0%, black 20%, transparent 100%);"
+              ></div>
+            </div>
+
+            <!-- Footer Section -->
+            <div class="mb-12 mt-3 text-center text-base text-stone-500 dark:text-stone-400 lg:mb-16 lg:mt-8">
+              And hundreds more via APIs or MCPs.
+            </div>
+
+            <Button
+              label="View all Integrations"
+              url="/agents/integrations"
+              variant="secondary"
+              class="border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 hover:text-stone-700 dark:hover:text-stone-50 hover:border-stone-400 dark:hover:border-stone-600 bg-transparent"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

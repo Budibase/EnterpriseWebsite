@@ -1,26 +1,195 @@
+
 @import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+@theme {
+  /* Greys / Stone */
+  --color-grey-50:  #FAF9F5;
+  --color-grey-100: #F0EEE6;
+  --color-grey-200: #E5E4DF;
+  --color-grey-300: #BFBFBA;
+  --color-grey-400: #91918D;
+  --color-grey-500: #666663;
+  --color-grey-600: #40403E;
+  --color-grey-700: #2F2F2D;
+  --color-grey-800: #262625;
+  --color-grey-900: #191919;
+  --color-grey-950: #141413;
+
+  /* Alias stone -> grey (backwards compatibility) */
+  --color-stone-50:  #FAF9F5;
+  --color-stone-100: #F0EEE6;
+  --color-stone-200: #E5E4DF;
+  --color-stone-300: #BFBFBA;
+  --color-stone-400: #91918D;
+  --color-stone-500: #666663;
+  --color-stone-600: #40403E;
+  --color-stone-700: #2F2F2D;
+  --color-stone-800: #262625;
+  --color-stone-900: #191919;
+  --color-stone-950: #0F0F0F;
+
+  /* Sky / Blue */
+  --color-blue-100: #EAF2F9;
+  --color-blue-200: #C3DAEA;
+  --color-blue-300: #89B5E2;
+  --color-blue-400: #6A9BCC;
+  --color-blue-500: #467DB4;
+  --color-blue-600: #215F9E;
+  --color-blue-700: #1B436A;
+  --color-blue-800: #13324F;
+  --color-blue-900: #0C2236;
+
+  /* Clay / Orange */
+  --color-orange-100: #F6E6DA;
+  --color-orange-200: #ECD3C2;
+  --color-orange-300: #DDB99A;
+  --color-orange-400: #D4A27F;
+  --color-orange-500: #D97757;
+  --color-orange-600: #C86240;
+  --color-orange-700: #AA4321;
+  --color-orange-800: #7F3118;
+  --color-orange-900: #4A1D0E;
+
+  /* Grass / Green */
+  --color-green-100: #EEF3E9;
+  --color-green-200: #D2DDC3;
+  --color-green-300: #B6C7A8;
+  --color-green-400: #9FB88A;
+  --color-green-500: #8CA171;
+  --color-green-600: #788C5D;
+  --color-green-700: #4C622F;
+  --color-green-800: #35461F;
+  --color-green-900: #1F2A12;
+
+  /* Lavender / Purple */
+  --color-purple-100: #F1EEFB;
+  --color-purple-200: #D2CCEF;
+  --color-purple-300: #BDB0F5;
+  --color-purple-400: #A292E3;
+  --color-purple-500: #8777D1;
+  --color-purple-600: #585392;
+  --color-purple-700: #363174;
+  --color-purple-800: #252154;
+  --color-purple-900: #171336;
+
+  /* Reds */
+  --color-red-100: #F4E7E4;
+  --color-red-200: #E9C8C3;
+  --color-red-300: #D9A29A;
+  --color-red-400: #C87C72;
+  --color-red-500: #B4564B;
+  --color-red-600: #9C3F36;
+  --color-red-700: #7E2C24;
+  --color-red-800: #5A1E19;
+  --color-red-900: #361210;
+
+  --spacing-hero-image: 12px;
+}
 
 /* Override dark variant to use class selector instead of prefers-color-scheme */
 @custom-variant dark (&:where(.dark, .dark *));
 
+@layer base {
+  :root {
+    --font-sans: "Inter", sans-serif;
+    --font-display: "Inter Display", sans-serif;
 
-:root {
-  /* Landing page vertical padding (each side). Adjust once here. */
-  --font-sans: "Inter", sans-serif;
-  --font-display: "Inter Display", sans-serif;
-  --color-theme-bg: var(--color-stone-50);
-  --color-theme-bg-secondary: var(--color-stone-100);
-  --text-primary: var(--color-stone-800);
-  --text-secondary: var(--color-stone-500);
-  --border: color-mix(in oklab, var(--color-stone-200) 2.5%, transparent);
-}
+    /* Core semantic RGB tokens (Tailwind-friendly) */
+    --bg: 250 249 245;
+    /* grey-50 (#FAF9F5) */
+    --surface: 240 238 230;
+    /* grey-100 */
+    --surface-2: 229 228 223;
+    /* grey-200 */
+    --border: 191 191 186;
+    /* grey-300 */
+    --border-strong: 145 145 141;
+    /* grey-400 */
 
-/* Dark mode variables */
-.dark {
-  --color-theme-bg: var(--color-stone-950);
-  --color-theme-bg-secondary: var(--color-stone-900);
-  --text-primary: var(--color-stone-100);
-  --text-secondary: var(--color-stone-400);
+    --text: 47 47 45;
+    /* grey-700 */
+    --text-muted: 102 102 99;
+    /* grey-600 */
+    --text-subtle: 91 91 141; 
+    /* grey-500 */
+
+    /* Brand */
+    --brand: 33 95 158; /* blue-600 */
+    --brand-hover: 27 67 106; /* blue-700 */
+    --on-brand: 250 249 245;
+    /* light text */
+    --primary: 70 125 180;
+    /* blue-500 */
+    --primary-hover: 33 95 158;
+    /* blue-600 */
+    --on-primary: 250 249 245;
+    /* grey-50 */
+
+    /* Status (danger added properly) */
+    --danger: 156 63 54;
+    /* red-600 */
+    --ring: 70 125 180;
+    /* blue-500 */
+    --manila: #EBDBBC;
+
+    /* Backwards-compatible aliases (keep your current API) */
+    --bg-1: rgb(var(--bg));
+    --bg-2: rgb(var(--surface));  
+    --bg-3: rgb(var(--surface-2));
+    --text-primary: rgb(var(--text));
+    --text-secondary: rgb(var(--text-muted));
+    /* Border: make it visible + consistent across browsers */
+    --border-color: rgb(var(--border) / 0.9);
+
+    color-scheme: light;
+  }
+
+  /* Dark mode variables */
+  .dark {
+    --bg: 20 20 19;
+    /* grey-950 */
+    --surface: 25 25 25;
+    /* grey-900 */
+    --surface-2: 38 38 37;
+    /* grey-800 */
+    --border: 38 38 37;
+    /* grey-800 */
+    --border-strong: 47 47 45;
+    /* grey-700 */
+
+    --text: 240 238 230;
+    /* grey-100 */
+    --text-muted: 145 145 141;
+    /* grey-400 (safer than 400 for reading) */
+    --text-subtle: 91 91 141;
+    /* grey-500 */
+
+    --brand: 70 125 180; /* blue-500 */
+    --brand-hover: 106 155 204; /* blue-400 */
+    --on-brand: 12 34 54;
+    /* blue-900 */
+    --primary: 106 155 204;
+    /* blue-400 */
+    --primary-hover: 137 181 226;
+    /* blue-300 */
+    --on-primary: 12 34 54;
+    /* blue-900 */
+
+    --danger: 217 162 154;
+    /* red-300 */
+    --ring: 106 155 204;
+    /* blue-400 */
+    --manila: #22201D;
+    /* Backwards-compatible aliases */
+    --bg-1: rgb(var(--bg));
+    --bg-2: rgb(var(--surface));  
+    --bg-3: rgb(var(--surface-2));
+    --text-primary: rgb(var(--text));
+    --text-secondary: rgb(var(--text-muted));
+    --border-color: rgb(var(--border) / 1);
+    color-scheme: dark;
+  }
 }
 
 *,
@@ -28,6 +197,8 @@
 :before {
   box-sizing: border-box;
 }
+
+
 
 html {
   line-height: 1.5;
@@ -37,22 +208,37 @@ html {
   tab-size: 4;
   -webkit-font-smoothing: antialiased;
   font-family: var(--font-sans);
-  color: var(--color-stone-900);
+  color: var(--text-primary);
+  background-color: var(--color-theme-bg);
   text-rendering: optimizeLegibility;
   font-variant-numeric: normal;
-
-  transition: background-color 150ms ease-out, color 150ms ease-out;
+  transition:
+    background-color 150ms ease-out,
+    color 150ms ease-out;
 }
 
-html.dark {
-  color: var(--color-stone-100);
-}
 
 body {
   margin: 0;
   line-height: inherit;
   background-color: var(--color-theme-bg);
   transition: background-color 150ms ease-out;
+}
+
+/* Code blocks should use the same surface as selected tabs */
+pre,
+.expressive-code,
+.expressive-code pre,
+.expressive-code .frame,
+.expressive-code .ec-frame {
+  background-color: var(--color-theme-bg-secondary) !important;
+}
+
+/* Keep code borders consistent */
+.expressive-code .frame,
+.expressive-code .ec-frame,
+pre {
+  border-color: var(--border-color) !important;
 }
 
 hr {
@@ -83,7 +269,7 @@ p {
 }
 
 p a {
-  color: var(--color-sky-800);
+  color: rgb(var(--primary));
   display: inline-block;
   position: relative;
   text-decoration: none;
@@ -91,16 +277,18 @@ p a {
 }
 
 .dark p a {
-  color: var(--color-sky-400);
+  color: rgb(var(--primary-hover));
 }
 
 p a:hover::after {
   opacity: 0.5;
 }
 
-ul, li, ol {
+ul,
+li,
+ol {
   font-family: var(--font-sans);
-  color: var(--color-stone-600) !important;
+  color: var(--text-secondary) !important;
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: -0.15px !important;
@@ -108,15 +296,18 @@ ul, li, ol {
   list-style: none !important;
 }
 
-.dark ul, .dark li, .dark ol {
-  color: var(--color-stone-400) !important;
+.dark ul,
+.dark li,
+.dark ol {
+  color: var(--text-secondary) !important;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   font-family: var(--font-display);
   color: var(--text-primary);
   font-size: 36px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.25px !important;
 }
@@ -126,7 +317,7 @@ h2,
   font-family: var(--font-display);
   color: var(--text-primary);
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.25;
   letter-spacing: -0.2px !important;
 }
@@ -135,7 +326,7 @@ h3 {
   font-family: var(--font-display);
   color: var(--text-primary);
   font-size: 22px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.25;
   letter-spacing: -0.15px !important;
 }
@@ -144,7 +335,7 @@ h4 {
   font-family: var(--font-display);
   color: var(--text-primary);
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.15px !important;
 }
@@ -153,14 +344,14 @@ h5 {
   font-family: var(--font-display);
   color: var(--text-primary);
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.15px !important;
 }
 
 p {
   font-family: var(--font-sans);
-  color: var(--color-stone-900) !important;
+  color: var(--text-primary) !important;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.35;
@@ -168,33 +359,49 @@ p {
 }
 
 .dark p {
-  color: var(--color-stone-100) !important;
+  color: var(--text-primary) !important;
 }
 
-article h1, article h2, article h3, article h4, article h5, article h6 {
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
   font-family: var(--font-display);
-  color: var(--color-stone-950) !important;
+  color: var(--text-primary) !important;
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.15px !important;
   margin: 2.2rem 0 1rem 0;
 }
 
-.dark article h1, .dark article h2, .dark article h3, .dark article h4, .dark article h5, .dark article h6 {
-  color: var(--color-stone-50) !important;
+.dark article h1,
+.dark article h2,
+.dark article h3,
+.dark article h4,
+.dark article h5,
+.dark article h6 {
+  color: var(--text-primary) !important;
 }
 
-article h3, article h4, article h5, article h6 {
+article h3,
+article h4,
+article h5,
+article h6 {
   font-family: var(--font-display);
-  color: var(--color-stone-950) !important;
+  color: var(--text-primary) !important;
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.15px !important;
   margin: 1.6rem 0 0.8rem 0;
 }
 
-.dark article h3, .dark article h4, .dark article h5, .dark article h6 {
-  color: var(--color-stone-50) !important;
+.dark article h3,
+.dark article h4,
+.dark article h5,
+.dark article h6 {
+  color: var(--text-primary) !important;
 }
 
 article p {
@@ -203,59 +410,63 @@ article p {
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: -0.15px !important;
-  margin: .7rem 0;
+  margin: 0.7rem 0;
 }
 
 .dark article p {
-  color: var(--color-stone-300) !important;
+  color: var(--text-secondary) !important;
 }
 
-article ul, article li, article ol {
+article ul,
+article li,
+article ol {
   font-family: var(--font-sans);
   color: var(--text-primary) !important;
   letter-spacing: -0.15px !important;
-  margin: .7rem .5rem !important;
+  margin: 0.7rem 0.5rem !important;
   list-style: disc !important;
 }
 
-.dark article ul, .dark article li, .dark article ol {
-  color: var(--color-stone-300) !important;
+.dark article ul,
+.dark article li,
+.dark article ol {
+  color: var(--text-secondary) !important;
 }
 
 article strong {
   font-weight: 500;
-  color: var(--color-stone-950) !important;
+  color: var(--text-primary) !important;
 }
 
 .dark article strong {
-  color: var(--color-stone-50) !important;
+  color: var(--text-primary) !important;
   font-weight: 500;
 }
 
 article a {
   font-weight: 400;
-  color: var(--color-sky-800) !important;
+  color: rgb(var(--primary)) !important;
   text-decoration: underline;
   text-underline-offset: 4px !important;
   text-decoration-thickness: 0.5px !important;
-  text-decoration-color: var(--color-stone-300) !important;
+  text-decoration-color: rgb(var(--border) / 0.9) !important;
 }
 
 article a:hover {
-  color: var(--color-sky-700) !important;
+  color: rgb(var(--primary-hover)) !important;
 }
 
 article blockquote {
-  border-left: 3px solid var(--color-stone-300);
+  border-left: 3px solid var(--border-color);
   padding-left: 1rem;
   margin: 1.5rem 0;
   font-style: italic;
-  color: var(--color-stone-700) !important;
+  color: var(--text-secondary) !important;
 }
 
 .dark article blockquote {
-  border-left-color: var(--color-stone-600);
-  color: var(--color-stone-300) !important;
+  border-left-color: rgb(var(--border) / 1);
+  color: var(--text-secondary) !important;
 }
 
 article blockquote p {
@@ -263,7 +474,7 @@ article blockquote p {
 }
 
 .dark article a {
-  color: var(--color-stone-50) !important;
+  color: rgb(var(--primary-hover)) !important;
   text-decoration-color: var(--text-secondary) !important;
   text-decoration: underline;
   text-underline-offset: 4px !important;
@@ -271,23 +482,27 @@ article blockquote p {
 }
 
 .dark article a:hover {
-  color: var(--color-sky-300) !important;
+  color: rgb(var(--primary-hover)) !important;
   text-decoration: underline;
   text-underline-offset: 4px !important;
   text-decoration-thickness: 0.5px !important;
-  text-decoration-color: var(--color-sky-100) !important;
-
+  text-decoration-color: rgb(var(--border) / 1) !important;
 }
 
 .bg-transparent {
   background-color: transparent;
 }
 
-.bg-primary {
-  background-color: var(--color-theme-bg);
+.bg, .bg-primary {
+  background-color: var(--bg);
 }
-.bg-secondary {
-  background-color: var(--color-theme-bg-secondary);
+
+.bg-2, .bg-secondary {
+  background-color: var(--bg-2);
+}
+
+.bg-3 {
+  background-color: var(--bg-3);
 }
 
 .text-primary {
@@ -296,4 +511,8 @@ article blockquote p {
 
 .text-secondary {
   color: var(--text-secondary);
+}
+
+.border {
+  border: 1px solid var(--border-color);
 }

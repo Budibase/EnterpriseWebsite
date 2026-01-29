@@ -2,10 +2,12 @@
 
 import Button from "@components/Button.astro";
 import Check from "phosphor-astro/check.astro";
+import Plus from "phosphor-astro/Plus.astro";
 
 type ButtonVariant = "primary" | "secondary" | "cta";
 type ButtonSize = "small" | "medium" | "large";
-// features is an array of bullet points
+// features can be an array of strings or objects with text and icon
+type FeatureItem = string | { text: string; icon?: "check" | "plus" };
 
 interface Props {
   title: string;
@@ -18,7 +20,7 @@ interface Props {
   creatorLabel?: string;
   userLabel?: string;
   additionalPriceText?: string;
-  features?: string[];
+  features?: FeatureItem[];
   recommended?: boolean;
   buttonLabel: string;
   buttonVariant?: ButtonVariant;
@@ -108,19 +110,27 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
     </div>
     <div class="description-features">
       <div>
-        {description && <p class=" text-stone-600! dark:text-stone-400!">{description}</p>}
+        {description && <p class="text-stone-600! dark:text-stone-400!">{description}</p>}
       </div>
       {
         features?.length ? (
           <ul class=" gap-1 flex flex-col mb-5" aria-label="Plan features">
-            {features.map((feat) => (
-              <li>
-                <span class="check">
-                  <Check class="fill-stone-700 dark:fill-stone-300 w-3" aria-hidden="true" />
-                </span>
-                <span class="feature-text text-stone-900 dark:text-stone-100">{feat}</span>
-              </li>
-            ))}
+            {features.map((feat, index) => {
+              const featureText = typeof feat === "string" ? feat : feat.text;
+              const iconType = typeof feat === "string" ? "check" : (feat.icon || "check");
+              return (
+                <li key={`feature-${index}`}>
+                  <span class="check">
+                    {iconType === "plus" ? (
+                      <Plus class="fill-stone-700 dark:fill-stone-300 w-3" aria-hidden="true" />
+                    ) : (
+                      <Check class="fill-stone-700 dark:fill-stone-300 w-3" aria-hidden="true" />
+                    )}
+                  </span>
+                  <span class="feature-text text-stone-900 dark:text-stone-100">{featureText}</span>
+                </li>
+              );
+            })}
           </ul>
         ) : null
       }
@@ -139,7 +149,7 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
 
 <style>
   .pricing-card {
-    background: var(--color-theme-bg-secondary);
+    background: var(--bg-2);
     border-radius: 6px;
     padding: 20px;
     min-height: 100%;
@@ -188,7 +198,6 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
     display: block;
   }
   .price-line {
-    margin: 0;
     margin-bottom: 4px;
     color: var(--color-stone-900);
   }

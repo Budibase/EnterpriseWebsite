@@ -1,0 +1,93 @@
+---
+import Icon from "@components/Icon.astro";
+import Check from "phosphor-astro/Check.astro";
+
+const command = "curl -fsSL https://install.budibase.com | bash";
+---
+
+<div class="curl-container flex items-center justify-between gap-4 px-2 md:px-3 py-0.5 md:py-1 rounded bg-2">
+  <code class="flex-1 font-mono text-xs md:text-sm text-text">
+    <span class="text-orange-600 dark:text-orange-500">curl</span>
+    <span class="text-orange-600 dark:text-orange-500"> -fsSL</span>
+    <span class="text-text"> https://install.budibase.com</span>
+    <span class="text-blue-600 dark:text-blue-400"> | bash</span>
+  </code>
+  <button
+    id="curl-copy-btn"
+    type="button"
+    class="curl-copy-btn flex items-center justify-center p-0.5 rounded bg-transparent hover:bg-secondary text-text-muted hover:text-text transition-colors duration-150 cursor-pointer"
+    aria-label="Copy command to clipboard"
+    data-command={command}
+  >
+    <Icon name="Copy" size="20" class="copy-icon" />
+    <Check class="check-icon hidden w-5 h-5 text-success" />
+  </button>
+</div>
+
+<script>
+  const copyBtn = document.getElementById("curl-copy-btn");
+  if (copyBtn) {
+    const command = copyBtn.getAttribute("data-command") || "";
+    const copyIcon = copyBtn.querySelector(".copy-icon");
+    const checkIcon = copyBtn.querySelector(".check-icon");
+
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(command);
+        
+        // Show check icon, hide copy icon
+        if (copyIcon) copyIcon.classList.add("hidden");
+        if (checkIcon) checkIcon.classList.remove("hidden");
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+          if (copyIcon) copyIcon.classList.remove("hidden");
+          if (checkIcon) checkIcon.classList.add("hidden");
+        }, 2000);
+      } catch (err) {
+        console.error("Failed to copy:", err);
+        // Fallback for older browsers
+        const textArea = document.createElement("textarea");
+        textArea.value = command;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand("copy");
+          if (copyIcon) copyIcon.classList.add("hidden");
+          if (checkIcon) checkIcon.classList.remove("hidden");
+          setTimeout(() => {
+            if (copyIcon) copyIcon.classList.remove("hidden");
+            if (checkIcon) checkIcon.classList.add("hidden");
+          }, 2000);
+        } catch (fallbackErr) {
+          console.error("Fallback copy failed:", fallbackErr);
+        }
+        document.body.removeChild(textArea);
+      }
+    });
+  }
+</script>
+
+<style>
+  .curl-container {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .curl-container code {
+    white-space: nowrap;
+  }
+  
+  @media (max-width: 640px) {
+    .curl-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .curl-copy-btn {
+      align-self: flex-end;
+    }
+  }
+</style>

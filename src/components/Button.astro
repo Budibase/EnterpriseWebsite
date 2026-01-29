@@ -54,22 +54,20 @@ const iconSize = icon ? (providedIconSize ?? iconSizes[size]) : undefined;
 
 // Build Tailwind classes based on variant and size
 const variantClasses = {
-  primary: "bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 hover:bg-stone-700 dark:hover:bg-stone-200",
-  secondary: "bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 border border-stone-300 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-700",
-  cta: "bg-sky-700 dark:bg-sky-800 text-stone-50 hover:bg-sky-900 dark:hover:bg-sky-600",
+  // Primary: system action (semantic)
+  primary: "bg-grey-900 text-grey-50 hover:bg-grey-800 dark:bg-grey-100 dark:text-grey-900 dark:hover:bg-grey-200",
+
+  // Secondary: subtle surface + border
+  secondary: "bg-secondary text hover:bg-surface-2",
+
+  // CTA: brand-forward emphasis (explicit blue scale)
+  cta: "bg-blue-600 text-white hover:bg-blue-800 active:bg-blue-900 dark:bg-blue-600 dark:text-blue-100 dark:hover:bg-blue-500 dark:active:bg-blue-400",
 };
 
 const sizeClasses = {
   small: "px-2.5 py-[4.5px] text-sm",
   medium: "px-3 py-1.5 text-base",
   large: "px-4 py-2 text-lg",
-};
-
-// CTA variant has different padding
-const ctaSizeClasses = {
-  small: "px-3 py-[3px] text-sm",
-  medium: "px-3 py-[3px] text-base",
-  large: "px-3 py-[3px] text-lg",
 };
 
 // Gap classes based on size (4px small, 6px medium, 8px large)
@@ -79,24 +77,17 @@ const gapClasses = {
   large: "gap-2", // 8px
 };
 
-const baseClasses = "inline-flex items-center justify-center rounded-full font-normal transition-all duration-150 active:scale-[0.98] no-underline border-none cursor-pointer font-sans";
+const baseClasses =
+  "inline-flex items-center justify-center rounded-full font-normal transition-colors duration-150 active:scale-[0.98] no-underline cursor-pointer font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
-// Use special padding for CTA variant
 const paddingClasses = sizeClasses[size];
 const gapClass = gapClasses[size];
 
-const classes = [
-  baseClasses,
-  variantClasses[variant],
-  paddingClasses,
-  gapClass,
-  className,
-]
+const classes = [baseClasses, variantClasses[variant], paddingClasses, gapClass, className]
   .filter(Boolean)
   .join(" ");
 
-const computedRel =
-  rel ?? (target === "_blank" ? "noopener noreferrer" : undefined);
+const computedRel = rel ?? (target === "_blank" ? "noopener noreferrer" : undefined);
 ---
 
 {

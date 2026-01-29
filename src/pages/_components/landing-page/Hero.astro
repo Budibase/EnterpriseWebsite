@@ -1,11 +1,13 @@
 ---
 import Customers from "@components/Customers.astro";
 import Button from "@components/Button.astro";
+import Curl from "@components/Curl.astro";
 import HeroSwitcher from "@components/HeroSwitcher.astro";
 import AgentInstructions2 from "@assets/images/platform/AgentInstructions2.png";
 import AgentInChat from "@assets/images/platform/AgentInChat.png";
 import AgentInAutomations from "@assets/images/platform/AgentInAutomations.png";
 import ValleyImage from "@assets/images/homepage/valley.png";
+import ClarenceImage from "@assets/images/homepage/ClarencePortrait.png";
 import Sparkle from "phosphor-astro/Sparkle.astro";
 import ChatCircle from "phosphor-astro/ChatCircle.astro";
 import Path from "phosphor-astro/PathFill.astro";
@@ -20,20 +22,31 @@ import Cube from "phosphor-astro/Cube.astro";
 import { Image } from "astro:assets";
 ---
 
-<section class="container max-w-7xl mx-auto px-2 lg:px-0 flex flex-col mt-8 md:mt-20">
+<section class="container max-w-7xl mx-auto px-2 lg:px-0 flex flex-col mt-8 md:mt-8">
+
   <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
     <div class="flex-1 flex flex-col items-center text-center">
-      <h1 class="max-w-lg h2 text-stone-950 dark:text-stone-50 mb-5 !font-medium">
-          The open-source platform for AI adoption. Build AI Agents, Workflows, Chat & Apps.<br>
+      <Image
+        src={ClarenceImage}
+        alt="Clarence"
+        width={100}
+        height={100}
+        class="mb-3 shrink-0"
+      />
+      <h1 class="max-w-lg h2 text-stone-950 dark:text-stone-50 mb-5 font-medium!">
+          The open-source platform for AI adoption. Build Agents, Workflows, Chat & Apps.<br>
           <span class="text-stone-500 dark:text-stone-400">Join 300K privacy-first teams.</span>
       </h1>
       <div class="flex flex-row">
         <Button
-          label="Get Budibase free"
+          label="Try Budibase Cloud"
           url="https://account.budibase.app/register"
           variant="cta"
           target="_blank"
         />
+      </div>
+      <div class="mt-4 md:mt-6 w-fit">
+        <Curl />
       </div>
     </div>
   </div>
@@ -42,7 +55,7 @@ import { Image } from "astro:assets";
     <HeroSwitcher
       items={[
         {
-          label: "AI Agents",
+          label: "Agents",
           product: AgentInstructions2,
           alt: "Budibase agents",
           icon: Sparkle,
@@ -50,7 +63,7 @@ import { Image } from "astro:assets";
           tagVariant: "cta",
         },
         {
-          label: "AI Chat",
+          label: "Chat",
           product: AgentInChat,
           alt: "Budibase chat",
           icon: ChatCircle,
@@ -58,7 +71,7 @@ import { Image } from "astro:assets";
           tagVariant: "secondary",
         },
         {
-          label: "AI Workflows",
+          label: "Workflows",
           product: AgentInAutomations,
           alt: "Budibase automations",
           icon: Path,

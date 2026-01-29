@@ -83,18 +83,6 @@ export const platformNavItemsData: NavGroup[] = [
         sectionId: "data",
         iconName: "Database",
       },
-      {
-        text: "Scaling",
-        link: "/platform/scaling",
-        sectionId: "scaling",
-        iconName: "TrendUp",
-      },
-      {
-        text: "Hosting",
-        link: "/platform/hosting",
-        sectionId: "hosting",
-        iconName: "Cloud",
-      },
     ],
   },
 ];

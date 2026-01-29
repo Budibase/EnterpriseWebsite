@@ -49,12 +49,12 @@ const navItems = platformNavItemsData.map(group => ({
 		<div class="mb-8">
 			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
 				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					Data GUIs
+					Data
 				</h2>
 				<p
 					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
 				>
-					Connect to your databases to query, insert, update, and manage data across your applications and agents.
+					A flexible data layer that powers apps, workflows, and AI — without friction.
 				</p>
 
 				<Image
@@ -68,28 +68,32 @@ const navItems = platformNavItemsData.map(group => ({
 				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
 			>
 				<Card
-					label="SQL databases"
-					description="Connect to PostgreSQL, MySQL, SQL Server, and other SQL databases with native query support."
+					label="Built-in database (BudibaseDB)"
+					description="Store and manage data without setting up external infrastructure."
 				/>
 				<Card
-					label="NoSQL databases"
-					description="Integrate with MongoDB, DynamoDB, and other NoSQL databases for flexible data storage."
+					label="Table GUI like Airtable bases"
+					description="Work with data through a fast, familiar visual interface."
 				/>
 				<Card
-					label="Query builder"
-					description="Build complex queries visually or write custom SQL with syntax highlighting and validation."
+					label="SQL sync"
+					description="Sync existing SQL tables and visualize your data instantly."
 				/>
 				<Card
-					label="Connection pooling"
-					description="Efficiently manage database connections with built-in connection pooling and caching."
+					label="Custom queries"
+					description="Write custom SQL queries for full control over your data."
 				/>
 				<Card
-					label="Data binding"
-					description="Bind database results to your agents and workflows for dynamic, data-driven operations."
+					label="Dev/Prod switcher for tables"
+					description="Safely manage schema changes across environments."
 				/>
 				<Card
-					label="Structured data"
-					description="Provide agents with structured data from databases and services to ground their responses."
+					label="Views"
+					description="Create performant, permission-aware views to filter and shape your data."
+				/>
+				<Card
+					label="Security"
+					description="Configure read and write access at the table level to keep data secure."
 				/>
 			</div>
 		</div>

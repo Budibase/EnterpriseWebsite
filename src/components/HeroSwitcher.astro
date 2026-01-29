@@ -38,8 +38,7 @@ const {
             "py-1",
             "text-sm",
             "md:text-base",
-            "text-stone-500",
-            "dark:text-stone-400",
+            "text-muted",
             "border-b",
             "border-transparent",
             "whitespace-nowrap",
@@ -49,23 +48,20 @@ const {
             "gap-1.5",
             "transition-colors",
             "duration-150",
-            "hover:text-stone-950",
-            "dark:hover:text-stone-100",
+            "hover:text",
             "shrink-0",
             "focus-visible:outline-none",
             "focus-visible:ring-2",
-            "focus-visible:ring-stone-500",
-            "dark:focus-visible:ring-stone-400",
+            "focus-visible:ring-ring",
             "focus-visible:ring-offset-2",
+            "focus-visible:ring-offset-bg",
             "rounded-lg",
           ];
           const activeClasses = idx === 0
             ? [
                 "is-active",
-                "bg-stone-200",
-                "dark:bg-stone-800",
-                "text-stone-950",
-                "dark:text-stone-50",
+                "bg-2",
+                "text",
               ]
             : [];
           return (
@@ -220,11 +216,11 @@ const {
 
       function updateTabClasses(tab, isActive) {
         if (isActive) {
-          tab.classList.add('is-active', 'bg-stone-200', 'dark:bg-stone-800', 'text-stone-950', 'dark:text-stone-50', 'rounded-lg');
-          tab.classList.remove('bg-transparent', 'text-stone-500', 'dark:text-stone-400');
+          tab.classList.add('is-active', 'bg-secondary', 'text-text', 'rounded-lg');
+          tab.classList.remove('bg-transparent', 'text-text-muted');
         } else {
-          tab.classList.remove('is-active', 'bg-stone-200', 'dark:bg-stone-800', 'text-stone-950', 'dark:text-stone-50', 'rounded-lg');
-          tab.classList.add('bg-transparent', 'text-stone-500', 'dark:text-stone-400');
+          tab.classList.remove('is-active', 'bg-secondary', 'text-text', 'rounded-lg');
+          tab.classList.add('bg-transparent', 'text-text-muted');
         }
       }
 
