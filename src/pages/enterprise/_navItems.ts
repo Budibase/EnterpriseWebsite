@@ -14,20 +14,14 @@ export const enterpriseNavItemsData: NavGroup[] = [
 	{
 		items: [
 			{ text: "Overview", link: "/enterprise", sectionId: "overview", iconName: "Buildings" },
+			{ text: "Security", link: "/enterprise/security", sectionId: "security", iconName: "ShieldCheck" },
+			{ text: "Support", link: "/enterprise/support", sectionId: "support", iconName: "Headset" },
 			{
 				text: "Contact sales",
 				link: "/enterprise/contact-sales",
 				sectionId: "contact-sales",
 				iconName: "EnvelopeSimple",
 			},
-		],
-	},
-	{
-		header: "CORE",
-		items: [
-			{ text: "Security", link: "/enterprise/security", sectionId: "security", iconName: "ShieldCheck" },
-			{ text: "Control", link: "/enterprise/control", sectionId: "control", iconName: "Sliders" },
-			{ text: "Support", link: "/enterprise/support", sectionId: "support", iconName: "Headset" },
 		],
 	},
 	{
