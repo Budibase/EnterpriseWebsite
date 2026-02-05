@@ -1,0 +1,175 @@
+---
+slug: access-request
+title: Automated Access Request System
+sidebar:
+  - id: overview
+    label: Overview
+  - id: data
+    label: Data
+  - id: screens
+    label: Screens
+  - id: agents
+    label: Agents
+  - id: automations
+    label: Automations
+role: IT/Security
+outcome: Grant and review access quickly with full auditability.
+setupTime: "~45 min"
+difficulty: Medium
+tags:
+  - Apps
+  - Agents
+  - Automations
+  - Chat
+  - Human-in-the-loop
+aiAssists:
+  - Identity verification checks
+  - Policy and role lookup
+  - Approval recommendations
+humansDecide:
+  - Final approval
+  - Exceptions
+  - Sensitive system access
+steps:
+  - title: Request submitted
+    description: A user submits an access request via form or chat.
+    humanDecision: false
+  - title: Verify identity
+    description: The agent checks the requester in Okta or Azure AD.
+    humanDecision: false
+  - title: Evaluate policy
+    description: Policies and role tables determine if approval is required.
+    humanDecision: false
+  - title: Draft decision summary
+    description: The agent explains why it recommends approval or denial.
+    humanDecision: false
+  - title: Manager review
+    description: A manager or admin confirms the decision.
+    humanDecision: true
+  - title: Execute access change
+    description: Permissions are added or removed in IAM systems.
+    humanDecision: false
+  - title: Audit and notify
+    description: The decision is logged and sent to Slack/Teams.
+    humanDecision: false
+integrations:
+  - Okta
+  - Azure AD
+  - ServiceNow
+  - Jira
+  - Slack/Teams
+  - Email/Exchange
+faq:
+  - question: Is human approval required?
+    answer: You can require approvals for sensitive systems or apply auto-approve rules.
+  - question: Can this enforce least privilege?
+    answer: Yes, policies can limit access to approved roles and scopes.
+  - question: Does it integrate with ITSM tools?
+    answer: Yes, it can create or update ServiceNow and Jira tickets.
+  - question: Is the reasoning captured for audits?
+    answer: Every decision includes a reasoning trail in the audit log.
+lastUpdated: 2026-02-05
+---
+## Overview {#overview}
+
+Effective software access request and provisioning workflows are critical for security, but they also present a huge time-sink for IT teams.
+
+Manually assessing and responding to routine requests places an outsized burden on IT colleagues, as well as creating unnecessary delays for end users.
+
+In this guide, we’re building an automated access request system using Budibase Agents (Beta).
+
+The goal is to show how an agent can evaluate access requests against a policy, gather the required context, and make a recommendation — while keeping humans in control of final decisions.
+
+What are we building?
+- The agent is invoked when a new row is added to the Access Requests table.
+- It uses RAG to evaluate the justification against an access policy.
+- It recommends approval or denial.
+- If approved, it retrieves user and app data from Okta.
+- The decision and rationale are written back to the request.
+- A related row is created in the Decisions table.
+
+Admins review recommendations and approve or deny requests.
+All human decisions are logged.
+
+(Flowchart placeholder)
+
+![Flowchart: Automated access request system](/images/workflows/access-request/02.png)
+<!-- TODO: replace with real image -->
+
+## Data {#data}
+
+Tables
+
+Our workspace uses two BudibaseDB tables.
+
+Access Requests
+Columns:
+- Date
+- createdBy
+- toolRequested
+- justification
+- decision
+- reason
+- oktaUser (JSON)
+- oktaApp (JSON)
+- manualDecision
+- Decision (relationship)
+
+Decisions
+Columns:
+- Date
+- access_request
+- decision (JSON)
+- manual_approver
+
+![Screenshot: Access Requests table schema](/images/workflows/access-request/01.png)
+<!-- TODO: replace with real image -->
+
+API endpoints
+
+We use three Okta API requests:
+- listUsers (GET)
+- listApplications (GET)
+- assignUserToApplication (POST)
+
+## Screens {#screens}
+
+Users submit access requests via a form.
+Admins review requests in a table UI and approve or deny them.
+
+## Agents {#agents}
+
+We create an agent named Access Request Agent.
+
+Model configuration
+- Model: Ministral-8B-2512
+
+Adding RAG
+- Embedding model: mistralai/mistral-embed-2312
+- Vector DB: Postgres with pgvector
+- Provider: OpenRouter
+
+AGENT INSTRUCTIONS
+access policy
+````Justification Structure (Hard Gate)
+The justification must include:
+1. Action
+2. Object
+3. Business purposeAccess policy
+
+You are an access decision agent.
+Evaluate requests strictly against policy.
+Return a recommendation and rationale.
+
+You are an access decision agent.
+Evaluate requests strictly against policy.
+Return a recommendation and rationale.
+
+````
+
+## Automations {#automations}
+
+- Invoke agent on row creation
+- Row action for deny
+- Row action for approve
+- Provision access via Okta
