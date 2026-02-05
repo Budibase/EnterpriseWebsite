@@ -78,4 +78,42 @@ export const collections = {
       image: z.string().optional(),
     }),
   }),
+  workflows: defineCollection({
+    loader: glob({
+      pattern: ["**/*.md", "!**/README.md"],
+      base: "./src/content/workflows",
+    }),
+  schema: z.object({
+    slug: z.string(),
+    title: z.string(),
+    sidebar: z.array(
+      z.object({
+        id: z.string(),
+        label: z.string(),
+      }),
+    ),
+    role: z.string(),
+    outcome: z.string(),
+      setupTime: z.string(),
+      difficulty: z.string(),
+      tags: z.array(z.string()),
+      aiAssists: z.array(z.string()),
+      humansDecide: z.array(z.string()),
+      steps: z.array(
+        z.object({
+          title: z.string(),
+          description: z.string(),
+          humanDecision: z.boolean().default(false),
+        }),
+      ),
+      integrations: z.array(z.string()),
+      faq: z.array(
+        z.object({
+          question: z.string(),
+          answer: z.string(),
+        }),
+      ),
+      lastUpdated: z.coerce.date(),
+    }),
+  }),
 };

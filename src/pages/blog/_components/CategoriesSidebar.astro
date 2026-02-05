@@ -1,11 +1,29 @@
 ---
+import Icon from "@components/Icon.astro";
+
 interface Props {
 	currentCategory?: string;
 	title?: string;
 	description?: string;
+	links?: Array<{
+		label: string;
+		description: string;
+		href: string;
+		target?: string;
+		rel?: string;
+		prefetch?: boolean;
+	}>;
+	activeHref?: string;
 }
 
-const { currentCategory = 'all', title = 'Blog', description = '' } = Astro.props;
+const {
+	currentCategory = 'all',
+	title = 'Blog',
+	description = '',
+	links,
+	activeHref,
+} = Astro.props;
+const currentPath = Astro.url.pathname;
 
 const categories = [
 	{ id: 'all', label: 'All posts' },
@@ -14,30 +32,60 @@ const categories = [
 	{ id: 'customers', label: 'Customers' },
 	{ id: 'research', label: 'Research' },
 ];
+
+const isLearnLinks = Array.isArray(links) && links.length > 0;
+
+function isLearnActive(link: string): boolean {
+	if (activeHref) {
+		return activeHref === link;
+	}
+	return currentPath === link || currentPath === `${link}/`;
+}
 ---
 
 <aside class="categories-sidebar">
 	<h1 class="mb-4 h2">{title}</h1>
 	{description && <p class="text-stone-500! dark:text-stone-400! mb-4!">{description}</p>}
 	<nav>
-		<ul>
-			{
-				categories.map((category) => (
-					<li>
-						<a
-							href={category.id === 'all' ? '/blog' : `/blog/category/${category.id}`}
-							class:list={[
-								"nav-link flex flex-row items-center h-8 px-2 rounded text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
-								currentCategory === category.id && "active"
-							]}
-							data-astro-prefetch
-							data-astro-transition="none"
-						>
-							<span>{category.label}</span>
-						</a>
-					</li>
-				))
-			}
+		<ul class:list={["nav-list", isLearnLinks && "learn-list"]}>
+			{isLearnLinks
+				? links!.map((item) => (
+						<li>
+							<a
+								href={item.href}
+								target={item.target}
+								rel={item.rel}
+								data-astro-prefetch={item.prefetch ? '' : undefined}
+								aria-current={isLearnActive(item.href) ? "page" : undefined}
+								class:list={[
+									"nav-link flex flex-row gap-3 items-center h-8 px-3 rounded-md text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
+									isLearnActive(item.href) && "active"
+								]}
+							>
+								<span class="flex items-center gap-1">
+									{item.label}
+									{item.label === "Docs" && (
+										<Icon name="ArrowUpRight" class="w-3.5 h-3.5 text-grey-500" />
+									)}
+								</span>
+							</a>
+						</li>
+					))
+				: categories.map((category) => (
+						<li>
+							<a
+								href={category.id === 'all' ? '/blog' : `/blog/category/${category.id}`}
+								class:list={[
+									"nav-link flex flex-row items-center h-8 px-2 rounded text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
+									currentCategory === category.id && "active",
+								]}
+								data-astro-prefetch
+								data-astro-transition="none"
+							>
+								<span>{category.label}</span>
+							</a>
+						</li>
+					))}
 		</ul>
 	</nav>
 </aside>
@@ -70,6 +118,11 @@ const categories = [
 
 		.nav-link {
 			white-space: nowrap;
+		}
+
+		.learn-list {
+			flex-direction: column;
+			overflow-x: visible;
 		}
 	}
 </style>

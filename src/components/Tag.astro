@@ -11,7 +11,7 @@ type Variant = "primary" | "secondary" | "cta" | "orange";
 interface Props {
   label: string;
   variant?: Variant;
-  size?: "extra-small" | "small" | "medium" | "large";
+  size?: "extra-small" | "small" | "medium" | "base" | "large";
   class?: string;
   ariaLabel?: string;
 }
@@ -36,6 +36,7 @@ const sizeClasses = {
   "extra-small": "px-1 py-0.5 text-[10px]",
   small: "px-1.5 py-0.5 text-xs",
   medium: "px-2 py-1 text-sm",
+  base: "px-2 py-0.5 text-base",
   large: "px-2.5 py-1.5 text-lg",
 };
 

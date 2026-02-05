@@ -4,16 +4,17 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
 	post: CollectionEntry<'blog'>;
+	basePath?: string;
 }
 
-const { post } = Astro.props as Props;
+const { post, basePath = '/blog' } = Astro.props as Props;
 const metaLabel = post.data.category ?? (post.data.featured ? 'Featured' : 'Blog');
 const transitionKey = post.id.replaceAll('/', '-');
 ---
 
 <article class="blog-post-preview">
 	<a
-		href={`/blog/${post.id}/`}
+		href={`${basePath}/${post.id}/`}
 		data-astro-prefetch
 		class="blog-post-card"
 	>

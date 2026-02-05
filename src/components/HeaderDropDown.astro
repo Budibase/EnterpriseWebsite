@@ -13,6 +13,7 @@ interface Props {
 		badge?: string;
 		description?: string;
 		target?: string;
+		rel?: string;
 	}>;
 }
 
@@ -68,11 +69,12 @@ const defaultDescriptionsByLabel: Record<string, string> = {
 		>
 			<slot />
 			{
-				mainItems.map(({ href, label, prefetch, badge, description, target }) => (
+				mainItems.map(({ href, label, prefetch, badge, description, target, rel }) => (
 					<li>
 						<a
 							{href}
 							target={target}
+							rel={rel ?? (target === "_blank" ? "noopener noreferrer" : undefined)}
 							data-astro-prefetch={prefetch ? '' : undefined}
 							class="flex flex-col gap-1 rounded-lg p-3 leading-snug transition-colors text-stone-900 dark:text-stone-100 hover:bg-stone-200 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-stone-50"
 						>
@@ -102,6 +104,7 @@ const defaultDescriptionsByLabel: Record<string, string> = {
 									<a
 										href={item.href}
 										target={item.target}
+										rel={item.rel ?? (item.target === "_blank" ? "noopener noreferrer" : undefined)}
 										data-astro-prefetch={item.prefetch ? '' : undefined}
 										class="flex flex-col gap-1 rounded-lg p-3 leading-snug transition-colors text-stone-900 dark:text-stone-100 hover:bg-stone-200 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-stone-50"
 									>

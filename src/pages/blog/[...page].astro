@@ -1,18 +1,14 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import type { GetStaticPathsOptions, Page } from 'astro';
-import Pagination from '../../components/Pagination.astro';
-import BlogPostPreview from './_components/BlogPostPreview.astro';
-import CategoriesSidebar from './_components/CategoriesSidebar.astro';
-import Layout from '../../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPathsOptions } from 'astro';
+
+export const prerender = true;
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-	// Filter drafts at collection level - Astro best practice
 	const posts = await getCollection('blog', ({ data }) => {
 		return !data.draft && data.publishDate !== undefined;
 	});
 
-	// Sort by publish date (newest first)
 	const sortedPosts = posts.sort(
 		(a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
 	);
@@ -20,111 +16,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 	return paginate(sortedPosts, { pageSize: 12 });
 }
 
-interface Props {
-	page: Page<CollectionEntry<'blog'>>;
-}
-
-const { page } = Astro.props as Props;
-
-const allPages = [...Array(page.lastPage).keys()].map((num) => {
-	return `/blog${num === 0 ? '' : `/${String(num + 1)}`}`;
-});
-
----
-
-<Layout
-	title="The Budibase Blog"
-	description="Get all the latest news from the Budiverse."
-	image={{ src: '/og/blog.jpg', alt: "What's new in the Budibase ecosystem" }}
-	enableTransitions={true}
->
-	<div class="mt-24 container max-w-7xl mx-auto blog-index">
-		<div class="blog-layout">
-			<aside class="blog-sidebar">
-				<CategoriesSidebar currentCategory="all" />
-			</aside>
-
-			<main class="blog-main">
-				<ul class="blog-posts-list flex flex-col gap-3">
-					{
-						page.data.map((post) => (
-							<li>
-								<BlogPostPreview post={post} />
-							</li>
-						))
-					}
-				</ul>
-
-				<div class="my-8">
-					<Pagination restRoute allPages={allPages} page={page} />
-				</div>
-			</main>
-		</div>
-	</div>
-</Layout>
-
-<style>
-	.blog-container {
-		min-height: calc(100vh - 200px);
-		padding: 2rem 1rem;
-	}
-
-	.blog-layout {
-		margin: 0 auto;
-		display: grid;
-		grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
-		grid-template-areas: "sidebar main";
-		gap: 4rem;
-		align-items: start;
-	}
-
-	.blog-sidebar {
-		grid-area: sidebar;
-		position: sticky;
-		top: 2rem;
-	}
-
-	.blog-main {
-		grid-area: main;
-		flex: 1;
-		min-width: 0;
-		min-height: 60vh;
-	}
-
-	.blog-posts-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		contain: paint;
-	}
-
-	.blog-posts-list li:last-child .blog-post-link {
-		border-bottom: none;
-	}
-
-	@media (max-width: 1024px) {
-		.blog-layout {
-			gap: 4rem;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.blog-layout {
-			grid-template-columns: 1fr;
-			gap: 2rem;
-			grid-template-areas:
-				"sidebar"
-				"main";
-		}
-
-		.blog-sidebar {
-			position: static;
-		}
-
-		.blog-container {
-			padding: 1.5rem 1rem;
-		}
-	}
-</style>
+const pageParam = Astro.params.page;
+const target = pageParam ? `/learn/blog/${pageParam}` : "/learn/blog";
+return Astro.redirect(target, 301);

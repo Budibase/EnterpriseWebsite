@@ -1,36 +1,16 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
-import MarkdownPostLayout from '../../layouts/MarkdownPostLayout.astro';
-import CTA from "@components/CTA.astro";
+import { getCollection } from 'astro:content';
 
-
-export type Props = {
-	post: CollectionEntry<'blog'>;
-};
+export const prerender = true;
 
 export async function getStaticPaths() {
 	const blog = await getCollection('blog');
 
 	return blog.map((post) => ({
 		params: { slug: post.id },
-		props: { post },
 	}));
 }
 
-const { post } = Astro.props;
-const { data } = post;
-const { Content } = await render(post);
-const transitionKey = post.id.replaceAll('/', '-');
-
-
----
-<MarkdownPostLayout
-	frontmatter={post.data}
-	enableTransitions={true}
-	transitionKey={transitionKey}
->
-	<article class="article my-8 max-w-xl mx-auto">
-		<Content />
-	</article>
-	<CTA />
-</MarkdownPostLayout>
+const slugParam = Astro.params.slug;
+const target = `/learn/blog/${slugParam}/`;
+return Astro.redirect(target, 301);

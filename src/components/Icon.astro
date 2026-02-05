@@ -4,12 +4,23 @@ import Monitor from "phosphor-astro/Monitor.astro";
 import Sun from "phosphor-astro/Sun.astro";
 import Moon from "phosphor-astro/Moon.astro";
 import ArrowRight from "phosphor-astro/ArrowRight.astro";
+import ArrowUpRight from "phosphor-astro/ArrowUpRight.astro";
 import PlayCircle from "phosphor-astro/PlayCircle.astro";
 import PlayFill from "phosphor-astro/PlayFill.astro";
 import CheckCircle from "phosphor-astro/CheckCircle.astro";
 import Cube from "phosphor-astro/Cube.astro";
 import Copy from "phosphor-astro/Copy.astro";
 import Plus from "phosphor-astro/Plus.astro";
+import Browser from "phosphor-astro/Browser.astro";
+import Path from "phosphor-astro/Path.astro";
+import Sparkle from "phosphor-astro/Sparkle.astro";
+import ChatCircle from "phosphor-astro/ChatCircle.astro";
+import UserSwitch from "phosphor-astro/UserSwitch.astro";
+import BrowserFill from "phosphor-astro/BrowserFill.astro";
+import PathFill from "phosphor-astro/PathFill.astro";
+import SparkleFill from "phosphor-astro/SparkleFill.astro";
+import ChatCircleFill from "phosphor-astro/ChatCircleFill.astro";
+import UserSwitchFill from "phosphor-astro/UserSwitchFill.astro";
 
 // Add more icon imports as needed
 
@@ -19,27 +30,44 @@ const iconMap: Record<string, any> = {
 	Sun: Sun,
 	Moon: Moon,
 	ArrowRight: ArrowRight,
+	ArrowUpRight: ArrowUpRight,
 	PlayCircle: PlayCircle,
 	PlayFill: PlayFill,
 	CheckCircle: CheckCircle,
 	Cube: Cube,
 	Copy: Copy,
 	Plus: Plus,
+	Browser: Browser,
+	Path: Path,
+	Sparkle: Sparkle,
+	ChatCircle: ChatCircle,
+	UserSwitch: UserSwitch,
 	// Add more icon mappings here as needed
+};
+
+const iconFillMap: Record<string, any> = {
+	Browser: BrowserFill,
+	Path: PathFill,
+	Sparkle: SparkleFill,
+	ChatCircle: ChatCircleFill,
+	UserSwitch: UserSwitchFill,
 };
 
 interface Props {
 	name: string;
 	size?: string;
 	class?: string;
+	weight?: string;
 }
 
-const IconComponent = iconMap[Astro.props.name];
+const isFill = Astro.props.weight === "fill";
+const IconComponent = (isFill && iconFillMap[Astro.props.name]) || iconMap[Astro.props.name];
 ---
 
 {IconComponent && (
 	<IconComponent
 		class={Astro.props.class}
+		weight={!isFill ? Astro.props.weight : undefined}
 		style={Astro.props.size ? `width: ${Astro.props.size}px; height: ${Astro.props.size}px;` : undefined}
 	/>
 )}
