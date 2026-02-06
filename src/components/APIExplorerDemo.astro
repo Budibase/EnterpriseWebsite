@@ -1,0 +1,488 @@
+---
+import { Image } from "astro:assets";
+import CaretDown from "phosphor-astro/CaretDown.astro";
+import Cube from "phosphor-astro/Cube.astro";
+import PaperPlaneTilt from "phosphor-astro/PaperPlaneTilt.astro";
+
+import Icon from "@components/Icon.astro";
+import StripeLogo from "@assets/logos/stripe.svg";
+import NotionLogo from "@assets/logos/notion.svg";
+import JiraLogo from "@assets/logos/Jira.svg";
+import ServiceNowLogo from "@assets/logos/servicenow.svg";
+import SalesforceLogo from "@assets/logos/Salesforce.svg";
+import SharepointLogo from "@assets/logos/microsoft-sharepoint.svg";
+import ZendeskLogo from "@assets/logos/zendesk.svg";
+import SageLogo from "@assets/logos/sage.svg";
+
+const id = `api-explorer-demo-${Math.random().toString(36).slice(2, 8)}`;
+
+const responsePayload = `{
+  "id": "cus_NffrFeUfNV2Hib",
+  "object": "customer",
+  "address": null,
+  "balance": 0,
+  "created": 1680893993,
+  "currency": null,
+  "default_source": null,
+  "delinquent": false,
+  "description": null,
+  "email": "jennyrosen@example.com",
+  "invoice_prefix": "0759376C",
+  "invoice_settings": {
+    "custom_fields": null,
+    "default_payment_method": null,
+    "footer": null,
+    "rendering_options": null
+  },
+  "livemode": false,
+  "metadata": {},
+  "name": "Jenny Rosen",
+  "next_invoice_sequence": 1
+}`;
+---
+
+<div id={id} class="api-explorer-demo w-full">
+  <div
+    class="api-explorer-demo-backdrop px-24 py-12 w-[120%] -ml-[10%]"
+    style="background-image: url('https://cdn.midjourney.com/9909b3e7-76ba-41ac-a421-83443d0a3199/0_2.png');"
+  >
+    <div
+      class="api-explorer-demo-shell overflow-hidden rounded-[8px] border-[0.5px] border-[var(--api-demo-border)]"
+    >
+      <div
+        class="group relative flex h-7 items-center justify-between border-b-[0.5px] border-[var(--border-color)] bg-[var(--bg-2)] px-2"
+      >
+        <div class="flex items-center gap-1.5">
+          <span
+            class="inline-block h-2.5 w-2.5 rounded-full"
+            style="background-color: rgb(var(--text-muted) / 0.6);"
+          ></span>
+          <span
+            class="inline-block h-2.5 w-2.5 rounded-full"
+            style="background-color: rgb(var(--text-muted) / 0.6);"
+          ></span>
+          <span
+            class="inline-block h-2.5 w-2.5 rounded-full"
+            style="background-color: rgb(var(--text-muted) / 0.6);"
+          ></span>
+        </div>
+        <div class="absolute left-1/2 top-1/2 w-[540px] -translate-x-1/2 -translate-y-1/2">
+          <input
+            type="text"
+            placeholder="budibase.com/agent"
+            aria-label="Search"
+            class="h-5 w-full rounded-[4px] border-0 bg-[var(--bg-1)] px-2.5 text-[12px] text-[var(--text-primary)] outline-none placeholder:text-[var(--text-secondary)]"
+          />
+        </div>
+        <div class="-mr-1 flex items-center">
+          <button
+            type="button"
+            class="cursor-pointer rounded px-2 py-1 text-[12px] text-[var(--text-secondary)] transition-opacity duration-200 hover:bg-[rgb(var(--text)/0.06)]"
+          >
+            Get Budibase
+          </button>
+        </div>
+      </div>
+
+      <div class="flex min-h-0">
+        <div class="min-w-0 flex-1">
+          <div
+            class="api-explorer-demo-inner-header flex items-center justify-between px-5 py-2.5"
+          >
+            <p class="api-explorer-demo-title">API explorer</p>
+            <button type="button" class="api-explorer-demo-save">Save</button>
+          </div>
+
+          <div class="api-explorer-demo-main flex flex-col xl:flex-row">
+            <div
+              class="api-explorer-demo-center min-w-0 flex-1 border-t-[0.5px] border-[var(--api-demo-border)]"
+            >
+              <div class="api-explorer-demo-controls px-5 py-3">
+                <div
+                  class="api-explorer-demo-control-row flex items-center gap-5"
+                >
+                  <div class="api-explorer-demo-select-wrap">
+                    <button
+                      class="api-explorer-demo-connection"
+                      type="button"
+                      aria-expanded="false"
+                      data-api-demo-select
+                    >
+                      <span class="flex min-w-0 items-center gap-2.5">
+                        <Image
+                          src={StripeLogo}
+                          alt="Stripe"
+                          class="h-6 w-6 rounded-[8px]"
+                        />
+                        <span class="truncate" data-api-demo-select-value
+                          >Stripe Production</span
+                        >
+                      </span>
+
+                      <span class="flex items-center gap-2">
+                        <span class="api-explorer-demo-auth-chip">
+                          <Icon
+                            name="CheckCircle"
+                            weight="fill"
+                            class="h-3.5 w-3.5 text-[var(--accent-green)]"
+                          />
+                          <span>Auth connected</span>
+                        </span>
+                        <CaretDown
+                          class="h-3.5 w-3.5 text-[var(--api-demo-muted)]"
+                        />
+                      </span>
+                    </button>
+
+                    <div
+                      class="api-explorer-demo-select-menu"
+                      data-api-demo-menu
+                    >
+                      <div class="api-explorer-demo-select-search-wrap">
+                        <input
+                          type="text"
+                          placeholder="Search connectors"
+                          aria-label="Search connectors"
+                          class="api-explorer-demo-select-search"
+                        />
+                      </div>
+
+                      <div class="api-explorer-demo-select-label">Saved</div>
+                      <button
+                        class="api-explorer-demo-select-option"
+                        type="button"
+                        data-api-demo-option="Stripe Production"
+                      >
+                        <Image
+                          src={StripeLogo}
+                          alt="Stripe Production"
+                          class="h-4 w-4"
+                        />
+                        Stripe Production
+                      </button>
+                      <button
+                        class="api-explorer-demo-select-option"
+                        type="button"
+                        data-api-demo-option="Stripe Development"
+                      >
+                        <Image
+                          src={StripeLogo}
+                          alt="Stripe Development"
+                          class="h-4 w-4"
+                        />
+                        Stripe Development
+                      </button>
+                      <button
+                        class="api-explorer-demo-select-option"
+                        type="button"
+                        data-api-demo-option="Notion"
+                      >
+                        <Image src={NotionLogo} alt="Notion" class="h-4 w-4" />
+                        Notion
+                      </button>
+                      <button
+                        class="api-explorer-demo-select-option"
+                        type="button"
+                        data-api-demo-option="Jira"
+                      >
+                        <Image src={JiraLogo} alt="Jira" class="h-4 w-4" />
+                        Jira
+                      </button>
+                      <div class="api-explorer-demo-select-label">
+                        Available connectors
+                      </div>
+                      <button
+                        class="api-explorer-demo-select-option"
+                        type="button"
+                        data-api-demo-option="Servicenow"
+                      >
+                        <Image
+                          src={ServiceNowLogo}
+                          alt="Servicenow"
+                          class="h-4 w-4"
+                        />
+                        Servicenow
+                      </button>
+                      <button
+                        class="api-explorer-demo-select-option"
+                        type="button"
+                        data-api-demo-option="Salesforce"
+                      >
+                        <Image
+                          src={SalesforceLogo}
+                          alt="Salesforce"
+                          class="h-4 w-4"
+                        />
+                        Salesforce
+                      </button>
+                      <button
+                        class="api-explorer-demo-select-option"
+                        type="button"
+                        data-api-demo-option="Microsoft Sharepoint"
+                      >
+                        <Image
+                          src={SharepointLogo}
+                          alt="Microsoft Sharepoint"
+                          class="h-4 w-4"
+                        />
+                        Microsoft Sharepoint
+                      </button>
+                      <button
+                        class="api-explorer-demo-select-option"
+                        type="button"
+                        data-api-demo-option="Zendesk"
+                      >
+                        <Image
+                          src={ZendeskLogo}
+                          alt="Zendesk"
+                          class="h-4 w-4"
+                        />
+                        Zendesk
+                      </button>
+                      <button
+                        class="api-explorer-demo-select-option"
+                        type="button"
+                        data-api-demo-option="Sage"
+                      >
+                        <Image src={SageLogo} alt="Sage" class="h-4 w-4" />
+                        Sage
+                      </button>
+                      <a
+                        class="api-explorer-demo-select-option"
+                        href="/platform/connections/"
+                      >
+                        <Cube class="h-4 w-4" style="color: rgb(107 114 128);" />
+                        View all Connectors
+                      </a>
+                    </div>
+                  </div>
+
+                  <button
+                    class="api-explorer-demo-operation justify-start"
+                    type="button"
+                  >
+                    <span
+                      class="api-explorer-demo-method api-explorer-demo-method-post"
+                      >POST</span
+                    >
+                    <span>Create new customer</span>
+                    <CaretDown
+                      class="ml-auto h-3.5 w-3.5 text-[var(--api-demo-muted)]"
+                    />
+                  </button>
+                </div>
+
+                <div
+                  class="api-explorer-demo-control-row mt-3 flex items-center gap-5"
+                >
+                  <div class="api-explorer-demo-path">
+                    <span class="text-[var(--api-demo-muted)]">/</span>v1<span
+                      class="text-[var(--api-demo-muted)]">/</span
+                    >customers<span class="text-[var(--api-demo-muted)]">/</span
+                    >
+                    <span class="api-explorer-demo-id-token">{"{:id}"}</span>
+                  </div>
+
+                  <button
+                    class="api-explorer-demo-send"
+                    type="button"
+                    data-api-demo-send
+                  >
+                    <PaperPlaneTilt class="h-3.5 w-3.5" weight="fill" />
+                    Send
+                  </button>
+                </div>
+              </div>
+
+              <div
+                class="api-explorer-demo-body border-t-[0.5px] border-[var(--api-demo-border)]"
+              >
+                <div class="api-explorer-demo-tabs px-5 pt-4">
+                  <button class="is-active" type="button">Params</button>
+                  <button type="button">Bindings</button>
+                  <button type="button">Pagination</button>
+                  <button type="button">Transformer</button>
+                  <button type="button">Information</button>
+                </div>
+
+                <div class="px-5 py-3">
+                  <div class="api-explorer-demo-section-title">Query</div>
+                  <div class="api-explorer-demo-grid mt-2">
+                    <div class="api-explorer-demo-row">
+                      <span>id*</span>
+                      <span class="api-explorer-demo-type">Str</span>
+                    </div>
+                    <div class="api-explorer-demo-row">
+                      <span>opt_pretty*</span>
+                      <span class="api-explorer-demo-type">Bool</span>
+                    </div>
+                  </div>
+
+                  <div class="api-explorer-demo-section-title mt-5">Body</div>
+                  <div class="api-explorer-demo-grid mt-2">
+                    <div class="api-explorer-demo-row">
+                      <span>color</span>
+                      <span class="api-explorer-demo-type">Str</span>
+                    </div>
+                    <div class="api-explorer-demo-row">
+                      <span>notes</span>
+                      <span class="api-explorer-demo-type">Str</span>
+                    </div>
+                    <div class="api-explorer-demo-row">
+                      <span>workspace</span>
+                      <span class="api-explorer-demo-type">Obj</span>
+                    </div>
+                    <div class="api-explorer-demo-row">
+                      <span>default_view</span>
+                      <span class="api-explorer-demo-type">Str</span>
+                    </div>
+                    <div class="api-explorer-demo-row">
+                      <span>custom_fields</span>
+                      <span class="api-explorer-demo-type">Obj</span>
+                    </div>
+                    <div class="api-explorer-demo-row">
+                      <span>is_template</span>
+                      <span class="api-explorer-demo-type">Bool</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <aside
+              class="api-explorer-demo-right w-full border-t-[0.5px] border-[var(--api-demo-border)] xl:w-[320px] xl:border-l-[0.5px] xl:border-t-0"
+            >
+              <div class="api-explorer-demo-response-tabs">
+                <button type="button">Schema</button>
+                <button class="is-active" type="button">Response</button>
+              </div>
+              <pre class="api-explorer-demo-response" data-api-demo-response>
+              </pre>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ id, responsePayload }}>
+  (() => {
+    const root = document.getElementById(id);
+    if (!root) return;
+
+    const select = root.querySelector("[data-api-demo-select]");
+    const selectValue = root.querySelector("[data-api-demo-select-value]");
+    const selectMenu = root.querySelector("[data-api-demo-menu]");
+    const options = root.querySelectorAll("[data-api-demo-option]");
+    const sendButton = root.querySelector("[data-api-demo-send]");
+    const response = root.querySelector("[data-api-demo-response]");
+
+    if (!select || !selectValue || !selectMenu || !response) return;
+
+    let animationId = 0;
+    const thinkingDuration = 2200;
+    const typingDelay = 8;
+
+    function closeMenu() {
+      selectMenu.classList.remove("is-open");
+      select.setAttribute("aria-expanded", "false");
+    }
+
+    function openMenu() {
+      selectMenu.classList.add("is-open");
+      select.setAttribute("aria-expanded", "true");
+    }
+
+    function sleep(duration) {
+      return new Promise((resolve) => {
+        window.setTimeout(resolve, duration);
+      });
+    }
+
+    function createThinking() {
+      const wrapper = document.createElement("div");
+      wrapper.className = "api-explorer-demo-thinking";
+      wrapper.textContent = "Thinking";
+
+      const dots = document.createElement("span");
+      dots.className = "api-explorer-demo-thinking-dots";
+
+      for (let i = 0; i < 3; i += 1) {
+        const dot = document.createElement("span");
+        dot.className = "api-explorer-demo-thinking-dot";
+        dots.append(dot);
+      }
+
+      wrapper.append(" ");
+      wrapper.append(dots);
+      return wrapper;
+    }
+
+    async function streamResponse() {
+      animationId += 1;
+      const currentId = animationId;
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (prefersReducedMotion) {
+        response.textContent = responsePayload;
+        return;
+      }
+
+      response.textContent = "";
+      response.append(createThinking());
+      await sleep(thinkingDuration);
+
+      if (currentId !== animationId) return;
+
+      response.textContent = "";
+      for (let i = 0; i <= responsePayload.length; i += 1) {
+        if (currentId !== animationId) return;
+        response.textContent = responsePayload.slice(0, i);
+        response.scrollTop = response.scrollHeight;
+        await sleep(typingDelay);
+      }
+    }
+
+    select.addEventListener("click", (event) => {
+      event.stopPropagation();
+      if (selectMenu.classList.contains("is-open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    options.forEach((option) => {
+      option.addEventListener("click", () => {
+        const value = option.getAttribute("data-api-demo-option");
+        if (value) {
+          selectValue.textContent = value;
+        }
+        closeMenu();
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!root.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+
+    if (sendButton) {
+      sendButton.addEventListener("click", () => {
+        streamResponse();
+      });
+    }
+
+    streamResponse();
+  })();
+</script>
