@@ -42,10 +42,7 @@ const responsePayload = `{
 ---
 
 <div id={id} class="api-explorer-demo w-full">
-  <div
-    class="api-explorer-demo-backdrop px-24 py-12 w-[120%] -ml-[10%]"
-    style="background-image: url('https://cdn.midjourney.com/9909b3e7-76ba-41ac-a421-83443d0a3199/0_2.png');"
-  >
+  <div class="api-explorer-demo-backdrop px-24 py-12 w-[120%] -ml-[10%]">
     <div
       class="api-explorer-demo-shell overflow-hidden rounded-[8px] border-[0.5px] border-[var(--api-demo-border)]"
     >
@@ -54,22 +51,19 @@ const responsePayload = `{
       >
         <div class="flex items-center gap-1.5">
           <span
-            class="inline-block h-2.5 w-2.5 rounded-full"
-            style="background-color: rgb(var(--text-muted) / 0.6);"
+            class="api-explorer-demo-window-dot inline-block h-2.5 w-2.5 rounded-full"
           ></span>
           <span
-            class="inline-block h-2.5 w-2.5 rounded-full"
-            style="background-color: rgb(var(--text-muted) / 0.6);"
+            class="api-explorer-demo-window-dot inline-block h-2.5 w-2.5 rounded-full"
           ></span>
           <span
-            class="inline-block h-2.5 w-2.5 rounded-full"
-            style="background-color: rgb(var(--text-muted) / 0.6);"
+            class="api-explorer-demo-window-dot inline-block h-2.5 w-2.5 rounded-full"
           ></span>
         </div>
         <div class="absolute left-1/2 top-1/2 w-[540px] -translate-x-1/2 -translate-y-1/2">
           <input
             type="text"
-            placeholder="budibase.com/agent"
+            placeholder="budibase/api-explorer"
             aria-label="Search"
             class="h-5 w-full rounded-[4px] border-0 bg-[var(--bg-1)] px-2.5 text-[12px] text-[var(--text-primary)] outline-none placeholder:text-[var(--text-secondary)]"
           />
@@ -86,13 +80,6 @@ const responsePayload = `{
 
       <div class="flex min-h-0">
         <div class="min-w-0 flex-1">
-          <div
-            class="api-explorer-demo-inner-header flex items-center justify-between px-5 py-2.5"
-          >
-            <p class="api-explorer-demo-title">API explorer</p>
-            <button type="button" class="api-explorer-demo-save">Save</button>
-          </div>
-
           <div class="api-explorer-demo-main flex flex-col xl:flex-row">
             <div
               class="api-explorer-demo-center min-w-0 flex-1 border-t-[0.5px] border-[var(--api-demo-border)]"
@@ -112,7 +99,7 @@ const responsePayload = `{
                         <Image
                           src={StripeLogo}
                           alt="Stripe"
-                          class="h-6 w-6 rounded-[8px]"
+                          class="h-5 w-5 rounded-[8px]"
                         />
                         <span class="truncate" data-api-demo-select-value
                           >Stripe Production</span
@@ -129,7 +116,7 @@ const responsePayload = `{
                           <span>Auth connected</span>
                         </span>
                         <CaretDown
-                          class="h-3.5 w-3.5 text-[var(--api-demo-muted)]"
+                          class="h-3.5 w-3.5 text-[var(--text-secondary)]"
                         />
                       </span>
                     </button>
@@ -251,37 +238,122 @@ const responsePayload = `{
                         class="api-explorer-demo-select-option"
                         href="/platform/connections/"
                       >
-                        <Cube class="h-4 w-4" style="color: rgb(107 114 128);" />
+                        <Cube class="api-explorer-demo-connector-icon h-4 w-4" />
                         View all Connectors
                       </a>
                     </div>
                   </div>
 
-                  <button
-                    class="api-explorer-demo-operation justify-start"
-                    type="button"
-                  >
-                    <span
-                      class="api-explorer-demo-method api-explorer-demo-method-post"
-                      >POST</span
+                  <div class="api-explorer-demo-operation-wrap">
+                    <button
+                      class="api-explorer-demo-operation justify-start"
+                      type="button"
+                      aria-expanded="false"
+                      data-api-demo-operation-select
                     >
-                    <span>Create new customer</span>
-                    <CaretDown
-                      class="ml-auto h-3.5 w-3.5 text-[var(--api-demo-muted)]"
-                    />
-                  </button>
+                      <span
+                        class="api-explorer-demo-method api-explorer-demo-method-post"
+                        data-api-demo-operation-method
+                        >POST</span
+                      >
+                      <span data-api-demo-operation-label
+                        >/v1/customers</span
+                      >
+                      <CaretDown
+                        class="ml-auto h-3.5 w-3.5 text-[var(--text-secondary)]"
+                      />
+                    </button>
+
+                    <div
+                      class="api-explorer-demo-operation-menu"
+                      data-api-demo-operation-menu
+                    >
+                      <button
+                        class="api-explorer-demo-operation-option"
+                        type="button"
+                        data-api-demo-operation-option
+                        data-api-demo-operation-method-value="POST"
+                        data-api-demo-operation-endpoint-value="/v1/customers"
+                      >
+                        <span
+                          class="api-explorer-demo-method api-explorer-demo-method-post"
+                          >POST</span
+                        >
+                        <span>/v1/customers</span>
+                      </button>
+                      <button
+                        class="api-explorer-demo-operation-option"
+                        type="button"
+                        data-api-demo-operation-option
+                        data-api-demo-operation-method-value="POST"
+                        data-api-demo-operation-endpoint-value="/v1/customers/:id"
+                      >
+                        <span
+                          class="api-explorer-demo-method api-explorer-demo-method-post"
+                          >POST</span
+                        >
+                        <span>/v1/customers/:id</span>
+                      </button>
+                      <button
+                        class="api-explorer-demo-operation-option"
+                        type="button"
+                        data-api-demo-operation-option
+                        data-api-demo-operation-method-value="GET"
+                        data-api-demo-operation-endpoint-value="/v1/customers/:id"
+                      >
+                        <span
+                          class="api-explorer-demo-method api-explorer-demo-method-get"
+                          >GET</span
+                        >
+                        <span>/v1/customers/:id</span>
+                      </button>
+                      <button
+                        class="api-explorer-demo-operation-option"
+                        type="button"
+                        data-api-demo-operation-option
+                        data-api-demo-operation-method-value="GET"
+                        data-api-demo-operation-endpoint-value="/v1/customers"
+                      >
+                        <span
+                          class="api-explorer-demo-method api-explorer-demo-method-get"
+                          >GET</span
+                        >
+                        <span>/v1/customers</span>
+                      </button>
+                      <button
+                        class="api-explorer-demo-operation-option"
+                        type="button"
+                        data-api-demo-operation-option
+                        data-api-demo-operation-method-value="DEL"
+                        data-api-demo-operation-endpoint-value="/v1/customers/:id"
+                      >
+                        <span
+                          class="api-explorer-demo-method api-explorer-demo-method-del"
+                          >DEL</span
+                        >
+                        <span>/v1/customers/:id</span>
+                      </button>
+                      <button
+                        class="api-explorer-demo-operation-option"
+                        type="button"
+                        data-api-demo-operation-option
+                        data-api-demo-operation-method-value="GET"
+                        data-api-demo-operation-endpoint-value="/v1/customers/search"
+                      >
+                        <span
+                          class="api-explorer-demo-method api-explorer-demo-method-get"
+                          >GET</span
+                        >
+                        <span>/v1/customers/search</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
 
                 <div
                   class="api-explorer-demo-control-row mt-3 flex items-center gap-5"
                 >
-                  <div class="api-explorer-demo-path">
-                    <span class="text-[var(--api-demo-muted)]">/</span>v1<span
-                      class="text-[var(--api-demo-muted)]">/</span
-                    >customers<span class="text-[var(--api-demo-muted)]">/</span
-                    >
-                    <span class="api-explorer-demo-id-token">{"{:id}"}</span>
-                  </div>
+                  <div class="api-explorer-demo-path" data-api-demo-endpoint></div>
 
                   <button
                     class="api-explorer-demo-send"
@@ -374,7 +446,17 @@ const responsePayload = `{
     const select = root.querySelector("[data-api-demo-select]");
     const selectValue = root.querySelector("[data-api-demo-select-value]");
     const selectMenu = root.querySelector("[data-api-demo-menu]");
+    const selectWrap = root.querySelector(".api-explorer-demo-select-wrap");
     const options = root.querySelectorAll("[data-api-demo-option]");
+    const operationSelect = root.querySelector("[data-api-demo-operation-select]");
+    const operationMethod = root.querySelector("[data-api-demo-operation-method]");
+    const operationLabel = root.querySelector("[data-api-demo-operation-label]");
+    const operationMenu = root.querySelector("[data-api-demo-operation-menu]");
+    const operationWrap = root.querySelector(".api-explorer-demo-operation-wrap");
+    const endpointDisplay = root.querySelector("[data-api-demo-endpoint]");
+    const operationOptions = root.querySelectorAll(
+      "[data-api-demo-operation-option]",
+    );
     const sendButton = root.querySelector("[data-api-demo-send]");
     const response = root.querySelector("[data-api-demo-response]");
 
@@ -392,6 +474,64 @@ const responsePayload = `{
     function openMenu() {
       selectMenu.classList.add("is-open");
       select.setAttribute("aria-expanded", "true");
+    }
+
+    function closeOperationMenu() {
+      if (!operationSelect || !operationMenu) return;
+      operationMenu.classList.remove("is-open");
+      operationSelect.setAttribute("aria-expanded", "false");
+    }
+
+    function openOperationMenu() {
+      if (!operationSelect || !operationMenu) return;
+      operationMenu.classList.add("is-open");
+      operationSelect.setAttribute("aria-expanded", "true");
+    }
+
+    function methodVariant(method) {
+      const normalized = method.toLowerCase();
+      if (normalized === "delete" || normalized === "del") return "del";
+      if (normalized === "post") return "post";
+      return "get";
+    }
+
+    function renderEndpoint(endpoint) {
+      if (!endpointDisplay) return;
+      const segments = endpoint.split("/").filter(Boolean);
+
+      if (segments.length === 0) {
+        endpointDisplay.textContent = endpoint;
+        return;
+      }
+
+      const html = [];
+      segments.forEach((segment, index) => {
+        html.push('<span class="text-[var(--api-demo-muted)]">/</span>');
+        if (segment === ":id") {
+          html.push('<span class="api-explorer-demo-id-token">:id</span>');
+        } else {
+          html.push(escapeHtml(segment));
+        }
+        if (index === segments.length - 1) return;
+      });
+
+      endpointDisplay.innerHTML = html.join("");
+    }
+
+    function setOperation(method, endpoint) {
+      if (!operationMethod || !operationLabel) return;
+
+      operationMethod.textContent = method;
+      operationLabel.textContent = endpoint;
+      operationMethod.classList.remove(
+        "api-explorer-demo-method-get",
+        "api-explorer-demo-method-post",
+        "api-explorer-demo-method-del",
+      );
+      operationMethod.classList.add(
+        `api-explorer-demo-method-${methodVariant(method)}`,
+      );
+      renderEndpoint(endpoint);
     }
 
     function sleep(duration) {
@@ -419,6 +559,42 @@ const responsePayload = `{
       return wrapper;
     }
 
+    function escapeHtml(value) {
+      return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+    }
+
+    function highlightJson(jsonText) {
+      const escaped = escapeHtml(jsonText);
+      return escaped.replace(
+        /("(?:\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*")(\s*:)?|\btrue\b|\bfalse\b|\bnull\b|-?\d+(?:\.\d+)?(?:[eE][+\-]?\d+)?/g,
+        (match, stringToken, colon) => {
+          if (stringToken) {
+            if (colon) {
+              return `<span class="api-explorer-demo-json-key">${stringToken}</span>${colon}`;
+            }
+            return `<span class="api-explorer-demo-json-string">${stringToken}</span>`;
+          }
+
+          if (match === "true" || match === "false") {
+            return `<span class="api-explorer-demo-json-boolean">${match}</span>`;
+          }
+
+          if (match === "null") {
+            return `<span class="api-explorer-demo-json-null">${match}</span>`;
+          }
+
+          return `<span class="api-explorer-demo-json-number">${match}</span>`;
+        },
+      );
+    }
+
+    function renderResponse(content) {
+      response.innerHTML = highlightJson(content);
+    }
+
     async function streamResponse() {
       animationId += 1;
       const currentId = animationId;
@@ -427,7 +603,7 @@ const responsePayload = `{
       ).matches;
 
       if (prefersReducedMotion) {
-        response.textContent = responsePayload;
+        renderResponse(responsePayload);
         return;
       }
 
@@ -440,7 +616,7 @@ const responsePayload = `{
       response.textContent = "";
       for (let i = 0; i <= responsePayload.length; i += 1) {
         if (currentId !== animationId) return;
-        response.textContent = responsePayload.slice(0, i);
+        renderResponse(responsePayload.slice(0, i));
         response.scrollTop = response.scrollHeight;
         await sleep(typingDelay);
       }
@@ -451,6 +627,7 @@ const responsePayload = `{
       if (selectMenu.classList.contains("is-open")) {
         closeMenu();
       } else {
+        closeOperationMenu();
         openMenu();
       }
     });
@@ -465,14 +642,53 @@ const responsePayload = `{
       });
     });
 
+    if (operationSelect && operationMenu) {
+      operationSelect.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (operationMenu.classList.contains("is-open")) {
+          closeOperationMenu();
+        } else {
+          closeMenu();
+          openOperationMenu();
+        }
+      });
+    }
+
+    operationOptions.forEach((option) => {
+      option.addEventListener("click", () => {
+        const method = option.getAttribute("data-api-demo-operation-method-value");
+        const endpoint = option.getAttribute(
+          "data-api-demo-operation-endpoint-value",
+        );
+        if (method && endpoint) {
+          setOperation(method, endpoint);
+        }
+        closeOperationMenu();
+      });
+    });
+
     document.addEventListener("click", (event) => {
-      if (!root.contains(event.target)) {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+
+      if (!root.contains(target)) {
+        closeOperationMenu();
         closeMenu();
+        return;
+      }
+
+      if (selectWrap && !selectWrap.contains(target)) {
+        closeMenu();
+      }
+
+      if (operationWrap && !operationWrap.contains(target)) {
+        closeOperationMenu();
       }
     });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
+        closeOperationMenu();
         closeMenu();
       }
     });
@@ -481,6 +697,13 @@ const responsePayload = `{
       sendButton.addEventListener("click", () => {
         streamResponse();
       });
+    }
+
+    if (operationMethod && operationLabel) {
+      setOperation(
+        operationMethod.textContent?.trim() ?? "POST",
+        operationLabel.textContent?.trim() ?? "/v1/customers",
+      );
     }
 
     streamResponse();
