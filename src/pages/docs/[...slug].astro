@@ -35,59 +35,59 @@ const { Content } = await render(entry);
 const currentPath = normalizePath(Astro.url.pathname);
 const pageDescription = entry.data.description ?? "Budibase documentation.";
 
-function isActive(path: string): boolean {
+function isActive(path?: string): boolean {
+  if (!path || path === "#") return false;
   return normalizePath(path) === currentPath;
 }
 
-function isGroupActive(path: string, children?: Array<{ href: string }>): boolean {
+function isGroupActive(
+  path?: string,
+  children?: Array<{ href?: string; children?: Array<{ href?: string }> }>,
+): boolean {
   if (isActive(path)) return true;
   if (!children) return false;
-  return children.some((child) => isActive(child.href));
+  return children.some((child) => isGroupActive(child.href, child.children));
 }
 ---
 
 <Layout title={`${entry.data.title} | Budibase Docs`} description={pageDescription}>
   <div class="side-rail-shell">
     <aside class="side-rail-left chrome-border" aria-label="Docs navigation">
-      <div class="side-rail-left-scroll">
+      <div class="side-rail-left-scroll docs-side-rail-scroll">
         <div class="px-3 mb-3 text-sm text-secondary">Docs</div>
         <nav aria-label="Data docs navigation">
-          <ul class="docs-nav-root" data-docs-nav-root>
+          <ul class="docs-nav-root flex flex-col gap-8" data-docs-nav-root>
             {
               docsNavData.map((group, groupIndex) => (
-                <li
-                  class:list={[
-                    group.title === "Data" && groupIndex > 0 && "docs-nav-root-item-spaced",
-                  ]}
-                >
-                  {
-                    group.title === "Data" && (
-                      <p class="docs-nav-group text-xs text-stone-600 dark:text-stone-500 uppercase tracking-wider px-3 py-2">
-                        {group.title}
-                      </p>
-                    )
-                  }
+                <li>
+                  <div class="docs-nav-group text-sm !text-secondary tracking-wider px-3 py-1">
+                    {group.title}
+                  </div>
                   <ul class="docs-nav-items">
                     {group.items.map((item) => (
                       <li>
                         {
                           (() => {
-                            const groupOpen = isGroupActive(item.href, item.children);
+                            const children = item.children ?? [];
+                            const hasChildren = children.length > 0;
+                            const renderAsButton = Boolean(item.toggleOnly && hasChildren);
+                            const groupOpen = item.startCollapsed
+                              ? false
+                              : isGroupActive(item.href, item.children);
                           return (
                               <>
-                        <a
-                          href={item.href}
-                          aria-current={isActive(item.href) ? "page" : undefined}
-                          aria-expanded={item.children && item.children.length > 0 ? String(groupOpen) : undefined}
-                          data-docs-folder-toggle={item.children && item.children.length > 0 ? "true" : undefined}
-                          class:list={[
-                            "docs-nav-link docs-nav-link-folder text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800",
-                            isActive(item.href) && "active",
-                          ]}
-                        >
-                          <span>{item.label}</span>
-                          {
-                            item.children && item.children.length > 0 && (
+                        {
+                          renderAsButton ? (
+                            <button
+                              type="button"
+                              aria-expanded={groupOpen ? "true" : "false"}
+                              data-docs-folder-toggle="true"
+                              class:list={[
+                                "docs-nav-link docs-nav-link-folder w-full border-0 bg-transparent text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 text-left cursor-pointer",
+                                isActive(item.href) && "active",
+                              ]}
+                            >
+                              <span>{item.label}</span>
                               <span
                                 class:list={[
                                   "inline-flex transition-transform duration-150",
@@ -100,11 +100,40 @@ function isGroupActive(path: string, children?: Array<{ href: string }>): boolea
                                   class="w-2.5 h-2.5 text-secondary"
                                 />
                               </span>
-                            )
-                          }
-                        </a>
+                            </button>
+                          ) : (
+                            <a
+                              href={item.href ?? "#"}
+                              aria-current={isActive(item.href) ? "page" : undefined}
+                              aria-expanded={hasChildren ? (groupOpen ? "true" : "false") : undefined}
+                              data-docs-folder-toggle={hasChildren ? "true" : undefined}
+                              class:list={[
+                                "docs-nav-link docs-nav-link-folder text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800",
+                                isActive(item.href) && "active",
+                              ]}
+                            >
+                              <span>{item.label}</span>
+                              {
+                                hasChildren && (
+                                  <span
+                                    class:list={[
+                                      "inline-flex transition-transform duration-150",
+                                      groupOpen && "rotate-90",
+                                    ]}
+                                    data-docs-caret
+                                  >
+                                    <Icon
+                                      name="CaretRight"
+                                      class="w-2.5 h-2.5 text-secondary"
+                                    />
+                                  </span>
+                                )
+                              }
+                            </a>
+                          )
+                        }
                         {
-                          item.children && item.children.length > 0 && (
+                          hasChildren && (
                             <ul
                               class:list={[
                                 "docs-nav-children",
@@ -112,10 +141,10 @@ function isGroupActive(path: string, children?: Array<{ href: string }>): boolea
                               ]}
                               data-docs-folder-panel
                             >
-                              {item.children.map((child) => (
+                              {children.map((child) => (
                                 <li>
                                   <a
-                                    href={child.href}
+                                    href={child.href ?? "#"}
                                     aria-current={isActive(child.href) ? "page" : undefined}
                                     class:list={[
                                       "docs-nav-link docs-nav-link-child text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800",
@@ -163,19 +192,15 @@ function isGroupActive(path: string, children?: Array<{ href: string }>): boolea
     margin: 0;
   }
 
-  .docs-nav-root-item-spaced {
-    margin-top: 1rem;
-  }
-
   .docs-nav-group {
-    margin: 0 0 0.2rem;
+    margin: 0;
   }
 
   .docs-nav-link {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 2rem;
+    min-height: 28px;
     border-radius: 0.375rem;
     padding: 0.25rem 0.75rem;
     text-decoration: none;
@@ -202,8 +227,17 @@ function isGroupActive(path: string, children?: Array<{ href: string }>): boolea
   }
 
   .docs-nav-link-child {
-    min-height: 1.9rem;
+    min-height: 28px;
     font-size: 13px;
+  }
+
+  .docs-side-rail-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .docs-side-rail-scroll::-webkit-scrollbar {
+    display: none;
   }
 
   .docs-article :where(h1) {
