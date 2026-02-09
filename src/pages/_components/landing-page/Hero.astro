@@ -2,23 +2,14 @@
 import Customers from "@components/Customers.astro";
 import Button from "@components/Button.astro";
 import Curl from "@components/Curl.astro";
-import HeroDemo from "@components/HeroDemo.astro";
-import ClarenceImage from "@assets/images/homepage/ClarencePortrait.png";
-import { Image } from "astro:assets";
+import AgentDemo from "@components/AgentDemo.astro";
 ---
 
 <section class="container max-w-7xl mx-auto px-2 lg:px-0 flex flex-col mt-8 md:mt-8">
 
   <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
     <div class="flex-1 flex flex-col items-center text-center">
-      <Image
-        src={ClarenceImage}
-        alt="Clarence"
-        width={100}
-        height={100}
-        class="mb-3 shrink-0"
-      />
-      <h1 class="max-w-md h2 text-stone-950 dark:text-stone-50 mb-5 font-medium!">
+      <h1 class="hero-title max-w-2xl h2 text-4xl! text-stone-950 dark:text-stone-50 mt-20 mb-5 font-medium!">
           Budibase is the open-source platform for building AI agents and workflows.
       </h1>
       <div class="flex flex-row">
@@ -36,7 +27,26 @@ import { Image } from "astro:assets";
   </div>
 
   <div class="mt-6 md:mt-10">
-    <HeroDemo />
+    <AgentDemo />
   </div>
 
 </section>
+
+<style>
+  @font-face {
+    font-family: "Fraunces";
+    src:
+      url("/fonts/Fraunces-Variable.ttf") format("truetype-variations"),
+      local("Fraunces 72pt SuperSoft"),
+      local("Fraunces72ptSuperSoft-Light"),
+      local("Fraunces");
+    font-style: normal;
+    font-weight: 500 600;
+    font-display: swap;
+  }
+
+  .hero-title {
+    font-family: "Fraunces", var(--font-display);
+    font-weight: 500 !important;
+  }
+</style>

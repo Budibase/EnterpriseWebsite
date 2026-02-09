@@ -1,11 +1,13 @@
 ---
 import Tag from "@components/Tag.astro";
+import Link from "@components/Link.astro";
 
 interface NavItem {
 	text: string;
 	link: string;
 	sectionId: string;
 	icon?: any;
+	linkVariant?: "primary" | "secondary" | "cta";
 	tag?: {
 		label: string;
 		variant: "primary" | "secondary" | "cta" | "orange";
@@ -19,11 +21,9 @@ interface NavGroup {
 
 interface Props {
 	navItems: NavItem[] | NavGroup[];
-	title?: string;
-	description?: string;
 }
 
-const { navItems, title = "Platform", description = "The privacy-first platform for building agents, chat, automations, and apps." } = Astro.props;
+const { navItems } = Astro.props;
 const currentPath = Astro.url.pathname;
 
 // Check if navItems is grouped or flat
@@ -37,8 +37,6 @@ function isActive(link: string): boolean {
 ---
 
 <aside class="platform-sidebar">
-	<h1 class="mb-2 text-xl!">{title}</h1>
-	<p class="text-stone-500! dark:text-stone-400! mb-4!">{description}</p>
 	<nav>
 		<ul>
 			{isGrouped ? (
@@ -52,26 +50,38 @@ function isActive(link: string): boolean {
 							</li>
 						)}
 						{group.items.map((item, itemIndex) => {
-							const IconComponent = item.icon;
 							return (
 								<li>
-									<a href={item.link} class:list={[
-										"nav-link flex flex-row gap-2 items-center h-8 px-3 rounded-md text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800 text-sm",
-										isActive(item.link) && "active"
-									]} data-section={item.sectionId}>
-										{IconComponent && (
-											<IconComponent class="nav-icon w-[18px] h-[18px] shrink-0" />
-										)}
-										<span>{item.text}</span>
-										{item.tag && (
-											<Tag
-												label={item.tag.label}
-												variant={item.tag.variant}
-												size="extra-small"
-												class="ml-auto"
-											/>
-										)}
-									</a>
+									{item.linkVariant === "cta" ? (
+										<Link
+											label={item.text}
+											url={item.link}
+											variant="cta"
+											dataSection={item.sectionId}
+											class={[
+												"nav-link flex flex-row items-center h-8 px-3 rounded-md text-sm w-full !text-primary dark:!text-primary hover:!text-primary dark:hover:!text-primary [&.active]:!text-sky-700 dark:[&.active]:!text-sky-200 [&.active:hover]:!text-sky-600 dark:[&.active:hover]:!text-sky-100",
+												"hover:bg-stone-100 dark:hover:bg-stone-800",
+												isActive(item.link) && "active [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800",
+											]
+												.filter(Boolean)
+												.join(" ")}
+										/>
+									) : (
+										<a href={item.link} class:list={[
+											"nav-link flex flex-row items-center h-8 px-3 rounded-md text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800 text-sm",
+											isActive(item.link) && "active"
+										]} data-section={item.sectionId}>
+											<span>{item.text}</span>
+											{item.tag && (
+												<Tag
+													label={item.tag.label}
+													variant={item.tag.variant}
+													size="extra-small"
+													class="ml-auto"
+												/>
+											)}
+										</a>
+									)}
 								</li>
 							);
 						})}
@@ -84,26 +94,38 @@ function isActive(link: string): boolean {
 				))
 			) : (
 				flatNavItems!.map((item, index) => {
-					const IconComponent = item.icon;
 					return (
 						<li>
-							<a href={item.link} class:list={[
-								"nav-link flex flex-row gap-3 items-center h-8 px-3 rounded-md text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
-								isActive(item.link) && "active"
-							]} data-section={item.sectionId}>
-									{IconComponent && (
-										<IconComponent class="nav-icon w-4 h-4 shrink-0" />
-									)}
-									<span>{item.text}</span>
-									{item.tag && (
-										<Tag
-											label={item.tag.label}
-											variant={item.tag.variant}
-											size="extra-small"
-											class="ml-auto"
-										/>
-									)}
-								</a>
+							{item.linkVariant === "cta" ? (
+								<Link
+									label={item.text}
+									url={item.link}
+									variant="cta"
+									dataSection={item.sectionId}
+									class={[
+										"nav-link flex flex-row items-center h-8 px-3 rounded-md text-sm w-full !text-primary dark:!text-primary hover:!text-primary dark:hover:!text-primary [&.active]:!text-sky-700 dark:[&.active]:!text-sky-200 [&.active:hover]:!text-sky-600 dark:[&.active:hover]:!text-sky-100",
+										"hover:bg-stone-100 dark:hover:bg-stone-800",
+										isActive(item.link) && "active [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800",
+									]
+										.filter(Boolean)
+										.join(" ")}
+								/>
+							) : (
+								<a href={item.link} class:list={[
+									"nav-link flex flex-row items-center h-8 px-3 rounded-md text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
+									isActive(item.link) && "active"
+								]} data-section={item.sectionId}>
+										<span>{item.text}</span>
+										{item.tag && (
+											<Tag
+												label={item.tag.label}
+												variant={item.tag.variant}
+												size="extra-small"
+												class="ml-auto"
+											/>
+										)}
+									</a>
+							)}
 
 						</li>
 					);
@@ -115,17 +137,7 @@ function isActive(link: string): boolean {
 
 <style>
 	.platform-sidebar {
-		position: sticky;
-		top: 2rem;
-		width: 280px;
-	}
-
-	.nav-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
+		width: 100%;
 	}
 
 	.nav-group-header {
@@ -135,34 +147,4 @@ function isActive(link: string): boolean {
 	.nav-group-header-spaced {
 		margin-top: 0.5rem !important;
 	}
-
-	.nav-icon {
-		width: 18px;
-		height: 18px;
-		color: inherit;
-	}
-
-	.nav-link:hover .nav-icon {
-		color: inherit;
-	}
-
-	.nav-link.active .nav-icon {
-		color: inherit;
-	}
-
-	@media (max-width: 768px) {
-		.platform-sidebar {
-			position: static;
-		}
-
-		.nav-list {
-			flex-direction: row;
-			overflow-x: auto;
-		}
-
-		.nav-link {
-			white-space: nowrap;
-		}
-	}
 </style>
-

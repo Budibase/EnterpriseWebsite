@@ -60,6 +60,10 @@ export async function getStaticPaths() {
 const { study } = Astro.props;
 const { Content } = await render(study);
 const { title, quote, employees, industry, coverImage, author } = study.data;
+const genericEnterpriseDescription =
+	"Enterprise-grade security, control, & support for mission-critical workflows.";
+const caseStudyDescription =
+	[employees, industry].filter(Boolean).join(" · ") || quote || genericEnterpriseDescription;
 
 // Get the cover image - use custom if specified, otherwise default
 let coverSrc = DefaultCover;
@@ -69,23 +73,14 @@ if (coverImage && images[coverImage]) {
 }
 ---
 
-<Layout>
+<Layout title={title} description={caseStudyDescription}>
 	<PlatformLayout
-		title="Enterprise"
-		description="Enterprise-grade security, control, & support for mission-critical workflows."
+		title={title}
+		description={caseStudyDescription}
 		{navItems}
 	>
 		<div class="mb-8">
 			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					{title}
-				</h2>
-				{(employees || industry) && (
-					<p class="text-sm! text-stone-500! dark:text-stone-500! mb-4!">
-						{[employees, industry].filter(Boolean).join(" · ")}
-					</p>
-				)}
-
 				<Image
 					src={coverSrc}
 					alt={`${title} case study`}

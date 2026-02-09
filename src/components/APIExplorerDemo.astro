@@ -14,37 +14,31 @@ import SharepointLogo from "@assets/logos/microsoft-sharepoint.svg";
 import ZendeskLogo from "@assets/logos/zendesk.svg";
 import SageLogo from "@assets/logos/sage.svg";
 
+interface Props {
+  backdropImage?: string;
+  backdropPaddingXClass?: string;
+}
+
+const { backdropImage, backdropPaddingXClass = "px-4 sm:px-8 lg:px-12" } =
+  Astro.props as Props;
 const id = `api-explorer-demo-${Math.random().toString(36).slice(2, 8)}`;
+const apiExplorerStyle = backdropImage
+  ? `--api-demo-backdrop-image: url("${backdropImage}")`
+  : undefined;
 
 const responsePayload = `{
   "id": "cus_NffrFeUfNV2Hib",
   "object": "customer",
-  "address": null,
-  "balance": 0,
   "created": 1680893993,
-  "currency": null,
-  "default_source": null,
-  "delinquent": false,
-  "description": null,
-  "email": "jennyrosen@example.com",
-  "invoice_prefix": "0759376C",
-  "invoice_settings": {
-    "custom_fields": null,
-    "default_payment_method": null,
-    "footer": null,
-    "rendering_options": null
-  },
-  "livemode": false,
-  "metadata": {},
   "name": "Jenny Rosen",
-  "next_invoice_sequence": 1
+  "email": "jennyrosen@example.com"
 }`;
 ---
 
-<div id={id} class="api-explorer-demo w-full">
-  <div class="api-explorer-demo-backdrop px-24 py-12 w-[120%] -ml-[10%]">
+<div id={id} class="api-explorer-demo w-full overflow-hidden" style={apiExplorerStyle}>
+  <div class={`api-explorer-demo-backdrop ${backdropPaddingXClass} py-12`}>
     <div
-      class="api-explorer-demo-shell overflow-hidden rounded-[8px] border-[0.5px] border-[var(--api-demo-border)]"
+      class="api-explorer-demo-shell w-full max-w-full overflow-hidden rounded-[8px] border-[0.5px] border-[var(--api-demo-border)]"
     >
       <div
         class="group relative flex h-7 items-center justify-between border-b-[0.5px] border-[var(--border-color)] bg-[var(--bg-2)] px-2"
@@ -60,7 +54,7 @@ const responsePayload = `{
             class="api-explorer-demo-window-dot inline-block h-2.5 w-2.5 rounded-full"
           ></span>
         </div>
-        <div class="absolute left-1/2 top-1/2 w-[540px] -translate-x-1/2 -translate-y-1/2">
+        <div class="absolute left-1/2 top-1/2 w-[min(540px,calc(100%-5.5rem))] -translate-x-1/2 -translate-y-1/2">
           <input
             type="text"
             placeholder="budibase/api-explorer"
@@ -82,7 +76,7 @@ const responsePayload = `{
         <div class="min-w-0 flex-1">
           <div class="api-explorer-demo-main flex flex-col xl:flex-row">
             <div
-              class="api-explorer-demo-center min-w-0 flex-1 border-t-[0.5px] border-[var(--api-demo-border)]"
+              class="api-explorer-demo-center min-w-0 w-full flex-1 border-t-[0.5px] border-[var(--api-demo-border)]"
             >
               <div class="api-explorer-demo-controls px-5 py-3">
                 <div
@@ -378,43 +372,21 @@ const responsePayload = `{
                 </div>
 
                 <div class="px-5 py-3">
-                  <div class="api-explorer-demo-section-title">Query</div>
+                  <div class="api-explorer-demo-section-title">Body</div>
                   <div class="api-explorer-demo-grid mt-2">
                     <div class="api-explorer-demo-row">
-                      <span>id*</span>
-                      <span class="api-explorer-demo-type">Str</span>
+                      <span class="api-explorer-demo-row-field">name*</span>
+                      <span class="api-explorer-demo-row-meta">
+                        <span class="api-explorer-demo-type">Str</span>
+                        <span class="api-explorer-demo-value">Jenny Rosen</span>
+                      </span>
                     </div>
                     <div class="api-explorer-demo-row">
-                      <span>opt_pretty*</span>
-                      <span class="api-explorer-demo-type">Bool</span>
-                    </div>
-                  </div>
-
-                  <div class="api-explorer-demo-section-title mt-5">Body</div>
-                  <div class="api-explorer-demo-grid mt-2">
-                    <div class="api-explorer-demo-row">
-                      <span>color</span>
-                      <span class="api-explorer-demo-type">Str</span>
-                    </div>
-                    <div class="api-explorer-demo-row">
-                      <span>notes</span>
-                      <span class="api-explorer-demo-type">Str</span>
-                    </div>
-                    <div class="api-explorer-demo-row">
-                      <span>workspace</span>
-                      <span class="api-explorer-demo-type">Obj</span>
-                    </div>
-                    <div class="api-explorer-demo-row">
-                      <span>default_view</span>
-                      <span class="api-explorer-demo-type">Str</span>
-                    </div>
-                    <div class="api-explorer-demo-row">
-                      <span>custom_fields</span>
-                      <span class="api-explorer-demo-type">Obj</span>
-                    </div>
-                    <div class="api-explorer-demo-row">
-                      <span>is_template</span>
-                      <span class="api-explorer-demo-type">Bool</span>
+                      <span class="api-explorer-demo-row-field">email*</span>
+                      <span class="api-explorer-demo-row-meta">
+                        <span class="api-explorer-demo-type">Str</span>
+                        <span class="api-explorer-demo-value">jennyrosen@example.com</span>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -428,7 +400,7 @@ const responsePayload = `{
                 <button type="button">Schema</button>
                 <button class="is-active" type="button">Response</button>
               </div>
-              <pre class="api-explorer-demo-response" data-api-demo-response>
+              <pre class="api-explorer-demo-response mt-4" data-api-demo-response>
               </pre>
             </aside>
           </div>
@@ -437,6 +409,18 @@ const responsePayload = `{
     </div>
   </div>
 </div>
+
+<style>
+  .api-explorer-demo-backdrop {
+    overflow-x: clip;
+  }
+
+  .api-explorer-demo-tabs,
+  .api-explorer-demo-response-tabs {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+</style>
 
 <script define:vars={{ id, responsePayload }}>
   (() => {
@@ -463,8 +447,17 @@ const responsePayload = `{
     if (!select || !selectValue || !selectMenu || !response) return;
 
     let animationId = 0;
-    const thinkingDuration = 2200;
+    const autoStreamDelay = 6000;
+    const preStreamDuration = 200;
     const typingDelay = 8;
+    let autoStreamTimer = null;
+    const pathValues = {
+      id: "cus_NffrFeUfNV2Hib",
+    };
+    const bodyValues = {
+      name: "Jenny Rosen",
+      email: "jennyrosen@example.com",
+    };
 
     function closeMenu() {
       selectMenu.classList.remove("is-open");
@@ -495,7 +488,7 @@ const responsePayload = `{
       return "get";
     }
 
-    function renderEndpoint(endpoint) {
+    function renderEndpoint(endpoint, method) {
       if (!endpointDisplay) return;
       const segments = endpoint.split("/").filter(Boolean);
 
@@ -506,13 +499,39 @@ const responsePayload = `{
 
       const html = [];
       segments.forEach((segment, index) => {
-        html.push('<span class="text-[var(--api-demo-muted)]">/</span>');
+        html.push('<span class="api-explorer-demo-path-sep">/</span>');
         if (segment === ":id") {
-          html.push('<span class="api-explorer-demo-id-token">:id</span>');
+          html.push(
+            `<span class="api-explorer-demo-id-token">${escapeHtml(pathValues.id)}</span>`,
+          );
         } else {
           html.push(escapeHtml(segment));
         }
         if (index === segments.length - 1) return;
+      });
+
+      const params = [];
+      if (methodVariant(method) === "post") {
+        Object.entries(bodyValues).forEach(([key, value]) => {
+          params.push([key, value]);
+        });
+      }
+
+      if (params.length > 0) {
+        html.push('<span class="api-explorer-demo-path-sep">?</span>');
+      }
+
+      params.forEach(([key, value], index) => {
+        if (index > 0) {
+          html.push('<span class="api-explorer-demo-path-sep">&amp;</span>');
+        }
+        html.push(
+          `<span class="api-explorer-demo-path-key">${escapeHtml(key)}</span>`,
+        );
+        html.push('<span class="api-explorer-demo-path-sep">=</span>');
+        html.push(
+          `<span class="api-explorer-demo-path-value">${escapeHtml(value)}</span>`,
+        );
       });
 
       endpointDisplay.innerHTML = html.join("");
@@ -531,7 +550,7 @@ const responsePayload = `{
       operationMethod.classList.add(
         `api-explorer-demo-method-${methodVariant(method)}`,
       );
-      renderEndpoint(endpoint);
+      renderEndpoint(endpoint, method);
     }
 
     function sleep(duration) {
@@ -540,23 +559,21 @@ const responsePayload = `{
       });
     }
 
-    function createThinking() {
-      const wrapper = document.createElement("div");
-      wrapper.className = "api-explorer-demo-thinking";
-      wrapper.textContent = "Thinking";
+    async function renderLatencyCounter(currentId) {
+      const startedAt = performance.now();
 
-      const dots = document.createElement("span");
-      dots.className = "api-explorer-demo-thinking-dots";
+      while (true) {
+        if (currentId !== animationId) return false;
 
-      for (let i = 0; i < 3; i += 1) {
-        const dot = document.createElement("span");
-        dot.className = "api-explorer-demo-thinking-dot";
-        dots.append(dot);
+        const elapsed = Math.min(
+          preStreamDuration,
+          Math.round(performance.now() - startedAt),
+        );
+        response.textContent = `${elapsed}ms`;
+
+        if (elapsed >= preStreamDuration) return true;
+        await sleep(16);
       }
-
-      wrapper.append(" ");
-      wrapper.append(dots);
-      return wrapper;
     }
 
     function escapeHtml(value) {
@@ -592,7 +609,14 @@ const responsePayload = `{
     }
 
     function renderResponse(content) {
+      response.classList.remove("is-empty");
       response.innerHTML = highlightJson(content);
+    }
+
+    function renderEmptyState() {
+      animationId += 1;
+      response.classList.add("is-empty");
+      response.textContent = "Click send to get API response";
     }
 
     async function streamResponse() {
@@ -602,14 +626,16 @@ const responsePayload = `{
         "(prefers-reduced-motion: reduce)",
       ).matches;
 
+      response.classList.remove("is-empty");
+
       if (prefersReducedMotion) {
         renderResponse(responsePayload);
         return;
       }
 
-      response.textContent = "";
-      response.append(createThinking());
-      await sleep(thinkingDuration);
+      response.textContent = "0ms";
+      const counterComplete = await renderLatencyCounter(currentId);
+      if (!counterComplete) return;
 
       if (currentId !== animationId) return;
 
@@ -620,6 +646,20 @@ const responsePayload = `{
         response.scrollTop = response.scrollHeight;
         await sleep(typingDelay);
       }
+    }
+
+    function clearAutoStreamTimer() {
+      if (autoStreamTimer === null) return;
+      window.clearTimeout(autoStreamTimer);
+      autoStreamTimer = null;
+    }
+
+    function scheduleAutoStream() {
+      clearAutoStreamTimer();
+      autoStreamTimer = window.setTimeout(() => {
+        autoStreamTimer = null;
+        streamResponse();
+      }, autoStreamDelay);
     }
 
     select.addEventListener("click", (event) => {
@@ -695,6 +735,7 @@ const responsePayload = `{
 
     if (sendButton) {
       sendButton.addEventListener("click", () => {
+        clearAutoStreamTimer();
         streamResponse();
       });
     }
@@ -706,6 +747,7 @@ const responsePayload = `{
       );
     }
 
-    streamResponse();
+    renderEmptyState();
+    scheduleAutoStream();
   })();
 </script>

@@ -2,7 +2,6 @@
 import Layout from "../../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
 import Button from "@components/Button.astro";
-import Link from "@components/Link.astro";
 import Icon from "@components/Icon.astro";
 import { enterpriseNavItemsData } from "../_navItems";
 import Buildings from "phosphor-astro/Buildings.astro";
@@ -44,35 +43,23 @@ const navItems = enterpriseNavItemsData.map(group => ({
 		icon: iconMap[item.iconName],
 	})),
 }));
+const currentNavItem = enterpriseNavItemsData
+	.flatMap(group => group.items)
+	.find(item => item.link === Astro.url.pathname || `${item.link}/` === Astro.url.pathname);
+const pageTitle = currentNavItem?.pageTitle ?? "Enterprise";
+const pageDescription =
+	currentNavItem?.pageDescription ??
+	"Enterprise-grade security, control, & support for mission-critical workflows.";
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription}>
 	<PlatformLayout
-		title="Enterprise"
-		description="Enterprise-grade security, control, & support for mission-critical workflows."
+		title={pageTitle}
+		description={pageDescription}
 		{navItems}
 	>
 		<div class="mb-8">
 			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<h1 class="text-lg! text-stone-900 dark:text-stone-100">
-					Contact our sales team
-				</h1>
-				<p
-					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
-				>
-					Complete the form below, or
-					<Link
-						label="book a slot in our sales team calendar"
-						url="https://cal.com/team/budibase/contact-sales"
-						variant="primary"
-						underline
-						class="ml-1"
-						dataCalLink="team/budibase/contact-sales"
-						dataCalNamespace="contact-sales"
-						dataCalConfig='{"layout":"month_view"}'
-					/>
-					.
-				</p>
 				<div>
 					<form
 						method="post"

@@ -17,73 +17,88 @@ const { Content } = await render(entry);
 ---
 
 <Layout title={`${title} Workflow Playbook | Budibase`} description={outcome}>
-  <section class="mt-24 pb-20">
-    <div class="container max-w-7xl mx-auto">
-      <div class="grid gap-16 lg:grid-cols-[minmax(220px,280px)_minmax(0,1fr)] items-start">
-        <aside class="lg:sticky lg:top-8" data-workflow-sidebar>
-          <a
-            href="/learn/workflows"
-            class="inline-flex items-center gap-[6px] text-sm text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 mb-2"
-          >
-            <Icon name="ArrowRight" class="w-4 h-4 rotate-180" />
-            <span>Back</span>
-          </a>
-          <h1 class="mb-2 text-xl!">{title}</h1>
-          <p class="text-stone-500! dark:text-stone-400! mb-4!">
+  <div class="side-rail-shell">
+    <aside class="side-rail-left" aria-label="Workflow navigation">
+      <div class="side-rail-left-scroll" data-workflow-sidebar>
+        <div class="px-3 mb-3 text-sm text-secondary">Learn</div>
+        <a
+          href="/learn/workflows"
+          class="inline-flex items-center gap-[6px] text-sm text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 mb-2"
+        >
+          <Icon name="ArrowRight" class="w-4 h-4 rotate-180" />
+          <span>Back</span>
+        </a>
+        <nav aria-label="Build steps">
+          <ul class="flex flex-col">
+            {sidebar.map((item, index) => {
+              const iconNames = [
+                "One",
+                "Two",
+                "Three",
+                "Four",
+                "Five",
+                "Six",
+                "Seven",
+                "Eight",
+                "Nine",
+              ];
+              const iconSuffix = iconNames[Math.min(index, iconNames.length - 1)];
+              const iconName = `NumberCircle${iconSuffix}`;
+              return (
+                <li>
+                    <a
+                    class:list={[
+                      "nav-link group flex flex-row gap-3 items-center h-8 px-3 rounded-md text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
+                      item.id === "overview" && "active",
+                    ]}
+                    href={`#${item.id}`}
+                    data-step-id={item.id}
+                    aria-current={item.id === "overview" ? "page" : undefined}
+                  >
+                    <span class="flex items-center gap-2">
+                      <Icon
+                        name={iconName}
+                        weight="fill"
+                        class="w-4 h-4 text-stone-500 dark:text-stone-500 group-[.active]:text-sky-700 dark:group-[.active]:text-sky-200"
+                      />
+                      <span class="sr-only">Step {index + 1}</span>
+                      <span>{item.label}</span>
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <div class="side-rail-main">
+      <div class="side-rail-main-inner pb-20">
+        <section class="side-rail-page-header max-w-3xl">
+          <h1 class="mb-2 text-5xl!">{title}</h1>
+          <p class="text-stone-500! dark:text-stone-400!">
             {outcome}
           </p>
-          <nav aria-label="Build steps">
-            <ul class="flex flex-col">
-              {sidebar.map((item, index) => {
-                const iconNames = [
-                  "One",
-                  "Two",
-                  "Three",
-                  "Four",
-                  "Five",
-                  "Six",
-                  "Seven",
-                  "Eight",
-                  "Nine",
-                ];
-                const iconSuffix = iconNames[Math.min(index, iconNames.length - 1)];
-                const iconName = `NumberCircle${iconSuffix}`;
-                return (
-                  <li>
-                    <a
-                      class:list={[
-                        "nav-link group flex flex-row gap-3 items-center h-8 px-3 rounded-md text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
-                        item.id === "overview" && "active",
-                      ]}
-                      href={`#${item.id}`}
-                      data-step-id={item.id}
-                      aria-current={item.id === "overview" ? "page" : undefined}
-                    >
-                      <span class="flex items-center gap-2">
-                        <Icon
-                          name={iconName}
-                          weight="fill"
-                          class="w-4 h-4 text-stone-500 dark:text-stone-500 group-[.active]:text-stone-900 dark:group-[.active]:text-stone-100"
-                        />
-                        <span class="sr-only">Step {index + 1}</span>
-                        <span>{item.label}</span>
-                      </span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-        </aside>
-
+        </section>
         <main class="min-w-0">
-          <article class="max-w-3xl [&_h2]:scroll-mt-24 [&_h2#overview]:!mt-0">
+          <article class="workflow-article max-w-3xl">
             <Content />
           </article>
         </main>
       </div>
     </div>
-  </section>
+  </div>
+
+  <style>
+    .workflow-article :where(h2, h3, h4) {
+      scroll-margin-top: calc(var(--site-nav-height) + 24px);
+    }
+
+    .workflow-article :where(h2#overview) {
+      margin-top: 0 !important;
+    }
+  </style>
 
   <script define:vars={{ steps: sidebar.map((item) => ({ id: item.id, label: item.label })) }}>
     (() => {

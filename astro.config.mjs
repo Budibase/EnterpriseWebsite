@@ -19,6 +19,7 @@ export default defineConfig({
   },
 
   redirects: {
+    "/platform": "/platform/agents",
     "/platform/integrations": "/platform/connections",
   },
 

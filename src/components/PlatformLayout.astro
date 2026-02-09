@@ -7,6 +7,8 @@ interface NavItem {
 	link: string;
 	sectionId: string;
 	icon?: any;
+	pageTitle?: string;
+	pageDescription?: string;
 }
 
 interface NavGroup {
@@ -21,36 +23,51 @@ interface Props {
 }
 
 const { title, description, navItems } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+function normalizePath(path: string): string {
+	if (path.length > 1 && path.endsWith("/")) {
+		return path.slice(0, -1);
+	}
+	return path;
+}
+
+const normalizedCurrentPath = normalizePath(currentPath);
+const isGrouped = navItems.length > 0 && "items" in navItems[0];
+const flattenedNavItems = isGrouped
+	? (navItems as NavGroup[]).flatMap(group => group.items)
+	: (navItems as NavItem[]);
+const activeNavItem = flattenedNavItems.find(item => normalizePath(item.link) === normalizedCurrentPath);
+const resolvedTitle = activeNavItem?.pageTitle ?? title;
+const resolvedDescription = activeNavItem?.pageDescription ?? description;
+const sideRailLabel = normalizedCurrentPath.startsWith("/enterprise") ? "Enterprise" : "Platform";
 ---
 
-<div class="container max-w-7xl mx-auto mt-24 px-2 lg:px-0">
-	<div class="platform-layout">
-		<PlatformSidebar {title} {description} {navItems} />
-		<main class="platform-main">
+<div class="side-rail-shell">
+	<aside class="side-rail-left" aria-label={`${sideRailLabel} navigation`}>
+		<div class="side-rail-left-scroll">
+			<div class="px-3 mb-3 text-sm text-secondary">{sideRailLabel}</div>
+			<PlatformSidebar {navItems} />
+		</div>
+	</aside>
+
+	<div class="side-rail-main">
+		<div class="side-rail-main-inner">
+			<section class="side-rail-page-header max-w-3xl">
+				<h1 class="mb-2 text-5xl!">{resolvedTitle}</h1>
+				<p class="text-stone-500! dark:text-stone-400!">{resolvedDescription}</p>
+			</section>
+			<main class="platform-main">
 				<slot />
-		</main>
+			</main>
+			<CTA />
+		</div>
 	</div>
-	<CTA />
 </div>
 
 <style>
-	.platform-layout {
-		display: grid;
-		grid-template-columns: 260px 1fr;
-		gap: 4rem;
-		align-items: start;
-	}
-
 	.platform-main {
 		flex: 1;
 		min-width: 0;
 	}
-
-	@media (max-width: 768px) {
-		.platform-layout {
-			grid-template-columns: 1fr;
-			gap: 2rem;
-		}
-	}
 </style>
-

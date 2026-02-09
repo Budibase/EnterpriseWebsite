@@ -13,14 +13,8 @@ import Database from "phosphor-astro/GridNine.astro";
 import Sparkle from "phosphor-astro/Sparkle.astro";
 import Cloud from "phosphor-astro/Cloud.astro";
 import TrendUp from "phosphor-astro/TrendUp.astro";
-import ProductImage from "@assets/images/platform/AgentInstructions2.png";
-import PreviewImage from "@assets/images/platform/AgentPreview.png";
-import ToolsImage from "@assets/images/platform/AgentTools.png";
-import LogsImage from "@assets/images/platform/AgentLogs.png";
-import ChatImage from "@assets/images/platform/AgentInChat.png";
-import AutomationImage from "@assets/images/platform/AgentInAutomations.png";
-import { Image } from "astro:assets";
 import Card from "@components/cards/Card.astro";
+import AgentDemo from "@components/AgentDemo.astro";
 
 const iconMap: Record<string, any> = {
 	Circles,
@@ -43,30 +37,24 @@ const navItems = platformNavItemsData.map(group => ({
 		icon: iconMap[item.iconName],
 	})),
 }));
+const currentNavItem = platformNavItemsData
+	.flatMap(group => group.items)
+	.find(item => item.link === Astro.url.pathname || `${item.link}/` === Astro.url.pathname);
+const pageTitle = currentNavItem?.pageTitle ?? "Platform";
+const pageDescription =
+	currentNavItem?.pageDescription ??
+	"The privacy-first platform for building agents, chat, automations & apps.";
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription}>
   <PlatformLayout
-    title="Platform"
-    description="The privacy-first platform for building agents, chat, automations & apps."
+    title={pageTitle}
+    description={pageDescription}
     {navItems}
   >
     <div class="mb-8">
-      <div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-        <h2 class="text-lg! text-stone-900 dark:text-stone-100">
-          Agents
-        </h2>
-        <p
-          class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
-        >
-          Design intelligent agents that reason, act, and integrate directly into your existing systems.
-        </p>
-
-        <Image
-          src={ProductImage}
-          alt="Agents editor"
-          class="w-full h-96 object-cover rounded-md"
-        />
+      <div class="mb-4">
+        <AgentDemo />
       </div>
 
       <div

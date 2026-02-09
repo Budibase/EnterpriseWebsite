@@ -5,6 +5,7 @@ interface Props {
 	currentCategory?: string;
 	title?: string;
 	description?: string;
+	showHeader?: boolean;
 	links?: Array<{
 		label: string;
 		description: string;
@@ -20,6 +21,7 @@ const {
 	currentCategory = 'all',
 	title = 'Blog',
 	description = '',
+	showHeader = true,
 	links,
 	activeHref,
 } = Astro.props;
@@ -44,8 +46,12 @@ function isLearnActive(link: string): boolean {
 ---
 
 <aside class="categories-sidebar">
-	<h1 class:list={[isLearnLinks ? "mb-2 text-xl!" : "mb-4 h2"]}>{title}</h1>
-	{description && <p class="text-stone-500! dark:text-stone-400! mb-4!">{description}</p>}
+	{showHeader && (
+		<>
+			<h1 class:list={[isLearnLinks ? "mb-2 text-xl!" : "mb-4 h2"]}>{title}</h1>
+			{description && <p class="text-stone-500! dark:text-stone-400! mb-4!">{description}</p>}
+		</>
+	)}
 	<nav>
 		<ul class:list={["nav-list", isLearnLinks && "learn-list"]}>
 			{isLearnLinks
@@ -58,7 +64,7 @@ function isLearnActive(link: string): boolean {
 								data-astro-prefetch={item.prefetch ? '' : undefined}
 								aria-current={isLearnActive(item.href) ? "page" : undefined}
 								class:list={[
-									"nav-link flex flex-row gap-3 items-center h-8 px-3 rounded-md text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
+									"nav-link flex flex-row gap-3 items-center h-8 px-3 rounded-md text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
 									isLearnActive(item.href) && "active"
 								]}
 							>
@@ -76,7 +82,7 @@ function isLearnActive(link: string): boolean {
 							<a
 								href={category.id === 'all' ? '/blog' : `/blog/category/${category.id}`}
 								class:list={[
-									"nav-link flex flex-row items-center h-8 px-2 rounded text-stone-600 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 [&.active]:text-stone-900 [&.active]:dark:text-stone-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
+									"nav-link flex flex-row items-center h-8 px-2 rounded text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
 									currentCategory === category.id && "active",
 								]}
 								data-astro-prefetch
@@ -92,9 +98,7 @@ function isLearnActive(link: string): boolean {
 
 <style>
 	.categories-sidebar {
-		position: sticky;
-		top: 2rem;
-		width: 280px;
+		width: 100%;
 	}
 
 	.nav-list {
@@ -107,10 +111,6 @@ function isLearnActive(link: string): boolean {
 
 
 	@media (max-width: 768px) {
-		.categories-sidebar {
-			position: static;
-		}
-
 		.nav-list {
 			flex-direction: row;
 			overflow-x: auto;

@@ -38,25 +38,23 @@ const navItems = platformNavItemsData.map(group => ({
 		icon: iconMap[item.iconName],
 	})),
 }));
+const currentNavItem = platformNavItemsData
+	.flatMap(group => group.items)
+	.find(item => item.link === Astro.url.pathname || `${item.link}/` === Astro.url.pathname);
+const pageTitle = currentNavItem?.pageTitle ?? "Platform";
+const pageDescription =
+	currentNavItem?.pageDescription ??
+	"The privacy-first platform for building agents, chat, automations & apps.";
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription}>
 	<PlatformLayout
-		title="Platform"
-		description="The privacy-first platform for building agents, chat, automations & apps."
+		title={pageTitle}
+		description={pageDescription}
 		{navItems}
 	>
 		<div class="mb-8">
 			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					Apps
-				</h2>
-				<p
-					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
-				>
-					Build powerful internal tools and AI-enabled apps at the speed your business moves.
-				</p>
-
 				<Image
 					src={HeroBg}
 					alt="Apps builder"

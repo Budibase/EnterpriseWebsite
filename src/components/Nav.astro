@@ -6,136 +6,149 @@ import Button from "@components/Button.astro";
 ---
 
 <nav
-  class="nav-shell sticky top-0 z-50 bg-1 flex flex-row justify-between items-center container max-w-7xl px-2 lg:px-0 py-3 gap-3 md:gap-0 mx-auto transition-colors duration-150"
+  id="site-nav"
+  class="nav-shell sticky top-0 z-50 w-full border-b border-stone-200 dark:border-stone-900 bg-1 transition-colors duration-150"
   transition:persist
   transition:name="site-chrome"
 >
-  <div class="flex items-center gap-3 md:gap-5">
-    <a href="/">
-      <div class="w-6 mr-2 relative">
-        <Image
-          src={bbSymbol}
-          alt="Budibase symbol"
-          class="hover:cursor-pointer dark:hidden"
-        />
-        <Image
-          src={bbSymbolWhite}
-          alt="Budibase symbol"
-          class="hover:cursor-pointer hidden dark:block"
+  <div
+    class="relative flex w-full items-center justify-between px-2 md:px-3 lg:px-4 py-3"
+  >
+    <div class="flex items-center gap-6 xl:gap-8">
+      <a href="/" class="z-10 shrink-0">
+        <div class="relative w-6">
+          <Image
+            src={bbSymbol}
+            alt="Budibase symbol"
+            class="hover:cursor-pointer dark:hidden"
+          />
+          <Image
+            src={bbSymbolWhite}
+            alt="Budibase symbol"
+            class="hover:cursor-pointer hidden dark:block"
+          />
+        </div>
+      </a>
+
+      <div class="hidden items-center gap-6 whitespace-nowrap lg:flex xl:gap-8">
+        <a
+          href="/platform/agents"
+          class="text-sm nav-link transition-colors"
+          data-astro-prefetch
+        >
+          Platform
+        </a>
+        <a
+          href="https://discord.com/invite/budibase-733030666647765003"
+          target="_blank"
+          class="text-sm nav-link transition-colors"
+        >
+          Community
+        </a>
+        <a
+          href="/enterprise"
+          class="text-sm nav-link transition-colors"
+          data-astro-prefetch
+        >
+          Enterprise
+        </a>
+        <a
+          target="_self"
+          href="/pricing"
+          class="text-sm nav-link transition-colors"
+          data-astro-prefetch
+        >
+          Pricing
+        </a>
+        <a
+          href="/learn/workflows"
+          class="text-sm nav-link transition-colors"
+          data-astro-prefetch
+        >
+          Learn
+        </a>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2 lg:gap-3 z-10">
+      <a
+        href="https://github.com/budibase/budibase"
+        target="_blank"
+        class="relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm transition-all hover:bg-stone-200 dark:hover:bg-stone-800 border-transparent text-xs hidden xl:flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
+        ><span class="truncate"
+          ><span
+            class="flex text-sm items-center gap-0.5 nav-link transition-colors"
+            ><svg
+              class="w-5 h-5"
+              viewBox="0 0 17 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              ><path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M8.5 2.22168C5.23312 2.22168 2.58496 4.87398 2.58496 8.14677C2.58496 10.7642 4.27962 12.9853 6.63026 13.7684C6.92601 13.8228 7.03366 13.6401 7.03366 13.4827C7.03366 13.3425 7.02893 12.9693 7.02597 12.4754C5.38041 12.8333 5.0332 11.681 5.0332 11.681C4.76465 10.996 4.37663 10.8139 4.37663 10.8139C3.83954 10.4471 4.41744 10.4542 4.41744 10.4542C5.01072 10.4956 5.32303 11.0647 5.32303 11.0647C5.85065 11.9697 6.70774 11.7082 7.04431 11.5568C7.09873 11.1741 7.25134 10.9132 7.42051 10.7654C6.10737 10.6157 4.72621 10.107 4.72621 7.83683C4.72621 7.19031 4.95689 6.66092 5.33486 6.24686C5.27394 6.09721 5.07105 5.49447 5.39283 4.67938C5.39283 4.67938 5.88969 4.51967 7.01947 5.28626C7.502 5.15466 7.99985 5.08763 8.5 5.08692C9.00278 5.08929 9.50851 5.15495 9.98113 5.28626C11.1103 4.51967 11.606 4.67879 11.606 4.67879C11.9289 5.49447 11.7255 6.09721 11.6651 6.24686C12.0437 6.66092 12.2732 7.19031 12.2732 7.83683C12.2732 10.1129 10.8897 10.6139 9.5724 10.7606C9.78475 10.9434 9.97344 11.3048 9.97344 11.8579C9.97344 12.6493 9.96634 13.2887 9.96634 13.4827C9.96634 13.6413 10.0728 13.8258 10.3733 13.7678C11.5512 13.3728 12.5751 12.6175 13.3003 11.6089C14.0256 10.6002 14.4155 9.38912 14.415 8.14677C14.415 4.87398 11.7663 2.22168 8.5 2.22168Z"
+                fill="currentColor"></path>
+            </svg>27.5K</span
+          ></span
+        ></a
+      >
+
+      <div class="hidden lg:flex items-center gap-2 lg:gap-3">
+        <Button label="Sign in" url="/" variant="secondary" size="small" />
+        <Button
+          label="Get Budibase free"
+          url="https://account.budibase.app/register"
+          variant="primary"
+          size="small"
+          target="_blank"
         />
       </div>
-    </a>
-    <a
-      href="/platform"
-      class="hidden md:inline-block text-sm px-1 nav-link transition-colors"
-      data-astro-prefetch
-    >
-      Platform
-    </a>
-    <a
-      target="_blank"
-      href="https://discord.com/invite/budibase-733030666647765003"
-      class="hidden md:inline-block text-sm px-1 nav-link transition-colors"
-    >
-      Community
-    </a>
-    <a
-      href="/enterprise"
-      class="hidden md:inline-block text-sm px-1 nav-link transition-colors"
-      data-astro-prefetch
-    >
-      Enterprise
-    </a>
-    <a
-      target="_self"
-      href="/pricing"
-      class="hidden md:inline-block text-sm px-1 nav-link transition-colors"
-      data-astro-prefetch
-    >
-      Pricing
-    </a>
-    <a
-      href="/learn/workflows"
-      class="hidden md:inline-block text-sm px-1 nav-link transition-colors"
-      data-astro-prefetch
-    >
-      Learn
-    </a>
-  </div>
-  <div class="flex flex-row gap-2 md:gap-3 items-center w-full md:w-auto justify-end">
-    <a
-      href="https://github.com/budibase/budibase"
-      target="_blank"
-class="relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm transition-all hover:bg-stone-200 dark:hover:bg-stone-800 border-transparent text-xs hidden lg:flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
-      ><span class="truncate"
-        ><span
-          class="flex text-sm items-center gap-0.5 nav-link transition-colors"
-          ><svg
-            class="w-5 h-5"
-            viewBox="0 0 17 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            ><path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M8.5 2.22168C5.23312 2.22168 2.58496 4.87398 2.58496 8.14677C2.58496 10.7642 4.27962 12.9853 6.63026 13.7684C6.92601 13.8228 7.03366 13.6401 7.03366 13.4827C7.03366 13.3425 7.02893 12.9693 7.02597 12.4754C5.38041 12.8333 5.0332 11.681 5.0332 11.681C4.76465 10.996 4.37663 10.8139 4.37663 10.8139C3.83954 10.4471 4.41744 10.4542 4.41744 10.4542C5.01072 10.4956 5.32303 11.0647 5.32303 11.0647C5.85065 11.9697 6.70774 11.7082 7.04431 11.5568C7.09873 11.1741 7.25134 10.9132 7.42051 10.7654C6.10737 10.6157 4.72621 10.107 4.72621 7.83683C4.72621 7.19031 4.95689 6.66092 5.33486 6.24686C5.27394 6.09721 5.07105 5.49447 5.39283 4.67938C5.39283 4.67938 5.88969 4.51967 7.01947 5.28626C7.502 5.15466 7.99985 5.08763 8.5 5.08692C9.00278 5.08929 9.50851 5.15495 9.98113 5.28626C11.1103 4.51967 11.606 4.67879 11.606 4.67879C11.9289 5.49447 11.7255 6.09721 11.6651 6.24686C12.0437 6.66092 12.2732 7.19031 12.2732 7.83683C12.2732 10.1129 10.8897 10.6139 9.5724 10.7606C9.78475 10.9434 9.97344 11.3048 9.97344 11.8579C9.97344 12.6493 9.96634 13.2887 9.96634 13.4827C9.96634 13.6413 10.0728 13.8258 10.3733 13.7678C11.5512 13.3728 12.5751 12.6175 13.3003 11.6089C14.0256 10.6002 14.4155 9.38912 14.415 8.14677C14.415 4.87398 11.7663 2.22168 8.5 2.22168Z"
-              fill="currentColor"></path>
-          </svg>27.5K</span
-        ></span
-      ></a
-    >
-    <Button label="Sign in" url="/" variant="secondary" size="small" />
-    <Button
-      label="Get Budibase free"
-      url="https://account.budibase.app/register"
-      variant="primary"
-      size="small"
-      target="_blank"
-    />
-    <button
-      id="mobile-menu-button"
-      class="md:hidden p-2 text-stone-800 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-800 rounded transition-colors"
-      aria-label="Toggle mobile menu"
-      aria-expanded="false"
-    >
-      <svg
-        id="menu-icon"
-        class="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+
+      <button
+        id="mobile-menu-button"
+        class="lg:hidden p-2 text-stone-800 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-800 rounded transition-colors"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"
-        ></path>
-      </svg>
-      <svg
-        id="close-icon"
-        class="w-6 h-6 hidden"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12"
-        ></path>
-      </svg>
-    </button>
+        <svg
+          id="menu-icon"
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
+        </svg>
+        <svg
+          id="close-icon"
+          class="w-6 h-6 hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+    </div>
   </div>
 </nav>
 
 <!-- Mobile Menu Overlay -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-50 bg-stone-50 dark:bg-stone-950 hidden md:hidden"
+  class="fixed inset-0 z-50 bg-stone-50 dark:bg-stone-950 hidden lg:hidden"
   aria-hidden="true"
 >
   <!-- Main Menu View -->
@@ -169,7 +182,7 @@ class="relative justify-center items-center px-1.5 text-center ease-out duration
       <ul class="space-y-6 flex flex-col gap-4">
         <li>
           <a
-            href="/platform"
+            href="/platform/agents"
             class="block text-3xl nav-link transition-colors"
             data-astro-prefetch
           >

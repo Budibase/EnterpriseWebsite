@@ -13,9 +13,9 @@ import Database from "phosphor-astro/GridNine.astro";
 import Sparkle from "phosphor-astro/Sparkle.astro";
 import Cloud from "phosphor-astro/Cloud.astro";
 import TrendUp from "phosphor-astro/TrendUp.astro";
-import HeroBg from "@assets/images/homepage/valley.png";
-import { Image } from "astro:assets";
 import Card from "@components/cards/Card.astro";
+import APIExplorerDemo from "@components/APIExplorerDemo.astro";
+import APIsBackdrop from "@assets/images/backgrounds/light/api.png";
 
 const iconMap: Record<string, any> = {
 	Circles,
@@ -38,31 +38,27 @@ const navItems = platformNavItemsData.map(group => ({
 		icon: iconMap[item.iconName],
 	})),
 }));
+const currentNavItem = platformNavItemsData
+	.flatMap(group => group.items)
+	.find(item => item.link === Astro.url.pathname || `${item.link}/` === Astro.url.pathname);
+const pageTitle = currentNavItem?.pageTitle ?? "Platform";
+const pageDescription =
+	currentNavItem?.pageDescription ??
+	"The privacy-first platform for building agents, chat, automations & apps.";
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription}>
 	<PlatformLayout
-		title="Platform"
-		description="The privacy-first platform for building agents, chat, automations & apps."
+		title={pageTitle}
+		description={pageDescription}
 		{navItems}
 	>
 		<div class="mb-8">
-			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					API Explorer
-				</h2>
-				<p
-					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
-				>
-					Explore, test, and manage APIs with a developer-friendly experience built in.
-				</p>
-
-				<Image
-					src={HeroBg}
-					alt="APIs integration"
-					class="w-full h-96 object-cover rounded-md"
-				/>
-			</div>
+				<div class="rounded-md mb-4 overflow-hidden">
+					<div class="api-explorer-demo-plain">
+						<APIExplorerDemo backdropImage={APIsBackdrop.src} backdropPaddingXClass="px-12" />
+					</div>
+				</div>
 
 			<div
 				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
@@ -96,3 +92,8 @@ const navItems = platformNavItemsData.map(group => ({
 	</PlatformLayout>
 </Layout>
 
+<style>
+	.api-explorer-demo-plain :global(.api-explorer-demo-backdrop::before) {
+		background: rgb(var(--bg) / 0.45);
+	}
+</style>

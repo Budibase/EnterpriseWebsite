@@ -2,83 +2,49 @@
 import Layout from "../../../layouts/MainLayout.astro";
 import CategoriesSidebar from "../../blog/_components/CategoriesSidebar.astro";
 import { learnLinks } from "../_learnLinks";
+const activeLearnLink = learnLinks.find(link => link.href === "/learn/company");
+const pageTitle = activeLearnLink?.pageTitle ?? "Company";
+const pageDescription = activeLearnLink?.pageDescription ?? "Who we are and what we build.";
 ---
 
-<Layout title="Learn" description="Guides, workflows, and updates to help you build real AI workflows with Budibase.">
-  <div class="mt-24 container max-w-7xl mx-auto learn-index">
-    <div class="blog-layout">
-      <aside class="blog-sidebar">
+<Layout title={pageTitle} description={pageDescription}>
+  <div class="side-rail-shell">
+    <aside class="side-rail-left" aria-label="Learn navigation">
+      <div class="side-rail-left-scroll">
+        <div class="px-3 mb-3 text-sm text-secondary">Learn</div>
         <CategoriesSidebar
-          title="Learn"
-          description="Guides, workflows, and updates to help you build real AI workflows with Budibase."
+          showHeader={false}
           links={learnLinks}
           activeHref="/learn/company"
         />
-      </aside>
+      </div>
+    </aside>
 
-      <main class="blog-main">
-        <section class="rounded-2xl border border-stone-200/70 dark:border-stone-800/70 bg-secondary p-6 md:p-8">
-          <h2 class="text-2xl font-semibold text-stone-900 dark:text-stone-100">
-            Company
-          </h2>
-          <p class="text-sm md:text-base text-stone-600 dark:text-stone-400 mt-2">
-            Coming soon.
+    <div class="side-rail-main">
+      <div class="side-rail-main-inner">
+        <section class="side-rail-page-header max-w-3xl">
+          <h1 class="mb-2 text-5xl!">{pageTitle}</h1>
+          <p class="text-stone-500! dark:text-stone-400!">
+            {pageDescription}
           </p>
         </section>
-      </main>
+
+        <main class="blog-main">
+          <section class="rounded-2xl border border-stone-200/70 dark:border-stone-800/70 bg-secondary p-6 md:p-8">
+            <p class="text-sm md:text-base text-stone-600 dark:text-stone-400 mt-2">
+              Coming soon.
+            </p>
+          </section>
+        </main>
+      </div>
     </div>
   </div>
 </Layout>
 
 <style>
-	.blog-container {
-		min-height: calc(100vh - 200px);
-		padding: 2rem 1rem;
-	}
-
-	.blog-layout {
-		margin: 0 auto;
-		display: grid;
-		grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
-		grid-template-areas: "sidebar main";
-		gap: 4rem;
-		align-items: start;
-	}
-
-	.blog-sidebar {
-		grid-area: sidebar;
-		position: sticky;
-		top: 2rem;
-	}
-
 	.blog-main {
-		grid-area: main;
 		flex: 1;
 		min-width: 0;
 		min-height: 60vh;
-	}
-
-	@media (max-width: 1024px) {
-		.blog-layout {
-			gap: 4rem;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.blog-layout {
-			grid-template-columns: 1fr;
-			gap: 2rem;
-			grid-template-areas:
-				"sidebar"
-				"main";
-		}
-
-		.blog-sidebar {
-			position: static;
-		}
-
-		.blog-container {
-			padding: 1.5rem 1rem;
-		}
 	}
 </style>

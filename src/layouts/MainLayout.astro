@@ -33,6 +33,37 @@ const { enableTransitions = false } = Astro.props;
   </body>
 </html>
 
+<script is:inline>
+  (() => {
+    const root = document.documentElement;
+
+    const setNavHeight = () => {
+      const nav = document.getElementById("site-nav");
+      if (!nav) return;
+      const { height } = nav.getBoundingClientRect();
+      root.style.setProperty("--site-nav-height", `${Math.round(height)}px`);
+    };
+
+    const onReady = () => {
+      setNavHeight();
+      if (!window.__siteNavHeightListenerBound) {
+        window.addEventListener("resize", setNavHeight, { passive: true });
+        window.__siteNavHeightListenerBound = true;
+      }
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", onReady, { once: true });
+    } else {
+      onReady();
+    }
+
+    document.addEventListener("astro:after-swap", () => {
+      requestAnimationFrame(setNavHeight);
+    });
+  })();
+</script>
+
 <style>
   html,
   body {

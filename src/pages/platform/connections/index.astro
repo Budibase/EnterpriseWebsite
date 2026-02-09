@@ -158,16 +158,22 @@ const navItems = platformNavItemsData.map(group => ({
 		icon: iconMap[item.iconName],
 	})),
 }));
+const currentNavItem = platformNavItemsData
+	.flatMap(group => group.items)
+	.find(item => item.link === Astro.url.pathname || `${item.link}/` === Astro.url.pathname);
+const pageTitle = currentNavItem?.pageTitle ?? "Platform";
+const pageDescription =
+	currentNavItem?.pageDescription ??
+	"The privacy-first platform for building agents, chat, automations & apps.";
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription}>
 	<PlatformLayout
-		title="Platform"
-		description="The privacy-first platform for building agents, chat, automations & apps."
+		title={pageTitle}
+		description={pageDescription}
 		{navItems}
 	>
 		<div class="mb-8 space-y-8">
-			<h1 class="text-2xl! text-stone-900 dark:text-stone-100 mb-6">Connections</h1>
 			<!-- AI model providers -->
 			<section>
 				<h2 class="text-lg! text-stone-700! dark:text-stone-400! mb-4">AI model providers</h2>

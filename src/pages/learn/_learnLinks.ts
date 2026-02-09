@@ -1,6 +1,19 @@
-export const learnLinks = [
+export interface LearnLink {
+  label: string;
+  href: string;
+  pageTitle?: string;
+  pageDescription?: string;
+  description?: string;
+  target?: string;
+  rel?: string;
+  prefetch?: boolean;
+}
+
+export const learnLinks: LearnLink[] = [
   {
     label: "Workflows",
+    pageTitle: "Workflows",
+    pageDescription: "Proven workflow playbooks for real-world use cases.",
     description: "Proven workflow playbooks for real-world use cases.",
     href: "/learn/workflows",
     prefetch: true,
@@ -15,18 +28,24 @@ export const learnLinks = [
   },
   {
     label: "Blog",
+    pageTitle: "Blog",
+    pageDescription: "Product updates, ideas, and stories from the team.",
     description: "Product updates, ideas, and stories from the team.",
     href: "/learn/blog",
     prefetch: true,
   },
   {
     label: "Changelog",
+    pageTitle: "Changelog",
+    pageDescription: "What shipped and what changed.",
     description: "What shipped and what changed.",
     href: "/learn/changelog",
     prefetch: true,
   },
   {
     label: "Company",
+    pageTitle: "Company",
+    pageDescription: "Who we are and what we build.",
     description: "Who we are and what we build.",
     href: "/learn/company",
     prefetch: true,

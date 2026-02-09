@@ -42,3 +42,15 @@
   font-weight: 400;
   src: url("/fonts/iAWriter-Regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
+@font-face {
+  font-display: swap;
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 500 600;
+  src:
+    url("/fonts/Fraunces-Variable.ttf") format("truetype-variations"),
+    local("Fraunces 72pt SuperSoft"),
+    local("Fraunces72ptSuperSoft-Light"),
+    local("Fraunces");
+}

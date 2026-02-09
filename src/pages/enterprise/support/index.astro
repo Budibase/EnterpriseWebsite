@@ -44,25 +44,23 @@ const navItems = enterpriseNavItemsData.map(group => ({
 		icon: iconMap[item.iconName],
 	})),
 }));
+const currentNavItem = enterpriseNavItemsData
+	.flatMap(group => group.items)
+	.find(item => item.link === Astro.url.pathname || `${item.link}/` === Astro.url.pathname);
+const pageTitle = currentNavItem?.pageTitle ?? "Enterprise";
+const pageDescription =
+	currentNavItem?.pageDescription ??
+	"Enterprise-grade security, control, & support for mission-critical workflows.";
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription}>
 	<PlatformLayout
-		title="Enterprise"
-		description="Enterprise-grade security, control, & support for mission-critical workflows."
+		title={pageTitle}
+		description={pageDescription}
 		{navItems}
 	>
 		<div class="mb-8">
 			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<h2 class="text-lg! text-stone-900 dark:text-stone-100">
-					Support
-				</h2>
-				<p
-					class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
-				>
-					Dedicated enterprise support with priority response times, account management, and expert guidance to ensure your success.
-				</p>
-
 				<Image
 					src={HeroBg}
 					alt="Support features"

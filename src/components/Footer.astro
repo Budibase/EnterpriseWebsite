@@ -68,10 +68,14 @@ const footerColumns: FooterColumn[] = [
 ];
 ---
 
-<footer class="footer  bg-secondary" transition:persist transition:name="site-footer">
-  <div class="footer-container max-w-7xl container mx-auto">
+<footer
+  class="footer bg-1 border-t border-stone-200 dark:border-stone-900 px-2 md:px-3 lg:px-4"
+  transition:persist
+  transition:name="site-footer"
+>
+  <div class="footer-container w-full">
     <!-- Upper section: Navigation columns -->
-    <div class="footer-nav">
+    <div class="footer-nav px-2 md:px-3 lg:px-4">
       {footerColumns.map((column) => (
         <div class="footer-column">
           <p>{column.title}</p>
@@ -94,7 +98,7 @@ const footerColumns: FooterColumn[] = [
     </div>
 
     <!-- Lower section: Copyright and controls -->
-    <div class="footer-bottom">
+    <div class="footer-bottom px-2 md:px-3 lg:px-4">
       <div class="footer-copyright">
         <span>© 2025 Budibase, Inc.</span>
         <span class="footer-certification">
@@ -119,7 +123,7 @@ const footerColumns: FooterColumn[] = [
 
 <style>
   .footer {
-    padding: 2rem 1rem 1.5rem;
+    padding: 2rem 0 1.5rem;
     margin-top: auto;
   }
 
