@@ -1,0 +1,281 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import Icon from "@components/Icon.astro";
+import { getCollection, render } from "astro:content";
+import { docsNavData } from "./_docsNav";
+
+export const prerender = true;
+
+function normalizePath(path: string): string {
+  if (path.length > 1 && path.endsWith("/")) {
+    return path.slice(0, -1);
+  }
+  return path;
+}
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+  return docs
+    .map((entry) => {
+      const slugParts = entry.id
+        .split("/")
+        .filter(Boolean)
+        .filter((part, index, parts) => !(index === parts.length - 1 && part === "index"));
+      if (slugParts.length === 0) return null;
+      return {
+        params: { slug: slugParts.join("/") },
+        props: { entry },
+      };
+    })
+    .filter(Boolean);
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const currentPath = normalizePath(Astro.url.pathname);
+const pageDescription = entry.data.description ?? "Budibase documentation.";
+
+function isActive(path: string): boolean {
+  return normalizePath(path) === currentPath;
+}
+
+function isGroupActive(path: string, children?: Array<{ href: string }>): boolean {
+  if (isActive(path)) return true;
+  if (!children) return false;
+  return children.some((child) => isActive(child.href));
+}
+---
+
+<Layout title={`${entry.data.title} | Budibase Docs`} description={pageDescription}>
+  <div class="side-rail-shell">
+    <aside class="side-rail-left chrome-border" aria-label="Docs navigation">
+      <div class="side-rail-left-scroll">
+        <div class="px-3 mb-3 text-sm text-secondary">Docs</div>
+        <nav aria-label="Data docs navigation">
+          <ul class="docs-nav-root" data-docs-nav-root>
+            {
+              docsNavData.map((group, groupIndex) => (
+                <li
+                  class:list={[
+                    group.title === "Data" && groupIndex > 0 && "docs-nav-root-item-spaced",
+                  ]}
+                >
+                  {
+                    group.title === "Data" && (
+                      <p class="docs-nav-group text-xs text-stone-600 dark:text-stone-500 uppercase tracking-wider px-3 py-2">
+                        {group.title}
+                      </p>
+                    )
+                  }
+                  <ul class="docs-nav-items">
+                    {group.items.map((item) => (
+                      <li>
+                        {
+                          (() => {
+                            const groupOpen = isGroupActive(item.href, item.children);
+                          return (
+                              <>
+                        <a
+                          href={item.href}
+                          aria-current={isActive(item.href) ? "page" : undefined}
+                          aria-expanded={item.children && item.children.length > 0 ? String(groupOpen) : undefined}
+                          data-docs-folder-toggle={item.children && item.children.length > 0 ? "true" : undefined}
+                          class:list={[
+                            "docs-nav-link docs-nav-link-folder text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800",
+                            isActive(item.href) && "active",
+                          ]}
+                        >
+                          <span>{item.label}</span>
+                          {
+                            item.children && item.children.length > 0 && (
+                              <span
+                                class:list={[
+                                  "inline-flex transition-transform duration-150",
+                                  groupOpen && "rotate-90",
+                                ]}
+                                data-docs-caret
+                              >
+                                <Icon
+                                  name="CaretRight"
+                                  class="w-2.5 h-2.5 text-secondary"
+                                />
+                              </span>
+                            )
+                          }
+                        </a>
+                        {
+                          item.children && item.children.length > 0 && (
+                            <ul
+                              class:list={[
+                                "docs-nav-children",
+                                groupOpen && "open",
+                              ]}
+                              data-docs-folder-panel
+                            >
+                              {item.children.map((child) => (
+                                <li>
+                                  <a
+                                    href={child.href}
+                                    aria-current={isActive(child.href) ? "page" : undefined}
+                                    class:list={[
+                                      "docs-nav-link docs-nav-link-child text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800",
+                                      isActive(child.href) && "active",
+                                    ]}
+                                  >
+                                    {child.label}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          )
+                        }
+                              </>
+                            );
+                          })()
+                        }
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <div class="side-rail-main">
+      <div class="side-rail-main-inner side-rail-main-inner--narrow">
+        <article class="docs-article">
+          <Content />
+        </article>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .docs-nav-root,
+  .docs-nav-items,
+  .docs-nav-children {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .docs-nav-root-item-spaced {
+    margin-top: 1rem;
+  }
+
+  .docs-nav-group {
+    margin: 0 0 0.2rem;
+  }
+
+  .docs-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 2rem;
+    border-radius: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    text-decoration: none;
+  }
+
+  .docs-nav-link-folder {
+    padding-right: 0.5rem;
+  }
+
+  .docs-nav-link:hover {
+    background: var(--bg-3);
+  }
+
+  .docs-nav-children {
+    margin-top: 0.15rem;
+    margin-left: 0.75rem;
+    padding-left: 0.35rem;
+    border-left: 0.5px solid var(--border-color);
+    display: none;
+  }
+
+  .docs-nav-children.open {
+    display: block;
+  }
+
+  .docs-nav-link-child {
+    min-height: 1.9rem;
+    font-size: 13px;
+  }
+
+  .docs-article :where(h1) {
+    margin-top: 0;
+  }
+
+  .docs-article :where(h2, h3, h4) {
+    scroll-margin-top: calc(var(--site-nav-height) + 24px);
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const init = () => {
+      const root = document.querySelector("[data-docs-nav-root]");
+      if (!root) return;
+
+      if (root._docsFolderCleanup) {
+        root._docsFolderCleanup();
+      }
+
+      const toggles = Array.from(
+        root.querySelectorAll('[data-docs-folder-toggle="true"]'),
+      );
+
+      const cleanups = [];
+
+      toggles.forEach((toggle) => {
+        const listItem = toggle.closest("li");
+        const panel = listItem?.querySelector("[data-docs-folder-panel]");
+        const caret = toggle.querySelector("[data-docs-caret]");
+        if (!panel) return;
+
+        const setOpen = (open) => {
+          panel.classList.toggle("open", open);
+          toggle.setAttribute("aria-expanded", String(open));
+          if (caret) caret.classList.toggle("rotate-90", open);
+        };
+
+        const initialOpen = toggle.getAttribute("aria-expanded") === "true";
+        setOpen(initialOpen);
+
+        const onClick = (event) => {
+          if (
+            event.metaKey ||
+            event.ctrlKey ||
+            event.shiftKey ||
+            event.altKey ||
+            event.button === 1
+          ) {
+            return;
+          }
+          event.preventDefault();
+          const isOpen = toggle.getAttribute("aria-expanded") === "true";
+          setOpen(!isOpen);
+        };
+
+        toggle.addEventListener("click", onClick);
+        cleanups.push(() => toggle.removeEventListener("click", onClick));
+      });
+
+      root._docsFolderCleanup = () => {
+        cleanups.forEach((cleanup) => cleanup());
+      };
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init, { once: true });
+    } else {
+      init();
+    }
+
+    document.addEventListener("astro:after-swap", init);
+  })();
+</script>

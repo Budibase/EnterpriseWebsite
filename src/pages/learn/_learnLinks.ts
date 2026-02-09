@@ -21,10 +21,8 @@ export const learnLinks: LearnLink[] = [
   {
     label: "Docs",
     description: "Full technical documentation.",
-    href: "https://docs.budibase.com",
-    target: "_blank",
-    rel: "noopener noreferrer",
-    prefetch: false,
+    href: "/docs/data",
+    prefetch: true,
   },
   {
     label: "Blog",

@@ -1,21 +1,12 @@
 ---
 /* removed self-host switcher imports */
 import PricingCard from "./PricingCard.astro";
-import CockapooCoin from "@assets/images/pricing/cockapoocoin.png";
-import { Image } from "astro:assets";
 ---
 
 <section class="container max-w-7xl mx-auto flex flex-col mt-8 px-2 lg:px-0">
   <!--Title section -->
   <div class="flex flex-col items-center text-center">
-    <Image
-      src={CockapooCoin}
-      alt="Cockapoo coin"
-      width={100}
-      height={100}
-      class="mb-3"
-    />
-    <h1 class="max-w-2xl text-2xl md:text-3xl lg:text-4xl mb-4 text-stone-950 dark:text-stone-100">
+    <h1 class="max-w-2xl !text-5xl mb-4 text-stone-950 dark:text-stone-100">
       Pricing
     </h1>
   </div>
