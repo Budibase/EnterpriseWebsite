@@ -1,6 +1,4 @@
 ---
-import Icon from "@components/Icon.astro";
-
 interface Props {
 	currentCategory?: string;
 	title?: string;
@@ -68,12 +66,7 @@ function isLearnActive(link: string): boolean {
 									isLearnActive(item.href) && "active"
 								]}
 							>
-								<span class="flex items-center gap-1">
-									{item.label}
-									{item.label === "Docs" && (
-										<Icon name="ArrowUpRight" class="w-3.5 h-3.5 text-grey-500" />
-									)}
-								</span>
+								<span>{item.label}</span>
 							</a>
 						</li>
 					))

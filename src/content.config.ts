@@ -139,5 +139,14 @@ const workflows = defineCollection({
   }),
 });
 
+const docs = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/docs" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    sourceUrl: z.string().url(),
+  }),
+});
+
 // Export a single `collections` object to register your collection(s)
-export const collections = { blog, pages, caseStudies, workflows };
+export const collections = { blog, pages, caseStudies, workflows, docs };
