@@ -11,8 +11,8 @@ export interface LearnLink {
 
 export const learnLinks: LearnLink[] = [
   {
-    label: "Workflows",
-    pageTitle: "Workflows",
+    label: "Agent workflows",
+    pageTitle: "Agent workflows",
     pageDescription: "Proven workflow playbooks for real-world use cases.",
     description: "Proven workflow playbooks for real-world use cases.",
     href: "/learn/workflows",
@@ -21,7 +21,7 @@ export const learnLinks: LearnLink[] = [
   {
     label: "Docs",
     description: "Full technical documentation.",
-    href: "/docs/data",
+    href: "/docs/get-started/welcome",
     prefetch: true,
   },
   {
@@ -38,14 +38,6 @@ export const learnLinks: LearnLink[] = [
     pageDescription: "What shipped and what changed.",
     description: "What shipped and what changed.",
     href: "/learn/changelog",
-    prefetch: true,
-  },
-  {
-    label: "Company",
-    pageTitle: "Company",
-    pageDescription: "Who we are and what we build.",
-    description: "Who we are and what we build.",
-    href: "/learn/company",
     prefetch: true,
   },
 ];

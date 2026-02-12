@@ -40,14 +40,10 @@ const sizeClasses = {
   large: "px-2.5 py-1.5 text-lg",
 };
 
-const baseClasses = "inline-flex items-center justify-center gap-2 rounded font-mono font-medium transition-all duration-150 cursor-default whitespace-nowrap";
-
-// Secondary variant has different border-radius
-const radiusClass = variant === "secondary" ? "rounded-md" : "rounded";
+const baseClasses = "inline-flex items-center justify-center gap-2 rounded-[4px] border-0 font-mono font-medium transition-all duration-150 cursor-default whitespace-nowrap";
 
 const classes = [
   baseClasses,
-  radiusClass,
   variantClasses[variant],
   sizeClasses[size],
   className,

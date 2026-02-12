@@ -62,7 +62,7 @@ function isLearnActive(link: string): boolean {
 								data-astro-prefetch={item.prefetch ? '' : undefined}
 								aria-current={isLearnActive(item.href) ? "page" : undefined}
 								class:list={[
-									"nav-link flex flex-row gap-3 items-center h-8 px-3 rounded-md text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
+									"nav-link flex flex-row gap-3 items-center h-8 px-3 rounded-md text-primary dark:text-primary hover:text-primary dark:hover:text-primary hover:bg-stone-100 dark:hover:bg-stone-800 [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800 text-sm",
 									isLearnActive(item.href) && "active"
 								]}
 							>

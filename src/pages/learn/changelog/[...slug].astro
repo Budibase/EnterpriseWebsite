@@ -1,0 +1,250 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import { format } from "date-fns";
+import Layout from "../../../layouts/MainLayout.astro";
+import Tag from "@components/Tag.astro";
+import Icon from "@components/Icon.astro";
+
+interface Props {
+  entry: CollectionEntry<"changelog">;
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection("changelog", ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as Props;
+const { Content } = await render(entry);
+const pageTitle = `${entry.data.title} | Changelog`;
+const pageDescription =
+  entry.data.description ?? `Release ${entry.data.version} changelog update.`;
+const transitionKey = entry.id.replaceAll("/", "-");
+
+function getTagClass(tag: string): string {
+  switch (tag) {
+    case "Added":
+      return "changelog-tag--added";
+    case "Changed":
+      return "changelog-tag--changed";
+    case "Deprecated":
+      return "changelog-tag--deprecated";
+    case "Removed":
+      return "changelog-tag--removed";
+    case "Fixed":
+      return "changelog-tag--fixed";
+    case "Security":
+      return "changelog-tag--security";
+    default:
+      return "changelog-tag--default";
+  }
+}
+---
+
+<Layout title={pageTitle} description={pageDescription} enableTransitions>
+  <div class="side-rail-shell">
+    <aside class="side-rail-left chrome-border changelog-detail-rail" aria-label="Release metadata">
+      <div class="side-rail-left-scroll changelog-detail-meta">
+        <a href="/learn/changelog" class="changelog-back-link" data-astro-prefetch>
+          <Icon name="ArrowRight" class="w-4 h-4 rotate-180" />
+          <span>Back</span>
+        </a>
+
+        <div class="changelog-meta-group">
+          <div class="changelog-meta-label">Version</div>
+          <div class="changelog-meta-value changelog-version-value">{entry.data.version}</div>
+        </div>
+
+        <div class="changelog-meta-group">
+          <div class="changelog-meta-label">Date</div>
+          <time class="changelog-meta-value changelog-date-value" datetime={entry.data.date.toISOString()}>
+            {format(entry.data.date, "MMM d, yyyy")}
+          </time>
+        </div>
+
+        <div class="changelog-meta-group">
+          <div class="changelog-meta-label">Tags</div>
+          <div class="changelog-tag-list">
+            {
+              entry.data.tags.map((tag) => (
+                <Tag
+                  label={tag}
+                  variant="secondary"
+                  size="small"
+                  class={`changelog-tag ${getTagClass(tag)}`}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="side-rail-main">
+      <main class="side-rail-main-inner changelog-detail-main">
+        <header class="side-rail-page-header changelog-detail-header">
+          <p class="changelog-eyebrow">Changelog</p>
+          <h1 class="changelog-detail-title" transition:name={`${transitionKey}-title`}>
+            {entry.data.title}
+          </h1>
+          {
+            entry.data.description && (
+              <p class="changelog-detail-description">{entry.data.description}</p>
+            )
+          }
+        </header>
+
+        <article class="changelog-article">
+          <Content />
+        </article>
+      </main>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  :global(::view-transition-group(*)),
+  :global(::view-transition-old(*)),
+  :global(::view-transition-new(*)) {
+    animation-duration: 120ms;
+  }
+
+  .changelog-detail-meta {
+    display: grid;
+    gap: 0.85rem;
+    align-content: start;
+  }
+
+  .changelog-detail-rail {
+    display: none;
+  }
+
+  .changelog-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: var(--text-secondary);
+  }
+
+  .changelog-back-link:hover,
+  .changelog-back-link:focus-visible {
+    color: rgb(var(--primary));
+  }
+
+  .changelog-meta-group {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .changelog-meta-label {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+  }
+
+  .changelog-meta-value {
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+
+  .changelog-version-value,
+  .changelog-date-value {
+    color: var(--text-primary);
+  }
+
+  .changelog-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  :global(.changelog-tag) {
+    font-size: 13px !important;
+    line-height: 1.2;
+    border: 0 !important;
+  }
+
+  :global(.changelog-tag.changelog-tag--added) {
+    background: color-mix(in srgb, var(--accent-green) 16%, var(--bg-3)) !important;
+    color: var(--accent-green) !important;
+  }
+
+  :global(.changelog-tag.changelog-tag--changed) {
+    background: color-mix(in srgb, var(--accent-blue) 16%, var(--bg-3)) !important;
+    color: var(--accent-blue) !important;
+  }
+
+  :global(.changelog-tag.changelog-tag--deprecated) {
+    background: color-mix(in srgb, var(--accent-orange) 16%, var(--bg-3)) !important;
+    color: var(--accent-orange) !important;
+  }
+
+  :global(.changelog-tag.changelog-tag--removed) {
+    background: color-mix(in srgb, var(--accent-red) 16%, var(--bg-3)) !important;
+    color: var(--accent-red) !important;
+  }
+
+  :global(.changelog-tag.changelog-tag--fixed) {
+    background: color-mix(in srgb, var(--accent-purple) 16%, var(--bg-3)) !important;
+    color: var(--accent-purple) !important;
+  }
+
+  :global(.changelog-tag.changelog-tag--security) {
+    background: color-mix(in srgb, var(--accent-grey) 20%, var(--bg-3)) !important;
+    color: var(--text-primary) !important;
+  }
+
+  :global(.changelog-tag.changelog-tag--default) {
+    background: var(--bg-3) !important;
+    color: var(--text-secondary) !important;
+  }
+
+  .changelog-detail-main {
+    width: min(100%, 50rem);
+    margin-inline: auto;
+    min-width: 0;
+  }
+
+  .changelog-detail-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .changelog-eyebrow {
+    margin: 0 0 0.35rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary) !important;
+  }
+
+  .changelog-detail-title {
+    margin: 0;
+    font-size: clamp(1.85rem, 1.4rem + 1.9vw, 3rem);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .changelog-detail-description {
+    margin: 0.9rem 0 0;
+    max-width: 46rem;
+    color: var(--text-secondary) !important;
+  }
+
+  .changelog-article {
+    max-width: 46rem;
+  }
+
+  .changelog-article :where(h2, h3, h4) {
+    scroll-margin-top: calc(var(--site-nav-height) + 24px);
+  }
+
+  @media (min-width: 1024px) {
+    .changelog-detail-rail {
+      display: block;
+    }
+  }
+</style>

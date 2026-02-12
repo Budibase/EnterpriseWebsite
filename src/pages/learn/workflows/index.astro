@@ -23,7 +23,7 @@ const orderedWorkflows = orderedSlugs
   .filter(Boolean) as typeof workflows;
 const workflowRows = orderedWorkflows.length ? orderedWorkflows : workflows;
 const activeLearnLink = learnLinks.find(link => link.href === "/learn/workflows");
-const pageTitle = activeLearnLink?.pageTitle ?? "Workflows";
+const pageTitle = activeLearnLink?.pageTitle ?? "Agent workflows";
 const pageDescription =
   activeLearnLink?.pageDescription ?? "Proven workflow playbooks for real-world use cases.";
 ---
@@ -48,9 +48,6 @@ const pageDescription =
       <div class="side-rail-main-inner">
         <section class="side-rail-page-header max-w-3xl">
           <h1 class="mb-2 text-5xl!">{pageTitle}</h1>
-          <p class="text-stone-500! dark:text-stone-400!">
-            {pageDescription}
-          </p>
         </section>
 
         <main class="blog-main">

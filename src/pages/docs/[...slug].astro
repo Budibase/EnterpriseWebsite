@@ -56,7 +56,14 @@ function isGroupActive(
   <div class="side-rail-shell">
     <aside class="side-rail-left chrome-border" aria-label="Docs navigation">
       <div class="side-rail-left-scroll docs-side-rail-scroll">
-        <div class="px-3 mb-3 text-sm text-secondary">Docs</div>
+        <a
+          href="/learn/workflows"
+          data-astro-prefetch
+          class="inline-flex items-center gap-[6px] text-sm text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 mb-2 px-3"
+        >
+          <Icon name="ArrowRight" class="w-4 h-4 rotate-180" />
+          <span>Back</span>
+        </a>
         <nav aria-label="Data docs navigation">
           <ul class="docs-nav-root flex flex-col gap-8" data-docs-nav-root>
             {

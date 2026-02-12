@@ -148,5 +148,26 @@ const docs = defineCollection({
   }),
 });
 
+const changelog = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/changelog" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    version: z.string(),
+    tags: z.array(
+      z.enum(["Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"]),
+    ),
+    description: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 // Export a single `collections` object to register your collection(s)
-export const collections = { blog, pages, caseStudies, workflows, docs };
+export const collections = {
+  blog,
+  pages,
+  caseStudies,
+  workflows,
+  docs,
+  changelog,
+};
