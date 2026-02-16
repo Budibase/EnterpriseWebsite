@@ -66,11 +66,21 @@ const titleClass = useHomepageHeaderStyles
 const descriptionClass = useHomepageHeaderStyles
   ? "mx-auto max-w-3xl !mb-4 !text-xl text-secondary"
   : "text-stone-500! dark:text-stone-400!";
+const narrowTitleSectionPaths = new Set([
+  "/product/agents",
+  "/product/automations",
+  "/product/apps",
+  "/product/connections",
+  "/product/apis",
+]);
+const sectionClass = narrowTitleSectionPaths.has(normalizedCurrentPath)
+  ? "side-rail-page-header mx-auto max-w-3xl lg:max-w-xl text-center"
+  : "side-rail-page-header mx-auto max-w-3xl text-center";
 ---
 
 <div class="platform-layout">
   <div class={`${mainInnerClass} space-y-12`}>
-    <section class="side-rail-page-header mx-auto max-w-3xl text-center">
+    <section class={sectionClass}>
       <h1 class={titleClass}>{resolvedTitle}</h1>
       <p class={descriptionClass}>{resolvedDescription}</p>
     </section>
