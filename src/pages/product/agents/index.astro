@@ -1,58 +1,17 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
-import { platformNavItemsData } from "../_navItems";
-import Circles from "phosphor-astro/Nut.astro";
-import Memory from "phosphor-astro/Memory.astro";
-import ChatCircle from "phosphor-astro/ChatCircle.astro";
-import Path from "phosphor-astro/PathFill.astro";
-import Browsers from "phosphor-astro/Browsers.astro";
-import Link from "phosphor-astro/Cube.astro";
-import Webhooks from "phosphor-astro/WebhooksLogo.astro";
-import Database from "phosphor-astro/GridNine.astro";
-import Sparkle from "phosphor-astro/Sparkle.astro";
-import Cloud from "phosphor-astro/Cloud.astro";
-import TrendUp from "phosphor-astro/TrendUp.astro";
+import { getProductPageMeta } from "../_pageMeta";
 import Card from "@components/cards/Card.astro";
 import AgentDemo from "@components/AgentDemo.astro";
 
-const iconMap: Record<string, any> = {
-	Circles,
-	Memory,
-	ChatCircle,
-	Path,
-	Browsers,
-	Link,
-	Webhooks,
-	Database,
-	Sparkle,
-	Cloud,
-	TrendUp,
-};
-
-const navItems = platformNavItemsData.map(group => ({
-	...group,
-	items: group.items.map(item => ({
-		...item,
-		icon: iconMap[item.iconName],
-	})),
-}));
-const currentNavItem = platformNavItemsData
-	.flatMap(group => group.items)
-	.find(item => item.link === Astro.url.pathname || `${item.link}/` === Astro.url.pathname);
-const pageTitle = currentNavItem?.pageTitle ?? "Product";
-const pageDescription =
-	currentNavItem?.pageDescription ??
-	"The privacy-first platform for building agents, chat, automations & apps.";
+const { title: pageTitle, description: pageDescription } = getProductPageMeta(
+  Astro.url.pathname,
+);
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <PlatformLayout
-    title={pageTitle}
-    description={pageDescription}
-    mainContentWidth="narrow"
-    {navItems}
-  >
+  <PlatformLayout title={pageTitle} description={pageDescription}>
     <div class="mb-8">
       <div class="mb-4">
         <AgentDemo />

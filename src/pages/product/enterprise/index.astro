@@ -1,36 +1,28 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
-import Gear from "phosphor-astro/Gear.astro";
-import ChatCircle from "phosphor-astro/ChatCircle.astro";
-import Shield from "phosphor-astro/Shield.astro";
 import HeroBg from "@assets/images/homepage/valley.png";
 import { Image } from "astro:assets";
 import Card from "@components/cards/Card.astro";
-
-const navItems = [
-  { text: "Control", link: "#control", sectionId: "control", icon: Gear },
-  { text: "Support", link: "#support", sectionId: "support", icon: ChatCircle },
-  { text: "Security", link: "#security", sectionId: "security", icon: Shield },
-];
+const pageTitle = "Product";
+const pageDescription =
+  "The privacy-first platform for building agents, chat, automations & apps.";
 ---
 
-<Layout>
-  <PlatformLayout
-    title="Product"
-    description="The privacy-first platform for building agents, chat, automations & apps."
-    mainContentWidth="narrow"
-    {navItems}
-  >
-    <div id="control-section" data-section="control" class="content-section mb-8">
+<Layout title={pageTitle} description={pageDescription}>
+  <PlatformLayout title={pageTitle} description={pageDescription}>
+    <div
+      id="control-section"
+      data-section="control"
+      class="content-section mb-8"
+    >
       <div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-        <h2 class="text-lg! text-stone-900 dark:text-stone-100">
-          Control
-        </h2>
+        <h2 class="text-lg! text-stone-900 dark:text-stone-100">Control</h2>
         <p
           class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
         >
-          Take full control of your organization's infrastructure with advanced management features, custom limits, and flexible billing options.
+          Take full control of your organization's infrastructure with advanced
+          management features, custom limits, and flexible billing options.
         </p>
 
         <Image
@@ -62,15 +54,18 @@ const navItems = [
       </div>
     </div>
 
-    <div id="support-section" data-section="support" class="content-section mb-8">
+    <div
+      id="support-section"
+      data-section="support"
+      class="content-section mb-8"
+    >
       <div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-        <h2 class="text-lg! text-stone-900 dark:text-stone-100">
-          Support
-        </h2>
+        <h2 class="text-lg! text-stone-900 dark:text-stone-100">Support</h2>
         <p
           class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
         >
-          Get the support you need with dedicated account management, professional services, and guaranteed service level agreements.
+          Get the support you need with dedicated account management,
+          professional services, and guaranteed service level agreements.
         </p>
 
         <Image
@@ -102,15 +97,19 @@ const navItems = [
       </div>
     </div>
 
-    <div id="security-section" data-section="security" class="content-section mb-8">
+    <div
+      id="security-section"
+      data-section="security"
+      class="content-section mb-8"
+    >
       <div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-        <h2 class="text-lg! text-stone-900 dark:text-stone-100">
-          Security
-        </h2>
+        <h2 class="text-lg! text-stone-900 dark:text-stone-100">Security</h2>
         <p
           class="text-base! text-stone-600! dark:text-stone-400! mb-4! lg:max-w-lg"
         >
-          Enterprise-grade security features including single sign-on, comprehensive audit logs, secure configuration management, and self-hosting options.
+          Enterprise-grade security features including single sign-on,
+          comprehensive audit logs, secure configuration management, and
+          self-hosting options.
         </p>
 
         <Image
