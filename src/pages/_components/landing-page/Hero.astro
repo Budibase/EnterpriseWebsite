@@ -1,27 +1,29 @@
 ---
 import Customers from "@components/Customers.astro";
 import Button from "@components/Button.astro";
-import Curl from "@components/Curl.astro";
 import AgentDemo from "@components/AgentDemo.astro";
 ---
 
-<section class="container max-w-5xl mx-auto px-2 lg:px-0 flex flex-col mt-8 md:mt-8">
+<section class="container max-w-6xl mx-auto px-2 lg:px-0 flex flex-col mt-8 md:mt-8">
 
   <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
     <div class="flex-1 flex flex-col items-center text-center">
-      <h1 class="hero-title max-w-2xl h2 text-4xl! text-stone-950 dark:text-stone-50 mt-20 mb-5 font-medium!">
-          Budibase is the open-source platform for building AI agents and workflows.
+      <h1 class="hero-title mt-12 mb-4 w-full max-w-2xl text-[56px]! leading-[1.02]! tracking-[-0.02em]! text-[var(--text-primary)] sm:text-[56px]! sm:leading-[1.02]!">
+        <span class="block">
+          Build AI agents that run your operations.
+        </span>
       </h1>
+      <div class="max-w-3xl !mb-4 !text-xl text-primary">
+        Connect your tools. Define the rules. Let agents handle the work.
+      </div>
       <div class="flex flex-row">
         <Button
-          label="Try Budibase Cloud"
+          label="Try it free"
           url="https://account.budibase.app/register"
-          variant="cta"
+          variant="primary"
+          size="large"
           target="_blank"
         />
-      </div>
-      <div class="mt-2 md:mt-4 w-fit">
-        <Curl />
       </div>
     </div>
   </div>
@@ -31,22 +33,3 @@ import AgentDemo from "@components/AgentDemo.astro";
   </div>
 
 </section>
-
-<style>
-  @font-face {
-    font-family: "Fraunces";
-    src:
-      url("/fonts/Fraunces-Variable.ttf") format("truetype-variations"),
-      local("Fraunces 72pt SuperSoft"),
-      local("Fraunces72ptSuperSoft-Light"),
-      local("Fraunces");
-    font-style: normal;
-    font-weight: 500 600;
-    font-display: swap;
-  }
-
-  .hero-title {
-    font-family: "Fraunces", var(--font-display);
-    font-weight: 500 !important;
-  }
-</style>

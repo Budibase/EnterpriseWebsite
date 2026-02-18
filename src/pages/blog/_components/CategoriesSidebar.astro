@@ -1,4 +1,6 @@
 ---
+import Icon from "@components/Icon.astro";
+
 interface Props {
 	currentCategory?: string;
 	title?: string;
@@ -53,7 +55,11 @@ function isLearnActive(link: string): boolean {
 	<nav>
 		<ul class:list={["nav-list", isLearnLinks && "learn-list"]}>
 			{isLearnLinks
-				? links!.map((item) => (
+				? links!.map((item) => {
+						const showDocsExternalIcon =
+							item.label === "Docs" && item.href === "https://docs.budibase.com";
+
+						return (
 						<li>
 							<a
 								href={item.href}
@@ -66,10 +72,18 @@ function isLearnActive(link: string): boolean {
 									isLearnActive(item.href) && "active"
 								]}
 							>
-								<span>{item.label}</span>
+								<span class="inline-flex items-center gap-1.5">
+									{item.label}
+									{showDocsExternalIcon && (
+										<span class="inline-flex text-gray-600 dark:text-gray-600">
+											<Icon name="ArrowUpRight" class="w-3.5 h-3.5 text-current" />
+										</span>
+									)}
+								</span>
 							</a>
 						</li>
-					))
+					);
+					})
 				: categories.map((category) => (
 						<li>
 							<a

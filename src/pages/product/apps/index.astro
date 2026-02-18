@@ -1,96 +1,55 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
-import { platformNavItemsData } from "../_navItems";
-import Circles from "phosphor-astro/Nut.astro";
-import Memory from "phosphor-astro/Memory.astro";
-import ChatCircle from "phosphor-astro/ChatCircle.astro";
-import Path from "phosphor-astro/PathFill.astro";
-import Browsers from "phosphor-astro/Browsers.astro";
-import Link from "phosphor-astro/Cube.astro";
-import Webhooks from "phosphor-astro/WebhooksLogo.astro";
-import Database from "phosphor-astro/GridNine.astro";
-import Sparkle from "phosphor-astro/Sparkle.astro";
-import Cloud from "phosphor-astro/Cloud.astro";
-import TrendUp from "phosphor-astro/TrendUp.astro";
+import { getProductPageMeta } from "../_pageMeta";
 import HeroBg from "@assets/images/homepage/valley.png";
 import { Image } from "astro:assets";
 import Card from "@components/cards/Card.astro";
 
-const iconMap: Record<string, any> = {
-	Circles,
-	Memory,
-	ChatCircle,
-	Path,
-	Browsers,
-	Link,
-	Webhooks,
-	Database,
-	Sparkle,
-	Cloud,
-	TrendUp,
-};
-
-const navItems = platformNavItemsData.map(group => ({
-	...group,
-	items: group.items.map(item => ({
-		...item,
-		icon: iconMap[item.iconName],
-	})),
-}));
-const currentNavItem = platformNavItemsData
-	.flatMap(group => group.items)
-	.find(item => item.link === Astro.url.pathname || `${item.link}/` === Astro.url.pathname);
-const pageTitle = currentNavItem?.pageTitle ?? "Product";
-const pageDescription =
-	currentNavItem?.pageDescription ??
-	"The privacy-first platform for building agents, chat, automations & apps.";
+const { title: pageTitle, description: pageDescription } = getProductPageMeta(
+  Astro.url.pathname,
+);
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-	<PlatformLayout
-		title={pageTitle}
-		description={pageDescription}
-		mainContentWidth="narrow"
-		{navItems}
-	>
-		<div class="mb-8">
-			<div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-				<Image
-					src={HeroBg}
-					alt="Apps builder"
-					class="w-full h-96 object-cover rounded-md"
-				/>
-			</div>
+  <PlatformLayout title={pageTitle} description={pageDescription}>
+    <div class="mb-8">
+      <div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+        <Image
+          src={HeroBg}
+          alt="Apps builder"
+          class="w-full h-96 object-cover rounded-md"
+        />
+      </div>
 
-			<div
-				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
-			>
-				<Card
-					label="No-code app builder"
-					description="Create production-ready apps without writing a single line of code."
-				/>
-				<Card
-					label="40+ prebuilt components"
-					description="Assemble rich interfaces using a growing library of components."
-				/>
-				<Card
-					label="Auto-generate app screens"
-					description="Generate a fully working CRUD app from your data in just three clicks."
-				/>
-				<Card
-					label="Coding optional"
-					description="Drop into code only when you want — not because you have to."
-				/>
-				<Card
-					label="Theming"
-					description="Match your brand with fully customizable themes."
-				/>
-				<Card
-					label="Embeds"
-					description="Embed apps seamlessly into existing products or portals."
-				/>
-			</div>
-		</div>
-	</PlatformLayout>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
+      >
+        <Card
+          label="No-code app builder"
+          description="Create production-ready apps without writing a single line of code."
+        />
+        <Card
+          label="40+ prebuilt components"
+          description="Assemble rich interfaces using a growing library of components."
+        />
+        <Card
+          label="Auto-generate app screens"
+          description="Generate a fully working CRUD app from your data in just three clicks."
+        />
+        <Card
+          label="Coding optional"
+          description="Drop into code only when you want — not because you have to."
+        />
+        <Card
+          label="Theming"
+          description="Match your brand with fully customizable themes."
+        />
+        <Card
+          label="Embeds"
+          description="Embed apps seamlessly into existing products or portals."
+        />
+      </div>
+    </div>
+  </PlatformLayout>
 </Layout>

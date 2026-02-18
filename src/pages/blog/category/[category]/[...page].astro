@@ -1,0 +1,126 @@
+---
+import type { GetStaticPathsOptions, Page } from "astro";
+import Pagination from "../../../../components/Pagination.astro";
+import Layout from "../../../../layouts/MainLayout.astro";
+import BlogPostPreview from "../../../blog/_components/BlogPostPreview.astro";
+import CategoryFilters from "../../../blog/_components/CategoryFilters.astro";
+import {
+  BLOG_CATEGORY_ITEMS,
+  filterBlogFeed,
+  getBlogFeedItems,
+  isValidBlogCategory,
+  type BlogCategory,
+  type BlogFeedItem,
+} from "../../../blog/_feed";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const items = await getBlogFeedItems();
+
+  return BLOG_CATEGORY_ITEMS.flatMap((category) =>
+    paginate(filterBlogFeed(items, category.id), {
+      pageSize: 12,
+      params: { category: category.id },
+    }),
+  );
+}
+
+interface Props {
+  page: Page<BlogFeedItem>;
+}
+
+const { page } = Astro.props as Props;
+const rawCategory = Astro.params.category ?? "all";
+const category: BlogCategory = isValidBlogCategory(rawCategory)
+  ? rawCategory
+  : "all";
+
+const currentCategoryLabel =
+  BLOG_CATEGORY_ITEMS.find((item) => item.id === category)?.label ?? "All posts";
+const allPages = [...Array(page.lastPage).keys()].map((num) => {
+  return `/blog/category/${category}${num === 0 ? "" : `/${String(num + 1)}`}`;
+});
+---
+
+<Layout
+  title={`Blog / ${currentCategoryLabel}`}
+  description="Product updates, customer stories, and workflow guides from Budibase."
+  image={{ src: "/og/blog.jpg", alt: "What's new in the Budibase ecosystem" }}
+>
+  <div class="mt-24 container max-w-6xl mx-auto blog-index">
+    <div class="blog-layout">
+      <aside class="blog-sidebar">
+        <CategoryFilters currentCategory={category} title="Blog" />
+      </aside>
+
+      <main class="blog-main">
+        <h1 class="text-5xl! mb-4">Blog / {currentCategoryLabel}</h1>
+        <ul class="blog-posts-list flex flex-col gap-3">
+          {
+            page.data.map((item) => (
+              <li>
+                <BlogPostPreview item={item} />
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="my-8">
+          <Pagination restRoute allPages={allPages} page={page} />
+        </div>
+      </main>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .blog-layout {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+    grid-template-areas: "sidebar main";
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .blog-sidebar {
+    grid-area: sidebar;
+    position: sticky;
+    top: calc(var(--site-nav-height) + 1.5rem);
+  }
+
+  .blog-main {
+    grid-area: main;
+    flex: 1;
+    min-width: 0;
+    min-height: 60vh;
+  }
+
+  .blog-posts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    contain: paint;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-layout {
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-layout {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      grid-template-areas:
+        "sidebar"
+        "main";
+    }
+
+    .blog-sidebar {
+      position: static;
+    }
+  }
+</style>
