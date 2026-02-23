@@ -25,9 +25,9 @@ const comparisonRows: Array<{ feature: string; values: Record<PlanKey, string> }
   {
     feature: "Price yearly",
     values: {
-      pro: formatComparisonYearlyPrice(16),
-      proPlus: formatComparisonYearlyPrice(39),
-      premium: formatComparisonYearlyPrice(89),
+      pro: formatComparisonYearlyPrice(19),
+      proPlus: formatComparisonYearlyPrice(49),
+      premium: formatComparisonYearlyPrice(99),
       team: formatComparisonYearlyPrice(149),
       business: formatComparisonYearlyPrice(299),
       enterprise: "Flexible",
@@ -36,9 +36,9 @@ const comparisonRows: Array<{ feature: string; values: Record<PlanKey, string> }
   {
     feature: "Price monthly",
     values: {
-      pro: formatComparisonMonthlyPrice(16),
-      proPlus: formatComparisonMonthlyPrice(39),
-      premium: formatComparisonMonthlyPrice(89),
+      pro: formatComparisonMonthlyPrice(19),
+      proPlus: formatComparisonMonthlyPrice(49),
+      premium: formatComparisonMonthlyPrice(99),
       team: formatComparisonMonthlyPrice(149),
       business: formatComparisonMonthlyPrice(299),
       enterprise: "Flexible",
@@ -315,7 +315,7 @@ const faqItems: FaqItem[] = [
         <PricingCard
           title="Starter"
           description="Includes:"
-          creatorPrice={16}
+          creatorPrice={19}
           billingPlan="pro"
           creatorUnit="/ month"
           creatorLabel=""
@@ -334,7 +334,7 @@ const faqItems: FaqItem[] = [
         <PricingCard
           title="Pro"
           description="Includes:"
-          creatorPrice={39}
+          creatorPrice={49}
           billingPlan="pro-plus"
           creatorUnit="/ month"
           creatorLabel=""
@@ -354,7 +354,7 @@ const faqItems: FaqItem[] = [
           title="Premium"
           tagLabel="Recommended"
           description="Includes:"
-          creatorPrice={89}
+          creatorPrice={99}
           billingPlan="premium"
           creatorUnit="/ month"
           creatorLabel=""

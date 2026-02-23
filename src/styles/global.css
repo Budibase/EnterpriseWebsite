@@ -462,7 +462,7 @@ h1,
 .h1 {
   font-family: "Fraunces", var(--font-display);
   color: var(--text-primary);
-  font-size: 36px;
+  font-size: 44px;
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.25px !important;
@@ -478,9 +478,9 @@ h1,
 
 h2,
 .h2 {
-  font-family: var(--font-display);
+  font-family: "Fraunces", var(--font-display);
   color: var(--text-primary);
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 500;
   line-height: 1.25;
   letter-spacing: -0.2px !important;
@@ -544,6 +544,10 @@ article h6 {
 article h1 {
   font-family: "Fraunces", var(--font-display);
   font-size: 32px;
+}
+
+article h2 {
+  font-family: "Fraunces", var(--font-display);
 }
 
 .post-title {
