@@ -43,12 +43,15 @@ const blog = defineCollection({
         z.object({
           name: z.string(),
           profilePic: z.string().optional(),
-        })
+        }),
       )
       .optional()
       .describe("Multiple authors"),
     category: z.string().optional().describe("Blog post category"),
-    featured: z.boolean().default(false).describe("Whether this is a featured post"),
+    featured: z
+      .boolean()
+      .default(false)
+      .describe("Whether this is a featured post"),
     socialImage: z
       .string()
       .optional()
@@ -88,15 +91,35 @@ const caseStudies = defineCollection({
   schema: z.object({
     title: z.string().describe("Company or organization name"),
     quote: z.string().describe("Headline quote from the case study"),
-    employees: z.string().describe("Number of employees, e.g. '6,600 employees' or '1,000 - 5,000 employees'"),
-    industry: z.string().describe("Industry or sector, e.g. 'Transport and logistics'"),
-    coverImage: z.string().optional().describe("Path to cover image, e.g. '/src/assets/images/case-studies/reworld.webp'"),
-    author: z.object({
-      name: z.string(),
-      role: z.string(),
-    }).optional().describe("Person who provided the testimonial"),
-    featured: z.boolean().default(false).describe("Whether to feature this case study prominently"),
-    order: z.number().default(0).describe("Display order (lower numbers appear first)"),
+    employees: z
+      .string()
+      .describe(
+        "Number of employees, e.g. '6,600 employees' or '1,000 - 5,000 employees'",
+      ),
+    industry: z
+      .string()
+      .describe("Industry or sector, e.g. 'Transport and logistics'"),
+    coverImage: z
+      .string()
+      .optional()
+      .describe(
+        "Path to cover image, e.g. '/src/assets/images/case-studies/reworld.webp'",
+      ),
+    author: z
+      .object({
+        name: z.string(),
+        role: z.string(),
+      })
+      .optional()
+      .describe("Person who provided the testimonial"),
+    featured: z
+      .boolean()
+      .default(false)
+      .describe("Whether to feature this case study prominently"),
+    order: z
+      .number()
+      .default(0)
+      .describe("Display order (lower numbers appear first)"),
   }),
 });
 
@@ -140,7 +163,10 @@ const workflows = defineCollection({
 });
 
 const docs = defineCollection({
-  loader: glob({ pattern: ["**/*.md", "**/*.mdx"], base: "./src/content/docs" }),
+  loader: glob({
+    pattern: ["**/*.md", "**/*.mdx"],
+    base: "./src/content/docs",
+  }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -155,9 +181,22 @@ const changelog = defineCollection({
     date: z.coerce.date(),
     version: z.string(),
     tags: z.array(
-      z.enum(["Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"]),
+      z.enum([
+        "Added",
+        "Changed",
+        "Deprecated",
+        "Removed",
+        "Fixed",
+        "Security",
+      ]),
     ),
     description: z.string().optional(),
+    image: z
+      .object({
+        src: z.string(),
+        alt: z.string().optional(),
+      })
+      .optional(),
     draft: z.boolean().default(false),
   }),
 });

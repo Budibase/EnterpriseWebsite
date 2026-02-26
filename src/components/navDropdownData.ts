@@ -26,57 +26,53 @@ const productItemsByHref = new Map(
     .map((item) => [item.link, item]),
 );
 
-export const productDropdownItems: NavDropdownItem[] = productItemOrder
-  .map(({ href, label }) => {
-    const item = productItemsByHref.get(href);
-    if (!item) return null;
-    return {
-      href: item.link,
-      label,
-      description: item.pageDescription,
-      prefetch: true,
-      badge: item.tag?.label,
-      disabled: item.disabled,
-    };
-  })
-  .filter((item): item is NavDropdownItem => Boolean(item));
-
-export const resourcesDropdownItems: NavDropdownItem[] = [
-  {
-    href: "https://docs.budibase.com",
-    label: "Docs",
-    description: "Technical documentation.",
-    target: "_blank",
-    rel: "noopener noreferrer",
-  },
-  {
-    href: "/workflows",
-    label: "Agent workflows",
-    description: "Proven AI workflow playbooks.",
-    prefetch: true,
-  },
-  {
-    href: "/blog/category/all",
-    label: "Blog",
-    description: "Product updates, customer stories, and guides.",
-    prefetch: true,
-  },
-  {
-    href: "/changelog",
-    label: "Changelog",
-    description: "What shipped and what changed.",
-    prefetch: true,
-  },
+export const productDropdownItems: NavDropdownItem[] = [
+  ...productItemOrder
+    .map(({ href, label }) => {
+      const item = productItemsByHref.get(href);
+      if (!item) return null;
+      return {
+        href: href === "/product/agents" ? "/" : item.link,
+        label,
+        description: item.pageDescription,
+        prefetch: true,
+        badge: item.tag?.label,
+        disabled: item.disabled,
+      };
+    })
+    .filter((item): item is NavDropdownItem => Boolean(item)),
   {
     href: "/enterprise",
     label: "Enterprise",
     description: "Enterprise features and customer stories.",
     prefetch: true,
   },
+];
+
+export const resourcesDropdownItems: NavDropdownItem[] = [
   {
-    href: "/partners",
-    label: "Partners",
-    description: "Explore Budibase partner programs.",
+    href: "/blog",
+    label: "Blog",
+    description: "All resources in one timeline.",
     prefetch: true,
+  },
+  {
+    href: "/changelog",
+    label: "Changelog",
+    description: "Changelog updates and release notes.",
+    prefetch: true,
+  },
+  {
+    href: "/customers",
+    label: "Customers",
+    description: "Customer stories and case studies.",
+    prefetch: true,
+  },
+  {
+    href: "https://docs.budibase.com",
+    label: "Docs",
+    description: "Technical documentation.",
+    target: "_blank",
+    rel: "noopener noreferrer",
   },
 ];

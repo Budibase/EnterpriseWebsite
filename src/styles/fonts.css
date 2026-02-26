@@ -19,21 +19,6 @@
   font-weight: 600;
   src: url("/fonts/Inter-SemiBold.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Inter Display";
-  font-style: normal;
-  font-weight: 500;
-  src: url("/fonts/InterDisplay-Medium.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Inter Display";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/InterDisplay-Regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
 
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -47,21 +32,10 @@
   font-display: swap;
   font-family: "Fraunces";
   font-style: normal;
-  font-weight: 500 600;
+  font-weight: 400 500 600;
   src:
     url("/fonts/Fraunces-Variable.ttf") format("truetype-variations"),
     local("Fraunces 72pt SuperSoft"),
     local("Fraunces72ptSuperSoft-Light"),
     local("Fraunces");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Libre Baskerville";
-  font-style: normal;
-  font-weight: 400 700;
-  src:
-    url("/fonts/LibreBaskerville-VariableFont_wght.ttf")
-      format("truetype-variations"),
-    local("Libre Baskerville");
 }

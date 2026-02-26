@@ -1,0 +1,62 @@
+---
+import CustomerFirstRowLogos from "./CustomerFirstRowLogos.astro";
+---
+
+<div
+  data-customer-dock-fixed
+  class="hidden md:block fixed bottom-0 left-0 right-0 z-40 h-[50px] border-t border-[var(--border-color)] bg-[var(--bg-1)]"
+>
+  <div class="container max-w-6xl mx-auto h-full px-2 lg:px-0 flex items-center justify-center">
+    <CustomerFirstRowLogos />
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const cleanupKey = "__customerDockCleanup";
+
+    const initDock = () => {
+      const existingCleanup = window[cleanupKey];
+      if (typeof existingCleanup === "function") existingCleanup();
+
+      const dock = document.querySelector("[data-customer-dock-fixed]");
+      const destination = document.querySelector("[data-customer-dock-destination]");
+
+      if (!dock || !destination) {
+        window[cleanupKey] = null;
+        return;
+      }
+
+      const updateDockState = () => {
+        const destinationTop = destination.getBoundingClientRect().top;
+        const shouldHide = destinationTop <= window.innerHeight - 50;
+        dock.classList.toggle("customer-dock-hidden", shouldHide);
+        destination.classList.toggle("customer-dock-destination-parked", shouldHide);
+      };
+
+      window.addEventListener("scroll", updateDockState, { passive: true });
+      window.addEventListener("resize", updateDockState);
+      updateDockState();
+
+      window[cleanupKey] = () => {
+        window.removeEventListener("scroll", updateDockState);
+        window.removeEventListener("resize", updateDockState);
+      };
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initDock, { once: true });
+    } else {
+      initDock();
+    }
+
+    document.addEventListener("astro:after-swap", initDock);
+  })();
+</script>
+
+<style>
+  .customer-dock-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>

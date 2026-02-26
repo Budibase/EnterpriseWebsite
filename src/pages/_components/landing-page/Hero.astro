@@ -1,5 +1,4 @@
 ---
-import Customers from "@components/Customers.astro";
 import Button from "@components/Button.astro";
 import AgentDemo from "@components/AgentDemo.astro";
 ---
@@ -8,13 +7,13 @@ import AgentDemo from "@components/AgentDemo.astro";
 
   <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
     <div class="flex-1 flex flex-col items-center text-center">
-      <h1 class="hero-title mt-12 mb-4 w-full max-w-2xl text-[56px]! leading-[1.02]! tracking-[-0.02em]! text-[var(--text-primary)] sm:text-[56px]! sm:leading-[1.02]!">
+      <h1 class="hero-title mt-12 mb-5 md:mb-8 w-full max-w-2xl text-[70px]! leading-[0.9]! tracking-[-0.02em]! text-[var(--text-primary)] sm:text-[70px]! sm:leading-[0.9]!">
         <span class="block">
-          Build AI agents that run your operations.
+          AI agents that run your operations.
         </span>
       </h1>
-      <div class="max-w-3xl !mb-4 !text-xl text-primary">
-        Connect your tools. Define the rules. Let agents handle the work.
+      <div class="max-w-3xl !mb-5 !text-xl text-primary">
+        Build and deploy agents in minutes — no engineers required.
       </div>
       <div class="flex flex-row">
         <Button
@@ -22,6 +21,7 @@ import AgentDemo from "@components/AgentDemo.astro";
           url="https://account.budibase.app/register"
           variant="primary"
           size="large"
+          class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl"
           target="_blank"
         />
       </div>

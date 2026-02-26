@@ -1,0 +1,101 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { format } from "date-fns";
+import RocketLaunchFill from "phosphor-astro/RocketLaunchFill.astro";
+
+interface Props {
+  entry: CollectionEntry<"changelog">;
+  showConnector?: boolean;
+}
+
+const { entry, showConnector = true } = Astro.props as Props;
+
+function hashValue(value: string): number {
+  let hash = 0;
+  for (const character of value) {
+    hash = (hash * 33 + character.charCodeAt(0)) >>> 0;
+  }
+  return hash;
+}
+
+const href = `/changelog/${entry.id}/`;
+const summary =
+  entry.data.description ?? `Version ${entry.data.version} release notes.`;
+const transitionKey = entry.id.replaceAll("/", "-");
+const placeholderVariant = hashValue(entry.id + entry.data.version) % 3;
+const placeholderGradientClasses = [
+  "bg-[linear-gradient(132deg,color-mix(in_srgb,var(--accent-green)_24%,var(--bg-2))_0%,color-mix(in_srgb,var(--accent-green)_8%,var(--bg-3))_100%)]",
+  "bg-[linear-gradient(132deg,color-mix(in_srgb,var(--accent-blue)_24%,var(--bg-2))_0%,color-mix(in_srgb,var(--accent-blue)_8%,var(--bg-3))_100%)]",
+  "bg-[linear-gradient(132deg,color-mix(in_srgb,var(--accent-orange)_24%,var(--bg-2))_0%,color-mix(in_srgb,var(--accent-orange)_8%,var(--bg-3))_100%)]",
+] as const;
+const placeholderGradientClass = placeholderGradientClasses[placeholderVariant];
+---
+
+<article
+  class="grid grid-cols-[1.9rem_minmax(0,1fr)] gap-[0.95rem] max-md:grid-cols-[1.45rem_minmax(0,1fr)] max-md:gap-[0.7rem]"
+>
+  <div class="relative flex justify-center pt-[0.08rem]" aria-hidden="true">
+    <span class="z-[1] inline-flex h-[1.2rem] w-[1.2rem] items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--accent-purple)_14%,var(--bg-2))] text-[var(--accent-purple)]">
+      <RocketLaunchFill class="h-[0.75rem] w-[0.75rem] text-current" />
+    </span>
+    {
+      showConnector && (
+        <span class="absolute bottom-[-1.95rem] left-1/2 top-[1.48rem] w-px -translate-x-1/2 bg-[color-mix(in_srgb,var(--border-color)_78%,var(--accent-purple))] max-md:bottom-[-1.35rem]" />
+      )
+    }
+  </div>
+
+  <a
+    href={href}
+    data-astro-prefetch
+    class="group grid grid-cols-[minmax(12rem,15.2rem)_minmax(0,1fr)] items-start gap-4 rounded-[8px] pb-8 text-inherit no-underline focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgb(var(--ring)_/_0.48)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-1)] max-[900px]:grid-cols-1 max-[900px]:gap-[0.85rem] max-md:pb-[1.45rem]"
+  >
+    <div class="w-full">
+      {
+        entry.data.image?.src ? (
+          <img
+            src={entry.data.image.src}
+            alt={entry.data.image.alt ?? entry.data.title}
+            loading="lazy"
+            class="block aspect-[16/9] w-full rounded-[10px] border border-[color-mix(in_srgb,var(--border-color)_80%,var(--bg-1))] bg-[var(--bg-2)] object-cover"
+          />
+        ) : (
+          <div
+            class:list={[
+              "flex aspect-[16/9] w-full flex-col justify-between rounded-[10px] border border-[color-mix(in_srgb,var(--border-color)_80%,var(--bg-1))] p-[0.8rem]",
+              placeholderGradientClass,
+            ]}
+            aria-hidden="true"
+          >
+            <span class="w-fit rounded-full border border-[color-mix(in_srgb,var(--border-color)_65%,var(--bg-1))] bg-[color-mix(in_srgb,var(--bg-1)_68%,transparent)] px-[0.5rem] py-[0.26rem] text-[0.72rem] leading-none text-[var(--text-primary)]">
+              {entry.data.version}
+            </span>
+            <span class="text-[0.92rem] font-medium leading-[1.18] text-[var(--text-primary)] [text-wrap:balance]">
+              {entry.data.title}
+            </span>
+          </div>
+        )
+      }
+    </div>
+
+    <div>
+      <h2
+        class="!m-0 text-[clamp(1.2rem,1rem+0.55vw,1.65rem)] leading-[1.16] text-[var(--text-primary)] transition-colors duration-150 group-hover:text-[color-mix(in_srgb,var(--text-primary)_74%,var(--accent-blue))]"
+        transition:name={`${transitionKey}-title`}
+      >
+        {entry.data.title}
+      </h2>
+      <p class="mt-[0.52rem] text-[1.02rem] leading-[1.35] text-[var(--text-primary)]">
+        {summary}
+      </p>
+      <div class="mt-[0.8rem] flex items-center justify-between gap-4 text-[1rem] text-[var(--text-secondary)] max-md:text-[0.94rem]">
+        <time datetime={entry.data.date.toISOString()}>
+          {format(entry.data.date, "MMM d, yyyy")}
+        </time>
+        <span class="whitespace-nowrap text-[var(--text-secondary)] transition-colors duration-150 group-hover:text-[var(--text-primary)]">
+          Read more -&gt;
+        </span>
+      </div>
+    </div>
+  </a>
+</article>

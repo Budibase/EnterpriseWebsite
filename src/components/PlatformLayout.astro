@@ -26,10 +26,17 @@ const homepageStylePaths = new Set([
   "/product/apis",
 ]);
 const useHomepageHeaderStyles = homepageStylePaths.has(normalizedCurrentPath);
+const shouldUseHeroTitle =
+  normalizedCurrentPath.startsWith("/product") ||
+  normalizedCurrentPath === "/enterprise";
 const isProductPage = normalizedCurrentPath.startsWith("/product");
 const titleClass = useHomepageHeaderStyles
-  ? "hero-title mb-2 text-[50px]! leading-[1.02]! tracking-[-0.02em]! text-[var(--text-primary)] sm:text-[50px]! sm:leading-[1.02]!"
-  : "mb-2 text-5xl!";
+  ? "hero-title mb-2 leading-[1.02]! tracking-[-0.02em]! text-[var(--text-primary)]"
+  : isProductPage
+    ? "hero-title mb-2"
+    : shouldUseHeroTitle
+      ? "hero-title mb-2 text-5xl!"
+    : "mb-2 text-5xl!";
 const descriptionClass = useHomepageHeaderStyles
   ? "!mb-4 !text-xl text-secondary"
   : "text-stone-500! dark:text-stone-400!";

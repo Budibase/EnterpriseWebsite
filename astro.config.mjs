@@ -19,6 +19,8 @@ export default defineConfig({
   },
 
   redirects: {
+    "/learn/blog": "/blog",
+    "/learn/blog/[...slug]": "/blog/[...slug]",
     "/product": "/product/agents",
     "/product/integrations": "/product/connections",
     "/platform": "/product/agents",

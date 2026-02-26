@@ -1,0 +1,132 @@
+---
+import { format } from "date-fns";
+import ArticleFill from "phosphor-astro/ArticleFill.astro";
+import CubeFill from "phosphor-astro/CubeFill.astro";
+import RocketLaunchFill from "phosphor-astro/RocketLaunchFill.astro";
+import UsersThreeFill from "phosphor-astro/UsersThreeFill.astro";
+import type { BlogFeedItem } from "../_feed";
+
+interface Props {
+  item: BlogFeedItem;
+  showConnector?: boolean;
+}
+
+const { item, showConnector = true } = Astro.props as Props;
+
+function getInitials(name: string): string {
+  const segments = name
+    .split(" ")
+    .map((segment) => segment.trim())
+    .filter(Boolean);
+
+  if (segments.length === 0) return "?";
+  if (segments.length === 1) return segments[0].slice(0, 2).toUpperCase();
+  return (segments[0][0] + segments[1][0]).toUpperCase();
+}
+
+const transitionKey = item.transitionKey;
+const href = item.href;
+const markerKind = item.category;
+const MarkerIcon =
+  markerKind === "product"
+    ? CubeFill
+    : markerKind === "customers"
+      ? UsersThreeFill
+      : markerKind === "useCases"
+        ? RocketLaunchFill
+        : ArticleFill;
+const markerAccentClasses = {
+  blog: "[--marker-accent:var(--accent-green)]",
+  product: "[--marker-accent:var(--accent-blue)]",
+  customers: "[--marker-accent:var(--accent-orange)]",
+  useCases: "[--marker-accent:var(--accent-purple)]",
+} as const;
+const markerAccentClass = markerAccentClasses[markerKind];
+const fallbackInitials = getInitials(item.authorName ?? item.categoryLabel);
+const hasAuthor = Boolean(item.authorName);
+---
+
+<article
+  class="relative grid grid-cols-[1.8rem_minmax(0,1fr)] items-start gap-[0.85rem] max-md:grid-cols-[1.45rem_minmax(0,1fr)] max-md:gap-[0.7rem]"
+>
+  <div
+    class:list={[
+      "relative flex min-h-full justify-center pt-[0.1rem]",
+      markerAccentClass,
+    ]}
+    aria-hidden="true"
+  >
+    <span
+      class="z-[1] inline-flex h-[1.16rem] w-[1.16rem] items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--marker-accent)_16%,var(--bg-2))] text-[var(--marker-accent)]"
+    >
+      <MarkerIcon class="h-[0.72rem] w-[0.72rem] text-current" />
+    </span>
+    {
+      showConnector && (
+        <span class="absolute bottom-[-1.65rem] left-1/2 top-[1.45rem] w-px -translate-x-1/2 bg-[color-mix(in_srgb,var(--border-color)_78%,var(--marker-accent))] max-md:bottom-[-1.3rem]" />
+      )
+    }
+  </div>
+
+  <a
+    href={href}
+    data-astro-prefetch
+    class="group block rounded-[8px] pb-[1.7rem] text-inherit no-underline focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgb(var(--ring)_/_0.48)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-1)] max-md:pb-[1.35rem]"
+  >
+    <h2
+      class="!m-0 text-[clamp(1.3rem,1.05rem+0.72vw,1.9rem)] leading-[1.16] text-[var(--text-primary)] transition-colors duration-150 [text-wrap:balance] group-hover:text-[color-mix(in_srgb,var(--text-primary)_74%,var(--accent-blue))] max-md:[text-wrap:initial]"
+      transition:name={`${transitionKey}-title`}
+    >
+      {item.title}
+    </h2>
+
+    <div
+      class="mt-[0.68rem] flex flex-wrap items-center gap-[0.42rem] text-[1rem] text-[var(--text-secondary)] max-md:text-[0.95rem]"
+      transition:name={`${transitionKey}-meta`}
+    >
+      {
+        item.authorName && (
+          <span class="inline-flex items-center gap-[0.45rem] text-[var(--text-primary)]">
+            {item.authorAvatar ? (
+              <img
+                src={item.authorAvatar}
+                alt=""
+                loading="lazy"
+                class="block h-[1.3rem] w-[1.3rem] shrink-0 rounded-full border border-[color-mix(in_srgb,var(--border-color)_75%,var(--bg-1))] object-cover"
+              />
+            ) : (
+              <span class="inline-flex h-[1.3rem] w-[1.3rem] shrink-0 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--border-color)_75%,var(--bg-1))] bg-[color-mix(in_srgb,var(--bg-3)_75%,var(--accent-blue))] text-[0.66rem] font-semibold tracking-[0.02em] text-[var(--text-primary)]">
+                {fallbackInitials}
+              </span>
+            )}
+            <span>{item.authorName}</span>
+          </span>
+        )
+      }
+
+      {
+        hasAuthor && (
+          <span
+            aria-hidden="true"
+            class="h-[0.24rem] w-[0.24rem] rounded-full bg-[color-mix(in_srgb,var(--text-secondary)_60%,transparent)]"
+          />
+        )
+      }
+
+      {
+        item.publishDate ? (
+          <time
+            class="inline-flex items-center gap-[0.45rem]"
+            datetime={item.publishDate.toISOString()}
+          >
+            {format(item.publishDate, "MMM d, yyyy")}
+          </time>
+        ) : (
+          <span class="inline-flex items-center gap-[0.45rem] text-[var(--text-secondary)]">
+            {item.categoryLabel}
+          </span>
+        )
+      }
+    </div>
+  </a>
+</article>

@@ -21,7 +21,10 @@ export async function getStaticPaths() {
         .split("/")
         .filter(Boolean)
         .map((part) => part.replace(/\.(md|mdx)$/i, ""))
-        .filter((part, index, parts) => !(index === parts.length - 1 && part === "index"));
+        .filter(
+          (part, index, parts) =>
+            !(index === parts.length - 1 && part === "index"),
+        );
       if (slugParts.length === 0) return null;
       return {
         params: { slug: slugParts.join("/") },
@@ -52,12 +55,15 @@ function isGroupActive(
 }
 ---
 
-<Layout title={`${entry.data.title} | Budibase Docs`} description={pageDescription}>
+<Layout
+  title={`${entry.data.title} | Budibase Docs`}
+  description={pageDescription}
+>
   <div class="side-rail-shell">
     <aside class="side-rail-left chrome-border" aria-label="Docs navigation">
       <div class="side-rail-left-scroll docs-side-rail-scroll">
         <a
-          href="/workflows"
+          href="/use-cases"
           data-astro-prefetch
           class="inline-flex items-center gap-[6px] text-sm text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 mb-2 px-3"
         >
@@ -75,55 +81,28 @@ function isGroupActive(
                   <ul class="docs-nav-items">
                     {group.items.map((item) => (
                       <li>
-                        {
-                          (() => {
-                            const children = item.children ?? [];
-                            const hasChildren = children.length > 0;
-                            const renderAsButton = Boolean(item.toggleOnly && hasChildren);
-                            const groupOpen = item.startCollapsed
-                              ? false
-                              : isGroupActive(item.href, item.children);
+                        {(() => {
+                          const children = item.children ?? [];
+                          const hasChildren = children.length > 0;
+                          const renderAsButton = Boolean(
+                            item.toggleOnly && hasChildren,
+                          );
+                          const groupOpen = item.startCollapsed
+                            ? false
+                            : isGroupActive(item.href, item.children);
                           return (
-                              <>
-                        {
-                          renderAsButton ? (
-                            <button
-                              type="button"
-                              aria-expanded={groupOpen ? "true" : "false"}
-                              data-docs-folder-toggle="true"
-                              class:list={[
-                                "docs-nav-link docs-nav-link-folder w-full border-0 bg-transparent text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 text-left cursor-pointer",
-                                isActive(item.href) && "active",
-                              ]}
-                            >
-                              <span>{item.label}</span>
-                              <span
-                                class:list={[
-                                  "inline-flex transition-transform duration-150",
-                                  groupOpen && "rotate-90",
-                                ]}
-                                data-docs-caret
-                              >
-                                <Icon
-                                  name="CaretRight"
-                                  class="w-2.5 h-2.5 text-secondary"
-                                />
-                              </span>
-                            </button>
-                          ) : (
-                            <a
-                              href={item.href ?? "#"}
-                              aria-current={isActive(item.href) ? "page" : undefined}
-                              aria-expanded={hasChildren ? (groupOpen ? "true" : "false") : undefined}
-                              data-docs-folder-toggle={hasChildren ? "true" : undefined}
-                              class:list={[
-                                "docs-nav-link docs-nav-link-folder text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800",
-                                isActive(item.href) && "active",
-                              ]}
-                            >
-                              <span>{item.label}</span>
-                              {
-                                hasChildren && (
+                            <>
+                              {renderAsButton ? (
+                                <button
+                                  type="button"
+                                  aria-expanded={groupOpen ? "true" : "false"}
+                                  data-docs-folder-toggle="true"
+                                  class:list={[
+                                    "docs-nav-link docs-nav-link-folder w-full border-0 bg-transparent text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 text-left cursor-pointer",
+                                    isActive(item.href) && "active",
+                                  ]}
+                                >
+                                  <span>{item.label}</span>
                                   <span
                                     class:list={[
                                       "inline-flex transition-transform duration-150",
@@ -136,41 +115,76 @@ function isGroupActive(
                                       class="w-2.5 h-2.5 text-secondary"
                                     />
                                   </span>
-                                )
-                              }
-                            </a>
-                          )
-                        }
-                        {
-                          hasChildren && (
-                            <ul
-                              class:list={[
-                                "docs-nav-children",
-                                groupOpen && "open",
-                              ]}
-                              data-docs-folder-panel
-                            >
-                              {children.map((child) => (
-                                <li>
-                                  <a
-                                    href={child.href ?? "#"}
-                                    aria-current={isActive(child.href) ? "page" : undefined}
-                                    class:list={[
-                                      "docs-nav-link docs-nav-link-child text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800",
-                                      isActive(child.href) && "active",
-                                    ]}
-                                  >
-                                    {child.label}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          )
-                        }
-                              </>
-                            );
-                          })()
-                        }
+                                </button>
+                              ) : (
+                                <a
+                                  href={item.href ?? "#"}
+                                  aria-current={
+                                    isActive(item.href) ? "page" : undefined
+                                  }
+                                  aria-expanded={
+                                    hasChildren
+                                      ? groupOpen
+                                        ? "true"
+                                        : "false"
+                                      : undefined
+                                  }
+                                  data-docs-folder-toggle={
+                                    hasChildren ? "true" : undefined
+                                  }
+                                  class:list={[
+                                    "docs-nav-link docs-nav-link-folder text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800",
+                                    isActive(item.href) && "active",
+                                  ]}
+                                >
+                                  <span>{item.label}</span>
+                                  {hasChildren && (
+                                    <span
+                                      class:list={[
+                                        "inline-flex transition-transform duration-150",
+                                        groupOpen && "rotate-90",
+                                      ]}
+                                      data-docs-caret
+                                    >
+                                      <Icon
+                                        name="CaretRight"
+                                        class="w-2.5 h-2.5 text-secondary"
+                                      />
+                                    </span>
+                                  )}
+                                </a>
+                              )}
+                              {hasChildren && (
+                                <ul
+                                  class:list={[
+                                    "docs-nav-children",
+                                    groupOpen && "open",
+                                  ]}
+                                  data-docs-folder-panel
+                                >
+                                  {children.map((child) => (
+                                    <li>
+                                      <a
+                                        href={child.href ?? "#"}
+                                        aria-current={
+                                          isActive(child.href)
+                                            ? "page"
+                                            : undefined
+                                        }
+                                        class:list={[
+                                          "docs-nav-link docs-nav-link-child text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-200 dark:[&.active]:bg-stone-800",
+                                          isActive(child.href) && "active",
+                                        ]}
+                                      >
+                                        {child.label}
+                                      </a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </>
+                          );
+                        })()}
                       </li>
                     ))}
                   </ul>
@@ -184,7 +198,9 @@ function isGroupActive(
 
     <div class="side-rail-main">
       <div class="side-rail-main-inner">
-        <div class="xl:grid xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-10 xl:items-start">
+        <div
+          class="xl:grid xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-10 xl:items-start"
+        >
           <article
             class="docs-article flex-1 min-w-0 space-y-8 px-4 sm:px-6 lg:px-8 pt-8 pb-8 max-w-3xl [&_h1]:!mt-0"
             data-docs-article
@@ -423,7 +439,9 @@ function isGroupActive(
 
       sections.forEach((section) => observer.observe(section));
 
-      const initialHash = decodeURIComponent(window.location.hash.replace("#", ""));
+      const initialHash = decodeURIComponent(
+        window.location.hash.replace("#", ""),
+      );
       if (initialHash && sectionIds.includes(initialHash)) {
         setActive(initialHash);
       } else {

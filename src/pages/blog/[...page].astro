@@ -2,8 +2,9 @@
 import type { GetStaticPathsOptions, Page } from "astro";
 import Pagination from "../../components/Pagination.astro";
 import Layout from "../../layouts/MainLayout.astro";
-import BlogPostPreview from "./_components/BlogPostPreview.astro";
-import CategoryFilters from "./_components/CategoryFilters.astro";
+import BlogTimelineRow from "./_components/BlogTimelineRow.astro";
+import BlogFilterPills from "./_components/BlogFilterPills.astro";
+import BlogTopicPills from "./_components/BlogTopicPills.astro";
 import { getBlogFeedItems, type BlogFeedItem } from "./_feed";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
@@ -27,80 +28,40 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
   description="Product updates, customer stories, and workflow guides from Budibase."
   image={{ src: "/og/blog.jpg", alt: "What's new in the Budibase ecosystem" }}
 >
-  <div class="mt-24 container max-w-6xl mx-auto blog-index">
-    <div class="blog-layout">
-      <aside class="blog-sidebar">
-        <CategoryFilters currentCategory="all" title="Blog" />
-      </aside>
+  <div
+    class="mx-auto mt-[clamp(5.6rem,8vw,7.2rem)] w-full max-w-[62rem] px-4 pb-16 max-md:mt-[max(calc(var(--site-nav-height)+1.1rem),4.8rem)] max-md:px-[0.9rem]"
+  >
+    <header class="mb-[1.4rem] grid gap-6 max-md:mb-4 max-md:gap-5">
+      <h1 class="hero-title m-0 font-['Fraunces'] text-[clamp(2.8rem,2.3rem+2vw,4.75rem)] leading-none tracking-[-0.02em] text-[var(--text-primary)]">
+        Blog
+      </h1>
+      <BlogFilterPills context="blog" activePill="all" />
+      <BlogTopicPills />
+    </header>
 
-      <main class="blog-main">
-        <ul class="blog-posts-list flex flex-col gap-3">
-          {
-            page.data.map((item) => (
+    <main class="min-h-[60vh]">
+      {
+        page.data.length === 0 ? (
+          <section class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4">
+            <p class="m-0 text-[var(--text-secondary)]">No blog entries yet.</p>
+          </section>
+        ) : (
+          <ul class="m-0 flex list-none flex-col p-0">
+            {page.data.map((item, index) => (
               <li>
-                <BlogPostPreview item={item} />
+                <BlogTimelineRow
+                  item={item}
+                  showConnector={index < page.data.length - 1}
+                />
               </li>
-            ))
-          }
-        </ul>
+            ))}
+          </ul>
+        )
+      }
 
-        <div class="my-8">
-          <Pagination restRoute allPages={allPages} page={page} />
-        </div>
-      </main>
-    </div>
+      <div class="mt-4 w-full">
+        <Pagination restRoute allPages={allPages} page={page} />
+      </div>
+    </main>
   </div>
 </Layout>
-
-<style>
-  .blog-layout {
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
-    grid-template-areas: "sidebar main";
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .blog-sidebar {
-    grid-area: sidebar;
-    position: sticky;
-    top: calc(var(--site-nav-height) + 1.5rem);
-  }
-
-  .blog-main {
-    grid-area: main;
-    flex: 1;
-    min-width: 0;
-    min-height: 60vh;
-  }
-
-  .blog-posts-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    contain: paint;
-  }
-
-  @media (max-width: 1024px) {
-    .blog-layout {
-      gap: 2rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .blog-layout {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      grid-template-areas:
-        "sidebar"
-        "main";
-    }
-
-    .blog-sidebar {
-      position: static;
-    }
-  }
-</style>

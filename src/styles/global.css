@@ -203,8 +203,8 @@
       "Inter", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
       "Noto Color Emoji", sans-serif;
     --font-display:
-      "Inter Display", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-      "Noto Color Emoji", sans-serif;
+      "Fraunces", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji", serif;
     --font-mono:
       "iA Writer Mono", ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco,
       Consolas, "Liberation Mono", "Courier New", monospace;
@@ -470,10 +470,17 @@ h1,
 
 .hero-title {
   font-family: "Fraunces", var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 56px;
   font-variation-settings: "opsz" 72, "SOFT" 50, "WONK" 10;
   letter-spacing: -0.01em;
   line-height: 1.02;
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 70px;
+  }
 }
 
 h2,
@@ -487,7 +494,7 @@ h2,
 }
 
 h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   color: var(--text-primary);
   font-size: 22px;
   font-weight: 500;
@@ -515,7 +522,7 @@ h5 {
 
 p {
   font-family: var(--font-sans);
-  color: var(--text-primary) !important;
+  color: var(--text-primary);
   font-size: 16px;
   font-weight: 400;
   line-height: 1.35;
@@ -523,7 +530,7 @@ p {
 }
 
 .dark p {
-  color: var(--text-primary) !important;
+  color: var(--text-primary);
 }
 
 article h1,
@@ -1270,6 +1277,10 @@ article blockquote p {
 .api-explorer-demo-right {
   background: var(--bg-1);
   padding: 20px;
+}
+
+.SectionTitle {
+  @apply mb-6 !text-center !text-3xl md:!text-4xl lg:!text-5xl !tracking-[-0.015em] !text-balance !max-w-4xl !mx-auto;
 }
 
 .api-explorer-demo-response-tabs {

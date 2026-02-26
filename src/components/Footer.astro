@@ -31,15 +31,15 @@ const footerColumns: FooterColumn[] = [
     title: "Enterprise",
     links: [
       { label: "Enterprise", url: "/enterprise" },
-      { label: "Customers", url: "/blog/category/customers" },
+      { label: "Customers", url: "/customers" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Workflows", url: "/workflows" },
       { label: "Blog", url: "/blog" },
       { label: "Changelog", url: "/changelog" },
+      { label: "Use cases", url: "/use-cases" },
       { label: "Docs", url: "https://docs.budibase.com", target: "_blank" },
     ],
   },
@@ -63,7 +63,11 @@ const footerColumns: FooterColumn[] = [
         url: "https://linkedin.com/company/budibase",
         target: "_blank",
       },
-      { label: "YouTube", url: "https://youtube.com/@budibase", target: "_blank" },
+      {
+        label: "YouTube",
+        url: "https://youtube.com/@budibase",
+        target: "_blank",
+      },
     ],
   },
 ];
@@ -77,25 +81,27 @@ const footerColumns: FooterColumn[] = [
   <div class="footer-container mx-auto w-full max-w-6xl px-2 md:px-3 lg:px-0">
     <!-- Upper section: Navigation columns -->
     <div class="footer-nav">
-      {footerColumns.map((column) => (
-        <div class="footer-column">
-          <p>{column.title}</p>
-          <ul class="text-stone-500! gap-0.5! flex flex-col">
-            {column.links.map((link) => (
-              <li>
-                <Link
-                  label={link.label}
-                  url={link.url}
-                  target={link.target}
-                  variant="secondary"
-                  size="small"
-                  class="footer-link"
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {
+        footerColumns.map((column) => (
+          <div class="footer-column">
+            <p>{column.title}</p>
+            <ul class="text-stone-500! gap-0.5! flex flex-col">
+              {column.links.map((link) => (
+                <li>
+                  <Link
+                    label={link.label}
+                    url={link.url}
+                    target={link.target}
+                    variant="secondary"
+                    size="small"
+                    class="footer-link"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
 
     <!-- Lower section: Copyright and controls -->

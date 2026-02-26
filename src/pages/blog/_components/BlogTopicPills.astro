@@ -1,0 +1,49 @@
+---
+import {
+  BLOG_TOPIC_ITEMS,
+  type BlogTopicRoute,
+} from "../_feed";
+
+interface Props {
+  activeTopic?: BlogTopicRoute;
+  ariaLabel?: string;
+}
+
+const {
+  activeTopic,
+  ariaLabel = "Blog topic filters",
+} = Astro.props as Props;
+
+const basePillClass =
+  "inline-flex min-h-8 items-center gap-[0.32rem] whitespace-nowrap rounded-full border px-[0.72rem] py-[0.34rem] text-[0.9rem] leading-none no-underline transition-colors duration-150 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgb(var(--ring)_/_0.5)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-1)]";
+const inactivePillClass =
+  "border-[var(--border-color)] bg-[color-mix(in_srgb,var(--bg-1)_85%,var(--bg-2))] text-[var(--text-secondary)] hover:border-[color-mix(in_srgb,var(--border-color)_65%,var(--text-primary))] hover:bg-[var(--bg-2)] hover:text-[var(--text-primary)]";
+const activePillClass =
+  "border-[var(--border-color)] bg-[var(--bg-2)] text-[var(--text-primary)]";
+---
+
+<nav class="w-full" aria-label={ariaLabel}>
+  <ul class="m-0 flex list-none flex-wrap gap-[0.45rem] p-0 max-md:flex-nowrap max-md:overflow-x-auto max-md:pb-[0.2rem] max-md:[scrollbar-width:thin]">
+    {
+      BLOG_TOPIC_ITEMS.map((topic) => {
+        const isActive = activeTopic === topic.id;
+        return (
+          <li>
+            <a
+              href={`/blog/category/${topic.id}`}
+              class:list={[
+                basePillClass,
+                isActive ? activePillClass : inactivePillClass,
+              ]}
+              aria-current={isActive ? "page" : undefined}
+              data-astro-prefetch
+              data-astro-transition="none"
+            >
+              <span>{topic.label}</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

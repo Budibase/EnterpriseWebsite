@@ -7,6 +7,9 @@ tags:
   - Changed
   - Fixed
   - Security
+image:
+  src: "/og.png"
+  alt: "Release hardening and security updates"
 draft: false
 ---
 

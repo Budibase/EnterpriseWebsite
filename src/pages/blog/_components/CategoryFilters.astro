@@ -1,8 +1,8 @@
 ---
-import { BLOG_CATEGORY_ITEMS, type BlogCategory } from "../_feed";
+import { BLOG_CATEGORY_ITEMS, type BlogCategoryRoute } from "../_feed";
 
 interface Props {
-  currentCategory?: BlogCategory;
+  currentCategory?: BlogCategoryRoute;
   title?: string;
 }
 
@@ -17,14 +17,18 @@ const { currentCategory = "all", title = "Blog" } = Astro.props as Props;
         BLOG_CATEGORY_ITEMS.map((category) => (
           <li>
             <a
-              href={category.id === "all"
-                ? "/blog"
-                : `/blog/category/${category.id}`}
+              href={
+                category.id === "all"
+                  ? "/blog"
+                  : `/blog/category/${category.id}`
+              }
               class:list={[
                 "nav-link flex h-8 items-center rounded px-2 text-sm text-primary hover:text-primary dark:text-primary dark:hover:text-primary",
                 currentCategory === category.id && "active",
               ]}
-              aria-current={currentCategory === category.id ? "page" : undefined}
+              aria-current={
+                currentCategory === category.id ? "page" : undefined
+              }
               data-astro-prefetch
               data-astro-transition="none"
             >

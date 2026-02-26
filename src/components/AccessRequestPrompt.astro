@@ -1,12 +1,34 @@
 ---
 import InstructionsEditor from "@components/InstructionsEditor.astro";
 
+interface Props {
+  collapsible?: boolean;
+  collapsedHeight?: number;
+}
+
+const {
+  collapsible = false,
+  collapsedHeight = 200,
+} = Astro.props as Props;
+
 const promptId = `access-request-prompt-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
-<div class="rounded-[7px] p-[6px]" style="border: 1px dashed var(--color-grey-800);">
-  <div class="relative" data-prompt-id={promptId}>
-    <InstructionsEditor class="pt-8" background="var(--bg-2)" border="0.5px solid var(--color-grey-900)">
+<div
+  class="rounded-[7px] p-[6px] access-request-prompt-card"
+  style="border: 1px dashed var(--color-grey-800);"
+  data-prompt-id={promptId}
+  data-collapsible={collapsible ? "true" : "false"}
+  data-collapsed-height={String(collapsedHeight)}
+>
+  <div class="relative">
+    <div
+      id={`${promptId}-content`}
+      class="access-request-prompt-content"
+      data-prompt-content
+      style={`--access-request-collapsed-height:${String(collapsedHeight)}px;`}
+    >
+      <InstructionsEditor class="pt-8" background="var(--bg-2)" border="0.5px solid var(--color-grey-900)">
       <li><span class="token-heading">## Persona</span></li>
       <li>
         You are an access decision agent. Your task is to evaluate access requests <strong>strictly according to the Access Decision Policy</strong> provided to you as reference material. You do not grant or revoke access. You only produce a <strong>recommendation</strong> and <strong>policy-based reasoning</strong> for a human approver.
@@ -110,6 +132,8 @@ const promptId = `access-request-prompt-${Math.random().toString(36).slice(2, 8)
         <span class="token-code">'human_approver'</span> - leave null.
       </li>
     </InstructionsEditor>
+      <div class="access-request-prompt-fade" data-prompt-fade></div>
+    </div>
     <button
       type="button"
       class="absolute right-2 top-2 z-10 text-[13px] font-medium text-text-muted transition-colors hover:text-text"
@@ -119,12 +143,124 @@ const promptId = `access-request-prompt-${Math.random().toString(36).slice(2, 8)
       Copy
     </button>
   </div>
+  <div class="access-request-prompt-footer" data-prompt-footer hidden>
+    <button
+      type="button"
+      class="access-request-prompt-toggle"
+      data-prompt-toggle
+      aria-controls={`${promptId}-content`}
+      aria-expanded="false"
+    >
+      Read more
+    </button>
+  </div>
 </div>
+
+<style>
+  .access-request-prompt-content {
+    position: relative;
+  }
+
+  .access-request-prompt-card[data-collapsible="true"].is-collapsed
+    .access-request-prompt-content {
+    height: var(--access-request-collapsed-height);
+    overflow: hidden;
+  }
+
+  .access-request-prompt-fade {
+    display: none;
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 72px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--bg-2) 95%, transparent) 100%
+    );
+    pointer-events: none;
+  }
+
+  .access-request-prompt-card[data-collapsible="true"].is-collapsed.has-overflow
+    .access-request-prompt-fade {
+    display: block;
+  }
+
+  .access-request-prompt-footer {
+    border-top: 0.5px solid var(--color-grey-900);
+    margin-top: 0.45rem;
+    padding: 0.58rem 0.9rem 0.65rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .access-request-prompt-toggle {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1;
+    font-weight: 500;
+    padding: 0.2rem 0.4rem;
+    transition: color 0.2s ease;
+  }
+
+  .access-request-prompt-toggle:hover {
+    color: var(--text-primary);
+  }
+</style>
 
 <script is:inline define:vars={{ promptId }}>
   const root = document.querySelector(`[data-prompt-id="${promptId}"]`);
   const button = root?.querySelector("[data-copy-button]");
   const editor = root?.querySelector(".hero-demo-instructions-lines");
+  const content = root?.querySelector("[data-prompt-content]");
+  const footer = root?.querySelector("[data-prompt-footer]");
+  const toggle = root?.querySelector("[data-prompt-toggle]");
+  const collapsible = root?.dataset.collapsible === "true";
+  const collapsedHeight = Number(root?.dataset.collapsedHeight ?? "200");
+
+  if (root && collapsible && content && footer && toggle) {
+    root.classList.add("is-collapsed");
+
+    const setToggleState = (expanded) => {
+      if (expanded) {
+        root.classList.add("is-expanded");
+        root.classList.remove("is-collapsed");
+        toggle.textContent = "Read less";
+        toggle.setAttribute("aria-expanded", "true");
+      } else {
+        root.classList.add("is-collapsed");
+        root.classList.remove("is-expanded");
+        toggle.textContent = "Read more";
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    };
+
+    const refreshToggleVisibility = () => {
+      const hasOverflow = content.scrollHeight > collapsedHeight + 1;
+      root.classList.toggle("has-overflow", hasOverflow);
+      footer.hidden = !hasOverflow;
+      if (!hasOverflow) {
+        root.classList.remove("is-collapsed", "is-expanded");
+      } else if (!root.classList.contains("is-expanded")) {
+        setToggleState(false);
+      }
+    };
+
+    toggle.addEventListener("click", () => {
+      const expanded = root.classList.contains("is-expanded");
+      setToggleState(!expanded);
+    });
+
+    refreshToggleVisibility();
+    window.addEventListener("resize", refreshToggleVisibility, {
+      passive: true,
+    });
+  }
+
   if (button && editor) {
     button.addEventListener("click", async () => {
       const text = editor.innerText.trim();

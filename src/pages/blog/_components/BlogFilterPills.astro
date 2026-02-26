@@ -1,0 +1,84 @@
+---
+import ArticleFill from "phosphor-astro/ArticleFill.astro";
+import CirclesFourFill from "phosphor-astro/CirclesFourFill.astro";
+import CubeFill from "phosphor-astro/CubeFill.astro";
+import UsersThreeFill from "phosphor-astro/UsersThreeFill.astro";
+
+type PillId = "all" | "blog" | "product" | "customers";
+
+interface Props {
+  context: "blog" | "changelog";
+  activePill: PillId;
+  ariaLabel?: string;
+}
+
+const {
+  context,
+  activePill,
+  ariaLabel = "Content filters",
+} = Astro.props as Props;
+
+const iconMap = {
+  all: CirclesFourFill,
+  blog: ArticleFill,
+  product: CubeFill,
+  customers: UsersThreeFill,
+} as const;
+
+const sharedPills: Array<{ id: PillId; label: string; href: string }> = [
+  { id: "all", label: "All", href: "/blog" },
+  { id: "blog", label: "Blog", href: "/blog/category/blog" },
+  { id: "product", label: "Changelog", href: "/changelog" },
+  { id: "customers", label: "Customers", href: "/customers" },
+];
+
+const pills = sharedPills;
+
+const iconColorClasses: Record<PillId, string> = {
+  all: "text-[var(--text-secondary)]",
+  blog: "text-[var(--accent-green)]",
+  product: "text-[var(--accent-blue)]",
+  customers: "text-[var(--accent-orange)]",
+};
+
+const basePillClass =
+  "inline-flex min-h-8 items-center gap-[0.38rem] whitespace-nowrap rounded-full border px-[0.78rem] py-[0.34rem] text-[0.95rem] leading-none no-underline transition-colors duration-150 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgb(var(--ring)_/_0.5)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-1)]";
+const inactivePillClass =
+  "border-[var(--border-color)] bg-[color-mix(in_srgb,var(--bg-1)_85%,var(--bg-2))] text-[var(--text-secondary)] hover:border-[color-mix(in_srgb,var(--border-color)_65%,var(--text-primary))] hover:bg-[var(--bg-2)] hover:text-[var(--text-primary)]";
+const activePillClass =
+  "border-[var(--border-color)] bg-[var(--bg-2)] text-[var(--text-primary)]";
+---
+
+<nav class="w-full" aria-label={ariaLabel} data-context={context}>
+  <ul
+    class="m-0 flex list-none flex-wrap gap-[0.55rem] p-0 max-md:flex-nowrap max-md:overflow-x-auto max-md:pb-[0.2rem] max-md:[scrollbar-width:thin]"
+  >
+    {
+      pills.map((pill) => {
+        const PillIcon = iconMap[pill.id];
+        const isActive = activePill === pill.id;
+        const iconColorClass = iconColorClasses[pill.id];
+        return (
+          <li>
+            <a
+              href={pill.href}
+              class:list={[
+                basePillClass,
+                isActive ? "is-active" : "is-inactive",
+                isActive ? activePillClass : inactivePillClass,
+              ]}
+              aria-current={isActive ? "page" : undefined}
+              data-astro-prefetch
+              data-astro-transition="none"
+            >
+              <PillIcon
+                class:list={["h-[14px] w-[14px] shrink-0", iconColorClass]}
+              />
+              <span>{pill.label}</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

@@ -4,10 +4,7 @@ import budibaseLogoWhite from "@assets/BudibaseLogoWhite.svg";
 import { Image } from "astro:assets";
 import Button from "@components/Button.astro";
 import HeaderDropDown from "@components/HeaderDropDown.astro";
-import {
-  productDropdownItems,
-  resourcesDropdownItems,
-} from "@components/navDropdownData";
+import { productDropdownItems } from "@components/navDropdownData";
 ---
 
 <nav
@@ -34,9 +31,19 @@ import {
       </div>
     </a>
 
-    <div class="z-10 flex items-center gap-2 justify-self-end lg:col-start-3 lg:gap-3">
+    <div
+      class="z-10 flex items-center gap-2 justify-self-end lg:col-start-3 lg:gap-3"
+    >
       <div class="hidden items-center gap-5 whitespace-nowrap lg:flex xl:gap-7">
         <HeaderDropDown label="Product" items={productDropdownItems} />
+        <a
+          target="_self"
+          href="/use-cases"
+          class="text-sm nav-link transition-colors"
+          data-astro-prefetch
+        >
+          Use cases
+        </a>
         <a
           target="_self"
           href="/pricing"
@@ -45,7 +52,22 @@ import {
         >
           Pricing
         </a>
-        <HeaderDropDown label="Resources" items={resourcesDropdownItems} />
+        <a
+          target="_self"
+          href="/blog"
+          class="text-sm nav-link transition-colors"
+          data-astro-prefetch
+        >
+          Blog
+        </a>
+        <a
+          href="https://docs.budibase.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm nav-link transition-colors"
+        >
+          Docs
+        </a>
       </div>
 
       <a
@@ -53,7 +75,8 @@ import {
         target="_blank"
         class="relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm transition-all hover:bg-stone-200 dark:hover:bg-stone-800 border-transparent text-xs hidden xl:flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
         ><span class="truncate"
-          ><span class="flex text-sm items-center gap-0.5 nav-link transition-colors"
+          ><span
+            class="flex text-sm items-center gap-0.5 nav-link transition-colors"
             >Community</span
           ></span
         ></a
@@ -63,7 +86,8 @@ import {
         target="_blank"
         class="relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm transition-all hover:bg-stone-200 dark:hover:bg-stone-800 border-transparent text-xs hidden xl:flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
         ><span class="truncate"
-          ><span class="flex text-sm items-center gap-0.5 nav-link transition-colors"
+          ><span
+            class="flex text-sm items-center gap-0.5 nav-link transition-colors"
             ><svg
               class="w-5 h-5"
               viewBox="0 0 17 16"
@@ -167,6 +191,26 @@ import {
           >
             Product
           </a>
+          <ul class="mt-2 flex flex-col gap-2">
+            <li>
+              <a
+                href="/enterprise"
+                class="block text-2xl nav-link transition-colors"
+                data-astro-prefetch
+              >
+                Enterprise
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="/use-cases"
+            class="block text-3xl nav-link transition-colors"
+            data-astro-prefetch
+          >
+            Use cases
+          </a>
         </li>
         <li>
           <a
@@ -201,16 +245,7 @@ import {
             </li>
             <li>
               <a
-                href="/workflows"
-                class="block text-2xl nav-link transition-colors"
-                data-astro-prefetch
-              >
-                Agent workflows
-              </a>
-            </li>
-            <li>
-              <a
-                href="/blog/category/all"
+                href="/blog"
                 class="block text-2xl nav-link transition-colors"
                 data-astro-prefetch
               >
@@ -228,20 +263,11 @@ import {
             </li>
             <li>
               <a
-                href="/enterprise"
+                href="/customers"
                 class="block text-2xl nav-link transition-colors"
                 data-astro-prefetch
               >
-                Enterprise
-              </a>
-            </li>
-            <li>
-              <a
-                href="/partners"
-                class="block text-2xl nav-link transition-colors"
-                data-astro-prefetch
-              >
-                Partners
+                Customers
               </a>
             </li>
           </ul>
@@ -303,8 +329,8 @@ import {
   (function () {
     function normalizeLegacyNavLinks() {
       const remap = {
-        "/learn/blog": "/blog/category/all",
-        "/learn/workflows": "/workflows",
+        "/learn/blog": "/blog",
+        "/learn/workflows": "/use-cases",
         "/learn/changelog": "/changelog",
       };
 
@@ -316,9 +342,8 @@ import {
         const href = link.getAttribute("href");
         if (!href) return;
 
-        const normalized = href.endsWith("/") && href.length > 1
-          ? href.slice(0, -1)
-          : href;
+        const normalized =
+          href.endsWith("/") && href.length > 1 ? href.slice(0, -1) : href;
         const replacement = remap[normalized];
         if (replacement) {
           link.setAttribute("href", replacement);

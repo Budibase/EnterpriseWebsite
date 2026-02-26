@@ -1,7 +1,6 @@
 ---
 import Button from "@components/Button.astro";
 import { Image } from "astro:assets";
-import ClarenceIcon from "@assets/images/mascot/clarenceIcon.png";
 
 // Logo imports
 import DiscordLogoSvg from "@assets/logos/discord.svg";
@@ -94,7 +93,7 @@ import PinpointLogo from "@assets/logos/pinpoint.svg";
 import PodiumLogo from "@assets/logos/podium.svg";
 import RemoteLogo from "@assets/logos/remote.svg";
 import ResendLogo from "@assets/logos/resend.svg";
-import DockerLogo from "@assets/logos/docker.svg";
+import DockerLogo from "@assets/logos/Docker.svg";
 import KubernetesLogo from "@assets/logos/kubernetes.svg";
 import NextcloudLogo from "@assets/logos/nextcloud.svg";
 import LinodeLogo from "@assets/logos/linode.svg";
@@ -210,17 +209,10 @@ const logos = [
           <div 
             class="col-span-5 row-span-5 flex flex-col items-start justify-center text-left p-6 rounded-lg bg-3"
           >
-            <Image
-              src={ClarenceIcon}
-              alt="Clarence icon"
-              width={120}
-              height={120}
-              class="mb-[6px] shrink-0"
-            />
             <div class="h-full flex flex-col justify-between">
-              <h2 class="text-xl mb-0">
-                <span class="text-xl text-text">Connect with over 100 tools, AI models, databases, and take action with over 10,000 operations.</span>
-              </h2>
+              <p class="text-xl mb-0 text-text">
+                Connect with over 100 tools, AI models, databases, and take action with over 10,000 operations.
+              </p>
               <div class="w-full mt-4">
                 <Button label="See all connectors" url="/product/connections" variant="primary" class="w-full" />
               </div>

@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
-import Icon from "@components/Icon.astro";
+import AccessRequestPrompt from "@components/AccessRequestPrompt.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -12,7 +12,8 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { title, outcome, sidebar = [] } = entry.data;
+const { title, outcome } = entry.data;
+const workflowSlug = entry.data.slug ?? entry.id;
 const { Content } = await render(entry);
 ---
 
@@ -20,64 +21,15 @@ const { Content } = await render(entry);
   <div class="learn-detail-shell">
     <main class="side-rail-main-inner workflow-main pb-20">
       <header class="side-rail-page-header">
-        <h1 class="mb-2 text-5xl!">{title}</h1>
+        <h1 class="hero-title mb-2 text-5xl!">{title}</h1>
         <p class="text-stone-500! dark:text-stone-400!">{outcome}</p>
-
-        <div
-          class="workflow-nav-card bg-2 rounded-md p-3 mt-4"
-          data-workflow-sidebar
-        >
-          <a
-            href="/workflows"
-            class="inline-flex items-center gap-[6px] text-sm text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 mb-2"
-          >
-            <Icon name="ArrowRight" class="w-4 h-4 rotate-180" />
-            <span>Back</span>
-          </a>
-          <nav aria-label="Build steps">
-            <ul class="flex flex-col gap-1">
-              {
-                sidebar.map((item, index) => {
-                  const iconNames = [
-                    "One",
-                    "Two",
-                    "Three",
-                    "Four",
-                    "Five",
-                    "Six",
-                    "Seven",
-                    "Eight",
-                    "Nine",
-                  ];
-                  const iconSuffix =
-                    iconNames[Math.min(index, iconNames.length - 1)];
-                  const iconName = `NumberCircle${iconSuffix}`;
-                  return (
-                    <li>
-                      <a
-                        class:list={[
-                          "nav-link group flex items-center gap-2 h-8 px-3 rounded-md text-sm text-primary dark:text-primary hover:text-primary dark:hover:text-primary [&.active]:text-sky-700 dark:[&.active]:text-sky-200 [&.active:hover]:text-sky-600 dark:[&.active:hover]:text-sky-100 [&.active]:bg-stone-100 dark:[&.active]:bg-stone-800",
-                          item.id === "overview" && "active",
-                        ]}
-                        href={`#${item.id}`}
-                        data-step-id={item.id}
-                        aria-current={item.id === "overview" ? "page" : undefined}
-                      >
-                        <Icon
-                          name={iconName}
-                          weight="fill"
-                          class="w-4 h-4 text-stone-500 dark:text-stone-500 group-[.active]:text-sky-700 dark:group-[.active]:text-sky-200"
-                        />
-                        <span class="sr-only">Step {index + 1}</span>
-                        <span>{item.label}</span>
-                      </a>
-                    </li>
-                  );
-                })
-              }
-            </ul>
-          </nav>
-        </div>
+        {
+          workflowSlug === "access-request" && (
+            <div class="mt-4">
+              <AccessRequestPrompt collapsible collapsedHeight={200} />
+            </div>
+          )
+        }
       </header>
       <article class="workflow-article">
         <Content />
@@ -104,142 +56,36 @@ const { Content } = await render(entry);
     }
   </style>
 
-  <script
-    define:vars={{
-      steps: sidebar.map((item) => ({ id: item.id, label: item.label })),
-    }}
-  >
+  <script>
     (() => {
-      if (!Array.isArray(steps) || steps.length === 0) return;
+      const markerPattern = /\s*\{#([A-Za-z0-9_-]+)\}\s*$/;
 
-      const init = () => {
-        const sidebarRoot = document.querySelector("[data-workflow-sidebar]");
-        if (!sidebarRoot) return;
+      const normalizeHeadingIds = () => {
+        const article = document.querySelector("article.workflow-article");
+        if (!article) return;
+        const headings = Array.from(article.querySelectorAll("h2, h3, h4"));
 
-        if (sidebarRoot._workflowCleanup) {
-          sidebarRoot._workflowCleanup();
-        }
+        headings.forEach((heading) => {
+          const text = (heading.textContent || "").trim();
+          const markerMatch = text.match(markerPattern);
+          if (!markerMatch) return;
 
-        const links = Array.from(sidebarRoot.querySelectorAll('a[href^="#"]'));
-        const stepIds = steps.map((step) => step.id);
-        const article = document.querySelector("article");
-        const sections = [];
-
-        steps.forEach((step) => {
-          let section = document.getElementById(step.id);
-          if (!section && article) {
-            const headings = Array.from(article.querySelectorAll("h2, h3, h4"));
-            section = headings.find((heading) => {
-              const text = (heading.textContent || "").trim();
-              return (
-                text.includes(`{#${step.id}}`) ||
-                text.toLowerCase().startsWith(step.label.toLowerCase())
-              );
-            });
-          }
-
-          if (section) {
-            if (section.id !== step.id) {
-              section.id = step.id;
-            }
-            if (section.textContent?.includes(`{#${step.id}}`)) {
-              section.textContent = section.textContent
-                .replace(`{#${step.id}}`, "")
-                .trim();
-            }
-            sections.push(section);
-          }
+          const targetId = markerMatch[1];
+          const cleanText = text.replace(markerPattern, "").trim();
+          if (cleanText) heading.textContent = cleanText;
+          if (targetId) heading.id = targetId;
         });
-
-        if (links.length === 0 || sections.length === 0) return;
-
-        function setActive(id) {
-          links.forEach((link) => {
-            const linkId = link.getAttribute("data-step-id");
-            const isActive = linkId === id;
-            link.classList.toggle("active", isActive);
-            if (isActive) {
-              link.setAttribute("aria-current", "page");
-            } else {
-              link.removeAttribute("aria-current");
-            }
-          });
-        }
-
-        const prefersReducedMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)",
-        ).matches;
-
-        const onClick = (event) => {
-          const target =
-            event.target && event.target.closest
-              ? event.target.closest('a[href^="#"]')
-              : null;
-          if (!target || !sidebarRoot.contains(target)) return;
-
-          const id = target.getAttribute("data-step-id");
-          if (!id) return;
-
-          const section = document.getElementById(id);
-          if (!section) return;
-
-          event.preventDefault();
-          setActive(id);
-          section.scrollIntoView({
-            behavior: prefersReducedMotion ? "auto" : "smooth",
-            block: "start",
-          });
-          history.pushState(null, "", `#${id}`);
-        };
-
-        const onHashChange = () => {
-          const hash = window.location.hash.replace("#", "");
-          if (hash && stepIds.includes(hash)) setActive(hash);
-        };
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            const visible = entries
-              .filter((entry) => entry.isIntersecting)
-              .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-            if (visible.length > 0) {
-              setActive(visible[0].target.id);
-            }
-          },
-          {
-            rootMargin: "0px 0px -60% 0px",
-            threshold: 0.25,
-          },
-        );
-
-        sections.forEach((section) => observer.observe(section));
-
-        const initialHash = window.location.hash.replace("#", "");
-        if (initialHash && stepIds.includes(initialHash)) {
-          setActive(initialHash);
-        } else if (stepIds.includes("overview")) {
-          setActive("overview");
-        } else {
-          setActive(stepIds[0]);
-        }
-
-        sidebarRoot.addEventListener("click", onClick);
-        window.addEventListener("hashchange", onHashChange);
-
-        sidebarRoot._workflowCleanup = () => {
-          observer.disconnect();
-          sidebarRoot.removeEventListener("click", onClick);
-          window.removeEventListener("hashchange", onHashChange);
-        };
       };
 
       if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", init, { once: true });
+        document.addEventListener("DOMContentLoaded", normalizeHeadingIds, {
+          once: true,
+        });
       } else {
-        init();
+        normalizeHeadingIds();
       }
 
-      document.addEventListener("astro:after-swap", init);
+      document.addEventListener("astro:after-swap", normalizeHeadingIds);
     })();
   </script>
 </Layout>

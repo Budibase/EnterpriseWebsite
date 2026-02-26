@@ -5,14 +5,14 @@ import Icon from "@components/Icon.astro";
 // Props:
 // - label: string (required)
 // - url?: string (if provided, renders an anchor)
-// - variant?: 'primary' | 'secondary' | 'cta' (defaults to 'primary')
+// - variant?: 'primary' | 'secondary' | 'cta' | 'large' (defaults to 'primary')
 // - type?: 'button' | 'submit' | 'reset' (button only)
 // - class?: string (additional classes)
 // - size?: 'small' | 'medium' | 'large' (defaults to 'medium')
 // - icon?: string (optional icon name to display before the label)
 // - iconSize?: string (optional icon size in pixels, overrides default size-based calculation)
 
-type Variant = "primary" | "secondary" | "cta";
+type Variant = "primary" | "secondary" | "cta" | "large";
 type Size = "small" | "medium" | "large" | "sm";
 
 interface Props {
@@ -65,6 +65,9 @@ const variantClasses = {
 
   // CTA: brand-forward emphasis (theme tokens)
   cta: "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-hover dark:text-grey-50",
+
+  // Large: alias of CTA styling for pages using a legacy variant token
+  large: "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-hover dark:text-grey-50",
 };
 
 const sizeClasses = {
