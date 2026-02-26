@@ -1,23 +1,64 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
 import AccessRequestPrompt from "@components/AccessRequestPrompt.astro";
-import { getCollection, render } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import {
+  coreAgentDetails,
+  type CoreAgentDetail,
+} from "../../data/agentSpaceCoreAgents";
 
 export async function getStaticPaths() {
   const workflows = await getCollection("workflows");
-  return workflows.map((entry) => ({
+
+  const workflowPaths = workflows.map((entry) => ({
     params: { slug: entry.data.slug ?? entry.id },
-    props: { entry },
+    props: { kind: "workflow", entry },
   }));
+
+  const coreAgentPaths = coreAgentDetails.map((agent) => ({
+    params: { slug: agent.slug },
+    props: { kind: "core", agent },
+  }));
+
+  return [...workflowPaths, ...coreAgentPaths];
 }
 
-const { entry } = Astro.props;
-const { title, outcome } = entry.data;
-const workflowSlug = entry.data.slug ?? entry.id;
-const { Content } = await render(entry);
+type WorkflowPageProps = {
+  kind: "workflow";
+  entry: CollectionEntry<"workflows">;
+};
+
+type CorePageProps = {
+  kind: "core";
+  agent: CoreAgentDetail;
+};
+
+const page = Astro.props as WorkflowPageProps | CorePageProps;
+
+let title = "";
+let outcome = "";
+let workflowSlug: string | null = null;
+let WorkflowContent: Awaited<ReturnType<typeof render>>["Content"] | null = null;
+let coreAgent: CoreAgentDetail | null = null;
+let pageTitle = "";
+
+if (page.kind === "workflow") {
+  const { entry } = page;
+  title = entry.data.title;
+  outcome = entry.data.outcome;
+  workflowSlug = entry.data.slug ?? entry.id;
+  const rendered = await render(entry);
+  WorkflowContent = rendered.Content;
+  pageTitle = `${title} Workflow Playbook | Budibase`;
+} else {
+  coreAgent = page.agent;
+  title = coreAgent.title;
+  outcome = coreAgent.outcome;
+  pageTitle = `${title} Agent | Budibase`;
+}
 ---
 
-<Layout title={`${title} Workflow Playbook | Budibase`} description={outcome}>
+<Layout title={pageTitle} description={outcome}>
   <div class="learn-detail-shell">
     <main class="side-rail-main-inner workflow-main pb-20">
       <header class="side-rail-page-header">
@@ -31,8 +72,30 @@ const { Content } = await render(entry);
           )
         }
       </header>
+
       <article class="workflow-article">
-        <Content />
+        {
+          WorkflowContent ? (
+            <WorkflowContent />
+          ) : (
+            coreAgent && (
+              <>
+                <h2 id="overview">Overview</h2>
+                {coreAgent.overview.map((paragraph) => <p>{paragraph}</p>)}
+
+                <h2 id="capabilities">Capabilities</h2>
+                <ul class="mb-6 list-disc pl-6 text-stone-700 dark:text-stone-300">
+                  {coreAgent.capabilities.map((item) => <li>{item}</li>)}
+                </ul>
+
+                <h2 id="human-review">Human decision points</h2>
+                <ul class="list-disc pl-6 text-stone-700 dark:text-stone-300">
+                  {coreAgent.humanReview.map((item) => <li>{item}</li>)}
+                </ul>
+              </>
+            )
+          )
+        }
       </article>
     </main>
   </div>
