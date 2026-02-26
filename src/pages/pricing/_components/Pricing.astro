@@ -49,7 +49,7 @@ const comparisonRows: Array<{ feature: string; values: Record<PlanKey, string> }
       proPlus: "20K",
       premium: "20K",
       team: "100K",
-      business: "300K",
+      business: "250K",
       enterprise: "Custom",
     },
   },
@@ -224,7 +224,8 @@ const faqItems: FaqItem[] = [
   {
     question: "Why do you have multiple plans?",
     paragraphs: [
-      "Each plan includes a hard monthly limit on operations. As your AI agents and automations do more work, you move up plans. This keeps pricing predictable and aligned with the scale of operations you're running.",
+      "Each plan includes a hard monthly operations limit. Pro and Premium also let you choose between operations tiers using the dropdown on each card, while Business has a fixed tier and Enterprise is custom.",
+      "This keeps pricing predictable and aligned with the scale of work your AI agents and automations are running.",
     ],
   },
   {
@@ -244,7 +245,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Are operations soft limits or hard limits?",
     paragraphs: [
-      "Operations are hard monthly limits per plan. When you reach your limit, you'll need to upgrade to continue running agents and automations.",
+      "Operations are hard monthly limits based on your selected plan tier. When you reach your limit, you'll need to move to a higher tier or plan to continue running agents and automations.",
       "This ensures:",
     ],
     bullets: [
@@ -261,12 +262,23 @@ const faqItems: FaqItem[] = [
   },
   {
     question: "Can I add more users?",
-    paragraphs: ["Yes. You can add additional end users on all paid plans."],
+    paragraphs: [
+      "Yes. Pro, Premium, and Business include an End users add-on.",
+      "End users are $5/user/mo on yearly billing. Monthly billing follows the same +20% pricing logic shown on the page.",
+    ],
   },
   {
     question: "Can I add more creators (builders)?",
     paragraphs: [
-      "Yes. On Team, Business, and Enterprise plans, you can add additional creators as your internal team grows.",
+      "Yes. Premium and Business include a Creators add-on.",
+      "Creators are $50/creator/mo on yearly billing. Monthly billing follows the same +20% pricing logic shown on the page.",
+    ],
+  },
+  {
+    question: "Do add-on prices change with yearly vs monthly billing?",
+    paragraphs: [
+      "Yes. Add-ons follow the same yearly/monthly toggle as plan pricing.",
+      "Monthly values are calculated as yearly price +20%.",
     ],
   },
   {
@@ -319,7 +331,7 @@ const faqItems: FaqItem[] = [
     </div>
 
     <section class="mb-12 md:mb-20">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1.5 justify-center items-stretch">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 justify-center items-stretch">
         <PricingCard
           title="Pro"
           description="Includes:"
@@ -385,7 +397,7 @@ const faqItems: FaqItem[] = [
           buttonVariant="cta"
           buttonUrl="/signup-plus"
           operationTiers={[
-            { operations: "300K", yearlyPrice: 299, aiCredits: "50K" },
+            { operations: "250K", yearlyPrice: 299, aiCredits: "50K" },
           ]}
           defaultTierIndex={0}
           features={[
@@ -428,7 +440,7 @@ const faqItems: FaqItem[] = [
       </div>
     </section>
 
-    <section class="mb-12 md:mb-20">
+    <section class="hidden mb-12 md:mb-20">
       <h2 class="text-3xl font-semibold text-stone-900 dark:text-stone-100 mb-4">Compare plans</h2>
       <div
         class="rounded-md overflow-hidden border border-stone-300/70 dark:border-stone-700/70"
