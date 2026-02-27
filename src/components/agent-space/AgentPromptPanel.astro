@@ -1,35 +1,64 @@
 ---
+import Button from "@components/Button.astro";
+
 interface Props {
   prompt: string;
   title?: string;
+  agentTitle?: string;
+  toolsUsed?: string[];
+  ctaLabel?: string;
+  ctaHref?: string;
 }
 
-const { prompt, title = "Prompt" } = Astro.props as Props;
+const {
+  prompt,
+  title = "Prompt",
+  agentTitle,
+  toolsUsed = [],
+  ctaLabel,
+  ctaHref,
+} = Astro.props as Props;
 ---
 
-<section class="agent-prompt-panel" data-agent-prompt-panel>
+<section
+  class="agent-prompt-panel"
+  data-agent-prompt-panel
+  data-agent-title={agentTitle ?? ""}
+  data-tools-used={toolsUsed.join(" | ")}
+  data-cta-label={ctaLabel ?? ""}
+  data-cta-href={ctaHref ?? ""}
+>
   <div class="agent-prompt-panel-header">
     <p class="agent-prompt-panel-title">{title}</p>
-    <button
-      type="button"
-      class="agent-prompt-panel-copy"
-      data-agent-prompt-copy
-      aria-label="Copy prompt"
-    >
-      Copy
-    </button>
+    <Button
+      label="Copy"
+      variant="secondary"
+      size="small"
+      class="agent-prompt-panel-copy-button"
+      ariaLabel="Copy prompt"
+    />
   </div>
   <pre class="agent-prompt-panel-content" data-agent-prompt-content>{prompt}</pre>
+  <div class="agent-prompt-panel-footer" aria-hidden="true"></div>
+  <div class="agent-prompt-panel-view-action" data-agent-prompt-open-modal>
+    <Button
+      label="View prompt"
+      variant="primary"
+      size="small"
+      class="agent-prompt-panel-view-primary"
+    />
+  </div>
 </section>
 
 <style>
   .agent-prompt-panel {
+    position: relative;
     height: 100%;
     border: 0.5px solid var(--border-color);
     border-radius: 0.8rem;
     background: var(--bg-1);
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr auto;
     min-height: 18rem;
   }
 
@@ -51,32 +80,19 @@ const { prompt, title = "Prompt" } = Astro.props as Props;
     font-weight: 600;
   }
 
-  .agent-prompt-panel-copy {
-    appearance: none;
-    border: 0.5px solid var(--border-color);
-    background: var(--bg-2);
-    color: var(--text-primary);
-    border-radius: 999px;
-    min-height: 1.8rem;
-    padding: 0 0.65rem;
-    font-size: 0.82rem;
-    line-height: 1;
-    cursor: pointer;
-    transition:
-      color 0.2s ease,
-      background-color 0.2s ease,
-      border-color 0.2s ease;
+  .agent-prompt-panel-footer {
+    border-top: 0.5px solid var(--border-color);
+    min-height: 2.6rem;
+    margin-top: 0.1rem;
   }
 
-  .agent-prompt-panel-copy:hover {
-    background: var(--bg-3);
-  }
-
-  .agent-prompt-panel-copy:focus-visible {
-    outline: none;
-    box-shadow:
-      0 0 0 2px var(--bg-1),
-      0 0 0 4px rgb(var(--ring) / 0.65);
+  .agent-prompt-panel-view-action {
+    position: absolute;
+    left: 50%;
+    bottom: 0.45rem;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: inline-flex;
   }
 
   .agent-prompt-panel-content {
@@ -105,9 +121,13 @@ const { prompt, title = "Prompt" } = Astro.props as Props;
         if (panel.dataset.agentPromptReady === "true") return;
         panel.dataset.agentPromptReady = "true";
 
-        const copyButton = panel.querySelector("[data-agent-prompt-copy]");
+        const copyButton = panel.querySelector(".agent-prompt-panel-copy-button");
+        const openButton = panel.querySelector(
+          "[data-agent-prompt-open-modal]",
+        );
         const content = panel.querySelector("[data-agent-prompt-content]");
         if (!(copyButton instanceof HTMLButtonElement)) return;
+        if (!(openButton instanceof HTMLElement)) return;
         if (!(content instanceof HTMLElement)) return;
 
         copyButton.addEventListener("click", async () => {
@@ -128,6 +148,16 @@ const { prompt, title = "Prompt" } = Astro.props as Props;
               copyButton.textContent = "Copy";
             }, 1200);
           }
+        });
+
+        openButton.addEventListener("click", () => {
+          const prompt = (content.textContent ?? "").trim();
+          if (!prompt) return;
+          window.dispatchEvent(
+            new CustomEvent("agent:open-prompt-modal", {
+              detail: { promptText: prompt },
+            }),
+          );
         });
       });
     };

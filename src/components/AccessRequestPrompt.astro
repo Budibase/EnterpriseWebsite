@@ -1,25 +1,50 @@
 ---
 import InstructionsEditor from "@components/InstructionsEditor.astro";
+import Button from "@components/Button.astro";
 
 interface Props {
   collapsible?: boolean;
   collapsedHeight?: number;
+  promptText?: string;
+  showCopyButton?: boolean;
+  showViewButton?: boolean;
+  agentTitle?: string;
+  toolsUsed?: string[];
+  ctaLabel?: string;
+  ctaHref?: string;
 }
 
 const {
   collapsible = false,
   collapsedHeight = 200,
+  promptText,
+  showCopyButton = true,
+  showViewButton = true,
+  agentTitle,
+  toolsUsed = [],
+  ctaLabel,
+  ctaHref,
 } = Astro.props as Props;
 
 const promptId = `access-request-prompt-${Math.random().toString(36).slice(2, 8)}`;
+const normalizedPromptText = promptText?.trim() ?? "";
+const hasCustomPrompt = normalizedPromptText.length > 0;
+const customPromptLines = hasCustomPrompt
+  ? normalizedPromptText.split(/\r?\n/)
+  : [];
 ---
 
 <div
-  class="rounded-[7px] p-[6px] access-request-prompt-card"
+  class="relative rounded-[7px] p-[6px] access-request-prompt-card"
   style="border: 1px dashed var(--color-grey-800);"
   data-prompt-id={promptId}
   data-collapsible={collapsible ? "true" : "false"}
   data-collapsed-height={String(collapsedHeight)}
+  data-agent-title={agentTitle ?? ""}
+  data-tools-used={toolsUsed.join(" | ")}
+  data-cta-label={ctaLabel ?? ""}
+  data-cta-href={ctaHref ?? ""}
+  data-show-view={showViewButton ? "true" : "false"}
 >
   <div class="relative">
     <div
@@ -29,134 +54,193 @@ const promptId = `access-request-prompt-${Math.random().toString(36).slice(2, 8)
       style={`--access-request-collapsed-height:${String(collapsedHeight)}px;`}
     >
       <InstructionsEditor class="pt-8" background="var(--bg-2)" border="0.5px solid var(--color-grey-900)">
-      <li><span class="token-heading">## Persona</span></li>
-      <li>
-        You are an access decision agent. Your task is to evaluate access requests <strong>strictly according to the Access Decision Policy</strong> provided to you as reference material. You do not grant or revoke access. You only produce a <strong>recommendation</strong> and <strong>policy-based reasoning</strong> for a human approver.
-      </li>
-      <li><span class="token-heading">### Inputs</span></li>
-      <li>You will receive:</li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">requester_email</span>
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">application</span>
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">justification</span>
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">'_id'</span> - the unique identifier of the relevant row on the Access Requests table.
-      </li>
-      <li class="is-empty"></li>
-      <li><span class="token-heading">### Instructions</span></li>
-      <li>1. Evaluate the request against the Access Decision Policy.</li>
-      <li>2. Apply all required checks in the order defined by the policy.</li>
-      <li>3. Do not invent rules, exceptions, or assumptions.</li>
-      <li>4. If the request violates any policy rule, recommend denial.</li>
-      <li>5. If the request satisfies all policy rules, recommend approval.</li>
-      <li class="is-empty"></li>
-      <li><span class="token-heading">### Actions</span></li>
-      <li>
-        Use <span class="token-chip">{'{{ api.okta_management.listApplications }}'}</span>to retrieve the id of the relevant Application in Okta. With <span class="token-code">YourOktaDomain</span> set to integrator-9247497-admin.okta.com
-      </li>
-      <li class="is-empty"></li>
-      <li>
-        Use <span class="token-chip">{'{{ api.okta_management.listUsers }}'}</span>to retrieve the id of the relevant user in Okta. With <span class="token-code">YourOktaDomain</span> set to integrator-9247497-admin.okta.com. The <span class="token-code">requestor_email</span> input is set to the q param.
-      </li>
-      <li class="is-empty"></li>
-      <li>
-        Based on the outcome, you must update the relevant row on the <span class="token-code">Access Requests</span> table. You must populate the following fields:
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">decision</span>
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">reason</span>
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">oktaApp</span> - (JSON object containing "id", "name", "label", "status")
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">OktaUser</span> - (JSON object containing "id", "first_name", "last_name", "email")
-      </li>
-      <li>You can retrieve this table and its schema with:</li>
-      <li>
-        <span class="token-chip">{'{{ budibase.list_tables }}'}</span>
-        <span class="token-chip">{'{{ budibase.get_table }}'}</span>
-        <span class="token-chip">{'{{ budibase.get_row }}'}</span>
-      </li>
-      <li>
-        and update the appropriate row using <span class="token-chip">{'{{ budibase.update_row }}'}</span> using the <span class="token-code">_id</span> variable (which begins with <span class="token-code">ro_ta_</span>) you received as an input as the <span class="token-code">_id</span> field.
-      </li>
-      <li class="is-empty"></li>
-      <li><span class="token-heading">### Output requirements</span></li>
-      <li>Return <strong>only</strong> the following JSON:</li>
-      <li class="is-empty"></li>
-      <li><span class="token-code">{'```json'}</span></li>
-      <li>{"{"}</li>
-      <li>  "decision": "approve_recommended | deny_recommended",</li>
-      <li>  "application": "&lt;application&gt;",</li>
-      <li>  "sensitivity": "&lt;low | medium | high&gt;",</li>
-      <li>  "reason": "&lt;single sentence explaining the recommendation by referencing the policy&gt;",</li>
-      <li>  "oktaUser: (JSON object containing "id", "first_name", "last_name", "email")</li>
-      <li>  "oktaApp": (JSON object containing "id", "name", "label")</li>
-      <li>{"}"}</li>
-      <li><span class="token-code">{'```'}</span></li>
-      <li class="is-empty"></li>
-      <li><span class="token-heading">### Logging outcomes</span></li>
-      <li>
-        You must log all decisions on the 'Decisions' Table. Using <span class="token-chip">{'{{ budibase.create_row }}'}</span>. You can use <span class="token-chip">{'{{ budibase.list_tables }}'}</span><span class="token-chip">{'{{ budibase.get_table }}'}</span> to retrieve the schema for this.
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">'date'</span> - the timestamp for the decision in the format - 2026-02-03T15:26:17.764Z
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">'access_request'</span> - populate with the <span class="token-code">"_id"</span> input, beginning with <span class="token-code">"ro_ta_"</span>
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">'decision'</span> - populate with the output JSON object above.
-      </li>
-      <li>
-        <span class="token-bullet token-bullet-purple">-</span>
-        <span class="token-code">'human_approver'</span> - leave null.
-      </li>
-    </InstructionsEditor>
+        {
+          hasCustomPrompt ? (
+            customPromptLines.map((line) => {
+              const trimmed = line.trim();
+              const isHeading = /^#{1,6}\s+/.test(trimmed);
+              const isBullet = /^[-*]\s+/.test(trimmed);
+              const bulletText = isBullet
+                ? trimmed.replace(/^[-*]\s+/, "")
+                : "";
+
+              if (!trimmed) {
+                return <li class="is-empty"></li>;
+              }
+
+              if (isHeading) {
+                return (
+                  <li>
+                    <span class="token-heading">{trimmed}</span>
+                  </li>
+                );
+              }
+
+              if (isBullet) {
+                return (
+                  <li>
+                    <span class="token-bullet token-bullet-purple">-</span>
+                    {bulletText}
+                  </li>
+                );
+              }
+
+              return <li>{line}</li>;
+            })
+          ) : (
+            <>
+              <li><span class="token-heading">## Persona</span></li>
+              <li>
+                You are an access decision agent. Your task is to evaluate access requests <strong>strictly according to the Access Decision Policy</strong> provided to you as reference material. You do not grant or revoke access. You only produce a <strong>recommendation</strong> and <strong>policy-based reasoning</strong> for a human approver.
+              </li>
+              <li><span class="token-heading">### Inputs</span></li>
+              <li>You will receive:</li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">requester_email</span>
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">application</span>
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">justification</span>
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">'_id'</span> - the unique identifier of the relevant row on the Access Requests table.
+              </li>
+              <li class="is-empty"></li>
+              <li><span class="token-heading">### Instructions</span></li>
+              <li>1. Evaluate the request against the Access Decision Policy.</li>
+              <li>2. Apply all required checks in the order defined by the policy.</li>
+              <li>3. Do not invent rules, exceptions, or assumptions.</li>
+              <li>4. If the request violates any policy rule, recommend denial.</li>
+              <li>5. If the request satisfies all policy rules, recommend approval.</li>
+              <li class="is-empty"></li>
+              <li><span class="token-heading">### Actions</span></li>
+              <li>
+                Use <span class="token-chip">{'{{ api.okta_management.listApplications }}'}</span>to retrieve the id of the relevant Application in Okta. With <span class="token-code">YourOktaDomain</span> set to integrator-9247497-admin.okta.com
+              </li>
+              <li class="is-empty"></li>
+              <li>
+                Use <span class="token-chip">{'{{ api.okta_management.listUsers }}'}</span>to retrieve the id of the relevant user in Okta. With <span class="token-code">YourOktaDomain</span> set to integrator-9247497-admin.okta.com. The <span class="token-code">requestor_email</span> input is set to the q param.
+              </li>
+              <li class="is-empty"></li>
+              <li>
+                Based on the outcome, you must update the relevant row on the <span class="token-code">Access Requests</span> table. You must populate the following fields:
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">decision</span>
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">reason</span>
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">oktaApp</span> - (JSON object containing "id", "name", "label", "status")
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">OktaUser</span> - (JSON object containing "id", "first_name", "last_name", "email")
+              </li>
+              <li>You can retrieve this table and its schema with:</li>
+              <li>
+                <span class="token-chip">{'{{ budibase.list_tables }}'}</span>
+                <span class="token-chip">{'{{ budibase.get_table }}'}</span>
+                <span class="token-chip">{'{{ budibase.get_row }}'}</span>
+              </li>
+              <li>
+                and update the appropriate row using <span class="token-chip">{'{{ budibase.update_row }}'}</span> using the <span class="token-code">_id</span> variable (which begins with <span class="token-code">ro_ta_</span>) you received as an input as the <span class="token-code">_id</span> field.
+              </li>
+              <li class="is-empty"></li>
+              <li><span class="token-heading">### Output requirements</span></li>
+              <li>Return <strong>only</strong> the following JSON:</li>
+              <li class="is-empty"></li>
+              <li><span class="token-code">{'```json'}</span></li>
+              <li>{"{"}</li>
+              <li>  "decision": "approve_recommended | deny_recommended",</li>
+              <li>  "application": "&lt;application&gt;",</li>
+              <li>  "sensitivity": "&lt;low | medium | high&gt;",</li>
+              <li>  "reason": "&lt;single sentence explaining the recommendation by referencing the policy&gt;",</li>
+              <li>  "oktaUser: (JSON object containing "id", "first_name", "last_name", "email")</li>
+              <li>  "oktaApp": (JSON object containing "id", "name", "label")</li>
+              <li>{"}"}</li>
+              <li><span class="token-code">{'```'}</span></li>
+              <li class="is-empty"></li>
+              <li><span class="token-heading">### Logging outcomes</span></li>
+              <li>
+                You must log all decisions on the 'Decisions' Table. Using <span class="token-chip">{'{{ budibase.create_row }}'}</span>. You can use <span class="token-chip">{'{{ budibase.list_tables }}'}</span><span class="token-chip">{'{{ budibase.get_table }}'}</span> to retrieve the schema for this.
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">'date'</span> - the timestamp for the decision in the format - 2026-02-03T15:26:17.764Z
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">'access_request'</span> - populate with the <span class="token-code">"_id"</span> input, beginning with <span class="token-code">"ro_ta_"</span>
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">'decision'</span> - populate with the output JSON object above.
+              </li>
+              <li>
+                <span class="token-bullet token-bullet-purple">-</span>
+                <span class="token-code">'human_approver'</span> - leave null.
+              </li>
+            </>
+          )
+        }
+      </InstructionsEditor>
       <div class="access-request-prompt-fade" data-prompt-fade></div>
     </div>
-    <button
-      type="button"
-      class="absolute right-2 top-2 z-10 text-[13px] font-medium text-text-muted transition-colors hover:text-text"
-      aria-label="Copy prompt"
-      data-copy-button
-    >
-      Copy
-    </button>
+    {
+      showCopyButton && (
+        <div class="access-request-prompt-actions">
+          <Button
+            label="Copy"
+            variant="secondary"
+            size="small"
+            class="access-request-prompt-copy-button"
+            ariaLabel="Copy prompt"
+          />
+        </div>
+      )
+    }
   </div>
-  <div class="access-request-prompt-footer" data-prompt-footer hidden>
-    <button
-      type="button"
-      class="access-request-prompt-toggle"
-      data-prompt-toggle
-      aria-controls={`${promptId}-content`}
-      aria-expanded="false"
-    >
-      Read more
-    </button>
-  </div>
+  {
+    showViewButton && (
+      <div class="access-request-prompt-view-action" data-view-button>
+        <Button
+          label="View prompt"
+          variant="primary"
+          size="small"
+          class="access-request-prompt-view-primary"
+        />
+      </div>
+    )
+  }
 </div>
 
 <style>
+  .access-request-prompt-card[data-show-view="true"] > .relative {
+    margin-bottom: 2.6rem;
+  }
+
+  .access-request-prompt-card[data-show-view="true"]::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    height: 2.6rem;
+    border-top: 0.5px solid var(--color-grey-900);
+    pointer-events: none;
+  }
+
   .access-request-prompt-content {
     position: relative;
   }
@@ -186,83 +270,51 @@ const promptId = `access-request-prompt-${Math.random().toString(36).slice(2, 8)
     display: block;
   }
 
-  .access-request-prompt-footer {
-    border-top: 0.5px solid var(--color-grey-900);
-    margin-top: 0.45rem;
-    padding: 0.58rem 0.9rem 0.65rem;
-    display: flex;
-    justify-content: center;
+  .access-request-prompt-actions {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
   }
 
-  .access-request-prompt-toggle {
-    appearance: none;
-    border: none;
-    background: transparent;
-    color: var(--text-secondary);
-    cursor: pointer;
-    font-size: 0.95rem;
-    line-height: 1;
-    font-weight: 500;
-    padding: 0.2rem 0.4rem;
-    transition: color 0.2s ease;
+  .access-request-prompt-view-action {
+    position: absolute;
+    left: 50%;
+    bottom: 0.58rem;
+    transform: translateX(-50%);
+    z-index: 11;
+    display: inline-flex;
   }
 
-  .access-request-prompt-toggle:hover {
-    color: var(--text-primary);
-  }
 </style>
 
 <script is:inline define:vars={{ promptId }}>
   const root = document.querySelector(`[data-prompt-id="${promptId}"]`);
-  const button = root?.querySelector("[data-copy-button]");
+  const copyButton = root?.querySelector(".access-request-prompt-copy-button");
+  const viewButton = root?.querySelector("[data-view-button]");
   const editor = root?.querySelector(".hero-demo-instructions-lines");
   const content = root?.querySelector("[data-prompt-content]");
-  const footer = root?.querySelector("[data-prompt-footer]");
-  const toggle = root?.querySelector("[data-prompt-toggle]");
   const collapsible = root?.dataset.collapsible === "true";
   const collapsedHeight = Number(root?.dataset.collapsedHeight ?? "200");
 
-  if (root && collapsible && content && footer && toggle) {
-    root.classList.add("is-collapsed");
-
-    const setToggleState = (expanded) => {
-      if (expanded) {
-        root.classList.add("is-expanded");
-        root.classList.remove("is-collapsed");
-        toggle.textContent = "Read less";
-        toggle.setAttribute("aria-expanded", "true");
-      } else {
-        root.classList.add("is-collapsed");
-        root.classList.remove("is-expanded");
-        toggle.textContent = "Read more";
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    };
-
-    const refreshToggleVisibility = () => {
+  if (root && collapsible && content) {
+    const refreshPreviewOverflow = () => {
       const hasOverflow = content.scrollHeight > collapsedHeight + 1;
       root.classList.toggle("has-overflow", hasOverflow);
-      footer.hidden = !hasOverflow;
-      if (!hasOverflow) {
-        root.classList.remove("is-collapsed", "is-expanded");
-      } else if (!root.classList.contains("is-expanded")) {
-        setToggleState(false);
-      }
+      root.classList.toggle("is-collapsed", hasOverflow);
     };
 
-    toggle.addEventListener("click", () => {
-      const expanded = root.classList.contains("is-expanded");
-      setToggleState(!expanded);
-    });
-
-    refreshToggleVisibility();
-    window.addEventListener("resize", refreshToggleVisibility, {
+    refreshPreviewOverflow();
+    window.addEventListener("resize", refreshPreviewOverflow, {
       passive: true,
     });
   }
 
-  if (button && editor) {
-    button.addEventListener("click", async () => {
+  if (copyButton && editor) {
+    copyButton.addEventListener("click", async () => {
       const text = editor.innerText.trim();
       try {
         if (navigator.clipboard?.writeText) {
@@ -278,14 +330,26 @@ const promptId = `access-request-prompt-${Math.random().toString(36).slice(2, 8)
           document.execCommand("copy");
           textarea.remove();
         }
-        const original = button.textContent;
-        button.textContent = "Copied";
+        const original = copyButton.textContent;
+        copyButton.textContent = "Copied";
         setTimeout(() => {
-          button.textContent = original;
+          copyButton.textContent = original;
         }, 1500);
       } catch (err) {
         console.error("Copy failed", err);
       }
+    });
+  }
+
+  if (viewButton && editor) {
+    viewButton.addEventListener("click", () => {
+      const prompt = editor.innerText.trim();
+      if (!prompt) return;
+      window.dispatchEvent(
+        new CustomEvent("agent:open-prompt-modal", {
+          detail: { promptText: prompt },
+        }),
+      );
     });
   }
 </script>

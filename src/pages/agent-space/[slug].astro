@@ -3,6 +3,7 @@ import Layout from "../../layouts/MainLayout.astro";
 import AccessRequestPrompt from "@components/AccessRequestPrompt.astro";
 import AgentDetailHero from "@components/agent-space/AgentDetailHero.astro";
 import AgentPromptPanel from "@components/agent-space/AgentPromptPanel.astro";
+import AgentPromptModal from "@components/agent-space/AgentPromptModal.astro";
 import AgentAssetsRail from "@components/agent-space/AgentAssetsRail.astro";
 import RelatedAgentsSection from "@components/agent-space/RelatedAgentsSection.astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
@@ -303,9 +304,22 @@ const relatedAgents: RelatedAgent[] = allAgentCards
       >
         {
           detail.useAccessRequestPrompt ? (
-            <AccessRequestPrompt collapsible collapsedHeight={260} />
+            <AccessRequestPrompt
+              collapsible
+              collapsedHeight={260}
+              agentTitle={detail.title}
+              toolsUsed={detail.assetsUsed.tools}
+              ctaLabel={detail.ctaLabel}
+              ctaHref={detail.ctaHref}
+            />
           ) : (
-            <AgentPromptPanel prompt={detail.heroPrompt} />
+            <AgentPromptPanel
+              prompt={detail.heroPrompt}
+              agentTitle={detail.title}
+              toolsUsed={detail.assetsUsed.tools}
+              ctaLabel={detail.ctaLabel}
+              ctaHref={detail.ctaHref}
+            />
           )
         }
       </AgentDetailHero>
@@ -343,6 +357,15 @@ const relatedAgents: RelatedAgent[] = allAgentCards
     </main>
   </div>
 
+  <AgentPromptModal
+    agentTitle={detail.title}
+    toolsUsed={detail.assetsUsed.tools}
+    ctaLabel={detail.ctaLabel}
+    ctaHref={detail.ctaHref}
+    promptText={detail.useAccessRequestPrompt ? undefined : detail.heroPrompt}
+    useDefaultPrompt={detail.useAccessRequestPrompt}
+  />
+
   <style>
     .learn-detail-shell {
       width: 100%;
@@ -351,6 +374,7 @@ const relatedAgents: RelatedAgent[] = allAgentCards
     .agent-detail-main {
       width: min(100%, 82rem);
       margin-inline: auto;
+      padding-top: 0;
     }
 
     .agent-detail-content-grid {
@@ -370,15 +394,11 @@ const relatedAgents: RelatedAgent[] = allAgentCards
       scroll-margin-top: calc(var(--site-nav-height) + 24px);
     }
 
-    .workflow-article :where(h2#overview) {
+    .workflow-article :global(h2#overview) {
       margin-top: 0 !important;
     }
 
     @media (min-width: 768px) {
-      .agent-detail-main {
-        padding-top: 1.1rem;
-      }
-
       .agent-detail-article {
         padding: 1.2rem 1.35rem;
       }

@@ -1,4 +1,6 @@
 ---
+import birdsBackground from "@assets/images/backgrounds/AgentSpace/birds.png";
+
 interface Props {
   title: string;
   outcome: string;
@@ -9,97 +11,79 @@ interface Props {
 const { title, outcome, ctaLabel, ctaHref } = Astro.props as Props;
 ---
 
-<section class="agent-detail-hero">
-  <div class="agent-detail-hero-main">
+<section
+  class="agent-detail-hero relative isolate mb-[1.2rem] flex flex-col items-stretch gap-[0.95rem] overflow-visible p-4 md:gap-[1.1rem] md:px-[1.2rem] md:py-5"
+  data-agent-detail-hero
+  style="--hero-birds-height: 22rem; --agent-detail-title-offset: max(calc(var(--site-nav-height) + 1.1rem), 4.8rem);"
+>
+  <div
+    class="agent-detail-hero-birds pointer-events-none absolute left-1/2 top-0 z-0 h-[var(--hero-birds-height)] w-screen -translate-x-1/2 bg-[image:var(--agent-detail-hero-birds-image)] bg-cover bg-top bg-no-repeat"
+    aria-hidden="true"
+    style={`--agent-detail-hero-birds-image: url('${birdsBackground.src}')`}
+  >
+    <div
+      class="absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--bg)_/_0.62)_0%,rgb(var(--bg)_/_0.72)_38%,rgb(var(--bg)_/_0.9)_100%)]"
+    ></div>
+  </div>
+
+  <div
+    class="agent-detail-hero-main relative z-[1] mx-auto mt-[var(--agent-detail-title-offset)] grid max-w-[min(100%,46rem)] justify-items-center gap-[0.8rem] text-center md:mt-[clamp(5.6rem,8vw,7.2rem)]"
+  >
     <h1 class="hero-title mb-2 text-[clamp(2rem,1.5rem+2vw,3.4rem)]! leading-[0.98]!">
       {title}
     </h1>
-    <p class="agent-detail-hero-outcome">{outcome}</p>
-    <a href={ctaHref} class="agent-detail-hero-cta" data-astro-prefetch>{ctaLabel}</a>
+    <p class="m-0 max-w-[56ch] text-[rgb(var(--text-primary)_/_0.84)]">{outcome}</p>
+    <a
+      href={ctaHref}
+      class="inline-flex min-h-[2.4rem] w-fit items-center justify-center rounded-full bg-[rgb(var(--brand))] px-4 py-[0.44rem] text-[0.98rem] font-semibold text-white no-underline transition-[background-color,transform] duration-200 ease-in hover:bg-[rgb(var(--brand-hover))] hover:text-white active:translate-y-px focus-visible:outline-none focus-visible:shadow-[0_0_0_2px_var(--bg-1),0_0_0_4px_rgb(var(--ring)_/_0.65)]"
+      data-astro-prefetch
+    >
+      {ctaLabel}
+    </a>
   </div>
-  <div class="agent-detail-hero-prompt">
+  <div class="agent-detail-hero-prompt relative z-[1] mx-auto flex w-[min(100%,72rem)] items-center justify-center [&>*]:w-full">
     <slot />
   </div>
 </section>
 
-<style>
-  .agent-detail-hero {
-    border-radius: 0.9rem;
-    padding: 1rem;
-    display: grid;
-    gap: 0.95rem;
-    align-items: center;
-    margin-bottom: 1.2rem;
-  }
+<script is:inline>
+  (() => {
+    const syncHeroBirdsHeight = () => {
+      const heroes = Array.from(
+        document.querySelectorAll("[data-agent-detail-hero]"),
+      );
 
-  .agent-detail-hero-main {
-    display: grid;
-    gap: 0.8rem;
-    align-content: center;
-  }
+      heroes.forEach((hero) => {
+        if (!(hero instanceof HTMLElement)) return;
+        const prompt = hero.querySelector(".agent-detail-hero-prompt");
+        if (!(prompt instanceof HTMLElement)) return;
 
-  .agent-detail-hero-outcome {
-    margin: 0;
-    color: var(--text-secondary);
-    max-width: 38ch;
-  }
+        const heroRect = hero.getBoundingClientRect();
+        const promptRect = prompt.getBoundingClientRect();
+        const promptOffsetTop = promptRect.top - heroRect.top;
+        const targetHeight = Math.round(
+          Math.max(0, promptOffsetTop + promptRect.height / 2),
+        );
 
-  .agent-detail-hero-prompt {
-    display: flex;
-    align-items: center;
-  }
+        hero.style.setProperty("--hero-birds-height", `${targetHeight}px`);
+      });
+    };
 
-  .agent-detail-hero-prompt :global(*) {
-    width: 100%;
-  }
+    const onReady = () => {
+      syncHeroBirdsHeight();
+      window.addEventListener("resize", syncHeroBirdsHeight, {
+        passive: true,
+      });
+    };
 
-  .agent-detail-hero-cta {
-    width: fit-content;
-    min-height: 2.4rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    padding: 0.44rem 1rem;
-    text-decoration: none;
-    background: rgb(var(--brand));
-    color: rgb(var(--on-brand));
-    font-size: 0.98rem;
-    font-weight: 600;
-    transition:
-      background-color 0.2s ease,
-      transform 0.2s ease;
-  }
-
-  .agent-detail-hero-cta:hover {
-    background: rgb(var(--brand-hover));
-  }
-
-  .agent-detail-hero-cta:active {
-    transform: translateY(1px);
-  }
-
-  .agent-detail-hero-cta:focus-visible {
-    outline: none;
-    box-shadow:
-      0 0 0 2px var(--bg-1),
-      0 0 0 4px rgb(var(--ring) / 0.65);
-  }
-
-  @media (min-width: 1024px) {
-    .agent-detail-hero {
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      align-items: stretch;
-      gap: 1.1rem;
-      padding: 1.2rem;
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", onReady, { once: true });
+    } else {
+      onReady();
     }
 
-    .agent-detail-hero-main {
-      grid-column: span 5;
-    }
-
-    .agent-detail-hero-prompt {
-      grid-column: span 7;
-    }
-  }
-</style>
+    document.addEventListener("astro:after-swap", () => {
+      requestAnimationFrame(syncHeroBirdsHeight);
+    });
+  })();
+</script>

@@ -103,7 +103,7 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
                     aria-expanded="false"
                     data-hero-demo-select
                   >
-                    <span class="flex items-center gap-1.5">
+                    <span class="flex items-center gap-1.5" data-hero-demo-select-value>
                       <span class="flex h-6 w-6 items-center justify-center rounded-md p-1">
                         <Image src={BudibaseLogo} alt="Budibase" class="h-full w-full hero-demo-select-logo is-monochrome" />
                       </span>
@@ -230,7 +230,7 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
                   </div>
                 </div>
               </div>
-              <form class="hero-demo-input-bar rounded-[8px]" data-hero-demo-form>
+              <form class="hero-demo-input-bar rounded-[8px] w-full" data-hero-demo-form>
                 <textarea
                   class="hero-demo-input rounded-[8px]"
                   data-hero-demo-input
@@ -592,6 +592,7 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
     display: flex;
     align-items: center;
     gap: 12px;
+    width: 100%;
     border: 0;
     background: transparent;
   }
@@ -789,6 +790,7 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
     const input = root.querySelector("[data-hero-demo-input]");
     const messages = root.querySelector("[data-hero-demo-messages]");
     const select = root.querySelector("[data-hero-demo-select]");
+    const selectValue = root.querySelector("[data-hero-demo-select-value]");
     const selectMenu = root.querySelector("[data-hero-demo-select-menu]");
     const refresh = root.querySelector("[data-hero-demo-refresh]");
     const assistant = root.querySelector("[data-hero-demo-assistant]");
@@ -1021,6 +1023,58 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
     }
 
     if (select && selectMenu) {
+      const selectOptions = Array.from(
+        selectMenu.querySelectorAll("button.hero-demo-select-option"),
+      );
+
+      function updateSelectValue(option) {
+        if (!selectValue) return;
+        const optionLabel = option.querySelector(".hero-demo-select-option-label");
+        if (!optionLabel) return;
+        const content = Array.from(optionLabel.childNodes).map((node) =>
+          node.cloneNode(true),
+        );
+        selectValue.replaceChildren(...content);
+      }
+
+      function setSelectedOption(nextOption) {
+        selectOptions.forEach((option) => {
+          const isSelected = option === nextOption;
+          option.classList.toggle("is-selected", isSelected);
+          option.setAttribute("aria-selected", String(isSelected));
+
+          const existingMeta = option.querySelector(".hero-demo-select-meta");
+          if (isSelected) {
+            if (!existingMeta) {
+              const selectedMeta = document.createElement("span");
+              selectedMeta.className = "hero-demo-select-meta";
+              selectedMeta.textContent = "Selected";
+              applyScopeDeep(selectedMeta);
+              option.append(selectedMeta);
+            }
+            updateSelectValue(option);
+          } else if (existingMeta) {
+            existingMeta.remove();
+          }
+        });
+        closeSelectMenu();
+      }
+
+      const initialSelectedOption =
+        selectOptions.find((option) => option.classList.contains("is-selected")) ||
+        selectOptions[0];
+      if (initialSelectedOption) {
+        setSelectedOption(initialSelectedOption);
+      }
+
+      selectOptions.forEach((option) => {
+        option.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          setSelectedOption(option);
+        });
+      });
+
       select.addEventListener("click", (event) => {
         event.stopPropagation();
         const isOpen = selectMenu.classList.toggle("is-open");
