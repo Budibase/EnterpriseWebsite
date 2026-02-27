@@ -1,0 +1,445 @@
+---
+import Icon from "@components/Icon.astro";
+import AccessRequestPrompt from "@components/AccessRequestPrompt.astro";
+import Button from "@components/Button.astro";
+import birdsBackground from "@assets/images/backgrounds/AgentSpace/birds.png";
+
+interface Props {
+  agentTitle: string;
+  toolsUsed: string[];
+  ctaLabel: string;
+  ctaHref: string;
+  promptText?: string;
+  useDefaultPrompt?: boolean;
+}
+
+const {
+  agentTitle,
+  toolsUsed,
+  ctaLabel,
+  ctaHref,
+  promptText,
+  useDefaultPrompt = false,
+} = Astro.props as Props;
+const normalizedTools = toolsUsed
+  .map((tool) => tool.trim())
+  .filter((tool) => Boolean(tool));
+const normalizedPromptText = promptText?.trim() ?? "";
+
+const splitPromptAtNearestNewline = (text: string) => {
+  const midpoint = Math.floor(text.length / 2);
+  const before = text.lastIndexOf("\n", midpoint);
+  const after = text.indexOf("\n", midpoint);
+  let splitAt = midpoint;
+
+  if (before === -1 && after !== -1) {
+    splitAt = after;
+  } else if (after === -1 && before !== -1) {
+    splitAt = before;
+  } else if (before !== -1 && after !== -1) {
+    splitAt = midpoint - before <= after - midpoint ? before : after;
+  }
+
+  const primary = text.slice(0, splitAt).trimEnd();
+  const secondary = text.slice(splitAt).trimStart();
+
+  if (!primary || !secondary) {
+    return null;
+  }
+
+  return { primary, secondary };
+};
+
+const lineCount = normalizedPromptText
+  ? normalizedPromptText.split(/\r?\n/).length
+  : 0;
+const isLongPrompt = normalizedPromptText.length >= 1500 || lineCount >= 26;
+const splitPrompt =
+  !useDefaultPrompt && isLongPrompt
+    ? splitPromptAtNearestNewline(normalizedPromptText)
+    : null;
+const hasOpenBook = Boolean(splitPrompt?.secondary);
+---
+
+<div class="agent-prompt-modal" data-agent-prompt-modal hidden>
+  <button
+    type="button"
+    class="agent-prompt-modal-backdrop"
+    aria-label="Close prompt modal"
+    data-agent-prompt-backdrop
+  ></button>
+
+  <section
+    class="agent-prompt-modal-surface"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="agent-prompt-modal-title"
+    data-agent-prompt-surface
+    style={`--agent-prompt-modal-bg-image: url('${birdsBackground.src}')`}
+  >
+    <button
+      type="button"
+      class="agent-prompt-modal-close"
+      data-agent-prompt-close
+      aria-label="Close prompt modal"
+    >
+      <Icon name="X" size="16" />
+    </button>
+
+    <div class="agent-prompt-modal-layout">
+      <aside class="agent-prompt-modal-meta">
+        <h2 id="agent-prompt-modal-title" class="agent-prompt-modal-title">
+          {agentTitle}
+        </h2>
+
+        <div class="agent-prompt-modal-tools">
+          <p class="agent-prompt-modal-label">Tools used</p>
+          {
+            normalizedTools.length > 0 ? (
+              <ul class="agent-prompt-modal-tools-list">
+                {normalizedTools.map((tool) => <li>{tool}</li>)}
+              </ul>
+            ) : (
+              <p class="agent-prompt-modal-tools-empty">Tools used: None listed</p>
+            )
+          }
+        </div>
+
+        <Button
+          label={ctaLabel}
+          url={ctaHref}
+          variant="primary"
+          size="small"
+          class="agent-prompt-modal-cta"
+        />
+      </aside>
+
+      <section class="agent-prompt-modal-reader">
+        <div
+          class="agent-prompt-modal-single"
+          data-agent-prompt-single
+          data-has-open-book={hasOpenBook ? "true" : "false"}
+        >
+          <AccessRequestPrompt
+            promptText={useDefaultPrompt ? undefined : normalizedPromptText}
+            showCopyButton={false}
+            showViewButton={false}
+          />
+        </div>
+        {
+          hasOpenBook && (
+            <div class="agent-prompt-modal-open-book" data-agent-prompt-open-book>
+              <AccessRequestPrompt
+                promptText={splitPrompt?.primary}
+                showCopyButton={false}
+                showViewButton={false}
+              />
+              <AccessRequestPrompt
+                promptText={splitPrompt?.secondary}
+                showCopyButton={false}
+                showViewButton={false}
+              />
+            </div>
+          )
+        }
+      </section>
+    </div>
+  </section>
+</div>
+
+<style>
+  .agent-prompt-modal[hidden] {
+    display: none !important;
+  }
+
+  .agent-prompt-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: grid;
+    place-items: center;
+    padding: 0.8rem;
+  }
+
+  .agent-prompt-modal-backdrop {
+    appearance: none;
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgb(var(--bg) / 0.75);
+    backdrop-filter: blur(2px);
+    cursor: pointer;
+  }
+
+  .agent-prompt-modal-surface {
+    width: min(98vw, 1700px);
+    height: min(96dvh, 1100px);
+    border-radius: 8px;
+    border: 0.5px solid color-mix(in srgb, var(--border-color) 85%, var(--bg-1) 15%);
+    background: var(--bg-2);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 30px 60px rgb(var(--bg) / 0.42),
+      0 10px 24px rgb(var(--bg) / 0.26);
+  }
+
+  .agent-prompt-modal-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--agent-prompt-modal-bg-image);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  .agent-prompt-modal-surface::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgb(var(--bg) / 0.62) 0%, rgb(var(--bg) / 0.75) 100%);
+    z-index: 0;
+  }
+
+  .agent-prompt-modal-close {
+    appearance: none;
+    position: absolute;
+    right: 0.65rem;
+    top: 0.65rem;
+    z-index: 2;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    border: 0.5px solid var(--border-color);
+    background: color-mix(in srgb, var(--bg-2) 85%, transparent);
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .agent-prompt-modal-close:hover {
+    background: color-mix(in srgb, var(--bg-3) 88%, transparent);
+  }
+
+  .agent-prompt-modal-close:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--bg-1),
+      0 0 0 4px rgb(var(--ring) / 0.65);
+  }
+
+  .agent-prompt-modal-layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-rows: auto minmax(0, 1fr);
+    height: 100%;
+    min-height: 0;
+    padding: 3rem 0.85rem 0.85rem;
+  }
+
+  .agent-prompt-modal-meta {
+    border: 0.5px solid var(--border-color);
+    border-radius: 0.85rem;
+    background: transparent;
+    backdrop-filter: none;
+    padding: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+
+  .agent-prompt-modal-label {
+    margin: 0;
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  .agent-prompt-modal-title {
+    margin: -0.3rem 0 0;
+    font-size: clamp(1.55rem, 1.25rem + 1vw, 2.1rem);
+    line-height: 1.06;
+    color: var(--text-primary);
+  }
+
+  .agent-prompt-modal-tools {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .agent-prompt-modal-tools-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .agent-prompt-modal-tools-list li {
+    border: 0.5px solid var(--border-color);
+    border-radius: 999px;
+    min-height: 1.65rem;
+    padding: 0 0.62rem;
+    display: inline-flex;
+    align-items: center;
+    background: color-mix(in srgb, var(--bg-1) 70%, var(--bg-2) 30%);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .agent-prompt-modal-tools-empty {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+  }
+
+  .agent-prompt-modal-cta {
+    width: fit-content;
+  }
+
+  .agent-prompt-modal-reader {
+    min-height: 0;
+    display: grid;
+    min-height: 0;
+  }
+
+  .agent-prompt-modal-single,
+  .agent-prompt-modal-open-book {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .agent-prompt-modal-open-book {
+    display: none;
+  }
+
+  .agent-prompt-modal-reader :global(.access-request-prompt-card) {
+    border-color: var(--border-color);
+    background: color-mix(in srgb, var(--bg-1) 82%, transparent);
+    height: 100%;
+    min-height: 0;
+    display: grid;
+  }
+
+  .agent-prompt-modal-reader :global(.access-request-prompt-card > .relative) {
+    margin-bottom: 0 !important;
+    min-height: 0;
+  }
+
+  .agent-prompt-modal-reader :global(.access-request-prompt-content) {
+    height: 100%;
+    overflow: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .agent-prompt-modal-layout {
+      grid-template-columns: minmax(17rem, 23rem) minmax(0, 1fr);
+      grid-template-rows: 1fr;
+      padding: 3rem 1rem 1rem;
+    }
+
+    .agent-prompt-modal-meta {
+      height: 100%;
+      overflow: auto;
+      align-content: start;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .agent-prompt-modal-single[data-has-open-book="true"] {
+      display: none;
+    }
+
+    .agent-prompt-modal-open-book {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const initPromptModal = () => {
+      const modal = document.querySelector("[data-agent-prompt-modal]");
+      if (!(modal instanceof HTMLElement)) return;
+      if (modal.dataset.agentPromptModalReady === "true") return;
+      modal.dataset.agentPromptModalReady = "true";
+
+      const closeButton = modal.querySelector("[data-agent-prompt-close]");
+      const backdrop = modal.querySelector("[data-agent-prompt-backdrop]");
+
+      if (!(closeButton instanceof HTMLButtonElement)) return;
+      if (!(backdrop instanceof HTMLButtonElement)) return;
+      let priorBodyOverflow = "";
+
+      const lockBodyScroll = () => {
+        if (document.body.dataset.agentPromptModalLocked === "true") return;
+        priorBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        document.body.dataset.agentPromptModalLocked = "true";
+      };
+
+      const unlockBodyScroll = () => {
+        if (document.body.dataset.agentPromptModalLocked !== "true") return;
+        document.body.style.overflow = priorBodyOverflow;
+        delete document.body.dataset.agentPromptModalLocked;
+      };
+
+      const closeModal = () => {
+        modal.hidden = true;
+        modal.classList.remove("is-open");
+        unlockBodyScroll();
+      };
+
+      const openModal = () => {
+        modal.hidden = false;
+        modal.classList.add("is-open");
+        lockBodyScroll();
+        requestAnimationFrame(() => {
+          closeButton.focus();
+        });
+      };
+
+      closeButton.addEventListener("click", closeModal);
+      backdrop.addEventListener("click", closeModal);
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !modal.hidden) {
+          closeModal();
+        }
+      });
+
+      window.addEventListener("agent:open-prompt-modal", () => {
+        openModal();
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initPromptModal, {
+        once: true,
+      });
+    } else {
+      initPromptModal();
+    }
+
+    document.addEventListener("astro:after-swap", initPromptModal);
+  })();
+</script>
