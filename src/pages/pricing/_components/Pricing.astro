@@ -1,6 +1,7 @@
 ---
 import PricingCard from "./PricingCard.astro";
 import Plus from "phosphor-astro/Plus.astro";
+import CoralReef from "@assets/images/pricing/coralreef.png";
 
 type PlanKey = "pro" | "proPlus" | "premium" | "team" | "business" | "enterprise";
 type FaqItem = {
@@ -300,7 +301,7 @@ const faqItems: FaqItem[] = [
 
 <section class="container max-w-6xl mx-auto flex flex-col mt-8 px-2 lg:px-0">
   <div class="flex flex-col items-center text-center">
-    <h1 class="hero-title max-w-2xl !text-5xl mb-4 mt-10 text-center md:mt-14 lg:mt-20 text-stone-950 dark:text-stone-100">
+    <h1 class="hero-title max-w-2xl !text-5xl mb-4 mt-6 text-center md:mt-10 lg:mt-16 text-stone-950 dark:text-stone-100">
       Give your team their time back
     </h1>
   </div>
@@ -331,7 +332,14 @@ const faqItems: FaqItem[] = [
     </div>
 
     <section class="mb-12 md:mb-20">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 justify-center items-stretch">
+      <div class="pricing-cards-stage">
+        <div
+          class="pricing-cards-backdrop"
+          style={`background-image: url('${CoralReef.src}');`}
+          aria-hidden="true"
+        >
+        </div>
+        <div class="pricing-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 justify-center items-stretch">
         <PricingCard
           title="Pro"
           description="Includes:"
@@ -437,6 +445,7 @@ const faqItems: FaqItem[] = [
             "Priorty support/SLAs",
           ]}
         />
+        </div>
       </div>
     </section>
 
@@ -553,6 +562,56 @@ const faqItems: FaqItem[] = [
     </section>
   </div>
 </section>
+
+<style>
+  .pricing-cards-stage {
+    position: relative;
+    padding-top: 32px;
+    padding-inline: 8px;
+  }
+
+  .pricing-cards-backdrop {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 58%;
+    min-height: 220px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+
+  .pricing-cards-grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .pricing-cards-stage {
+      padding-top: 44px;
+      padding-inline: 12px;
+    }
+
+    .pricing-cards-backdrop {
+      height: 56%;
+      min-height: 300px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pricing-cards-stage {
+      padding-top: 56px;
+      padding-inline: 16px;
+    }
+
+    .pricing-cards-backdrop {
+      height: 54%;
+      min-height: 360px;
+    }
+  }
+</style>
 
 <script>
   const activeClasses = [
