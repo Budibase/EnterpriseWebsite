@@ -189,7 +189,7 @@ const showAddonsSection = normalizedAddonItems.length > 0;
       <div class="prices">
         <p class="price-line">
           <span
-            class="amount !text-2xl"
+            class="amount !text-2xl text-primary"
             data-base-price={typeof initialBasePrice === "number" ? initialBasePrice : undefined}
             >{initialDisplayPrice}</span
           >
@@ -205,7 +205,7 @@ const showAddonsSection = normalizedAddonItems.length > 0;
         {userPrice !== undefined && (
           <p class="price-line">
             <span
-              class="amount !text-2xl"
+              class="amount !text-2xl text-primary"
               data-base-price={typeof userPrice === "number" ? userPrice : undefined}
             >
               {typeof userPrice === "number" ? `$${userPrice}` : userPrice}
@@ -241,7 +241,7 @@ const showAddonsSection = normalizedAddonItems.length > 0;
       )}
       {operationsDropdownOptions.length === 1 && (
         <div class="operations-row mt-3">
-          <p class="operations-static text-stone-900 dark:text-stone-100">
+          <p class="operations-static operations-static-primary">
             {operationsDropdownOptions[0].operationsLabel}
           </p>
         </div>
@@ -251,7 +251,7 @@ const showAddonsSection = normalizedAddonItems.length > 0;
           <p
             class={`operations-static ${
               additionalPriceTone === "primary"
-                ? "text-stone-900 dark:text-stone-100"
+                ? "operations-static-primary"
                 : "text-stone-600 dark:text-stone-400"
             }`}
           >
@@ -457,6 +457,9 @@ const showAddonsSection = normalizedAddonItems.length > 0;
   :global(.dark) .price-line {
     color: var(--color-stone-100);
   }
+  .amount {
+    color: var(--text-primary);
+  }
 
   .operations-row {
     display: block;
@@ -509,6 +512,10 @@ const showAddonsSection = normalizedAddonItems.length > 0;
     border-radius: 6px;
     background: var(--bg-1);
     margin: 0;
+  }
+
+  .operations-static-primary {
+    color: var(--text-primary) !important;
   }
 
   :global(.dark) .operations-select-row::after {

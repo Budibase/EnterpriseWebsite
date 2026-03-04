@@ -1,7 +1,6 @@
 ---
 import PricingCard from "./PricingCard.astro";
 import Plus from "phosphor-astro/Plus.astro";
-import CoralReef from "@assets/images/pricing/coralreef.png";
 
 type PlanKey = "pro" | "proPlus" | "premium" | "team" | "business" | "enterprise";
 type FaqItem = {
@@ -300,13 +299,7 @@ const faqItems: FaqItem[] = [
 
     <section class="mb-12 md:mb-20">
       <div class="pricing-cards-stage">
-        <div
-          class="pricing-cards-backdrop"
-          style={`background-image: url('${CoralReef.src}');`}
-          aria-hidden="true"
-        >
-        </div>
-        <div class="pricing-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 justify-center items-stretch">
+        <div class="pricing-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 justify-center items-stretch">
         <PricingCard
           title="Pro"
           description="Includes:"
@@ -335,7 +328,6 @@ const faqItems: FaqItem[] = [
         />
         <PricingCard
           title="Premium"
-          tagLabel="Recommended"
           description="Everything in Pro, plus:"
           creatorPrice={49}
           billingPlan="premium"
@@ -362,6 +354,7 @@ const faqItems: FaqItem[] = [
         />
         <PricingCard
           title="Business"
+          tagLabel="Best value"
           description="Everything in Premium, plus:"
           creatorPrice={299}
           billingPlan="business"
@@ -530,65 +523,8 @@ const faqItems: FaqItem[] = [
 </section>
 
 <style>
-  .pricing-cards-stage {
-    position: relative;
-    padding-top: 32px;
-    padding-inline: 8px;
-  }
-
-  .pricing-cards-backdrop {
-    position: absolute;
-    inset-inline: 0;
-    top: 0;
-    height: 58%;
-    min-height: 220px;
-    border-radius: 8px;
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    z-index: 0;
-    overflow: hidden;
-  }
-
-  .pricing-cards-backdrop::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.42) 0%,
-      rgba(0, 0, 0, 0.32) 100%
-    );
-    pointer-events: none;
-  }
-
   .pricing-cards-grid {
     position: relative;
-    z-index: 1;
-  }
-
-  @media (min-width: 768px) {
-    .pricing-cards-stage {
-      padding-top: 44px;
-      padding-inline: 12px;
-    }
-
-    .pricing-cards-backdrop {
-      height: 56%;
-      min-height: 300px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .pricing-cards-stage {
-      padding-top: 56px;
-      padding-inline: 16px;
-    }
-
-    .pricing-cards-backdrop {
-      height: 54%;
-      min-height: 360px;
-    }
   }
 </style>
 

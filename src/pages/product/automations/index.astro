@@ -4,6 +4,7 @@ import CTA from "@components/CTA.astro";
 import Button from "@components/Button.astro";
 import { getProductPageMeta } from "../_pageMeta";
 import AutomationDemo from "@components/AutomationDemo.astro";
+import AutomationTriggerOutcomeSection from "@components/AutomationTriggerOutcomeSection.astro";
 import Card from "@components/cards/Card.astro";
 
 const { description: pageMetaDescription } = getProductPageMeta(
@@ -51,6 +52,8 @@ const pageDescription =
       <div class="mb-4">
         <AutomationDemo />
       </div>
+
+      <AutomationTriggerOutcomeSection />
 
       <section class="mt-16 mb-8">
         <h2 class="text-primary text-center mb-4">

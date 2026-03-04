@@ -1,0 +1,150 @@
+---
+interface StepItem {
+  label: string;
+  highlight?: boolean;
+}
+
+interface StepGroup {
+  title: string;
+  items: StepItem[];
+}
+
+const triggerItems = [
+  "Schedule (hourly, daily, weekly)",
+  "Agent trigger",
+  "App trigger (forms, button clicks)",
+  "Data updates (row created/updated)",
+  "Webhooks",
+];
+
+const actionItems = [
+  "Agent (decide, classify, extract, route)",
+  "API requests (connect any system)",
+  "Create / update / query records",
+  "JavaScript step (custom logic)",
+  "Send Email (SMTP)",
+  "Conditions, loops, delays, and chaining",
+];
+
+const stepGroups: StepGroup[] = [
+  {
+    title: "Data",
+    items: [
+      { label: "Create row" },
+      { label: "Update row" },
+      { label: "Query rows" },
+      { label: "External Data Connector" },
+      { label: "API Request", highlight: true },
+    ],
+  },
+  {
+    title: "Flow Logic",
+    items: [
+      { label: "Delay" },
+      { label: "Condition" },
+      { label: "Loop" },
+      { label: "Trigger an automation" },
+    ],
+  },
+  {
+    title: "Code",
+    items: [
+      { label: "JavaScript" },
+      { label: "Backend log" },
+      { label: "State" },
+    ],
+  },
+  {
+    title: "Email",
+    items: [{ label: "Send Email (SMTP)" }],
+  },
+  {
+    title: "AI",
+    items: [
+      { label: "LLM Prompt" },
+      { label: "Summarise" },
+      { label: "Extract Document Data" },
+      { label: "Agent", highlight: true },
+    ],
+  },
+];
+---
+
+<section class="automation-triggers-section mt-10 md:mt-14">
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-10">
+    <div class="space-y-6">
+      <p class="m-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-secondary">Triggers & execution</p>
+
+      <h2 class="m-0 max-w-xl text-primary">Start from any signal. Execute across any system.</h2>
+
+      <p class="m-0 max-w-xl text-base leading-relaxed text-secondary md:text-lg">
+        Automations can start from schedules, apps, data changes, webhooks - or directly from your agents. Then
+        coordinate decisions, call APIs, update records, and notify your team automatically.
+      </p>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <section class="rounded-[10px] border border-[rgb(var(--border)/0.55)] bg-[rgb(var(--surface)/0.45)] p-4">
+          <h3 class="m-0 text-base text-primary">Triggers</h3>
+          <ul class="mt-3 space-y-2.5">
+            {triggerItems.map((item) => (
+              <li class="flex items-start gap-2 text-[13px] leading-5 text-secondary">
+                <span class="mt-[7px] inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[rgb(var(--text-muted)/0.9)]"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="rounded-[10px] border border-[rgb(var(--border)/0.55)] bg-[rgb(var(--surface)/0.45)] p-4">
+          <h3 class="m-0 text-base text-primary">Actions</h3>
+          <ul class="mt-3 space-y-2.5">
+            {actionItems.map((item) => (
+              <li class="flex items-start gap-2 text-[13px] leading-5 text-secondary">
+                <span class="mt-[7px] inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[rgb(var(--text-muted)/0.9)]"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <aside
+      class="rounded-[12px] border border-[var(--grey-800)] bg-[var(--grey-950)] p-4 text-[var(--grey-100)] shadow-[0px_12px_30px_rgb(var(--text)/0.18)] sm:p-5"
+      aria-label="Automation step picker"
+    >
+      <div class="mb-4 flex items-center justify-between rounded-[8px] border border-[var(--grey-800)] bg-[var(--grey-900)] px-3 py-2">
+        <div class="flex items-center gap-1.5" aria-hidden="true">
+          <span class="inline-block h-2 w-2 rounded-full bg-[var(--grey-600)]"></span>
+          <span class="inline-block h-2 w-2 rounded-full bg-[var(--grey-600)]"></span>
+          <span class="inline-block h-2 w-2 rounded-full bg-[var(--grey-600)]"></span>
+        </div>
+        <span class="rounded-[6px] border border-[var(--grey-800)] bg-[var(--grey-950)] px-2 py-1 text-[12px] text-[var(--grey-300)]">
+          Step picker
+        </span>
+      </div>
+
+      <div class="space-y-3">
+        {stepGroups.map((group) => (
+          <section class="rounded-[8px] border border-[var(--grey-800)] bg-[var(--grey-900)] p-3">
+            <h3 class="m-0 text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--grey-400)]">{group.title}</h3>
+            <ul class="mt-2 space-y-1.5">
+              {group.items.map((item) => (
+                <li
+                  class:list={[
+                    "rounded-[6px] border px-2.5 py-2 text-[13px] leading-5",
+                    item.highlight
+                      ? "border-[rgb(var(--brand)/0.55)] bg-[rgb(var(--brand)/0.17)] text-[var(--grey-50)]"
+                      : "border-[var(--grey-800)] bg-[var(--grey-950)] text-[var(--grey-200)]",
+                  ]}
+                >
+                  {item.label}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </aside>
+  </div>
+</section>

@@ -265,8 +265,12 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
                         </span>
                         <span class="automation-demo-sidebar-label">{item.label}</span>
                         <span class="automation-demo-sidebar-logos">
-                          <Image src={SlackLogo} alt="Slack" class="h-3 w-3" />
-                          <Image src={JiraLogo} alt="Jira" class="h-3 w-3" />
+                          <span class="automation-demo-sidebar-logo-chip">
+                            <Image src={SlackLogo} alt="Slack" class="h-3 w-3" />
+                          </span>
+                          <span class="automation-demo-sidebar-logo-chip">
+                            <Image src={JiraLogo} alt="Jira" class="h-3 w-3" />
+                          </span>
                           <span class="automation-demo-sidebar-logo-block" aria-hidden="true"></span>
                         </span>
                       </a>
@@ -514,15 +518,15 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   }
 
   .automation-demo-status.is-trigger {
-    background: var(--orange-700);
+    background: var(--orange-500);
   }
 
   .automation-demo-status.is-complete {
-    background: var(--green-700);
+    background: var(--green-500);
   }
 
   .automation-demo-status.is-running {
-    background: var(--blue-600);
+    background: var(--blue-500);
   }
 
   .automation-demo-status-dots {
@@ -587,11 +591,11 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   }
 
   .automation-demo-node-icon-email {
-    background: var(--green-800);
+    background: var(--green-500);
   }
 
   .automation-demo-node-icon-agent {
-    background: var(--blue-700);
+    background: var(--blue-500);
   }
 
   .automation-demo-node-icon-alert {
@@ -689,15 +693,15 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   }
 
   .automation-demo-sidebar-icon-api {
-    background: var(--blue-700);
+    background: var(--blue-500);
   }
 
   .automation-demo-sidebar-icon-data {
-    background: var(--green-800);
+    background: var(--green-500);
   }
 
   .automation-demo-sidebar-icon-logic {
-    background: var(--purple-700);
+    background: var(--purple-500);
   }
 
   .automation-demo-sidebar-label {
@@ -716,12 +720,22 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     gap: 4px;
   }
 
+  .automation-demo-sidebar-logo-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background: var(--grey-700);
+  }
+
   .automation-demo-sidebar-logo-block {
     display: inline-block;
     width: 12px;
     height: 12px;
     border-radius: 2px;
-    background: var(--purple-500);
+    background: var(--grey-700);
   }
 
   .hero-demo-theme-toggle {

@@ -41,12 +41,6 @@ export const productDropdownItems: NavDropdownItem[] = [
       };
     })
     .filter((item): item is NavDropdownItem => Boolean(item)),
-  {
-    href: "/enterprise",
-    label: "Enterprise",
-    description: "Enterprise features and customer stories.",
-    prefetch: true,
-  },
 ];
 
 export const resourcesDropdownItems: NavDropdownItem[] = [
