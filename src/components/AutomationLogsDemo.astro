@@ -1,0 +1,167 @@
+---
+const logRows = [
+  {
+    runId: "#142",
+    timestamp: "Nov 06, 2029 12:44",
+    status: "Completed",
+    tone: "completed",
+  },
+  {
+    runId: "#141",
+    timestamp: "Nov 06, 2029 11:22",
+    status: "Failed",
+    tone: "failed",
+  },
+  {
+    runId: "#140",
+    timestamp: "Nov 06, 2029 09:02",
+    status: "Completed",
+    tone: "completed",
+  },
+  {
+    runId: "#139",
+    timestamp: "Nov 06, 2029 02:40",
+    status: "Completed",
+    tone: "completed",
+  },
+] as const;
+---
+
+<div class="automation-logs-demo" aria-label="Automation logs demo">
+  <h4 class="automation-logs-demo-title">Logs</h4>
+
+  <ul class="automation-logs-demo-list" aria-label="Recent automation runs">
+    {
+      logRows.map((row, index) => (
+        <li class="automation-logs-demo-item">
+          <div class="automation-logs-demo-row">
+            <div class="automation-logs-demo-meta">
+              <span class="automation-logs-demo-run-id">{row.runId}</span>
+              <span class="automation-logs-demo-time">{row.timestamp}</span>
+            </div>
+            <span class={`automation-logs-demo-status is-${row.tone}`}>
+              {row.status}
+            </span>
+          </div>
+          {index < logRows.length - 1 && (
+            <div class="automation-logs-demo-divider" aria-hidden="true" />
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .automation-logs-demo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    background: var(--bg-1);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow: hidden;
+  }
+
+  .automation-logs-demo-title {
+    margin: 0;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .automation-logs-demo-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .automation-logs-demo-item {
+    width: 100%;
+  }
+
+  .automation-logs-demo-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 3px 1px;
+    min-height: 34px;
+  }
+
+  .automation-logs-demo-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .automation-logs-demo-run-id {
+    color: var(--text-primary);
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .automation-logs-demo-time {
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .automation-logs-demo-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 2px 4px;
+    color: var(--bg-1);
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  :global(.dark) .automation-logs-demo-status {
+    color: var(--text-primary);
+  }
+
+  .automation-logs-demo-status.is-completed {
+    background: var(--green-300);
+  }
+
+  .automation-logs-demo-status.is-failed {
+    background: var(--red-300);
+  }
+
+  .automation-logs-demo-divider {
+    height: 0.5px;
+    width: 100%;
+    background: var(--border-color);
+  }
+
+  @media (max-width: 420px) {
+    .automation-logs-demo {
+      padding: 10px 12px;
+    }
+
+    .automation-logs-demo-row {
+      min-height: 32px;
+    }
+
+    .automation-logs-demo-time {
+      font-size: 12px;
+    }
+  }
+</style>

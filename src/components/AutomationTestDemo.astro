@@ -1,0 +1,217 @@
+---
+import Icon from "@components/Icon.astro";
+
+const id = `automation-test-demo-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div id={id} class="automation-test-demo" aria-label="Automation test demo">
+  <button
+    type="button"
+    class="automation-test-demo-button"
+    data-test-automation-button
+  >
+    Test automation
+  </button>
+
+  <div class="automation-test-demo-content">
+    <div class="automation-test-demo-badges">
+      <span class="automation-test-demo-badge is-trigger">Trigger</span>
+      <span
+        class="automation-test-demo-badge is-completed"
+        data-status-badge
+        data-status="completed"
+        aria-live="polite"
+      >
+        Completed
+      </span>
+    </div>
+
+    <article class="automation-test-demo-row">
+      <span class="automation-test-demo-icon-wrap">
+        <Icon name="Sparkle" weight="fill" class="automation-test-demo-icon" />
+      </span>
+      <p class="automation-test-demo-text">
+        <span class="automation-test-demo-title">Agent trigger</span>
+        <span class="automation-test-demo-description">
+          This automation is triggered by agents
+        </span>
+      </p>
+    </article>
+  </div>
+</div>
+
+<style>
+  .automation-test-demo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 40px;
+    padding: 12px;
+    background-color: var(--grey-950);
+    border-radius: 6px;
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgb(var(--text-muted) / 0.18) 1.1px,
+      transparent 0
+    );
+    background-size: 16px 16px;
+  }
+
+  .automation-test-demo-button {
+    border: 0;
+    border-radius: 999px;
+    background: var(--grey-100);
+    color: var(--grey-900);
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+
+  .automation-test-demo-button:hover {
+    background: var(--grey-200);
+  }
+
+  .automation-test-demo-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(var(--ring) / 0.75);
+  }
+
+  .automation-test-demo-content {
+    width: min(100%, 300px);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0 auto;
+  }
+
+  .automation-test-demo-badges {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .automation-test-demo-badge {
+    border-radius: 4px;
+    padding: 2px 6px;
+    color: var(--grey-50);
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .automation-test-demo-badge.is-trigger {
+    background: var(--orange-600);
+  }
+
+  .automation-test-demo-badge.is-completed {
+    background: var(--green-600);
+  }
+
+  .automation-test-demo-badge.is-running {
+    background: var(--blue-600);
+  }
+
+  .automation-test-demo-row {
+    width: 100%;
+    min-width: 200px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 6px;
+    background: var(--grey-800);
+    padding: 8px 12px;
+    margin: 0;
+  }
+
+  .automation-test-demo-icon-wrap {
+    height: 28px;
+    width: 28px;
+    padding: 4px;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--orange-600);
+    color: var(--grey-50);
+    flex-shrink: 0;
+  }
+
+  .automation-test-demo-icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .automation-test-demo-text {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .automation-test-demo-title {
+    color: var(--grey-100);
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 500;
+  }
+
+  .automation-test-demo-description {
+    color: var(--grey-400);
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 400;
+  }
+
+  @media (max-width: 420px) {
+    .automation-test-demo {
+      gap: 20px;
+      padding: 10px;
+    }
+  }
+</style>
+
+<script define:vars={{ id }}>
+  (() => {
+    const root = document.getElementById(id);
+    if (!root) return;
+
+    const statusBadge = root.querySelector("[data-status-badge]");
+    const testButton = root.querySelector("[data-test-automation-button]");
+    if (!statusBadge || !testButton) return;
+
+    let statusResetTimeout;
+
+    function setStatus(state) {
+      if (state === "running") {
+        statusBadge.textContent = "Running";
+        statusBadge.setAttribute("data-status", "running");
+        statusBadge.classList.remove("is-completed");
+        statusBadge.classList.add("is-running");
+        return;
+      }
+
+      statusBadge.textContent = "Completed";
+      statusBadge.setAttribute("data-status", "completed");
+      statusBadge.classList.remove("is-running");
+      statusBadge.classList.add("is-completed");
+    }
+
+    testButton.addEventListener("click", () => {
+      setStatus("running");
+
+      if (statusResetTimeout) {
+        window.clearTimeout(statusResetTimeout);
+      }
+
+      statusResetTimeout = window.setTimeout(() => {
+        setStatus("completed");
+      }, 2000);
+    });
+  })();
+</script>

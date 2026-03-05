@@ -6,6 +6,10 @@ import { getProductPageMeta } from "../_pageMeta";
 import AutomationDemo from "@components/AutomationDemo.astro";
 import AutomationTriggerOutcomeSection from "@components/AutomationTriggerOutcomeSection.astro";
 import Card from "@components/cards/Card.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import AutomationTestDemo from "@components/AutomationTestDemo.astro";
+import AutomationDataFlow from "@components/AutomationDataFlow.astro";
+import AutomationLogsDemo from "@components/AutomationLogsDemo.astro";
 
 const { description: pageMetaDescription } = getProductPageMeta(
   Astro.url.pathname,
@@ -20,16 +24,18 @@ const pageDescription =
     <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
       <div class="automations-hero-grid">
         <div class="automations-hero-copy max-w-xl">
-          <h1
-            class="hero-title-small mb-4 w-full leading-[0.9]! tracking-[-0.02em]!"
+          <TitleBlock
+            variant="hero"
+            titleColorMode="split-primary-secondary"
+            titleLines={[
+              { text: "Orchestrate AI agents" },
+              { text: "across your operations." },
+            ]}
+            titleClass="mb-4 w-full leading-[0.9]! tracking-[-0.02em]!"
+          />
+          <p
+            class="hero-description-small mx-auto max-w-xl text-base md:!text-xl !mb-4"
           >
-            <span class="block text-primary">Orchestrate AI agents</span>
-            <span class="block text-secondary">across your operations.</span>
-          </h1>
-        </div>
-
-        <div class="automations-hero-description max-w-xl">
-          <p class="m-0 mx-auto max-w-xl text-base text-[var(--text-secondary)] md:text-xl !mb-4 !text-xl text-secondary">
             {pageDescription}
           </p>
         </div>
@@ -55,52 +61,50 @@ const pageDescription =
 
       <AutomationTriggerOutcomeSection />
 
-      <section class="mt-16 mb-8">
-        <h2 class="text-primary text-center mb-4">
-          Run operations faster with fewer manual steps.
-        </h2>
+      <section class="mt-24 mb-8">
+        <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <TitleBlock
+            variant="section"
+            titleColorMode="split-secondary-primary"
+            titleLines={[
+              { text: "Full visibility into" },
+              { text: "every decision and action." },
+            ]}
+            titleClass="mb-4 w-full"
+          />
+          <p class="hero-description-small text-lg! !mb-6 max-w-lg mx-auto">
+            Automations don’t just run - they’re fully observable. Test
+            workflows before going live, inspect data at every step, and track
+            every decision agents make.
+          </p>
+        </div>
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
         >
           <Card
-            label="Orchestrate operational processes"
-            description="Design multi-step workflows that connect systems, approvals, and logic."
-            imagePlaceholderColor="var(--purple-900)"
-          />
+            label="Run tests before going live"
+            description="Simulate triggers and verify outcomes instantly."
+          >
+            <div slot="image-overlay" class="automation-test-card-overlay">
+              <AutomationTestDemo />
+            </div>
+          </Card>
           <Card
-            label="Power agent execution"
-            description="Give agents structured steps and controlled system access to complete work safely."
-            imagePlaceholderColor="var(--purple-900)"
-          />
+            label="Inspect data at every step"
+            description="See exactly what went in and what came out."
+          >
+            <div slot="image-overlay" class="automation-data-flow-card-overlay">
+              <AutomationDataFlow />
+            </div>
+          </Card>
           <Card
-            label="Triggered by real events"
-            description="Launch workflows from data changes, user actions, schedules, or webhooks."
-            imagePlaceholderColor="var(--purple-900)"
-          />
-          <Card
-            label="Visual workflow builder"
-            description="Design operational workflows with a visual drag-and-drop builder."
-          />
-          <Card
-            label="Event, webhook, and schedule triggers"
-            description="Start workflows from events, incoming webhooks, or scheduled runs."
-          />
-          <Card
-            label="Conditional logic and branching"
-            description="Route execution with conditions, branching paths, and dynamic outcomes."
-          />
-          <Card
-            label="Third-party API steps"
-            description="Call external APIs as workflow steps to sync and update systems."
-          />
-          <Card
-            label="Agent-triggered workflow steps"
-            description="Invoke agents within workflows to handle reasoning-driven actions."
-          />
-          <Card
-            label="Execution logs and run history"
-            description="Track every run with detailed logs and execution history."
-          />
+            label="Automation logs & run history"
+            description="Track every execution with full traceability."
+          >
+            <div slot="image-overlay" class="automation-logs-card-overlay">
+              <AutomationLogsDemo />
+            </div>
+          </Card>
         </div>
       </section>
     </div>
@@ -143,6 +147,28 @@ const pageDescription =
     .automations-hero {
       padding-bottom: 2rem;
     }
+  }
 
+  .automation-test-card-overlay,
+  .automation-data-flow-card-overlay,
+  .automation-logs-card-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: auto;
+  }
+
+  .automation-test-card-overlay {
+    background-color: var(--blue-400);
+    padding: 28px;
+  }
+
+  .automation-data-flow-card-overlay {
+    background-color: var(--blue-400);
+    padding: 28px;
+  }
+
+  .automation-logs-card-overlay {
+    background-color: var(--blue-400);
+    padding: 28px;
   }
 </style>

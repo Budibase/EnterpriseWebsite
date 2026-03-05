@@ -1,0 +1,399 @@
+---
+import CaretRight from "phosphor-astro/CaretRight.astro";
+import WarningFill from "phosphor-astro/WarningFill.astro";
+
+const id = `automation-data-flow-${Math.random().toString(36).slice(2, 8)}`;
+const tabs = [
+  { key: "data-in", label: "Data in", tone: "default" },
+  { key: "data-out", label: "Data out", tone: "default" },
+  { key: "errors", label: "Errors", tone: "error" },
+] as const;
+
+const dataInRows = [
+  { key: "env", meta: "{ } 20 keys", nested: false },
+  { key: "settings", meta: "{ } 3 keys", nested: false },
+  { key: "trigger", meta: "{ } 3 keys", nested: false },
+  { key: "from", value: '"jim@example.com"', nested: true },
+  { key: "subject", value: '"Request for information"', nested: true },
+  { key: "to", value: '"sue@example.com"', nested: true },
+  { key: "user", meta: "{ } 8 keys", nested: false },
+] as const;
+
+const dataOutRows = [
+  { key: "comparisonValue", value: '"donald@gmail.com"', tone: "string" },
+  { key: "refValue", value: '"jim@example.com"', tone: "string" },
+  { key: "result", value: "false", tone: "error" },
+  { key: "status", value: '"stopped"', tone: "string" },
+  { key: "success", value: "true", tone: "success" },
+] as const;
+---
+
+<div id={id} class="automation-data-flow" aria-label="Automation data flow">
+  <div
+    class="automation-data-flow-tabs"
+    role="tablist"
+    aria-label="Automation data flow tabs"
+  >
+    {
+      tabs.map((tab, index) => {
+        const tabId = `${id}-tab-${index}`;
+        const panelId = `${id}-panel-${index}`;
+        return (
+          <button
+            id={tabId}
+            type="button"
+            role="tab"
+            class={`automation-data-flow-tab ${index === 0 ? "is-active" : ""}`}
+            aria-selected={index === 0 ? "true" : "false"}
+            aria-controls={panelId}
+            tabindex={index === 0 ? 0 : -1}
+            data-tone={tab.tone}
+          >
+            {tab.label}
+          </button>
+        );
+      })
+    }
+  </div>
+
+  <div class="automation-data-flow-panels">
+    <section
+      id={`${id}-panel-0`}
+      class="automation-data-flow-panel is-active"
+      role="tabpanel"
+      aria-labelledby={`${id}-tab-0`}
+      aria-hidden="false"
+    >
+      {
+        dataInRows.map((row) => (
+          <div
+            class={`automation-data-flow-row ${row.nested ? "is-nested" : ""}`}
+          >
+            {!row.nested && (
+              <span class="automation-data-flow-caret" aria-hidden="true">
+                <CaretRight class="h-3 w-3" weight="fill" />
+              </span>
+            )}
+            <span class="automation-data-flow-key">{row.key}</span>
+            {row.meta && (
+              <span class="automation-data-flow-meta">{row.meta}</span>
+            )}
+            {row.value && (
+              <span class="automation-data-flow-value is-string">
+                {row.value}
+              </span>
+            )}
+          </div>
+        ))
+      }
+    </section>
+
+    <section
+      id={`${id}-panel-1`}
+      class="automation-data-flow-panel"
+      role="tabpanel"
+      aria-labelledby={`${id}-tab-1`}
+      aria-hidden="true"
+    >
+      {
+        dataOutRows.map((row) => (
+          <div class="automation-data-flow-row">
+            <span class="automation-data-flow-key">{row.key}</span>
+            <span class={`automation-data-flow-value is-${row.tone}`}>
+              {row.value}
+            </span>
+          </div>
+        ))
+      }
+    </section>
+
+    <section
+      id={`${id}-panel-2`}
+      class="automation-data-flow-panel"
+      role="tabpanel"
+      aria-labelledby={`${id}-tab-2`}
+      aria-hidden="true"
+    >
+      <div class="automation-data-flow-error">
+        <span class="automation-data-flow-warning" aria-hidden="true">
+          <WarningFill class="h-4 w-4" weight="fill" />
+        </span>
+        <p class="automation-data-flow-error-text">
+          The conditions were not met and the automation flow was stopped.
+        </p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<style>
+  .automation-data-flow {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 20px;
+    background: var(--bg-1);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.2;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .automation-data-flow-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding-inline: 1px;
+  }
+
+  .automation-data-flow-tab {
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text-secondary);
+    font: inherit;
+    line-height: 1;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition:
+      background-color 120ms ease,
+      color 120ms ease;
+  }
+
+  .automation-data-flow-tab[data-tone="error"] {
+    color: var(--accent-red);
+  }
+
+  .automation-data-flow-tab.is-active {
+    border-radius: 6px;
+    background: var(--bg-3);
+    color: var(--text-primary);
+  }
+
+  .automation-data-flow-tab.is-active[data-tone="error"] {
+    color: var(--accent-red);
+  }
+
+  .automation-data-flow-tab:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(var(--ring) / 0.75);
+  }
+
+  .automation-data-flow-panels {
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .automation-data-flow-panel {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .automation-data-flow-panel.is-active {
+    display: flex;
+  }
+
+  .automation-data-flow-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 22px;
+    padding-inline: 1px;
+    white-space: nowrap;
+  }
+
+  .automation-data-flow-row.is-nested {
+    padding-left: 40px;
+  }
+
+  .automation-data-flow-caret {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+
+  .automation-data-flow-key {
+    color: var(--text-primary);
+  }
+
+  .automation-data-flow-meta {
+    color: var(--text-secondary);
+  }
+
+  .automation-data-flow-value {
+    color: var(--text-primary);
+  }
+
+  .automation-data-flow-value.is-string {
+    color: var(--accent-orange);
+  }
+
+  .automation-data-flow-value.is-error {
+    color: var(--accent-red);
+  }
+
+  .automation-data-flow-value.is-success {
+    color: var(--accent-green);
+  }
+
+  .automation-data-flow-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    padding-top: 4px;
+  }
+
+  .automation-data-flow-warning {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-red);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .automation-data-flow-error-text {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 14px;
+    max-width: 34ch;
+    line-height: 1.25;
+  }
+
+  @media (max-width: 420px) {
+    .automation-data-flow {
+      padding: 10px 14px;
+    }
+
+    .automation-data-flow-row.is-nested {
+      padding-left: 24px;
+    }
+
+    .automation-data-flow-error-text {
+      max-width: 28ch;
+    }
+  }
+</style>
+
+<script define:vars={{ id }}>
+  (() => {
+    const root = document.getElementById(id);
+    if (!root) return;
+
+    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+
+    if (tabs.length === 0 || panels.length === 0) return;
+
+    const AUTOPLAY_MS = 2000;
+    let activeIndex = 0;
+    let loopTimer = null;
+    let autoplayStoppedByUser = false;
+
+    function setActive(index, options = { focus: false }) {
+      const normalizedIndex =
+        ((index % tabs.length) + tabs.length) % tabs.length;
+
+      tabs.forEach((tab, tabIndex) => {
+        const isActive = tabIndex === normalizedIndex;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        tab.setAttribute("tabindex", isActive ? "0" : "-1");
+      });
+
+      panels.forEach((panel, panelIndex) => {
+        const isActive = panelIndex === normalizedIndex;
+        panel.classList.toggle("is-active", isActive);
+        panel.setAttribute("aria-hidden", isActive ? "false" : "true");
+      });
+
+      activeIndex = normalizedIndex;
+
+      if (options.focus) {
+        tabs[normalizedIndex]?.focus();
+      }
+    }
+
+    function stopLoop() {
+      if (loopTimer) {
+        window.clearInterval(loopTimer);
+        loopTimer = null;
+      }
+    }
+
+    function startLoop() {
+      stopLoop();
+      if (prefersReducedMotion.matches || autoplayStoppedByUser) return;
+      loopTimer = window.setInterval(() => {
+        setActive(activeIndex + 1);
+      }, AUTOPLAY_MS);
+    }
+
+    function stopLoopByUserAction() {
+      autoplayStoppedByUser = true;
+      stopLoop();
+    }
+
+    root.addEventListener("click", (event) => {
+      const target = event.target;
+      const button =
+        target && target.closest ? target.closest('button[role="tab"]') : null;
+      if (!button || !root.contains(button)) return;
+
+      const index = tabs.indexOf(button);
+      if (index < 0) return;
+
+      setActive(index);
+      stopLoopByUserAction();
+    });
+
+    root.addEventListener("keydown", (event) => {
+      const target = event.target;
+      const button =
+        target && target.closest ? target.closest('button[role="tab"]') : null;
+      if (!button || !root.contains(button)) return;
+
+      const currentIndex = tabs.indexOf(button);
+      if (currentIndex < 0) return;
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        setActive(currentIndex + 1, { focus: true });
+        stopLoopByUserAction();
+        return;
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        setActive(currentIndex - 1, { focus: true });
+        stopLoopByUserAction();
+        return;
+      }
+
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        setActive(currentIndex);
+        stopLoopByUserAction();
+      }
+    });
+
+    setActive(0);
+    startLoop();
+  })();
+</script>

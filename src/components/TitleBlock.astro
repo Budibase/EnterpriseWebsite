@@ -1,0 +1,68 @@
+---
+interface TitleLine {
+  text: string;
+  className?: string;
+}
+
+interface Props {
+  variant: "hero-large" | "hero" | "section";
+  title?: string;
+  titleLines?: TitleLine[];
+  titleColorMode?:
+    | "single"
+    | "split-secondary-primary"
+    | "split-primary-secondary";
+  containerClass?: string;
+  titleClass?: string;
+}
+
+const {
+  variant,
+  title,
+  titleLines = [],
+  titleColorMode = "single",
+  containerClass,
+  titleClass,
+} = Astro.props as Props;
+
+const titleBaseClass =
+  variant === "hero-large"
+    ? "hero-title"
+    : variant === "hero"
+      ? "hero-title-small"
+      : "section-title";
+const HeadingTag = variant === "section" ? "h2" : "h1";
+const hasTitleLines = titleLines.length > 0;
+
+function getLineColorClass(index: number) {
+  if (titleColorMode === "split-secondary-primary") {
+    return index === 0 ? "text-secondary" : "text-primary";
+  }
+  if (titleColorMode === "split-primary-secondary") {
+    return index === 0 ? "text-primary" : "text-secondary";
+  }
+  return undefined;
+}
+---
+
+<div class={containerClass}>
+  <HeadingTag class:list={[titleBaseClass, titleClass]}>
+    {
+      hasTitleLines
+        ? titleLines.map((line, index) => (
+            <span
+              class:list={["block", getLineColorClass(index), line.className]}
+            >
+              {line.text}
+            </span>
+          ))
+        : title
+    }
+  </HeadingTag>
+</div>
+
+<style>
+  .section-title {
+    font-size: 32px;
+  }
+</style>

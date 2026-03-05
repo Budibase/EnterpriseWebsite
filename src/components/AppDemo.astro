@@ -1,0 +1,547 @@
+---
+import { Image } from "astro:assets";
+import CompassRoseIcon from "@assets/images/demos/app-demo/1a3e8b89f8b4dd355babb5e63a1a0d531fdbf273.svg";
+import LineSeparator from "@assets/images/demos/app-demo/6eecc9af745568dbb93585967b9fd46bf92048bf.svg";
+import TextAaIcon from "@assets/images/demos/app-demo/a55e83de9c6875ba8d05c2033e2e57bf9ebe37ee.svg";
+import RectangleDashedIcon from "@assets/images/demos/app-demo/6eda4d501581f12b87a79a2b04194f19e11aa648.svg";
+import TableIcon from "@assets/images/demos/app-demo/cb1a1d9503b8e079398c4a40c9bdc4a135625c11.svg";
+import CodeIcon from "@assets/images/demos/app-demo/a5ec71ef297b83e86a4049f8faa47cc6870536ee.svg";
+import GlobeIcon from "@assets/images/demos/app-demo/ba32e17a75ce9f17b173396f9e95f996ab9cd3a4.svg";
+import ImageIcon from "@assets/images/demos/app-demo/0a5331ed22dec851863adce7a627dc7553ed57fc.svg";
+import TextboxIcon from "@assets/images/demos/app-demo/86212d4c9941834f8ba6959bb559be522b69b4ab.svg";
+import StepsIcon from "@assets/images/demos/app-demo/459800a1e792ea7a2df8874301abf8ff27baaf21.svg";
+import ListMagnifyingGlassIcon from "@assets/images/demos/app-demo/80c5c985d88a5c0a458dbfd554b9cb1a46da5059.svg";
+import NumberCircleFiveIcon from "@assets/images/demos/app-demo/ae070055bb301fb51199cff10bb2dadf4cd5247e.svg";
+import CheckIcon from "@assets/images/demos/app-demo/663e5eb8e63262e38ae7522a1dacde9895bfddb8.svg";
+import PaperclipIcon from "@assets/images/demos/app-demo/3bd603c6169b64b0dc30ba3f4b49c521ec51613a.svg";
+import StarIcon from "@assets/images/demos/app-demo/344a89e78024a5bd58e86ce1f621992cb4af2e52.svg";
+import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c07d627de130d801d4.svg";
+
+interface Props {
+  backdropImage?: string;
+  backdropPaddingClass?: string;
+  class?: string;
+}
+
+interface RequestRow {
+  id: string;
+  request: string;
+  priority: "High" | "Medium" | "Low";
+  status: string;
+  date: string;
+  tone: "high" | "medium" | "low";
+}
+
+const {
+  backdropImage,
+  backdropPaddingClass = "px-6 py-6 sm:px-10 sm:py-10 lg:px-32 lg:py-12",
+  class: className = "",
+} = Astro.props as Props;
+
+const id = `app-demo-${Math.random().toString(36).slice(2, 8)}`;
+const appDemoStyle = backdropImage
+  ? `--app-demo-backdrop-image: url("${backdropImage}")`
+  : undefined;
+
+const topTabs = ["Home", "Request inbox", "Risks", "Insights", "IT support form"];
+const workspaceItems = ["Home", "Request Inbox", "Risks", "Insights", "IT support form"];
+const priorityTabs = [
+  { label: "All priorities", key: "all" },
+  { label: "High", key: "high" },
+  { label: "Medium", key: "medium" },
+  { label: "Low", key: "low" },
+] as const;
+
+const inboxRows: RequestRow[] = [
+  {
+    id: "IT-2041",
+    request: "Laptop setup for new marketing hire (Sarah M.)",
+    priority: "High",
+    status: "In Progress",
+    date: "Mar 5",
+    tone: "high",
+  },
+  {
+    id: "IT-2040",
+    request: "Grant HubSpot access to sales contractor",
+    priority: "Medium",
+    status: "Completed",
+    date: "Mar 4",
+    tone: "medium",
+  },
+  {
+    id: "IT-2039",
+    request: "Reset VPN access for remote employee",
+    priority: "Medium",
+    status: "Completed",
+    date: "Mar 4",
+    tone: "medium",
+  },
+  {
+    id: "IT-2038",
+    request: "Configure Slack + Google Workspace for new hire",
+    priority: "High",
+    status: "Completed",
+    date: "Mar 3",
+    tone: "high",
+  },
+  {
+    id: "IT-2037",
+    request: "Replace faulty monitor in meeting room B",
+    priority: "Low",
+    status: "In Progress",
+    date: "Mar 3",
+    tone: "low",
+  },
+  {
+    id: "IT-2036",
+    request: "Enable MFA for finance team accounts",
+    priority: "High",
+    status: "Completed",
+    date: "Mar 2",
+    tone: "high",
+  },
+  {
+    id: "IT-2035",
+    request: "Install Figma + design plugins for design team",
+    priority: "Low",
+    status: "Completed",
+    date: "Mar 2",
+    tone: "low",
+  },
+  {
+    id: "IT-2034",
+    request: "Investigate suspicious login alert",
+    priority: "High",
+    status: "Open",
+    date: "Mar 2",
+    tone: "high",
+  },
+  {
+    id: "IT-2033",
+    request: "Grant Notion workspace access to operations",
+    priority: "Medium",
+    status: "Completed",
+    date: "Mar 2",
+    tone: "medium",
+  },
+  {
+    id: "IT-2032",
+    request: "Restore accidentally deleted shared drive folder",
+    priority: "High",
+    status: "Open",
+    date: "Mar 1",
+    tone: "high",
+  },
+];
+
+const builderSections = [
+  {
+    items: [
+      { label: "Text", icon: TextAaIcon },
+      { label: "Container", icon: RectangleDashedIcon },
+      { label: "Table", icon: TableIcon },
+      { label: "Filter", icon: CodeIcon },
+      { label: "Button", icon: GlobeIcon },
+      { label: "Image", icon: ImageIcon },
+    ],
+  },
+  {
+    heading: "Forms",
+    items: [
+      { label: "Form", icon: TextboxIcon },
+      { label: "Form step", icon: StepsIcon },
+      { label: "Text field", icon: ListMagnifyingGlassIcon },
+      { label: "Number field", icon: NumberCircleFiveIcon },
+      { label: "Checkbox", icon: CheckIcon },
+      { label: "Attachment", icon: PaperclipIcon },
+      { label: "Star rating", icon: StarIcon },
+    ],
+  },
+];
+---
+
+<div
+  id={id}
+  class:list={[
+    "app-demo demo-breakout w-full overflow-hidden",
+    className,
+  ]}
+  style={appDemoStyle}
+>
+  <div class:list={["app-demo-backdrop w-full overflow-hidden", backdropPaddingClass]}>
+    <div class="app-demo-shell w-full max-w-full overflow-hidden">
+      <section class="app-demo-screen is-active" data-app-demo-screen="inbox" aria-hidden="false">
+        <header class="app-demo-topbar">
+          <nav class="app-demo-top-tabs" aria-label="Views">
+            {
+              topTabs.map((tab, index) => (
+                <button
+                  type="button"
+                  class:list={[
+                    "app-demo-top-tab",
+                    index === 1 && "is-active",
+                  ]}
+                  data-app-demo-to-support={tab === "IT support form" ? true : undefined}
+                >
+                  {tab}
+                </button>
+              ))
+            }
+          </nav>
+          <button type="button" class="app-demo-publish">Publish changes</button>
+        </header>
+
+        <div class="app-demo-body">
+          <div class="app-demo-main-region">
+            <div class="app-demo-main-frame app-demo-main-frame-inbox">
+              <aside class="app-demo-workspace-nav">
+                <div class="app-demo-workspace-brand">
+                  <Image src={CompassRoseIcon} alt="" class="app-demo-workspace-brand-icon" aria-hidden="true" />
+                  <span class="app-demo-workspace-brand-name">PinPoint</span>
+                </div>
+
+                {
+                  workspaceItems.map((item) => (
+                    item === "IT support form" ? (
+                      <button
+                        type="button"
+                        class:list={[
+                          "app-demo-workspace-link",
+                          item === "Request Inbox" && "is-active",
+                        ]}
+                        data-app-demo-to-support
+                      >
+                        {item}
+                      </button>
+                    ) : (
+                      <span
+                        class:list={[
+                          "app-demo-workspace-link",
+                          item === "Request Inbox" && "is-active",
+                        ]}
+                      >
+                        {item}
+                      </span>
+                    )
+                  ))
+                }
+              </aside>
+
+              <main class="app-demo-workspace-content">
+                <div class="app-demo-inbox-heading-wrap">
+                  <h3 class="app-demo-inbox-title">Request inbox</h3>
+                </div>
+
+                <div class="app-demo-priority-tabs" role="tablist" aria-label="Priority filters">
+                  {
+                    priorityTabs.map((tab, index) => (
+                      <button
+                        type="button"
+                        role="tab"
+                        class:list={["app-demo-priority-tab", index === 0 && "is-active"]}
+                        aria-selected={index === 0 ? "true" : "false"}
+                        data-app-demo-priority-tab={tab.key}
+                      >
+                        {tab.label}
+                      </button>
+                    ))
+                  }
+                </div>
+
+                <div class="app-demo-table-wrap">
+                  <div class="app-demo-table">
+                    <div class="app-demo-table-header">
+                      <span>Id</span>
+                      <span>Request</span>
+                      <span class="app-demo-priority-col-head">Priority</span>
+                      <span>Status</span>
+                      <span>Date</span>
+                    </div>
+
+                    {
+                      inboxRows.map((row) => (
+                        <div class="app-demo-table-item" data-app-demo-priority={row.tone}>
+                          <Image src={LineSeparator} alt="" class="app-demo-row-separator" aria-hidden="true" />
+                          <div class="app-demo-table-row">
+                            <span class="app-demo-id-cell">{row.id}</span>
+                            <span class="app-demo-request-cell">{row.request}</span>
+                            <span class:list={["app-demo-priority-pill", `is-${row.tone}`]}>{row.priority}</span>
+                            <span class="app-demo-status-cell">{row.status}</span>
+                            <span class="app-demo-status-cell">{row.date}</span>
+                          </div>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+
+          <aside class="app-demo-builder" aria-label="Component list">
+            <div class="app-demo-builder-title">Components</div>
+            <div class="app-demo-builder-list">
+              {
+                builderSections.map((section) => (
+                  <>
+                    {
+                      section.heading && (
+                        <p class="app-demo-builder-section-heading">{section.heading}</p>
+                      )
+                    }
+                    {
+                      section.items.map((item) => (
+                        <div class="app-demo-builder-item">
+                          <span class="app-demo-builder-item-icon-wrap">
+                            <Image src={item.icon} alt="" class="app-demo-builder-item-icon" aria-hidden="true" />
+                          </span>
+                          <span class="app-demo-builder-item-label">{item.label}</span>
+                        </div>
+                      ))
+                    }
+                  </>
+                ))
+              }
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="app-demo-screen" data-app-demo-screen="support" aria-hidden="true">
+        <header class="app-demo-topbar">
+          <nav class="app-demo-top-tabs" aria-label="Views">
+            {
+              topTabs.map((tab) => (
+                <button
+                  type="button"
+                  class:list={[
+                    "app-demo-top-tab",
+                    tab === "IT support form" && "is-active",
+                  ]}
+                  data-app-demo-to-inbox={tab === "Request inbox" ? true : undefined}
+                >
+                  {tab}
+                </button>
+              ))
+            }
+          </nav>
+          <button type="button" class="app-demo-publish">Publish changes</button>
+        </header>
+
+        <div class="app-demo-body">
+          <div class="app-demo-main-region">
+            <div class="app-demo-main-frame app-demo-main-frame-inbox">
+              <aside class="app-demo-workspace-nav">
+                <div class="app-demo-workspace-brand">
+                  <Image src={CompassRoseIcon} alt="" class="app-demo-workspace-brand-icon" aria-hidden="true" />
+                  <span class="app-demo-workspace-brand-name">PinPoint</span>
+                </div>
+
+                {
+                  workspaceItems.map((item) => (
+                    item === "Request Inbox" ? (
+                      <button
+                        type="button"
+                        class:list={[
+                          "app-demo-workspace-link",
+                          item === "IT support form" && "is-active",
+                        ]}
+                        data-app-demo-to-inbox
+                      >
+                        {item}
+                      </button>
+                    ) : (
+                      <span
+                        class:list={[
+                          "app-demo-workspace-link",
+                          item === "IT support form" && "is-active",
+                        ]}
+                      >
+                        {item}
+                      </span>
+                    )
+                  ))
+                }
+              </aside>
+
+              <main class="app-demo-workspace-content">
+                <div class="app-demo-support-main">
+                  <div class="app-demo-support-card">
+                    <h3 class="app-demo-support-title">IT support form</h3>
+                    <p class="app-demo-support-description">
+                      Please use this form to report make a request
+                      <br aria-hidden="true" />
+                      or report a risk.
+                    </p>
+
+                    <div class="app-demo-support-field-group">
+                      <label class="app-demo-support-field-label">Request type</label>
+                      <div class="app-demo-support-select">
+                        <span>Employee onboarding request</span>
+                        <Image src={CaretDownIcon} alt="" class="app-demo-support-caret" aria-hidden="true" />
+                      </div>
+                    </div>
+
+                    <div class="app-demo-support-field-group">
+                      <label class="app-demo-support-field-label">Employee first and last name</label>
+                      <div class="app-demo-support-textarea">
+                        <span>Joe Smith</span>
+                      </div>
+                    </div>
+
+                    <div class="app-demo-support-field-group">
+                      <label class="app-demo-support-field-label">Job Role</label>
+                      <div class="app-demo-support-select">
+                        <span>Engineering</span>
+                        <Image src={CaretDownIcon} alt="" class="app-demo-support-caret" aria-hidden="true" />
+                      </div>
+                    </div>
+
+                    <div class="app-demo-support-field-group">
+                      <label class="app-demo-support-field-label">Services Needed</label>
+                      <div class="app-demo-support-select">
+                        <span>Github, Cursor, Microsoft Teams, Bamboo HR</span>
+                        <Image src={CaretDownIcon} alt="" class="app-demo-support-caret" aria-hidden="true" />
+                      </div>
+                    </div>
+
+                    <button type="button" class="app-demo-support-submit">Submit</button>
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+
+          <aside class="app-demo-builder" aria-label="Component list">
+            <div class="app-demo-builder-title">Components</div>
+            <div class="app-demo-builder-list">
+              {
+                builderSections.map((section) => (
+                  <>
+                    {
+                      section.heading && (
+                        <p class="app-demo-builder-section-heading">{section.heading}</p>
+                      )
+                    }
+                    {
+                      section.items.map((item) => (
+                        <div class="app-demo-builder-item">
+                          <span class="app-demo-builder-item-icon-wrap">
+                            <Image src={item.icon} alt="" class="app-demo-builder-item-icon" aria-hidden="true" />
+                          </span>
+                          <span class="app-demo-builder-item-label">{item.label}</span>
+                        </div>
+                      ))
+                    }
+                  </>
+                ))
+              }
+            </div>
+          </aside>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ id }}>
+  (() => {
+    const root = document.getElementById(id);
+    if (!root) return;
+
+    const inboxScreen = root.querySelector('[data-app-demo-screen="inbox"]');
+    const supportScreen = root.querySelector('[data-app-demo-screen="support"]');
+    const toSupportButtons = Array.from(
+      root.querySelectorAll("[data-app-demo-to-support]"),
+    );
+    const toInboxButtons = Array.from(
+      root.querySelectorAll("[data-app-demo-to-inbox]"),
+    );
+    const priorityTabButtons = Array.from(
+      root.querySelectorAll("[data-app-demo-priority-tab]"),
+    );
+    const tableItems = Array.from(root.querySelectorAll(".app-demo-table-item"));
+
+    if (!inboxScreen || !supportScreen) return;
+
+    let autoSwitchTimer = null;
+    let autoSwitchCanceled = false;
+    let activePriority = "all";
+
+    function setActiveScreen(screen) {
+      const isInbox = screen === "inbox";
+
+      inboxScreen.classList.toggle("is-active", isInbox);
+      inboxScreen.setAttribute("aria-hidden", isInbox ? "false" : "true");
+
+      supportScreen.classList.toggle("is-active", !isInbox);
+      supportScreen.setAttribute("aria-hidden", isInbox ? "true" : "false");
+    }
+
+    function cancelAutoSwitch() {
+      autoSwitchCanceled = true;
+      if (autoSwitchTimer) {
+        window.clearTimeout(autoSwitchTimer);
+        autoSwitchTimer = null;
+      }
+    }
+
+    function goToSupport(cancelTimer = true) {
+      if (cancelTimer) cancelAutoSwitch();
+      setActiveScreen("support");
+    }
+
+    function applyPriorityFilter(filterKey) {
+      activePriority = filterKey;
+
+      priorityTabButtons.forEach((button) => {
+        const key = button.getAttribute("data-app-demo-priority-tab");
+        const isActive = key === filterKey;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+
+      tableItems.forEach((item) => {
+        const rowPriority = item.getAttribute("data-app-demo-priority");
+        const shouldShow = filterKey === "all" || rowPriority === filterKey;
+        item.hidden = !shouldShow;
+      });
+    }
+
+    function goToInbox(cancelTimer = true) {
+      if (cancelTimer) cancelAutoSwitch();
+      setActiveScreen("inbox");
+      applyPriorityFilter("all");
+    }
+
+    priorityTabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filterKey = button.getAttribute("data-app-demo-priority-tab");
+        if (!filterKey) return;
+        applyPriorityFilter(filterKey);
+      });
+    });
+
+    toSupportButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        goToSupport(true);
+      });
+    });
+
+    toInboxButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        goToInbox(true);
+      });
+    });
+
+    setActiveScreen("inbox");
+    applyPriorityFilter("all");
+
+    autoSwitchTimer = window.setTimeout(() => {
+      if (autoSwitchCanceled) return;
+      setActiveScreen("support");
+      autoSwitchTimer = null;
+    }, 2000);
+  })();
+</script>

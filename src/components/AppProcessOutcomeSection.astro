@@ -23,7 +23,7 @@ interface FrameScenario {
   nodes: FrameNode[];
 }
 
-const id = `automation-trigger-outcome-${Math.random().toString(36).slice(2, 8)}`;
+const id = `app-process-outcome-${Math.random().toString(36).slice(2, 8)}`;
 
 const frames: FrameScenario[] = [
   {
@@ -140,13 +140,13 @@ const frames: FrameScenario[] = [
 <section id={id} class="mt-12 md:mt-16">
   <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] lg:items-center lg:gap-20">
     <div>
-      <div class="automation-trigger-outcome-canvas rounded-xl px-4 py-5 sm:px-5 sm:py-6">
-        <div data-flow-content class="automation-trigger-outcome-flow-content">
+      <div class="app-process-outcome-canvas rounded-xl px-4 py-5 sm:px-5 sm:py-6">
+        <div data-flow-content class="app-process-outcome-flow-content">
           {
             frames.map((frame, frameIndex) => (
               <ul
                 class:list={[
-                  "automation-trigger-outcome-node-list",
+                  "app-process-outcome-node-list",
                   frame.id === "teams-alert" && "is-frame-teams-alert",
                   frameIndex === 0 && "is-active",
                 ]}
@@ -157,11 +157,11 @@ const frames: FrameScenario[] = [
               >
                 {
                   frame.nodes.map((node) => (
-                    <li class="automation-trigger-outcome-node-wrap">
+                    <li class="app-process-outcome-node-wrap">
                       {node.badgeLabel && (
                         <span
                           class:list={[
-                            "automation-trigger-outcome-node-badge",
+                            "app-process-outcome-node-badge",
                             node.badgeTone === "operation"
                               ? "is-operation"
                               : "is-trigger",
@@ -171,10 +171,10 @@ const frames: FrameScenario[] = [
                         </span>
                       )}
 
-                      <div class="automation-trigger-outcome-node">
+                      <div class="app-process-outcome-node">
                         <span
                           class:list={[
-                            "automation-trigger-outcome-node-icon",
+                            "app-process-outcome-node-icon",
                             `is-${node.iconTone}`,
                           ]}
                           aria-hidden="true"
@@ -195,9 +195,9 @@ const frames: FrameScenario[] = [
                           )}
                         </span>
 
-                        <div class="automation-trigger-outcome-node-copy">
-                          <div class="automation-trigger-outcome-node-title">{node.title}</div>
-                          {node.description && <p class="automation-trigger-outcome-node-description">{node.description}</p>}
+                        <div class="app-process-outcome-node-copy">
+                          <div class="app-process-outcome-node-title">{node.title}</div>
+                          {node.description && <p class="app-process-outcome-node-description">{node.description}</p>}
                         </div>
                       </div>
                     </li>
@@ -210,74 +210,67 @@ const frames: FrameScenario[] = [
       </div>
     </div>
 
-    <div class="space-y-5">
+    <div>
       <TitleBlock
         variant="section"
         containerClass="flex flex-col gap-2"
         titleColorMode="split-secondary-primary"
         titleLines={[
-          { text: "More powerful triggers." },
-          { text: "More agent-driven execution." },
+          { text: "Turn messy processes" },
+          { text: "into simple apps" },
         ]}
         titleClass="m-0 max-w-xl"
       />
-      <p class="hero-description-small max-w-xl">
-        Automations can start from agents, schedules, emails, apps, or data changes - then orchestrate decisions and
-        system actions automatically across your business.
+      <p class="hero-description-small app-process-outcome-description max-w-xl">
+        Growing businesses run on requests, approvals, and internal processes but too often those live in
+        spreadsheets, inboxes, or Slack threads. Within Budibase, you can turn those processes into simple internal
+        apps your team can rely on.
       </p>
 
-      <div class="space-y-3">
-        <h3 class="m-0 mt-12 mb-6 !text-lg text-[var(--text-primary)]">With Budibase, you can:</h3>
-        <ul class="flex flex-col gap-4">
-          <li class="flex items-start gap-3">
-            <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
-            <div class="space-y-1.5">
-              <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
-                Trigger workflows from agents and real operational events
-              </div>
-              <p class="m-0 text-[14px] leading-6 text-[var(--text-secondary)]">
-                Agents, schedules, emails, data updates, and webhooks can all start a controlled workflow.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
-            <div class="space-y-1.5">
-              <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
-                Execute real system actions with full control
-              </div>
-              <p class="m-0 text-[14px] leading-6 text-[var(--text-secondary)]">
-                Combine Agent steps, API requests, database updates, email notifications, and logic - with logs, testing,
-                and full data visibility.
-              </p>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <ul class="flex flex-col gap-4">
+        <li class="flex items-start gap-3">
+          <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
+          <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
+            Collect requests with forms
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
+          <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
+            Track work in structured workflows
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
+          <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
+            Give teams one place to manage operations - no engineering required.
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
 <style>
-  .automation-trigger-outcome-canvas {
-    --automation-trigger-outcome-grid-dot: rgb(var(--border) / 0.45);
-    --automation-trigger-outcome-connector: rgb(var(--ring) / 0.72);
-    --automation-trigger-outcome-node-bg: var(--bg-3);
-    --automation-trigger-outcome-node-integration-bg: var(--grey-700);
-    --automation-trigger-outcome-trigger-bg: var(--orange-500);
-    --automation-trigger-outcome-operation-bg: var(--purple-500);
-    --automation-trigger-outcome-agent-bg: var(--blue-500);
-    --automation-trigger-outcome-node-title: var(--text-primary);
-    --automation-trigger-outcome-node-description: var(--text-secondary);
-    --automation-trigger-outcome-node-icon-fg: #fff;
-    --automation-trigger-outcome-badge-fg: rgb(var(--text));
+  .app-process-outcome-canvas {
+    --app-process-outcome-grid-dot: rgb(var(--border) / 0.45);
+    --app-process-outcome-connector: rgb(var(--ring) / 0.72);
+    --app-process-outcome-node-bg: var(--bg-3);
+    --app-process-outcome-node-integration-bg: var(--grey-700);
+    --app-process-outcome-trigger-bg: var(--orange-500);
+    --app-process-outcome-operation-bg: var(--purple-500);
+    --app-process-outcome-agent-bg: var(--blue-500);
+    --app-process-outcome-node-title: var(--text-primary);
+    --app-process-outcome-node-description: var(--text-secondary);
+    --app-process-outcome-node-icon-fg: #fff;
+    --app-process-outcome-badge-fg: rgb(var(--text));
     background:
-      radial-gradient(circle at center, var(--automation-trigger-outcome-grid-dot) 1px, transparent 1px) 0 0 / 20px
+      radial-gradient(circle at center, var(--app-process-outcome-grid-dot) 1px, transparent 1px) 0 0 / 20px
         20px,
       var(--bg-2);
   }
 
-  .automation-trigger-outcome-flow-content {
+  .app-process-outcome-flow-content {
     position: relative;
     width: 100%;
     max-width: 380px;
@@ -288,12 +281,12 @@ const frames: FrameScenario[] = [
       transform 220ms ease;
   }
 
-  .automation-trigger-outcome-flow-content.is-swapping {
+  .app-process-outcome-flow-content.is-swapping {
     opacity: 0;
     transform: translateY(5px);
   }
 
-  .automation-trigger-outcome-node-list {
+  .app-process-outcome-node-list {
     --node-width: 380px;
     --node-row-gap: 60px;
     position: absolute;
@@ -312,22 +305,22 @@ const frames: FrameScenario[] = [
     pointer-events: none;
   }
 
-  .automation-trigger-outcome-node-list.is-frame-teams-alert {
+  .app-process-outcome-node-list.is-frame-teams-alert {
     --node-width: 380px;
   }
 
-  .automation-trigger-outcome-node-list.is-active {
+  .app-process-outcome-node-list.is-active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
   }
 
-  .automation-trigger-outcome-node-wrap {
+  .app-process-outcome-node-wrap {
     position: relative;
     width: var(--node-width);
   }
 
-  .automation-trigger-outcome-node-wrap:not(:last-child)::after {
+  .app-process-outcome-node-wrap:not(:last-child)::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -335,13 +328,13 @@ const frames: FrameScenario[] = [
     width: 1px;
     height: calc(var(--node-row-gap) - 16px);
     transform: translateX(-50%);
-    background-image: linear-gradient(to bottom, var(--automation-trigger-outcome-connector) 45%, transparent 45%);
+    background-image: linear-gradient(to bottom, var(--app-process-outcome-connector) 45%, transparent 45%);
     background-size: 1px 8px;
     background-repeat: repeat-y;
-    animation: automation-trigger-outcome-march 700ms linear infinite;
+    animation: app-process-outcome-march 700ms linear infinite;
   }
 
-  .automation-trigger-outcome-node-badge {
+  .app-process-outcome-node-badge {
     position: absolute;
     left: 0;
     bottom: calc(100% + 8px);
@@ -356,15 +349,15 @@ const frames: FrameScenario[] = [
     line-height: 17px;
   }
 
-  .automation-trigger-outcome-node-badge.is-trigger {
-    background: var(--automation-trigger-outcome-trigger-bg);
+  .app-process-outcome-node-badge.is-trigger {
+    background: var(--app-process-outcome-trigger-bg);
   }
 
-  .automation-trigger-outcome-node-badge.is-operation {
-    background: var(--automation-trigger-outcome-operation-bg);
+  .app-process-outcome-node-badge.is-operation {
+    background: var(--app-process-outcome-operation-bg);
   }
 
-  .automation-trigger-outcome-node {
+  .app-process-outcome-node {
     position: relative;
     display: flex;
     width: 100%;
@@ -373,11 +366,11 @@ const frames: FrameScenario[] = [
     gap: 10px;
     border-radius: 6px;
     border: none;
-    background: var(--automation-trigger-outcome-node-bg);
+    background: var(--app-process-outcome-node-bg);
     padding: 8px 12px;
   }
 
-  .automation-trigger-outcome-node-icon {
+  .app-process-outcome-node-icon {
     display: inline-flex;
     width: 28px;
     height: 28px;
@@ -385,31 +378,31 @@ const frames: FrameScenario[] = [
     align-items: center;
     justify-content: center;
     border-radius: 3px;
-    color: var(--automation-trigger-outcome-node-icon-fg);
+    color: var(--app-process-outcome-node-icon-fg);
   }
 
-  .automation-trigger-outcome-node-icon.is-trigger {
-    background: var(--automation-trigger-outcome-trigger-bg);
+  .app-process-outcome-node-icon.is-trigger {
+    background: var(--app-process-outcome-trigger-bg);
   }
 
-  .automation-trigger-outcome-node-icon.is-agent {
-    background: var(--automation-trigger-outcome-agent-bg);
+  .app-process-outcome-node-icon.is-agent {
+    background: var(--app-process-outcome-agent-bg);
   }
 
-  .automation-trigger-outcome-node-icon.is-integration {
-    background: var(--automation-trigger-outcome-node-integration-bg);
+  .app-process-outcome-node-icon.is-integration {
+    background: var(--app-process-outcome-node-integration-bg);
   }
 
-  .automation-trigger-outcome-node-icon.is-alert {
-    background: var(--automation-trigger-outcome-operation-bg);
+  .app-process-outcome-node-icon.is-alert {
+    background: var(--app-process-outcome-operation-bg);
   }
 
-  .automation-trigger-outcome-node-copy {
+  .app-process-outcome-node-copy {
     min-width: 0;
     flex: 1;
   }
 
-  .automation-trigger-outcome-node-title {
+  .app-process-outcome-node-title {
     margin: 0;
     color: var(--text-primary);
     font-size: 16px;
@@ -417,15 +410,20 @@ const frames: FrameScenario[] = [
     line-height: 22px;
   }
 
-  .automation-trigger-outcome-node-description {
+  .app-process-outcome-node-description {
     margin: 0;
-    color: var(--automation-trigger-outcome-node-description);
+    color: var(--app-process-outcome-node-description);
     font-size: 16px;
     font-weight: 400;
     line-height: 22px;
   }
 
-  @keyframes automation-trigger-outcome-march {
+  .app-process-outcome-description {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  @keyframes app-process-outcome-march {
     from {
       background-position-y: 0;
     }
@@ -435,34 +433,34 @@ const frames: FrameScenario[] = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .automation-trigger-outcome-flow-content {
+    .app-process-outcome-flow-content {
       transition: none;
     }
 
-    .automation-trigger-outcome-node-wrap:not(:last-child)::after {
+    .app-process-outcome-node-wrap:not(:last-child)::after {
       animation: none;
     }
   }
 
   @media (max-width: 767px) {
-    .automation-trigger-outcome-canvas {
+    .app-process-outcome-canvas {
       padding: 16px;
     }
 
-    .automation-trigger-outcome-flow-content {
+    .app-process-outcome-flow-content {
       height: 512px;
     }
 
-    .automation-trigger-outcome-node-list {
+    .app-process-outcome-node-list {
       width: 100%;
     }
 
-    .automation-trigger-outcome-node-wrap,
-    .automation-trigger-outcome-node-list.is-frame-teams-alert .automation-trigger-outcome-node-wrap {
+    .app-process-outcome-node-wrap,
+    .app-process-outcome-node-list.is-frame-teams-alert .app-process-outcome-node-wrap {
       width: min(100%, var(--node-width));
     }
 
-    .automation-trigger-outcome-node {
+    .app-process-outcome-node {
       width: 100%;
       min-height: 46px;
     }

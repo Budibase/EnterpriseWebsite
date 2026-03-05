@@ -1,26 +1,22 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
-import { getProductPageMeta } from "../_pageMeta";
-import HeroBg from "@assets/images/apps/apps hero.png";
-import { Image } from "astro:assets";
+import Mountains2 from "@assets/images/backgrounds/mountains/2.png";
 import Card from "@components/cards/Card.astro";
+import AppProcessOutcomeSection from "@components/AppProcessOutcomeSection.astro";
+import AppDemo from "@components/AppDemo.astro";
 
-const { title: pageTitle, description: pageDescription } = getProductPageMeta(
-  Astro.url.pathname,
-);
+const pageTitle = "Build internal tools\nin minutes";
+const pageDescription =
+  "Create apps for approvals, operations, and internal requests without engineering resources. Connect your data and give your team simple tools that keep work moving.";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <PlatformLayout title={pageTitle} description={pageDescription}>
     <div class="mb-8">
-      <div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
-        <Image
-          src={HeroBg}
-          alt="Apps builder"
-          class="w-full h-96 object-cover rounded-md"
-        />
-      </div>
+      <AppDemo backdropImage={Mountains2.src} />
+
+      <AppProcessOutcomeSection />
 
       <section class="mt-16 mb-8">
         <h2 class="text-primary text-center mb-4">
