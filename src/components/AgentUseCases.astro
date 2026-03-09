@@ -1,0 +1,442 @@
+---
+import { Image } from "astro:assets";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg";
+import BambooHrLogo from "@assets/logos/bamboohr.svg";
+import ClockFill from "phosphor-astro/ClockFill.astro";
+import RowsPlusBottomFill from "phosphor-astro/RowsPlusBottomFill.astro";
+import PaperPlaneTiltFill from "phosphor-astro/PaperPlaneTiltFill.astro";
+import SparkleFill from "phosphor-astro/SparkleFill.astro";
+import CheckCircleFill from "phosphor-astro/CheckCircleFill.astro";
+import SectionBlock from "@components/SectionBlock.astro";
+import Tabs from "@components/Tabs.astro";
+
+interface FrameNode {
+  title: string;
+  description?: string;
+  iconKind: "sparkle" | "clock" | "rowsPlusBottom" | "paperPlaneTilt" | "teams" | "bamboohr";
+  iconTone: "trigger" | "agent" | "integration" | "alert";
+  badgeLabel?: "Trigger" | "Operation";
+  badgeTone?: "trigger" | "operation";
+}
+
+interface FrameScenario {
+  id: "employee-self-service" | "approval-requests" | "internal-support";
+  nodes: FrameNode[];
+}
+
+const id = `agent-use-cases-${Math.random().toString(36).slice(2, 8)}`;
+
+const frames: FrameScenario[] = [
+  {
+    id: "employee-self-service",
+    nodes: [
+      {
+        badgeLabel: "Trigger",
+        badgeTone: "trigger",
+        title: "Employee request",
+        description: "A teammate asks a question in chat",
+        iconKind: "sparkle",
+        iconTone: "trigger",
+      },
+      {
+        badgeLabel: "Operation",
+        badgeTone: "operation",
+        title: "Knowledge agent",
+        description: "Find the right policy or answer instantly",
+        iconKind: "teams",
+        iconTone: "integration",
+      },
+    ],
+  },
+  {
+    id: "approval-requests",
+    nodes: [
+      {
+        badgeLabel: "Trigger",
+        badgeTone: "trigger",
+        title: "Approval request",
+        description: "A new request is submitted for review",
+        iconKind: "rowsPlusBottom",
+        iconTone: "trigger",
+      },
+      {
+        badgeLabel: "Operation",
+        badgeTone: "operation",
+        title: "Approval agent",
+        description: "Collect context and prepare the workflow",
+        iconKind: "bamboohr",
+        iconTone: "integration",
+      },
+      {
+        badgeLabel: "Operation",
+        badgeTone: "operation",
+        title: "Decision routing",
+        description: "Send the request to the right approver",
+        iconKind: "sparkle",
+        iconTone: "agent",
+      },
+    ],
+  },
+  {
+    id: "internal-support",
+    nodes: [
+      {
+        badgeLabel: "Trigger",
+        badgeTone: "trigger",
+        title: "Support request",
+        description: "A request comes in from an employee",
+        iconKind: "paperPlaneTilt",
+        iconTone: "trigger",
+      },
+      {
+        badgeLabel: "Operation",
+        badgeTone: "operation",
+        title: "Support agent",
+        description: "Understand the issue and gather details",
+        iconKind: "sparkle",
+        iconTone: "agent",
+      },
+      {
+        badgeLabel: "Operation",
+        badgeTone: "operation",
+        title: "Team handoff",
+        description: "Route the request to the right team in Slack",
+        iconKind: "teams",
+        iconTone: "integration",
+      },
+    ],
+  },
+];
+
+const tabs = [
+  {
+    key: "employee-self-service",
+    label: "Employee self-service",
+    icon: "ChatsCircle",
+    iconWeight: "fill",
+  },
+  {
+    key: "approval-requests",
+    label: "Approval requests",
+    icon: "CheckCircle",
+    iconWeight: "fill",
+  },
+  {
+    key: "internal-support",
+    label: "Internal support",
+    icon: "Headset",
+    iconWeight: "fill",
+  },
+];
+---
+
+<section id={id}>
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] lg:items-center lg:gap-20">
+    <div>
+      <Tabs
+        tabs={tabs}
+        defaultKey="employee-self-service"
+        label="Agent use case scenarios"
+        class="agent-use-cases-tabs"
+      >
+        {
+          frames.map((frame) => (
+            <div data-tab-panel={frame.id}>
+              <div class="agent-use-cases-canvas rounded-xl px-4 py-5 sm:px-5 sm:py-6">
+                <div class="agent-use-cases-flow-content">
+                  <ul
+                    class:list={[
+                      "agent-use-cases-node-list",
+                      frame.id === "employee-self-service" && "is-frame-employee-self-service",
+                      "is-active",
+                    ]}
+                  >
+                    {
+                      frame.nodes.map((node) => (
+                        <li class="agent-use-cases-node-wrap">
+                          {node.badgeLabel && (
+                            <span
+                              class:list={[
+                                "agent-use-cases-node-badge",
+                                node.badgeTone === "operation" ? "is-operation" : "is-trigger",
+                              ]}
+                            >
+                              {node.badgeLabel}
+                            </span>
+                          )}
+
+                          <div class="agent-use-cases-node">
+                            <span
+                              class:list={[
+                                "agent-use-cases-node-icon",
+                                `is-${node.iconTone}`,
+                              ]}
+                              aria-hidden="true"
+                            >
+                              {node.iconKind === "sparkle" && <SparkleFill class="h-[18px] w-[18px]" />}
+                              {node.iconKind === "clock" && <ClockFill class="h-[18px] w-[18px]" />}
+                              {node.iconKind === "rowsPlusBottom" && (
+                                <RowsPlusBottomFill class="h-[18px] w-[18px]" />
+                              )}
+                              {node.iconKind === "paperPlaneTilt" && (
+                                <PaperPlaneTiltFill class="h-[18px] w-[18px]" />
+                              )}
+                              {node.iconKind === "teams" && (
+                                <Image src={TeamsLogo} alt="Microsoft Teams" class="h-[18px] w-[18px]" />
+                              )}
+                              {node.iconKind === "bamboohr" && (
+                                <Image src={BambooHrLogo} alt="BambooHR" class="h-[18px] w-[18px]" />
+                              )}
+                            </span>
+
+                            <div class="agent-use-cases-node-copy">
+                              <div class="agent-use-cases-node-title">{node.title}</div>
+                              {node.description && <p class="agent-use-cases-node-description">{node.description}</p>}
+                            </div>
+                          </div>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </Tabs>
+    </div>
+
+    <SectionBlock
+      titleColorMode="split-secondary-primary"
+      titleLines={[
+        { text: "Agents that handle" },
+        { text: "everyday requests" },
+      ]}
+      description="Budibase agents help teams handle routine operational work automatically. They can understand requests, gather information, and take action across your systems."
+      maxWidth="xl"
+      spacing="default"
+      contentClass="pt-1"
+    >
+      <ul class="flex flex-col gap-4">
+        <li class="flex items-start gap-3">
+          <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
+          <div class="space-y-1.5">
+            <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
+              Employee self-service
+            </div>
+            <p class="m-0 text-[14px] leading-6 text-[var(--text-secondary)]">
+              Employees ask questions and get instant answers.
+            </p>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
+          <div class="space-y-1.5">
+            <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
+              Approval requests
+            </div>
+            <p class="m-0 text-[14px] leading-6 text-[var(--text-secondary)]">
+              Agents can collect information and run approval workflows.
+            </p>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
+          <div class="space-y-1.5">
+            <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
+              Support triage
+            </div>
+            <p class="m-0 text-[14px] leading-6 text-[var(--text-secondary)]">
+              Agents can manage incoming requests and route them to the right team.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </SectionBlock>
+  </div>
+</section>
+
+<style>
+  .agent-use-cases-canvas {
+    --agent-use-cases-grid-dot: rgb(var(--border) / 0.45);
+    --agent-use-cases-connector: rgb(var(--ring) / 0.72);
+    --agent-use-cases-node-bg: var(--bg-3);
+    --agent-use-cases-node-integration-bg: var(--grey-700);
+    --agent-use-cases-trigger-bg: var(--orange-500);
+    --agent-use-cases-operation-bg: var(--purple-500);
+    --agent-use-cases-agent-bg: var(--blue-500);
+    --agent-use-cases-node-description: var(--text-secondary);
+    --agent-use-cases-node-icon-fg: #fff;
+    background:
+      radial-gradient(circle at center, var(--agent-use-cases-grid-dot) 1px, transparent 1px) 0 0 / 20px 20px,
+      var(--bg-2);
+  }
+
+  .agent-use-cases-flow-content {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    height: 420px;
+    margin: 0 auto;
+  }
+
+  .agent-use-cases-node-list {
+    --node-width: 380px;
+    --node-row-gap: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--node-row-gap);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .agent-use-cases-node-list.is-frame-employee-self-service {
+    --node-width: 380px;
+  }
+
+  .agent-use-cases-node-wrap {
+    position: relative;
+    width: var(--node-width);
+  }
+
+  .agent-use-cases-node-wrap:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 8px);
+    width: 1px;
+    height: calc(var(--node-row-gap) - 16px);
+    transform: translateX(-50%);
+    background-image: linear-gradient(to bottom, var(--agent-use-cases-connector) 45%, transparent 45%);
+    background-size: 1px 8px;
+    background-repeat: repeat-y;
+    animation: agent-use-cases-march 700ms linear infinite;
+  }
+
+  .agent-use-cases-node-badge {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 8px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: #fff;
+    padding: 2px 4px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+  }
+
+  .agent-use-cases-node-badge.is-trigger {
+    background: var(--agent-use-cases-trigger-bg);
+  }
+
+  .agent-use-cases-node-badge.is-operation {
+    background: var(--agent-use-cases-operation-bg);
+  }
+
+  .agent-use-cases-node {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: 48px;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 6px;
+    border: none;
+    background: var(--agent-use-cases-node-bg);
+    padding: 8px 12px;
+  }
+
+  .agent-use-cases-node-icon {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    color: var(--agent-use-cases-node-icon-fg);
+  }
+
+  .agent-use-cases-node-icon.is-trigger {
+    background: var(--agent-use-cases-trigger-bg);
+  }
+
+  .agent-use-cases-node-icon.is-agent {
+    background: var(--agent-use-cases-agent-bg);
+  }
+
+  .agent-use-cases-node-icon.is-integration {
+    background: var(--agent-use-cases-node-integration-bg);
+  }
+
+  .agent-use-cases-node-icon.is-alert {
+    background: var(--agent-use-cases-operation-bg);
+  }
+
+  .agent-use-cases-node-copy {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .agent-use-cases-node-title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  .agent-use-cases-node-description {
+    margin: 0;
+    color: var(--agent-use-cases-node-description);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+
+  @keyframes agent-use-cases-march {
+    from {
+      background-position-y: 0;
+    }
+    to {
+      background-position-y: 8px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .agent-use-cases-node-wrap:not(:last-child)::after {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .agent-use-cases-canvas {
+      padding: 16px;
+    }
+
+    .agent-use-cases-flow-content {
+      height: 420px;
+    }
+
+    .agent-use-cases-node-list {
+      width: 100%;
+    }
+
+    .agent-use-cases-node-wrap,
+    .agent-use-cases-node-list.is-frame-employee-self-service .agent-use-cases-node-wrap {
+      width: min(100%, var(--node-width));
+    }
+
+    .agent-use-cases-node {
+      width: 100%;
+      min-height: 46px;
+    }
+  }
+</style>
