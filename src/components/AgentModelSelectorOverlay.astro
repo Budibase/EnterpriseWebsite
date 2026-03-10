@@ -129,6 +129,7 @@ const overlayId = `agent-model-overlay-${Math.random().toString(36).slice(2, 8)}
     z-index: 20;
     max-height: 210px;
     overflow: auto;
+    color: var(--text-primary);
   }
 
   .agent-model-overlay-select-menu.is-open {
@@ -201,12 +202,6 @@ const overlayId = `agent-model-overlay-${Math.random().toString(36).slice(2, 8)}
     toggle.addEventListener("click", (event) => {
       event.stopPropagation();
       setOpen(!menu.classList.contains("is-open"));
-    });
-
-    document.addEventListener("click", (event) => {
-      if (!root.contains(event.target)) {
-        setOpen(false);
-      }
     });
 
     document.addEventListener("keydown", (event) => {

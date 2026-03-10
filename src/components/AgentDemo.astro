@@ -283,9 +283,24 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
   }
 
   .hero-demo-backdrop {
+    position: relative;
+    border-radius: 8px;
+  }
+
+  .hero-demo-backdrop::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
     background-size: cover;
     background-position: center;
-    border-radius: 8px;
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
+  .hero-demo-shell {
+    position: relative;
+    z-index: 1;
   }
 
   .hero-demo-content {

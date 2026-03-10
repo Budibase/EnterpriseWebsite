@@ -1,0 +1,999 @@
+---
+import { Image } from "astro:assets";
+import Plus from "phosphor-astro/Plus.astro";
+import SparkleFill from "phosphor-astro/SparkleFill.astro";
+import RowsPlusBottomFill from "phosphor-astro/RowsPlusBottomFill.astro";
+import SarahAvatar from "@assets/images/avatars/Avatar.png";
+import PlatformBg from "@assets/images/homepage/platform/bg3.png";
+import BBSymbol from "@assets/logos/BBSymbol.svg";
+import BBSymbolWhite from "@assets/logos/BBSymbolWhite.svg";
+
+const id = `ops-platform-demo-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div id={id} class="ops-platform-demo" data-ops-platform-demo>
+  <div class="ops-platform-demo__bg" aria-hidden="true">
+    <Image src={PlatformBg} alt="" class="ops-platform-demo__bg-image" />
+  </div>
+
+  <div class="ops-platform-demo__grid">
+    <section class="ops-platform-demo__column ops-platform-demo__column--chat">
+      <p class="ops-platform-demo__column-title">Employee request</p>
+
+      <article class="ops-platform-demo__chat-card">
+        <div class="ops-platform-demo__chat-header">
+          <span class="ops-platform-demo__chat-icon" aria-hidden="true"></span>
+          <span class="ops-platform-demo__chat-label">Chat</span>
+        </div>
+
+        <div class="ops-platform-demo__chat-body">
+          <div class="ops-platform-demo__message">
+            <div class="ops-platform-demo__avatar ops-platform-demo__avatar--employee">
+              <Image src={SarahAvatar} alt="Sarah Harvey" class="ops-platform-demo__avatar-image" />
+            </div>
+
+            <div class="ops-platform-demo__message-content">
+              <div class="ops-platform-demo__message-meta">
+                <span class="ops-platform-demo__message-author">Sarah Harvey</span>
+                <span class="ops-platform-demo__message-time">12 mins</span>
+              </div>
+              <p class="ops-platform-demo__message-text">
+                <span class="ops-platform-demo__mention">@Ops Assistant</span>
+                <span>{` I need approval for a new laptop for a marketing hire?`}</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="ops-platform-demo__message ops-platform-demo__assistant-message" data-ops-assistant>
+            <div class="ops-platform-demo__avatar ops-platform-demo__avatar--assistant">
+              <Image src={BBSymbolWhite} alt="Ops Assistant" class="ops-platform-demo__assistant-logo" />
+            </div>
+
+            <div class="ops-platform-demo__message-content">
+              <div class="ops-platform-demo__message-meta">
+                <span class="ops-platform-demo__message-author">Ops Assistant</span>
+                <span class="ops-platform-demo__message-time">12 mins</span>
+              </div>
+              <p class="ops-platform-demo__message-text">Laptop purchase request created:</p>
+              <div class="ops-platform-demo__reply-panel">
+                <ul class="ops-platform-demo__reply-list">
+                  <li>Team: Marketing</li>
+                  <li>Item: Laptop for new hire</li>
+                  <li>Budget: £700–£900</li>
+                </ul>
+              </div>
+              <p class="ops-platform-demo__message-text">Submitted for Ops review.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ops-platform-demo__chat-input">
+          <span class="ops-platform-demo__input-icon" aria-hidden="true">
+            <Plus weight="bold" />
+          </span>
+          <span>Add a reply</span>
+        </div>
+      </article>
+    </section>
+
+    <div class="ops-platform-demo__connector ops-platform-demo__staged" aria-hidden="true" data-ops-connector="analysis">
+      <svg viewBox="0 0 50 20" preserveAspectRatio="none">
+        <line x1="4" y1="10" x2="40" y2="10"></line>
+        <polyline points="32,3 40,10 32,17"></polyline>
+      </svg>
+    </div>
+
+    <section class="ops-platform-demo__column ops-platform-demo__column--analysis ops-platform-demo__staged" data-ops-column="analysis">
+      <p class="ops-platform-demo__column-title">Agent analyzes request</p>
+
+      <article class="ops-platform-demo__analysis-card" data-ops-panel="analysis">
+        <p class="ops-platform-demo__analysis-heading">Ops Agent</p>
+
+        <div class="ops-platform-demo__analysis-block">
+          <p class="ops-platform-demo__mono">
+            Analyzing request...
+          </p>
+          <div class="ops-platform-demo__analysis-steps">
+            <p class="ops-platform-demo__mono">
+              ✓ Extracting details
+            </p>
+            <p class="ops-platform-demo__mono">
+              ✓ Checking policy
+            </p>
+            <p class="ops-platform-demo__mono">
+              ✓ Selecting workflow
+            </p>
+          </div>
+        </div>
+
+        <div class="ops-platform-demo__analysis-block">
+          <p class="ops-platform-demo__mono">Understands request</p>
+          <p class="ops-platform-demo__mono">Team: Marketing</p>
+          <p class="ops-platform-demo__mono">Item: Laptop for new hire</p>
+          <p class="ops-platform-demo__mono">Budget: £700–£900</p>
+          <p class="ops-platform-demo__mono">Policy: Ops review required</p>
+        </div>
+
+        <div class="ops-platform-demo__action">
+          <span class="ops-platform-demo__mono">Action:</span>
+          <span class="ops-platform-demo__action-pill">
+            <Image src={BBSymbol} alt="" class="ops-platform-demo__action-icon" />
+            <span>Request Automation</span>
+          </span>
+        </div>
+      </article>
+    </section>
+
+    <div class="ops-platform-demo__connector ops-platform-demo__staged" aria-hidden="true" data-ops-connector="automation">
+      <svg viewBox="0 0 50 20" preserveAspectRatio="none">
+        <line x1="4" y1="10" x2="40" y2="10"></line>
+        <polyline points="32,3 40,10 32,17"></polyline>
+      </svg>
+    </div>
+
+    <section class="ops-platform-demo__column ops-platform-demo__column--automation ops-platform-demo__staged" data-ops-column="automation">
+      <p class="ops-platform-demo__column-title">Automation records the request</p>
+
+      <article class="ops-platform-demo__automation-card" data-ops-panel="automation">
+        <div class="ops-platform-demo__automation-group">
+          <span class="ops-platform-demo__badge ops-platform-demo__badge--trigger">Trigger</span>
+          <div class="ops-platform-demo__automation-item">
+            <span class="ops-platform-demo__automation-icon">
+              <SparkleFill class="h-[18px] w-[18px]" />
+            </span>
+            <span class="ops-platform-demo__automation-copy">Workflow triggered</span>
+          </div>
+        </div>
+
+        <div class="ops-platform-demo__down-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <line x1="12" y1="3" x2="12" y2="17"></line>
+            <polyline points="7,12 12,17 17,12"></polyline>
+          </svg>
+        </div>
+
+        <div class="ops-platform-demo__automation-group">
+          <span class="ops-platform-demo__badge ops-platform-demo__badge--outcome">Outcome</span>
+          <div class="ops-platform-demo__automation-item ops-platform-demo__automation-item--table">
+            <span class="ops-platform-demo__automation-icon">
+              <RowsPlusBottomFill class="h-[18px] w-[18px]" />
+            </span>
+            <span class="ops-platform-demo__automation-copy">Update Requests table</span>
+          </div>
+
+          <div class="ops-platform-demo__table-wrap">
+            <table class="ops-platform-demo__table">
+              <thead>
+                <tr>
+                  <th>Request</th>
+                  <th>Priority</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Laptop for new hire</td>
+                  <td>
+                    <span class="ops-platform-demo__status ops-platform-demo__status--pending">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Company car</td>
+                  <td>
+                    <span class="ops-platform-demo__status ops-platform-demo__status--rejected">Rejected</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Additional figma seat</td>
+                  <td>
+                    <span class="ops-platform-demo__status ops-platform-demo__status--approved">Approved</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+    </section>
+    <div class="ops-platform-demo__response-flow" aria-hidden="true" data-ops-return-flow>
+      <svg class="ops-platform-demo__response-arrow ops-platform-demo__response-arrow--left" viewBox="0 0 220 20" preserveAspectRatio="none">
+        <line x1="216" y1="10" x2="14" y2="10"></line>
+        <polyline points="22,3 14,10 22,17"></polyline>
+      </svg>
+      <span class="ops-platform-demo__response-label">Agent responds</span>
+      <svg class="ops-platform-demo__response-arrow ops-platform-demo__response-arrow--right" viewBox="0 0 220 20" preserveAspectRatio="none">
+        <line x1="216" y1="10" x2="14" y2="10"></line>
+        <polyline points="22,3 14,10 22,17"></polyline>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .ops-platform-demo {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f0eee6;
+    padding: 24px 20px 52px;
+  }
+
+  .ops-platform-demo__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .ops-platform-demo__bg-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.1;
+  }
+
+  .ops-platform-demo__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 320px) 50px minmax(0, 370px) 50px minmax(0, 370px);
+    row-gap: 18px;
+    align-items: start;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .ops-platform-demo__response-flow {
+    grid-column: 1 / -1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: -60px;
+    padding-left: 308px;
+    padding-right: 350px;
+    color: rgb(25 25 25 / 0.55);
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 260ms ease, transform 260ms ease, color 260ms ease;
+  }
+
+  .ops-platform-demo__response-arrow {
+    display: block;
+    height: 20px;
+    flex: 1 1 0;
+  }
+
+  .ops-platform-demo__response-arrow,
+  .ops-platform-demo__response-arrow svg {
+    min-width: 0;
+  }
+
+  .ops-platform-demo__response-arrow {
+    color: inherit;
+  }
+
+  .ops-platform-demo__response-arrow,
+  .ops-platform-demo__connector svg,
+  .ops-platform-demo__down-arrow svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ops-platform-demo__response-arrow,
+  .ops-platform-demo__connector svg,
+  .ops-platform-demo__down-arrow svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .ops-platform-demo__response-label {
+    flex: 0 0 auto;
+    font-family: "Inter", var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #191919;
+    white-space: nowrap;
+  }
+
+  .ops-platform-demo__response-flow.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    color: #191919;
+  }
+
+  .ops-platform-demo__column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ops-platform-demo__staged {
+    opacity: 0;
+    transform: translateY(18px);
+    pointer-events: none;
+    transition: opacity 320ms ease, transform 320ms ease;
+  }
+
+  .ops-platform-demo__staged.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .ops-platform-demo__column-title {
+    margin: 0;
+    font-family: "Inter", var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #191919;
+    text-align: center;
+  }
+
+  .ops-platform-demo__connector {
+    align-self: flex-start;
+    width: 50px;
+    height: 20px;
+    margin-top: 2px;
+    color: rgb(25 25 25 / 0.45);
+    transition: color 220ms ease, transform 220ms ease;
+  }
+
+  .ops-platform-demo__connector.is-active {
+    color: #191919;
+    transform: translateX(2px);
+  }
+
+  .ops-platform-demo__chat-card {
+    display: flex;
+    min-height: 320px;
+    flex-direction: column;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #202020;
+    overflow: hidden;
+  }
+
+  .ops-platform-demo__chat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #ececec;
+    padding: 10px 14px;
+  }
+
+  .ops-platform-demo__chat-icon {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #8d73da;
+    flex-shrink: 0;
+  }
+
+  .ops-platform-demo__chat-icon::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+    background: #8d73da;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+
+  .ops-platform-demo__chat-label {
+    font-family: "Inter", var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #191919;
+  }
+
+  .ops-platform-demo__chat-body {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px 12px 12px;
+  }
+
+  .ops-platform-demo__message {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .ops-platform-demo__message-content {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ops-platform-demo__message-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+  }
+
+  .ops-platform-demo__message-author {
+    font-family: "Inter", var(--font-sans);
+    font-size: 18px;
+    font-weight: 500;
+    color: #202020;
+  }
+
+  .ops-platform-demo__message-time {
+    font-family: "Inter", var(--font-sans);
+    font-size: 12px;
+    font-weight: 400;
+    color: #7e7e7e;
+  }
+
+  .ops-platform-demo__message-text {
+    margin: 0;
+    font-family: "Inter", var(--font-sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.28;
+    color: #40403e;
+  }
+
+  .ops-platform-demo__mention {
+    color: #386cf4;
+  }
+
+  .ops-platform-demo__avatar {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .ops-platform-demo__avatar--employee,
+  .ops-platform-demo__avatar--assistant {
+    border-radius: 999px;
+  }
+
+  .ops-platform-demo__avatar--assistant {
+    background: #386cf4;
+    padding: 6px;
+  }
+
+  .ops-platform-demo__avatar-image,
+  .ops-platform-demo__assistant-logo,
+  .ops-platform-demo__action-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ops-platform-demo__assistant-logo {
+    width: calc(100% - 5px);
+    height: calc(100% - 5px);
+    object-fit: contain;
+  }
+
+  .ops-platform-demo__reply-panel {
+    border-radius: 2px;
+    background: #f0eee6;
+    padding: 6px;
+  }
+
+  .ops-platform-demo__reply-list {
+    margin: 0;
+    padding-left: 18px;
+    font-family: "Inter", var(--font-sans);
+    font-size: 16px;
+    line-height: 1.28;
+    color: #40403e;
+  }
+
+  .ops-platform-demo__reply-list li::marker {
+    color: #40403e;
+  }
+
+  .ops-platform-demo__assistant-message {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 260ms ease, transform 260ms ease, visibility 260ms ease;
+  }
+
+  .ops-platform-demo__assistant-message.is-visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .ops-platform-demo__chat-input {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 12px 12px;
+    border: 1px solid #ececec;
+    border-radius: 16px;
+    padding: 10px 12px;
+    font-family: "Inter", var(--font-sans);
+    font-size: 16px;
+    line-height: 1;
+    color: #7e7e7e;
+  }
+
+  .ops-platform-demo__input-icon {
+    display: inline-flex;
+    width: 37px;
+    height: 37px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #ececec;
+    color: #7e7e7e;
+  }
+
+  .ops-platform-demo__input-icon :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+
+  .ops-platform-demo__analysis-card,
+  .ops-platform-demo__automation-card {
+    transition:
+      box-shadow 240ms ease,
+      transform 240ms ease,
+      opacity 240ms ease,
+      border-color 240ms ease;
+  }
+
+  .ops-platform-demo__analysis-card {
+    display: flex;
+    min-height: 221px;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid rgb(25 25 25 / 0.06);
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 16px;
+    opacity: 0.76;
+  }
+
+  .ops-platform-demo__analysis-card.is-active {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .ops-platform-demo__analysis-heading {
+    margin: 0;
+    font-family: "Inter", var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #191919;
+  }
+
+  .ops-platform-demo__analysis-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .ops-platform-demo__mono {
+    margin: 0;
+    font-family: "IBM Plex Mono", "IBM Plex Sans", monospace;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: #262625;
+  }
+
+  .ops-platform-demo__action {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ops-platform-demo__action-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 16px;
+    background: #f0eee6;
+    padding: 6px 12px;
+    font-family: "Inter", var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #191919;
+  }
+
+  .ops-platform-demo__action-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+
+  .ops-platform-demo__automation-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid rgb(25 25 25 / 0.05);
+    border-radius: 6px;
+    background: #e5e4df;
+    padding: 20px;
+    opacity: 0.76;
+  }
+
+  .ops-platform-demo__automation-card.is-active {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .ops-platform-demo__automation-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ops-platform-demo__badge {
+    align-self: flex-start;
+    border-radius: 4px;
+    padding: 4px;
+    font-family: "Inter", var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #191919;
+  }
+
+  .ops-platform-demo__badge--trigger {
+    background: #ecd3c2;
+  }
+
+  .ops-platform-demo__badge--outcome {
+    background: #d2ddc3;
+  }
+
+  .ops-platform-demo__automation-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    background: #ffffff;
+    padding: 16px;
+  }
+
+  .ops-platform-demo__automation-icon {
+    display: inline-flex;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    background: #215f9e;
+    color: #ffffff;
+  }
+
+  .ops-platform-demo__automation-copy {
+    font-family: "Inter", var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #191919;
+  }
+
+  .ops-platform-demo__down-arrow {
+    width: 24px;
+    height: 24px;
+    align-self: center;
+    color: #191919;
+  }
+
+  .ops-platform-demo__table-wrap {
+    overflow: hidden;
+    border-radius: 6px;
+    background: #ffffff;
+    padding: 1px;
+  }
+
+  .ops-platform-demo__table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .ops-platform-demo__table th,
+  .ops-platform-demo__table td {
+    border-bottom: 1px solid #e2e1dc;
+    padding: 11px 14px;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .ops-platform-demo__table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .ops-platform-demo__table th {
+    font-family: "Inter", var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #666663;
+  }
+
+  .ops-platform-demo__table td {
+    font-family: "Inter", var(--font-sans);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #40403e;
+  }
+
+  .ops-platform-demo__table th:nth-child(1),
+  .ops-platform-demo__table td:nth-child(1) {
+    width: 61%;
+  }
+
+  .ops-platform-demo__table th:nth-child(2),
+  .ops-platform-demo__table td:nth-child(2) {
+    width: 39%;
+  }
+
+  .ops-platform-demo__status {
+    display: inline-flex;
+    min-width: 90px;
+    justify-content: center;
+    border-radius: 13px;
+    padding: 2px 10px;
+    color: #191919;
+  }
+
+  .ops-platform-demo__status--pending {
+    background: #c3daea;
+  }
+
+  .ops-platform-demo__status--rejected {
+    background: #ffa9a9;
+  }
+
+  .ops-platform-demo__status--approved {
+    background: #d2ddc3;
+  }
+
+  :global(.dark) .ops-platform-demo p,
+  :global(.dark) .ops-platform-demo li,
+  :global(.dark) .ops-platform-demo th,
+  :global(.dark) .ops-platform-demo td {
+    color: inherit;
+  }
+
+  :global(.dark) .ops-platform-demo__column-title,
+  :global(.dark) .ops-platform-demo__analysis-heading,
+  :global(.dark) .ops-platform-demo__badge,
+  :global(.dark) .ops-platform-demo__automation-copy,
+  :global(.dark) .ops-platform-demo__action-pill,
+  :global(.dark) .ops-platform-demo__status,
+  :global(.dark) .ops-platform-demo__message-author {
+    color: #191919 !important;
+  }
+
+  :global(.dark) .ops-platform-demo__message-text,
+  :global(.dark) .ops-platform-demo__reply-list,
+  :global(.dark) .ops-platform-demo__reply-list li,
+  :global(.dark) .ops-platform-demo__reply-list li::marker,
+  :global(.dark) .ops-platform-demo__table td,
+  :global(.dark) .ops-platform-demo__chat-label {
+    color: #40403e !important;
+  }
+
+  :global(.dark) .ops-platform-demo__mono,
+  :global(.dark) .ops-platform-demo__table th {
+    color: #262625 !important;
+  }
+
+  :global(.dark) .ops-platform-demo__message-time,
+  :global(.dark) .ops-platform-demo__chat-input,
+  :global(.dark) .ops-platform-demo__input-icon {
+    color: #7e7e7e !important;
+  }
+
+  :global(.dark) .ops-platform-demo__mention {
+    color: #386cf4 !important;
+  }
+
+  @media (max-width: 1159px) {
+    .ops-platform-demo {
+      padding-right: 16px;
+      padding-left: 16px;
+    }
+
+    .ops-platform-demo__response-flow {
+      display: none;
+    }
+
+    .ops-platform-demo__grid {
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: center;
+      gap: 18px;
+    }
+
+    .ops-platform-demo__column {
+      width: min(100%, 370px);
+    }
+
+    .ops-platform-demo__column--chat {
+      width: min(100%, 320px);
+    }
+
+    .ops-platform-demo__connector {
+      width: 24px;
+      height: 36px;
+      margin-top: 0;
+      transform: rotate(90deg);
+    }
+
+    .ops-platform-demo__connector.is-active {
+      transform: rotate(90deg) translateX(0);
+    }
+
+  }
+
+  @media (max-width: 767px) {
+    .ops-platform-demo {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .ops-platform-demo__chat-card {
+      min-height: 0;
+    }
+
+    .ops-platform-demo__table th,
+    .ops-platform-demo__table td {
+      padding: 10px 10px;
+      font-size: 12px;
+    }
+
+    .ops-platform-demo__status {
+      min-width: 74px;
+      font-size: 12px;
+    }
+
+    .ops-platform-demo__message-author,
+    .ops-platform-demo__chat-label {
+      font-size: 17px;
+    }
+
+    .ops-platform-demo__message-text,
+    .ops-platform-demo__reply-list,
+    .ops-platform-demo__chat-input {
+      font-size: 15px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ops-platform-demo__staged,
+    .ops-platform-demo__connector,
+    .ops-platform-demo__response-flow,
+    .ops-platform-demo__analysis-card,
+    .ops-platform-demo__automation-card,
+    .ops-platform-demo__assistant-message {
+      transition: none;
+    }
+  }
+</style>
+
+<script define:vars={{ id }}>
+  (() => {
+    const root = document.getElementById(id);
+    if (!root) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const assistant = root.querySelector("[data-ops-assistant]");
+    const analysisColumn = root.querySelector('[data-ops-column="analysis"]');
+    const automationColumn = root.querySelector('[data-ops-column="automation"]');
+    const analysisPanel = root.querySelector('[data-ops-panel="analysis"]');
+    const automationPanel = root.querySelector('[data-ops-panel="automation"]');
+    const returnFlow = root.querySelector("[data-ops-return-flow]");
+    const connectors = {
+      analysis: root.querySelector('[data-ops-connector="analysis"]'),
+      automation: root.querySelector('[data-ops-connector="automation"]'),
+    };
+
+    let timers = [];
+
+    function schedule(fn, delay) {
+      const timer = window.setTimeout(fn, delay);
+      timers.push(timer);
+    }
+
+    function clearTimers() {
+      timers.forEach((timer) => window.clearTimeout(timer));
+      timers = [];
+    }
+
+    function reset() {
+      assistant?.classList.remove("is-visible");
+      analysisColumn?.classList.remove("is-visible");
+      automationColumn?.classList.remove("is-visible");
+      analysisPanel?.classList.remove("is-active");
+      automationPanel?.classList.remove("is-active");
+      connectors.analysis?.classList.remove("is-active");
+      connectors.analysis?.classList.remove("is-visible");
+      connectors.automation?.classList.remove("is-active");
+      connectors.automation?.classList.remove("is-visible");
+      returnFlow?.classList.remove("is-visible");
+    }
+
+    function showFinalState() {
+      reset();
+      analysisColumn?.classList.add("is-visible");
+      automationColumn?.classList.add("is-visible");
+      analysisPanel?.classList.add("is-active");
+      automationPanel?.classList.add("is-active");
+      assistant?.classList.add("is-visible");
+      connectors.analysis?.classList.add("is-visible");
+      connectors.analysis?.classList.add("is-active");
+      connectors.automation?.classList.add("is-visible");
+      connectors.automation?.classList.add("is-active");
+      returnFlow?.classList.add("is-visible");
+    }
+
+    function playSequence() {
+      clearTimers();
+
+      if (prefersReducedMotion.matches) {
+        showFinalState();
+        return;
+      }
+
+      reset();
+
+      schedule(() => {
+        analysisColumn?.classList.add("is-visible");
+        analysisPanel?.classList.add("is-active");
+        connectors.analysis?.classList.add("is-visible");
+        connectors.analysis?.classList.add("is-active");
+      }, 2000);
+
+      schedule(() => {
+        automationColumn?.classList.add("is-visible");
+        automationPanel?.classList.add("is-active");
+        connectors.automation?.classList.add("is-visible");
+        connectors.automation?.classList.add("is-active");
+      }, 4000);
+
+      schedule(() => {
+        returnFlow?.classList.add("is-visible");
+        assistant?.classList.add("is-visible");
+      }, 6000);
+
+      schedule(playSequence, 14000);
+    }
+
+    playSequence();
+
+    const handleMotionChange = () => {
+      playSequence();
+    };
+
+    prefersReducedMotion.addEventListener?.("change", handleMotionChange);
+  })();
+</script>

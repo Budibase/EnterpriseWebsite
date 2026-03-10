@@ -8,10 +8,6 @@ import AgentAssetsRail from "@components/agent-space/AgentAssetsRail.astro";
 import RelatedAgentsSection from "@components/agent-space/RelatedAgentsSection.astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import { getAgentSpaceCards } from "../../data/agentSpaceCardData";
-import {
-  coreAgentDetails,
-  type CoreAgentDetail,
-} from "../../data/agentSpaceCoreAgents";
 
 const DEFAULT_CTA_LABEL = "Use this template";
 const DEFAULT_CTA_HREF = "https://account.budibase.app/register";
@@ -36,16 +32,6 @@ type AssetBuckets = {
 
 type ResolvedAssetBuckets = Record<AssetKey, string[]>;
 
-type WorkflowPageProps = {
-  kind: "workflow";
-  entry: CollectionEntry<"workflows">;
-};
-
-type CorePageProps = {
-  kind: "core";
-  agent: CoreAgentDetail;
-};
-
 type DetailViewModel = {
   title: string;
   outcome: string;
@@ -69,17 +55,10 @@ type RelatedAgent = {
 export async function getStaticPaths() {
   const workflows = await getCollection("workflows");
 
-  const workflowPaths = workflows.map((entry) => ({
+  return workflows.map((entry) => ({
     params: { slug: entry.data.slug ?? entry.id },
-    props: { kind: "workflow", entry },
+    props: { entry },
   }));
-
-  const coreAgentPaths = coreAgentDetails.map((agent) => ({
-    params: { slug: agent.slug },
-    props: { kind: "core", agent },
-  }));
-
-  return [...workflowPaths, ...coreAgentPaths];
 }
 
 const uniqueStrings = (items: Array<string | undefined | null>) =>
@@ -123,19 +102,6 @@ const buildWorkflowPromptFallback = (entry: CollectionEntry<"workflows">) => {
   ].join("\n");
 };
 
-const buildCorePromptFallback = (agent: CoreAgentDetail) => {
-  const capability = agent.capabilities[0] ?? "Support operational workflows";
-  const review = agent.humanReview[0] ?? "Escalate exceptions for human review";
-
-  return [
-    `You are the \"${agent.title}\" assistant.`,
-    `Goal: ${agent.outcome}`,
-    `Primary capability: ${capability}`,
-    `Human checkpoint: ${review}`,
-    "Respond concisely with clear reasoning and traceable actions.",
-  ].join("\n");
-};
-
 const buildWorkflowFallbackAssets = (
   entry: CollectionEntry<"workflows">,
 ): AssetBuckets => {
@@ -173,92 +139,26 @@ const buildWorkflowFallbackAssets = (
     ]),
   };
 };
+const { entry } = Astro.props as { entry: CollectionEntry<"workflows"> };
+const slug = entry.data.slug ?? entry.id;
+const explicitPrompt = entry.data.heroPrompt?.trim() ?? "";
+const rendered = await render(entry);
+const WorkflowContent = rendered.Content;
 
-const coreAgentAssetDefaults: Record<string, AssetBuckets> = {
-  "company-guide": {
-    tables: ["Policy index", "Knowledge articles"],
-    automations: ["Answer routing", "Escalation logging"],
-    tools: ["Internal knowledge base", "Search index"],
-    aiModel: ["Configurable LLM provider"],
-    apps: ["Employee self-service app"],
-  },
-  "it-triage-agent": {
-    tables: ["Incident queue", "Ticket history"],
-    automations: ["Priority classification", "Queue assignment"],
-    tools: ["ITSM ticketing", "Monitoring alerts"],
-    aiModel: ["Configurable LLM provider"],
-    apps: ["IT operations console"],
-  },
-  "executive-analysis-agent": {
-    tables: ["KPI snapshots", "Trend summaries"],
-    automations: ["Signal aggregation", "Executive briefing distribution"],
-    tools: ["Analytics stack", "Reporting integrations"],
-    aiModel: ["Configurable LLM provider"],
-    apps: ["Leadership dashboard"],
-  },
-  "contract-analyser-agent": {
-    tables: ["Contract records", "Renewal timelines"],
-    automations: ["Clause extraction", "Risk scoring"],
-    tools: ["Document storage", "Compliance checks"],
-    aiModel: ["Configurable LLM provider"],
-    apps: ["Finance and legal review app"],
-  },
-  "employee-onboarding-agent": {
-    tables: ["Onboarding checklist", "Access matrix"],
-    automations: ["Task orchestration", "Reminder notifications"],
-    tools: ["Identity provider", "HR system"],
-    aiModel: ["Configurable LLM provider"],
-    apps: ["Onboarding coordinator app"],
-  },
+const detail: DetailViewModel = {
+  title: entry.data.title,
+  outcome: entry.data.outcome,
+  slug,
+  pageTitle: `${entry.data.title} Workflow Playbook | Budibase`,
+  ctaLabel: entry.data.cta?.label?.trim() || DEFAULT_CTA_LABEL,
+  ctaHref: entry.data.cta?.href?.trim() || DEFAULT_CTA_HREF,
+  heroPrompt: explicitPrompt || buildWorkflowPromptFallback(entry),
+  useAccessRequestPrompt: slug === "access-request" && !explicitPrompt,
+  assetsUsed: mergeAssetsWithFallback(
+    entry.data.assetsUsed,
+    buildWorkflowFallbackAssets(entry),
+  ),
 };
-
-const page = Astro.props as WorkflowPageProps | CorePageProps;
-
-let WorkflowContent: Awaited<ReturnType<typeof render>>["Content"] | null = null;
-let coreAgent: CoreAgentDetail | null = null;
-let detail: DetailViewModel;
-
-if (page.kind === "workflow") {
-  const { entry } = page;
-  const slug = entry.data.slug ?? entry.id;
-  const explicitPrompt = entry.data.heroPrompt?.trim() ?? "";
-  const rendered = await render(entry);
-
-  WorkflowContent = rendered.Content;
-
-  detail = {
-    title: entry.data.title,
-    outcome: entry.data.outcome,
-    slug,
-    pageTitle: `${entry.data.title} Workflow Playbook | Budibase`,
-    ctaLabel: entry.data.cta?.label?.trim() || DEFAULT_CTA_LABEL,
-    ctaHref: entry.data.cta?.href?.trim() || DEFAULT_CTA_HREF,
-    heroPrompt: explicitPrompt || buildWorkflowPromptFallback(entry),
-    useAccessRequestPrompt: slug === "access-request" && !explicitPrompt,
-    assetsUsed: mergeAssetsWithFallback(
-      entry.data.assetsUsed,
-      buildWorkflowFallbackAssets(entry),
-    ),
-  };
-} else {
-  coreAgent = page.agent;
-  const explicitPrompt = coreAgent.heroPrompt?.trim() ?? "";
-
-  detail = {
-    title: coreAgent.title,
-    outcome: coreAgent.outcome,
-    slug: coreAgent.slug,
-    pageTitle: `${coreAgent.title} Agent | Budibase`,
-    ctaLabel: coreAgent.cta?.label?.trim() || DEFAULT_CTA_LABEL,
-    ctaHref: coreAgent.cta?.href?.trim() || DEFAULT_CTA_HREF,
-    heroPrompt: explicitPrompt || buildCorePromptFallback(coreAgent),
-    useAccessRequestPrompt: false,
-    assetsUsed: mergeAssetsWithFallback(
-      coreAgent.assetsUsed,
-      coreAgentAssetDefaults[coreAgent.slug] ?? {},
-    ),
-  };
-}
 
 const assetGroups = ASSET_GROUP_ORDER.map((group) => ({
   label: group.label,
@@ -326,28 +226,7 @@ const relatedAgents: RelatedAgent[] = allAgentCards
 
       <section class="agent-detail-content-grid">
         <article class="workflow-article agent-detail-article">
-          {
-            WorkflowContent ? (
-              <WorkflowContent />
-            ) : (
-              coreAgent && (
-                <>
-                  <h2 id="overview">Overview</h2>
-                  {coreAgent.overview.map((paragraph) => <p>{paragraph}</p>)}
-
-                  <h2 id="capabilities">Capabilities</h2>
-                  <ul class="mb-6 list-disc pl-6 text-stone-700 dark:text-stone-300">
-                    {coreAgent.capabilities.map((item) => <li>{item}</li>)}
-                  </ul>
-
-                  <h2 id="human-review">Human decision points</h2>
-                  <ul class="list-disc pl-6 text-stone-700 dark:text-stone-300">
-                    {coreAgent.humanReview.map((item) => <li>{item}</li>)}
-                  </ul>
-                </>
-              )
-            )
-          }
+          <WorkflowContent />
         </article>
 
         <AgentAssetsRail groups={assetGroups} />

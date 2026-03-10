@@ -1,0 +1,183 @@
+---
+import { Image } from "astro:assets";
+import SlackLogo from "@assets/logos/Slack.svg";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props as Props;
+
+const imgToggle = "http://localhost:3845/assets/964a8be0e090f99b178a5b72a2c85df5f1267f29.svg";
+const imgBudibaseChat = "http://localhost:3845/assets/c9ba48282ec7496f8519470a5fa8a8f0404a57e1.svg";
+const imgTeams = "http://localhost:3845/assets/9eeb848506fff2cacf81ba5bc4d700bb6d8378d7.png";
+const imgDiscord = "http://localhost:3845/assets/0596c89dffba8b7a9f3d33a9dd6b4ed7e8bb04c1.svg";
+const imgGearChat = "http://localhost:3845/assets/e613f2fc07c10a98cd537c9c5fa62de735fe0bb1.svg";
+const imgGearDiscord = "http://localhost:3845/assets/837f79c827a4a7b5a202820001f3850d149e146d.svg";
+---
+
+<div class={`agent-channels-overlay${className ? ` ${className}` : ""}`} data-node-id="2943:15268">
+  <div class="agent-channels-overlay-panel">
+    <div class="agent-channels-overlay-row">
+      <div class="agent-channels-overlay-row-main">
+        <img src={imgBudibaseChat} alt="" class="agent-channels-overlay-icon agent-channels-overlay-icon-chat" />
+        <span class="agent-channels-overlay-label">Budibase Chat</span>
+      </div>
+      <div class="agent-channels-overlay-row-actions">
+        <img src={imgGearChat} alt="" class="agent-channels-overlay-gear" />
+        <div class="agent-channels-overlay-chip">Enable chat</div>
+      </div>
+    </div>
+
+    <div class="agent-channels-overlay-row">
+      <div class="agent-channels-overlay-row-main">
+        <Image src={SlackLogo} alt="" class="agent-channels-overlay-icon agent-channels-overlay-icon-slack" />
+        <span class="agent-channels-overlay-label">Slack</span>
+      </div>
+      <div class="agent-channels-overlay-row-actions">
+        <div class="agent-channels-overlay-chip">Connect</div>
+      </div>
+    </div>
+
+    <div class="agent-channels-overlay-row">
+      <div class="agent-channels-overlay-row-main">
+        <img src={imgTeams} alt="" class="agent-channels-overlay-icon agent-channels-overlay-icon-teams" />
+        <span class="agent-channels-overlay-label">Microsoft Teams</span>
+      </div>
+      <div class="agent-channels-overlay-row-actions">
+        <div class="agent-channels-overlay-chip">Connect</div>
+      </div>
+    </div>
+
+    <div class="agent-channels-overlay-row">
+      <div class="agent-channels-overlay-row-main">
+        <img src={imgDiscord} alt="" class="agent-channels-overlay-icon agent-channels-overlay-icon-discord" />
+        <span class="agent-channels-overlay-label">Discord</span>
+      </div>
+      <div class="agent-channels-overlay-row-actions">
+        <img src={imgGearDiscord} alt="" class="agent-channels-overlay-gear" />
+        <img src={imgToggle} alt="" class="agent-channels-overlay-toggle" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .agent-channels-overlay {
+    width: min(100%, 348px);
+    pointer-events: none;
+  }
+
+  .agent-channels-overlay-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #171717;
+    border: 1px solid #2c2c2c;
+    box-shadow: 0 10px 24px rgb(0 0 0 / 0.18);
+  }
+
+  .agent-channels-overlay-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 39px;
+    border-top: 1px solid #2c2c2c;
+    background: #1a1a1a;
+  }
+
+  .agent-channels-overlay-row:first-child {
+    border-top: 0;
+  }
+
+  .agent-channels-overlay-row-main {
+    display: flex;
+    min-width: 0;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .agent-channels-overlay-row-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 8px 12px;
+    flex-shrink: 0;
+    min-width: 96px;
+  }
+
+  .agent-channels-overlay-label {
+    color: #efefef !important;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .agent-channels-overlay-icon,
+  .agent-channels-overlay-gear,
+  .agent-channels-overlay-toggle {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .agent-channels-overlay-icon-chat {
+    width: 15.91px;
+    height: 16.05px;
+  }
+
+  .agent-channels-overlay-icon-teams {
+    width: 15px;
+    height: 16px;
+    object-fit: contain;
+  }
+
+  .agent-channels-overlay-icon-slack {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+  }
+
+  .agent-channels-overlay-icon-discord {
+    width: 16px;
+    height: 12px;
+  }
+
+  .agent-channels-overlay-gear {
+    width: 16px;
+    height: 16px;
+  }
+
+  .agent-channels-overlay-toggle {
+    width: 27px;
+    height: 14px;
+  }
+
+  .agent-channels-overlay-chip {
+    border: 1px solid #2c2c2c;
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: #c8c8c8 !important;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 767px) {
+    .agent-channels-overlay {
+      width: min(100%, 320px);
+    }
+
+    .agent-channels-overlay-row-actions {
+      min-width: 84px;
+      gap: 12px;
+    }
+  }
+</style>

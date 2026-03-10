@@ -1,5 +1,4 @@
 import { getCollection } from "astro:content";
-import { coreAgentDetails } from "./agentSpaceCoreAgents";
 
 export const agentSpaceDepartments = [
   { id: "all", label: "All" },
@@ -47,54 +46,10 @@ const getDepartmentLabel = (id: AgentCardDepartmentId) =>
   agentSpaceDepartments.find((department) => department.id === id)?.label ??
   "Operations";
 
-const coreAgentCardMeta: Record<
-  string,
-  { departmentId: AgentCardDepartmentId; description: string }
-> = {
-  "company-guide": {
-    departmentId: "operations",
-    description:
-      "Supports employees with internal questions and self-service requests.",
-  },
-  "it-triage-agent": {
-    departmentId: "it",
-    description:
-      "Classifies IT requests and routes incidents to the right response queue.",
-  },
-  "executive-analysis-agent": {
-    departmentId: "operations",
-    description: "Summarizes business signals to support executive decision-making.",
-  },
-  "contract-analyser-agent": {
-    departmentId: "finance",
-    description:
-      "Reviews contract terms and flags financial and compliance risk indicators.",
-  },
-  "employee-onboarding-agent": {
-    departmentId: "hr",
-    description:
-      "Guides new hires through onboarding tasks and policy acknowledgements.",
-  },
-};
-
 export async function getAgentSpaceCards(): Promise<AgentCardItem[]> {
-  const coreAgents: AgentCardItem[] = coreAgentDetails.map((agent) => {
-    const meta = coreAgentCardMeta[agent.slug];
-    const departmentId = meta?.departmentId ?? "operations";
-
-    return {
-      slug: agent.slug,
-      name: agent.title,
-      departmentId,
-      department: getDepartmentLabel(departmentId),
-      description: meta?.description ?? agent.outcome,
-      linkUrl: `/agent-space/${agent.slug}`,
-    };
-  });
-
   const workflowEntries = await getCollection("workflows");
 
-  const workflowAgents: AgentCardItem[] = workflowEntries
+  return workflowEntries
     .map((entry) => {
       const departmentId = mapRoleToDepartmentId(entry.data.role);
 
@@ -108,6 +63,4 @@ export async function getAgentSpaceCards(): Promise<AgentCardItem[]> {
       };
     })
     .sort((a, b) => a.name.localeCompare(b.name));
-
-  return [...coreAgents, ...workflowAgents];
 }

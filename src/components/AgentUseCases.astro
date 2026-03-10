@@ -2,11 +2,11 @@
 import { Image } from "astro:assets";
 import TeamsLogo from "@assets/logos/microsoft-teams.svg";
 import BambooHrLogo from "@assets/logos/bamboohr.svg";
-import ClockFill from "phosphor-astro/ClockFill.astro";
 import RowsPlusBottomFill from "phosphor-astro/RowsPlusBottomFill.astro";
 import PaperPlaneTiltFill from "phosphor-astro/PaperPlaneTiltFill.astro";
 import SparkleFill from "phosphor-astro/SparkleFill.astro";
 import CheckCircleFill from "phosphor-astro/CheckCircleFill.astro";
+import Icon from "@components/Icon.astro";
 import SectionBlock from "@components/SectionBlock.astro";
 import Tabs from "@components/Tabs.astro";
 
@@ -25,6 +25,16 @@ interface FrameScenario {
 }
 
 const id = `agent-use-cases-${Math.random().toString(36).slice(2, 8)}`;
+const imgAvatar = "http://localhost:3845/assets/c50aecc3d639d993708863451867f2935a00537d.png";
+const imgBudibaseSymbol = "http://localhost:3845/assets/9300a1d9a367c26d38377594969de719d364531c.svg";
+const imgApprovalForm = "http://localhost:3845/assets/3fc07c0dda3094f8d0a589093414c2aeaaa4a041.svg";
+const imgApprovalCaret = "http://localhost:3845/assets/e728f90c76387a9c54fb330908e0c5a1b454edb8.svg";
+const imgApprovalSparkle = "http://localhost:3845/assets/3a1ed3787bc15b06597663c7fe0340e36f2d1ab0.svg";
+const imgApprovalGmail = "http://localhost:3845/assets/4735ca33bbe8a57aacf75e55d35b670eba51c71a.svg";
+const imgSupportTeamsLogo = "http://localhost:3845/assets/9eeb848506fff2cacf81ba5bc4d700bb6d8378d7.png";
+const imgSupportAvatar = "http://localhost:3845/assets/ce5d1f69c21d2d6ad18560a0b28a9550d15830dc.png";
+const imgSupportSymbol = "http://localhost:3845/assets/02f4333cd1b665ce072fc00f770cd18f520e9bbe.svg";
+const imgSupportAddIcon = "http://localhost:3845/assets/4cc4f524d23711e52242c5309c4fedd79a546850.svg";
 
 const frames: FrameScenario[] = [
   {
@@ -142,64 +152,250 @@ const tabs = [
         {
           frames.map((frame) => (
             <div data-tab-panel={frame.id}>
-              <div class="agent-use-cases-canvas rounded-xl px-4 py-5 sm:px-5 sm:py-6">
-                <div class="agent-use-cases-flow-content">
-                  <ul
-                    class:list={[
-                      "agent-use-cases-node-list",
-                      frame.id === "employee-self-service" && "is-frame-employee-self-service",
-                      "is-active",
-                    ]}
-                  >
-                    {
-                      frame.nodes.map((node) => (
-                        <li class="agent-use-cases-node-wrap">
-                          {node.badgeLabel && (
-                            <span
-                              class:list={[
-                                "agent-use-cases-node-badge",
-                                node.badgeTone === "operation" ? "is-operation" : "is-trigger",
-                              ]}
-                            >
-                              {node.badgeLabel}
-                            </span>
-                          )}
+              {
+                frame.id === "employee-self-service" ? (
+                  <div class="agent-use-cases-thread-stage">
+                    <div class="agent-use-cases-thread-card">
+                      <div class="agent-use-cases-thread-header">
+                        <button
+                          type="button"
+                          class="agent-use-cases-thread-back"
+                          aria-label="Back"
+                        >
+                          <Icon name="CaretLeft" size="20" class="agent-use-cases-thread-back-icon" />
+                        </button>
+                        <h3 class="agent-use-cases-thread-title">Threads</h3>
+                      </div>
 
-                          <div class="agent-use-cases-node">
-                            <span
-                              class:list={[
-                                "agent-use-cases-node-icon",
-                                `is-${node.iconTone}`,
-                              ]}
-                              aria-hidden="true"
-                            >
-                              {node.iconKind === "sparkle" && <SparkleFill class="h-[18px] w-[18px]" />}
-                              {node.iconKind === "clock" && <ClockFill class="h-[18px] w-[18px]" />}
-                              {node.iconKind === "rowsPlusBottom" && (
-                                <RowsPlusBottomFill class="h-[18px] w-[18px]" />
-                              )}
-                              {node.iconKind === "paperPlaneTilt" && (
-                                <PaperPlaneTiltFill class="h-[18px] w-[18px]" />
-                              )}
-                              {node.iconKind === "teams" && (
-                                <Image src={TeamsLogo} alt="Microsoft Teams" class="h-[18px] w-[18px]" />
-                              )}
-                              {node.iconKind === "bamboohr" && (
-                                <Image src={BambooHrLogo} alt="BambooHR" class="h-[18px] w-[18px]" />
-                              )}
-                            </span>
+                      <div class="agent-use-cases-thread-body">
+                        <div class="agent-use-cases-thread-message">
+                          <img
+                            src={imgAvatar}
+                            alt="John Smyth"
+                            class="agent-use-cases-thread-avatar"
+                          />
+                          <div class="agent-use-cases-thread-copy">
+                            <div class="agent-use-cases-thread-meta">
+                              <p class="agent-use-cases-thread-name">John Smyth</p>
+                              <p class="agent-use-cases-thread-time">13 mins</p>
+                            </div>
+                            <p class="agent-use-cases-thread-text">
+                              <span class="agent-use-cases-thread-link">@Ops Assistant</span>
+                              <span> Who’s out of office tomorrow?</span>
+                            </p>
+                          </div>
+                        </div>
 
-                            <div class="agent-use-cases-node-copy">
-                              <div class="agent-use-cases-node-title">{node.title}</div>
-                              {node.description && <p class="agent-use-cases-node-description">{node.description}</p>}
+                        <div class="agent-use-cases-thread-message">
+                          <div class="agent-use-cases-thread-badge" aria-hidden="true">
+                            <img
+                              src={imgBudibaseSymbol}
+                              alt=""
+                              class="agent-use-cases-thread-badge-symbol"
+                            />
+                          </div>
+                          <div class="agent-use-cases-thread-copy">
+                            <div class="agent-use-cases-thread-meta">
+                              <p class="agent-use-cases-thread-name">Ops Assistant</p>
+                              <p class="agent-use-cases-thread-time">12 mins</p>
+                            </div>
+                            <div class="agent-use-cases-thread-response">
+                              <p>Here’s who’s out tomorrow</p>
+                              <ul>
+                                <li>Sarah (Marketing)</li>
+                                <li>David (Sales)</li>
+                                <li>Priya (Engineering)</li>
+                              </ul>
+                              <p>
+                                Want me to post this in
+                                <span class="agent-use-cases-thread-link"> #team-updates</span>?
+                              </p>
                             </div>
                           </div>
-                        </li>
-                      ))
-                    }
-                  </ul>
-                </div>
-              </div>
+                        </div>
+                      </div>
+
+                      <div class="agent-use-cases-thread-input">
+                        <div class="agent-use-cases-thread-input-row">
+                          <div class="agent-use-cases-thread-input-icon-wrap" aria-hidden="true">
+                            <Icon name="Plus" size="16" class="agent-use-cases-thread-input-icon" />
+                          </div>
+                          <p class="agent-use-cases-thread-input-text">Add a reply</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : frame.id === "approval-requests" ? (
+                  <div class="agent-use-cases-approval-stage">
+                    <div class="agent-use-cases-approval-form-card">
+                      <img src={imgApprovalForm} alt="" class="agent-use-cases-approval-form-icon" />
+                      <h3 class="agent-use-cases-approval-form-title">Access request form</h3>
+                      <p class="agent-use-cases-approval-form-label">What would you like access to?</p>
+                      <div class="agent-use-cases-approval-select" aria-hidden="true">
+                        <span class="agent-use-cases-approval-select-value">Product data</span>
+                        <img src={imgApprovalCaret} alt="" class="agent-use-cases-approval-select-caret" />
+                      </div>
+                      <div class="agent-use-cases-approval-submit">Submit</div>
+                    </div>
+
+                    <div class="agent-use-cases-approval-connector" aria-hidden="true"></div>
+
+                    <div class="agent-use-cases-approval-info-card">
+                      <div class="agent-use-cases-approval-info-icon is-agent" aria-hidden="true">
+                        <img
+                          src={imgApprovalSparkle}
+                          alt=""
+                          class="agent-use-cases-approval-info-icon-image"
+                        />
+                      </div>
+                      <div class="agent-use-cases-approval-info-copy">
+                        <p class="agent-use-cases-approval-info-title">Access Agent</p>
+                        <p class="agent-use-cases-approval-info-text">
+                          Handle employee access requests and approvals automatically.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="agent-use-cases-approval-connector" aria-hidden="true"></div>
+
+                    <div class="agent-use-cases-approval-info-card">
+                      <div class="agent-use-cases-approval-info-icon is-gmail" aria-hidden="true">
+                        <img src={imgApprovalGmail} alt="" class="agent-use-cases-approval-gmail-icon" />
+                      </div>
+                      <div class="agent-use-cases-approval-info-copy">
+                        <p class="agent-use-cases-approval-info-title">Gmail notification</p>
+                        <p class="agent-use-cases-approval-info-text">
+                          The Access Agent has granted you access to Product data.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : frame.id === "internal-support" ? (
+                  <div class="agent-use-cases-thread-stage">
+                    <div class="agent-use-cases-thread-card agent-use-cases-support-card">
+                      <div class="agent-use-cases-support-header">
+                        <img
+                          src={imgSupportTeamsLogo}
+                          alt=""
+                          class="agent-use-cases-support-header-logo"
+                        />
+                        <h3 class="agent-use-cases-support-header-title">Microsoft Teams</h3>
+                      </div>
+
+                      <div class="agent-use-cases-thread-body agent-use-cases-support-body">
+                        <div class="agent-use-cases-thread-message">
+                          <img
+                            src={imgSupportAvatar}
+                            alt="Jess Mitchell"
+                            class="agent-use-cases-thread-avatar agent-use-cases-support-avatar"
+                          />
+                          <div class="agent-use-cases-thread-copy">
+                            <div class="agent-use-cases-thread-meta">
+                              <p class="agent-use-cases-thread-name">Jess Mitchell</p>
+                              <p class="agent-use-cases-thread-time">2 mins</p>
+                            </div>
+                            <p class="agent-use-cases-thread-text">
+                              <span class="agent-use-cases-thread-link">@Ops Assistant</span>
+                              <span> my VPN isn’t working</span>
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="agent-use-cases-thread-message">
+                          <div class="agent-use-cases-thread-badge agent-use-cases-support-badge" aria-hidden="true">
+                            <img
+                              src={imgSupportSymbol}
+                              alt=""
+                              class="agent-use-cases-thread-badge-symbol"
+                            />
+                          </div>
+                          <div class="agent-use-cases-thread-copy">
+                            <div class="agent-use-cases-thread-meta">
+                              <p class="agent-use-cases-thread-name">Ops Assistant</p>
+                              <p class="agent-use-cases-thread-time">2 mins</p>
+                            </div>
+                            <div class="agent-use-cases-support-response">
+                              <p>Sounds like a VPN access issue.</p>
+                              <p>Support ticket created</p>
+                              <ul>
+                                <li>Category: Network &amp; Connectivity</li>
+                                <li>Issue: VPN access</li>
+                                <li>Priority: Medium</li>
+                              </ul>
+                              <p>Assigned to IT. They'll follow up shortly.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="agent-use-cases-thread-input">
+                        <div class="agent-use-cases-thread-input-row">
+                          <div class="agent-use-cases-thread-input-icon-wrap" aria-hidden="true">
+                            <img
+                              src={imgSupportAddIcon}
+                              alt=""
+                              class="agent-use-cases-support-input-icon"
+                            />
+                          </div>
+                          <p class="agent-use-cases-thread-input-text">Add a reply</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div class="agent-use-cases-canvas rounded-xl px-4 py-5 sm:px-5 sm:py-6">
+                    <div class="agent-use-cases-flow-content">
+                      <ul class="agent-use-cases-node-list">
+                        {
+                          frame.nodes.map((node) => (
+                            <li class="agent-use-cases-node-wrap">
+                              {node.badgeLabel && (
+                                <span
+                                  class:list={[
+                                    "agent-use-cases-node-badge",
+                                    node.badgeTone === "operation" ? "is-operation" : "is-trigger",
+                                  ]}
+                                >
+                                  {node.badgeLabel}
+                                </span>
+                              )}
+
+                              <div class="agent-use-cases-node">
+                                <span
+                                  class:list={[
+                                    "agent-use-cases-node-icon",
+                                    `is-${node.iconTone}`,
+                                  ]}
+                                  aria-hidden="true"
+                                >
+                                  {node.iconKind === "sparkle" && <SparkleFill class="h-[18px] w-[18px]" />}
+                                  {node.iconKind === "rowsPlusBottom" && (
+                                    <RowsPlusBottomFill class="h-[18px] w-[18px]" />
+                                  )}
+                                  {node.iconKind === "paperPlaneTilt" && (
+                                    <PaperPlaneTiltFill class="h-[18px] w-[18px]" />
+                                  )}
+                                  {node.iconKind === "teams" && (
+                                    <Image src={TeamsLogo} alt="Microsoft Teams" class="h-[18px] w-[18px]" />
+                                  )}
+                                  {node.iconKind === "bamboohr" && (
+                                    <Image src={BambooHrLogo} alt="BambooHR" class="h-[18px] w-[18px]" />
+                                  )}
+                                </span>
+
+                                <div class="agent-use-cases-node-copy">
+                                  <div class="agent-use-cases-node-title">{node.title}</div>
+                                  {node.description && <p class="agent-use-cases-node-description">{node.description}</p>}
+                                </div>
+                              </div>
+                            </li>
+                          ))
+                        }
+                      </ul>
+                    </div>
+                  </div>
+                )
+              }
             </div>
           ))
         }
@@ -401,6 +597,470 @@ const tabs = [
     line-height: 22px;
   }
 
+  .agent-use-cases-thread-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 612px;
+    min-height: 600px;
+    margin: 0 auto;
+    padding: 81px 86px;
+    border-radius: 12px;
+    background: var(--bg-2);
+  }
+
+  .agent-use-cases-thread-card {
+    width: 100%;
+    max-width: 440px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+    padding-bottom: 20px;
+    font-family: "Outfit", var(--font-display);
+  }
+
+  .agent-use-cases-thread-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 18px;
+    border-bottom: 1px solid #ececec;
+  }
+
+  .agent-use-cases-thread-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #979797;
+    cursor: default;
+  }
+
+  .agent-use-cases-thread-back-icon {
+    color: currentColor;
+  }
+
+  .agent-use-cases-thread-title {
+    margin: 0;
+    color: #181a20;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .agent-use-cases-thread-body {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px 18px 0;
+  }
+
+  .agent-use-cases-thread-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .agent-use-cases-thread-avatar {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .agent-use-cases-thread-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #386cf4;
+    padding: 8px;
+  }
+
+  .agent-use-cases-thread-badge-symbol {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .agent-use-cases-thread-copy {
+    width: 350px;
+    max-width: calc(100% - 54px);
+  }
+
+  .agent-use-cases-thread-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .agent-use-cases-thread-name,
+  .agent-use-cases-thread-time,
+  .agent-use-cases-thread-text,
+  .agent-use-cases-thread-response p,
+  .agent-use-cases-thread-response li,
+  .agent-use-cases-thread-input-text {
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .agent-use-cases-thread-name {
+    color: #191919 !important;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .agent-use-cases-thread-time {
+    color: #7e7e7e !important;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .agent-use-cases-thread-text,
+  .agent-use-cases-thread-response {
+    color: #40403e !important;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .agent-use-cases-thread-link {
+    color: #386cf4 !important;
+  }
+
+  .agent-use-cases-thread-response ul {
+    margin: 16px 0;
+    padding-left: 0;
+    color: #40403e !important;
+  }
+
+  .agent-use-cases-thread-response p {
+    color: #40403e !important;
+  }
+
+  .agent-use-cases-thread-response li {
+    position: relative;
+    padding-left: 18px;
+    color: #40403e !important;
+    line-height: 1.5;
+    letter-spacing: 0 !important;
+  }
+
+  .agent-use-cases-thread-response li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #40403e;
+  }
+
+  .agent-use-cases-thread-response li + li {
+    margin-top: 2px;
+  }
+
+  .agent-use-cases-thread-input {
+    width: 404px;
+    max-width: calc(100% - 36px);
+    height: 57px;
+    margin: 30px auto 0;
+    border: 1px solid #ececec;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .agent-use-cases-thread-input-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .agent-use-cases-thread-input-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 37px;
+    border-radius: 999px;
+    background: #ececec;
+    color: #7e7e7e;
+    flex-shrink: 0;
+  }
+
+  .agent-use-cases-thread-input-icon {
+    color: currentColor;
+  }
+
+  .agent-use-cases-thread-input-text {
+    color: #7e7e7e;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .agent-use-cases-support-card {
+    border-radius: 10px;
+  }
+
+  .agent-use-cases-support-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-bottom: 1px solid #ececec;
+  }
+
+  .agent-use-cases-support-header-logo {
+    width: 22px;
+    height: 23px;
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .agent-use-cases-support-header-title {
+    margin: 0;
+    color: #181a20 !important;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .agent-use-cases-support-body {
+    min-height: 300px;
+  }
+
+  .agent-use-cases-support-avatar,
+  .agent-use-cases-support-badge {
+    border-radius: 999px;
+  }
+
+  .agent-use-cases-support-response {
+    color: #40403e !important;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .agent-use-cases-support-response p,
+  .agent-use-cases-support-response li {
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .agent-use-cases-support-response p {
+    color: #40403e !important;
+  }
+
+  .agent-use-cases-support-response p + p {
+    margin-top: 18px;
+  }
+
+  .agent-use-cases-support-response ul {
+    margin: 0;
+    padding-left: 0;
+  }
+
+  .agent-use-cases-support-response li {
+    position: relative;
+    padding-left: 18px;
+    color: #40403e !important;
+  }
+
+  .agent-use-cases-support-response li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #40403e;
+  }
+
+  .agent-use-cases-support-input-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .agent-use-cases-approval-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 612px;
+    min-height: 600px;
+    margin: 0 auto;
+    padding: 40px 32px;
+    border-radius: 12px;
+    background: var(--bg-2);
+  }
+
+  .agent-use-cases-approval-form-card {
+    display: flex;
+    width: min(100%, 500px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    border-radius: 6px;
+    background: #fafaf7;
+    padding: 16px 32px;
+  }
+
+  .agent-use-cases-approval-form-icon {
+    width: 30px;
+    height: 22px;
+    display: block;
+  }
+
+  .agent-use-cases-approval-form-title,
+  .agent-use-cases-approval-form-label,
+  .agent-use-cases-approval-select-value,
+  .agent-use-cases-approval-submit,
+  .agent-use-cases-approval-info-title,
+  .agent-use-cases-approval-info-text {
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .agent-use-cases-approval-form-title {
+    color: #191919 !important;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .agent-use-cases-approval-form-label {
+    color: #191919 !important;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  .agent-use-cases-approval-select {
+    display: flex;
+    width: 100%;
+    height: 42px;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #bfbfba;
+    border-radius: 4px;
+    background: #f0eee6;
+    padding: 12px;
+  }
+
+  .agent-use-cases-approval-select-value {
+    color: #191919 !important;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .agent-use-cases-approval-select-caret {
+    width: 18px;
+    height: 18px;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .agent-use-cases-approval-submit {
+    display: inline-flex;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: #c86240;
+    padding: 8px 20px;
+    color: #fff !important;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 17px;
+  }
+
+  .agent-use-cases-approval-connector {
+    width: 2px;
+    height: 40px;
+    display: block;
+    flex-shrink: 0;
+    background-image: linear-gradient(to bottom, #6a9bcc 50%, transparent 50%);
+    background-size: 2px 8px;
+    background-repeat: repeat-y;
+  }
+
+  .agent-use-cases-approval-info-card {
+    display: flex;
+    width: min(100%, 360px);
+    min-width: 200px;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 6px;
+    background: #fafaf7;
+    padding: 12px;
+  }
+
+  .agent-use-cases-approval-info-icon {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+  }
+
+  .agent-use-cases-approval-info-icon.is-agent {
+    background: #215f9e;
+  }
+
+  .agent-use-cases-approval-info-icon.is-gmail {
+    background: #f0eee6;
+  }
+
+  .agent-use-cases-approval-info-icon-image {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  .agent-use-cases-approval-gmail-icon {
+    width: 22.58px;
+    height: 16.93px;
+    display: block;
+  }
+
+  .agent-use-cases-approval-info-copy {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .agent-use-cases-approval-info-title {
+    color: #191919 !important;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .agent-use-cases-approval-info-text {
+    color: #666663 !important;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
   @keyframes agent-use-cases-march {
     from {
       background-position-y: 0;
@@ -417,6 +1077,42 @@ const tabs = [
   }
 
   @media (max-width: 767px) {
+    .agent-use-cases-thread-stage {
+      min-height: auto;
+      padding: 24px 16px;
+    }
+
+    .agent-use-cases-thread-card {
+      max-width: 100%;
+    }
+
+    .agent-use-cases-thread-copy {
+      width: auto;
+      max-width: calc(100% - 54px);
+    }
+
+    .agent-use-cases-thread-input {
+      width: calc(100% - 36px);
+      max-width: none;
+    }
+
+    .agent-use-cases-approval-stage {
+      min-height: auto;
+      padding: 24px 16px;
+    }
+
+    .agent-use-cases-approval-form-card {
+      padding: 16px 20px;
+    }
+
+    .agent-use-cases-approval-form-title {
+      font-size: 22px;
+    }
+
+    .agent-use-cases-approval-info-card {
+      width: min(100%, 360px);
+    }
+
     .agent-use-cases-canvas {
       padding: 16px;
     }
