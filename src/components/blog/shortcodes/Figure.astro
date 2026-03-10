@@ -1,0 +1,65 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  attr?: string;
+  target?: string;
+}
+
+const { src, alt, attr, target } = Astro.props;
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function formatAttribution(value?: string) {
+  if (!value) {
+    return "";
+  }
+
+  const parts = value.split(/(\[[^\]]+\]\([^)]+\))/g).filter(Boolean);
+
+  return parts
+    .map((part) => {
+      const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+
+      if (!match) {
+        return escapeHtml(part);
+      }
+
+      const [, label, href] = match;
+
+      return `<a href="${escapeHtml(href)}" rel="noopener" target="_blank">${escapeHtml(label)}</a>`;
+    })
+    .join("");
+}
+
+const attributionHtml = formatAttribution(attr);
+---
+
+<figure class="not-prose my-8 space-y-3">
+  {
+    target ? (
+      <a href={src} target={target} rel={target === "_blank" ? "noopener" : undefined}>
+        <img
+          src={src}
+          alt={alt}
+          class="w-full rounded-sm border"
+          loading="lazy"
+        />
+      </a>
+    ) : (
+      <img
+        src={src}
+        alt={alt}
+        class="w-full rounded-sm border"
+        loading="lazy"
+      />
+    )
+  }
+  {attr && <figcaption class="text-sm text-secondary" set:html={attributionHtml} />}
+</figure>

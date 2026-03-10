@@ -1,0 +1,53 @@
+---
+interface Props {
+  template: string;
+}
+
+const templateMap = {
+  changeManagement: {
+    heading: "change control template",
+    url: "https://budibase.app/builder?template=app/change-request",
+  },
+  expenseApproval: {
+    heading: "expense approval app template",
+    url: "https://budibase.app/builder?template=app/expense-approval",
+  },
+  riskManagement: {
+    heading: "risk management template",
+    url: "https://budibase.app/builder?template=app/risk-management",
+  },
+  assetManagement: {
+    heading: "asset management template",
+    url: "https://budibase.app/builder?template=app/it-asset-management-software",
+  },
+  ticketingSystem: {
+    heading: "ticketing system template",
+    url: "https://budibase.app/builder?template=app/it-help-desk",
+  },
+  incidentReport: {
+    heading: "incident report template",
+    url: "https://budibase.app/builder?template=app/it-incident-report-form",
+  },
+} as const;
+
+const { template } = Astro.props;
+const templateDetails = templateMap[template as keyof typeof templateMap];
+---
+
+{
+  templateDetails && (
+    <div class="bg-base-18 border rounded-sm cta-shortcode">
+      <p class="hero-description font-weight-medium text-white">
+        {templateDetails.heading}
+      </p>
+      <a
+        href={templateDetails.url}
+        rel="noopener"
+        class="no-underline"
+        target="_blank"
+      >
+        <button type="submit" class="btn btn-cta no-underline">Use template</button>
+      </a>
+    </div>
+  )
+}

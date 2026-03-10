@@ -1,0 +1,21 @@
+---
+import { YouTube as AstroYouTube } from "astro-embed";
+
+interface Props {
+  id: string;
+  title?: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<div class="not-prose my-8">
+  <AstroYouTube id={id} title={title} />
+</div>
+
+<style>
+  div :global(lite-youtube) {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+</style>
