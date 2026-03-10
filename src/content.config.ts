@@ -217,6 +217,14 @@ const changelog = defineCollection({
   }),
 });
 
+const legal = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/legal" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
 // Export a single `collections` object to register your collection(s)
 export const collections = {
   blog,
@@ -225,4 +233,5 @@ export const collections = {
   workflows,
   docs,
   changelog,
+  legal,
 };
