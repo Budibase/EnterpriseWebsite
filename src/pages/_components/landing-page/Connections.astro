@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import SectionBlock from "@components/SectionBlock.astro";
 
 import AnthropicLogo from "@assets/logos/anthropic.avif";
 import AzureOpenAILogo from "@assets/logos/azure-openai.svg";
@@ -120,9 +121,10 @@ const operationsLogos = [
         <div
           class="max-w-sm rounded-2xl border border-[var(--border)] bg-white px-6 py-8 text-center shadow-xl dark:bg-stone-900"
         >
-          <p class="text-lg font-semibold leading-snug text-stone-800 dark:text-stone-100">
-            Your models, your tools, your data, your privacy.
-          </p>
+          <SectionBlock
+            title="Your models, your tools, your data, your privacy."
+            align="center"
+          />
         </div>
       </div>
 
