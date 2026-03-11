@@ -1,5 +1,6 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import { resolveImageReference } from "../../lib/imageReference";
+import { getPublishedChangelogEntries } from "../../lib/changelog";
 
 export type ResourceCategory =
   | "all"
@@ -128,9 +129,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
 
   const caseStudies = await getCollection("caseStudies");
   const workflows = await getCollection("workflows");
-  const changelogItems = await getCollection("changelog", ({ data }) => {
-    return !data.draft;
-  });
+  const changelogItems = await getPublishedChangelogEntries();
 
   const blogItems: BlogFeedItem[] = blogPosts
     .filter((post) => !post.id.startsWith("updates/"))
