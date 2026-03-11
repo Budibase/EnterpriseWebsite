@@ -1,12 +1,29 @@
 ---
-const { frontmatter, enableTransitions = false, transitionKey = '' } = Astro.props;
 import Layout from './MainLayout.astro';
 import { format } from 'date-fns';
+import { resolveImageReference } from "../lib/imageReference";
+
+const { frontmatter, enableTransitions = false, transitionKey = '' } = Astro.props;
 const publishDate = frontmatter.publishDate;
+const seoImageSrc =
+  resolveImageReference(frontmatter.socialImage) ??
+  resolveImageReference(frontmatter.coverImage);
+const seoImage = seoImageSrc
+  ? {
+      src: seoImageSrc,
+      alt: frontmatter.title,
+    }
+  : undefined;
 
 ---
 
-<Layout enableTransitions={enableTransitions}>
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  image={seoImage}
+  pageType="article"
+  enableTransitions={enableTransitions}
+>
   <div class="max-w-2xl mx-auto w-full">
     <h1 class="mb-4 mt-24" transition:name={`${transitionKey}-title`}>
       {frontmatter.title}

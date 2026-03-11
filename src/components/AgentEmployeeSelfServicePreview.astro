@@ -1,0 +1,333 @@
+---
+import { Image } from "astro:assets";
+import Icon from "@components/Icon.astro";
+import AvatarImage from "@assets/images/avatars/Avatar.png";
+import BudibaseSymbol from "@assets/BBSymbolWhite.svg";
+
+interface Props {
+  variant?: "default" | "card";
+}
+
+const { variant = "default" } = Astro.props as Props;
+
+---
+
+<div
+  class:list={["agent-employee-preview", variant === "card" && "is-card"]}
+  role="img"
+  aria-label="Preview of an employee asking an agent who is out of office tomorrow"
+>
+  <div class="agent-employee-preview__card">
+    <div class="agent-employee-preview__header">
+      <span class="agent-employee-preview__back" aria-hidden="true">
+        <Icon name="CaretLeft" size="20" class="agent-employee-preview__back-icon" />
+      </span>
+      <h3 class="agent-employee-preview__title">Threads</h3>
+    </div>
+
+    <div class="agent-employee-preview__body">
+      <div class="agent-employee-preview__message">
+        <Image
+          src={AvatarImage}
+          alt="John Smyth"
+          class="agent-employee-preview__avatar"
+        />
+        <div class="agent-employee-preview__copy">
+          <div class="agent-employee-preview__meta">
+            <p class="agent-employee-preview__name">John Smyth</p>
+            <p class="agent-employee-preview__time">13 mins</p>
+          </div>
+          <p class="agent-employee-preview__text">
+            <span class="agent-employee-preview__link">@Ops Assistant</span>
+            <span> Who’s out of office tomorrow?</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="agent-employee-preview__message">
+        <div class="agent-employee-preview__badge" aria-hidden="true">
+          <Image
+            src={BudibaseSymbol}
+            alt=""
+            class="agent-employee-preview__badge-symbol"
+          />
+        </div>
+        <div class="agent-employee-preview__copy">
+          <div class="agent-employee-preview__meta">
+            <p class="agent-employee-preview__name">Ops Assistant</p>
+            <p class="agent-employee-preview__time">12 mins</p>
+          </div>
+          <div class="agent-employee-preview__response">
+            <p>Here’s who’s out tomorrow</p>
+            <ul>
+              <li>Sarah (Marketing)</li>
+              <li>David (Sales)</li>
+              <li>Priya (Engineering)</li>
+            </ul>
+            <p>
+              Want me to post this in
+              <span class="agent-employee-preview__link"> #team-updates</span>?
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-employee-preview__input">
+      <div class="agent-employee-preview__input-row">
+        <div class="agent-employee-preview__input-icon-wrap" aria-hidden="true">
+          <Icon name="Plus" size="16" class="agent-employee-preview__input-icon" />
+        </div>
+        <p class="agent-employee-preview__input-text">Add a reply</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .agent-employee-preview {
+    --agent-employee-preview-bg: var(--bg-2);
+    --agent-employee-preview-card-bg: var(--bg-1);
+    --agent-employee-preview-card-border: rgb(var(--border) / 0.72);
+    --agent-employee-preview-header-border: rgb(var(--border) / 0.72);
+    --agent-employee-preview-back-bg: var(--bg-2);
+    --agent-employee-preview-back-color: var(--text-secondary);
+    --agent-employee-preview-badge-bg: var(--grey-900);
+    --agent-employee-preview-badge-symbol-bg: var(--blue-600);
+    --agent-employee-preview-input-bg: var(--bg-2);
+    --agent-employee-preview-input-border: rgb(var(--border) / 0.72);
+    --agent-employee-preview-link: var(--blue-600);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    border-radius: 12px;
+    background:
+      radial-gradient(circle at center, rgb(var(--border) / 0.4) 1px, transparent 1px) 0 0 / 20px 20px,
+      var(--agent-employee-preview-bg);
+    pointer-events: none;
+  }
+
+  .agent-employee-preview.is-card {
+    padding: 18px;
+  }
+
+  .agent-employee-preview__card {
+    width: min(100%, 382px);
+    border: 1px solid var(--agent-employee-preview-card-border);
+    border-radius: 14px;
+    background: var(--agent-employee-preview-card-bg);
+    overflow: hidden;
+    box-shadow: 0 20px 48px rgb(15 23 42 / 0.12);
+  }
+
+  .agent-employee-preview__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 52px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--agent-employee-preview-header-border);
+  }
+
+  .agent-employee-preview__back {
+    display: inline-flex;
+    height: 28px;
+    width: 28px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--agent-employee-preview-back-bg);
+    color: var(--agent-employee-preview-back-color);
+    flex-shrink: 0;
+  }
+
+  .agent-employee-preview__title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .agent-employee-preview__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .agent-employee-preview__message {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .agent-employee-preview__avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .agent-employee-preview__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--agent-employee-preview-badge-bg);
+    flex-shrink: 0;
+  }
+
+  .agent-employee-preview__badge-symbol {
+    width: 16px;
+    height: 16px;
+    padding: 2px;
+    border-radius: 4px;
+    background: var(--agent-employee-preview-badge-symbol-bg);
+  }
+
+  .agent-employee-preview__copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .agent-employee-preview__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .agent-employee-preview__name,
+  .agent-employee-preview__time,
+  .agent-employee-preview__text,
+  .agent-employee-preview__response p,
+  .agent-employee-preview__response li,
+  .agent-employee-preview__input-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .agent-employee-preview__name {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .agent-employee-preview__time {
+    color: var(--text-secondary);
+  }
+
+  .agent-employee-preview__text,
+  .agent-employee-preview__response p,
+  .agent-employee-preview__response li {
+    color: var(--text-secondary);
+  }
+
+  .agent-employee-preview__link {
+    color: var(--agent-employee-preview-link);
+    font-weight: 600;
+  }
+
+  .agent-employee-preview__response {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .agent-employee-preview__response ul {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .agent-employee-preview__input {
+    padding: 0 16px 16px;
+  }
+
+  .agent-employee-preview__input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--agent-employee-preview-input-border);
+    border-radius: 999px;
+    background: var(--agent-employee-preview-input-bg);
+  }
+
+  .agent-employee-preview__input-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: var(--bg-1);
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+
+  .agent-employee-preview__input-text {
+    color: var(--text-secondary);
+  }
+
+  .agent-employee-preview.is-card .agent-employee-preview__card {
+    width: min(100%, 100%);
+  }
+
+  .agent-employee-preview.is-card .agent-employee-preview__header {
+    min-height: 46px;
+    padding: 10px 14px;
+  }
+
+  .agent-employee-preview.is-card .agent-employee-preview__body {
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .agent-employee-preview.is-card .agent-employee-preview__input {
+    padding: 0 14px 14px;
+  }
+
+  .agent-employee-preview.is-card .agent-employee-preview__avatar,
+  .agent-employee-preview.is-card .agent-employee-preview__badge {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+  }
+
+  .agent-employee-preview.is-card .agent-employee-preview__name,
+  .agent-employee-preview.is-card .agent-employee-preview__time,
+  .agent-employee-preview.is-card .agent-employee-preview__text,
+  .agent-employee-preview.is-card .agent-employee-preview__response p,
+  .agent-employee-preview.is-card .agent-employee-preview__response li,
+  .agent-employee-preview.is-card .agent-employee-preview__input-text {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .agent-employee-preview.is-card .agent-employee-preview__input-row {
+    min-height: 40px;
+  }
+
+  @media (max-width: 767px) {
+    .agent-employee-preview {
+      padding: 16px;
+    }
+
+    .agent-employee-preview__card {
+      width: min(100%, 360px);
+    }
+  }
+</style>

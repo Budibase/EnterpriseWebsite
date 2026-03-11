@@ -1,0 +1,167 @@
+---
+import SectionBlock from "@components/SectionBlock.astro";
+import Card from "@components/cards/Card.astro";
+import AgentEmployeeSelfServicePreview from "@components/AgentEmployeeSelfServicePreview.astro";
+import AutomationFlowPreview from "@components/AutomationFlowPreview.astro";
+import FormDemo from "@components/FormDemo.astro";
+import AppDataSourcesPreview from "@components/AppDataSourcesPreview.astro";
+
+const automationNodes = [
+  {
+    badgeLabel: "Trigger",
+    badgeTone: "trigger",
+    title: "Agent trigger",
+    description: "This automation is triggered by agents",
+    iconKind: "sparkle",
+    iconTone: "trigger",
+  },
+  {
+    badgeLabel: "Operation",
+    badgeTone: "operation",
+    title: "Microsoft Teams",
+    description: "Send alert message to #ITOps channel",
+    iconKind: "teams",
+    iconTone: "integration",
+  },
+] as const;
+
+const cards = [
+  {
+    label: "Agents",
+    description:
+      "Answer employee questions and handle requests across Slack, email, and chat.",
+  },
+  {
+    label: "Automations",
+    description:
+      "Run approvals, routing, notifications, and operational workflows automatically.",
+  },
+  {
+    label: "Apps",
+    description:
+      "Create internal tools for teams to manage processes and track work.",
+  },
+  {
+    label: "Data",
+    description:
+      "Connect your databases, spreadsheets, and business systems.",
+  },
+] as const;
+---
+
+<section class="container max-w-7xl mx-auto mt-12 md:mt-24 px-2 lg:px-0">
+  <SectionBlock
+    title="Run your operations on one platform"
+    description="Handle requests, automate workflows, manage processes, and connect your business systems - without stitching together multiple tools."
+    align="center"
+    maxWidth="3xl"
+  >
+    <div class="platform-section__grid">
+      <div class="platform-section__card">
+        <Card label={cards[0].label} description={cards[0].description}>
+          <div slot="image-overlay" class="platform-section__overlay" aria-hidden="true">
+            <AgentEmployeeSelfServicePreview variant="card" />
+          </div>
+        </Card>
+      </div>
+
+      <div class="platform-section__card">
+        <Card label={cards[1].label} description={cards[1].description}>
+          <div slot="image-overlay" class="platform-section__overlay" aria-hidden="true">
+            <AutomationFlowPreview
+              nodes={automationNodes}
+              frameId="teams-alert"
+              variant="card"
+            />
+          </div>
+        </Card>
+      </div>
+
+      <div class="platform-section__card">
+        <Card label={cards[2].label} description={cards[2].description}>
+          <div slot="image-overlay" class="platform-section__overlay" aria-hidden="true">
+            <div class="platform-section__scaled-preview platform-section__scaled-preview--form">
+              <FormDemo />
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      <div class="platform-section__card">
+        <Card label={cards[3].label} description={cards[3].description}>
+          <div slot="image-overlay" class="platform-section__overlay" aria-hidden="true">
+            <div class="platform-section__scaled-preview platform-section__scaled-preview--data">
+              <AppDataSourcesPreview />
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </SectionBlock>
+</section>
+
+<style>
+  .platform-section__grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .platform-section__overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .platform-section__card :global(.card-image-wrap) {
+    height: 340px;
+    background: var(--bg-2);
+  }
+
+  .platform-section__card :global(.card-content) {
+    gap: 10px;
+  }
+
+  .platform-section__card :global(.card-content p) {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .platform-section__scaled-preview {
+    flex-shrink: 0;
+    transform-origin: center center;
+  }
+
+  .platform-section__scaled-preview--form {
+    width: 520px;
+    transform: scale(0.56);
+  }
+
+  .platform-section__scaled-preview--data {
+    width: 430px;
+    transform: scale(0.74);
+  }
+
+  @media (min-width: 768px) {
+    .platform-section__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+
+    .platform-section__card :global(.card-image-wrap) {
+      height: 320px;
+    }
+
+    .platform-section__scaled-preview--form {
+      transform: scale(0.54);
+    }
+
+    .platform-section__scaled-preview--data {
+      transform: scale(0.72);
+    }
+  }
+</style>

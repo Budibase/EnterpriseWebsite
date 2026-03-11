@@ -1,5 +1,10 @@
 ---
 import Icon from "@components/Icon.astro";
+import {
+  getButtonClasses,
+  getButtonIconSize,
+  getButtonRel,
+} from "../lib/button-classes.js";
 
 // Reusable Button component
 // Props:
@@ -42,58 +47,9 @@ const {
   target,
   rel,
 } = Astro.props as Props;
-
-// Map button size to icon size (in pixels)
-const iconSizes: Record<"small" | "medium" | "large", string> = {
-  small: "16",
-  medium: "18",
-  large: "20",
-};
-
-const normalizedSize = size === "sm" ? "small" : size;
-
-// Use provided iconSize if available, otherwise calculate based on button size
-const iconSize = icon ? (providedIconSize ?? iconSizes[normalizedSize]) : undefined;
-
-// Build Tailwind classes based on variant and size
-const variantClasses = {
-  // Primary: system action (semantic)
-  primary: "bg-grey-900 text-grey-50 hover:bg-grey-800 dark:bg-grey-100 dark:text-grey-900 dark:hover:bg-grey-200",
-
-  // Secondary: subtle surface + border
-  secondary: "bg-secondary text hover:bg-surface-2",
-
-  // CTA: brand-forward emphasis (theme tokens)
-  cta: "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-hover dark:text-grey-50",
-
-  // Large: alias of CTA styling for pages using a legacy variant token
-  large: "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-hover dark:text-grey-50",
-};
-
-const sizeClasses = {
-  small: "px-2.5 py-[4.5px] text-sm",
-  medium: "px-3 py-1.5 text-base",
-  large: "px-4 py-2 text-lg",
-};
-
-// Gap classes based on size (4px small, 6px medium, 8px large)
-const gapClasses = {
-  small: "gap-1", // 4px
-  medium: "gap-1.5", // 6px
-  large: "gap-2", // 8px
-};
-
-const baseClasses =
-  "inline-flex items-center justify-center rounded-full !font-medium transition-colors duration-150 active:scale-[0.98] no-underline cursor-pointer font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
-
-const paddingClasses = sizeClasses[normalizedSize];
-const gapClass = gapClasses[normalizedSize];
-
-const classes = [baseClasses, variantClasses[variant], paddingClasses, gapClass, className]
-  .filter(Boolean)
-  .join(" ");
-
-const computedRel = rel ?? (target === "_blank" ? "noopener noreferrer" : undefined);
+const iconSize = icon ? (providedIconSize ?? getButtonIconSize(size)) : undefined;
+const classes = getButtonClasses({ variant, size, className });
+const computedRel = getButtonRel({ target, rel });
 ---
 
 {

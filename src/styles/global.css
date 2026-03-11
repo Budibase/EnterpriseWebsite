@@ -756,6 +756,10 @@ article h6 {
   margin: 1.6rem 0 0.8rem 0;
 }
 
+article h4 {
+  font-size: 24px;
+}
+
 .dark article h3,
 .dark article h4,
 .dark article h5,

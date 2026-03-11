@@ -1,4 +1,6 @@
 ---
+import { resolveImageReference } from "../../../lib/imageReference";
+
 interface Props {
   src: string;
   alt: string;
@@ -39,27 +41,38 @@ function formatAttribution(value?: string) {
 }
 
 const attributionHtml = formatAttribution(attr);
+const resolvedSrc = resolveImageReference(src);
 ---
 
-<figure class="not-prose my-8 space-y-3">
-  {
-    target ? (
-      <a href={src} target={target} rel={target === "_blank" ? "noopener" : undefined}>
-        <img
-          src={src}
-          alt={alt}
-          class="w-full rounded-sm border"
-          loading="lazy"
-        />
-      </a>
-    ) : (
-      <img
-        src={src}
-        alt={alt}
-        class="w-full rounded-sm border"
-        loading="lazy"
-      />
-    )
-  }
-  {attr && <figcaption class="text-sm text-secondary" set:html={attributionHtml} />}
-</figure>
+{
+  resolvedSrc && (
+    <figure class="not-prose my-8 space-y-3">
+      {
+        target ? (
+          <a
+            href={resolvedSrc}
+            target={target}
+            rel={target === "_blank" ? "noopener" : undefined}
+          >
+            <img
+              src={resolvedSrc}
+              alt={alt}
+              class="w-full rounded-sm border"
+              loading="lazy"
+            />
+          </a>
+        ) : (
+          <img
+            src={resolvedSrc}
+            alt={alt}
+            class="w-full rounded-sm border"
+            loading="lazy"
+          />
+        )
+      }
+      {attr && (
+        <figcaption class="text-sm text-secondary" set:html={attributionHtml} />
+      )}
+    </figure>
+  )
+}

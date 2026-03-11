@@ -1,4 +1,5 @@
 import { escapeAttribute } from "./hugo-shortcode-utils.js";
+import { getButtonClasses, getButtonRel } from "./button-classes.js";
 
 const templateMap = {
   changeManagement: {
@@ -45,35 +46,52 @@ function formatAttribution(value = "") {
     .join("");
 }
 
+function renderButtonLinkHtml({
+  label,
+  url,
+  variant = "cta",
+  size = "medium",
+  target = "_blank",
+  rel,
+}) {
+  const classes = getButtonClasses({
+    variant,
+    size,
+    className:
+      "!text-white hover:!text-white visited:!text-white active:!text-white !no-underline hover:!no-underline",
+  });
+  const computedRel = getButtonRel({ target, rel });
+
+  return `<a href="${escapeAttribute(url)}"
+class="${escapeAttribute(classes)}"
+target="${escapeAttribute(target)}"
+${computedRel ? `rel="${escapeAttribute(computedRel)}"` : ""}
+>
+${escapeAttribute(label)}
+</a>`;
+}
+
 export function renderCTAHtml() {
-  return `<div class="bg-base-18 border rounded-sm cta-shortcode">
-<p class="hero-description font-weight-medium text-white ">
-Join 200,000 teams building workflow apps with Budibase
+  return `<div class="bg-2 p-4 text-center rounded cta-shortcode">
+<p class="hero-description font-weight-medium text-white">
+Join 300,000 teams running operations on Budibase
 </p>
-<a href="https://account.budibase.app/register?utm_source=website&utm_medium=blog&utm_campaign=cta"
-rel="noopener"
-class="no-underline"
-target="_blank">
-<button type="submit" class="btn btn-cta no-underline">
-Get started for free
-</button>
-</a>
+${renderButtonLinkHtml({
+  label: "Get started for free",
+  url: "https://account.budibase.app/register?utm_source=website&utm_medium=blog&utm_campaign=cta",
+})}
 </div>`;
 }
 
 export function renderCustomCTAHtml({ text = "" }) {
-  return `<div class="bg-base-18 border rounded-sm cta-shortcode">
+  return `<div class="bg-2 p4  rounded-sm cta-shortcode">
 <p class="hero-description font-weight-medium text-white">
 ${escapeAttribute(text)}
 </p>
-<a href="https://account.budibase.app/register?utm_source=website&utm_medium=blog&utm_campaign=cta"
-rel="noopener"
-class="no-underline"
-target="_blank">
-<button type="submit" class="btn btn-cta no-underline">
-Get started for free
-</button>
-</a>
+${renderButtonLinkHtml({
+  label: "Get started for free",
+  url: "https://account.budibase.app/register?utm_source=website&utm_medium=blog&utm_campaign=cta",
+})}
 </div>`;
 }
 
@@ -88,14 +106,10 @@ export function renderTemplateCTAHtml({ template = "" }) {
 <p class="hero-description font-weight-medium text-white">
 ${escapeAttribute(templateDetails.heading)}
 </p>
-<a href="${escapeAttribute(templateDetails.url)}"
-rel="noopener"
-class="no-underline"
-target="_blank">
-<button type="submit" class="btn btn-cta no-underline">
-Use template
-</button>
-</a>
+${renderButtonLinkHtml({
+  label: "Use template",
+  url: templateDetails.url,
+})}
 </div>`;
 }
 

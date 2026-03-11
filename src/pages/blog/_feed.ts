@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
+import { resolveImageReference } from "../../lib/imageReference";
 
 export type ResourceCategory =
   | "all"
@@ -70,6 +71,16 @@ function getFirstDefined<T>(...values: Array<T | undefined>): T | undefined {
   return undefined;
 }
 
+function getFirstValidImage(
+  ...values: Array<string | undefined>
+): string | undefined {
+  for (const value of values) {
+    const resolved = resolveImageReference(value);
+    if (resolved) return resolved;
+  }
+  return undefined;
+}
+
 function toBlogTopic(value: string | undefined): BlogTopicRoute | undefined {
   if (!value) return undefined;
   const normalized = value.trim().toLowerCase();
@@ -127,7 +138,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
       const category: BlogFeedCategory = "blog";
       const primaryAuthor = post.data.authors?.[0];
       const authorName = getFirstDefined(primaryAuthor?.name, post.data.author);
-      const authorAvatar = getFirstDefined(
+      const authorAvatar = getFirstValidImage(
         primaryAuthor?.profilePic,
         post.data.profilePic,
       );
@@ -143,7 +154,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
         transitionKey: toTransitionKey(post.id),
         authorName,
         authorAvatar,
-        previewImage: getFirstDefined(
+        previewImage: getFirstValidImage(
           post.data.coverImage,
           post.data.socialImage,
         ),
@@ -158,7 +169,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
       const category: BlogFeedCategory = "product";
       const primaryAuthor = post.data.authors?.[0];
       const authorName = getFirstDefined(primaryAuthor?.name, post.data.author);
-      const authorAvatar = getFirstDefined(
+      const authorAvatar = getFirstValidImage(
         primaryAuthor?.profilePic,
         post.data.profilePic,
       );
@@ -174,7 +185,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
         transitionKey: toTransitionKey(post.id),
         authorName,
         authorAvatar,
-        previewImage: getFirstDefined(
+        previewImage: getFirstValidImage(
           post.data.coverImage,
           post.data.socialImage,
         ),
@@ -193,7 +204,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
     transitionKey: toTransitionKey(entry.id),
     sortOrder: entry.data.order,
     authorName: entry.data.author?.name,
-    previewImage: entry.data.coverImage,
+    previewImage: getFirstValidImage(entry.data.coverImage),
     caseStudy: entry,
   }));
 
@@ -220,7 +231,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
     categoryLabel: "Product",
     publishDate: entry.data.date,
     transitionKey: toTransitionKey(`changelog-${entry.id}`),
-    previewImage: entry.data.image?.src,
+    previewImage: getFirstValidImage(entry.data.image?.src),
   }));
 
   return sortFeed([

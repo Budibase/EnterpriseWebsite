@@ -1,5 +1,9 @@
 ---
 import { Image } from "astro:assets";
+import AvatarImage from "@assets/images/avatars/Avatar.png";
+import SupportAvatarImage from "@assets/images/avatars/Ellipse-1.png";
+import BudibaseSymbol from "@assets/BBSymbolWhite.svg";
+import GmailLogo from "@assets/logos/Gmail.svg";
 import TeamsLogo from "@assets/logos/microsoft-teams.svg";
 import BambooHrLogo from "@assets/logos/bamboohr.svg";
 import RowsPlusBottomFill from "phosphor-astro/RowsPlusBottomFill.astro";
@@ -25,16 +29,6 @@ interface FrameScenario {
 }
 
 const id = `agent-use-cases-${Math.random().toString(36).slice(2, 8)}`;
-const imgAvatar = "http://localhost:3845/assets/c50aecc3d639d993708863451867f2935a00537d.png";
-const imgBudibaseSymbol = "http://localhost:3845/assets/9300a1d9a367c26d38377594969de719d364531c.svg";
-const imgApprovalForm = "http://localhost:3845/assets/3fc07c0dda3094f8d0a589093414c2aeaaa4a041.svg";
-const imgApprovalCaret = "http://localhost:3845/assets/e728f90c76387a9c54fb330908e0c5a1b454edb8.svg";
-const imgApprovalSparkle = "http://localhost:3845/assets/3a1ed3787bc15b06597663c7fe0340e36f2d1ab0.svg";
-const imgApprovalGmail = "http://localhost:3845/assets/4735ca33bbe8a57aacf75e55d35b670eba51c71a.svg";
-const imgSupportTeamsLogo = "http://localhost:3845/assets/9eeb848506fff2cacf81ba5bc4d700bb6d8378d7.png";
-const imgSupportAvatar = "http://localhost:3845/assets/ce5d1f69c21d2d6ad18560a0b28a9550d15830dc.png";
-const imgSupportSymbol = "http://localhost:3845/assets/02f4333cd1b665ce072fc00f770cd18f520e9bbe.svg";
-const imgSupportAddIcon = "http://localhost:3845/assets/4cc4f524d23711e52242c5309c4fedd79a546850.svg";
 
 const frames: FrameScenario[] = [
   {
@@ -167,13 +161,9 @@ const tabs = [
                         <h3 class="agent-use-cases-thread-title">Threads</h3>
                       </div>
 
-                      <div class="agent-use-cases-thread-body">
-                        <div class="agent-use-cases-thread-message">
-                          <img
-                            src={imgAvatar}
-                            alt="John Smyth"
-                            class="agent-use-cases-thread-avatar"
-                          />
+                        <div class="agent-use-cases-thread-body">
+                          <div class="agent-use-cases-thread-message">
+                          <Image src={AvatarImage} alt="John Smyth" class="agent-use-cases-thread-avatar" />
                           <div class="agent-use-cases-thread-copy">
                             <div class="agent-use-cases-thread-meta">
                               <p class="agent-use-cases-thread-name">John Smyth</p>
@@ -188,11 +178,7 @@ const tabs = [
 
                         <div class="agent-use-cases-thread-message">
                           <div class="agent-use-cases-thread-badge" aria-hidden="true">
-                            <img
-                              src={imgBudibaseSymbol}
-                              alt=""
-                              class="agent-use-cases-thread-badge-symbol"
-                            />
+                            <Image src={BudibaseSymbol} alt="" class="agent-use-cases-thread-badge-symbol" />
                           </div>
                           <div class="agent-use-cases-thread-copy">
                             <div class="agent-use-cases-thread-meta">
@@ -228,12 +214,16 @@ const tabs = [
                 ) : frame.id === "approval-requests" ? (
                   <div class="agent-use-cases-approval-stage">
                     <div class="agent-use-cases-approval-form-card">
-                      <img src={imgApprovalForm} alt="" class="agent-use-cases-approval-form-icon" />
+                      <RowsPlusBottomFill class="agent-use-cases-approval-form-icon" aria-hidden="true" />
                       <h3 class="agent-use-cases-approval-form-title">Access request form</h3>
                       <p class="agent-use-cases-approval-form-label">What would you like access to?</p>
                       <div class="agent-use-cases-approval-select" aria-hidden="true">
                         <span class="agent-use-cases-approval-select-value">Product data</span>
-                        <img src={imgApprovalCaret} alt="" class="agent-use-cases-approval-select-caret" />
+                        <Icon
+                          name="CaretRight"
+                          size="18"
+                          class="agent-use-cases-approval-select-caret rotate-90"
+                        />
                       </div>
                       <div class="agent-use-cases-approval-submit">Submit</div>
                     </div>
@@ -242,11 +232,7 @@ const tabs = [
 
                     <div class="agent-use-cases-approval-info-card">
                       <div class="agent-use-cases-approval-info-icon is-agent" aria-hidden="true">
-                        <img
-                          src={imgApprovalSparkle}
-                          alt=""
-                          class="agent-use-cases-approval-info-icon-image"
-                        />
+                        <SparkleFill class="agent-use-cases-approval-info-icon-image" />
                       </div>
                       <div class="agent-use-cases-approval-info-copy">
                         <p class="agent-use-cases-approval-info-title">Access Agent</p>
@@ -260,7 +246,7 @@ const tabs = [
 
                     <div class="agent-use-cases-approval-info-card">
                       <div class="agent-use-cases-approval-info-icon is-gmail" aria-hidden="true">
-                        <img src={imgApprovalGmail} alt="" class="agent-use-cases-approval-gmail-icon" />
+                        <Image src={GmailLogo} alt="" class="agent-use-cases-approval-gmail-icon" />
                       </div>
                       <div class="agent-use-cases-approval-info-copy">
                         <p class="agent-use-cases-approval-info-title">Gmail notification</p>
@@ -274,18 +260,14 @@ const tabs = [
                   <div class="agent-use-cases-thread-stage">
                     <div class="agent-use-cases-thread-card agent-use-cases-support-card">
                       <div class="agent-use-cases-support-header">
-                        <img
-                          src={imgSupportTeamsLogo}
-                          alt=""
-                          class="agent-use-cases-support-header-logo"
-                        />
+                        <Image src={TeamsLogo} alt="" class="agent-use-cases-support-header-logo" />
                         <h3 class="agent-use-cases-support-header-title">Microsoft Teams</h3>
                       </div>
 
                       <div class="agent-use-cases-thread-body agent-use-cases-support-body">
                         <div class="agent-use-cases-thread-message">
-                          <img
-                            src={imgSupportAvatar}
+                          <Image
+                            src={SupportAvatarImage}
                             alt="Jess Mitchell"
                             class="agent-use-cases-thread-avatar agent-use-cases-support-avatar"
                           />
@@ -303,11 +285,7 @@ const tabs = [
 
                         <div class="agent-use-cases-thread-message">
                           <div class="agent-use-cases-thread-badge agent-use-cases-support-badge" aria-hidden="true">
-                            <img
-                              src={imgSupportSymbol}
-                              alt=""
-                              class="agent-use-cases-thread-badge-symbol"
-                            />
+                            <Image src={BudibaseSymbol} alt="" class="agent-use-cases-thread-badge-symbol" />
                           </div>
                           <div class="agent-use-cases-thread-copy">
                             <div class="agent-use-cases-thread-meta">
@@ -331,11 +309,7 @@ const tabs = [
                       <div class="agent-use-cases-thread-input">
                         <div class="agent-use-cases-thread-input-row">
                           <div class="agent-use-cases-thread-input-icon-wrap" aria-hidden="true">
-                            <img
-                              src={imgSupportAddIcon}
-                              alt=""
-                              class="agent-use-cases-support-input-icon"
-                            />
+                            <Icon name="Plus" size="24" class="agent-use-cases-support-input-icon" />
                           </div>
                           <p class="agent-use-cases-thread-input-text">Add a reply</p>
                         </div>
@@ -893,6 +867,7 @@ const tabs = [
     width: 24px;
     height: 24px;
     display: block;
+    color: currentColor;
   }
 
   .agent-use-cases-approval-stage {
@@ -925,6 +900,7 @@ const tabs = [
     width: 30px;
     height: 22px;
     display: block;
+    color: #386cf4;
   }
 
   .agent-use-cases-approval-form-title,
@@ -975,6 +951,7 @@ const tabs = [
     height: 18px;
     display: block;
     flex-shrink: 0;
+    color: #666663;
   }
 
   .agent-use-cases-approval-submit {
@@ -1034,6 +1011,7 @@ const tabs = [
     width: 20px;
     height: 20px;
     display: block;
+    color: #fff;
   }
 
   .agent-use-cases-approval-gmail-icon {

@@ -9,6 +9,7 @@ import mdx from "@astrojs/mdx";
 
 import expressiveCode from "astro-expressive-code";
 import remarkGemoji from "remark-gemoji";
+import rehypeStripMissingImages from "./src/lib/rehype-strip-missing-images.js";
 
 // https://astro.build/config
 export default defineConfig({
@@ -38,6 +39,7 @@ export default defineConfig({
 
   markdown: {
     remarkPlugins: [remarkGemoji],
+    rehypePlugins: [rehypeStripMissingImages],
   },
 
   vite: {
