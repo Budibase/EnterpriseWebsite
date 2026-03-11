@@ -1,0 +1,60 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#141414"/>
+  <rect width="36" height="900" fill="#101010"/>
+  <text x="58" y="30" fill="#EDEDED" font-size="22" font-family="Arial, sans-serif">APIs</text>
+  <line x1="36" y1="42" x2="1600" y2="42" stroke="#282828"/>
+  <g font-family="Arial, sans-serif" font-size="14">
+    <text x="54" y="76" fill="#F0F0F0">APIs</text>
+    <text x="54" y="112" fill="#B8B8B8">GitHub</text>
+    <text x="72" y="144" fill="#B8B8B8">Notion</text>
+  </g>
+  <rect x="42" y="156" width="204" height="30" rx="8" fill="#232323"/>
+  <text x="72" y="176" fill="#F1F1F1" font-size="14" font-family="Arial, sans-serif">Block_getChildren</text>
+  <text x="72" y="204" fill="#8D8D8D" font-size="14" font-family="Arial, sans-serif">Page_getPage</text>
+  <text x="292" y="82" fill="#F5F5F5" font-size="22" font-family="Arial, sans-serif">Notion</text>
+  <text x="386" y="82" fill="#9C9C9C" font-size="16" font-family="Arial, sans-serif">1</text>
+  <rect x="292" y="108" width="388" height="34" rx="8" fill="#1E1E1E" stroke="#353535"/>
+  <rect x="304" y="116" width="42" height="18" rx="6" fill="#264E32"/>
+  <text x="317" y="129" fill="#DDF4E0" font-size="12" font-family="Arial, sans-serif">GET</text>
+  <text x="352" y="129" fill="#E6E6E6" font-size="14" font-family="Arial, sans-serif">Block_getChildren</text>
+  <rect x="684" y="108" width="812" height="34" rx="8" fill="#2A2A2A"/>
+  <text x="700" y="130" fill="#D5D5D5" font-size="14" font-family="Courier New, monospace">https://api.notion.com/v1/blocks/{{block_id}}/children?... </text>
+  <text x="292" y="190" fill="#EDEDED" font-size="18" font-family="Arial, sans-serif">Block_getChildren</text>
+  <rect x="292" y="206" width="1048" height="34" rx="6" fill="#1D1D1D" stroke="#353535"/>
+  <text x="304" y="228" fill="#BBBBBB" font-size="14" font-family="Arial, sans-serif">Retrieve block children</text>
+  <g fill="#D7D7D7" font-size="14" font-family="Arial, sans-serif">
+    <text x="292" y="282">Bindings</text>
+    <text x="358" y="282">Params</text>
+    <text x="418" y="282">Headers</text>
+    <text x="486" y="282">Body</text>
+    <text x="545" y="282">Transformer</text>
+  </g>
+  <line x1="546" y1="292" x2="610" y2="292" stroke="#F2F2F2" stroke-width="2"/>
+  <rect x="292" y="304" width="1048" height="36" rx="6" fill="#1D63C3"/>
+  <text x="320" y="327" fill="#F4F8FF" font-size="14" font-family="Arial, sans-serif">Add a JavaScript function to transform the query result.</text>
+  <rect x="292" y="360" width="1048" height="340" rx="8" fill="#0B0B0B" stroke="#333333"/>
+  <g fill="#A3A3A3" font-size="13" font-family="Courier New, monospace">
+    <text x="304" y="384">1</text><text x="328" y="384">const sections = [];</text>
+    <text x="304" y="406">2</text><text x="328" y="406">let current = null;</text>
+    <text x="304" y="450">5</text><text x="328" y="450">for (const b of (data.results || [])) {</text>
+    <text x="304" y="494">8</text><text x="328" y="494">heading: b[b.type].rich_text.map(t =&gt; t.plain_text).join(""),</text>
+    <text x="304" y="538">12</text><text x="328" y="538">continue;</text>
+    <text x="304" y="582">16</text><text x="328" y="582">if (!current || b.type !== "paragraph") continue;</text>
+    <text x="304" y="626">20</text><text x="328" y="626">current.body += (current.body ? "\n" : "") + text;</text>
+    <text x="304" y="670">24</text><text x="328" y="670">return sections.filter(s =&gt; s.body);</text>
+  </g>
+  <rect x="1374" y="190" width="186" height="270" rx="8" fill="#000000" stroke="#343434"/>
+  <text x="1390" y="214" fill="#EDEDED" font-size="18" font-family="Arial, sans-serif">Response</text>
+  <text x="1390" y="250" fill="#8DDCA2" font-size="14" font-family="Arial, sans-serif">Status: 200</text>
+  <text x="1465" y="250" fill="#7CD7F8" font-size="14" font-family="Arial, sans-serif">872ms</text>
+  <text x="1390" y="286" fill="#DBDBDB" font-size="13" font-family="Courier New, monospace">{</text>
+  <text x="1406" y="308" fill="#D88B8B" font-size="13" font-family="Courier New, monospace">"heading": "When will I</text>
+  <text x="1406" y="328" fill="#D88B8B" font-size="13" font-family="Courier New, monospace">receive my login credentials?"</text>
+  <text x="1406" y="350" fill="#8BD58B" font-size="13" font-family="Courier New, monospace">"body": "System credentials</text>
+  <text x="1406" y="370" fill="#8BD58B" font-size="13" font-family="Courier New, monospace">are issued on the employee's</text>
+  <text x="1406" y="390" fill="#8BD58B" font-size="13" font-family="Courier New, monospace">official start date."</text>
+  <text x="1406" y="412" fill="#D88B8B" font-size="13" font-family="Courier New, monospace">"heading_id": "31384c4f..."</text>
+  <text x="1390" y="434" fill="#DBDBDB" font-size="13" font-family="Courier New, monospace">}</text>
+  <rect x="1472" y="10" width="118" height="28" rx="8" fill="#ECECEC"/>
+  <text x="1505" y="28" fill="#131313" font-size="16" font-family="Arial, sans-serif">Publish</text>
+</svg>

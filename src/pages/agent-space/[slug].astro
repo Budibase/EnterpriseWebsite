@@ -40,7 +40,9 @@ type DetailViewModel = {
   ctaLabel: string;
   ctaHref: string;
   heroPrompt: string;
-  useAccessRequestPrompt: boolean;
+  promptCardStyle: "default" | "snippet";
+  usePromptCardExperience: boolean;
+  useDefaultPromptCard: boolean;
   assetsUsed: ResolvedAssetBuckets;
 };
 
@@ -144,6 +146,9 @@ const slug = entry.data.slug ?? entry.id;
 const explicitPrompt = entry.data.heroPrompt?.trim() ?? "";
 const rendered = await render(entry);
 const WorkflowContent = rendered.Content;
+const promptCardStyle = entry.data.promptCardStyle ?? "default";
+const usePromptCardExperience = promptCardStyle === "snippet";
+const useDefaultPromptCard = usePromptCardExperience && slug === "access-request" && !explicitPrompt;
 
 const detail: DetailViewModel = {
   title: entry.data.title,
@@ -153,7 +158,9 @@ const detail: DetailViewModel = {
   ctaLabel: entry.data.cta?.label?.trim() || DEFAULT_CTA_LABEL,
   ctaHref: entry.data.cta?.href?.trim() || DEFAULT_CTA_HREF,
   heroPrompt: explicitPrompt || buildWorkflowPromptFallback(entry),
-  useAccessRequestPrompt: slug === "access-request" && !explicitPrompt,
+  promptCardStyle,
+  usePromptCardExperience,
+  useDefaultPromptCard,
   assetsUsed: mergeAssetsWithFallback(
     entry.data.assetsUsed,
     buildWorkflowFallbackAssets(entry),
@@ -203,10 +210,11 @@ const relatedAgents: RelatedAgent[] = allAgentCards
         ctaHref={detail.ctaHref}
       >
         {
-          detail.useAccessRequestPrompt ? (
+          detail.usePromptCardExperience ? (
             <AccessRequestPrompt
               collapsible
               collapsedHeight={260}
+              promptText={detail.useDefaultPromptCard ? undefined : detail.heroPrompt}
               agentTitle={detail.title}
               toolsUsed={detail.assetsUsed.tools}
               ctaLabel={detail.ctaLabel}
@@ -241,8 +249,9 @@ const relatedAgents: RelatedAgent[] = allAgentCards
     toolsUsed={detail.assetsUsed.tools}
     ctaLabel={detail.ctaLabel}
     ctaHref={detail.ctaHref}
-    promptText={detail.useAccessRequestPrompt ? undefined : detail.heroPrompt}
-    useDefaultPrompt={detail.useAccessRequestPrompt}
+    promptText={detail.useDefaultPromptCard ? undefined : detail.heroPrompt}
+    useDefaultPrompt={detail.useDefaultPromptCard}
+    promptCardStyle={detail.promptCardStyle}
   />
 
   <style>
@@ -262,7 +271,6 @@ const relatedAgents: RelatedAgent[] = allAgentCards
     }
 
     .agent-detail-article {
-      border: 0.5px solid var(--border-color);
       background: var(--bg-1);
       border-radius: 0.8rem;
       padding: 1rem;

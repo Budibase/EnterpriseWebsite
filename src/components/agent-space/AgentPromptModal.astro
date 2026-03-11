@@ -11,6 +11,7 @@ interface Props {
   ctaHref: string;
   promptText?: string;
   useDefaultPrompt?: boolean;
+  promptCardStyle?: "default" | "snippet";
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   ctaHref,
   promptText,
   useDefaultPrompt = false,
+  promptCardStyle = "default",
 } = Astro.props as Props;
 const normalizedTools = toolsUsed
   .map((tool) => tool.trim())
@@ -54,8 +56,9 @@ const lineCount = normalizedPromptText
   ? normalizedPromptText.split(/\r?\n/).length
   : 0;
 const isLongPrompt = normalizedPromptText.length >= 1500 || lineCount >= 26;
+const forceSingleColumn = promptCardStyle === "snippet";
 const splitPrompt =
-  !useDefaultPrompt && isLongPrompt
+  !useDefaultPrompt && !forceSingleColumn && isLongPrompt
     ? splitPromptAtNearestNewline(normalizedPromptText)
     : null;
 const hasOpenBook = Boolean(splitPrompt?.secondary);

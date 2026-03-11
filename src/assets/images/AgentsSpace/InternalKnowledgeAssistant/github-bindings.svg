@@ -1,0 +1,69 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#141414"/>
+  <rect width="36" height="900" fill="#101010"/>
+  <text x="58" y="30" fill="#EDEDED" font-size="22" font-family="Arial, sans-serif">APIs</text>
+  <line x1="36" y1="42" x2="1600" y2="42" stroke="#282828"/>
+  <g font-family="Arial, sans-serif" font-size="14">
+    <text x="54" y="76" fill="#F0F0F0">APIs</text>
+    <text x="72" y="112" fill="#F5F5F5">GitHub</text>
+    <text x="72" y="140" fill="#8D8D8D">git/get-tree</text>
+    <text x="72" y="168" fill="#8D8D8D">repos/get-content</text>
+    <text x="72" y="196" fill="#B8B8B8">Notion</text>
+  </g>
+  <text x="292" y="82" fill="#F5F5F5" font-size="22" font-family="Arial, sans-serif">GitHub</text>
+  <text x="376" y="82" fill="#9C9C9C" font-size="16" font-family="Arial, sans-serif">1.1.4</text>
+  <rect x="292" y="108" width="388" height="34" rx="8" fill="#1E1E1E" stroke="#353535"/>
+  <rect x="304" y="116" width="42" height="18" rx="6" fill="#264E32"/>
+  <text x="317" y="129" fill="#DDF4E0" font-size="12" font-family="Arial, sans-serif">GET</text>
+  <text x="352" y="129" fill="#E6E6E6" font-size="14" font-family="Arial, sans-serif">git/get-tree</text>
+  <rect x="684" y="108" width="812" height="34" rx="8" fill="#2A2A2A"/>
+  <text x="700" y="130" fill="#D5D5D5" font-size="14" font-family="Courier New, monospace">https://api.github.com/repos/{{owner}}/{{repo}}/git/trees/{{tree_sha}}?recursive={{Binding.recursive}}</text>
+  <text x="292" y="192" fill="#EDEDED" font-size="18" font-family="Arial, sans-serif">git/get-tree</text>
+  <rect x="292" y="208" width="1048" height="92" rx="6" fill="#1D1D1D" stroke="#353535"/>
+  <text x="304" y="230" fill="#BFBFBF" font-size="14" font-family="Arial, sans-serif">Returns a single tree using the SHA1 value or ref name for that tree.</text>
+  <text x="304" y="252" fill="#BFBFBF" font-size="14" font-family="Arial, sans-serif">If truncated is true, fetch one subtree at a time with the non-recursive method.</text>
+  <g fill="#D7D7D7" font-size="14" font-family="Arial, sans-serif">
+    <text x="292" y="344">Bindings</text>
+    <text x="358" y="344">Params</text>
+    <text x="418" y="344">Headers</text>
+    <text x="486" y="344">Body</text>
+    <text x="545" y="344">Transformer</text>
+  </g>
+  <line x1="292" y1="354" x2="338" y2="354" stroke="#F2F2F2" stroke-width="2"/>
+  <text x="292" y="388" fill="#D8D8D8" font-size="14" font-family="Arial, sans-serif">Binding name</text>
+  <g font-family="Arial, sans-serif" font-size="14">
+    <rect x="292" y="406" width="460" height="28" rx="6" fill="#0E0E0E" stroke="#3A3A3A"/>
+    <rect x="292" y="444" width="460" height="28" rx="6" fill="#0E0E0E" stroke="#3A3A3A"/>
+    <rect x="292" y="482" width="460" height="28" rx="6" fill="#0E0E0E" stroke="#3A3A3A"/>
+    <rect x="292" y="520" width="460" height="28" rx="6" fill="#0E0E0E" stroke="#3A3A3A"/>
+    <text x="304" y="425" fill="#EAEAEA">owner</text>
+    <text x="304" y="463" fill="#EAEAEA">repo</text>
+    <text x="304" y="501" fill="#EAEAEA">tree_sha</text>
+    <text x="304" y="539" fill="#EAEAEA">recursive</text>
+  </g>
+  <rect x="760" y="370" width="544" height="172" fill="none" stroke="#9F75FF" stroke-width="4"/>
+  <text x="772" y="390" fill="#D9CAFF" font-size="14" font-family="Arial, sans-serif">Default</text>
+  <g font-family="Arial, sans-serif" font-size="14">
+    <rect x="766" y="404" width="520" height="28" rx="6" fill="#0E0E0E" stroke="#3A3A3A"/>
+    <rect x="766" y="442" width="520" height="28" rx="6" fill="#0E0E0E" stroke="#3A3A3A"/>
+    <rect x="766" y="480" width="520" height="28" rx="6" fill="#0E0E0E" stroke="#3A3A3A"/>
+    <rect x="766" y="518" width="520" height="28" rx="6" fill="#0E0E0E" stroke="#3A3A3A"/>
+    <text x="778" y="423" fill="#EAEAEA">example-owner</text>
+    <text x="778" y="461" fill="#EAEAEA">example-repo</text>
+    <text x="778" y="499" fill="#F39B9B">example-tree-sha</text>
+    <text x="778" y="537" fill="#EAEAEA">1</text>
+  </g>
+  <rect x="1380" y="188" width="180" height="280" rx="8" fill="#000000" stroke="#343434"/>
+  <text x="1396" y="214" fill="#EDEDED" font-size="18" font-family="Arial, sans-serif">Response</text>
+  <g fill="#D0D0D0" font-size="14" font-family="Arial, sans-serif">
+    <text x="1396" y="256">message</text>
+    <text x="1396" y="292">documentation...</text>
+    <text x="1396" y="328">status</text>
+    <text x="1396" y="364">sha</text>
+    <text x="1396" y="400">url</text>
+    <text x="1396" y="436">tree</text>
+    <text x="1396" y="472">truncated</text>
+  </g>
+  <rect x="1470" y="10" width="118" height="28" rx="8" fill="#ECECEC"/>
+  <text x="1503" y="28" fill="#131313" font-size="16" font-family="Arial, sans-serif">Publish</text>
+</svg>

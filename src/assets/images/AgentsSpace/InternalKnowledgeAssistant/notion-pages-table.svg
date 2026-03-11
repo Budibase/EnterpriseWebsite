@@ -1,0 +1,51 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#141414"/>
+  <rect width="36" height="900" fill="#101010"/>
+  <text x="58" y="30" fill="#EDEDED" font-size="22" font-family="Arial, sans-serif">Data</text>
+  <line x1="36" y1="42" x2="1600" y2="42" stroke="#272727"/>
+  <text x="44" y="80" fill="#F3F3F3" font-size="18" font-family="Arial, sans-serif">Sources</text>
+  <g font-family="Arial, sans-serif" font-size="14">
+    <text x="56" y="116" fill="#E7E7E7">End users</text>
+    <text x="56" y="142" fill="#E7E7E7">Manage roles</text>
+    <text x="56" y="176" fill="#B9B9B9">Budibase DB</text>
+  </g>
+  <rect x="42" y="188" width="204" height="30" rx="8" fill="#232323"/>
+  <text x="74" y="208" fill="#F1F1F1" font-size="14" font-family="Arial, sans-serif">Notion Pages</text>
+  <rect x="256" y="42" width="454" height="42" fill="#151515"/>
+  <rect x="276" y="54" width="140" height="26" rx="8" fill="#252525" stroke="#3C3C3C"/>
+  <text x="326" y="72" fill="#F5F5F5" font-size="16" font-family="Arial, sans-serif">Notion Pages</text>
+  <text x="435" y="72" fill="#8C8C8C" font-size="14" font-family="Arial, sans-serif">...</text>
+  <text x="449" y="72" fill="#E5E5E5" font-size="14" font-family="Arial, sans-serif">Create new view</text>
+  <rect x="268" y="92" width="144" height="30" rx="8" fill="#3A2020" stroke="#5E3E3E"/>
+  <text x="286" y="112" fill="#F7E7E7" font-size="14" font-family="Arial, sans-serif">Access: Admin user</text>
+  <g fill="#D7D7D7" font-size="14" font-family="Arial, sans-serif">
+    <text x="430" y="112">Import</text>
+    <text x="500" y="112">Export</text>
+    <text x="575" y="112">Row actions</text>
+    <text x="676" y="112">Screens</text>
+    <text x="760" y="112">Automations</text>
+    <text x="868" y="112">Generate</text>
+  </g>
+  <rect x="270" y="132" width="410" height="160" fill="#000000" stroke="#3D3D3D"/>
+  <line x1="270" y1="166" x2="680" y2="166" stroke="#323232"/>
+  <line x1="272" y1="212" x2="678" y2="212" stroke="#232323"/>
+  <line x1="272" y1="258" x2="678" y2="258" stroke="#232323"/>
+  <line x1="344" y1="132" x2="344" y2="292" stroke="#323232"/>
+  <line x1="496" y1="132" x2="496" y2="292" stroke="#323232"/>
+  <text x="284" y="156" fill="#D0D0D0" font-size="14" font-family="Arial, sans-serif">#</text>
+  <text x="364" y="156" fill="#D0D0D0" font-size="14" font-family="Arial, sans-serif">name</text>
+  <text x="520" y="156" fill="#D0D0D0" font-size="14" font-family="Arial, sans-serif">notion_id</text>
+  <g fill="#EDEDED" font-size="14" font-family="Arial, sans-serif">
+    <text x="284" y="198">1</text>
+    <text x="364" y="198">HR Policy</text>
+    <text x="520" y="198">31384c4f0cac80a696d5c023</text>
+    <text x="284" y="244">2</text>
+    <text x="364" y="244">Onboarding FAQs</text>
+    <text x="520" y="244">31384c4f0cac80399a2adf27</text>
+    <text x="284" y="290">3</text>
+    <text x="364" y="290">Operations Manual</text>
+    <text x="520" y="290">31384c4f0cac809b957efb174</text>
+  </g>
+  <rect x="1472" y="10" width="118" height="28" rx="8" fill="#ECECEC"/>
+  <text x="1505" y="28" fill="#131313" font-size="16" font-family="Arial, sans-serif">Publish</text>
+</svg>

@@ -35,8 +35,7 @@ const customPromptLines = hasCustomPrompt
 ---
 
 <div
-  class="relative rounded-[7px] p-[6px] access-request-prompt-card"
-  style="border: 1px dashed var(--color-grey-800);"
+  class="relative access-request-prompt-card"
   data-prompt-id={promptId}
   data-collapsible={collapsible ? "true" : "false"}
   data-collapsed-height={String(collapsedHeight)}
@@ -53,7 +52,7 @@ const customPromptLines = hasCustomPrompt
       data-prompt-content
       style={`--access-request-collapsed-height:${String(collapsedHeight)}px;`}
     >
-      <InstructionsEditor class="pt-8" background="var(--bg-2)" border="0.5px solid var(--color-grey-900)">
+      <InstructionsEditor class="pt-8" background="var(--bg-2)">
         {
           hasCustomPrompt ? (
             customPromptLines.map((line) => {
@@ -226,10 +225,6 @@ const customPromptLines = hasCustomPrompt
 </div>
 
 <style>
-  .access-request-prompt-card[data-show-view="true"] > .relative {
-    margin-bottom: 2.6rem;
-  }
-
   .access-request-prompt-card[data-show-view="true"]::after {
     content: "";
     position: absolute;
@@ -237,7 +232,6 @@ const customPromptLines = hasCustomPrompt
     right: 6px;
     bottom: 6px;
     height: 2.6rem;
-    border-top: 0.5px solid var(--color-grey-900);
     pointer-events: none;
   }
 
@@ -283,7 +277,7 @@ const customPromptLines = hasCustomPrompt
   .access-request-prompt-view-action {
     position: absolute;
     left: 50%;
-    bottom: 0.58rem;
+    bottom: 1rem;
     transform: translateX(-50%);
     z-index: 11;
     display: inline-flex;

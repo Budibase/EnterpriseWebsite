@@ -1,0 +1,52 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#141414"/>
+  <rect x="0" y="0" width="36" height="900" fill="#101010"/>
+  <rect x="46" y="12" width="26" height="26" rx="6" fill="#242424" stroke="#434343"/>
+  <g fill="#7A7A7A">
+    <circle cx="18" cy="650" r="6"/>
+    <circle cx="18" cy="707" r="6"/>
+    <circle cx="18" cy="764" r="6"/>
+    <circle cx="18" cy="821" r="6"/>
+  </g>
+  <text x="85" y="28" fill="#8D8D8D" font-size="22" font-family="Arial, sans-serif">Agents /</text>
+  <text x="170" y="28" fill="#F1F1F1" font-size="22" font-family="Arial, sans-serif">Employee Knowledge Source Proto</text>
+  <line x1="36" y1="44" x2="1600" y2="44" stroke="#282828"/>
+  <g font-family="Arial, sans-serif" font-size="14">
+    <text x="52" y="70" fill="#AFAFAF">Configuration</text>
+    <text x="151" y="70" fill="#AFAFAF">Knowledge</text>
+    <rect x="228" y="55" width="84" height="24" rx="8" fill="#2D2D2D"/>
+    <text x="238" y="70" fill="#F4F4F4">Deployment</text>
+  </g>
+  <rect x="1470" y="8" width="120" height="28" rx="8" fill="#ECECEC"/>
+  <text x="1503" y="27" fill="#131313" font-size="16" font-family="Arial, sans-serif">Publish</text>
+  <rect x="1470" y="52" width="122" height="28" rx="14" fill="#DDE4EA"/>
+  <text x="1505" y="71" fill="#2E2E2E" font-size="14" font-family="Arial, sans-serif">Set agent live</text>
+  <text x="54" y="118" fill="#F2F2F2" font-size="18" font-family="Arial, sans-serif">Agent in automations</text>
+  <text x="54" y="141" fill="#8E8E8E" font-size="15" font-family="Arial, sans-serif">This agent can be triggered from within Budibase Automations via the Agent node</text>
+  <text x="54" y="189" fill="#F2F2F2" font-size="18" font-family="Arial, sans-serif">Messaging channels</text>
+  <text x="54" y="212" fill="#8E8E8E" font-size="15" font-family="Arial, sans-serif">Deploy your agent to the following messaging channels.</text>
+  <rect x="54" y="230" width="804" height="92" rx="14" fill="#171717" stroke="#333333"/>
+  <line x1="54" y1="275" x2="858" y2="275" stroke="#2B2B2B"/>
+  <circle cx="76" cy="252" r="10" fill="#6278FF"/>
+  <circle cx="76" cy="297" r="10" fill="#6F68D9"/>
+  <text x="96" y="251" fill="#EDEDED" font-size="16" font-family="Arial, sans-serif">Discord</text>
+  <text x="96" y="270" fill="#8C8C8C" font-size="14" font-family="Arial, sans-serif">Allow this agent to respond in Discord channels and threads</text>
+  <text x="96" y="296" fill="#EDEDED" font-size="16" font-family="Arial, sans-serif">Microsoft Teams</text>
+  <text x="96" y="315" fill="#8C8C8C" font-size="14" font-family="Arial, sans-serif">Configure this agent for Microsoft Teams personal, group, and team chats</text>
+  <rect x="730" y="241" width="74" height="24" rx="10" fill="#1F1F1F" stroke="#474747"/>
+  <rect x="730" y="286" width="74" height="24" rx="10" fill="#1F1F1F" stroke="#474747"/>
+  <text x="757" y="258" fill="#EAEAEA" font-size="14" font-family="Arial, sans-serif">Manage</text>
+  <text x="757" y="303" fill="#EAEAEA" font-size="14" font-family="Arial, sans-serif">Manage</text>
+  <rect x="817" y="242" width="22" height="12" rx="6" fill="#2E2E2E"/>
+  <circle cx="822" cy="248" r="4" fill="#7C7C7C"/>
+  <rect x="817" y="287" width="22" height="12" rx="6" fill="#2E2E2E"/>
+  <circle cx="822" cy="293" r="4" fill="#7C7C7C"/>
+  <line x1="890" y1="86" x2="890" y2="872" stroke="#1D1D1D"/>
+  <text x="910" y="122" fill="#F2F2F2" font-size="18" font-family="Arial, sans-serif">Chat preview</text>
+  <text x="1506" y="122" fill="#8D8D8D" font-size="14" font-family="Arial, sans-serif">Refresh chat</text>
+  <circle cx="1240" cy="468" r="8" fill="#666666"/>
+  <text x="1144" y="494" fill="#8D8D8D" font-size="14" font-family="Arial, sans-serif">Your conversation will appear here.</text>
+  <rect x="910" y="810" width="664" height="64" rx="10" fill="#292929" stroke="#3B3B3B"/>
+  <text x="930" y="846" fill="#8B8B8B" font-size="18" font-family="Arial, sans-serif">Ask...</text>
+  <circle cx="1555" cy="842" r="10" fill="#8C8C8C"/>
+</svg>

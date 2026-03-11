@@ -155,6 +155,7 @@ const workflows = defineCollection({
         href: z.string().optional(),
       })
       .optional(),
+    promptCardStyle: z.enum(["default", "snippet"]).optional(),
     heroPrompt: z.string().optional(),
     assetsUsed: assetsUsedSchema.optional(),
     tags: z.array(z.string()),

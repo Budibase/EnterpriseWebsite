@@ -50,6 +50,9 @@ export default defineConfig({
           new URL("./src/components", import.meta.url),
         ),
         "@assets": fileURLToPath(new URL("./src/assets", import.meta.url)),
+        "@DataHeroBg": fileURLToPath(
+          new URL("./src/assets/images/data/DataHeroBg.png", import.meta.url),
+        ),
       },
     },
   },

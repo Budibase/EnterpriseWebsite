@@ -4,10 +4,10 @@
   "exclude": ["dist"],
   "compilerOptions": {
     "baseUrl": ".",
-    
     "paths": {
       "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@DataHeroBg": ["src/assets/images/data/DataHeroBg.png"]
     }
   }
 }

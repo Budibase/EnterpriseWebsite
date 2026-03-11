@@ -1,0 +1,663 @@
+---
+import { Image } from "astro:assets";
+import Icon from "@components/Icon.astro";
+import BudibaseLogo from "@assets/logos/bbSymbol.svg";
+import DataHeroBg from "@DataHeroBg";
+
+interface Props {
+  backdropImage?: string;
+  backdropPaddingClass?: string;
+}
+
+interface DemoTab {
+  label: string;
+  isActive?: boolean;
+  isIconOnly?: boolean;
+  showLogo?: boolean;
+}
+
+interface DemoRow {
+  requestId: string;
+  employee: string;
+  system: string;
+  request: string;
+  category: string;
+  categoryTone:
+    | "sales"
+    | "engineering"
+    | "documentation"
+    | "marketing"
+    | "infrastructure"
+    | "product"
+    | "operations";
+  submitted: string;
+  status: string;
+  statusTone: "pending" | "approved";
+  isHighlighted?: boolean;
+}
+
+interface DetailField {
+  label: string;
+  value?: string;
+  badge?: string;
+  badgeTone?: "neutral" | "sales" | "pending";
+  hasCaret?: boolean;
+  textarea?: boolean;
+}
+
+const {
+  backdropImage,
+  backdropPaddingClass = "px-6 py-6 sm:px-10 sm:py-10 lg:px-32 lg:py-12",
+} = Astro.props as Props;
+
+const id = `table-demo-${Math.random().toString(36).slice(2, 8)}`;
+const resolvedBackdropImage = backdropImage ?? DataHeroBg.src;
+const rootStyle = `--table-demo-backdrop-image: url("${resolvedBackdropImage}")`;
+
+const tabs: DemoTab[] = [
+  { label: "Budibase DB", showLogo: true },
+  { label: "Access Requests", isActive: true },
+  { label: "Support Tickets" },
+  { label: "Expense Approvals" },
+  { label: "Inventory Tracking" },
+  { label: "Add table", isIconOnly: true },
+];
+
+const columns = [
+  "Request ID",
+  "Employee",
+  "System",
+  "Request",
+  "AI Category",
+  "Submitted",
+  "Status",
+];
+
+const rows: DemoRow[] = [
+  {
+    requestId: "AR-1024",
+    employee: "Sarah Chen",
+    system: "Salesforce",
+    request: "Need access for sales reporting",
+    category: "Sales",
+    categoryTone: "sales",
+    submitted: "Mar 5",
+    status: "Pending",
+    statusTone: "pending",
+    isHighlighted: true,
+  },
+  {
+    requestId: "AR-1025",
+    employee: "Mark Davies",
+    system: "GitHub",
+    request: "Contributing to backend repo",
+    category: "Engineering",
+    categoryTone: "engineering",
+    submitted: "Mar 4",
+    status: "Approved",
+    statusTone: "approved",
+  },
+  {
+    requestId: "AR-1026",
+    employee: "Olivia Brown",
+    system: "Notion",
+    request: "Updating documentation",
+    category: "Documentation",
+    categoryTone: "documentation",
+    submitted: "Mar 2",
+    status: "Pending",
+    statusTone: "pending",
+  },
+  {
+    requestId: "AR-1027",
+    employee: "James Patel",
+    system: "HubSpot",
+    request: "Marketing campaign reporting",
+    category: "Marketing",
+    categoryTone: "marketing",
+    submitted: "Mar 3",
+    status: "Approved",
+    statusTone: "approved",
+  },
+  {
+    requestId: "AR-1028",
+    employee: "Emily Turner",
+    system: "AWS",
+    request: "Access to staging environment",
+    category: "Infrastructure",
+    categoryTone: "infrastructure",
+    submitted: "Mar 6",
+    status: "Pending",
+    statusTone: "pending",
+  },
+  {
+    requestId: "AR-1029",
+    employee: "Daniel Lopez",
+    system: "Jira",
+    request: "Managing sprint backlog",
+    category: "Product",
+    categoryTone: "product",
+    submitted: "Mar 2",
+    status: "Approved",
+    statusTone: "approved",
+  },
+  {
+    requestId: "AR-1030",
+    employee: "Hannah Wilson",
+    system: "Slack",
+    request: "Managing workspace settings",
+    category: "Operations",
+    categoryTone: "operations",
+    submitted: "Mar 7",
+    status: "Pending",
+    statusTone: "pending",
+  },
+];
+
+const detailFields: DetailField[] = [
+  {
+    label: "Employee",
+    badge: "Sarah Chen",
+    badgeTone: "neutral",
+    hasCaret: true,
+  },
+  { label: "System", value: "Salesforce" },
+  {
+    label: "Request",
+    value: "Need access for sales reporting",
+    textarea: true,
+  },
+  {
+    label: "Category: Powered by AI",
+    badge: "Sales",
+    badgeTone: "sales",
+    hasCaret: true,
+  },
+  { label: "Status", badge: "Pending", badgeTone: "pending", hasCaret: true },
+];
+---
+
+<div
+  id={id}
+  class="table-demo demo-breakout w-full overflow-hidden"
+  style={rootStyle}
+>
+  <div class:list={["table-demo-backdrop w-full overflow-hidden", backdropPaddingClass]}>
+    <div class="table-demo-shell">
+      <div class="table-demo-window-bar">
+        <div class="table-demo-window-dots" aria-hidden="true">
+          <span class="table-demo-window-dot"></span>
+          <span class="table-demo-window-dot"></span>
+          <span class="table-demo-window-dot"></span>
+        </div>
+        <div class="table-demo-window-address">budibase/data</div>
+        <button type="button" class="table-demo-window-cta">Get Budibase</button>
+      </div>
+
+      <div class="table-demo-main">
+        <div class="table-demo-content">
+          <div class="table-demo-tabs" role="tablist" aria-label="Data tables">
+            {tabs.map((tab) => (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={tab.isActive ? "true" : "false"}
+                class:list={[
+                  "table-demo-tab",
+                  tab.isActive && "is-active",
+                  tab.isIconOnly && "is-icon-only",
+                ]}
+              >
+                {tab.showLogo && (
+                  <span class="table-demo-tab-logo">
+                    <Image src={BudibaseLogo} alt="" class="h-full w-full" />
+                  </span>
+                )}
+                {tab.isIconOnly ? (
+                  <Icon name="Plus" class="h-4 w-4" />
+                ) : (
+                  <span>{tab.label}</span>
+                )}
+              </button>
+            ))}
+          </div>
+
+          <div class="table-demo-body">
+            <div class="table-demo-grid-wrap">
+              <div class="table-demo-grid" role="table" aria-label="Access requests table">
+                <div class="table-demo-grid-row table-demo-grid-row-header" role="row">
+                  {columns.map((column) => (
+                    <div class="table-demo-grid-cell table-demo-grid-heading" role="columnheader">
+                      {column}
+                    </div>
+                  ))}
+                </div>
+
+                {rows.map((row) => (
+                  <div
+                    class:list={[
+                      "table-demo-grid-row",
+                      row.isHighlighted && "is-highlighted",
+                    ]}
+                    role="row"
+                  >
+                    <div class="table-demo-grid-cell" role="cell">{row.requestId}</div>
+                    <div class="table-demo-grid-cell" role="cell">
+                      <span class="table-demo-pill table-demo-pill-neutral">
+                        {row.employee}
+                      </span>
+                    </div>
+                    <div class="table-demo-grid-cell" role="cell">{row.system}</div>
+                    <div class="table-demo-grid-cell" role="cell">{row.request}</div>
+                    <div class="table-demo-grid-cell" role="cell">
+                      <span class:list={["table-demo-pill", `table-demo-pill-${row.categoryTone}`]}>
+                        {row.category}
+                      </span>
+                    </div>
+                    <div class="table-demo-grid-cell" role="cell">{row.submitted}</div>
+                    <div class="table-demo-grid-cell" role="cell">
+                      <span class:list={["table-demo-pill", `table-demo-pill-${row.statusTone}`]}>
+                        {row.status}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <aside class="table-demo-detail" aria-label="Selected access request details">
+              <div class="table-demo-detail-header">AR-1024</div>
+
+              <div class="table-demo-detail-fields">
+                {detailFields.map((field) => (
+                  <div class="table-demo-field">
+                    <div class="table-demo-field-label">{field.label}</div>
+                    <div class:list={["table-demo-field-input", field.textarea && "is-textarea"]}>
+                      {field.badge ? (
+                        <span class:list={["table-demo-pill", `table-demo-pill-${field.badgeTone}`]}>
+                          {field.badge}
+                        </span>
+                      ) : (
+                        <span>{field.value}</span>
+                      )}
+                      {field.hasCaret && (
+                        <Icon name="CaretDown" class="h-3 w-3 shrink-0 text-[var(--table-demo-select-icon)]" />
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .table-demo {
+    --table-demo-bg: var(--bg-1);
+    --table-demo-surface: var(--bg-2);
+    --table-demo-surface-soft: var(--bg-3);
+    --table-demo-border: var(--border-color);
+    --table-demo-text: var(--text-primary);
+    --table-demo-muted: var(--text-secondary);
+    --table-demo-panel: var(--bg-1);
+    --table-demo-highlight: var(--bg-2);
+    --table-demo-window-dot: rgb(var(--text-muted) / 0.6);
+    --table-demo-select-icon: var(--text-secondary);
+    --table-demo-backdrop-image: none;
+  }
+
+  .table-demo,
+  .table-demo * {
+    box-sizing: border-box;
+    font-size: 13px;
+  }
+
+  .table-demo-backdrop {
+    border-radius: 8px;
+    background-image: var(--table-demo-backdrop-image);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .table-demo-shell {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    overflow: hidden;
+    border: 0.5px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--table-demo-bg);
+    color: var(--table-demo-text);
+    box-shadow: 0px 10px 30px rgb(var(--text) / 0.25);
+  }
+
+  .table-demo-window-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 12px;
+    min-height: 28px;
+    border-bottom: 0.5px solid var(--border-color);
+    background: var(--table-demo-surface);
+    padding: 0 8px;
+  }
+
+  .table-demo-window-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .table-demo-window-dot {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 999px;
+    background: var(--table-demo-window-dot);
+  }
+
+  .table-demo-window-address {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(540px, calc(100% - 12.5rem));
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 0.5px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--table-demo-bg);
+    padding: 3px 10px;
+    color: var(--table-demo-muted);
+    line-height: 1;
+    text-align: left;
+  }
+
+  .table-demo-window-cta {
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    padding: 4px 8px;
+    color: var(--table-demo-muted);
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 160ms ease;
+  }
+
+  .table-demo-window-cta:hover {
+    background: rgb(var(--text) / 0.06);
+  }
+
+  .table-demo-main {
+    display: flex;
+    min-height: 0;
+    flex: 1 1 auto;
+    background: var(--table-demo-bg);
+  }
+
+  .table-demo-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .table-demo-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    border-bottom: 0.5px solid var(--table-demo-border);
+    padding: 6px 12px;
+    background: var(--table-demo-bg);
+  }
+
+  .table-demo-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    padding: 4px 8px;
+    color: var(--table-demo-muted);
+    font-size: 13px;
+    line-height: 1.2;
+    cursor: pointer;
+  }
+
+  .table-demo-tab.is-active {
+    background: var(--table-demo-surface-soft);
+    color: var(--table-demo-text);
+  }
+
+  .table-demo-tab.is-icon-only {
+    border-radius: 12px;
+    padding-inline: 8px;
+  }
+
+  .table-demo-tab-logo {
+    display: inline-flex;
+    height: 15px;
+    width: 15px;
+    align-items: center;
+    justify-content: center;
+    color: var(--table-demo-text);
+  }
+
+  .table-demo-body {
+    display: flex;
+    min-height: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    background: var(--table-demo-bg);
+  }
+
+  .table-demo-grid-wrap {
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .table-demo-grid {
+    min-width: 920px;
+    min-height: 100%;
+    border-bottom: 0.5px solid var(--table-demo-border);
+  }
+
+  .table-demo-grid-row {
+    display: grid;
+    grid-template-columns: 100px 120px 95px 1fr 140px 95px 120px;
+  }
+
+  .table-demo-grid-row-header {
+    background: var(--table-demo-surface);
+  }
+
+  .table-demo-grid-row.is-highlighted .table-demo-grid-cell {
+    background: var(--table-demo-highlight);
+  }
+
+  .table-demo-grid-cell {
+    display: flex;
+    min-height: 37px;
+    align-items: center;
+    overflow: hidden;
+    border-right: 0.5px solid var(--table-demo-border);
+    border-bottom: 0.5px solid var(--table-demo-border);
+    padding: 8px 12px;
+    background: var(--table-demo-bg);
+    color: var(--table-demo-text);
+    line-height: 1.2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .table-demo-grid-row .table-demo-grid-cell:first-child {
+    padding-inline: 16px 10px;
+  }
+
+  .table-demo-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 22px;
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-size: 13px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .table-demo-pill-neutral {
+    background: var(--table-demo-surface-soft);
+    color: var(--table-demo-text);
+  }
+
+  .table-demo-pill-sales {
+    background: var(--purple-600);
+    color: var(--bg-1);
+  }
+
+  .table-demo-pill-engineering {
+    background: var(--blue-600);
+    color: var(--bg-1);
+  }
+
+  .table-demo-pill-documentation {
+    background: var(--orange-600);
+    color: var(--bg-1);
+  }
+
+  .table-demo-pill-marketing {
+    background: var(--accent-green);
+    color: var(--bg-1);
+  }
+
+  .table-demo-pill-infrastructure {
+    background: var(--accent-red);
+    color: var(--bg-1);
+  }
+
+  .table-demo-pill-product {
+    background: var(--accent-blue);
+    color: var(--bg-1);
+  }
+
+  .table-demo-pill-operations {
+    background: var(--accent-grey);
+    color: var(--bg-1);
+  }
+
+  .table-demo-pill-pending {
+    background: var(--blue-200);
+    color: var(--table-demo-text);
+    min-width: 90px;
+  }
+
+  .table-demo-pill-approved {
+    background: var(--green-200);
+    color: var(--table-demo-text);
+    min-width: 90px;
+  }
+
+  .table-demo-detail {
+    display: none;
+    width: 280px;
+    flex: 0 0 280px;
+    border-left: 0.5px solid var(--table-demo-border);
+    background: var(--table-demo-panel);
+    padding: 12px 16px;
+  }
+
+  .table-demo-detail-header {
+    display: flex;
+    align-items: center;
+    color: var(--table-demo-text);
+    line-height: 1.2;
+  }
+
+  .table-demo-detail-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 12px;
+  }
+
+  .table-demo-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .table-demo-field-label {
+    color: var(--table-demo-muted);
+    line-height: 1.2;
+  }
+
+  .table-demo-field-input {
+    display: flex;
+    min-height: 32px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border: 1px solid var(--table-demo-border);
+    border-radius: 4px;
+    background: var(--table-demo-surface);
+    padding: 8px 12px;
+    color: var(--table-demo-text);
+    line-height: 1.2;
+  }
+
+  .table-demo-field-input.is-textarea {
+    align-items: flex-start;
+    min-height: 64px;
+    padding-block: 8px;
+    line-height: 1.25;
+  }
+
+  @media (min-width: 1024px) {
+    .table-demo-detail {
+      display: block;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .table-demo-backdrop {
+      padding-inline: 16px !important;
+    }
+
+    .table-demo-window-bar {
+      gap: 8px;
+    }
+
+    .table-demo-window-cta {
+      display: none;
+    }
+
+    .table-demo-window-address {
+      width: min(540px, calc(100% - 4rem));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .table-demo-backdrop {
+      padding-inline: 12px !important;
+      padding-block: 12px !important;
+    }
+
+    .table-demo-window-address {
+      justify-self: stretch;
+    }
+  }
+</style>

@@ -1,12 +1,13 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
 import PlatformLayout from "@components/PlatformLayout.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import Button from "@components/Button.astro";
 import { getProductPageMeta } from "../_pageMeta";
-import HeroBg from "@assets/images/DataTables/hero.png";
+import TableDemo from "@components/TableDemo.astro";
 import Mountains1 from "@assets/images/DataTables/cards/mountains1.png";
 import Mountains2 from "@assets/images/backgrounds/mountains/2.png";
 import Mountains4 from "@assets/images/backgrounds/mountains/4.png";
-import { Image } from "astro:assets";
 import Card from "@components/cards/Card.astro";
 
 const { title: pageTitle, description: pageDescription } = getProductPageMeta(
@@ -15,14 +16,44 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <PlatformLayout title={pageTitle} description={pageDescription}>
+  <PlatformLayout
+    title={pageTitle}
+    description={pageDescription}
+    heroHeader={true}
+  >
+    <Fragment slot="header">
+      <div class="mx-auto max-w-xl">
+        <TitleBlock
+          variant="hero"
+          titleLines={[
+            { text: "Tables for" },
+            { text: "operational data" },
+          ]}
+          titleColorMode="split-primary-secondary"
+          titleClass="mb-4 w-full leading-[0.9]! tracking-[-0.02em]!"
+        />
+        <p
+          class="hero-description-small mx-auto max-w-xl text-base md:!text-xl !mb-4"
+        >
+          Store new data or connect PostgreSQL, MySQL, Google Sheets and more.
+          Work with data in a spreadsheet-style interface, create views, and
+          run AI on rows.
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <Button
+          label="Try for free"
+          url="https://account.budibase.app/register"
+          variant="primary"
+          size="large"
+          target="_blank"
+        />
+      </div>
+    </Fragment>
+
     <div class="mb-8">
       <div class="mb-4">
-        <Image
-          src={HeroBg}
-          alt="Data tables"
-          class="w-full h-96 object-cover rounded-md"
-        />
+        <TableDemo />
       </div>
 
       <section class="mt-16 mb-8">
@@ -76,3 +107,9 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
     </div>
   </PlatformLayout>
 </Layout>
+
+<style>
+  :global(#site-nav.nav-shell) {
+    background-color: var(--bg-1) !important;
+  }
+</style>

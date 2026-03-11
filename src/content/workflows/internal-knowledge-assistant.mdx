@@ -1,0 +1,478 @@
+---
+slug: internal-knowledge-assistant
+title: Internal Knowledge Assistant
+sidebar:
+  - id: overview
+    label: Overview
+  - id: agent-instructions
+    label: Agent instructions
+  - id: api-requests
+    label: API requests
+  - id: github
+    label: GitHub
+  - id: notion
+    label: Notion
+  - id: tables
+    label: Tables
+  - id: invoking-the-agent
+    label: Invoking the agent
+role: Operations Enablement
+outcome: Answer internal questions with grounded responses and citations from GitHub and Notion knowledge sources.
+setupTime: "~60 min"
+difficulty: Medium
+promptCardStyle: snippet
+heroPrompt: |
+  ## Agent role
+  The agent is an internal company knowledge assistant. Its responsibility is to answer employee questions by selecting the correct knowledge domain, retrieving information from the appropriate system of record, and responding strictly from documented sources.
+
+  The organization uses multiple knowledge sources:
+  - IT knowledge is stored in GitHub
+  - HR, Operations, and Onboarding knowledge is stored in Notion
+
+  ## Inputs
+  - The user's question
+  - Access to Notion retrieval tools and APIs
+  - Access to GitHub retrieval tools and APIs
+  - Retrieved document content when available
+  - Document metadata when available (page title, section heading, document URL)
+
+  ## Actions
+  - Determine the topic of the user's question
+  - Map the question to the correct knowledge domain
+  - Use the corresponding retrieval mechanism
+  - Extract relevant information from retrieved documents
+  - Generate a response grounded strictly in retrieved content
+
+  ## Domain selection logic
+  - Systems, devices, software, access, security, passwords, incidents, and technical issues -> GitHub
+  - Working hours, leave, attendance, policies, conduct, and remote work -> Notion HR knowledge
+  - Processes, approvals, documentation, meetings, workflows, and escalations -> Notion Operations knowledge
+  - New hires, onboarding, training, initial access, and first-day issues -> Notion Onboarding knowledge
+  - If retrieval is unsuccessful or ambiguous, retry classification
+
+  ## Retrieval strategy
+  - Select the knowledge domain before retrieving documents
+  - Retrieve the most relevant document or documents from the appropriate source
+  - Prefer precise answers when clearly available
+  - If relevant documents exist but do not contain a clear answer, direct the user to the authoritative document
+  - Retry the retrieval flow up to two times if the first classification is wrong
+
+  ## Retrieving documents from GitHub
+  - Use api.github.git/get-tree to search available knowledge base articles by title and path
+  - Use api.github.repos/get-content with the chosen path to inspect candidate documents
+  - Do not repeat content lookup more than three times before using fallback behavior
+
+  ## Retrieving documents from Notion
+  - Retrieve names and notion_ids from budibase.Notion Pages.list_rows
+  - Use the selected id as page_id in api.notion.Page_getPage to fetch the source URL
+  - Use the same id as block_id in api.notion.Block_getChildren to fetch page contents
+
+  ## Fallback behavior
+  - Do not speculate or infer
+  - Do not say documentation is incomplete
+  - Direct the user to the most relevant document when no explicit answer is available
+
+  ## Output
+  - Standard responses include Answer and Source
+  - Fallback responses point users to the most relevant document or page
+  - If no relevant documentation is found, respond: I cannot find this information in the knowledge base.
+
+  ## Rules
+  - Only use retrieved content from the selected knowledge source
+  - Do not rely on prior knowledge or undocumented assumptions
+  - Do not guess, infer, or fabricate policies or procedures
+  - Prefer explicit document statements over interpretation
+  - Maintain a neutral, professional tone
+  - Never invent URLs
+  - For all GitHub API requests owner = { example-owner } and repo = { example-repo }
+assetsUsed:
+  tables:
+    - Notion Pages
+  automations:
+    - Email Received trigger
+    - Send Email (SMTP)
+    - Agent invocation flow
+  tools:
+    - GitHub REST template
+    - Notion API
+    - Budibase REST templates
+    - BudibaseDB
+  aiModel:
+    - Budibase AI
+    - OpenAI-compatible LLM provider
+  apps:
+    - Budibase Agent chat UI
+    - Discord deployment
+    - Teams deployment
+tags:
+  - Agents
+  - Automations
+  - Chat
+  - Human-in-the-loop
+aiAssists:
+  - Domain classification
+  - Document retrieval selection
+  - Citation-grounded response generation
+humansDecide:
+  - Escalation when documentation does not answer the question
+  - Maintenance of source documents and system mappings
+  - Deployment channel and support workflow design
+steps:
+  - title: Receive a user question
+    description: A user submits a natural-language question through chat or email.
+    humanDecision: false
+  - title: Classify the knowledge domain
+    description: The agent determines whether the request belongs to IT, HR, operations, or onboarding.
+    humanDecision: false
+  - title: Retrieve source candidates
+    description: The workflow looks up GitHub documents or Notion page IDs using the selected domain.
+    humanDecision: false
+  - title: Inspect source content
+    description: The agent fetches the most relevant document content and source URL, retrying when needed.
+    humanDecision: false
+  - title: Draft a grounded answer
+    description: The agent answers strictly from the retrieved content and includes a source citation.
+    humanDecision: false
+  - title: Escalate unresolved queries
+    description: If no definitive answer is available, the agent routes the user to the most relevant resource or support team.
+    humanDecision: true
+integrations:
+  - GitHub
+  - Notion
+  - BudibaseDB
+  - Email/SMTP
+  - Discord
+  - Teams
+faq:
+  - question: Does the assistant answer from its own knowledge?
+    answer: No. The workflow is designed to answer only from retrieved GitHub or Notion content.
+  - question: What happens when the documents are relevant but not definitive?
+    answer: The agent returns a navigation-style response that directs the user to the authoritative document instead of guessing.
+  - question: Why is a BudibaseDB table needed?
+    answer: The Notion Pages table maps human-readable page names to the Notion IDs required by the Notion API requests.
+  - question: Can this be served outside the Budibase builder?
+    answer: Yes. The guide covers deployment through email-based automations, external chat channels like Discord and Teams, and the native Budibase chat UI.
+lastUpdated: 2026-03-11
+---
+import deploymentScreenshot from "../../assets/images/AgentsSpace/InternalKnowledgeAssistant/deployment.svg?url";
+import notionPagesTableScreenshot from "../../assets/images/AgentsSpace/InternalKnowledgeAssistant/notion-pages-table.svg?url";
+import notionTransformerScreenshot from "../../assets/images/AgentsSpace/InternalKnowledgeAssistant/notion-transformer.svg?url";
+import githubBindingsScreenshot from "../../assets/images/AgentsSpace/InternalKnowledgeAssistant/github-bindings.svg?url";
+
+<h2 id="overview">Overview</h2>
+
+Internal knowledge assistants are one of the most common use cases for agentic AI. In most companies, information about policies, systems, and internal processes is spread across multiple tools, which makes it harder for employees to find answers and increases routine workload for support teams.
+
+This guide shows how to build an AI-powered assistant in Budibase Agents that retrieves answers from external knowledge sources instead of relying on model memory. The result is a grounded assistant that can answer questions, cite its source, and fall back cleanly when the documentation is relevant but not explicit.
+
+What are we building?
+
+- A Budibase Agent that accepts natural-language questions from employees.
+- A routing layer that decides whether the question belongs to IT, HR, operations, or onboarding.
+- A retrieval flow that uses GitHub for IT knowledge and Notion for HR, operations, and onboarding knowledge.
+- A response pattern that cites the supporting document or directs the user to the right source when no clear answer is present.
+
+Here is the high-level logic:
+
+- Users can submit questions about IT, HR, operations, and onboarding in natural language.
+- The agent classifies the query before any retrieval happens.
+- IT questions use GitHub document discovery and content retrieval.
+- HR, operations, and onboarding questions use a Budibase table to look up the right Notion page ID before calling the Notion API.
+- The agent can retry classification in overlapping or ambiguous cases.
+- When a definitive answer is available, the response includes a citation.
+- When the document is relevant but non-definitive, the user is directed to the authoritative source.
+- When no useful documentation is found, the user is told to contact the appropriate support team.
+
+To build along with this guide, you need a Budibase workspace plus access to GitHub and Notion. The example resources used here can be swapped out for your own documentation sources.
+
+<h2 id="agent-instructions">Agent instructions</h2>
+
+Start with a fresh Budibase workspace and connect an LLM under `AI Config`. Budibase supports any model exposed through an OpenAI-compatible API, including cloud-hosted and self-hosted options. In this example, the agent uses Budibase AI.
+
+Once the model is available in the builder, define the agent's behavior in the `Instructions` editor. The prompt below is adapted from the source guide and is the core of the workflow:
+
+```text
+Agent role
+
+The agent is an internal company knowledge assistant. Its responsibility is to answer employee questions by selecting the correct knowledge domain, retrieving information from the appropriate system of record, and responding strictly from documented sources.
+
+The organization uses multiple knowledge sources:
+- IT knowledge is stored in GitHub
+- HR, Operations, and Onboarding knowledge is stored in Notion
+
+Inputs
+- The user's question
+- Access to Notion retrieval tools and APIs
+- Access to GitHub retrieval tools and APIs
+- Retrieved document content when available
+- Document metadata when available (page title, section heading, document URL)
+
+Actions
+- Determine the topic of the user's question
+- Map the question to the correct knowledge domain
+- Use the corresponding retrieval mechanism
+- Extract relevant information from retrieved documents
+- Generate a response grounded strictly in retrieved content
+
+Domain Selection Logic
+Classify the user's request before retrieval:
+- Questions about systems, devices, software, access, security, passwords, incidents, technical issues -> Use GitHub (IT knowledge)
+- Questions about working hours, leave, attendance, policies, conduct, remote work -> Use Notion (HR knowledge)
+- Questions about processes, approvals, documentation, meetings, workflows, escalations -> Use Notion (Operations knowledge)
+- Questions about new hires, onboarding, training, initial access, first-day issues -> Use Notion (Onboarding knowledge)
+- If retrieval is unsuccessful or the domain of the request is ambiguous, reclassification can be attempted
+
+Retrieval Strategy
+- Select the knowledge domain before retrieving documents
+- Retrieve the most relevant document or documents from the appropriate source
+- Prefer extracting precise answers when clearly available
+- If relevant documents exist but do not contain a clear, explicit answer, provide a navigation response directing the user to the authoritative document
+- The retrieval flow may be retried up to two times if the initial classification is wrong
+
+Retrieving Documents From GitHub
+- Use api.github.git/get-tree to search available knowledge base articles and identify candidates based on title and path
+- Use api.github.repos/get-content with the selected path to inspect the best match and return its URL
+- Do not repeat content lookup more than three times before using fallback behavior
+
+Retrieving Documents From Notion
+- Retrieve names and notion_ids using budibase.Notion Pages.list_rows
+- Use the selected id as page_id in api.notion.Page_getPage to retrieve the source URL
+- Use the same id as block_id in api.notion.Block_getChildren to retrieve page contents
+
+Fallback Behavior
+- Do not speculate or infer
+- Do not state that the information is missing or incomplete
+- Direct the user to the most relevant document or page when no explicit answer is available
+
+Output
+Standard responses must follow this structure:
+Answer
+Provide a concise, factual response derived strictly from retrieved documents.
+Source
+Reference the supporting document, page, or section heading when available. Print the full URL.
+
+Fallback navigation responses:
+Answer
+The requested information is documented in the following resource:
+[Document Title / Link]
+Source
+[Document Title]
+
+If no relevant documentation is found:
+Answer
+I cannot find this information in the knowledge base.
+
+Rules
+- Only use retrieved content from the selected knowledge source
+- Do not rely on prior knowledge or undocumented assumptions
+- Do not guess, infer, or fabricate policies or procedures
+- Prefer explicit document statements over interpretation
+- Use fallback navigation when documents are relevant but non-definitive
+- Maintain a neutral, professional tone
+- Do not provide opinions, advice, or undocumented explanations
+- Do not reference internal retrieval limitations or document quality
+- Never invent URLs
+- For all GitHub API requests owner = { example-owner } and repo = { example-repo }
+```
+
+This prompt gives the agent a clear contract: classify first, retrieve from the right system of record, answer only from returned content, and avoid improvising when the docs are vague.
+
+<h2 id="api-requests">API requests</h2>
+
+This workflow relies on four external tool calls across GitHub and Notion, plus one BudibaseDB table that stores the Notion page mapping. The guide uses Budibase REST templates, which provide prebuilt endpoint definitions for popular integrations that you can configure with your own authentication and defaults.
+
+The retrieval split is simple:
+
+- GitHub handles IT documentation discovery and content retrieval.
+- Notion handles HR, operations, and onboarding documentation lookup and content retrieval.
+- BudibaseDB stores the page name to `notion_id` mapping needed by the Notion requests.
+
+<h2 id="github">GitHub</h2>
+
+The GitHub side uses two endpoints from the GitHub REST template:
+
+- `git/get-tree` returns the repository file structure, including document names and paths.
+- `repos/get-content` returns the contents of a specific document using the selected `path`.
+
+Configure `git/get-tree` with these default values inside Budibase:
+
+- `owner`: the GitHub organization or username
+- `repo`: the repository name
+- `tree_sha`: the file tree identifier, which can be retrieved from `repos/get-branch` for the main branch
+- `recursive`: `1`
+
+<figure>
+  <img
+    src={githubBindingsScreenshot}
+    alt="GitHub git/get-tree request configuration showing default owner, repo, tree_sha, and recursive bindings in the Budibase API builder."
+  />
+  <figcaption>The GitHub template uses fixed defaults for repository lookup, with only the selected file path changing later in the flow.</figcaption>
+</figure>
+
+The `repos/get-content` request requires:
+
+- `owner`
+- `repo`
+- `path`
+
+In this pattern, the agent uses `git/get-tree` once to discover candidate documents, then uses `repos/get-content` to inspect likely matches. Keep the content lookup capped at three attempts so the assistant moves to fallback behavior instead of looping indefinitely.
+
+The sample repo in the guide is a flat set of markdown documents. A typical troubleshooting article looks like this:
+
+```text
+# VPN Troubleshooting
+If you are unable to connect to the VPN, first verify that your internet connection is active and stable. VPN connectivity requires a working network connection, so confirm that you can access external websites before proceeding. If your connection is functioning normally, disconnect and reconnect the VPN client. Temporary session issues may prevent successful authentication. If the VPN displays an error or repeatedly disconnects, restart your device to clear any network or client-related conflicts.
+
+If problems persist, ensure that you are using your assigned company credentials and that multi-factor authentication (MFA) requests are approved when prompted. Authentication failures are a common cause of VPN connection errors. Additionally, confirm that no local firewall or security software is blocking the VPN client. If the VPN continues to fail after these checks, capture the exact error message and report the issue through the Helpdesk Portal. Providing the error details will help IT diagnose and resolve the VPN failure more efficiently.
+```
+
+Because `repos/get-content` returns base64-encoded content, add a transformer to decode the file before passing it to the agent:
+
+```javascript
+function b64decode(str) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  let out = "", buffer = 0, bits = 0;
+  str = (str || "").replace(/\n/g, "");
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i];
+    if (c === "=") break;
+    const val = chars.indexOf(c);
+    if (val < 0) continue;
+    buffer = (buffer << 6) | val;
+    bits += 6;
+    if (bits >= 8) {
+      bits -= 8;
+      out += String.fromCharCode((buffer >> bits) & 0xff);
+    }
+  }
+  return out;
+}
+
+return {
+  html_url: data.html_url,
+  path: data.path,
+  name: data.name,
+  decoded_content: b64decode(data.content)
+};
+```
+
+<h2 id="notion">Notion</h2>
+
+For Notion, use two API requests:
+
+- `Page_getPage` to fetch the public URL for a page
+- `Block_getChildren` to fetch the page body
+
+Both requests use the Notion page ID stored in Budibase:
+
+- pass the value as `page_id` to `Page_getPage`
+- pass the same value as `block_id` to `Block_getChildren`
+
+The raw `Block_getChildren` response includes a lot of page metadata and formatting information. Instead of sending the full payload to the model, use a transformer to extract only the headings and their paragraph text:
+
+```javascript
+const sections = [];
+let current = null;
+for (const b of (data.results || [])) {
+  if (b.type === "heading_2" || b.type === "heading_3") {
+    current = {
+      heading: b[b.type].rich_text.map(t => t.plain_text).join(""),
+      body: "",
+      heading_id: b.id
+    };
+    sections.push(current);
+    continue;
+  }
+  if (!current || b.type !== "paragraph") continue;
+  const text = b.paragraph.rich_text.map(t => t.plain_text).join("");
+  if (!text) continue;
+  current.body += (current.body ? "\n" : "") + text;
+}
+return sections.filter(s => s.body);
+```
+
+<figure>
+  <img
+    src={notionTransformerScreenshot}
+    alt="Budibase Notion Block_getChildren API screen showing a JavaScript transformer that extracts headings and paragraph bodies into a compact JSON structure."
+  />
+  <figcaption>The Notion transformer trims the payload down to the headings and body text that the agent actually needs.</figcaption>
+</figure>
+
+That transformer returns a compact structure like:
+
+```json
+{
+  "heading": "When will I receive my login credentials?",
+  "body": "System credentials are issued on the employee's official start date.",
+  "heading_id": "exampleHeadingId"
+}
+```
+
+In the example setup, the agent can access three Notion pages:
+
+- `HR Policy`
+- `Onboarding FAQs`
+- `Operations Manual`
+
+An excerpt from the operations documentation looks like this:
+
+```text
+# Operations Manual
+**Last Updated:** 2026-01-01
+**Owner:** Operations
+---
+## Approvals & Authorizations
+Formal approvals must be recorded in the ticketing system.
+Approvals provided via chat, email, or verbal agreement are not valid.
+---
+## Communication Channels
+Slack is used for day-to-day coordination and discussion.
+Decisions and commitments must be documented in the appropriate system of record.
+```
+
+<h2 id="tables">Tables</h2>
+
+The workflow requires one BudibaseDB table named `Notion Pages`. The agent queries this table through `budibase.Notion Pages.list_rows` to map a human-readable page name to the Notion page ID used by the API layer.
+
+Store two text fields:
+
+- `name`: the document name the agent can reason about
+- `notion_id`: the actual Notion page ID required by the API requests
+
+You can seed the table with a simple CSV:
+
+```csv
+name,notion_id
+example_name,example_id
+```
+
+Replace the placeholder IDs with real page identifiers for each document you want the agent to search.
+
+<figure>
+  <img
+    src={notionPagesTableScreenshot}
+    alt="Budibase data table named Notion Pages with rows for HR Policy, Onboarding FAQs, and Operations Manual, each mapped to a notion_id value."
+  />
+  <figcaption>The `Notion Pages` table acts as the lookup layer between human-readable page names and the Notion IDs required by the API requests.</figcaption>
+</figure>
+
+<h2 id="invoking-the-agent">Invoking the agent</h2>
+
+Because this is a conversational assistant, you have several deployment options depending on where employees already work.
+
+One option is to invoke the agent through Budibase Automations. For example, you can pair an `Email Received` trigger with `Send Email (SMTP)` so the assistant can monitor a shared support inbox and reply with grounded answers.
+
+You can also deploy Budibase Agents into external chat channels such as Discord and Teams through the agent's `Deployment` tab. That gives users a familiar interface while keeping the retrieval logic and prompt inside Budibase.
+
+<figure>
+  <img
+    src={deploymentScreenshot}
+    alt="Budibase agent deployment screen showing Discord and Microsoft Teams messaging channel options alongside a chat preview panel."
+  />
+  <figcaption>The deployment panel supports both messaging-channel rollouts and a native Budibase chat experience.</figcaption>
+</figure>
+
+Finally, Budibase provides a native authenticated chat UI. If you want a direct internal assistant experience without routing through another channel, the built-in chat interface is the simplest way to expose the agent to end users.
+
+The common requirement across all three options is the same: make sure the retrieval tools, page mappings, and response rules are in place before you expose the assistant. The delivery channel can change, but the grounding pattern should remain identical.
