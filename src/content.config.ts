@@ -178,18 +178,6 @@ const workflows = defineCollection({
   }),
 });
 
-const docs = defineCollection({
-  loader: glob({
-    pattern: ["**/*.md", "**/*.mdx"],
-    base: "./src/content/docs",
-  }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    sourceUrl: z.string().url(),
-  }),
-});
-
 const changelog = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/changelog" }),
   schema: z.object({
@@ -231,7 +219,6 @@ export const collections = {
   pages,
   caseStudies,
   workflows,
-  docs,
   changelog,
   legal,
 };

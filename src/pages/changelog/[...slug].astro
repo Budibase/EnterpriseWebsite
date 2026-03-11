@@ -1,16 +1,17 @@
 ---
-import { type CollectionEntry, getCollection, render } from "astro:content";
+import { type CollectionEntry, render } from "astro:content";
 import { format } from "date-fns";
 import Layout from "../../layouts/MainLayout.astro";
 import Tag from "@components/Tag.astro";
 import Icon from "@components/Icon.astro";
+import { getPublishedChangelogEntries } from "../../lib/changelog";
 
 interface Props {
   entry: CollectionEntry<"changelog">;
 }
 
 export async function getStaticPaths() {
-  const entries = await getCollection("changelog", ({ data }) => !data.draft);
+  const entries = await getPublishedChangelogEntries();
   return entries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
