@@ -1,9 +1,14 @@
 ---
-const bgImage = "http://localhost:3845/assets/4f54b55b9fb943cdd8a4ddc59ebb708b74a8422a.png";
-const jessAvatar = "http://localhost:3845/assets/a4ac1ce1a09b93084ada03c5324ed12dcdc02e8b.png";
-const sarahAvatar = "http://localhost:3845/assets/438d31d31b08422f38f059017468f43d372ddf38.png";
-const assistantSymbol = "http://localhost:3845/assets/365e19074e1463d5fbea08d11cfa1a47ca1e504a.svg";
-const sendIcon = "http://localhost:3845/assets/67c779c92fad7683eb52f1fea92fc605df0830a5.svg";
+import { Image } from "astro:assets";
+import BudibaseSymbol from "@assets/BBSymbolWhite.svg";
+import JessAvatarImage from "@assets/images/avatars/Avatar.png";
+import SarahAvatarImage from "@assets/images/avatars/Ellipse-1.png";
+import ValleyImage from "@assets/images/homepage/valley.png";
+import PaperPlaneTiltFill from "phosphor-astro/PaperPlaneTiltFill.astro";
+
+const bgImage = ValleyImage.src;
+const jessAvatar = JessAvatarImage.src;
+const sarahAvatar = SarahAvatarImage.src;
 
 const requestRows = [
   {
@@ -83,7 +88,14 @@ const requestRows = [
 const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
-<div id={id} class="ops-platform-demo-new" data-state="idle" data-ops-platform-demo-new>
+<div
+  id={id}
+  class="ops-platform-demo-new"
+  data-state="idle"
+  data-analysis-step="0"
+  data-panel-active="false"
+  data-ops-platform-demo-new
+>
   <img src={bgImage} alt="" class="ops-platform-demo-new__bg" aria-hidden="true" />
 
   <div class="ops-platform-demo-new__layout">
@@ -150,11 +162,7 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
 
         <div class="ops-platform-demo-new__message ops-platform-demo-new__message--assistant">
           <div class="ops-platform-demo-new__assistant-avatar">
-            <img
-              src={assistantSymbol}
-              alt=""
-              class="ops-platform-demo-new__assistant-avatar-icon"
-            />
+            <Image src={BudibaseSymbol} alt="" class="ops-platform-demo-new__assistant-avatar-icon" />
           </div>
           <div class="ops-platform-demo-new__message-body">
             <div class="ops-platform-demo-new__message-meta">
@@ -205,7 +213,7 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
               data-ops-send
               aria-label="Send request"
             >
-              <img src={sendIcon} alt="" class="ops-platform-demo-new__send-icon" />
+              <PaperPlaneTiltFill class="ops-platform-demo-new__send-icon" aria-hidden="true" />
               <span>Send</span>
             </button>
           </div>
@@ -218,7 +226,7 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
               class="ops-platform-demo-new__send-button ops-platform-demo-new__send-button--inactive"
               tabindex="-1"
             >
-              <img src={sendIcon} alt="" class="ops-platform-demo-new__send-icon" />
+              <PaperPlaneTiltFill class="ops-platform-demo-new__send-icon" aria-hidden="true" />
               <span>Send</span>
             </button>
           </div>
@@ -618,6 +626,7 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
     width: 11.603px;
     height: 12.996px;
     display: block;
+    color: currentColor;
   }
 
   .ops-platform-demo-new__requests-panel {
@@ -628,11 +637,7 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
     transition: opacity 320ms ease;
   }
 
-  .ops-platform-demo-new[data-state="request-visible"] .ops-platform-demo-new__requests-panel,
-  .ops-platform-demo-new[data-state="typing"] .ops-platform-demo-new__requests-panel,
-  .ops-platform-demo-new[data-state="row-inserted"] .ops-platform-demo-new__requests-panel,
-  .ops-platform-demo-new[data-state="response-visible"] .ops-platform-demo-new__requests-panel,
-  .ops-platform-demo-new[data-state="hold"] .ops-platform-demo-new__requests-panel {
+  .ops-platform-demo-new[data-panel-active="true"] .ops-platform-demo-new__requests-panel {
     opacity: 1;
   }
 
@@ -962,6 +967,8 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let timers = [];
     let isRunning = false;
+    let hasAutoPlayed = false;
+    let observer;
 
     function clearTimers() {
       timers.forEach((timer) => window.clearTimeout(timer));
@@ -981,9 +988,14 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
       root.dataset.analysisStep = String(step);
     }
 
+    function setPanelActive(isActive) {
+      root.dataset.panelActive = String(isActive);
+    }
+
     function resetToIdle() {
       setState("idle");
       setAnalysisStep(0);
+      setPanelActive(false);
       isRunning = false;
     }
 
@@ -991,6 +1003,7 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
       clearTimers();
       setState("hold");
       setAnalysisStep(3);
+      setPanelActive(true);
       isRunning = false;
     }
 
@@ -1001,11 +1014,13 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
       isRunning = true;
       setState("send-pressed");
       setAnalysisStep(0);
+      setPanelActive(false);
 
       queue(() => setState("request-visible"), 1000);
       queue(() => setState("typing"), 2000);
       queue(() => setAnalysisStep(1), 2500);
       queue(() => setAnalysisStep(2), 3000);
+      queue(() => setPanelActive(true), 3000);
       queue(() => setAnalysisStep(3), 3500);
       queue(() => setState("row-inserted"), 4000);
       queue(() => setState("response-visible"), 4420);
@@ -1013,17 +1028,30 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
       queue(resetToIdle, 12700);
     }
 
-    if (prefersReducedMotion.matches) {
-      showFinalState();
-    }
-
     sendButton?.addEventListener("click", () => {
-      if (prefersReducedMotion.matches) {
-        showFinalState();
-        return;
-      }
+      if (prefersReducedMotion.matches || isRunning) return;
       startSequence();
     });
+
+    observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry?.isIntersecting || hasAutoPlayed) return;
+
+        hasAutoPlayed = true;
+        observer?.disconnect();
+
+        if (prefersReducedMotion.matches) {
+          showFinalState();
+          return;
+        }
+
+        queue(startSequence, 500);
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(root);
 
     prefersReducedMotion.addEventListener?.("change", (event) => {
       if (event.matches) {

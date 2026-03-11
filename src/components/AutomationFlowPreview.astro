@@ -1,0 +1,394 @@
+---
+import { Image } from "astro:assets";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg";
+import BambooHrLogo from "@assets/logos/bamboohr.svg";
+import ClockFill from "phosphor-astro/ClockFill.astro";
+import RowsPlusBottomFill from "phosphor-astro/RowsPlusBottomFill.astro";
+import PaperPlaneTiltFill from "phosphor-astro/PaperPlaneTiltFill.astro";
+import SparkleFill from "phosphor-astro/SparkleFill.astro";
+
+interface FlowNode {
+  title: string;
+  description?: string;
+  iconKind: "sparkle" | "clock" | "rowsPlusBottom" | "paperPlaneTilt" | "teams" | "bamboohr";
+  iconTone: "trigger" | "agent" | "integration" | "alert";
+  badgeLabel?: "Trigger" | "Operation";
+  badgeTone?: "trigger" | "operation";
+}
+
+interface Props {
+  nodes: FlowNode[];
+  frameId?: string;
+  frameIndex?: number;
+  isActive?: boolean;
+  listOnly?: boolean;
+  variant?: "default" | "card";
+}
+
+const {
+  nodes,
+  frameId,
+  frameIndex,
+  isActive = true,
+  listOnly = false,
+  variant = "default",
+} = Astro.props as Props;
+---
+
+{listOnly ? (
+  <ul
+    class:list={[
+      "automation-flow-preview__node-list",
+      frameId === "teams-alert" && "is-frame-teams-alert",
+      isActive && "is-active",
+      variant === "card" && "is-card",
+    ]}
+    data-frame-list
+    data-frame-id={frameId}
+    data-frame-index={frameIndex}
+    aria-hidden={isActive ? "false" : "true"}
+  >
+    {
+      nodes.map((node) => (
+        <li class="automation-flow-preview__node-wrap">
+          {node.badgeLabel && (
+            <span
+              class:list={[
+                "automation-flow-preview__node-badge",
+                node.badgeTone === "operation" ? "is-operation" : "is-trigger",
+              ]}
+            >
+              {node.badgeLabel}
+            </span>
+          )}
+
+          <div class="automation-flow-preview__node">
+            <span
+              class:list={[
+                "automation-flow-preview__node-icon",
+                `is-${node.iconTone}`,
+              ]}
+              aria-hidden="true"
+            >
+              {node.iconKind === "sparkle" && <SparkleFill class="h-[18px] w-[18px]" />}
+              {node.iconKind === "clock" && <ClockFill class="h-[18px] w-[18px]" />}
+              {node.iconKind === "rowsPlusBottom" && (
+                <RowsPlusBottomFill class="h-[18px] w-[18px]" />
+              )}
+              {node.iconKind === "paperPlaneTilt" && (
+                <PaperPlaneTiltFill class="h-[18px] w-[18px]" />
+              )}
+              {node.iconKind === "teams" && (
+                <Image src={TeamsLogo} alt="Microsoft Teams" class="h-[18px] w-[18px]" />
+              )}
+              {node.iconKind === "bamboohr" && (
+                <Image src={BambooHrLogo} alt="BambooHR" class="h-[18px] w-[18px]" />
+              )}
+            </span>
+
+            <div class="automation-flow-preview__node-copy">
+              <div class="automation-flow-preview__node-title">{node.title}</div>
+              {node.description && <p class="automation-flow-preview__node-description">{node.description}</p>}
+            </div>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+) : (
+  <div
+    class:list={[
+      "automation-flow-preview__canvas",
+      "rounded-xl",
+      variant === "card" && "is-card",
+    ]}
+  >
+    <div class="automation-flow-preview__flow-content">
+      <ul
+        class:list={[
+          "automation-flow-preview__node-list",
+          frameId === "teams-alert" && "is-frame-teams-alert",
+          "is-active",
+          variant === "card" && "is-card",
+        ]}
+        aria-hidden="false"
+      >
+        {
+          nodes.map((node) => (
+            <li class="automation-flow-preview__node-wrap">
+              {node.badgeLabel && (
+                <span
+                  class:list={[
+                    "automation-flow-preview__node-badge",
+                    node.badgeTone === "operation" ? "is-operation" : "is-trigger",
+                  ]}
+                >
+                  {node.badgeLabel}
+                </span>
+              )}
+
+              <div class="automation-flow-preview__node">
+                <span
+                  class:list={[
+                    "automation-flow-preview__node-icon",
+                    `is-${node.iconTone}`,
+                  ]}
+                  aria-hidden="true"
+                >
+                  {node.iconKind === "sparkle" && <SparkleFill class="h-[18px] w-[18px]" />}
+                  {node.iconKind === "clock" && <ClockFill class="h-[18px] w-[18px]" />}
+                  {node.iconKind === "rowsPlusBottom" && (
+                    <RowsPlusBottomFill class="h-[18px] w-[18px]" />
+                  )}
+                  {node.iconKind === "paperPlaneTilt" && (
+                    <PaperPlaneTiltFill class="h-[18px] w-[18px]" />
+                  )}
+                  {node.iconKind === "teams" && (
+                    <Image src={TeamsLogo} alt="Microsoft Teams" class="h-[18px] w-[18px]" />
+                  )}
+                  {node.iconKind === "bamboohr" && (
+                    <Image src={BambooHrLogo} alt="BambooHR" class="h-[18px] w-[18px]" />
+                  )}
+                </span>
+
+                <div class="automation-flow-preview__node-copy">
+                  <div class="automation-flow-preview__node-title">{node.title}</div>
+                  {node.description && <p class="automation-flow-preview__node-description">{node.description}</p>}
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+)}
+
+<style>
+  .automation-flow-preview__canvas {
+    --automation-flow-preview-grid-dot: rgb(var(--border) / 0.45);
+    --automation-flow-preview-connector: rgb(var(--ring) / 0.72);
+    --automation-flow-preview-node-bg: var(--bg-3);
+    --automation-flow-preview-node-integration-bg: var(--grey-700);
+    --automation-flow-preview-trigger-bg: var(--orange-500);
+    --automation-flow-preview-operation-bg: var(--purple-500);
+    --automation-flow-preview-agent-bg: var(--blue-500);
+    --automation-flow-preview-node-title: var(--text-primary);
+    --automation-flow-preview-node-description: var(--text-secondary);
+    --automation-flow-preview-node-icon-fg: rgb(var(--on-primary));
+    padding: 1.25rem 1rem;
+    background:
+      radial-gradient(circle at center, var(--automation-flow-preview-grid-dot) 1px, transparent 1px) 0 0 / 20px 20px,
+      var(--bg-2);
+  }
+
+  .automation-flow-preview__canvas.is-card {
+    height: 100%;
+    padding: 20px 16px;
+  }
+
+  .automation-flow-preview__flow-content {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    height: 512px;
+    margin: 0 auto;
+  }
+
+  .automation-flow-preview__canvas.is-card .automation-flow-preview__flow-content {
+    height: 100%;
+    min-height: 0;
+    max-width: 100%;
+  }
+
+  .automation-flow-preview__node-list {
+    --node-width: 380px;
+    --node-row-gap: 60px;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--node-row-gap);
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .automation-flow-preview__node-list.is-card {
+    --node-width: min(100%, 320px);
+    --node-row-gap: 40px;
+    position: relative;
+    min-height: 100%;
+  }
+
+  .automation-flow-preview__node-list.is-frame-teams-alert {
+    --node-width: 380px;
+  }
+
+  .automation-flow-preview__node-list.is-frame-teams-alert.is-card {
+    --node-width: min(100%, 320px);
+  }
+
+  .automation-flow-preview__node-list.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .automation-flow-preview__node-wrap {
+    position: relative;
+    width: var(--node-width);
+  }
+
+  .automation-flow-preview__node-wrap:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 8px);
+    width: 1px;
+    height: calc(var(--node-row-gap) - 16px);
+    transform: translateX(-50%);
+    background-image: linear-gradient(to bottom, var(--automation-flow-preview-connector) 45%, transparent 45%);
+    background-size: 1px 8px;
+    background-repeat: repeat-y;
+    animation: automation-flow-preview-march 700ms linear infinite;
+  }
+
+  .automation-flow-preview__node-badge {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 8px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: rgb(var(--on-primary));
+    padding: 2px 4px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+  }
+
+  .automation-flow-preview__node-badge.is-trigger {
+    background: var(--automation-flow-preview-trigger-bg);
+  }
+
+  .automation-flow-preview__node-badge.is-operation {
+    background: var(--automation-flow-preview-operation-bg);
+  }
+
+  .automation-flow-preview__node {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    border: 1px solid rgb(var(--border) / 0.72);
+    border-radius: 8px;
+    background: var(--automation-flow-preview-node-bg);
+    padding: 16px;
+    box-shadow: 0 16px 28px rgb(15 23 42 / 0.08);
+  }
+
+  .automation-flow-preview__node-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    color: var(--automation-flow-preview-node-icon-fg);
+  }
+
+  .automation-flow-preview__node-icon.is-trigger {
+    background: var(--automation-flow-preview-trigger-bg);
+  }
+
+  .automation-flow-preview__node-icon.is-agent {
+    background: var(--automation-flow-preview-agent-bg);
+  }
+
+  .automation-flow-preview__node-icon.is-integration {
+    background: var(--automation-flow-preview-node-integration-bg);
+  }
+
+  .automation-flow-preview__node-icon.is-alert {
+    background: var(--automation-flow-preview-operation-bg);
+  }
+
+  .automation-flow-preview__node-copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .automation-flow-preview__node-title {
+    color: var(--automation-flow-preview-node-title);
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 600;
+  }
+
+  .automation-flow-preview__node-description {
+    margin: 0;
+    color: var(--automation-flow-preview-node-description);
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .automation-flow-preview__node-list.is-card .automation-flow-preview__node {
+    padding: 14px;
+  }
+
+  .automation-flow-preview__node-list.is-card .automation-flow-preview__node-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .automation-flow-preview__node-list.is-card .automation-flow-preview__node-title {
+    font-size: 15px;
+  }
+
+  .automation-flow-preview__node-list.is-card .automation-flow-preview__node-description,
+  .automation-flow-preview__node-list.is-card .automation-flow-preview__node-badge {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  @keyframes automation-flow-preview-march {
+    from {
+      background-position-y: 0;
+    }
+    to {
+      background-position-y: 8px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .automation-flow-preview__canvas {
+      padding: 1rem;
+    }
+
+    .automation-flow-preview__flow-content {
+      height: 420px;
+    }
+
+    .automation-flow-preview__node-list,
+    .automation-flow-preview__node-list.is-frame-teams-alert {
+      --node-width: min(100%, 320px);
+      --node-row-gap: 44px;
+    }
+
+    .automation-flow-preview__node {
+      padding: 14px;
+    }
+  }
+</style>

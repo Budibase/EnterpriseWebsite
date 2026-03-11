@@ -2,6 +2,7 @@
 import Favicon from "./Favicon.astro";
 import '../styles/fonts.css';
 import SEO from './SEO.astro';
+import { resolveImageReference } from "../lib/imageReference";
 
 export type Props = {
 	title?: string;
@@ -13,6 +14,8 @@ export type Props = {
 };
 
 const twitterHandle = 'budibase';
+const genericProductDescription =
+  "Enterprise-grade security and governance built for deploying AI into real business operations.";
 
 const siteInfo = {
 	name: 'Budibase',
@@ -23,18 +26,130 @@ const siteInfo = {
 	},
 };
 
+const routeSeoFallbacks = {
+  "/pricing": {
+    title: "Pricing Plans",
+    description:
+      "Compare Budibase pricing for AI agents, automations, internal apps, and enterprise operations.",
+  },
+  "/product/agents": {
+    title: "AI Agents",
+  },
+  "/product/apps": {
+    title: "Internal Apps",
+  },
+  "/product/automations": {
+    title: "Workflow Automations",
+  },
+  "/product/resources": {
+    title: "Operational Resources",
+    description:
+      "Give teams reusable operational resources, templates, and building blocks for AI-powered work.",
+  },
+  "/product/enterprise": {
+    title: "Enterprise Control and Security",
+    description:
+      "Control security, governance, support, and deployment options for enterprise AI operations with Budibase.",
+  },
+} as const;
+
+const genericTitleCandidates = new Set([
+  "Agents",
+  "Apps",
+  "Automations",
+  "Blog",
+  "Product",
+]);
+
+function normalizePath(path: string): string {
+  if (path.length > 1 && path.endsWith("/")) {
+    return path.slice(0, -1);
+  }
+  return path;
+}
+
+function getRouteSeoFallback(pathname: string) {
+  if (pathname === "/blog" || /^\/blog\/\d+$/.test(pathname)) {
+    return {
+      title: "Blog and Resources",
+    };
+  }
+
+  return routeSeoFallbacks[pathname as keyof typeof routeSeoFallbacks];
+}
+
+function resolvePageTitle(
+  pathname: string,
+  title?: string,
+): string | undefined {
+  const trimmedTitle = title?.trim();
+  const routeFallback = getRouteSeoFallback(pathname);
+
+  if (routeFallback?.title && (!trimmedTitle || genericTitleCandidates.has(trimmedTitle))) {
+    return routeFallback.title;
+  }
+
+  return trimmedTitle;
+}
+
+function buildTitle(title?: string, rawTitle?: string): string {
+  if (rawTitle) {
+    return rawTitle;
+  }
+
+  if (!title) {
+    return siteInfo.name;
+  }
+
+  if (/\bBudibase\b/i.test(title)) {
+    return title;
+  }
+
+  return `${title} | ${siteInfo.name}`;
+}
+
+function resolvePageDescription(
+  pathname: string,
+  description?: string,
+): string {
+  const trimmedDescription = description?.trim();
+  const routeFallback = getRouteSeoFallback(pathname);
+
+  if (!routeFallback?.description) {
+    return trimmedDescription || siteInfo.description;
+  }
+
+  if (!trimmedDescription) {
+    return routeFallback.description;
+  }
+
+  if (
+    (pathname === "/product/resources" || pathname === "/product/enterprise") &&
+    trimmedDescription === genericProductDescription
+  ) {
+    return routeFallback.description;
+  }
+
+  return trimmedDescription;
+}
+
 const {
+	title: providedTitle,
 	rawTitle,
-	description = siteInfo.description,
+	description: providedDescription,
 	image = siteInfo.image,
 	canonicalURL = new URL(Astro.request.url, Astro.site),
 	pageType = 'website',
 } = Astro.props;
 
-const title = rawTitle ?? [Astro.props.title, siteInfo.name].filter(Boolean).join(' | ');
+const normalizedPath = normalizePath(Astro.url.pathname);
+const pageTitle = resolvePageTitle(normalizedPath, providedTitle);
+const title = buildTitle(pageTitle, rawTitle);
+const description = resolvePageDescription(normalizedPath, providedDescription);
+const resolvedImageReference = resolveImageReference(image.src) ?? siteInfo.image.src;
 const resolvedImage = {
-	src: new URL(image.src, Astro.site).toString(),
-	alt: image.alt,
+	src: new URL(resolvedImageReference, Astro.site).toString(),
+	alt: image.alt || siteInfo.image.alt,
 };
 
 // Simple smartypants-like function for typographic quotes and dashes

@@ -5,6 +5,7 @@ import CubeFill from "phosphor-astro/CubeFill.astro";
 import RocketLaunchFill from "phosphor-astro/RocketLaunchFill.astro";
 import UsersThreeFill from "phosphor-astro/UsersThreeFill.astro";
 import type { BlogFeedItem } from "../_feed";
+import { resolveImageReference } from "../../../lib/imageReference";
 
 interface Props {
   item: BlogFeedItem;
@@ -44,6 +45,7 @@ const markerAccentClasses = {
 const markerAccentClass = markerAccentClasses[markerKind];
 const fallbackInitials = getInitials(item.authorName ?? item.categoryLabel);
 const hasAuthor = Boolean(item.authorName);
+const authorAvatar = resolveImageReference(item.authorAvatar);
 ---
 
 <article
@@ -87,9 +89,9 @@ const hasAuthor = Boolean(item.authorName);
       {
         item.authorName && (
           <span class="inline-flex items-center gap-[0.45rem] text-[var(--text-primary)]">
-            {item.authorAvatar ? (
+            {authorAvatar ? (
               <img
-                src={item.authorAvatar}
+                src={authorAvatar}
                 alt=""
                 loading="lazy"
                 class="block h-[1.3rem] w-[1.3rem] shrink-0 rounded-full border border-[color-mix(in_srgb,var(--border-color)_75%,var(--bg-1))] object-cover"

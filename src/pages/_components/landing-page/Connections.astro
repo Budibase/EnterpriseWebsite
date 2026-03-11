@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import SectionBlock from "@components/SectionBlock.astro";
 
 import AnthropicLogo from "@assets/logos/anthropic.avif";
 import AzureOpenAILogo from "@assets/logos/azure-openai.svg";
@@ -119,17 +118,12 @@ const operationsLogos = [
 
       <div class="flex items-center justify-center lg:col-start-2 lg:row-start-1 lg:row-span-2">
         <div
-          class="max-w-lg rounded-2xl border border-[var(--border)] bg-white px-6 py-8 text-center shadow-xl dark:bg-stone-900"
+          class="connections-card-title max-w-lg rounded-2xl border border-[var(--border)] bg-white px-6 py-8 text-center shadow-xl dark:bg-stone-900"
         >
-          <SectionBlock
-            titleLines={[
-              { text: "Your models, your tools," },
-              { text: "your data, your privacy.", className: "!text-[var(--text-secondary)]" },
-            ]}
-            titleColorMode="split-primary-secondary"
-            align="center"
-            maxWidth="3xl"
-          />
+          <h2 class="section-title m-0 w-full text-center">
+            <span class="block text-[var(--text-primary)]">Your models, your tools,</span>
+            <span class="block text-[var(--text-secondary)]">your data, your privacy.</span>
+          </h2>
         </div>
       </div>
 

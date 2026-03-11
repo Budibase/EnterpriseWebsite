@@ -38,6 +38,7 @@ const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 const currentPath = normalizePath(Astro.url.pathname);
 const pageDescription = entry.data.description ?? "Budibase documentation.";
+const hasPageHeading = headings.some((heading) => heading.depth === 1);
 const outlineHeadings = headings.filter((heading) => heading.depth === 2);
 
 function isActive(path?: string): boolean {
@@ -63,7 +64,7 @@ function isGroupActive(
     <aside class="side-rail-left chrome-border" aria-label="Docs navigation">
       <div class="side-rail-left-scroll docs-side-rail-scroll">
         <a
-          href="/use-cases"
+          href="/agent-space"
           data-astro-prefetch
           class="inline-flex items-center gap-[6px] text-sm text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 mb-2 px-3"
         >
@@ -205,6 +206,7 @@ function isGroupActive(
             class="docs-article flex-1 min-w-0 space-y-8 px-4 sm:px-6 lg:px-8 pt-8 pb-8 max-w-3xl [&_h1]:!mt-0"
             data-docs-article
           >
+            {!hasPageHeading && <h1>{entry.data.title}</h1>}
             <Content />
           </article>
           {

@@ -1,6 +1,10 @@
 ---
 import { Image } from "astro:assets";
+import Icon from "@components/Icon.astro";
+import BudibaseSymbol from "@assets/BBSymbolWhite.svg";
+import DiscordLogo from "@assets/logos/discord.svg";
 import SlackLogo from "@assets/logos/Slack.svg";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg";
 
 interface Props {
   class?: string;
@@ -8,23 +12,17 @@ interface Props {
 
 const { class: className = "" } = Astro.props as Props;
 
-const imgToggle = "http://localhost:3845/assets/964a8be0e090f99b178a5b72a2c85df5f1267f29.svg";
-const imgBudibaseChat = "http://localhost:3845/assets/c9ba48282ec7496f8519470a5fa8a8f0404a57e1.svg";
-const imgTeams = "http://localhost:3845/assets/9eeb848506fff2cacf81ba5bc4d700bb6d8378d7.png";
-const imgDiscord = "http://localhost:3845/assets/0596c89dffba8b7a9f3d33a9dd6b4ed7e8bb04c1.svg";
-const imgGearChat = "http://localhost:3845/assets/e613f2fc07c10a98cd537c9c5fa62de735fe0bb1.svg";
-const imgGearDiscord = "http://localhost:3845/assets/837f79c827a4a7b5a202820001f3850d149e146d.svg";
 ---
 
 <div class={`agent-channels-overlay${className ? ` ${className}` : ""}`} data-node-id="2943:15268">
   <div class="agent-channels-overlay-panel">
     <div class="agent-channels-overlay-row">
       <div class="agent-channels-overlay-row-main">
-        <img src={imgBudibaseChat} alt="" class="agent-channels-overlay-icon agent-channels-overlay-icon-chat" />
+        <Image src={BudibaseSymbol} alt="" class="agent-channels-overlay-icon agent-channels-overlay-icon-chat" />
         <span class="agent-channels-overlay-label">Budibase Chat</span>
       </div>
       <div class="agent-channels-overlay-row-actions">
-        <img src={imgGearChat} alt="" class="agent-channels-overlay-gear" />
+        <Icon name="Wrench" size="16" class="agent-channels-overlay-gear" />
         <div class="agent-channels-overlay-chip">Enable chat</div>
       </div>
     </div>
@@ -41,7 +39,7 @@ const imgGearDiscord = "http://localhost:3845/assets/837f79c827a4a7b5a202820001f
 
     <div class="agent-channels-overlay-row">
       <div class="agent-channels-overlay-row-main">
-        <img src={imgTeams} alt="" class="agent-channels-overlay-icon agent-channels-overlay-icon-teams" />
+        <Image src={TeamsLogo} alt="" class="agent-channels-overlay-icon agent-channels-overlay-icon-teams" />
         <span class="agent-channels-overlay-label">Microsoft Teams</span>
       </div>
       <div class="agent-channels-overlay-row-actions">
@@ -51,12 +49,14 @@ const imgGearDiscord = "http://localhost:3845/assets/837f79c827a4a7b5a202820001f
 
     <div class="agent-channels-overlay-row">
       <div class="agent-channels-overlay-row-main">
-        <img src={imgDiscord} alt="" class="agent-channels-overlay-icon agent-channels-overlay-icon-discord" />
+        <Image src={DiscordLogo} alt="" class="agent-channels-overlay-icon agent-channels-overlay-icon-discord" />
         <span class="agent-channels-overlay-label">Discord</span>
       </div>
       <div class="agent-channels-overlay-row-actions">
-        <img src={imgGearDiscord} alt="" class="agent-channels-overlay-gear" />
-        <img src={imgToggle} alt="" class="agent-channels-overlay-toggle" />
+        <Icon name="Wrench" size="16" class="agent-channels-overlay-gear" />
+        <span class="agent-channels-overlay-toggle" aria-hidden="true">
+          <span class="agent-channels-overlay-toggle-knob"></span>
+        </span>
       </div>
     </div>
   </div>
@@ -122,7 +122,9 @@ const imgGearDiscord = "http://localhost:3845/assets/837f79c827a4a7b5a202820001f
   .agent-channels-overlay-icon,
   .agent-channels-overlay-gear,
   .agent-channels-overlay-toggle {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
   }
 
@@ -151,11 +153,24 @@ const imgGearDiscord = "http://localhost:3845/assets/837f79c827a4a7b5a202820001f
   .agent-channels-overlay-gear {
     width: 16px;
     height: 16px;
+    color: #c8c8c8;
   }
 
   .agent-channels-overlay-toggle {
     width: 27px;
     height: 14px;
+    border-radius: 999px;
+    background: #35b45d;
+    padding: 2px;
+    justify-content: flex-end;
+  }
+
+  .agent-channels-overlay-toggle-knob {
+    width: 10px;
+    height: 10px;
+    display: block;
+    border-radius: 999px;
+    background: #ffffff;
   }
 
   .agent-channels-overlay-chip {

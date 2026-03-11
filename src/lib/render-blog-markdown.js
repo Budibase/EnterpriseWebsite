@@ -8,6 +8,7 @@ import rehypeStringify from "rehype-stringify";
 import remarkGemoji from "remark-gemoji";
 
 import remarkHugoShortcodes from "./remark-hugo-shortcodes.js";
+import rehypeStripMissingImages from "./rehype-strip-missing-images.js";
 
 function visit(node, callback) {
   callback(node);
@@ -63,6 +64,7 @@ export async function renderBlogMarkdown(body) {
     .use(remarkGemoji)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
+    .use(rehypeStripMissingImages)
     .use(rehypeSlug)
     .use(rehypeStringify)
     .process(body);
