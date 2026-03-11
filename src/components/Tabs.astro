@@ -140,11 +140,16 @@ const initialKey = defaultKey ?? tabs[0]?.key ?? "";
 
   @media (max-width: 767px) {
     .tabs-list {
-      overflow-x: auto;
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      overflow: visible;
     }
 
     .tabs-trigger {
-      white-space: nowrap;
+      flex: 1 1 calc(50% - 2px);
+      min-width: 0;
+      white-space: normal;
     }
   }
 </style>

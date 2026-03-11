@@ -2181,18 +2181,27 @@ main ul article > a {
 
 @media (max-width: 768px) {
   .app-demo-topbar {
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 8px;
     padding: 6px 8px;
   }
 
   .app-demo-top-tabs {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
     gap: 6px;
+    overflow: visible;
   }
 
   .app-demo-top-tab {
     font-size: 12px;
+    white-space: normal;
   }
 
   .app-demo-publish {
+    margin-left: 0;
+    order: -1;
     font-size: 12px;
     line-height: 16px;
     padding: 7px 12px;
@@ -2202,8 +2211,49 @@ main ul article > a {
     padding: 8px;
   }
 
+  .app-demo-workspace-nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .app-demo-workspace-content {
-    padding: 16px;
+    padding: 12px;
+  }
+
+  .app-demo-table {
+    min-width: 0;
+  }
+
+  .app-demo-table-header,
+  .app-demo-table-row {
+    grid-template-columns: 52px minmax(0, 1fr) 64px 72px;
+    column-gap: 8px;
+    padding: 0 10px;
+  }
+
+  .app-demo-table-header > :last-child,
+  .app-demo-table-row > :last-child {
+    display: none;
+  }
+
+  .app-demo-request-cell,
+  .app-demo-status-cell,
+  .app-demo-id-cell {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .app-demo-request-cell {
+    white-space: nowrap;
+  }
+
+  .app-demo-priority-pill {
+    width: 64px;
+    font-size: 12px;
+  }
+
+  .app-demo-builder-item {
+    min-width: 0;
   }
 
   .app-demo-support-card {

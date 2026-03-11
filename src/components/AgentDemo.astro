@@ -738,6 +738,7 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
   .token-chip {
     display: inline-flex;
     align-items: center;
+    max-width: 100%;
     gap: 4px;
     margin-left: 6px;
     border-radius: 4px;
@@ -745,6 +746,9 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
     padding: 1px 5px;
     font-size: 12px;
     color: var(--text-primary);
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+    white-space: normal;
   }
 
   .token-chip-compact {

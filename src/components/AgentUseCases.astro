@@ -427,6 +427,10 @@ const tabs = [
 </section>
 
 <style>
+  .agent-use-cases-tabs :global(.tabs-list) {
+    width: 100%;
+  }
+
   .agent-use-cases-canvas {
     --agent-use-cases-grid-dot: rgb(var(--border) / 0.45);
     --agent-use-cases-connector: rgb(var(--ring) / 0.72);
@@ -1111,6 +1115,21 @@ const tabs = [
     .agent-use-cases-node {
       width: 100%;
       min-height: 46px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .agent-use-cases-tabs :global(.tabs-list) {
+      display: flex;
+      flex-wrap: wrap;
+      overflow: visible;
+    }
+
+    .agent-use-cases-tabs :global(.tabs-trigger) {
+      flex: 1 1 calc(50% - 2px);
+      min-width: 0;
+      white-space: normal;
+      padding-inline: 12px;
     }
   }
 </style>

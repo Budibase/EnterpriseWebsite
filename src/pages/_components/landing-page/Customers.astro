@@ -14,9 +14,17 @@ import CustomerFirstRowLogos from "./CustomerFirstRowLogos.astro";
 <style>
   .customer-dock-destination {
     border-top: 1px solid var(--border-color);
+    min-height: 60px;
   }
 
   .customer-dock-destination.customer-dock-destination-parked {
     border-top-color: transparent;
+  }
+
+  @media (max-width: 767px) {
+    .customer-dock-destination {
+      height: auto;
+      padding-block: 0.5rem;
+    }
   }
 </style>

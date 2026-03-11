@@ -84,9 +84,9 @@ const rows = [
   }
 
   .app-requests-preview-table {
-    width: 376px;
-    max-width: calc(100% + 8px);
-    margin-left: -10px;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
     background: var(--grey-50);
     border: 1px solid var(--grey-200);
     border-radius: 6px;
@@ -155,7 +155,7 @@ const rows = [
 
   .app-requests-preview-status {
     color: var(--grey-500);
-    white-space: nowrap;
+    white-space: normal;
   }
 
   @media (max-width: 420px) {
@@ -173,8 +173,7 @@ const rows = [
     }
 
     .app-requests-preview-table {
-      width: 340px;
-      margin-left: -4px;
+      width: 100%;
     }
 
     .app-requests-preview-header,
