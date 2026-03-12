@@ -283,7 +283,7 @@ requestor_email: {{ trigger.row.createdBy.email }}
 Denying requests
 We’re also going to handle approval and denial for requests via automations, starting with denial. Again, we’ve created an automation from the `Access Requests` table in our Data section, this time opting for a `Row Action`. This creates an end-user triggerable automation rule associated with individual rows on our table.
 
-Take a look at our row actions docs to learn more.
+Take a look at our row actions docs to learn more. 
 
 After our trigger, we’ll add: an `Update Row` action, setting our `Table` to `Access Requests` and the `Row ID` to `{{ trigger.id }}`. We’ll then hit `Edit Fields` and set `manualDecision` to `denied`.
 
