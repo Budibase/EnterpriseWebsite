@@ -335,4 +335,4 @@ Today, we’ve aimed to show off how our platform can be used to build advanced 
 
 Rather, the idea is to demonstrate the unrivaled flexibility Budibase offers for building custom solutions at pace.
 
-To learn more, check out our [forms page](https://budibase.com/forms/).
+To learn more, check out our [forms page](https://budibase.com/product/apps/).

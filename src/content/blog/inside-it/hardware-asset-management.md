@@ -180,7 +180,7 @@ One challenge here is that we’ll often need a range of marginally different fo
 
 So, we’ll either need to conditionally display certain fields, implement branching logic for requests, or have a way to output professional forms on the fly.
 
-Check out our [forms page](https://budibase.com/forms/) here to learn more about what Budibase brings to the table.
+Check out our [forms page](https://budibase.com/product/apps/) here to learn more about what Budibase brings to the table.
 
 {{< vimeo id="956383530" title="Hardware Asset Management" >}}
 

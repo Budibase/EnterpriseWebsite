@@ -652,4 +652,4 @@ And that’s our dashboard completed!
 
 Of course, there’s near infinite scope for how you could adapt, modify, and customize our example. Budibase offers a huge range of data sources, custom queries, advanced transformations, and much much more.
 
-To learn more about how we empower teams to turn data into action, check out our [features overview](https://budibase.com/product).
+To learn more about how we empower teams to turn data into action, check out our [features overview](https://budibase.com/product/agents/).

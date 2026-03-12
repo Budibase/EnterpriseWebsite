@@ -180,7 +180,7 @@ Here’s how.
 
 Discrete tools are used to solve a specific pain point within your business processes. These are apps that are built for a dedicated function, often at a single point in your workflows.
 
-For example, many businesses waste large amounts of time tracking employee expenses. Here, you might use [invoice approval software](https://budibase.com/approval-apps/templates/invoice-approval-software/), to eliminate the need for manual reviews, meetings, and document sharing.
+For example, many businesses waste large amounts of time tracking employee expenses. Here, you might use [invoice approval software](https://budibase.com/product/apps/), to eliminate the need for manual reviews, meetings, and document sharing.
 
 ![Invoice process discrete tool](https://res.cloudinary.com/daog6scxm/image/upload/v1642419951/cms/Invoice_Approval_Software_Screenshot_2_tfgjnl.png "Invoice approval software")
 
@@ -192,7 +192,7 @@ Low-code development eliminates these barriers. Instead of settling for an off-t
 
 Low-code tools can also be used to create end-to-end solutions. Where discrete apps only cover specific parts of your business processes, end-to-end solutions deal with the process in its entirety.
 
-An example of this might be an [agency client portal](https://budibase.com/portals/templates/agency-client-portal-template/), which allows your business to manage all aspects of the project delivery process, in a single platform.
+An example of this might be a [customer portal](https://budibase.com/blog/tutorials/b2b-customer-portal/), which allows your business to manage all aspects of the project delivery process, in a single platform.
 
 This could include requirements gathering, project sign-off, communications, delivery, and billing.
 
@@ -202,7 +202,7 @@ Again, low-code platforms offer greater adherence to your internal processes tha
 
 ### Process automation
 
-Automation is the key to efficient internal processes. Automating manual admin tasks is an easy way to cut operating costs. For example, in an [approval app](https://budibase.com/approval-apps), you might set automation rules to OK transactions under a threshold amount, or from trusted partners.
+Automation is the key to efficient internal processes. Automating manual admin tasks is an easy way to cut operating costs. For example, in an [approval app](https://budibase.com/product/apps/), you might set automation rules to OK transactions under a threshold amount, or from trusted partners.
 
 Automation can also be used to simplify communications within business processes. When one stage of the process is completed, trigger automated emails to notify relevant parties to take action.
 
@@ -220,7 +220,7 @@ Mapping and analyzing your processes requires detailed planning and information 
 
 As we mentioned earlier, stakeholder engagement is crucial at all stages of your plan.
 
-Our [digital forms](https://budibase.com/forms) are a simple and easy way to gather information and feedback from team members, across your organization. Check out our [project approval system template](https://budibase.com/approval-apps/templates/project-approval-system/), for inspiration on how to kick off your process improvement efforts.
+Our [digital forms](https://budibase.com/product/apps/) are a simple and easy way to gather information and feedback from team members, across your organization. Check out our [project approval system template](https://budibase.com/product/apps/), for inspiration on how to kick off your process improvement efforts.
 
 Once you’ve gathered feedback on your current processes, you can use our range of charts and formula variables to analyze, visualize, and collate results.
 
@@ -230,7 +230,7 @@ Once you’ve gathered feedback on your current processes, you can use our range
 
 Low-code development is the ideal solution for redesigning processes. With Budibase, it’s never been easier to automate key admin tasks. Use any in-app action to trigger our library of automations, or use our JavaScript editor to create custom functionality.
 
-With a range of [third-party integrations](https://budibase.com/integration), it’s easy to trigger automations in external tools.
+With a range of [third-party integrations](https://budibase.com/product/connections/), it’s easy to trigger automations in external tools.
 
 Use low-code tools to digitize processes, at a fraction of the cost. Quickly build, test, and deploy prototypes, to create effective tools, without excessive sunk costs.
 
@@ -268,4 +268,4 @@ Budibase is the perfect platform for creating process improvement plans. With ou
 
 Low-code development is revolutionizing the way organizations optimize and streamline their processes.
 
-Budibase is the smart way to build efficient, highly automated workflows. Here’s everything you need to know about our [low-code platform](https://budibase.com/product).
+Budibase is the smart way to build efficient, highly automated workflows. Here’s everything you need to know about our [low-code platform](https://budibase.com/product/agents/).

@@ -207,7 +207,7 @@ At least, there are plenty of other factors that determine your retention and ch
 
 There are many different processes involved with building a web application. Below, I have summarised the different steps involved with the web application development process.
 
-If you are keen to learn how to build a web application in more detail, I would advise you to check out this incredibly informative post - [How to build a web app](https://www.budibase.com/blog/how-to-make-a-web-app/).
+If you are keen to learn how to build a web application in more detail, I would advise you to check out this incredibly informative post - [How to build a web app](https://budibase.com/blog/how-to-make-a-web-app/).
 
 Here we go, the 8 steps for creating a web application.
 
@@ -251,7 +251,7 @@ Testing your web application is an ongoing process and usually happens during an
 
 Hosting involves running your web application on a server. You will need to buy a domain and choose a cloud hosting provider. To get your web application from your local machine to your cloud provider and deploy it, you will need to use a CI tool.
 
-And in a nutshell, that's the web application development process. Once again, if you require more information on how to build a web application, visit [How to build a web app](https://www.budibase.com/blog/how-to-make-a-web-app/)
+And in a nutshell, that's the web application development process. Once again, if you require more information on how to build a web application, visit [How to build a web app](https://budibase.com/blog/how-to-make-a-web-app/)
 
 ## Elements of web application development
 

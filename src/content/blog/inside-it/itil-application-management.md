@@ -39,7 +39,7 @@ As such, this draws in a range of different responsibilities and mandates within
 
 Implementing ITIL application management means formalizing company-wide policies, processes, and procedures to govern how software tools are procured, managed, and delivered to users.
 
-You might also enjoy our glossary of [ITIL processes](https://budibase.com/resources/itil-processes/).
+You might also enjoy our guide to [ITIL application management](https://budibase.com/blog/inside-it/itil-application-management/).
 
 ## What does application management achieve?
 

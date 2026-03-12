@@ -106,7 +106,7 @@ Below are the top open source low-code platforms:
 
 {{< youtube 6wZAr-148u0 >}}
 
-[Budibase](https://www.budibase.com) is an all-in-one open source low-code platform for building internal tools. IT teams in thousands of companies across all industries choose it as the leading open source low code platform - and for a good reason.
+[Budibase](https://budibase.com) is an all-in-one open source low-code platform for building internal tools. IT teams in thousands of companies across all industries choose it as the leading open source low code platform - and for a good reason.
 
 With Budibase, users can design, build, automate and deploy web apps and user interfaces on their infrastructure in minutes.
 
@@ -116,7 +116,7 @@ In the design section of Budibase, users can benefit from a catalog of prebuilt,
 
 Budibase also empowers users to automate complete workflows, with optional custom code. Our automation editor offers a wide range of triggers and actions, alongside looping, branching, and conditional logic, making it the ideal solution for automating end-to-end tasks in just a few clicks.
 
-[Budibase](https://www.budibase.com) is primarily for internal tools, and use cases range from admin panels and forms to approval apps and inventory management apps.
+[Budibase](https://budibase.com) is primarily for internal tools, and use cases range from admin panels and forms to approval apps and inventory management apps.
 
 [Github Repo](https://github.com/Budibase/budibase) Github Stars - 23K 
 

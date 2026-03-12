@@ -87,7 +87,7 @@ Low-code platforms are built on the premise that too much development time is sp
 
 For example, it’s normal or, at least accepted as normal, for enterprise development teams to spend huge proportions of their time on repetitive projects, like producing CRUD apps for various data sets.
 
-We’ll see how Budibase is transforming the way enterprises build [internal tools](https://budibase.com/internal-tools) a little bit later.
+We’ll see how Budibase is transforming the way enterprises build [internal tools](https://budibase.com/product/apps/) a little bit later.
 
 ## 6. Progressive web apps will come to the fore
 
@@ -169,7 +169,7 @@ Budibase is built for speed, without compromising on functionality. With an intu
 
 You can even create fully working [CRUD apps](https://budibase.com/blog/crud-app/) in a matter of seconds, with our handy autogeneration tools.
 
-Check out our [product page](https://budibase.com/product) for more information.
+Check out our [product page](https://budibase.com/product/agents/) for more information.
 
 ### Optional self-hosting
 

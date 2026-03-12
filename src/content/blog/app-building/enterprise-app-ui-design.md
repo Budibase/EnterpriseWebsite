@@ -185,7 +185,7 @@ With that in mind, here are the key considerations you’ll need to make for int
 
 ### Internal tools
 
-As we’ve hinted at already, [internal tools](https://budibase.com/internal-tools/) are primarily aimed at empowering large numbers of employees to carry out high-volume work. This means that the focus is on accuracy, oversight, and efficiency, above aesthetics.
+As we’ve hinted at already, [internal tools](https://budibase.com/product/apps/) are primarily aimed at empowering large numbers of employees to carry out high-volume work. This means that the focus is on accuracy, oversight, and efficiency, above aesthetics.
 
 Additionally, there’s often a need to deploy new tools at speed. That is, it’s not uncommon for internal design and development teams to be tasked with turning around working platforms in short periods.
 
@@ -374,4 +374,4 @@ We’ve even created 50+ [app templates](https://budibase.com/templates) to show
 
 Budibase is trusted by massive organizations around the world for unrivaled functionality, security, expediency, and developer experiences.
 
-Check out our [product page](https://budibase.com/product) for more information.
+Check out our [product page](https://budibase.com/product/agents/) for more information.

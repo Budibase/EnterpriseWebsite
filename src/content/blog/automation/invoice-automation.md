@@ -235,7 +235,7 @@ Let’s take a look at what makes Budibase tick.
 
 Our design philosophy is *simplicity by default; extensibility when you need it*. We’ve built our platform to offer the most efficient developer experiences possible, without compromising on flexibility.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### Connect your data
 

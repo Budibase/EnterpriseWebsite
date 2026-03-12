@@ -178,7 +178,7 @@ Let’s take a look at what makes our platform tick.
 
 Connect your data, build interfaces, automate workflows, and publish professional applications, with minimal custom code. Budibase is the fast, cost-effective way to build internal tools, that don’t compromise on security, UX, or performance.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### Optional self-hosting
 

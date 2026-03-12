@@ -123,7 +123,7 @@ Thousands of teams in all sorts of industries choose our platform to ship forms,
 
 Our platform is ideally suited to IT colleagues who need to ship secure, functional tools without overusing internal development resources.
 
-Major enterprises rely on Budibase to [save millions of dollars on data entry](https://budibase.com/customers/reworld/) and other basic administrative tasks.
+Major enterprises rely on Budibase to [save millions of dollars on data entry](https://budibase.com/blog/reworld/) and other basic administrative tasks.
 
 #### Prices
 

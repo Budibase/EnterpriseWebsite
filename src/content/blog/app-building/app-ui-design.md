@@ -241,7 +241,7 @@ For instance, Budibase offers pre-built map components, that offer extensive int
 
 ### Charts, graphs, and visualization tools
 
-Data visualization is crucial for all sorts of internal tools, dashboards, [admin panels](https://budibase.com/admin-panels), and more. Data-driven apps require advanced charts, graphs, and other visualization tools that can draw on a range of stored attributes and aggregate values.
+Data visualization is crucial for all sorts of internal tools, dashboards, [admin panels](https://budibase.com/product/apps/), and more. Data-driven apps require advanced charts, graphs, and other visualization tools that can draw on a range of stored attributes and aggregate values.
 
 The idea is to provide interfaces that update with new data in real-time, without the need for manual action.
 
@@ -361,7 +361,7 @@ You could also tailor your CRUD UIs to your more specific needs using techniques
 
 ### 2. Sign-up forms
 
-Sign-up forms are another basic UI that can have a big impact. For example, onboarding screens, [lead-generation forms](https://budibase.com/forms/templates/multi-step-lead-form/), or call-back request tools. However, the important metric here isn’t so much efficiency as completion rates.
+Sign-up forms are another basic UI that can have a big impact. For example, onboarding screens, [lead-generation forms](https://budibase.com/product/apps/), or call-back request tools. However, the important metric here isn’t so much efficiency as completion rates.
 
 That is, the goal of your UIs is to encourage as many people as possible to provide their information.
 
@@ -399,7 +399,7 @@ For more complex data sets, you might need to think about how you can categorize
 
 ### 4. Portals
 
-Portals are trickier. This is because [portal apps](https://budibase.com/portals/) normally offer multiple distinct functions in a single application. As such, it’s more difficult to make sweeping statements about how to build an effective UI.
+Portals are trickier. This is because [internal apps](https://budibase.com/product/apps/) normally offer multiple distinct functions in a single application. As such, it’s more difficult to make sweeping statements about how to build an effective UI.
 
 Instead, we can return to the principles we discussed earlier.
 
@@ -429,7 +429,7 @@ Alternatively, we have a pre-build dynamic filter component. This can be configu
 
 ### 6. Approval apps
 
-[Approval apps](https://budibase.com/approval-apps/) are used in many contexts to ensure accountability and enforce various business rules within workflows. Usually, this means allowing employees to submit requests, either for a particular resource or to proceed with a given action.
+[Approval apps](https://budibase.com/product/apps/) are used in many contexts to ensure accountability and enforce various business rules within workflows. Usually, this means allowing employees to submit requests, either for a particular resource or to proceed with a given action.
 
 Their supervisor, manager, or a team member from another team can then approve or reject this request. This might include invoice approval tools, vacation booking apps, or any other sign-off workflow.
 
@@ -486,7 +486,7 @@ That is, with the caveat that it won’t be the most exciting UI in the world.
 
 Alternatively, we could use a repeater, nested with cards to display key information or even imagery for each entry. This would be a more sophisticated UI, but you’d need to take additional steps to avoid clutter, especially with large datasets.
 
-Check out our [directory templates](https://budibase.com/directories) to see a few examples of different ways to approach this issue.
+Check out our [directory templates](https://budibase.com/product/apps/) to see a few examples of different ways to approach this issue.
 
 ### 2. Wireframing and prototyping
 
@@ -609,4 +609,4 @@ We’re on a mission to change the way businesses build applications, forever. W
 
 Budibase tools also boast customizable RBAC, optional self-hosting, free SSO, an internal database, and a wide range of external data connectors. We even have our own cloud hosting platform, for rapid deployment.
 
-Take a look at our [product page](https://budibase.com/product) to find out more about building custom tools with Budibase.
+Take a look at our [product page](https://budibase.com/product/agents/) to find out more about building custom tools with Budibase.

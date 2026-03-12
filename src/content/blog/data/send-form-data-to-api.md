@@ -524,4 +524,4 @@ Here’s a reminder of what our finished app looks like.
 
 ![Send form data to API](https://res.cloudinary.com/daog6scxm/image/upload/v1708349795/cms/send-form-data-to-api/Send_Form_Data_to_API_55_wbnhso.webp "Send form data to API")
 
-If you found this guide helpful, check out our [digital forms](https://budibase.com/forms/) page to learn more about how Budibase empowers teams to build advanced forms on top of any data source.
+If you found this guide helpful, check out our [digital forms](https://budibase.com/product/apps/) page to learn more about how Budibase empowers teams to build advanced forms on top of any data source.

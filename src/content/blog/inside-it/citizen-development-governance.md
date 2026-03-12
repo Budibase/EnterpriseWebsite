@@ -212,7 +212,7 @@ Of course, there’s also the issue of your immediate incident response. There�
 
 Sometimes your IT team will need to step in. Other times, it will be faster and easier for the original developer to respond. So, we need some way of categorizing incidents and issues, in terms of severity, complexity, and urgency.
 
-Check out our [IT incident report template](https://budibase.com/forms/templates/it-incident-report-template/) to find out more about how Budibase can play a role here.
+Check out our [IT incident report template](https://budibase.com/product/apps/) to find out more about how Budibase can play a role here.
 
 ## Creating a citizen development governance policy
 
@@ -295,7 +295,7 @@ Will this differ across different departments or different categories of tools?
 
 It’s also important to think about any tools you’ll bring online to codify these processes. It wouldn’t be very efficient if each developer had to email the IT department to ask for sign-off.
 
-As such, you’ll more than likely need to implement [approval apps](https://budibase.com/approval-apps) to manage this.
+As such, you’ll more than likely need to implement [approval apps](https://budibase.com/product/apps/) to manage this.
 
 ![Approval Apps](https://res.cloudinary.com/daog6scxm/image/upload/v1663691256/cms/Approval_App_cormnt.webp "Approval Apps")
 

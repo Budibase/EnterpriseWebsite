@@ -108,7 +108,7 @@ To see how this works, let’s consider two different scenarios.
 
 First, you might have a task that’s governed by clearly defined business rules, involving the same variables each time. Employees, therefore, don’t need to exercise any discretion. This would be relatively easy to express as an automation rule.
 
-For example, leave requests, invoice submissions, device rentals, basic communications, [incident reporting](https://budibase.com/forms/templates/it-incident-report-template/), or other relatively static workflows.
+For example, leave requests, invoice submissions, device rentals, basic communications, [incident reporting](https://budibase.com/product/apps/), or other relatively static workflows.
 
 On the other hand, you might have workflows where employees need to exercise more discretion. This includes more complex, contextual decision-making. For instance, disciplinary processes, later-stage recruitment, or other more irregular processes.
 
@@ -263,6 +263,6 @@ Enterprises around the world choose Budibase to manage, optimize, and automate w
 
 There’s never been a faster, more cost-effective way to build enterprise-grade automation solutions.
 
-Take a look at our [product overview](https://budibase.com/product) to find out more.
+Take a look at our [product overview](https://budibase.com/product/agents/) to find out more.
 
 We also offer a range of support packages and SLAs for enterprise customers. Check out our [pricing page](https://budibase.com/pricing) for more details.

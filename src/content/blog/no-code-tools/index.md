@@ -363,7 +363,7 @@ Each of these plays a slightly different role depending on who your target users
 
 ## **No-code tools: final thoughts**
 
-I hope you enjoyed this post, and it has helped you identify new no-code tools. If you are looking for an idea as an excuse to use one of these tools, please check out our guide to[ Micro SaaS ideas](https://www.budibase.com/blog/micro-saas-ideas/).
+I hope you enjoyed this post, and it has helped you identify new no-code tools. If you are looking for an idea as an excuse to use one of these tools, please check out our guide to[ Micro SaaS ideas](https://budibase.com/blog/micro-saas-ideas/).
 
 Also, at Budibase, we are working hard to build a platform that will help empower the world to build web apps quickly and easily.
 

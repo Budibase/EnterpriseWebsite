@@ -377,4 +377,4 @@ Here’s a reminder of what the finished product looks like.
 
 ![Expense Reimbursement Form](https://res.cloudinary.com/daog6scxm/image/upload/v1708439787/cms/expense-reimbursement-form/Expense_Reimbursement_Form_56_ljsles.webp "Expense Reimbursement Form")
 
-Budibase is the fast, easy way to build advanced forms on top of just about any data source. To learn more, take a look at our [forms page](https://budibase.com/forms/).
+Budibase is the fast, easy way to build advanced forms on top of just about any data source. To learn more, take a look at our [forms page](https://budibase.com/product/apps/).

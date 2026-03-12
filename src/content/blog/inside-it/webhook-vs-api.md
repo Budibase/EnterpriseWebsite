@@ -370,7 +370,7 @@ Let’s check out what makes Budibase tick.
 
 Our design philosophy is *simplicity by default; extensibility when you need it*. Busy IT teams all over the world choose Budibase to output quality solutions at pace.
 
-Check out our [features overview](https://budibase.com/product) to learn more. 
+Check out our [features overview](https://budibase.com/product/agents/) to learn more. 
 
 ### External data support
 

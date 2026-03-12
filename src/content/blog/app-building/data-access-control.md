@@ -136,7 +136,7 @@ Finally, context-centric methods are based on the context of how data is accesse
 
 For example, you might restrict the ability to export large volumes of data to certain times of day, to prevent large-scale breaches.
 
-We could also restrict the ability to perform different actions on specific database objects, based on their current stage in a given workflow. For instance, we could create an [approval app](https://budibase.com/approval-apps) for accessing different pieces of data.
+We could also restrict the ability to perform different actions on specific database objects, based on their current stage in a given workflow. For instance, we could create an [approval app](https://budibase.com/product/apps/) for accessing different pieces of data.
 
 Rather than acting as the basis for your complete data access control system, context-centric methods are typically used to combat specific risks.
 
@@ -255,7 +255,7 @@ This becomes even more difficult in the context of modern IT environments, where
 
 The key is developing systems that intelligently provide the right permissions for the right users.
 
-Check out our [IT incident report template](https://budibase.com/forms/templates/it-incident-report-template/) to see our data access control features in action.
+Check out our [IT incident report template](https://budibase.com/product/apps/) to see our data access control features in action.
 
 Budibase offers an advanced suite of features to help you secure your company data.
 

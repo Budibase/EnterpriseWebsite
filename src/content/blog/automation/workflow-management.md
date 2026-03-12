@@ -567,7 +567,7 @@ This might proceed as follows:
 
 This is just a general structure to represent the basic idea behind an approval workflow. As such, you might choose to automate additional elements or reserve different actions for manual review and approval.
 
-Check out our [vacation request form template](https://budibase.com/forms/templates/vacation-request-form-template/) to learn more.
+Check out our [vacation request form template](https://budibase.com/product/apps/) to learn more.
 
 ### Self-service admin tools
 
@@ -581,7 +581,7 @@ Data exposure is critical here. We can create an RBAC framework where most users
 
 Besides this, the key thing is user experience. So, we need to give users a _quick_ way to update their details _accurately_.
 
-Check out our [forms](https://budibase.com/forms) page for more information.
+Check out our [forms](https://budibase.com/product/apps/) page for more information.
 
 ### Customer-facing workflows
 
@@ -625,7 +625,7 @@ With information-focused internal tools, we’ll also want to prioritize navigab
 
 ![Daily Tasks](https://res.cloudinary.com/daog6scxm/image/upload/v1672746540/cms/Looking_for_files_https___www.workato.com_the-connector_8-automation-stats-cio__z6zfgs.webp "Daily Tasks")([Workato](https://www.workato.com/the-connector/8-automation-stats-cio/))
 
-Take a look at our [IT knowledge base template](https://budibase.com/it/templates/open-source-it-knowledge-base/) to see how some of these ideas work in practice.
+Take a look at our [IT knowledge base template](https://budibase.com/product/apps/) to see how some of these ideas work in practice.
 
 ### Project management workflows
 
@@ -701,7 +701,7 @@ So, we have the same challenge as with CRUD tools. We need the ability to do thr
 
 These could be used as a standalone solution, or as screens within a more sophisticated application.
 
-Check out our [form templates](https://budibase.com/forms/templates/) to see what Budibase brings to the table here.
+Check out our [form templates](https://budibase.com/product/apps/) to see what Budibase brings to the table here.
 
 ### Reporting and monitoring
 
@@ -765,7 +765,7 @@ Here’s what makes Budibase tick.
 
 Our philosophy is simplicity by design, extensibility when you need it. Budibase is designed to empower developers and non-specialists alike to output working solutions in as little as five minutes, with little to no custom code.
 
-Check out our [product overview](https://budibase.com/product) to learn more.
+Check out our [product overview](https://budibase.com/product/agents/) to learn more.
 
 ### Self-hosting
 

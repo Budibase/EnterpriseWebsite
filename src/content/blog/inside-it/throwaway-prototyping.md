@@ -130,7 +130,7 @@ Nothing in life is guaranteed, after all.
 
 As we’ve said already, one element of this is using throwaway prototyping in the right context in the first place. Besides this, we also need to be cognizant of how we manage and oversee prototyping tasks to maximize ROI.
 
-For instance, defining discrete workflows or using dedicated [approval apps](https://budibase.com/approval-apps) to control how and when your team builds prototypes.
+For instance, defining discrete workflows or using dedicated [approval apps](https://budibase.com/product/apps/) to control how and when your team builds prototypes.
 
 ### Cons
 
@@ -288,7 +288,7 @@ The second is more of an operational challenge.
 
 So how do colleagues communicate to share ideas during a project? How do they leave a record of their decisions, ideas, learnings, and conclusions once the prototype is completed?
 
-You might even opt to create dedicated apps for managing these kinds of workflows, like an [IT knowledge base](https://budibase.com/it/templates/open-source-it-knowledge-base/).
+You might even opt to create dedicated apps for managing these kinds of workflows, like an [IT knowledge base](https://budibase.com/product/apps/).
 
 ### Readability
 

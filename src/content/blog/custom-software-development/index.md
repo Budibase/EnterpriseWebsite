@@ -42,7 +42,7 @@ In the last 30 years, custom software development was primarily utilized within 
 
 This is no longer the case. A solution is upon us - the no code platform.
 
-No code platforms provide an abstraction layer on top of software development, and replace coding with... clicking. It really is that transformational. No code tools like [Budibase](https://www.budibase.com) offer users an all-in-one platform where they can add data to tables like using a spreadsheet, create user interfaces like designing a presentation, and automate everyday, mundane tasks like creating a flow diagram. They are truly that powerful. 
+No code platforms provide an abstraction layer on top of software development, and replace coding with... clicking. It really is that transformational. No code tools like [Budibase](https://budibase.com) offer users an all-in-one platform where they can add data to tables like using a spreadsheet, create user interfaces like designing a presentation, and automate everyday, mundane tasks like creating a flow diagram. They are truly that powerful. 
 
 With these new tools, custom software development is possible at a fraction of the cost, in a fraction of the time, and accessible by non-engineers. But most importantly, the power is now in the hands of the experts - the people who know the subject/problem better than anyone else. The software user, is now the software maker.
 
@@ -99,7 +99,7 @@ Traditionally it takes 4 to 6 months to build custom software. With a no code pl
 
 {{< figure src="/custom-software-development/development-process.png"  alt="Custom Software Development Process" >}}
 
-In a previous post, we covered [how to build a web app](https://www.budibase.com/blog/how-to-make-a-web-app/) in quite a lot of detail. I would advise you to visit that post if you want a beginner's guide to software development. At Budibase, we divide the traditional custom software development process into five stages. These stages are linear and often occur consecutively. 
+In a previous post, we covered [how to build a web app](https://budibase.com/blog/how-to-make-a-web-app/) in quite a lot of detail. I would advise you to visit that post if you want a beginner's guide to software development. At Budibase, we divide the traditional custom software development process into five stages. These stages are linear and often occur consecutively. 
 
 With a low-code platform, the  process is not as fragmented. There are only three steps. Below, I will illustrate the procedures for both.
 
@@ -164,6 +164,6 @@ On a recent call with David Singleton (lead engineer at [Stripe](https://www.str
    Monese is made up of two sides; outward-facing apps and inward-facing apps. Part of the later is a web application called Backoffice. Monese built Backoffice to help their internal teams communicate with their customers better. Backoffice helps their employees answer video calls, open accounts, answer questions, resolve automatically generated tasks. In the future, they hope to have a dedicated team, which focuses on maintaining and improving Backoffice - pretty incredible!
 
 
-I hope the examples above inspire you. Due to platforms like [Budibase](https://www.budibase.com),  the barrier for building custom software is at an all-time low. You don't need to be a developer. You don't need to know how to code. And you can build custom software in minutes, not months. A new generation of software development awaits us. 
+I hope the examples above inspire you. Due to platforms like [Budibase](https://budibase.com),  the barrier for building custom software is at an all-time low. You don't need to be a developer. You don't need to know how to code. And you can build custom software in minutes, not months. A new generation of software development awaits us. 
 
 Thank you for reading and good luck. If you are interested, please sign-up to Budibase below, and get started (it's free and no CC required).

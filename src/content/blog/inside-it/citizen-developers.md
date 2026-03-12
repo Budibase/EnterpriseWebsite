@@ -530,7 +530,7 @@ Basically, these allow one group of users to submit a certain type of request. T
 
 So, you might use an approval tool for citizen developers to get final sign-off to roll out their tools.
 
-Check out our [approval apps](https://budibase.com/approval-apps/) page for more information.
+Check out our [approval apps](https://budibase.com/product/apps/) page for more information.
 
 ### Hosting and deployment
 
@@ -578,7 +578,7 @@ This information can then inform all sorts of decisions, from changes in hosting
 
 One strategy here is using dedicated dashboards and admin panels. These are simple, purpose-built tools for visualizing information, usually by connecting to an existing data source.
 
-Check out our [admin panels](https://budibase.com/admin-panels) page for more information on what Budibase brings to the table here.
+Check out our [admin panels](https://budibase.com/product/apps/) page for more information on what Budibase brings to the table here.
 
 ## Citizen developers, low-code, and Budibase
 

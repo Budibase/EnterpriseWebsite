@@ -269,7 +269,7 @@ This may not seem like the top priority when using a form to enter data to Googl
 
 For example, you might want to introduce extra levels of security, monitoring, or other measures.
 
-Or you might simply have your own infrastructure and want to use it. Check out our [forms page](https://budibase.com/forms/) to learn more about how Budibase empowers teams to build advanced forms on top of existing data.
+Or you might simply have your own infrastructure and want to use it. Check out our [forms page](https://budibase.com/product/apps/) to learn more about how Budibase empowers teams to build advanced forms on top of existing data.
 
 Here’s what our finished app looks like:
 
@@ -281,7 +281,7 @@ We can use it as a standalone web app or use an iframe to embed it in an existin
 
 ## The smart option for using a form to enter data to Google Sheets
 
-Budibase is the fast, easy way to build all sorts of custom solutions. Our intuitive low-code tool is the perfect solution for[ internal tools](https://budibase.com/internal-tools), customer-facing apps, dashboards, and more.
+Budibase is the fast, easy way to build all sorts of custom solutions. Our intuitive low-code tool is the perfect solution for[ internal tools](https://budibase.com/product/apps/), customer-facing apps, dashboards, and more.
 
 The vast majority of apps that businesses use are simple interfaces on top of a data source.
 

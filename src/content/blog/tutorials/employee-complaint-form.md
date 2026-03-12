@@ -328,4 +328,4 @@ Here’s a reminder of what our finished app will look like.
 
 ![Employee Complaint Form](https://res.cloudinary.com/daog6scxm/image/upload/v1708604593/cms/employee-complaint-form/Employee_Complaint_Form_48_yp27ib.webp "Employee Complaint Form")
 
-Budibase is the fast, easy way to build advanced forms on top of any data set. To learn more, check out our guide to [digital forms](https://budibase.com/forms/).
+Budibase is the fast, easy way to build advanced forms on top of any data set. To learn more, check out our guide to [digital forms](https://budibase.com/product/apps/).

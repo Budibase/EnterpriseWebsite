@@ -511,4 +511,4 @@ We’ll also set the container to vertical and remove the custom CSS on our char
 
 ![Mobile](https://res.cloudinary.com/daog6scxm/image/upload/v1698939522/cms/project-cost-management/Project_Cost_Management_43_rmhamb.webp "mobile")
 
-And that’s our project cost management software tool completed! To learn more about how Budibase empowers teams to turn data into action, be sure to check out our [features overview](https://budibase.com/product).
+And that’s our project cost management software tool completed! To learn more about how Budibase empowers teams to turn data into action, be sure to check out our [features overview](https://budibase.com/product/agents/).

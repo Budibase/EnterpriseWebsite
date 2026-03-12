@@ -330,4 +330,4 @@ Here’s what this will look like in situ:
 
 And that’s it!
 
-Take a look at our [digital forms](https://budibase.com/forms/) page to find out more about what Budibase is capable of.
+Take a look at our [digital forms](https://budibase.com/product/apps/) page to find out more about what Budibase is capable of.

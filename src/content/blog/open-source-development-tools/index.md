@@ -43,7 +43,7 @@ There are several open source development tools out there that are simply not ac
 
 ## Why open source tools?
 
-The reason we've chosen open source tools is that they are available to everyone. I'll not drive into the importance of open source - I've touched on this before in the following post [Open source low code platforms](https://www.budibase.com/blog/open-source-low-code-platforms/).
+The reason we've chosen open source tools is that they are available to everyone. I'll not drive into the importance of open source - I've touched on this before in the following post [Open source low code platforms](https://budibase.com/blog/open-source-low-code-platforms/).
 
 Below we'll cover the top open-source development tools you should be using in 2021. Without these types tools, the work we do, the deadlines we hit, the bugs we find and squash before release would be impossible. With these tools, we are better, faster, and happier.
 
@@ -102,7 +102,7 @@ Budibase outshines its competition in the open-source software development tools
 - Budibase has an automation layer, allowing users to automate tasks such as email notifications, triggering webhooks, sending a report, as well as creating complex logic with branching, looping, and stop conditions.
 - Budibase offers support for a huge range of popular open-source integrations, databases, and their COTS equivalents.
 
-If you've not tried Budibase, give it a try - it's simple to [get started](https://www.budibase.com). 
+If you've not tried Budibase, give it a try - it's simple to [get started](https://budibase.com). 
 
 
 

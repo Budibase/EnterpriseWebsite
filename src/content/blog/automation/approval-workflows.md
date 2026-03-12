@@ -287,7 +287,7 @@ Check out our ultimate guide to [enterprise workflow automation](https://budibas
 
 ## Building approval workflow tools with low-code
 
-Approval workflow tools are used to manage specific requests - giving a single platform where users can create submissions for review - and other stakeholders can make a decision. Take a look at our [approval apps](https://budibase.com/approval-apps/) page to see where Budibase fits into this.
+Approval workflow tools are used to manage specific requests - giving a single platform where users can create submissions for review - and other stakeholders can make a decision. Take a look at our [approval apps](https://budibase.com/product/apps/) page to see where Budibase fits into this.
 
 From a development perspective, these aren’t complex solutions at all. 
 

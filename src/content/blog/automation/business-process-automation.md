@@ -294,7 +294,7 @@ No matter what the specific resource is, there are a few key steps involved:
 3. Allowing employees to request resources.
 4. Optimizing the process of getting resources to where they are needed.
 
-Naturally, the specific actions required for each of these depend on the type of resource in question. For example, server monitoring is a very different set of tasks from [IT asset management](https://budibase.com/it/templates/open-source-it-asset-management-software/).
+Naturally, the specific actions required for each of these depend on the type of resource in question. For example, server monitoring is a very different set of tasks from [IT asset management](https://budibase.com/product/apps/).
 
 ![Asset Management Screengrab](https://res.cloudinary.com/daog6scxm/image/upload/v1658501537/cms/Screenshot_2022-07-22_at_15.18.37_h4dhhm.webp "Asset Management Screengrab")
 
@@ -340,7 +340,7 @@ The most obvious example of business process automation here would be notifying 
 
 We can also use external events to trigger document changes.
 
-Say we had a set of letters and policies that customers can download from a dedicated [portal app](https://budibase.com/portals). We might use templates to create these and create automations so that if the customers’ detail change, relevant fields in the documents are also updated.
+Say we had a set of letters and policies that customers can download from a dedicated [internal app](https://budibase.com/product/apps/). We might use templates to create these and create automations so that if the customers’ detail change, relevant fields in the documents are also updated.
 
 ### Employee & customer self-service tasks
 

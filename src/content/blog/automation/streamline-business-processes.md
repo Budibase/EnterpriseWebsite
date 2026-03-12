@@ -221,7 +221,7 @@ Budibase is the answer - offering a fast, easy way to build secure, performant w
 
 Budibase offers simplicity by default, with extensibility when you need it. Our open-source, low-code platform makes it a breeze to build your data layer, design interfaces, automate logic, and ship your tools how and where you want.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### External data support
 

@@ -112,7 +112,7 @@ However, we’ll also need to factor in other costs, including initial configura
 
 Alternatively, we might opt to use an external contractor to handle this, in which case we’ll need to consider the costs related to this.
 
-You might also like our guide to [IT asset tracking](https://budibase.com/resources/itil-processes/asset-management/it-asset-tracking/).
+You might also like our guide to [free asset management software](https://budibase.com/blog/inside-it/free-asset-management-software/).
 
 ### 3. Snipe-IT
 

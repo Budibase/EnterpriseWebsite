@@ -284,7 +284,7 @@ In any case, there are a number of key tasks involved in any incident response p
 
 The key is ensuring that the total time between the incident occurring and being resolved is as short as possible. As such, a dedicated tool for managing incident responses is often the most effective option.
 
-Our [IT incident report template](https://budibase.com/forms/templates/it-incident-report-template/) offers streamlined UIs for reporting, delegating, and analyzing incidents.
+Our [IT incident report template](https://budibase.com/product/apps/) offers streamlined UIs for reporting, delegating, and analyzing incidents.
 
 ![Device Rentals](https://res.cloudinary.com/daog6scxm/image/upload/v1654869717/cms/Device_Rentals_bchxf5.webp "Device Rentals")
 
@@ -304,7 +304,7 @@ You might even automate approval workflows, for requests from certain employees 
 
 On top of this, all communications can be automated, using template emails and messaging app integrations.
 
-Check out our [employee equipment check-out template](https://budibase.com/forms/templates/employee-equipment-checkout-form/) to see why it’s the perfect vehicle for automation.
+Check out our [employee equipment check-out template](https://budibase.com/product/apps/) to see why it’s the perfect vehicle for automation.
 
 ![Service Desk Processes](https://res.cloudinary.com/daog6scxm/image/upload/v1654869769/cms/Service_Desk_Management_vryzll.webp "Service Desk Processes")
 
@@ -324,7 +324,7 @@ One approach to this is using user-provided information to categorize queries an
 
 Often, new service desk queries point to a gap in your existing docs or knowledge base. Simple automations can also be used to notify your support team when these resources need to be updated.
 
-Check out our [IT knowledge base](https://budibase.com/it/templates/open-source-it-knowledge-base/) template to get started building integrated support resources.
+Check out our [IT knowledge base](https://budibase.com/product/apps/) template to get started building integrated support resources.
 
 ![Asset Management](https://res.cloudinary.com/daog6scxm/image/upload/v1654869852/cms/Asset_Management_xcyvxi.webp "Asset Management")
 
@@ -336,7 +336,7 @@ For example, scheduling regular maintenance, retiring devices, and calculating c
 
 All of these processes involve relatively simple, time-based calculations, but they’re incredibly time-consuming to perform at scale.
 
-As such, automation is critical for managing devices efficiently. Our [IT asset management template](https://budibase.com/it/templates/open-source-it-asset-management-software/) offers automated maintenance scheduling, value calculations, and more in an intuitive, customizable solution.
+As such, automation is critical for managing devices efficiently. Our [IT asset management template](https://budibase.com/product/apps/) offers automated maintenance scheduling, value calculations, and more in an intuitive, customizable solution.
 
 ## Automate IT processes with Budibase
 

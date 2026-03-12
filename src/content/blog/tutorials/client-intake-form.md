@@ -263,4 +263,4 @@ Here’s a reminder of what our completed client intake form looks like.
 
 ![Client Intake Form](https://res.cloudinary.com/daog6scxm/image/upload/v1707724168/cms/client-intake-form/Client_Intake_Form_29_jtpwom.webp "Client Intake Form")
 
-Check out our [digital forms page](https://budibase.com/forms/) to learn more about how Budibase empowers teams to build advanced forms on top of existing data.
+Check out our [digital forms page](https://budibase.com/product/apps/) to learn more about how Budibase empowers teams to build advanced forms on top of existing data.

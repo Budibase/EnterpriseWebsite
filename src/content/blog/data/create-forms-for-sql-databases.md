@@ -196,6 +196,6 @@ Budibase is the open-source, low-code platform that turns data into action. IT t
 
 We offer dedicated connectors for SQL and NoSQL databases, optional self-hosting, flexible design tools, front-end scripting, intuitive automations, role-based access control, free SSO, and much, much more.
 
-Take a look at our [forms page](https://budibase.com/forms/) to learn more.
+Take a look at our [forms page](https://budibase.com/product/apps/) to learn more.
 
 Sign up to Budibase today to start building performant forms in a fraction of the time.

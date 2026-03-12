@@ -539,7 +539,7 @@ Moving on to the backend.
 
 The backend is typically what manages your data. This refers to databases, servers, and everything the user can’t see within a web application.
 
-Building your backend is one of the toughest parts of web app development. If you feel overwhelmed, a tool like [Budibase](https://www.budibase.com) can take away many of the complexities - including the follow tasks.
+Building your backend is one of the toughest parts of web app development. If you feel overwhelmed, a tool like [Budibase](https://budibase.com) can take away many of the complexities - including the follow tasks.
 
 If you feel confident, continue on.
 
@@ -564,7 +564,7 @@ With a single page app, the backend will simply serve your static frontend files
 When choosing your backend:
 
 * Go with what’s familiar.
-* Try [Budibase](https://www.budibase.com)
+* Try [Budibase](https://budibase.com)
 * Server Pages / SPA should inform your decision of framework choices within your chosen language. For example, a SPA will only require an API only framework. Server pages need their own framework.
   * [Django](https://www.djangoproject.com/)
   * [Express](https://expressjs.com/)
@@ -592,7 +592,7 @@ Environments. You will usually need to create multiple environments. For example
 
 Hosting involves running your web app on a particular server.
 
-When using Budibase, this step can be automated with [Budibase hosting](https://www.budibase.com/). With Budibase, you are still required to buy a domain.
+When using Budibase, this step can be automated with [Budibase hosting](https://budibase.com/). With Budibase, you are still required to buy a domain.
 
 If you are not using Budibase to host your web application, follow these quick steps: \\
 

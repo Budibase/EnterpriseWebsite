@@ -136,7 +136,7 @@ Once we’ve connected our data, Budibase can autogenerate fully working, highly
 
 Our visual automation builder is the perfect solution for triggering workflows on form submissions, including an extensive library of triggers and actions, LLM operations powered by a range of models, and looping and branching logic.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 #### Use cases
 

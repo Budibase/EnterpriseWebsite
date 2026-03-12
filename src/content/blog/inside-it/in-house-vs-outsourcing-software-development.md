@@ -310,7 +310,7 @@ Here’s why tens of thousands of businesses around the world choose Budibase to
 
 Internal developers spend too much time on basic, repetitive tasks. Budibase is built to expedite the most common, time-consuming aspects of building software, while still offering best-in-class scope for customization.
 
-Check out our [product overview](https://budibase.com/product) for more information.
+Check out our [product overview](https://budibase.com/product/agents/) for more information.
 
 ### Self-hosting
 

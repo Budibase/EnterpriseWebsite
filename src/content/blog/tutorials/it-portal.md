@@ -615,4 +615,4 @@ Here’s a reminder of what the finished thing looks like.
 
 Budibase is the fast, easy way to build custom solutions on top of just about any data source.
 
-To learn more about what our platform can do, check out our [portal development](https://budibase.com/portals/) page.
+To learn more about what our platform can do, check out our [internal apps](https://budibase.com/product/apps/) page.

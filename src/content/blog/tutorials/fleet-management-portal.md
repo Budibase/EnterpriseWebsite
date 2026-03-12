@@ -739,4 +739,4 @@ Here’s a reminder of what our fleet management portal looks like.
 
 Budibase is the fast, easy way to build advanced portals on top of just about any data source.
 
-Take a look at our [portal development](https://budibase.com/portals/) page to learn more.
+Take a look at our [internal apps](https://budibase.com/product/apps/) page to learn more.

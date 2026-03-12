@@ -271,7 +271,7 @@ Let’s take a look at what makes Budibase tick.
 
 Budibase is design to make repetitive, menial development tasks a breeze. Our design philosophy - *simplicity by default; extensibility when you need it* - makes Budibase the perfect tool for time strapped developers and overwhelmed IT teams.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### Extensive data support
 
@@ -283,7 +283,7 @@ We’ve also go our own internal database, with full support for CSV uploads and
 
 Budibase is the clear choice for security-first organizations. We offer optional self-hosting, so you can deploy custom solutions to your own infrastructure using Kubernetes, Docker, Docker Compose, Digital Ocean, and more.
 
-Or, to get started even faster, choose Budibase Cloud. Check out our [pricing page](https://budibase.com/self-host/) to learn more about both options.
+Or, to get started even faster, choose Budibase Cloud. Check out our [pricing page](https://budibase.com/pricing/) to learn more about both options.
 
 ### Low-code automations
 

@@ -353,7 +353,7 @@ Here’s what makes Budibase tick.
 
 Our design philosophy is *simplicity by default; extensibility when you need it*. No other platform makes it so easy to connect your data, build professional interfaces, create automations, and launch your tools.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### External data support
 

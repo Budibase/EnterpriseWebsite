@@ -272,7 +272,7 @@ Let’s take a look at why Budibase leads the pack.
 
 Budibase is the fast, efficient way for busy teams to create professional web applications. Our design philosophy is *simplicity by default; extensibility when you need it*.
 
-Check out our [features overview](https://budibase.com/product) to see how we empower teams to turn data into action.
+Check out our [features overview](https://budibase.com/product/agents/) to see how we empower teams to turn data into action.
 
 ### Extensive data connectivity
 

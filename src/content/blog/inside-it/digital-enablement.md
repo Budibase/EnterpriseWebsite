@@ -274,7 +274,7 @@ With responsive design tools, extensive external data support, and unrivaled ext
 
 Even better, our free tier is probably the most generous in the low-code space.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### Connect your data
 

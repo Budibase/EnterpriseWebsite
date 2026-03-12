@@ -318,7 +318,7 @@ Let’s take a look at what makes Budibase the leading option for companies that
 
 Our guiding principle is simplicity by default, and extensibility when you need it. With Budibase, you can connect your data, build professional UIs, digitalize processes, and launch working solutions, in as little as a few minutes.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### Plug-in your data
 
@@ -342,7 +342,7 @@ Combine our flexible RBAC framework with conditional UIs to maximize security an
 
 Streamline all sorts of workflows with Budibase. Our platform offers a dedicated, flowchart-based automation builder, with a wide range of built-in trigger and action blocks. Build custom automations with minimal manual code.
 
-We also support a huge variety of third-party integrations through Zapier, WebHooks, REST API, and more. Check out our [integrations page](https://budibase.com/integration) to learn more.
+We also support a huge variety of third-party integrations through Zapier, WebHooks, REST API, and more. Check out our [integrations page](https://budibase.com/product/connections/) to learn more.
 
 ### Custom plug-ins
 

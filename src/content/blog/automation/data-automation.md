@@ -335,7 +335,7 @@ Let’s check out what makes Budibase such a game-changer.
 
 Budibase is the clear choice for IT teams that need to output solutions quickly, without compromising on quality. With extensive data support, intuitive design tools, and fully auto-generated CRUD screens, it’s never been easy to ship custom web apps.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### External data support
 

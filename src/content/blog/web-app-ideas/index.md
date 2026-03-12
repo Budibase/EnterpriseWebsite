@@ -50,7 +50,7 @@ I've included the complete list of 8 web app ideas below:
 
 If you are unsure how to build a web application, not to worry.
 
-Check out our detailed beginners guide on [how to build a web app](https://www.budibase.com/blog/how-to-make-a-web-app/).
+Check out our detailed beginners guide on [how to build a web app](https://budibase.com/blog/how-to-make-a-web-app/).
 
 Ok, let's dive in.
 
@@ -60,7 +60,7 @@ Ok, let's dive in.
 
 {{< figure src="/web-app-ideas/dashboard-web-app.jpg" alt="The CEO Dashboard Web App" >}}
 
-A dashboard web app is the most popular request we receive from signups to [Budibase](https://www.budibase.com). Dashboards are in-demand - check out the trend line below:
+A dashboard web app is the most popular request we receive from signups to [Budibase](https://budibase.com). Dashboards are in-demand - check out the trend line below:
 
 {{< figure src="/web-app-ideas/dashboard-trend.PNG" alt="Dashboard Trend" >}}
 
@@ -104,7 +104,7 @@ The CRM market is super competitive with lots of big names such as Salesforce an
 
 But don't let this deter you. These guys are after medium - enterprise businesses.
 
-Your new CRM web app will target freelancers / startups / small businesses. I've covered the potential of a freelance CRM before in my [micro saas ideas](https://www.budibase.com/blog/micro-saas-ideas) post.
+Your new CRM web app will target freelancers / startups / small businesses. I've covered the potential of a freelance CRM before in my [micro saas ideas](https://budibase.com/blog/micro-saas-ideas) post.
 
 I'm pretty confident people are searching for startup CRMs. Just look at the amount of people following this Quora post:
 
@@ -308,7 +308,7 @@ With a book database, all you will need to do is:
 * Write reviews on the books you own
 * Enter books you'd like to purchase
 
-Simple! This is a great project for a book lover and a great web app idea for beginners. Building a simple version of this would be easy and an MVP could be built using [Budibase](https://www.budibase.com) in 15 minutes!
+Simple! This is a great project for a book lover and a great web app idea for beginners. Building a simple version of this would be easy and an MVP could be built using [Budibase](https://budibase.com) in 15 minutes!
 
 _The guide below is relevant to the book database web app._
 
@@ -382,7 +382,7 @@ And that's the wrap!
 
 I hope you enjoyed my 8 web app ideas.
 
-Now it's over to you to build your next web app 👊. Whatever your web app goal is, I wish you luck and success. If the ideas above do not excite you, here's 6 more [micro saas ideas](https://www.budibase.com/blog/micro-saas-ideas/).
+Now it's over to you to build your next web app 👊. Whatever your web app goal is, I wish you luck and success. If the ideas above do not excite you, here's 6 more [micro saas ideas](https://budibase.com/blog/micro-saas-ideas/).
 
 I hope you have enjoyed this article. I will continue to update this list and add new web app ideas as they go through the Budibase Internal Validation Process - BIVP!
 

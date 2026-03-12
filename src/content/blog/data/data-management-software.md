@@ -687,7 +687,7 @@ We can also think about some of the more long-standing players in the data manag
 
 Specifically, the Oracle Cloud Infrastructure ecosystem is probably the most established enterprise data management system around - with everything from data lakes and warehousing to containerization, application layer, and DBMS functionalities.
 
-Check out our [Oracle integration](https://budibase.com/integration/oracle/) page to learn more.
+Check out our [Oracle integration](https://budibase.com/product/connections/) page to learn more.
 
 ![SAP logo](https://res.cloudinary.com/daog6scxm/image/upload/v1677238457/cms/SAP_Logo_zhccha.webp "SAP logo")
 

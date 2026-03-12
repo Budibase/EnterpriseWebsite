@@ -466,7 +466,7 @@ Here’s why tens of thousands of businesses choose Budibase to manage internal 
 
 At Budibase, our design philosophy is *simplicity by default; extensibility when you need it*. No other low-code platform boast so much power and flexibility without compromising on developer experiences.
 
-We also offer the most generous free tier around. Check out our [features overview](https://budibase.com/product) to learn more about Budibase.
+We also offer the most generous free tier around. Check out our [features overview](https://budibase.com/product/agents/) to learn more about Budibase.
 
 ### External data support
 

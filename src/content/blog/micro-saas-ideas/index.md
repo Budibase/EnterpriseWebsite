@@ -51,7 +51,7 @@ Leaving the 9-5 rat race is an objective for many and a Micro SaaS business is a
 
 As the name suggests Micro SaaS businesses are small, involving less resources and often less functionality. 
 
-[SaaS App Builders](https://www.budibase.com) can do a lot of the leg work for a Micro SaaS app.  MVPs are developed at lightning-fast speeds - sometimes [under 24 hours](https://www.youtube.com/watch?v=DexyfHomC4Q) ⚡️. 
+[SaaS App Builders](https://budibase.com) can do a lot of the leg work for a Micro SaaS app.  MVPs are developed at lightning-fast speeds - sometimes [under 24 hours](https://www.youtube.com/watch?v=DexyfHomC4Q) ⚡️. 
 
 Also, building and validating an MVP is quicker with a focused market 🙌.
 
@@ -379,7 +379,7 @@ There are over 15000 searches per month for 'Bookmark Manager' which is quite ge
 
 There are numerous ways to transform one of these ideas into a super successful product.
 
-Our favourite way is to use a [SaaS Builder](https://www.budibase.com/) - but we are 100% biased. 
+Our favourite way is to use a [SaaS Builder](https://budibase.com/) - but we are 100% biased. 
 
 There are other ways to build a SaaS app and we aim to explore these in a future blog post.
 

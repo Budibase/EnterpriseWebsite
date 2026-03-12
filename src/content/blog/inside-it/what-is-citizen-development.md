@@ -263,7 +263,7 @@ At Budibase, we’re on a mission to create the world’s largest ecosystem of o
 
 That’s why we offer optional self-hosting, customizable RBAC, third-party integrations, free SSO, and more.
 
-Check out our [product page](https://budibase.com/product) for more information.
+Check out our [product page](https://budibase.com/product/agents/) for more information.
 
 ## 5 citizen development tips to guarantee success
 
@@ -331,7 +331,7 @@ Others have much more sophisticated approval, vetting, and monitoring processes.
 
 Check out our guide to [citizen development governance](/blog/inside-it/citizen-development-governance/).
 
-To see how Budibase can fit into these efforts, check out our [approval apps](https://budibase.com/approval-apps) page.
+To see how Budibase can fit into these efforts, check out our [approval apps](https://budibase.com/product/apps/) page.
 
 ### 5. Recognize success
 

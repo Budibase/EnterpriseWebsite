@@ -366,4 +366,4 @@ Today, we set out to show you some of the key ways that we can use Budibase to b
 
 Budibase empowers teams to turn data into action. Our open-source, low-code platform is the fast, easy way to build fully custom form UIs on top of just about any data source.
 
-To learn more, check out our [forms page](https://budibase.com/forms/).
+To learn more, check out our [forms page](https://budibase.com/product/apps/).

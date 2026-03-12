@@ -150,7 +150,7 @@ A low code platform removes a lot of the heavy leg work associated with developi
 
 ##### Budibase
 
-[Budibase](https://www.budibase.com/) is a rapid development tool combining the functionality of many of the tools listed below, and delivering them to the user in one simple platform. Budibases helps developers, product managers, and technical entrepreneurs build, launch, and grow web applications. It covers backend and frontend development and is a lot easier and faster than traditional programming. Very soon, users will be able to build, host, and analyse there web app within Budibase. If you are interested, signup using the form in the footer.
+[Budibase](https://budibase.com/) is a rapid development tool combining the functionality of many of the tools listed below, and delivering them to the user in one simple platform. Budibases helps developers, product managers, and technical entrepreneurs build, launch, and grow web applications. It covers backend and frontend development and is a lot easier and faster than traditional programming. Very soon, users will be able to build, host, and analyse there web app within Budibase. If you are interested, signup using the form in the footer.
 
 {{< figure src="/web-development-tools/budibase.png" alt="Budibase UI" >}}
 
@@ -338,10 +338,10 @@ Analytics is an essential component for every web application/website as they pr
 
 There are thousands of web development tools available to web developers. Many are average, but the ones I have listed above are incredible and have helped me time and time again. What's crucial is you understand entirely what these different tools do. Some tools are better for specific projects, and you must pick the right tool for the right job. Web development is an ever-evolving landscape, so you must stay on top of the tools available as some will save you hours of development, and more importantly, provide your users with a better experience.
 
-If you are super-excited to build a web app and in need of an idea, not to worry, here is a list of [web app ideas you'll want to steal in 2021](https://www.budibase.com/blog/web-app-ideas/).
+If you are super-excited to build a web app and in need of an idea, not to worry, here is a list of [web app ideas you'll want to steal in 2021](https://budibase.com/blog/web-app-ideas/).
 
 I will try to update this list every six months. If you know any tools which should be listed here, please DM us on Twitter - @budibase.
 
-Also, If you are new to web development, here is an excellent post on [how to build a web app](https://www.budibase.com/blog/how-to-make-a-web-app/).
+Also, If you are new to web development, here is an excellent post on [how to build a web app](https://budibase.com/blog/how-to-make-a-web-app/).
 
 Thank you for reading this post, and I wish you well on your web development journey. If you are interested in Budibase, please request access below (it's free). Good luck!

@@ -305,7 +305,7 @@ Let’s check out what makes Budibase tick.
 
 Budibase is the fast, easy way to ship professional web apps, with minimal custom code. Our design ethos is *simplicity by default; extensibility when you need it*.
 
-Take a look at our [features overview](https://budibase.com/product) to learn more about how this translates into unbeatable developer experiences.
+Take a look at our [features overview](https://budibase.com/product/agents/) to learn more about how this translates into unbeatable developer experiences.
 
 ### External data support
 

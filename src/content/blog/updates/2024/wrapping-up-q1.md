@@ -64,11 +64,11 @@ To top the quarter off and help new users streamline the onboarding process, we 
 
 {{< iframe "https://budimaster.budibase.app/embed/visitor-management-app" >}}
 
-These templates offer a great starting point when building forms with Budibase. You can find out more about the templates on the [Budibase Forms landing page](https://budibase.com/forms).
+These templates offer a great starting point when building forms with Budibase. You can find out more about the templates on the [Budibase Forms landing page](https://budibase.com/product/apps/).
 
 ### A different type of form builder
 
-We believe Budibase offers a unique perspective and improved experience regarding form building. We’ve detailed its strengths on the [Budibase Forms landing page](https://budibase.com/forms) - security is the primary driver. We’ve also outlined [why Budibase is a better fit for specific use cases versus other form builders](https://budibase.com/blog/alternatives/forms/).
+We believe Budibase offers a unique perspective and improved experience regarding form building. We’ve detailed its strengths on the [Budibase Forms landing page](https://budibase.com/product/apps/) - security is the primary driver. We’ve also outlined [why Budibase is a better fit for specific use cases versus other form builders](https://budibase.com/blog/alternatives/forms/).
 
 Since focusing on Forms in January, we’ve seen a steady uplift in the number of new users building forms, which is encouraging. This chart does not take into account self-hosters or existing users.
 

@@ -134,7 +134,7 @@ In particular, non-developers in IT teams - including systems analysts, data spe
 
 Our platform is ideally suited for all kinds of data management solutions, workflow apps, and internal tools.
 
-Major enterprises use Budibase to [save millions of dollars on data entry](https://budibase.com/customers/reworld/) and other administrative tasks every year.
+Major enterprises use Budibase to [save millions of dollars on data entry](https://budibase.com/blog/reworld/) and other administrative tasks every year.
 
 #### Pricing
 

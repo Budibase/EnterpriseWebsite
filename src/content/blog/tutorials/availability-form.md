@@ -482,4 +482,4 @@ Here’s a reminder of how our completed availability form looks.
 
 ![Availability Form](https://res.cloudinary.com/daog6scxm/image/upload/v1708940369/cms/availability-form/Availability_Form_54_ka0ojh.webp "Availability Form")
 
-Budibase is the fast, easy way to build advanced forms on top of any data source. To learn more about our open-source, low-code platform, check out our [forms page](https://budibase.com/forms/).
+Budibase is the fast, easy way to build advanced forms on top of any data source. To learn more about our open-source, low-code platform, check out our [forms page](https://budibase.com/product/apps/).

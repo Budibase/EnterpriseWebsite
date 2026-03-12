@@ -254,7 +254,7 @@ But there’s more to this than meets the eye. We might want to leverage relativ
 
 We’ll also need to consider how and where our incident data is saved, along with any follow-on process that might need to be initiated upon form completion.
 
-Check out our [forms page](https://budibase.com/forms/) to learn more about what Budibase brings to the table here.
+Check out our [forms page](https://budibase.com/product/apps/) to learn more about what Budibase brings to the table here.
 
 ### Ticketing systems
 

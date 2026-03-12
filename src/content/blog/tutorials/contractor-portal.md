@@ -734,4 +734,4 @@ Here’s a reminder of what the finished thing looks like.
 
 Budibase is the fast, easy way to build custom portals on top of just about any data source.
 
-To learn more, check out our [portal development](https://budibase.com/portals/) page.
+To learn more, check out our [internal apps](https://budibase.com/product/apps/) page.

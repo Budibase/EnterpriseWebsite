@@ -379,7 +379,7 @@ In particular, tracking project spending becomes problematic. Luckily, you have 
 
 Alternatively, we can place additional levels of controls to ensure that requests aren’t actioned without proper accountability. For instance, using dedicated approval workflows to ensure no work goes ahead without input from appropriate stakeholders.
 
-Check out our [approval apps](https://budibase.com/approval-apps) page to find out more about how Budibase can help here.
+Check out our [approval apps](https://budibase.com/product/apps/) page to find out more about how Budibase can help here.
 
 ## We’re putting the rapid back into rapid app development
 
@@ -393,7 +393,7 @@ Let’s take a look at what makes Budibase the smart choice for low-code develop
 
 With Budibase, it’s never been faster or easier to build fully deployable web apps. Connect your data, autogenerate screens, create custom designs, add automation, and deploy your finished app, however you want.
 
-Check out our [product page](https://budibase.com/product) to find out more about what makes Budibase tick.
+Check out our [product page](https://budibase.com/product/agents/) to find out more about what makes Budibase tick.
 
 ### Automate workflows
 

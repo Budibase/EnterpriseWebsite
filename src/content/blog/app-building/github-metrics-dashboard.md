@@ -407,7 +407,7 @@ Today you’ve learned how to build a GitHub metrics dashboard. In addition, you
 
 {{< cta >}}
 
-To find out more about the kinds of tools you can create with Budibase, have a look at our [product page](https://budibase.com/product).
+To find out more about the kinds of tools you can create with Budibase, have a look at our [product page](https://budibase.com/product/agents/).
 
 We hope you’ve enjoyed it, and see you again next time!
 

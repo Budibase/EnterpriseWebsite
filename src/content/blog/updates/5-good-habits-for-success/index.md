@@ -127,10 +127,10 @@ I reflect on these habits often as they allow me to measure my progress and unde
 
 {{< figure src="/5-good-habits-for-success/great.jpg" attr="Photo by [Clark Tibbs](https://unsplash.com/@clarktibbs)" alt="GREAT" >}}
 
-If you have any queries, please feel free to reach out. At [Budibase](https://www.budibase.com), we're always happy to listen.
+If you have any queries, please feel free to reach out. At [Budibase](https://budibase.com), we're always happy to listen.
 
 Stay strong,
 
-JJ from [Budibase](https://www.budibase.com)
+JJ from [Budibase](https://budibase.com)
 
 Build your next web app 70% faster, and with total flexibility.

@@ -863,4 +863,4 @@ Here’s a reminder of what our finished franchise portal will look like.
 
 ![Franchise Portal](https://res.cloudinary.com/daog6scxm/image/upload/v1712155414/cms/franchise-portal/Franchise_Portal_98_gqpquu.webp "Franchise Portal")
 
-Budibase is the fast, easy way to build secure portals on top of just about any data. To learn more, check out our [portal development](https://budibase.com/portals/) page.
+Budibase is the fast, easy way to build secure portals on top of just about any data. To learn more, check out our [internal apps](https://budibase.com/product/apps/) page.

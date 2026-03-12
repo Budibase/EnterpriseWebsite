@@ -431,7 +431,7 @@ So, by their nature, admin panels are highly bespoke and tied to specific existi
 
 Even so, from a technical perspective, these still aren’t particularly complex tools.
 
-Check out our [admin panels page](https://budibase.com/admin-panels) to see how Budibase can make this type of in-house software development faster and easier.
+Check out our [admin panels page](https://budibase.com/product/apps/) to see how Budibase can make this type of in-house software development faster and easier.
 
 ### Dashboards
 
@@ -461,7 +461,7 @@ The idea is to enforce existing business logic programmatically, while also remo
 
 ![Workflow example](https://res.cloudinary.com/daog6scxm/image/upload/v1667827377/cms/Approval_App_atashg.webp "Workflow example")
 
-Check out our [approval apps](https://budibase.com/approval-apps) page to find out more.
+Check out our [approval apps](https://budibase.com/product/apps/) page to find out more.
 
 ### Internal tools
 
@@ -475,7 +475,7 @@ For the most part, these are highly discrete, even single-screen tools, that are
 
 ![Internal tool example](https://res.cloudinary.com/daog6scxm/image/upload/v1667827395/cms/Employee_Portal_xnlxbd.webp "Internal tool example")
 
-Check out our guide to [internal tools](https://budibase.com/internal-tools) to find out more.
+Check out our guide to [internal tools](https://budibase.com/product/apps/) to find out more.
 
 ## Budibase is rewriting the rulebook on in-house software development
 
@@ -491,7 +491,7 @@ Let’s take a look at what makes our platform tick.
 
 Our philosophy is simplicity by design, and extensibility when you need it. Budibase is built to empower developers to build tools quickly, with minimal manual coding - all the while providing you the space for customization where you need it the most.
 
-Check out our [product page](https://budibase.com/product) to find out more.
+Check out our [product page](https://budibase.com/product/agents/) to find out more.
 
 ### Extensive data support
 

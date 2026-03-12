@@ -179,7 +179,7 @@ These are the decision points that determine what actions employees should take 
 
 These can be based on a range of variables, including previous user actions, system data, environmental factors, and more. The specific attributes you’ll consider naturally depend on the nature of your workflow.
 
-So, for example, say you’re analyzing a simple [invoice approval workflow.](https://budibase.com/approval-apps/templates/invoice-approval-software/)
+So, for example, say you’re analyzing a simple [invoice approval workflow.](https://budibase.com/product/apps/)
 
 Employees can submit invoices, and your finance team can sign off on them, for the payments to be processed. In this case, the main thing we’d need to determine is the rules for whether or not an invoice is approved.
 

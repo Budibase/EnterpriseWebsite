@@ -115,7 +115,7 @@ Even where functionality can be added to legacy tools, this is often costly and 
 
 ### Compatibility
 
-Poor compatibility is a common trigger for legacy application modernization. The better your [internal tools ](https://budibase.com/internal-tools)work together, the more efficient your processes are. Legacy systems are notoriously incompatible with modern software stacks.
+Poor compatibility is a common trigger for legacy application modernization. The better your [internal tools ](https://budibase.com/product/apps/)work together, the more efficient your processes are. Legacy systems are notoriously incompatible with modern software stacks.
 
 This can lock you in to using outdated hardware or limit how you can use other applications. Naturally, this can have a massive knock-on effect in terms of costs, security, and operations.
 
@@ -163,7 +163,7 @@ The question is whether the benefits of modernization outweigh this.
 
 The key to effective app modernization is minimizing disruptions while maximizing the benefits of adopting new tools. With low-code development tools, it’s easier than ever to shift this balance in your favor.
 
-One challenge of modernization has always been getting new tools deployed quickly, to minimize disruption. With low-code tools, you can develop [business apps](https://budibase.com/business-apps) in a fraction of the time.
+One challenge of modernization has always been getting new tools deployed quickly, to minimize disruption. With low-code tools, you can develop [business apps](https://budibase.com/product/apps/) in a fraction of the time.
 
 ### Cost
 
@@ -270,7 +270,7 @@ Modern low-code builders offer extensive support for different kinds of existing
 
 ## Budibase & low-code legacy application modernization
 
-At [Budibase](https://budibase.com/product), we’re revolutionizing the way businesses build software. Our mission is to create the world’s largest suite of business tools.
+At [Budibase](https://budibase.com/product/agents/), we’re revolutionizing the way businesses build software. Our mission is to create the world’s largest suite of business tools.
 
 Here’s why Budibase is the smartest and most effective way to modernize legacy applications.
 
@@ -300,7 +300,7 @@ Connect new or rebuilt apps to legacy data sources and tools, using MySQL, Postg
 
 ### Integrate with your software stack
 
-One of the most common reasons for legacy application modernization is a lack of compatibility with newer tools. Budibase apps offer superior levels of [integration with third-party apps.](https://budibase.com/integration)
+One of the most common reasons for legacy application modernization is a lack of compatibility with newer tools. Budibase apps offer superior levels of [integration with third-party apps.](https://budibase.com/product/connections/)
 
 Use Zapier, Webhooks, and more to connect your rebuilt apps to a range of existing tools, for improved workflows, and reduced admin time. You can also set up actions within Budibase apps, triggering automations in third-party tools.
 

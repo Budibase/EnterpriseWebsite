@@ -124,7 +124,7 @@ These kinds of workflows can crop up at all sorts of junctures within onboarding
 
 Again, there are extensive opportunities for automation here through digitalizing the underlying rules that govern approvals.
 
-Check out our [approval apps](https://budibase.com/approval-apps/) page to learn more.
+Check out our [approval apps](https://budibase.com/product/apps/) page to learn more.
 
 ### IT tasks
 
@@ -262,7 +262,7 @@ Here’s what Budibase offers.
 
 Budibase offers a generous free tier, extensive data support, powerful automations, and intuitive, low-code design tools. There’s never been an easier, more expedient way to build internal tools.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### Optional self-hosting
 

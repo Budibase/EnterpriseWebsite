@@ -264,4 +264,4 @@ Here’s how this would look embedded on the Budibase website:
 
 ![Contact Information Form](https://res.cloudinary.com/daog6scxm/image/upload/v1707232508/cms/contact-information-form/Contact_Information_Form_30_ftgysv.webp "Contact Information Form")
 
-Check out our guide to building [digital forms](https://budibase.com/forms/) to find out more about what Budibase has to offers.
+Check out our guide to building [digital forms](https://budibase.com/product/apps/) to find out more about what Budibase has to offers.

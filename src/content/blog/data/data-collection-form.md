@@ -566,4 +566,4 @@ Budibase is the fast, flexible way to build advanced forms on top of any data so
 
 Our platform stands apart from traditional form builders with extensive customization, powerful automations, support for external databases, optional self-hosting, role-based access control, free SSO, and much more.
 
-To learn more, check out our [forms page](https://budibase.com/forms/).
+To learn more, check out our [forms page](https://budibase.com/product/apps/).

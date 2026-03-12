@@ -51,7 +51,7 @@ Here are the categories:
 
 **Free Alternative:** Github is free, but another great free alternative is Gitlab.
 
-### [Budibase](https://www.budibase.com/)
+### [Budibase](https://budibase.com/)
 
 {{< figure src="/small-business-apps/budibase.png" alt="Budibase UI" >}}
 
@@ -392,4 +392,4 @@ Take a look at our uide to [workflow management tools](https://budibase.com/blog
 
 ## Final thoughts
 
-I hope this article demonstrates that there a lot of great small business apps out there which can help you. And don't forget, you can always build your own business apps for free with [Budibase](https://www.budibase.com/). 
+I hope this article demonstrates that there a lot of great small business apps out there which can help you. And don't forget, you can always build your own business apps for free with [Budibase](https://budibase.com/). 

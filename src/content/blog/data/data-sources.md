@@ -620,7 +620,7 @@ We can display data by binding the output of a particular query to tables, chart
 
 ##### Forms
 
-Remember that to create or update rows, we need to furnish our query with the values we want to store. [Forms](https://budibase.com/forms) are the perfect way to do this using user-provided data. In the most basic terms, this means creating a query and tying each value to a form field.
+Remember that to create or update rows, we need to furnish our query with the values we want to store. [Forms](https://budibase.com/product/apps/) are the perfect way to do this using user-provided data. In the most basic terms, this means creating a query and tying each value to a form field.
 
 Our query will include the columns we want to record data for, and instructions for which form field to use for each of the values.
 

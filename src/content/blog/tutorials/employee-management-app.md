@@ -321,4 +321,4 @@ Here’s a reminder of what the finished app looks like.
 
 {{< vimeo id="1027314753" title="Employee Management App" >}}
 
-Budibase is the fast, easy way to build secure workflows on top of any data. To learn more, check out our [product page](https://budibase.com/product).
+Budibase is the fast, easy way to build secure workflows on top of any data. To learn more, check out our [product page](https://budibase.com/product/agents/).

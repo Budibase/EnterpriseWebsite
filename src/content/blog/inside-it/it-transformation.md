@@ -1022,7 +1022,7 @@ So, we need _integration platforms_ - tools that allow us to connect a variety o
 
 The value of these kinds of tools is allowing us set up simple _if/then_ automation rules across different platforms. For example, to pass data from one tool to another, when a certain event happens.
 
-Check out our [Zapier integration](https://budibase.com/integration/zapier/) page to learn more.
+Check out our [Zapier integration](https://budibase.com/product/connections/) page to learn more.
 
 ### Low-code development
 
@@ -1060,7 +1060,7 @@ Our guiding principle is _simplicity by default, extensibility when you need it_
 
 Our design interface makes it a breeze to combine, nest, and arrange any of our built-in components and blocks to build fully custom UIs, with minimal coding skills.
 
-Check out our [product overview](https://budibase.com/product) to learn more about using Budibase.
+Check out our [product overview](https://budibase.com/product/agents/) to learn more about using Budibase.
 
 ### Extensibility when you need it
 

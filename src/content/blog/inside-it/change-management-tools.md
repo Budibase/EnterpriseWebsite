@@ -39,7 +39,7 @@ Or, we could specifically set out to identify changes to improve existing system
 
 Change management is also concerned with the rules that underpin this. For instance, what kind of approval steps are required for specific kinds of initiatives or who is responsible for assessing these.
 
-Take a look at our guide titled [What is Change Management](https://budibase.com/resources/itil-processes/change-management/) to learn more.
+Take a look at our guide titled [What is Change Management](https://budibase.com/blog/inside-it/change-management-tools/) to learn more.
 
 ## What to look for in a change management tool
 

@@ -255,7 +255,7 @@ Here’s how we’re revolutionizing the way IT teams output apps.
 
 Connect your data, build interfaces, create automation rules, and deploy wherever your like - with minimal custom code. Budibase cuts development times down to a fraction of the hard-coded equivalent.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### External data support
 

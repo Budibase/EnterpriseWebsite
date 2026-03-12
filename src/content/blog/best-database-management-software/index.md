@@ -42,7 +42,7 @@ Check out our guide to [system integration vs software development](https://budi
 
 ## 14 best database management software examples
 
-Below, I have listed my 14 best DBMS examples. Some examples support multiple types of models, but I have grouped them according to what I feel is their primary model type. For those of you who are considering building a web app / internal tool, I have also outlined whether the listed database is supported by [Budibase](https://www.budibase.com) - an open source development platform for building internal tools in minutes. If it is supported by Budibase, you can simply connect that database and build anything from dashboards, admin panels to approval applications in minutes. 
+Below, I have listed my 14 best DBMS examples. Some examples support multiple types of models, but I have grouped them according to what I feel is their primary model type. For those of you who are considering building a web app / internal tool, I have also outlined whether the listed database is supported by [Budibase](https://budibase.com) - an open source development platform for building internal tools in minutes. If it is supported by Budibase, you can simply connect that database and build anything from dashboards, admin panels to approval applications in minutes. 
 
 {{< figure src="/best-database-management-software/best-dbms.png" alt="List of the best DBMS">}} 
 
@@ -62,7 +62,7 @@ In many situations, PostgreSQL is the go-to solution for performing complicated,
 - When would I use this: When performing data operations.
 - Secondary models: Document store
 - License: open source
-- Supported by [Budibase](https://www.budibase.com): Yes
+- Supported by [Budibase](https://budibase.com): Yes
 
 #### 2. Oracle
 
@@ -76,7 +76,7 @@ Oracle DBMS a widely used relational DBMS, developed and maintained by Oracle si
 - When would I use this - when building enterprise applications.
 - Secondary models - Document store, Graph DBMS
 - License - Commerical
-- Supported by [Budibase](https://www.budibase.com) - No
+- Supported by [Budibase](https://budibase.com) - No
 
 #### 3. MySQL
 
@@ -90,7 +90,7 @@ MySQL is another database from Oracle, but this one is free and open-source. His
 - When would I use this - When building simple web applications.
 - Secondary models - Document store
 - License - open source
-- Supported by [Budibase:](https://www.budibase.com) Yes
+- Supported by [Budibase:](https://budibase.com) Yes
 
 #### 4. Snowflake
 
@@ -280,6 +280,6 @@ InfluxDB is an open-source time-series database from the InfluxData company. It 
 
 As I previously highlighted, your database management system choice will come down to size, scaling, and architecture. 
 
-I hope you enjoyed this post and it's helped you on your journey with selecting a database. As we explore more database management systems, we will continue to add to this list. If you currently research databases with the ambition of building a web app/internal tool, you should consider [Budibase](https://www.budibase.com). Budibase is an open-source development platform for building internal tools in minutes and on your own infrastructure. Budibase has its own internal database and supports data from several databases mentioned in the list above (PostgreSQL, Mongo, Couch, MySQL, Elasticsearch, and more). 
+I hope you enjoyed this post and it's helped you on your journey with selecting a database. As we explore more database management systems, we will continue to add to this list. If you currently research databases with the ambition of building a web app/internal tool, you should consider [Budibase](https://budibase.com). Budibase is an open-source development platform for building internal tools in minutes and on your own infrastructure. Budibase has its own internal database and supports data from several databases mentioned in the list above (PostgreSQL, Mongo, Couch, MySQL, Elasticsearch, and more). 
 
 Once again, thanks for reading and best of luck on your journey.

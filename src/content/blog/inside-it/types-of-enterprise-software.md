@@ -155,7 +155,7 @@ BI tools act as a single source of truth so that users can query large, complex 
 
 In turn, this can inform decision-making at all levels of your business.
 
-Of course, a huge element of this is empowering users to make sense of data. So, we need comprehensible visualizations, in the form of dashboards, [admin panels](https://budibase.com/admin-panels), and other reporting interfaces.
+Of course, a huge element of this is empowering users to make sense of data. So, we need comprehensible visualizations, in the form of dashboards, [admin panels](https://budibase.com/product/apps/), and other reporting interfaces.
 
 ### 4. Knowledge management
 
@@ -167,7 +167,7 @@ This is where knowledge management comes into play.
 
 Knowledge management platforms are used to centralize information, making it easier to share and disseminate. This has the added benefit of enabling you to retain knowledge, even after individual employees move on.
 
-Check out our [IT knowledge base](https://budibase.com/it/templates/open-source-it-knowledge-base/) template to see how this works in practice.
+Check out our [IT knowledge base](https://budibase.com/product/apps/) template to see how this works in practice.
 
 ### 5. Workflow automation
 
@@ -189,7 +189,7 @@ Check out our ultimate guide to [workflow automation](https://budibase.com/blog/
 
 There are countless different types of enterprise software solutions aimed at managing communications, both internally and externally. This comprises everything from instant messaging tools to email automation platforms.
 
-We also have a range of tools that help _facilitate_ communications, even if they aren’t explicitly used for communicating. For example, an [employee directory](https://budibase.com/business-apps/templates/employee-directory-template/) helps colleagues to identify the right contact person in different scenarios.
+We also have a range of tools that help _facilitate_ communications, even if they aren’t explicitly used for communicating. For example, an [employee directory](https://budibase.com/product/apps/) helps colleagues to identify the right contact person in different scenarios.
 
 Pretty much across the board, the challenge is achieving efficiency when we have huge numbers of actors involved.
 
@@ -223,13 +223,13 @@ Let’s take a look at why countless enterprises around the world choose Budibas
 
 Budibase is built to empower developers to build better solutions, faster. Connect your data, build interfaces, automate processes, and deploy how you like, with minimal need for custom code. With Budibase, you can build solutions in minutes, not months.
 
-Check out our [features page](https://budibase.com/product) to learn more.
+Check out our [features page](https://budibase.com/product/agents/) to learn more.
 
 ### Self-hosting
 
 Enterprises choose Budibase for self-hosting. Deploy our platform and any tools you build in it to your own infrastructure, using Docker, Digital Ocean, Kubernetes, and more. Our self-hosted licenses range from a free, open-source tool, to bespoke enterprise packages.
 
-Check out [our pricing](https://budibase.com/self-host/) for more information.
+Check out [our pricing](https://budibase.com/pricing/) for more information.
 
 ### Configurable RBAC
 

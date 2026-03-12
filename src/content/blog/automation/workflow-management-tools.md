@@ -308,7 +308,7 @@ This makes Zapier an ideal solution for bridging the gap between existing platfo
 
 However, for more complex use cases, Zapier isn’t always sufficient on its own. For example, it has its own interface-building tools, but these aren’t particularly advanced.
 
-Check out our [Zapier integration page](https://budibase.com/integration/zapier/) to learn more about leveraging it within Budibase.
+Check out our [Zapier integration page](https://budibase.com/product/connections/) to learn more about leveraging it within Budibase.
 
 ![LucidChart](https://res.cloudinary.com/daog6scxm/image/upload/v1672748449/cms/LucidChart_Logo_gzj73n.webp "LucidChart")
 
@@ -346,7 +346,7 @@ This applies right across the spectrum of different workflow management tasks, f
 
 The downside, of course, is that this is a relatively expensive option - if you’re not already basing internal processes around Oracle tools.
 
-Check out our [Oracle integration page](https://budibase.com/integration/oracle/) to find out more about leveraging it as a data source for your Budibase apps.
+Check out our [Oracle integration page](https://budibase.com/product/connections/) to find out more about leveraging it as a data source for your Budibase apps.
 
 ### Budibase
 
@@ -370,7 +370,7 @@ Let’s see what this means in practice.
 
 Budibase is simple by default but extensible when you need it to be. Professional developers and non-technical users choose our platform for fast, flexible app builds. From autogenerating simple applications to creating custom components, Budibase is a developer’s best friend.
 
-Check out our [features overview](https://budibase.com/product) for more information.
+Check out our [features overview](https://budibase.com/product/agents/) for more information.
 
 ### Connect your data
 

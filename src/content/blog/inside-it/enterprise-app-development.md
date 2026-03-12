@@ -191,7 +191,7 @@ Obviously, there’s huge variety here, even within a single organization.
 
 Even so, we can elucidate the most common use cases for enterprise app developments.
 
-The majority of in-house app projects are relatively simple internal tools, rather than major projects. For example, CRUD apps, dashboards, forms, directories, [admin panels](https://budibase.com/admin-panels/), or approval apps.
+The majority of in-house app projects are relatively simple internal tools, rather than major projects. For example, CRUD apps, dashboards, forms, directories, [admin panels](https://budibase.com/product/apps/), or approval apps.
 
 That’s not to say that enterprise development teams _don’t_ work on more ambitious solutions or multi-function tools. Just that the majority of projects are focused on creating tools with more discrete, specific functionality.
 
@@ -207,7 +207,7 @@ Second, figuring out what actions need to be taken in each case and which staff 
 
 Your devs might then be tasked with coming up with a maintenance request tool to replace manual communications. The idea would be to codify triaging and scheduling workflows, to make it easier to provide a fair, scalable, and repeatable process for resolving issues.
 
-Check out our [maintenance request form template](https://budibase.com/forms/templates/maintenance-request-form-template/).
+Check out our [maintenance request form template](https://budibase.com/product/apps/).
 
 ## Building enterprise apps in 6 steps
 

@@ -53,7 +53,7 @@ Here are a few of our favorite templates to help you work better together.
 
 #### 1. Collect, store and share contacts
 
-Almost every business needs a secure, up-to-date [client contact list.](https://budibase.com/business-apps/templates/client-contact-list-template/) But of course, not every contact list is created equal. If you’re like most companies, you probably rely on a half-maintained spreadsheet, that lives somewhere in a shared drive or email chain.
+Almost every business needs a secure, up-to-date [client contact list.](https://budibase.com/product/apps/) But of course, not every contact list is created equal. If you’re like most companies, you probably rely on a half-maintained spreadsheet, that lives somewhere in a shared drive or email chain.
 
 Our template is designed to help colleagues share, update, and access clients’ contact information, with minimal effort. Simply add your data to create a secure, centralized record of all of your customers, and how to reach them.
 
@@ -63,7 +63,7 @@ Use simple _mailto_ commands, or integrate with softphones, VOIP tools, and more
 
 #### 2. Manage documents with ease
 
-Budibase is the ideal solution for sharing, managing, and processing documents. Our [legal document management template](https://budibase.com/legal/templates/legal-document-management-template/) is the proof.
+Budibase is the ideal solution for sharing, managing, and processing documents. Our [internal apps](https://budibase.com/product/apps/) are the proof.
 
 Law firms deal with more complex documentation than just about anyone. The key is ensuring that clients, colleagues, and other stakeholders have instant access to the most up-to-date version of any documents they might need.
 
@@ -75,13 +75,13 @@ With custom RBAC, advanced searchability, and secure file storage, our template 
 
 #### 3. Connect with employees and colleagues
 
-In the age of remote working, an effective [employee directory](https://budibase.com/business-apps/templates/employee-directory-template/) is at the heart of any successful business. These days, your team could work together for months or even years, without ever meeting in person.
+In the age of remote working, an effective [employee directory](https://budibase.com/product/apps/) is at the heart of any successful business. These days, your team could work together for months or even years, without ever meeting in person.
 
 As a remote-first company, we know this struggle better than anyone. This template is designed to build an open, communicative culture between remote colleagues, wherever they are.
 
 Colleagues can quickly search and access information on their coworkers, including bios, contact details, professional information, photos, and more. There’s even a self-service form for users to update their details.
 
-Simply populate our template with your staff’s data, and our directory is ready to go. We’re pretty sure our template is the fastest way you can [build a directory app](https://budibase.com/directories).
+Simply populate our template with your staff’s data, and our directory is ready to go. We’re pretty sure our template is the fastest way you can [build a directory app](https://budibase.com/product/apps/).
 
 ![Free employee directory template gif](https://res.cloudinary.com/daog6scxm/image/upload/v1639411576/cms/Employee_Directory_Template_Preview_njnl27.gif "Employee directory gif")
 
@@ -89,7 +89,7 @@ Simply populate our template with your staff’s data, and our directory is read
 
 For marketers, they say content is king. However, implementing a successful content marketing plan is trickier than you might think. One of the big challenges is delivering high-quality, on-brand content, to tight deadlines.
 
-Our [content approval software template](https://budibase.com/approval-apps/templates/content-approval-software/) is designed to help busy editorial teams do exactly this. Create briefs, assign tasks, submit drafts, and approve copy, from a single, user-friendly app.
+Our [content approval software template](https://budibase.com/product/apps/) is designed to help busy editorial teams do exactly this. Create briefs, assign tasks, submit drafts, and approve copy, from a single, user-friendly app.
 
 Use our template to manage remote teams, client projects, freelancers, or blog contributors.
 
@@ -103,13 +103,13 @@ More and more businesses are using customer-facing [web apps](https://budibase.c
 
 #### 5. Arrange call-backs with ease
 
-Our [call-back form template](https://budibase.com/forms/templates/call-back-form-template/) is, without a doubt, one of our most popular tools. After all, pretty much every website needs a contact form. So why did we decide to reinvent the wheel on this one?
+Our [call-back form template](https://budibase.com/product/apps/) is, without a doubt, one of our most popular tools. After all, pretty much every website needs a contact form. So why did we decide to reinvent the wheel on this one?
 
 The simple answer is that Budibase does it better.
 
 You see, with most form builders, when a user submits their details, really all the tool does is ping you in a designated mailbox. This is something, but it’s not exactly the slickest solution, especially for large businesses.
 
-With Budibase, what you do with your form data is up to you. We offer a huge range of [third-party integrations](https://budibase.com/integration), to send data to CRMs, softphones, calendar apps, you name it.
+With Budibase, what you do with your form data is up to you. We offer a huge range of [third-party integrations](https://budibase.com/product/connections/), to send data to CRMs, softphones, calendar apps, you name it.
 
 It’s the perfect way to automate client communication workflows, in just a few clicks.
 
@@ -117,7 +117,7 @@ It’s the perfect way to automate client communication workflows, in just a few
 
 #### 6. Manage customer complaints
 
-In a similar vein, we’ve built our [complaints record template](https://budibase.com/business-apps/templates/complaints-record-template/) to turn negative customer experiences into positives. Every customer complaint is a learning opportunity, but only if you have a robust system in place to log interactions.
+In a similar vein, we’ve built our [complaints record template](https://budibase.com/product/apps/) to turn negative customer experiences into positives. Every customer complaint is a learning opportunity, but only if you have a robust system in place to log interactions.
 
 Our template is the answer.
 
@@ -129,9 +129,9 @@ We’ve used our Markdown Viewer component to automatically create attractive, s
 
 #### 7. Estimate project costs
 
-Our free app templates are perfect for project management. Use our [project cost estimation template](https://budibase.com/professional-services/templates/project-cost-estimation-template/) to create and share detailed, itemized quotes, that closely match your client's requirements.
+Our free app templates are perfect for project management. Use our [project cost management guide](https://budibase.com/blog/tutorials/project-cost-management-software/) to create and share detailed, itemized quotes, that closely match your client's requirements.
 
-Set hourly rates for different project elements, provide time estimates and let our template handle the rest. Our template breaks all projects up into individually costed items. Use our simple [form interfac](https://budibase.com/forms)e to quickly create in-depth quotes, in seconds.
+Set hourly rates for different project elements, provide time estimates and let our template handle the rest. Our template breaks all projects up into individually costed items. Use our simple form interface to quickly create in-depth quotes, in seconds.
 
 Manage costs and compare spending against estimates, at a client, PM, project, or individual item level.
 
@@ -143,7 +143,7 @@ This template is built for speed. Create as many project items as you need, with
 
 Client services are a huge resource sink. Anyone who’s ever worked in an agency environment can tell you how much time is wasted on repetitive questions, project updates, document requests, and other avoidable tasks.
 
-Use our [client portal template](https://budibase.com/portals/templates/agency-client-portal-template/), to provide, smoother, faster, experiences for internal users and clients alike. We’ve provided a range of self-service functions, so clients can request assets, submit documents, and provide project briefs.
+Use our [customer portal guide](https://budibase.com/blog/tutorials/b2b-customer-portal/), to provide, smoother, faster, experiences for internal users and clients alike. We’ve provided a range of self-service functions, so clients can request assets, submit documents, and provide project briefs.
 
 We’ve created conditional UIs, based on each project’s current status. Users are seamlessly guided through the required actions to bring each project from initiation to completion.
 
@@ -153,7 +153,7 @@ With intuitive user experiences and streamlined access to information, your clie
 
 ### Streamline operations
 
-Many of our most popular free app templates are built to automate tasks, drive efficiency, and streamline internal processes. They say time is money. Budibase is the ideal tool for eliminating hidden costs relating to [approval workflows](https://budibase.com/approval-apps), administrative tasks, and more.
+Many of our most popular free app templates are built to automate tasks, drive efficiency, and streamline internal processes. They say time is money. Budibase is the ideal tool for eliminating hidden costs relating to [approval workflows](https://budibase.com/product/apps/), administrative tasks, and more.
 
 Here are some of our top templates for building efficient internal processes.
 
@@ -161,7 +161,7 @@ Here are some of our top templates for building efficient internal processes.
 
 Performance-based benefits are a great way to motivate employees, but managing them can be a huge time sink. Say goodbye to relying on spreadsheets, whiteboards, or back-of-the-napkin sums to figure out commissions.
 
-Our [commission calculation template](https://budibase.com/business-apps/templates/commission-calculation-template/) offers a better way.
+Our [commission calculation template](https://budibase.com/product/apps/) offers a better way.
 
 We’ve created a simple, automated platform to figure out how much commission each salesperson is owed, based on their length of service, and performance. Colleagues can simply register sales, and our template takes care of the rest.
 
@@ -171,7 +171,7 @@ Quickly adjust our formulae to match your commission rules, and add your sales t
 
 #### 10. Manage assets
 
-Keep track of device deployment, rental, maintenance, and retirement, with our [IT asset management template](https://budibase.com/it/templates/open-source-it-asset-management-software/). We’ve created a single advanced web app template, where users can request devices, and service teams can manage maintenance.
+Keep track of device deployment, rental, maintenance, and retirement, with our [IT asset management template](https://budibase.com/product/apps/). We’ve created a single advanced web app template, where users can request devices, and service teams can manage maintenance.
 
 Our template even handles maintenance scheduling, as well as using depreciation formulas to calculate the current value of each of your assets. With complete customization, our template is the perfect solution for cost-effectively managing assets.
 
@@ -181,7 +181,7 @@ This free app template is also the perfect example of Budibase’s data visualiz
 
 #### 11. Respond to incidents
 
-Respond quickly to all kinds of incidents, and protect against future occurrences. Our[ IT incident report form template](https://budibase.com/forms/templates/it-incident-report-template/) is the perfect solution for quickly reporting and managing technical issues, security breaches, and more.
+Respond quickly to all kinds of incidents, and protect against future occurrences. Our [IT incident report form template](https://budibase.com/product/apps/) is the perfect solution for quickly reporting and managing technical issues, security breaches, and more.
 
 IT incidents are a bigger risk factor than ever. Data loss, service interruption, and reputational damage all bring enormous costs. The key to minimizing these is responding quickly when incidents do occur.
 
@@ -211,7 +211,7 @@ Here are some of our top picks for free app templates to manage your business da
 
 #### 13. Manage school attendance
 
-In the education sector, gathering and analyzing data is critical for managing student behavior, attendance, and performance. Our [school admin panel](https://budibase.com/admin-panels/templates/school-admin-panel/) embeds seamlessly into your daily operations.
+In the education sector, gathering and analyzing data is critical for managing student behavior, attendance, and performance. Our [school admin panel](https://budibase.com/product/apps/) embeds seamlessly into your daily operations.
 
 Teachers can use simple app screens to record student attendance and tardiness, or spending on lessons and field trips. This quietly creates a robust dataset, that can be monitored and analyzed by leadership teams.
 
@@ -223,7 +223,7 @@ Our template is built to help educational leaders make better decisions, and emp
 
 #### 14. Control fleet costs
 
-Budibase offers incredible, automatic data transformation. Check out our [remote fleet management system](https://budibase.com/logistics/templates/remote-fleet-management-system/) to see this in action.
+Budibase offers incredible, automatic data transformation. Check out our [fleet management portal guide](https://budibase.com/blog/tutorials/fleet-management-portal/) to see this in action.
 
 Again, the idea here is to gather usable data from your normal daily operations. In this case, drivers can submit basic daily check-ins, covering their mileage, fuel expenses, and any other relevant journey information.
 
@@ -235,7 +235,7 @@ We’ve even built-in tools for registering and monitoring vehicle maintenance. 
 
 #### 15. Maximize product quality
 
-Our [manufacturing quality control checklist](https://budibase.com/manufacturing/templates/manufacturing-quality-control-checklist/) is a simple, free tool for identifying defects and maximizing product quality. Your QA team can complete checklists in seconds, using an intuitive, customizable multi-step form.
+Our [internal apps](https://budibase.com/product/apps/) are a simple, effective way to identify defects and maximize product quality. Your QA team can complete checklists in seconds, using an intuitive, customizable multi-step form.
 
 Each checklist submission creates a new database entry, with a relationship to the relevant product. That way, management teams can quickly spot trends in the locations, products, and operatives that have the highest incidence of defects.
 
@@ -247,7 +247,7 @@ Our template isn’t just an effective way to complete checklists. It’s also t
 
 #### 16. Manage inventories
 
-In the age of global, just-in-time supply chains, manufacturing businesses must handle large volumes of data to remain cost-effective. Our manufacturing [inventory management template](https://budibase.com/manufacturing/templates/manufacturing-inventory-management-software/) is built to track and oversee raw materials, works-in-progress, and finished goods.
+In the age of global, just-in-time supply chains, manufacturing businesses must handle large volumes of data to remain cost-effective. Our [manufacturing dashboard guide](https://budibase.com/blog/tutorials/manufacturing-dashboard/) is built around tracking and overseeing raw materials, works-in-progress, and finished goods.
 
 Of course, there are countless inventory management tools available on the market. The beauty of Budibase is that you can build a fully custom solution, without incurring massive development costs.
 
@@ -267,7 +267,7 @@ Here are just a few examples of how you can use Budibase tools to cut operating 
 
 One pain point for many businesses is ensuring that their employees have the tools they need when they need them. The key here is achieving fast access to equipment, without overspending or creating redundancy in your asset stock.
 
-Our [employee equipment checkout form](https://budibase.com/forms/templates/employee-equipment-checkout-form/) is the perfect solution. Give your team a usable, responsive tool for making instant device requests. Budibase gives you the power to set up your own approval rules, using manual review actions, or automations.
+Our [employee equipment checkout form](https://budibase.com/product/apps/) is the perfect solution. Give your team a usable, responsive tool for making instant device requests. Budibase gives you the power to set up your own approval rules, using manual review actions, or automations.
 
 Our template isn’t just a better way to request equipment. It’s also the perfect way to gather data on demand for different kinds of devices, helping your team to make better decisions about procurement and deployment.
 
@@ -275,7 +275,7 @@ Our template isn’t just a better way to request equipment. It’s also the per
 
 #### 18. Authorize recurring payments
 
-Budibase tools are a powerful way to improve your CRO. Our professional, intuitive web app templates are the ideal way to guide users to complete sales. Take our [recurring credit card authorization form](https://budibase.com/forms/templates/recurring-credit-card-authorization-form/) as an example.
+Budibase tools are a powerful way to improve your CRO. Our professional, intuitive web app templates are the ideal way to guide users to complete sales. Take our [recurring credit card authorization form](https://budibase.com/product/apps/) as an example.
 
 Many online businesses suffer huge drop-off rates, because of poor checkout experiences. Our free template offers an alternative, with a clean, effective multi-step form, for setting up recurring payments.
 
@@ -285,7 +285,7 @@ With self-hosting, external data support, and a range of third-party integration
 
 #### 19. Gather leads
 
-Attract and qualify sales opportunities with our incredible [multi-step lead form](https://budibase.com/forms/templates/multi-step-lead-form/). Any marketer will tell you that lead generation forms are a tricky balancing act. You need to gather enough information to assess leads’ potential, while also offering a quick, slick UX, to secure completions.
+Attract and qualify sales opportunities with our incredible [multi-step lead form](https://budibase.com/product/apps/). Any marketer will tell you that lead generation forms are a tricky balancing act. You need to gather enough information to assess leads’ potential, while also offering a quick, slick UX, to secure completions.
 
 Many businesses never find the perfect compromise. Our template is the answer to your prayers. We’ve created an attractive digital form, with a single text field on each step. Maximize completions, by ensuring users never feel overwhelmed or confused.
 
@@ -295,13 +295,13 @@ Send form data directly to sales professionals, calendar apps, CRMs, and more. W
 
 #### 20. Slash hiring costs
 
-Attracting talent costs money, but you need talented people for your business to grow. It can be a never-ending cycle. Our [responsive job portal template ](https://budibase.com/portals/templates/responsive-job-portal-template/)is the perfect way to find, assess, and onboard candidates.
+Attracting talent costs money, but you need talented people for your business to grow. It can be a never-ending cycle. Our [internal apps](https://budibase.com/product/apps/) are the perfect way to find, assess, and onboard candidates.
 
 We’ve used role-based access control to provide incredible user experiences for recruiters, internal teams, and candidates alike.
 
 Add job descriptions, publish new roles, and receive applications from our free web app template. Candidates can fill in customizable application forms, attach resumes, and track their progress.
 
-Best of all, [our portal apps](https://budibase.com/approval-apps) work perfectly on all kinds of devices. Empower users to apply for open roles, anywhere, any time, on any device.
+Best of all, [our portal apps](https://budibase.com/product/apps/) work perfectly on all kinds of devices. Empower users to apply for open roles, anywhere, any time, on any device.
 
 ![Recruitment portal](https://res.cloudinary.com/daog6scxm/image/upload/v1642418053/cms/Responsive_Job_Portal_GIF_hq4dso.gif "Recruitment portal ")
 
@@ -322,6 +322,6 @@ Developers around the world love Budibase, for fast, cost-effective builds. We o
 * Low-code design tools.
 * Advanced app components.
 
-This is just a selection of what Budibase can do. Take a look at our [full range of templates](https://budibase.com/templates) for more inspiration.
+This is just a selection of what Budibase can do. Take a look at our [internal apps](https://budibase.com/product/apps/) for more inspiration.
 
-Or, to find out more about our leading open-source, low-code platform, head over to our [product page](https://budibase.com/product).
+Or, to find out more about our leading open-source, low-code platform, head over to our [product page](https://budibase.com/product/agents/).

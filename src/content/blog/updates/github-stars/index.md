@@ -43,7 +43,7 @@ Today, our website is our primary external referrer to our Github page.
 
 {{< figure src="https://dev-to-uploads.s3.amazonaws.com/i/d90b7cx5loaj23kwtbod.png" alt="Github button on the website" >}}
 
-You can [see the button on the website here](https://www.budibase.com/).
+You can [see the button on the website here](https://budibase.com/).
 
 ## 4. Social pointing
 

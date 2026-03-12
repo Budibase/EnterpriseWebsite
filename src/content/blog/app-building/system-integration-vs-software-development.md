@@ -237,7 +237,7 @@ Here’s what makes Budibase tick.
 
 At Budibase, our guiding philosophy is *simplicity by default; extensibility when you need it*. Connect your data, build UIs, automate processes, and launch custom solutions in a fraction of the time.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### Connect your data
 

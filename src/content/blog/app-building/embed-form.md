@@ -372,4 +372,4 @@ Or, we could set the theme to Lightest, so it blends in with the background if w
 
 Budibase is the fast, easy way to build advanced forms on top of all kinds of existing data.
 
-To learn more, check out our [digital forms](https://budibase.com/forms/) page.
+To learn more, check out our [digital forms](https://budibase.com/product/apps/) page.

@@ -250,7 +250,7 @@ For example, Budibase uses autogeneration to remove the legwork from common deve
 
 Then, you can cross-reference this with the functional requirements that you identified in your analysis.
 
-Check out our [product overview](https://budibase.com/product) to learn more about what makes Budibase tick.
+Check out our [product overview](https://budibase.com/product/agents/) to learn more about what makes Budibase tick.
 
 ### 3. Define related workflows
 
@@ -266,7 +266,7 @@ Take a look at our guide to [citizen development governance](/blog/inside-it/cit
 
 So, there’s the obvious question of where these will come from. Since these workflows are unique to your organization, the best option is to build bespoke tools to manage them.
 
-Check out our [internal tools](https://budibase.com/internal-tools) page to see what Budibase has to offer.
+Check out our [internal tools](https://budibase.com/product/apps/) page to see what Budibase has to offer.
 
 ### 4. Get stakeholder buy-in
 

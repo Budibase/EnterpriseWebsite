@@ -312,4 +312,4 @@ Here’s a reminder of what the finished audit form will look like:
 
 ![Audit Form](https://res.cloudinary.com/daog6scxm/image/upload/v1707150334/cms/audit-form/Audit_Form_28_gl45ke.webp "Audit Form")
 
-Check out our [digital forms](https://budibase.com/forms/) page to learn more about how Budibase can be used for advanced data collection use cases.
+Check out our [digital forms](https://budibase.com/product/apps/) page to learn more about how Budibase can be used for advanced data collection use cases.

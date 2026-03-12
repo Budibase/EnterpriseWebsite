@@ -321,7 +321,7 @@ Let’s check out what makes Budibase tick.
 
 Our open-source, low-code platform offers incredible developer experiences and speedy build times. With extensive data support, flexible hosting, and even auto-generated app screens, it’s never been easier to ship professional tools at speed.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### Cloud deployments and self-hosting
 

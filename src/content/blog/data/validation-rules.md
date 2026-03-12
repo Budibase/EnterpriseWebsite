@@ -256,4 +256,4 @@ Of course, we can’t give a comprehensive account of every possible validation 
 
 Instead, what we set out to demonstrate was the extensive flexibility that Budibase offers us to build advanced forms with minimal custom code.
 
-To learn more about how this works in practice, check out our [forms page](https://budibase.com/forms/).
+To learn more about how this works in practice, check out our [forms page](https://budibase.com/product/apps/).

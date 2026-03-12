@@ -438,7 +438,7 @@ We think Budibase is the smart solution for busy IT teams. Here’s why tens of 
 
 Budibase is simple by default, but extensible when you need it to be. With our [open-source, low-code platform](https://budibase.com/blog/open-source-low-code-platforms/), you can build fully deployable, custom applications, in as little as five minutes.
 
-Check out our [product overview](https://budibase.com/product) to find out more.
+Check out our [product overview](https://budibase.com/product/agents/) to find out more.
 
 ### Leverage existing data
 

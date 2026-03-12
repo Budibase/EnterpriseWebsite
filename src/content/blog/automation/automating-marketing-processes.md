@@ -327,7 +327,7 @@ For instance, project initiations, final sign-off, financial approvals, invoicin
 
 Approvals and other internal admin processes can quickly eat up large amounts of your team’s time. Therefore, they’re clear priorities for automation.
 
-This can involve building dedicated [approval apps](https://budibase.com/approval-apps), setting automation rules so that human users only need to review certain requests, and using instant notifications to notify employees when something needs their attention.
+This can involve building dedicated [approval apps](https://budibase.com/product/apps/), setting automation rules so that human users only need to review certain requests, and using instant notifications to notify employees when something needs their attention.
 
 ## Off-the-shelf vs custom solutions
 
@@ -529,7 +529,7 @@ Budibase also offers self-hosting, using Kubernetes, Docker, Docker Compose, and
 
 Maybe this all sounds too good to be true.
 
-To prove just how easy it is to automate your marketing processes in Budibase, let’s take a few tasks as examples. We’re going to be basing this on our [multi-step lead generation form](https://budibase.com/forms/templates/multi-step-lead-form/), which you can use for free when you sign up to Budibase.
+To prove just how easy it is to automate your marketing processes in Budibase, let’s take a few tasks as examples. We’re going to be basing this on our [multi-step lead generation form](https://budibase.com/product/apps/), which you can use for free when you sign up to Budibase.
 
 As a bit of background, this is a simple signup form, where users can add the following details:
 

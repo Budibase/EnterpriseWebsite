@@ -85,7 +85,7 @@ Multi-step forms are forms that span across multiple screens. They are also know
 
 ### How to build a single-step public form
 
-Both Budibase and Google Forms are great options for building a public form (single-step). Google Forms is free, proprietary software. The data submitted within your form is hosted with Google. On the other hand, Budibase is free, open-source, and perfect for [building forms](https://budibase.com/forms/); therefore, it's possible to quickly build forms and store your data in the safety of your infrastructure. For this guide, we will use Budibase.
+Both Budibase and Google Forms are great options for building a public form (single-step). Google Forms is free, proprietary software. The data submitted within your form is hosted with Google. On the other hand, Budibase is free, open-source, and perfect for [building forms](https://budibase.com/product/apps/); therefore, it's possible to quickly build forms and store your data in the safety of your infrastructure. For this guide, we will use Budibase.
 
 #### Step 1. Sign up for Budibase
 
@@ -317,7 +317,7 @@ _Currently, to view your app, you have to navigate back to the app section (clic
 
 ## Public form template
 
-You can explore over 50 templates, including [form templates](https://budibase.com/forms/templates/ "form templates"). If you would like to explore the app we created above, you can do, by downloading it from the link below, then uploading it to Budibase (from the Create app screen in Budibase).
+You can explore over 50 templates, including [form templates](https://budibase.com/product/apps/ "form templates"). If you would like to explore the app we created above, you can do, by downloading it from the link below, then uploading it to Budibase (from the Create app screen in Budibase).
 
 [Example public form app](https://drive.google.com/file/d/1s1Sm13IXJFG0W-tZrghj4K6NaDE8G2a0/view?usp=sharing "Example public form app")
 

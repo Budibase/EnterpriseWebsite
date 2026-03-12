@@ -689,4 +689,4 @@ And here’s a reminder of what our finished employee portal looks like.
 
 ![Employee Portal](https://res.cloudinary.com/daog6scxm/image/upload/v1712324789/cms/employee-portal/Employee_Portal_85_ci4eda.webp "Employee Portal")
 
-Budibase is the fast, easy way to build secure custom portals on top of just about any data source. To learn more, check out our [portal development](https://budibase.com/portals/) page.
+Budibase is the fast, easy way to build secure custom portals on top of just about any data source. To learn more, check out our [internal apps](https://budibase.com/product/apps/) page.

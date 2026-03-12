@@ -255,7 +255,7 @@ Here’s what makes our platform tick.
 
 At Budibase, we’re on a mission to help teams turn data into action. With extensive data connectivity, leading extensibility, and simple yet powerful design tools, there’s never been an easier way to create all sorts of web applications.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### Optional self-hosting
 

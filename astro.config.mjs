@@ -13,7 +13,7 @@ import rehypeStripMissingImages from "./src/lib/rehype-strip-missing-images.js";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.budibase.com",
+  site: "https://budibase.com",
 
   prefetch: {
     prefetchAll: false,

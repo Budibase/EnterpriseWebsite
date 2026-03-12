@@ -263,10 +263,10 @@ I hope you enjoyed and take inspiration from our top 10 web application designs 
 
 If you are considering building a web app, I would start by reading the following:
 
-[How to build a web app](https://www.budibase.com/blog/how-to-make-a-web-app/)
+[How to build a web app](https://budibase.com/blog/how-to-make-a-web-app/)
 
 If you are considering building a web app, and but you don't know what to build, we've got you covered. Check out the following inspirational post:
 
-[Internal Tools](https://budibase.com/internal-tools/)
+[Internal Tools](https://budibase.com/product/apps/)
 
 And if you are looking considering tools to build your next web application, reduce your development time by choosing Budibase. Simply sign up using the form below.

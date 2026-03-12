@@ -246,4 +246,4 @@ Here’s a reminder of what our finished IT Request Form looks like:
 
 ![IT Request Form](https://res.cloudinary.com/daog6scxm/image/upload/v1707323201/cms/it-request-form/IT_Request_Form_30_voahs7.webp "IT Request Form")
 
-If you found this tutorial helpful, check out our [digital forms](https://budibase.com/forms/) page to learn more about how Budibase empowers teams to turn data into action.
+If you found this tutorial helpful, check out our [digital forms](https://budibase.com/product/apps/) page to learn more about how Budibase empowers teams to turn data into action.

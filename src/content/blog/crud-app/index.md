@@ -24,7 +24,7 @@ At a high level, CRUD apps consist of three parts; the database, user interface,
 
 #### Database
 
-The database is where your data is stored. A database management system is used to manage the database. There are several different types of database management systems (DBMS) that can be categorized by how they store data; relational (SQL), Document (NoSQL). If you are deciding what DBMS to choose for your CRUD app, here’s a list of the [14 best database management systems](https://www.budibase.com/blog/best-database-management-software/). Going forward, our content will focus on SQL. SQL databases consist of tables. Tables consist of records. Records consist of fields. Fields consist of data.
+The database is where your data is stored. A database management system is used to manage the database. There are several different types of database management systems (DBMS) that can be categorized by how they store data; relational (SQL), Document (NoSQL). If you are deciding what DBMS to choose for your CRUD app, here’s a list of the [14 best database management systems](https://budibase.com/blog/best-database-management-software/). Going forward, our content will focus on SQL. SQL databases consist of tables. Tables consist of records. Records consist of fields. Fields consist of data.
 
 #### User Interface
 

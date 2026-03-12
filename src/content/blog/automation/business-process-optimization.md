@@ -334,7 +334,7 @@ BPO can greatly expedite and regularize this process, with measures including:
 
 For example, we could apply a framework like this to the process our employees use to book time off.
 
-Check out our [vacation request form template](https://budibase.com/forms/templates/vacation-request-form-template/) to see this in action.
+Check out our [vacation request form template](https://budibase.com/product/apps/) to see this in action.
 
 ### Project estimations and quotations
 
@@ -351,7 +351,7 @@ So, we can easily implement strategies including:
 * Implementing defined review and approval processes to speed up communications.
 * Leveraging integrations to create more efficient follow-on actions, including for billing.
 
-Take a look at our [project cost estimation template](https://budibase.com/professional-services/templates/project-cost-estimation-template/) to find out more.
+Take a look at our [project cost management guide](https://budibase.com/blog/tutorials/project-cost-management-software/) to find out more.
 
 ### IT incident responses
 
@@ -370,7 +370,7 @@ To properly respond to IT incidents, we need a combination of the following:
 * Oversight mechanisms for the status of specific responses.
 * Knowledge creation and documentation policies for preventing future incidents based on lessons learned.
 
-Check out our [IT incident report template ](https://budibase.com/forms/templates/it-incident-report-template/)to get started.
+Check out our [IT incident report template ](https://budibase.com/product/apps/)to get started.
 
 ## Defining a process optimization strategy
 
@@ -606,7 +606,7 @@ Budibase is the ideal solution for building all kinds of internal tools, utiliti
 
 There’s never been a faster, easier way for developers and non-technical colleagues alike to digitalize processes.
 
-Check out our [features overview](https://budibase.com/product) for more information.
+Check out our [features overview](https://budibase.com/product/agents/) for more information.
 
 ### Self-hosting or cloud deployments
 

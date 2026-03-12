@@ -302,7 +302,7 @@ Here’s why thousands of organizations around the world choose Budibase to buil
 
 Connect your data, build interfaces, add automation rules, and deploy your application wherever you like. Budibase is the perfect solution for building web apps, internal tools, data management solutions, and integrated workflows.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### External data support
 

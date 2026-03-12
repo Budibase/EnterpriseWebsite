@@ -192,12 +192,12 @@ Because of the nature of open-source tools, vendor lock-in is highly unlikely.
 
 With platforms like Budibase, organizations can build tools that fully meet their needs, and maintain and upgrade them as the need arises.
 
-By using deployment tools like [Kubernetes](https://budibase.com/integration/kubernetes/) and [Docker](https://budibase.com/integration/docker/), open-source platforms can be deployed to a range of cloud-based and on-premises platforms, depending on your specific needs.
+By using deployment tools like [Kubernetes](https://budibase.com/product/connections/) and [Docker](https://budibase.com/product/connections/), open-source platforms can be deployed to a range of cloud-based and on-premises platforms, depending on your specific needs.
 
 ## Mitigating the impact of lock-in with low-code tools
 
-At Budibase, we’re changing the way businesses build software, forever. Using our [open-source, low-code platform](https://budibase.com/product), you can build fully deployable tools in as little as five minutes.
+At Budibase, we’re changing the way businesses build software, forever. Using our [open-source, low-code platform](https://budibase.com/product/agents/), you can build fully deployable tools in as little as five minutes.
 
-We also offer support for a wide range of external data sources, [third-party integrations](https://budibase.com/integration/), and hosting and deployment tools.
+We also offer support for a wide range of external data sources, [third-party integrations](https://budibase.com/product/connections/), and hosting and deployment tools.
 
 Budibase is completely shifting the cost-benefit calculation when it comes to building new tools. Check out our range of [free app templates](https://budibase.com/templates/) to find out more.

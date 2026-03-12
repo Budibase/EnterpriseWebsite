@@ -252,7 +252,7 @@ Here’s what makes Budibase tick.
 
 Budibase is the fast, easy way to build professional web applications around your existing data assets. With a generous free tier, auto-generated UIs, extensive data support, and huge expansibility, there’s never been a better way to build custom apps.
 
-Check out our [features overview](https://budibase.com/product) to learn more.
+Check out our [features overview](https://budibase.com/product/agents/) to learn more.
 
 ### Market-leading external data support
 

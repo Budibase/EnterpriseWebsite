@@ -379,7 +379,7 @@ Another similar group of solutions is what we can describe as _workflow_ tools. 
 
 Usually, this requires an extra categorization attribute in the app’s data model to denote what stage of the workflow a given entry is at.
 
-The most common examples are [approval apps](https://budibase.com/approval-apps). Most enterprise workflows are characterized by complex, multi-level decision-making and clear separation of concerns. So, we need robust systems for enforcing these rules.
+The most common examples are [approval apps](https://budibase.com/product/apps/). Most enterprise workflows are characterized by complex, multi-level decision-making and clear separation of concerns. So, we need robust systems for enforcing these rules.
 
 For instance, vacation booking requests or invoice submission tools.
 
@@ -395,7 +395,7 @@ At a technical level, these are incredibly simple tools. We’re essentially con
 
 There might also be some simple functionality for interacting with data, like filtering, exporting, or querying specific metrics.
 
-Check out our [admin panels](https://budibase.com/admin-panels) page for more information.
+Check out our [admin panels](https://budibase.com/product/apps/) page for more information.
 
 ### Automations
 
@@ -427,7 +427,7 @@ For the most part, these are lightweight, single-screen applications, aimed at m
 
 There’s a bit more technical complexity here than with other kinds of internal projects, but the difficult thing here is still more the number of tools that enterprises need to build, rather than the complexity of any given solution.
 
-Check out our ultimate guide to [internal tools](https://budibase.com/internal-tools) for a full exploration of this.
+Check out our ultimate guide to [internal tools](https://budibase.com/product/apps/) for a full exploration of this.
 
 ![Enterprise Software Development Costs](https://res.cloudinary.com/daog6scxm/image/upload/v1666609119/cms/progressive-web-apps-vs-native-apps-part-1-4ggg_lj2pdi.webp "Enteprise Software Development Costs")
 
@@ -617,7 +617,7 @@ Our platform is designed to empower your team to build working solutions in minu
 
 You can even autogenerate forms and CRUD interfaces, without writing a single line of code.
 
-Check out our [product page](https://budibase.com/product) for more information.
+Check out our [product page](https://budibase.com/product/agents/) for more information.
 
 ### Extensive data support
 

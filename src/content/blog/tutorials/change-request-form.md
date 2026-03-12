@@ -302,4 +302,4 @@ Here’s what our finished change request form looks like:
 
 ![Change Request Form](https://res.cloudinary.com/daog6scxm/image/upload/v1706537723/cms/change-request-form/Change_Request_Form_38_kisxt5.webp "Change Request Form")
 
-To learn more about building advanced forms on top of any data source, check out our [digital forms](https://budibase.com/forms/) page.
+To learn more about building advanced forms on top of any data source, check out our [digital forms](https://budibase.com/product/apps/) page.

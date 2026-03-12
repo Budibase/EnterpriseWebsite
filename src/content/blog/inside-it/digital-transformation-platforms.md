@@ -479,7 +479,7 @@ Basically, Zapier is a tool for connecting tools from different vendors, with a 
 
 In the right hands, this can be a hugely elegant and cost-effective way to make massive cost savings across individual workflows and business processes.
 
-Take a look at our [Zapier integration](https://budibase.com/integration/zapier/) to learn more.
+Take a look at our [Zapier integration](https://budibase.com/product/connections/) to learn more.
 
 ![Salesforce Logo](https://res.cloudinary.com/daog6scxm/image/upload/v1677240736/cms/Salesforce_logo_rqqa7c.webp "Salesforce logo")
 
@@ -509,7 +509,7 @@ Amazon Web Services occupy a slightly different corner of the digital transforma
 
 In fact, AWS comprises over 170 distinct services. Rather than directly shaping the way your business manages individual processes, it empowers your developers to build performant, scalable custom solutions to fuel your transformation efforts.
 
-Check out our [Amazon S3 integration](https://budibase.com/integration/s3/) page to see a little bit more of what this can mean in practice.
+Check out our [Amazon S3 integration](https://budibase.com/product/connections/) page to see a little bit more of what this can mean in practice.
 
 ![Microsoft Logo](https://res.cloudinary.com/daog6scxm/image/upload/v1677240737/cms/Microsoft_logo_ifn4gn.webp "Microsoft Logo")
 
@@ -625,7 +625,7 @@ Here’s what you need to know.
 
 With our leading low-code platform, you can output professional, fully-functioning solutions in minutes, not months. We offer intuitive design tools, extensive data support, and even autogeneration for forms and CRUD tools.
 
-Check out our [features page](https://budibase.com/product) to learn more.
+Check out our [features page](https://budibase.com/product/agents/) to learn more.
 
 ### Manage data with ease
 

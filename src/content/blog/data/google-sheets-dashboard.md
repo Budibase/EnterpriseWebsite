@@ -38,7 +38,7 @@ So, say for example you wanted to monitor how different assets are deployed acro
 
 The missing step is creating a single resource for decision-makers to access key insights and important data about this.
 
-Check out our [open-source IT asset management software](https://budibase.com/it/templates/open-source-it-asset-management-software/) template for more details on how this works in practice.
+Check out our [open-source IT asset management software](https://budibase.com/product/apps/) template for more details on how this works in practice.
 
 This simple example points to an important fact about dashboard apps.
 

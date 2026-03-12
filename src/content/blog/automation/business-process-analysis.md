@@ -320,7 +320,7 @@ Here’s why.
 
 Budibase is built, first and foremost, for simplicity. Our platform empowers users to build fully functional custom web apps in a fraction of the typical development cycle. At the same time, we offer best-in-class flexibility, customization, and extensibility.
 
-Check out our [features overview](https://budibase.com/product) to find out more.
+Check out our [features overview](https://budibase.com/product/agents/) to find out more.
 
 ### Connect your data
 
@@ -332,7 +332,7 @@ We also offer our own built-in database, with full CSV upload support, to help y
 
 Use our intuitive automation builder to create sleek, streamlined, and integrated processes, with minimal custom code. Use our step-based interface to create nested, fully custom automation rules with ease.
 
-We also offer a range of third-party integrations that can be used as automation actions and triggers alike. Check out our [integrations page](https://budibase.com/integration) to learn more.
+We also offer a range of third-party integrations that can be used as automation actions and triggers alike. Check out our [integrations page](https://budibase.com/product/connections/) to learn more.
 
 ### Custom plug-ins
 
