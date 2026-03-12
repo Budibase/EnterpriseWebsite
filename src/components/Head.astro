@@ -10,6 +10,7 @@ export type Props = {
 	description?: string;
 	image?: { src: string; alt: string };
 	canonicalURL?: URL | null;
+	robots?: string;
 	pageType?: 'website' | 'article';
 };
 
@@ -139,6 +140,7 @@ const {
 	description: providedDescription,
 	image = siteInfo.image,
 	canonicalURL = new URL(Astro.request.url, Astro.site),
+	robots,
 	pageType = 'website',
 } = Astro.props;
 
@@ -232,6 +234,7 @@ function smartypants(text: string, _mode?: number): string {
 	twitter={{ handle: twitterHandle }}
 	og={{ type: pageType }}
 	canonicalURL={canonicalURL}
+	robots={robots}
 />
 <style>
   body {

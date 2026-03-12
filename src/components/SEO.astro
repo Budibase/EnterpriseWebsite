@@ -21,6 +21,7 @@ export type Twitter = Partial<SEOMetadata> & {
 export type Props = SEOMetadata & {
 	og?: OpenGraph;
 	twitter?: Twitter;
+	robots?: string;
 };
 const {
 	name,
@@ -29,6 +30,7 @@ const {
 	image,
 	locale = 'en',
 	canonicalURL = new URL(Astro.url.pathname, Astro.site),
+	robots = 'max-image-preview:large',
 } = Astro.props;
 
 const og = {
@@ -97,4 +99,4 @@ function formatCanonicalURL(url: string | URL) {
 	See: https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag#max-image-preview
 */
 }
-<meta name="robots" content="max-image-preview:large" />
+<meta name="robots" content={robots} />
