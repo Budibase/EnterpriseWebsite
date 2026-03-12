@@ -3,10 +3,10 @@ import { Image } from "astro:assets";
 import BudibaseSymbol from "@assets/BBSymbolWhite.svg";
 import JessAvatarImage from "@assets/images/avatars/Avatar.png";
 import SarahAvatarImage from "@assets/images/avatars/Ellipse-1.png";
-import ValleyImage from "@assets/images/homepage/valley.png";
+import PlatformBgImage from "@assets/images/homepage/platform/bg4.png";
 import PaperPlaneTiltFill from "phosphor-astro/PaperPlaneTiltFill.astro";
 
-const bgImage = ValleyImage.src;
+const bgImage = PlatformBgImage.src;
 const jessAvatar = JessAvatarImage.src;
 const sarahAvatar = SarahAvatarImage.src;
 
@@ -311,6 +311,7 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0.5;
     pointer-events: none;
   }
 

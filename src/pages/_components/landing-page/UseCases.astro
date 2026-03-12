@@ -1,8 +1,8 @@
 ---
 import Card from "@components/cards/Card.astro";
-import { getAgentSpaceCards } from "../../../data/agentSpaceCardData";
+import { getOpsLibraryCards } from "../../../data/opsLibraryCardData";
 
-const cards = (await getAgentSpaceCards()).slice(0, 6);
+const cards = (await getOpsLibraryCards()).slice(0, 6);
 ---
 <div class="container max-w-7xl mx-auto mt-12 md:mt-24 px-2 lg:px-0">
   <h2 class="mb-6 text-center! text-balance! max-w-4xl! mx-auto!">

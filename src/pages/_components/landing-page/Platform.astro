@@ -1,35 +1,16 @@
 ---
 import SectionBlock from "@components/SectionBlock.astro";
 import Card from "@components/cards/Card.astro";
-import AgentEmployeeSelfServicePreview from "@components/AgentEmployeeSelfServicePreview.astro";
-import AutomationFlowPreview from "@components/AutomationFlowPreview.astro";
-import FormDemo from "@components/FormDemo.astro";
-import AppDataSourcesPreview from "@components/AppDataSourcesPreview.astro";
-
-const automationNodes = [
-  {
-    badgeLabel: "Trigger",
-    badgeTone: "trigger",
-    title: "Agent trigger",
-    description: "This automation is triggered by agents",
-    iconKind: "sparkle",
-    iconTone: "trigger",
-  },
-  {
-    badgeLabel: "Operation",
-    badgeTone: "operation",
-    title: "Microsoft Teams",
-    description: "Send alert message to #ITOps channel",
-    iconKind: "teams",
-    iconTone: "integration",
-  },
-] as const;
+import OnePlatformAgent from "@components/OnePlatformAgent.astro";
+import OnePlatformAutomation from "@components/OnePlatformAutomation.astro";
+import OnePlatformApp from "@components/OnePlatformApp.astro";
+import OnePlatformData from "@components/OnePlatformData.astro";
 
 const cards = [
   {
     label: "Agents",
     description:
-      "Answer employee questions and handle requests across Slack, email, and chat.",
+      "Answer employee questions and handle requests across multiple channels.",
   },
   {
     label: "Automations",
@@ -43,8 +24,7 @@ const cards = [
   },
   {
     label: "Data",
-    description:
-      "Connect your databases, spreadsheets, and business systems.",
+    description: "Connect your databases, spreadsheets, and business systems.",
   },
 ] as const;
 ---
@@ -59,40 +39,48 @@ const cards = [
     <div class="platform-section__grid">
       <div class="platform-section__card">
         <Card label={cards[0].label} description={cards[0].description}>
-          <div slot="image-overlay" class="platform-section__overlay" aria-hidden="true">
-            <AgentEmployeeSelfServicePreview variant="card" />
+          <div
+            slot="image-overlay"
+            class="platform-section__overlay platform-section__overlay--agent"
+            aria-hidden="true"
+          >
+            <OnePlatformAgent />
           </div>
         </Card>
       </div>
 
       <div class="platform-section__card">
         <Card label={cards[1].label} description={cards[1].description}>
-          <div slot="image-overlay" class="platform-section__overlay" aria-hidden="true">
-            <AutomationFlowPreview
-              nodes={automationNodes}
-              frameId="teams-alert"
-              variant="card"
-            />
-          </div>
-        </Card>
-      </div>
-
-      <div class="platform-section__card">
-        <Card label={cards[2].label} description={cards[2].description}>
-          <div slot="image-overlay" class="platform-section__overlay" aria-hidden="true">
-            <div class="platform-section__scaled-preview platform-section__scaled-preview--form">
-              <FormDemo />
-            </div>
+          <div
+            slot="image-overlay"
+            class="platform-section__overlay platform-section__overlay--automation"
+            aria-hidden="true"
+          >
+            <OnePlatformAutomation />
           </div>
         </Card>
       </div>
 
       <div class="platform-section__card">
         <Card label={cards[3].label} description={cards[3].description}>
-          <div slot="image-overlay" class="platform-section__overlay" aria-hidden="true">
-            <div class="platform-section__scaled-preview platform-section__scaled-preview--data">
-              <AppDataSourcesPreview />
-            </div>
+          <div
+            slot="image-overlay"
+            class="platform-section__overlay platform-section__overlay--data"
+            aria-hidden="true"
+          >
+            <OnePlatformData />
+          </div>
+        </Card>
+      </div>
+
+      <div class="platform-section__card">
+        <Card label={cards[2].label} description={cards[2].description}>
+          <div
+            slot="image-overlay"
+            class="platform-section__overlay platform-section__overlay--app"
+            aria-hidden="true"
+          >
+            <OnePlatformApp />
           </div>
         </Card>
       </div>
@@ -117,6 +105,26 @@ const cards = [
     overflow: hidden;
   }
 
+  .platform-section__overlay--data {
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .platform-section__overlay--agent {
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .platform-section__overlay--automation {
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .platform-section__overlay--app {
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
   .platform-section__card :global(.card-image-wrap) {
     height: 340px;
     background: var(--bg-2);
@@ -126,24 +134,9 @@ const cards = [
     gap: 10px;
   }
 
-  .platform-section__card :global(.card-content p) {
+  .platform-section__card :global(.card-content > p) {
     font-size: 14px;
     line-height: 1.5;
-  }
-
-  .platform-section__scaled-preview {
-    flex-shrink: 0;
-    transform-origin: center center;
-  }
-
-  .platform-section__scaled-preview--form {
-    width: 520px;
-    transform: scale(0.56);
-  }
-
-  .platform-section__scaled-preview--data {
-    width: 430px;
-    transform: scale(0.74);
   }
 
   @media (min-width: 768px) {
@@ -154,14 +147,6 @@ const cards = [
 
     .platform-section__card :global(.card-image-wrap) {
       height: 320px;
-    }
-
-    .platform-section__scaled-preview--form {
-      transform: scale(0.54);
-    }
-
-    .platform-section__scaled-preview--data {
-      transform: scale(0.72);
     }
   }
 </style>

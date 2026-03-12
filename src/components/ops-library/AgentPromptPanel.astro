@@ -6,8 +6,6 @@ interface Props {
   title?: string;
   agentTitle?: string;
   toolsUsed?: string[];
-  ctaLabel?: string;
-  ctaHref?: string;
 }
 
 const {
@@ -15,8 +13,6 @@ const {
   title = "Prompt",
   agentTitle,
   toolsUsed = [],
-  ctaLabel,
-  ctaHref,
 } = Astro.props as Props;
 ---
 
@@ -25,8 +21,6 @@ const {
   data-agent-prompt-panel
   data-agent-title={agentTitle ?? ""}
   data-tools-used={toolsUsed.join(" | ")}
-  data-cta-label={ctaLabel ?? ""}
-  data-cta-href={ctaHref ?? ""}
 >
   <div class="agent-prompt-panel-header">
     <p class="agent-prompt-panel-title">{title}</p>

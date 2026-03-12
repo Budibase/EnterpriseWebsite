@@ -10,8 +10,6 @@ interface Props {
   showViewButton?: boolean;
   agentTitle?: string;
   toolsUsed?: string[];
-  ctaLabel?: string;
-  ctaHref?: string;
 }
 
 const {
@@ -22,8 +20,6 @@ const {
   showViewButton = true,
   agentTitle,
   toolsUsed = [],
-  ctaLabel,
-  ctaHref,
 } = Astro.props as Props;
 
 const promptId = `access-request-prompt-${Math.random().toString(36).slice(2, 8)}`;
@@ -41,8 +37,6 @@ const customPromptLines = hasCustomPrompt
   data-collapsed-height={String(collapsedHeight)}
   data-agent-title={agentTitle ?? ""}
   data-tools-used={toolsUsed.join(" | ")}
-  data-cta-label={ctaLabel ?? ""}
-  data-cta-href={ctaHref ?? ""}
   data-show-view={showViewButton ? "true" : "false"}
 >
   <div class="relative">

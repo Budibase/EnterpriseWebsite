@@ -131,10 +131,10 @@ const assetsUsedSchema = z.object({
   apps: z.array(z.string()).optional(),
 });
 
-const workflows = defineCollection({
+const opsLibrary = defineCollection({
   loader: glob({
     pattern: ["**/*.md", "**/*.mdx", "!**/README.md"],
-    base: "./src/content/workflows",
+    base: "./src/content/ops-library",
   }),
   schema: z.object({
     slug: z.string(),
@@ -219,7 +219,7 @@ export const collections = {
   blog,
   pages,
   caseStudies,
-  workflows,
+  opsLibrary,
   changelog,
   legal,
 };

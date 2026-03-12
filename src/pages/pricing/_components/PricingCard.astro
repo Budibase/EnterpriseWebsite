@@ -79,7 +79,12 @@ const cardClasses = ["pricing-card", recommended ? "recommended" : ""]
 
 const isOperationsFeature = (feature: FeatureItem): feature is string =>
   typeof feature === "string" &&
-  (/^Operations:\s*/i.test(feature) || /^(.+?)\s+operations$/i.test(feature));
+  (
+    /^Actions:\s*/i.test(feature) ||
+    /^(.+?)\s+actions$/i.test(feature) ||
+    /^Operations:\s*/i.test(feature) ||
+    /^(.+?)\s+operations$/i.test(feature)
+  );
 
 const isEndUsersFeature = (feature: FeatureItem): boolean => {
   const featureText = typeof feature === "string" ? feature : feature.text;
@@ -93,7 +98,7 @@ const isAICreditsFeature = (feature: FeatureItem): boolean => {
 
 const toOperationsLabel = (value: string): string => {
   const trimmed = value.trim();
-  return /operations$/i.test(trimmed) ? trimmed : `${trimmed} operations`;
+  return /actions$/i.test(trimmed) ? trimmed : `${trimmed} actions`;
 };
 
 const normalizedOperationTiers = operationTiers.map((tier) => ({
@@ -115,8 +120,10 @@ const visibleFeatures = nonOperationsFeatures.filter((feature) =>
   !isEndUsersFeature(feature) && !isAICreditsFeature(feature)
 );
 const operationsValue = operationsFeature?.match(/^Operations:\s*(.+)$/i)?.[1] ||
-  operationsFeature?.match(/^(.+?)\s+operations$/i)?.[1];
-const operationsLabel = operationsValue ? `${operationsValue} operations` : operationsFeature || undefined;
+  operationsFeature?.match(/^(.+?)\s+operations$/i)?.[1] ||
+  operationsFeature?.match(/^Actions:\s*(.+)$/i)?.[1] ||
+  operationsFeature?.match(/^(.+?)\s+actions$/i)?.[1];
+const operationsLabel = operationsValue ? `${operationsValue} actions` : operationsFeature || undefined;
 const fallbackAICreditsValue = typeof aiCreditsFeature === "string"
   ? (
     aiCreditsFeature.match(/^Budibase AI credits:\s*(.+)$/i)?.[1] ||
@@ -221,7 +228,7 @@ const showAddonsSection = normalizedAddonItems.length > 0;
       </div>
       {operationsDropdownOptions.length > 1 && (
         <div class="operations-row operations-select-row text-[14px] text-stone-900 dark:text-stone-100 mt-3">
-          <select class="operations-select" aria-label="Operations limit" data-operations-select>
+          <select class="operations-select" aria-label="Actions limit" data-operations-select>
             {
               operationsDropdownOptions.map((option, index) => (
                 <option

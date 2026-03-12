@@ -1,16 +1,13 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
 import AccessRequestPrompt from "@components/AccessRequestPrompt.astro";
-import AgentDetailHero from "@components/agent-space/AgentDetailHero.astro";
-import AgentPromptPanel from "@components/agent-space/AgentPromptPanel.astro";
-import AgentPromptModal from "@components/agent-space/AgentPromptModal.astro";
-import AgentAssetsRail from "@components/agent-space/AgentAssetsRail.astro";
-import RelatedAgentsSection from "@components/agent-space/RelatedAgentsSection.astro";
+import AgentDetailHero from "@components/ops-library/AgentDetailHero.astro";
+import AgentPromptPanel from "@components/ops-library/AgentPromptPanel.astro";
+import AgentPromptModal from "@components/ops-library/AgentPromptModal.astro";
+import AgentAssetsRail from "@components/ops-library/AgentAssetsRail.astro";
+import RelatedAgentsSection from "@components/ops-library/RelatedAgentsSection.astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
-import { getAgentSpaceCards } from "../../data/agentSpaceCardData";
-
-const DEFAULT_CTA_LABEL = "Use this template";
-const DEFAULT_CTA_HREF = "https://account.budibase.app/register";
+import { getOpsLibraryCards } from "../../data/opsLibraryCardData";
 
 const ASSET_GROUP_ORDER = [
   { key: "tables", label: "Tables" },
@@ -37,8 +34,6 @@ type DetailViewModel = {
   outcome: string;
   slug: string;
   pageTitle: string;
-  ctaLabel: string;
-  ctaHref: string;
   heroPrompt: string;
   promptCardStyle: "default" | "snippet";
   usePromptCardExperience: boolean;
@@ -55,9 +50,9 @@ type RelatedAgent = {
 };
 
 export async function getStaticPaths() {
-  const workflows = await getCollection("workflows");
+  const opsLibraryEntries = await getCollection("opsLibrary");
 
-  return workflows.map((entry) => ({
+  return opsLibraryEntries.map((entry) => ({
     params: { slug: entry.data.slug ?? entry.id },
     props: { entry },
   }));
@@ -89,7 +84,7 @@ const mergeAssetsWithFallback = (
   return merged;
 };
 
-const buildWorkflowPromptFallback = (entry: CollectionEntry<"workflows">) => {
+const buildOpsLibraryPromptFallback = (entry: CollectionEntry<"opsLibrary">) => {
   const assists = entry.data.aiAssists.slice(0, 3).join(", ");
   const humanChecks = entry.data.humansDecide.slice(0, 3).join(", ");
 
@@ -104,8 +99,8 @@ const buildWorkflowPromptFallback = (entry: CollectionEntry<"workflows">) => {
   ].join("\n");
 };
 
-const buildWorkflowFallbackAssets = (
-  entry: CollectionEntry<"workflows">,
+const buildOpsLibraryFallbackAssets = (
+  entry: CollectionEntry<"opsLibrary">,
 ): AssetBuckets => {
   const slug = entry.data.slug ?? entry.id;
   const dataTableSignals = entry.data.integrations.filter((integration) =>
@@ -141,11 +136,11 @@ const buildWorkflowFallbackAssets = (
     ]),
   };
 };
-const { entry } = Astro.props as { entry: CollectionEntry<"workflows"> };
+const { entry } = Astro.props as { entry: CollectionEntry<"opsLibrary"> };
 const slug = entry.data.slug ?? entry.id;
 const explicitPrompt = entry.data.heroPrompt?.trim() ?? "";
 const rendered = await render(entry);
-const WorkflowContent = rendered.Content;
+const OpsLibraryContent = rendered.Content;
 const promptCardStyle = entry.data.promptCardStyle ?? "default";
 const usePromptCardExperience = promptCardStyle === "snippet";
 const useDefaultPromptCard = usePromptCardExperience && slug === "access-request" && !explicitPrompt;
@@ -154,16 +149,14 @@ const detail: DetailViewModel = {
   title: entry.data.title,
   outcome: entry.data.outcome,
   slug,
-  pageTitle: `${entry.data.title} Workflow Playbook | Budibase`,
-  ctaLabel: entry.data.cta?.label?.trim() || DEFAULT_CTA_LABEL,
-  ctaHref: entry.data.cta?.href?.trim() || DEFAULT_CTA_HREF,
-  heroPrompt: explicitPrompt || buildWorkflowPromptFallback(entry),
+  pageTitle: `${entry.data.title} | Ops Library | Budibase`,
+  heroPrompt: explicitPrompt || buildOpsLibraryPromptFallback(entry),
   promptCardStyle,
   usePromptCardExperience,
   useDefaultPromptCard,
   assetsUsed: mergeAssetsWithFallback(
     entry.data.assetsUsed,
-    buildWorkflowFallbackAssets(entry),
+    buildOpsLibraryFallbackAssets(entry),
   ),
 };
 
@@ -172,7 +165,7 @@ const assetGroups = ASSET_GROUP_ORDER.map((group) => ({
   items: detail.assetsUsed[group.key],
 }));
 
-const allAgentCards = await getAgentSpaceCards();
+const allAgentCards = await getOpsLibraryCards();
 const currentAgentCard = allAgentCards.find((card) => card.slug === detail.slug);
 const relatedAgents: RelatedAgent[] = allAgentCards
   .filter((card) => card.slug !== detail.slug)
@@ -206,8 +199,6 @@ const relatedAgents: RelatedAgent[] = allAgentCards
       <AgentDetailHero
         title={detail.title}
         outcome={detail.outcome}
-        ctaLabel={detail.ctaLabel}
-        ctaHref={detail.ctaHref}
       >
         {
           detail.usePromptCardExperience ? (
@@ -217,24 +208,20 @@ const relatedAgents: RelatedAgent[] = allAgentCards
               promptText={detail.useDefaultPromptCard ? undefined : detail.heroPrompt}
               agentTitle={detail.title}
               toolsUsed={detail.assetsUsed.tools}
-              ctaLabel={detail.ctaLabel}
-              ctaHref={detail.ctaHref}
             />
           ) : (
             <AgentPromptPanel
               prompt={detail.heroPrompt}
               agentTitle={detail.title}
               toolsUsed={detail.assetsUsed.tools}
-              ctaLabel={detail.ctaLabel}
-              ctaHref={detail.ctaHref}
             />
           )
         }
       </AgentDetailHero>
 
       <section class="agent-detail-content-grid">
-        <article class="workflow-article agent-detail-article">
-          <WorkflowContent />
+        <article class="ops-library-article agent-detail-article">
+          <OpsLibraryContent />
         </article>
 
         <AgentAssetsRail groups={assetGroups} />
@@ -247,8 +234,6 @@ const relatedAgents: RelatedAgent[] = allAgentCards
   <AgentPromptModal
     agentTitle={detail.title}
     toolsUsed={detail.assetsUsed.tools}
-    ctaLabel={detail.ctaLabel}
-    ctaHref={detail.ctaHref}
     promptText={detail.useDefaultPromptCard ? undefined : detail.heroPrompt}
     useDefaultPrompt={detail.useDefaultPromptCard}
     promptCardStyle={detail.promptCardStyle}
@@ -277,11 +262,11 @@ const relatedAgents: RelatedAgent[] = allAgentCards
       min-width: 0;
     }
 
-    .workflow-article :where(h2, h3, h4) {
+    .ops-library-article :where(h2, h3, h4) {
       scroll-margin-top: calc(var(--site-nav-height) + 24px);
     }
 
-    .workflow-article :global(h2#overview) {
+    .ops-library-article :global(h2#overview) {
       margin-top: 0 !important;
     }
 
@@ -308,7 +293,7 @@ const relatedAgents: RelatedAgent[] = allAgentCards
       const markerPattern = /\s*\{#([A-Za-z0-9_-]+)\}\s*$/;
 
       const normalizeHeadingIds = () => {
-        const article = document.querySelector("article.workflow-article");
+        const article = document.querySelector("article.ops-library-article");
         if (!article) return;
         const headings = Array.from(article.querySelectorAll("h2, h3, h4"));
 

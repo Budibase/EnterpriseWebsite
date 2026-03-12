@@ -78,10 +78,10 @@ export const collections = {
       image: z.string().optional(),
     }),
   }),
-  workflows: defineCollection({
+  opsLibrary: defineCollection({
     loader: glob({
       pattern: ["**/*.md", "**/*.mdx", "!**/README.md"],
-      base: "./src/content/workflows",
+      base: "./src/content/ops-library",
     }),
   schema: z.object({
     slug: z.string(),

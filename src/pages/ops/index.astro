@@ -2,46 +2,46 @@
 import Layout from "../../layouts/MainLayout.astro";
 import Card from "../../components/cards/Card.astro";
 import Icon from "../../components/Icon.astro";
-import spaceBackground from "../../assets/images/backgrounds/AgentSpace/space.png";
+import opsLibraryBackground from "../../assets/images/ops-library/bg.png";
 import {
-  agentSpaceDepartments,
-  getAgentSpaceCards,
-} from "../../data/agentSpaceCardData";
+  opsLibraryDepartments,
+  getOpsLibraryCards,
+} from "../../data/opsLibraryCardData";
 
-const title = "Agent Space";
+const title = "Ops Library";
 const description =
-  "Browse ready-to-run AI agents for internal teams. Search by name and filter by department.";
-const heroBackgroundStyle = `background-image: url('${spaceBackground.src}')`;
+  "Browse ready-to-run Ops powered by AI agents. Search by name or filter by team.";
+const heroBackgroundStyle = `background-image: url('${opsLibraryBackground.src}')`;
 
-const departments = agentSpaceDepartments;
-const agents = await getAgentSpaceCards();
+const agents = await getOpsLibraryCards();
+const visibleDepartmentIds = new Set(agents.map((agent) => agent.departmentId));
+const departments = opsLibraryDepartments.filter(
+  (department) =>
+    department.id === "all" || visibleDepartmentIds.has(department.id),
+);
 ---
 
 <Layout title={title} description={description}>
-  <div data-agent-space-root class="w-full">
+  <div data-ops-library-root class="w-full">
     <section
       class="relative w-full overflow-hidden bg-cover bg-center bg-no-repeat"
       style={heroBackgroundStyle}
     >
-      <div
-        class="pointer-events-none absolute inset-0 bg-[rgb(var(--bg)_/_0.35)] dark:bg-[rgb(var(--bg)_/_0.55)]"
-      >
-      </div>
+      <div class="pointer-events-none absolute inset-0 bg-black/35"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 max-md:px-[0.9rem]">
         <section
+          data-ops-library-hero-copy
           class="mx-auto mt-[clamp(5.6rem,8vw,7.2rem)] flex w-full flex-col items-center text-center max-md:mt-[max(calc(var(--site-nav-height)+1.1rem),4.8rem)]"
         >
           <h1
-            class="hero-title mt-4 mb-4 w-full max-w-4xl text-[56px]! leading-[0.9]! tracking-[-0.02em]! text-[var(--text-primary)] sm:text-[70px]! sm:leading-[0.9]!"
+            class="hero-title mt-4 mb-4 w-full max-w-4xl text-[56px]! leading-[0.9]! tracking-[-0.02em]! text-white sm:text-[70px]! sm:leading-[0.9]!"
           >
-            Agent Space
+            Ops Library
           </h1>
-          <p
-            class="m-0 max-w-3xl text-base text-[var(--text-secondary)] md:text-xl"
-          >
-            Browse ready-to-run AI agents for internal teams. Search by name and filter by
-            department.
+          <p class="m-0 max-w-3xl text-base text-white md:text-xl">
+            Browse ready-to-run Ops powered by AI agents. Search by name or
+            filter by team.
           </p>
         </section>
 
@@ -50,12 +50,12 @@ const agents = await getAgentSpaceCards();
             class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4 md:p-5"
           >
             <div class="flex flex-col gap-4">
-              <label for="agent-space-search" class="sr-only">Search agent name</label>
+              <label for="ops-library-search" class="sr-only">Search Ops</label>
               <div class="relative">
                 <input
-                  id="agent-space-search"
+                  id="ops-library-search"
                   type="search"
-                  placeholder="Search agent name..."
+                  placeholder="Search Ops..."
                   autocomplete="off"
                   data-agent-search
                   class="h-11 w-full rounded-[8px] border border-[var(--border-color)] bg-[var(--bg-1)] px-3 pr-10 text-base text-[var(--text-primary)] outline-none placeholder:text-[var(--text-secondary)] focus-visible:ring-4 focus-visible:ring-[rgb(var(--ring)_/_0.5)]"
@@ -76,10 +76,12 @@ const agents = await getAgentSpaceCards();
       </div>
     </section>
 
-    <section class="mx-auto mb-16 mt-5 w-full max-w-7xl px-4 max-md:px-[0.9rem]">
+    <section
+      class="mx-auto mb-16 mt-5 w-full max-w-7xl px-4 max-md:px-[0.9rem]"
+    >
       <ul
         class="m-0 flex list-none flex-wrap gap-5 p-0 max-md:flex-nowrap max-md:overflow-x-auto max-md:pb-[0.2rem] max-md:[scrollbar-width:thin]"
-        aria-label="Agent department filters"
+        aria-label="Ops team filters"
       >
         {
           departments.map((department) => (
@@ -88,7 +90,7 @@ const agents = await getAgentSpaceCards();
                 type="button"
                 data-agent-filter={department.id}
                 aria-pressed={department.id === "all" ? "true" : "false"}
-                class="inline-flex min-h-8 items-center gap-[0.38rem] whitespace-nowrap rounded-full bg-[color-mix(in_srgb,var(--bg-1)_85%,var(--bg-2))] text-[0.95rem] leading-none text-[var(--text-secondary)] transition-colors duration-150 hover:bg-[var(--bg-2)] hover:text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgb(var(--ring)_/_0.5)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-1)] aria-pressed:bg-[var(--bg-1)] aria-pressed:text-[var(--text-primary)]"
+                class="inline-flex min-h-8 items-center gap-[0.38rem] whitespace-nowrap rounded-full bg-[color-mix(in_srgb,var(--bg-1)_85%,var(--bg-2))] px-[2px] py-[8px] text-[0.95rem] leading-none text-[var(--text-secondary)] transition-colors duration-150 hover:bg-[var(--bg-2)] hover:text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgb(var(--ring)_/_0.5)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-1)] aria-pressed:bg-[var(--bg-1)] aria-pressed:text-[var(--text-primary)]"
               >
                 {department.label}
               </button>
@@ -140,11 +142,11 @@ const agents = await getAgentSpaceCards();
 
 <script is:inline>
   (() => {
-    const initAgentSpace = () => {
-      const root = document.querySelector("[data-agent-space-root]");
+    const initOpsLibrary = () => {
+      const root = document.querySelector("[data-ops-library-root]");
       if (!root || root instanceof HTMLElement === false) return;
-      if (root.dataset.agentSpaceReady === "true") return;
-      root.dataset.agentSpaceReady = "true";
+      if (root.dataset.opsLibraryReady === "true") return;
+      root.dataset.opsLibraryReady = "true";
 
       const searchInput = root.querySelector("[data-agent-search]");
       const clearButton = root.querySelector("[data-agent-search-clear]");
@@ -216,18 +218,23 @@ const agents = await getAgentSpaceCards();
     };
 
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initAgentSpace, {
+      document.addEventListener("DOMContentLoaded", initOpsLibrary, {
         once: true,
       });
     } else {
-      initAgentSpace();
+      initOpsLibrary();
     }
 
-    document.addEventListener("astro:after-swap", initAgentSpace);
+    document.addEventListener("astro:after-swap", initOpsLibrary);
   })();
 </script>
 
 <style is:global>
+  [data-ops-library-hero-copy] .hero-title,
+  [data-ops-library-hero-copy] p {
+    color: rgb(255 255 255) !important;
+  }
+
   [data-agent-search]::-webkit-search-cancel-button,
   [data-agent-search]::-webkit-search-decoration,
   [data-agent-search]::-webkit-search-results-button,

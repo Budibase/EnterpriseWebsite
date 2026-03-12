@@ -1,0 +1,275 @@
+---
+import { Image } from "astro:assets";
+import OnePlatformAgentBg from "@assets/images/homepage/onePlatform/OnePlatformAgent.png";
+import AvatarImage from "@assets/images/avatars/Ellipse.png";
+import BudibaseSymbol from "@assets/BBSymbolWhite.svg";
+import Icon from "@components/Icon.astro";
+
+const rootStyle = `--one-platform-agent-bg: url("${OnePlatformAgentBg.src}")`;
+---
+
+<div
+  class="one-platform-agent"
+  style={rootStyle}
+  role="img"
+  aria-label="Agent preview showing a chat thread about Salesforce access and an add reply input"
+>
+  <div class="one-platform-agent__surface" aria-hidden="true">
+    <div class="one-platform-agent__panel">
+      <div class="one-platform-agent__header">
+        <p class="one-platform-agent__title">Chat with Agent</p>
+      </div>
+
+      <div class="one-platform-agent__messages">
+        <article class="one-platform-agent__message">
+          <Image
+            src={AvatarImage}
+            alt="Sarah Chen"
+            class="one-platform-agent__avatar"
+          />
+
+          <div class="one-platform-agent__message-copy">
+            <div class="one-platform-agent__meta">
+              <span class="one-platform-agent__name">Sarah Chen</span>
+              <span class="one-platform-agent__time">12 mins</span>
+            </div>
+
+            <p class="one-platform-agent__message-text">
+              <span class="one-platform-agent__mention">@Ops Assistant</span>
+              <span> I need Salesforce access for reporting?</span>
+            </p>
+          </div>
+        </article>
+
+        <article class="one-platform-agent__message">
+          <span class="one-platform-agent__assistant-badge">
+            <Image
+              src={BudibaseSymbol}
+              alt=""
+              class="one-platform-agent__assistant-symbol"
+            />
+          </span>
+
+          <div class="one-platform-agent__message-copy">
+            <div class="one-platform-agent__meta">
+              <span class="one-platform-agent__name">Ops Assistant</span>
+              <span class="one-platform-agent__time">12 mins</span>
+            </div>
+
+            <p class="one-platform-agent__assistant-text">
+              Salesforce access request created. Submitted for Ops review.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="one-platform-agent__input-wrap">
+        <div class="one-platform-agent__input">
+          <span class="one-platform-agent__input-icon-wrap">
+            <Icon
+              name="Plus"
+              size="24"
+              class="one-platform-agent__input-icon"
+            />
+          </span>
+          <span class="one-platform-agent__input-text">Add a reply</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .one-platform-agent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 40px 0 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    background:
+      linear-gradient(
+        180deg,
+        rgb(250 249 245 / 0.64) 0%,
+        rgb(250 249 245 / 0.34) 38%,
+        rgb(250 249 245 / 0.1) 100%
+      ),
+      var(--one-platform-agent-bg) center bottom / cover no-repeat;
+  }
+
+  .one-platform-agent__surface {
+    flex: 1 1 auto;
+    min-height: 0;
+    background: white;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    overflow: hidden;
+  }
+
+  .one-platform-agent__panel {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+  }
+
+  .one-platform-agent__header {
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-bottom: 1px solid rgb(229 228 223 / 1);
+  }
+
+  .one-platform-agent__title {
+    margin: 0;
+    color: rgb(32 32 32) !important;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .one-platform-agent__messages {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px 12px 12px;
+  }
+
+  .one-platform-agent__message {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .one-platform-agent__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+
+  .one-platform-agent__assistant-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: var(--color-brand-500);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 4px;
+    box-sizing: border-box;
+  }
+
+  .one-platform-agent__assistant-symbol {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .one-platform-agent__message-copy {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .one-platform-agent__meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .one-platform-agent__name {
+    color: #202020;
+  }
+
+  .one-platform-agent__time {
+    color: #7e7e7e;
+  }
+
+  .one-platform-agent__message-text {
+    margin: 0;
+    color: rgb(47 47 45) !important;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .one-platform-agent__mention {
+    color: var(--accent-blue) !important;
+  }
+
+  .one-platform-agent__assistant-text {
+    margin: 0;
+    color: rgb(47 47 45) !important;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .one-platform-agent__message-text span,
+  .one-platform-agent__assistant-text span {
+    color: inherit !important;
+  }
+
+  .one-platform-agent__input-wrap {
+    margin-top: auto;
+    padding: 0 12px;
+  }
+
+  .one-platform-agent__input {
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 12px;
+    border: 1px solid var(--color-grey-100);
+    border-radius: 12px;
+  }
+
+  .one-platform-agent__input-icon-wrap {
+    width: 37px;
+    height: 37px;
+    border-radius: 26px;
+    background: var(--color-grey-200);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .one-platform-agent__input-icon {
+    color: var(--color-grey-500);
+  }
+
+  .one-platform-agent__input-icon :global(*) {
+    color: inherit;
+  }
+
+  .one-platform-agent__input-text {
+    color: var(--color-grey-900);
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  @media (max-width: 420px) {
+    .one-platform-agent {
+      padding-top: 32px;
+      padding-left: 14px;
+    }
+  }
+</style>

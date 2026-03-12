@@ -20,8 +20,6 @@ export default defineConfig({
   },
 
   redirects: {
-    "/learn/blog": "/blog",
-    "/learn/blog/[...slug]": "/blog/[...slug]",
     "/product": "/product/agents",
     "/product/integrations": "/product/connections",
     "/platform": "/product/agents",
@@ -34,7 +32,6 @@ export default defineConfig({
     "/platform/data": "/product/data",
     "/platform/resources": "/product/resources",
     "/platform/enterprise": "/product/enterprise",
-    "/use-cases": "/agent-space",
   },
 
   markdown: {

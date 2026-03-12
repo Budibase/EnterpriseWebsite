@@ -1,0 +1,180 @@
+---
+import { Image } from "astro:assets";
+import OnePlatformAppBg from "@assets/images/homepage/onePlatform/OnePlatformApp.png";
+import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c07d627de130d801d4.svg";
+
+const rootStyle = `--one-platform-app-bg: url("${OnePlatformAppBg.src}")`;
+---
+
+<div
+  class="one-platform-app"
+  style={rootStyle}
+  role="img"
+  aria-label="App preview showing a request access form with system, request, and manager fields"
+>
+  <div class="one-platform-app__surface" aria-hidden="true">
+    <div class="one-platform-app__panel">
+      <p class="one-platform-app__title">Request Access Form</p>
+
+      <div class="one-platform-app__fields">
+        <label class="one-platform-app__field">
+          <span class="one-platform-app__label">System</span>
+          <span class="one-platform-app__input one-platform-app__input--select">
+            <span>Salesforce</span>
+            <Image src={CaretDownIcon} alt="" class="one-platform-app__caret" />
+          </span>
+        </label>
+
+        <label class="one-platform-app__field">
+          <span class="one-platform-app__label">Request</span>
+          <span
+            class="one-platform-app__input one-platform-app__input--textarea"
+          >
+            Need access for sales reporting
+          </span>
+        </label>
+
+        <label class="one-platform-app__field">
+          <span class="one-platform-app__label">Manager</span>
+          <span class="one-platform-app__input one-platform-app__input--select">
+            <span>Peter Gibbons</span>
+            <Image src={CaretDownIcon} alt="" class="one-platform-app__caret" />
+          </span>
+        </label>
+
+        <div class="one-platform-app__actions">
+          <span class="one-platform-app__submit">Submit request</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .one-platform-app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 40px 0 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    background:
+      linear-gradient(
+        180deg,
+        rgb(250 249 245 / 0.64) 0%,
+        rgb(250 249 245 / 0.34) 38%,
+        rgb(250 249 245 / 0.1) 100%
+      ),
+      var(--one-platform-app-bg) center bottom / cover no-repeat;
+  }
+
+  .one-platform-app__surface {
+    flex: 1 1 auto;
+    min-height: 0;
+    background: white;
+    padding: 12px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .one-platform-app__panel {
+    width: 100%;
+  }
+
+  .one-platform-app__title {
+    margin: 0;
+    color: rgb(32 32 32) !important;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+
+  .one-platform-app__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .one-platform-app__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .one-platform-app__label {
+    color: var(--color-grey-600);
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 400;
+  }
+
+  .one-platform-app__input {
+    width: 100%;
+    border: 1px solid var(--color-grey-200);
+    border-radius: 4px;
+    background: var(--color-grey-100);
+    color: var(--color-grey-900);
+    font-size: 13px;
+    font-weight: 400;
+    box-sizing: border-box;
+  }
+
+  .one-platform-app__input--select {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 12px;
+    line-height: 1;
+  }
+
+  .one-platform-app__input--textarea {
+    min-height: 64px;
+    display: block;
+    padding: 8px 12px;
+    line-height: 17px;
+  }
+
+  .one-platform-app__caret {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    opacity: 0.72;
+  }
+
+  .one-platform-app__actions {
+    display: flex;
+    align-items: center;
+    padding-top: 6px;
+  }
+
+  .one-platform-app__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: var(--color-blue-500);
+    color: var(--color-grey-50);
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  @media (max-width: 420px) {
+    .one-platform-app {
+      padding-top: 32px;
+      padding-left: 14px;
+    }
+  }
+</style>

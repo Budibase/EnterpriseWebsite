@@ -1,0 +1,224 @@
+---
+import { Image } from "astro:assets";
+import OnePlatformAutomationBg from "@assets/images/homepage/onePlatform/OnePlatformAutomation.png";
+import JiraLogo from "@assets/logos/Jira.svg";
+import EnvelopeOpenFill from "phosphor-astro/EnvelopeOpenFill.astro";
+import SparkleFill from "phosphor-astro/SparkleFill.astro";
+
+const steps = [
+  {
+    title: "New email received",
+    icon: "email",
+    tone: "email",
+  },
+  {
+    title: "Agent classifies request",
+    icon: "agent",
+    tone: "agent",
+  },
+  {
+    title: "Create ticket in Jira",
+    icon: "jira",
+    tone: "integration",
+  },
+  {
+    title: "Assign to the right team",
+    icon: "jira",
+    tone: "integration",
+  },
+] as const;
+
+const rootStyle = `--one-platform-automation-bg: url("${OnePlatformAutomationBg.src}")`;
+---
+
+<div
+  class="one-platform-automation"
+  style={rootStyle}
+  role="img"
+  aria-label="Automation preview showing four workflow steps from a new email trigger to Jira assignment"
+>
+  <div class="one-platform-automation__surface" aria-hidden="true">
+    <div class="one-platform-automation__stack">
+      {
+        steps.map((step, index) => (
+          <>
+            <article class="one-platform-automation__card">
+              <span
+                class:list={[
+                  "one-platform-automation__icon-wrap",
+                  step.tone === "email" && "is-email",
+                  step.tone === "agent" && "is-agent",
+                  step.tone === "integration" && "is-integration",
+                ]}
+              >
+                {step.icon === "email" && (
+                  <EnvelopeOpenFill class="one-platform-automation__icon one-platform-automation__icon--mail" />
+                )}
+                {step.icon === "agent" && (
+                  <SparkleFill class="one-platform-automation__icon" />
+                )}
+                {step.icon === "jira" && (
+                  <Image
+                    src={JiraLogo}
+                    alt=""
+                    class="one-platform-automation__jira-logo"
+                  />
+                )}
+              </span>
+
+              <span class="one-platform-automation__copy">
+                <span class="one-platform-automation__title">{step.title}</span>
+              </span>
+            </article>
+
+            {index < steps.length - 1 && (
+              <div class="one-platform-automation__connector">
+                <span class="one-platform-automation__connector-line" />
+              </div>
+            )}
+          </>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .one-platform-automation {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 40px 0 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    background:
+      linear-gradient(
+        180deg,
+        rgb(250 249 245 / 0.64) 0%,
+        rgb(250 249 245 / 0.34) 38%,
+        rgb(250 249 245 / 0.1) 100%
+      ),
+      var(--one-platform-automation-bg) center bottom / cover no-repeat;
+  }
+
+  .one-platform-automation__surface {
+    flex: 1 1 auto;
+    min-height: 0;
+    background: white;
+    padding: 20px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .one-platform-automation__stack {
+    width: 240px;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .one-platform-automation__card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 240px;
+    min-width: 240px;
+    min-height: 40px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: var(--color-grey-100);
+  }
+
+  .one-platform-automation__icon-wrap {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    color: var(--color-grey-50);
+  }
+
+  .one-platform-automation__icon-wrap.is-email {
+    background: var(--color-orange-600);
+  }
+
+  .one-platform-automation__icon-wrap.is-agent {
+    background: var(--color-purple-600);
+  }
+
+  .one-platform-automation__icon-wrap.is-integration {
+    background: var(--color-grey-200);
+  }
+
+  .one-platform-automation__icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .one-platform-automation__icon--mail :global(*) {
+    color: inherit;
+  }
+
+  .one-platform-automation__jira-logo {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .one-platform-automation__copy {
+    flex: 1 1 auto;
+    min-width: 0;
+    color: var(--color-grey-900);
+  }
+
+  .one-platform-automation__title {
+    font-size: 14px;
+    line-height: 20px;
+    white-space: normal;
+    font-weight: 500;
+  }
+
+  .one-platform-automation__connector {
+    width: 100%;
+    height: 18px;
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+  }
+
+  .one-platform-automation__connector-line {
+    position: relative;
+    display: block;
+    width: 1px;
+    height: 18px;
+    background: var(--color-grey-300);
+  }
+
+  .one-platform-automation__connector-line::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 1px;
+    width: 6px;
+    height: 6px;
+    border-right: 1px solid var(--color-grey-300);
+    border-bottom: 1px solid var(--color-grey-300);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  @media (max-width: 420px) {
+    .one-platform-automation {
+      padding-top: 32px;
+      padding-left: 14px;
+    }
+  }
+</style>

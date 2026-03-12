@@ -128,7 +128,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
   });
 
   const caseStudies = await getCollection("caseStudies");
-  const workflows = await getCollection("workflows");
+  const opsLibraryEntries = await getCollection("opsLibrary");
   const changelogItems = await getPublishedChangelogEntries();
 
   const blogItems: BlogFeedItem[] = blogPosts
@@ -207,10 +207,10 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
     caseStudy: entry,
   }));
 
-  const workflowItems: BlogFeedItem[] = workflows.map((entry) => ({
+  const opsLibraryItems: BlogFeedItem[] = opsLibraryEntries.map((entry) => ({
     kind: "workflow",
     slug: entry.id,
-    href: `/agent-space/${entry.data.slug ?? entry.id}/`,
+    href: `/ops/${entry.data.slug ?? entry.id}/`,
     title: entry.data.title,
     description: entry.data.outcome,
     category: "useCases",
@@ -237,7 +237,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
     ...blogItems,
     ...productBlogItems,
     ...caseStudyItems,
-    ...workflowItems,
+    ...opsLibraryItems,
     ...changelogFeedItems,
   ]);
 }

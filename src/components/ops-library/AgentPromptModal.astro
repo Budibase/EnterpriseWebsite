@@ -1,14 +1,11 @@
 ---
 import Icon from "@components/Icon.astro";
 import AccessRequestPrompt from "@components/AccessRequestPrompt.astro";
-import Button from "@components/Button.astro";
 import birdsBackground from "@assets/images/backgrounds/AgentSpace/birds.png";
 
 interface Props {
   agentTitle: string;
   toolsUsed: string[];
-  ctaLabel: string;
-  ctaHref: string;
   promptText?: string;
   useDefaultPrompt?: boolean;
   promptCardStyle?: "default" | "snippet";
@@ -17,8 +14,6 @@ interface Props {
 const {
   agentTitle,
   toolsUsed,
-  ctaLabel,
-  ctaHref,
   promptText,
   useDefaultPrompt = false,
   promptCardStyle = "default",
@@ -108,13 +103,6 @@ const hasOpenBook = Boolean(splitPrompt?.secondary);
           }
         </div>
 
-        <Button
-          label={ctaLabel}
-          url={ctaHref}
-          variant="primary"
-          size="small"
-          class="agent-prompt-modal-cta"
-        />
       </aside>
 
       <section class="agent-prompt-modal-reader">
@@ -311,10 +299,6 @@ const hasOpenBook = Boolean(splitPrompt?.secondary);
     margin: 0;
     color: var(--text-secondary);
     font-size: 0.88rem;
-  }
-
-  .agent-prompt-modal-cta {
-    width: fit-content;
   }
 
   .agent-prompt-modal-reader {

@@ -4,11 +4,9 @@ import birdsBackground from "@assets/images/backgrounds/AgentSpace/birds.png";
 interface Props {
   title: string;
   outcome: string;
-  ctaLabel: string;
-  ctaHref: string;
 }
 
-const { title, outcome, ctaLabel, ctaHref } = Astro.props as Props;
+const { title, outcome } = Astro.props as Props;
 ---
 
 <section
@@ -33,13 +31,6 @@ const { title, outcome, ctaLabel, ctaHref } = Astro.props as Props;
       {title}
     </h1>
     <p class="m-0 max-w-[56ch] text-[rgb(var(--text-primary)_/_0.84)]">{outcome}</p>
-    <a
-      href={ctaHref}
-      class="inline-flex min-h-[2.4rem] w-fit items-center justify-center rounded-full bg-[rgb(var(--brand))] px-4 py-[0.44rem] text-[0.98rem] font-semibold text-white no-underline transition-[background-color,transform] duration-200 ease-in hover:bg-[rgb(var(--brand-hover))] hover:text-white active:translate-y-px focus-visible:outline-none focus-visible:shadow-[0_0_0_2px_var(--bg-1),0_0_0_4px_rgb(var(--ring)_/_0.65)]"
-      data-astro-prefetch
-    >
-      {ctaLabel}
-    </a>
   </div>
   <div class="agent-detail-hero-prompt relative z-[1] mx-auto flex w-[min(100%,72rem)] items-center justify-center [&>*]:w-full">
     <slot />

@@ -38,11 +38,11 @@ import { productDropdownItems } from "@components/navDropdownData";
         <HeaderDropDown label="Product" items={productDropdownItems} />
         <a
           target="_self"
-          href="/agent-space"
+          href="/ops"
           class="text-sm nav-link transition-colors"
           data-astro-prefetch
         >
-          Agent Space
+          Ops
         </a>
         <a
           target="_self"
@@ -194,11 +194,11 @@ import { productDropdownItems } from "@components/navDropdownData";
         </li>
         <li>
           <a
-            href="/agent-space"
+            href="/ops"
             class="block text-3xl nav-link transition-colors"
             data-astro-prefetch
           >
-            Agent Space
+            Ops
           </a>
         </li>
         <li>
@@ -316,38 +316,12 @@ import { productDropdownItems } from "@components/navDropdownData";
 
 <script>
   (function () {
-    function normalizeLegacyNavLinks() {
-      const remap = {
-        "/learn/blog": "/blog",
-        "/learn/workflows": "/agent-space",
-        "/learn/changelog": "/changelog",
-      };
-
-      const links = document.querySelectorAll(
-        '#site-nav a[href^="/learn/"], #mobile-menu a[href^="/learn/"]',
-      );
-
-      links.forEach((link) => {
-        const href = link.getAttribute("href");
-        if (!href) return;
-
-        const normalized =
-          href.endsWith("/") && href.length > 1 ? href.slice(0, -1) : href;
-        const replacement = remap[normalized];
-        if (replacement) {
-          link.setAttribute("href", replacement);
-        }
-      });
-    }
-
     const mobileMenuButton = document.getElementById("mobile-menu-button");
     const mobileMenu = document.getElementById("mobile-menu");
     const closeMenuButton = document.getElementById("close-menu-button");
     const mainMenuView = document.getElementById("main-menu-view");
     const menuIcon = document.getElementById("menu-icon");
     const closeIcon = document.getElementById("close-icon");
-
-    normalizeLegacyNavLinks();
 
     function openMenu() {
       mobileMenu?.classList.remove("hidden");

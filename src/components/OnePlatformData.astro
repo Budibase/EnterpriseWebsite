@@ -1,0 +1,372 @@
+---
+import { Image } from "astro:assets";
+import OnePlatformDataBg from "@assets/images/homepage/onePlatform/OnePlatformData.png";
+import BBSymbol from "@assets/logos/BBSymbol.svg";
+import Icon from "@components/Icon.astro";
+
+const tabs = [
+  { label: "Budibase DB", tone: "default", icon: "budibase" },
+  { label: "Access Requests", tone: "active" },
+  { label: "Support Tickets", tone: "muted" },
+  { label: "Expense Approvals", tone: "muted" },
+  { label: "Inventory Tracking", tone: "muted" },
+  { label: "Add table", tone: "icon" },
+] as const;
+
+const rows = [
+  {
+    employee: "Sarah Chen",
+    system: "Salesforce",
+    category: "Sales",
+    categoryTone: "sales",
+    status: "Pending",
+    statusTone: "pending",
+    highlight: true,
+  },
+  {
+    employee: "Mark Davies",
+    system: "GitHub",
+    category: "Engineering",
+    categoryTone: "engineering",
+    status: "Approved",
+    statusTone: "approved",
+  },
+  {
+    employee: "Olivia Brown",
+    system: "Notion",
+    category: "Documentation",
+    categoryTone: "documentation",
+    status: "Pending",
+    statusTone: "pending",
+  },
+  {
+    employee: "Joe Perry",
+    system: "Figma",
+    category: "Documentation",
+    categoryTone: "documentation",
+    status: "Pending",
+    statusTone: "pending",
+  },
+  {
+    employee: "Mel Gull",
+    system: "HubSpot",
+    category: "Sales",
+    categoryTone: "sales",
+    status: "Approved",
+    statusTone: "approved",
+  },
+] as const;
+
+const rootStyle = `--one-platform-data-bg: url("${OnePlatformDataBg.src}")`;
+---
+
+<div
+  class="one-platform-data"
+  style={rootStyle}
+  role="img"
+  aria-label="Data preview showing access request records in a cropped table over a scenic background"
+>
+  <div class="one-platform-data__workspace" aria-hidden="true">
+    <div class="one-platform-data__tabbar">
+      <div class="one-platform-data__tabs">
+        {
+          tabs.map((tab) => (
+            <span
+              class:list={[
+                "one-platform-data__tab",
+                tab.tone === "active" && "is-active",
+                tab.tone === "muted" && "is-muted",
+                tab.tone === "icon" && "is-icon",
+              ]}
+            >
+              {tab.icon === "budibase" && (
+                <span class="one-platform-data__tab-logo">
+                  <Image
+                    src={BBSymbol}
+                    alt=""
+                    class="one-platform-data__logo-image"
+                  />
+                </span>
+              )}
+              {tab.tone === "icon" ? (
+                <Icon
+                  name="Plus"
+                  class="one-platform-data__plus-icon"
+                  size="16"
+                />
+              ) : (
+                <span>{tab.label}</span>
+              )}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="one-platform-data__table-shell">
+      <div class="one-platform-data__header">
+        <span>Employee</span>
+        <span>System</span>
+        <span>AI Category</span>
+        <span>Status</span>
+      </div>
+
+      {
+        rows.map((row) => (
+          <div
+            class:list={[
+              "one-platform-data__row",
+              row.highlight && "is-highlighted",
+            ]}
+          >
+            <div class="one-platform-data__cell">
+              <span class="one-platform-data__chip one-platform-data__chip--employee">
+                {row.employee}
+              </span>
+            </div>
+            <div class="one-platform-data__cell">{row.system}</div>
+            <div class="one-platform-data__cell">
+              <span
+                class:list={[
+                  "one-platform-data__chip",
+                  "one-platform-data__chip--category",
+                  row.categoryTone === "sales" && "is-sales",
+                  row.categoryTone === "engineering" && "is-engineering",
+                  row.categoryTone === "documentation" && "is-documentation",
+                ]}
+              >
+                {row.category}
+              </span>
+            </div>
+            <div class="one-platform-data__cell">
+              <span
+                class:list={[
+                  "one-platform-data__chip",
+                  "one-platform-data__chip--status",
+                  row.statusTone === "pending" && "is-pending",
+                  row.statusTone === "approved" && "is-approved",
+                ]}
+              >
+                {row.status}
+              </span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .one-platform-data {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 40px 0 0 20px;
+    background:
+      linear-gradient(
+        180deg,
+        rgb(250 249 245 / 0.66) 0%,
+        rgb(250 249 245 / 0.34) 36%,
+        rgb(250 249 245 / 0.08) 100%
+      ),
+      var(--one-platform-data-bg) center bottom / cover no-repeat;
+  }
+
+  .one-platform-data__workspace {
+    width: 644px;
+    min-width: 644px;
+    height: 100%;
+    background: var(--color-grey-50);
+    border-top: 0.5px solid var(--color-grey-200);
+    border-left: 0.5px solid var(--color-grey-200);
+    box-shadow: 0 2px 8px rgb(25 25 25 / 0.04);
+  }
+
+  .one-platform-data__tabbar {
+    width: 100%;
+    border-bottom: 0.5px solid var(--color-grey-200);
+    background: rgb(255 255 255 / 0.94);
+    padding: 10px 12px 8px;
+    overflow: hidden;
+  }
+
+  .one-platform-data__tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: max-content;
+    font-size: 13px;
+    line-height: 1.15;
+    font-weight: 400;
+    color: var(--color-grey-900);
+  }
+
+  .one-platform-data__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 32px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+    color: var(--color-grey-900);
+    background: transparent;
+  }
+
+  .one-platform-data__tab.is-active {
+    border-radius: 6px;
+    background: var(--color-grey-200);
+  }
+
+  .one-platform-data__tab.is-muted,
+  .one-platform-data__tab.is-icon {
+    color: var(--color-grey-500);
+  }
+
+  .one-platform-data__tab-logo {
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .one-platform-data__logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .one-platform-data__plus-icon {
+    width: 16px;
+    height: 16px;
+    color: currentColor;
+  }
+
+  .one-platform-data__plus-icon :global(*) {
+    color: inherit;
+  }
+
+  .one-platform-data__table-shell {
+    width: 100%;
+    background: white;
+  }
+
+  .one-platform-data__header,
+  .one-platform-data__row {
+    display: grid;
+    grid-template-columns: 168px 160px 174px 130px;
+    width: 100%;
+  }
+
+  .one-platform-data__header {
+    background: var(--color-grey-100);
+  }
+
+  .one-platform-data__header > span {
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-right: 0.5px solid var(--color-grey-200);
+    color: var(--color-grey-900);
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+  }
+
+  .one-platform-data__header > span:last-child {
+    border-right: 0;
+  }
+
+  .one-platform-data__row {
+    min-height: 37px;
+    border-bottom: 0.5px solid var(--color-grey-200);
+    background: white;
+  }
+
+  .one-platform-data__row.is-highlighted {
+    background: var(--color-grey-50);
+  }
+
+  .one-platform-data__cell {
+    min-height: 37px;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-right: 0.5px solid var(--color-grey-200);
+    color: var(--color-grey-900);
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+  }
+
+  .one-platform-data__cell:last-child {
+    border-right: 0;
+  }
+
+  .one-platform-data__chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+    padding: 2px 10px;
+    border-radius: 13px;
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .one-platform-data__chip--employee {
+    background: var(--color-grey-200);
+    color: var(--color-grey-900);
+  }
+
+  .one-platform-data__chip--category,
+  .one-platform-data__chip--status {
+    min-width: 90px;
+  }
+
+  .one-platform-data__chip--category.is-sales {
+    background: var(--color-purple-600);
+    color: var(--color-grey-50);
+  }
+
+  .one-platform-data__chip--category.is-engineering {
+    background: var(--color-blue-600);
+    color: var(--color-grey-50);
+  }
+
+  .one-platform-data__chip--category.is-documentation {
+    background: var(--color-orange-600);
+    color: var(--color-grey-50);
+  }
+
+  .one-platform-data__chip--status.is-pending {
+    background: var(--color-blue-200);
+    color: var(--color-grey-900);
+  }
+
+  .one-platform-data__chip--status.is-approved {
+    background: var(--color-green-200);
+    color: var(--color-grey-900);
+  }
+
+  @media (max-width: 420px) {
+    .one-platform-data {
+      padding-top: 32px;
+      padding-left: 14px;
+    }
+
+    .one-platform-data__workspace {
+      width: 620px;
+      min-width: 620px;
+    }
+  }
+</style>

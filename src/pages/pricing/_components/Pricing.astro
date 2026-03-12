@@ -2,7 +2,13 @@
 import PricingCard from "./PricingCard.astro";
 import Plus from "phosphor-astro/Plus.astro";
 
-type PlanKey = "pro" | "proPlus" | "premium" | "team" | "business" | "enterprise";
+type PlanKey =
+  | "pro"
+  | "proPlus"
+  | "premium"
+  | "team"
+  | "business"
+  | "enterprise";
 type FaqItem = {
   question: string;
   paragraphs: string[];
@@ -17,9 +23,13 @@ const comparisonColumns: { key: PlanKey; label: string }[] = [
 ];
 
 const formatComparisonYearlyPrice = (base: number) => `$${base}`;
-const formatComparisonMonthlyPrice = (base: number) => `$${Math.round(base * 1.2)}`;
+const formatComparisonMonthlyPrice = (base: number) =>
+  `$${Math.round(base * 1.2)}`;
 
-const comparisonRows: Array<{ feature: string; values: Record<PlanKey, string> }> = [
+const comparisonRows: Array<{
+  feature: string;
+  values: Record<PlanKey, string>;
+}> = [
   {
     feature: "Price yearly",
     values: {
@@ -43,7 +53,7 @@ const comparisonRows: Array<{ feature: string; values: Record<PlanKey, string> }
     },
   },
   {
-    feature: "Operations",
+    feature: "Actions",
     values: {
       pro: "5K",
       proPlus: "20K",
@@ -131,7 +141,7 @@ const comparisonRows: Array<{ feature: string; values: Record<PlanKey, string> }
     },
   },
   {
-    feature: "Custom operations",
+    feature: "Custom actions",
     values: {
       pro: "—",
       proPlus: "—",
@@ -189,36 +199,29 @@ const comparisonRows: Array<{ feature: string; values: Record<PlanKey, string> }
 
 const faqItems: FaqItem[] = [
   {
-    question: "Why do you have multiple plans?",
+    question: 'What are "actions"?',
     paragraphs: [
-      "Each plan includes a hard monthly operations limit. Pro and Premium also let you choose between operations tiers using the dropdown on each card, while Business has a fixed tier and Enterprise is custom.",
-      "This keeps pricing predictable and aligned with the scale of work your AI agents and automations are running.",
-    ],
-  },
-  {
-    question: 'What are "operations"?',
-    paragraphs: [
-      "Operations represent the total work your agents and automations perform.",
-      "If your agent takes an action or your workflow runs a step, that counts as an operation.",
+      "Actions represent the total work your agents and automations perform.",
+      "If your agent takes an action or your workflow runs a step, that counts as an action.",
     ],
     bullets: ["AI agent tool calls", "Automation node executions"],
   },
   {
-    question: "Why do you price by operations?",
+    question: "Why do you price by actions?",
     paragraphs: [
-      "Operations directly reflect the amount of useful work your AI agents are doing. This aligns pricing with real business value, not just seats or arbitrary limits.",
+      "Actions directly reflect the amount of useful work your AI agents are doing. This aligns pricing with real business value, not just seats or arbitrary limits.",
     ],
   },
   {
-    question: "Are operations soft limits or hard limits?",
+    question: "Are actions soft limits or hard limits?",
     paragraphs: [
-      "Operations are hard monthly limits based on your selected plan tier. When you reach your limit, you'll need to move to a higher tier or plan to continue running agents and automations.",
+      "Actions are hard monthly limits based on your selected plan tier. When you reach your limit, you'll need to move to a higher tier or plan to continue running agents and automations.",
       "This ensures:",
     ],
     bullets: [
       "Predictable infrastructure performance",
       "Clear cost control",
-      "Transparent scaling as your operational volume grows",
+      "Transparent scaling as your action volume grows",
     ],
   },
   {
@@ -267,13 +270,20 @@ const faqItems: FaqItem[] = [
 
 <section class="container max-w-7xl mx-auto flex flex-col mt-8 px-2 lg:px-0">
   <div class="flex flex-col items-center text-center">
-    <h1 class="hero-title max-w-2xl !text-5xl mb-4 mt-6 text-center md:mt-10 lg:mt-16 text-stone-950 dark:text-stone-100">
+    <h1
+      class="hero-title max-w-2xl !text-5xl mb-4 mt-6 text-center md:mt-10 lg:mt-16 text-stone-950 dark:text-stone-100"
+    >
       Move work at agent speed.
     </h1>
   </div>
   <div class="w-full flex flex-col gap-8">
     <div class="flex flex-row gap-2 mb-2 justify-center">
-      <ul role="group" aria-label="Billing period" class="inline-flex flex-row bg-secondary rounded-[20px] p-1" id="billing-toggle">
+      <ul
+        role="group"
+        aria-label="Billing period"
+        class="inline-flex flex-row bg-secondary rounded-[20px] p-1"
+        id="billing-toggle"
+      >
         <li>
           <button
             id="annual-button"
@@ -299,131 +309,139 @@ const faqItems: FaqItem[] = [
 
     <section class="mb-12 md:mb-20">
       <div class="pricing-cards-stage">
-        <div class="pricing-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 justify-center items-stretch">
-        <PricingCard
-          title="Pro"
-          description="Includes:"
-          creatorPrice={19}
-          billingPlan="pro"
-          creatorUnit="/ month"
-          creatorLabel=""
-          recommended={false}
-          buttonLabel="Start 14 day free trial"
-          buttonVariant="cta"
-          buttonUrl="/signup-plus"
-          operationTiers={[
-            { operations: "5K", yearlyPrice: 19, aiCredits: "2K" },
-            { operations: "10K", yearlyPrice: 29, aiCredits: "2K" },
-          ]}
-          defaultTierIndex={0}
-          features={[
-            "1 creator",
-            "2 end users",
-            "1 day logs",
-            "1 workspace",
-            "Unlimited agents",
-            "Synchronous automations",
-            "Community support",
-          ]}
-        />
-        <PricingCard
-          title="Premium"
-          description="Everything in Pro, plus:"
-          creatorPrice={49}
-          billingPlan="premium"
-          creatorUnit="/ month"
-          creatorLabel=""
-          recommended={false}
-          buttonLabel="Start 14 day free trial"
-          buttonVariant="cta"
-          buttonUrl="/signup-plus"
-          operationTiers={[
-            { operations: "20K", yearlyPrice: 49, aiCredits: "10K" },
-            { operations: "50K", yearlyPrice: 79, aiCredits: "10K" },
-          ]}
-          defaultTierIndex={0}
-          features={[
-            "1 creator",
-            "10 end users",
-            "7 days logs",
-            "10 workspaces",
-            "Custom branding",
-            "Backups and restore",
-            "SSO",
-          ]}
-        />
-        <PricingCard
-          title="Business"
-          tagLabel="Best value"
-          description="Everything in Premium, plus:"
-          creatorPrice={299}
-          billingPlan="business"
-          creatorUnit="/ month"
-          creatorLabel=""
-          recommended={false}
-          buttonLabel="Start 14 day free trial"
-          buttonVariant="cta"
-          buttonUrl="/signup-plus"
-          operationTiers={[
-            { operations: "250K", yearlyPrice: 299, aiCredits: "50K" },
-          ]}
-          defaultTierIndex={0}
-          features={[
-            "3 creators",
-            "30 end users",
-            "30 days logs",
-            "Unlimited workspaces",
-            "Environment variables",
-            "AI/Human support",
-          ]}
-        />
-        <PricingCard
-          title="Enterprise"
-          description="Everything in Business, plus:"
-          creatorPrice="Custom"
-          billingPlan="enterprise"
-          creatorUnit=""
-          creatorLabel=""
-          additionalPriceText="Custom operations"
-          additionalPriceTone="primary"
-          recommended={false}
-          buttonLabel="Contact sales"
-          buttonVariant="primary"
-          buttonUrl="/signup-plus"
-          addonItems={[
-            "Air-gapped deployment",
-            "Onboarding and training",
-          ]}
-          features={[
-            "Enforced SSO",
-            "Active directory/SCIM",
-            "365 days logs",
-            "User groups",
-            "Audit logs",
-            "On-premise support",
-            "Priorty support/SLAs",
-          ]}
-        />
+        <div
+          class="pricing-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 justify-center items-stretch"
+        >
+          <PricingCard
+            title="Pro"
+            description="Includes:"
+            creatorPrice={19}
+            billingPlan="pro"
+            creatorUnit="/ month"
+            creatorLabel=""
+            recommended={false}
+            buttonLabel="Start 14 day free trial"
+            buttonVariant="cta"
+            buttonUrl="/signup-plus"
+            operationTiers={[
+              { operations: "5K", yearlyPrice: 19, aiCredits: "2K" },
+              { operations: "10K", yearlyPrice: 29, aiCredits: "2K" },
+            ]}
+            defaultTierIndex={0}
+            features={[
+              "1 creator",
+              "2 end users",
+              "1 day logs",
+              "1 workspace",
+              "Unlimited agents",
+              "Synchronous automations",
+              "Community support",
+            ]}
+          />
+          <PricingCard
+            title="Premium"
+            description="Everything in Pro, plus:"
+            creatorPrice={49}
+            billingPlan="premium"
+            creatorUnit="/ month"
+            creatorLabel=""
+            recommended={false}
+            buttonLabel="Start 14 day free trial"
+            buttonVariant="cta"
+            buttonUrl="/signup-plus"
+            operationTiers={[
+              { operations: "20K", yearlyPrice: 49, aiCredits: "10K" },
+              { operations: "50K", yearlyPrice: 79, aiCredits: "10K" },
+            ]}
+            defaultTierIndex={0}
+            features={[
+              "1 creator",
+              "10 end users",
+              "7 days logs",
+              "10 workspaces",
+              "Custom branding",
+              "Backups and restore",
+              "SSO",
+            ]}
+          />
+          <PricingCard
+            title="Business"
+            tagLabel="Best value"
+            description="Everything in Premium, plus:"
+            creatorPrice={299}
+            billingPlan="business"
+            creatorUnit="/ month"
+            creatorLabel=""
+            recommended={false}
+            buttonLabel="Start 14 day free trial"
+            buttonVariant="cta"
+            buttonUrl="/signup-plus"
+            operationTiers={[
+              { operations: "250K", yearlyPrice: 299, aiCredits: "50K" },
+            ]}
+            defaultTierIndex={0}
+            features={[
+              "3 creators",
+              "30 end users",
+              "30 days logs",
+              "Unlimited workspaces",
+              "Environment variables",
+              "AI/Human support",
+            ]}
+          />
+          <PricingCard
+            title="Enterprise"
+            description="Everything in Business, plus:"
+            creatorPrice="Custom"
+            billingPlan="enterprise"
+            creatorUnit=""
+            creatorLabel=""
+            additionalPriceText="Custom actions"
+            additionalPriceTone="primary"
+            recommended={false}
+            buttonLabel="Contact sales"
+            buttonVariant="primary"
+            buttonUrl="/contact"
+            addonItems={["Air-gapped deployment", "Onboarding and training"]}
+            features={[
+              "Enforced SSO",
+              "Active directory/SCIM",
+              "365 days logs",
+              "User groups",
+              "Audit logs",
+              "On-premise support",
+              "Priorty support/SLAs",
+            ]}
+          />
         </div>
       </div>
     </section>
 
     <section class="hidden mb-12 md:mb-20">
-      <h2 class="text-3xl font-semibold text-stone-900 dark:text-stone-100 mb-4">Compare plans</h2>
+      <h2
+        class="text-3xl font-semibold text-stone-900 dark:text-stone-100 mb-4"
+      >
+        Compare plans
+      </h2>
       <div
         class="rounded-md overflow-hidden border border-stone-300/70 dark:border-stone-700/70"
         style="background: var(--bg-2);"
       >
         <div class="overflow-x-auto">
-          <table class="w-full min-w-[1100px] border-collapse text-sm table-fixed">
+          <table
+            class="w-full min-w-[1100px] border-collapse text-sm table-fixed"
+          >
             <caption id="comparison-caption" class="sr-only">
-              Comparison of pricing, limits, and included features across current plans.
+              Comparison of pricing, limits, and included features across
+              current plans.
             </caption>
             <colgroup>
               <col style="width: 254px;" />
               {
                 comparisonColumns.map(() => (
-                  <col style={`width: calc((100% - 254px) / ${comparisonColumns.length});`} />
+                  <col
+                    style={`width: calc((100% - 254px) / ${comparisonColumns.length});`}
+                  />
                 ))
               }
             </colgroup>
@@ -451,7 +469,10 @@ const faqItems: FaqItem[] = [
               {
                 comparisonRows.map((row) => (
                   <tr class="border-b border-stone-300/70 dark:border-stone-700/70 last:border-b-0">
-                    <th scope="row" class="text-left px-4 py-3 font-medium text-stone-900 dark:text-stone-100">
+                    <th
+                      scope="row"
+                      class="text-left px-4 py-3 font-medium text-stone-900 dark:text-stone-100"
+                    >
                       {row.feature}
                     </th>
                     {comparisonColumns.map((column) => (
@@ -485,9 +506,7 @@ const faqItems: FaqItem[] = [
               data-faq-item
               class="group border-b border-dotted border-stone-300/80 dark:border-stone-700/80"
             >
-              <summary
-                class="list-none [&::-webkit-details-marker]:hidden min-h-[64px] py-4 md:py-5 cursor-pointer flex items-center justify-between gap-4 text-left text-stone-900 dark:text-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2"
-              >
+              <summary class="list-none [&::-webkit-details-marker]:hidden min-h-[64px] py-4 md:py-5 cursor-pointer flex items-center justify-between gap-4 text-left text-stone-900 dark:text-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2">
                 <h3 class="m-0 text-lg md:text-xl text-stone-900 dark:text-stone-100">
                   {item.question}
                 </h3>
@@ -498,21 +517,17 @@ const faqItems: FaqItem[] = [
                   />
                 </span>
               </summary>
-              <div class="pb-5 md:pb-6 pr-1 md:pr-12">
-                {
-                  item.paragraphs.map((paragraph) => (
-                    <p class="text-base md:text-lg text-stone-600 dark:text-stone-300 mb-3">
-                      {paragraph}
-                    </p>
-                  ))
-                }
-                {
-                  item.bullets && item.bullets.length > 0 && (
-                    <ul class="list-disc pl-6 text-base md:text-lg text-stone-600 dark:text-stone-300 mb-3">
-                      {item.bullets.map((bullet) => <li class="mb-1">{bullet}</li>)}
-                    </ul>
-                  )
-                }
+              <div class="faq-answer text-base md:text-lg text-stone-600 dark:text-stone-300 pb-5 md:pb-6 pr-1 md:pr-12">
+                {item.paragraphs.map((paragraph) => (
+                  <p class="mb-3">{paragraph}</p>
+                ))}
+                {item.bullets && item.bullets.length > 0 && (
+                  <ul class="mb-3">
+                    {item.bullets.map((bullet) => (
+                      <li class="mb-1">{bullet}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </details>
           ))
@@ -525,6 +540,33 @@ const faqItems: FaqItem[] = [
 <style>
   .pricing-cards-grid {
     position: relative;
+  }
+
+  .faq-answer {
+    font: inherit;
+  }
+
+  .faq-answer p,
+  .faq-answer ul,
+  .faq-answer li {
+    color: inherit !important;
+    font: inherit;
+  }
+
+  .faq-answer ul {
+    list-style: disc !important;
+    list-style-position: outside;
+    padding-left: 1.5rem !important;
+    margin: 0 0 0.75rem !important;
+  }
+
+  .faq-answer li {
+    display: list-item;
+    list-style: disc !important;
+  }
+
+  .faq-answer li::marker {
+    color: inherit !important;
   }
 </style>
 
@@ -549,12 +591,15 @@ const faqItems: FaqItem[] = [
   let currentBilling = "annual";
 
   const syncCardTierSelection = (card: Element) => {
-    const operationsSelect = card.querySelector("[data-operations-select]") as HTMLSelectElement | null;
+    const operationsSelect = card.querySelector(
+      "[data-operations-select]",
+    ) as HTMLSelectElement | null;
     if (!operationsSelect || !operationsSelect.selectedOptions.length) {
       return;
     }
 
-    const selectedOption = operationsSelect.selectedOptions[0] as HTMLOptionElement;
+    const selectedOption = operationsSelect
+      .selectedOptions[0] as HTMLOptionElement;
     const tierIndex = selectedOption.dataset.tierIndex;
     const tierPrice = selectedOption.dataset.tierPrice;
     const tierAi = selectedOption.dataset.tierAi;
@@ -566,9 +611,11 @@ const faqItems: FaqItem[] = [
     if (tierPrice !== undefined && tierPrice !== "") {
       const basePrice = Number(tierPrice);
       if (!Number.isNaN(basePrice)) {
-        card.querySelectorAll(".amount[data-base-price]").forEach((amountEl) => {
-          (amountEl as HTMLElement).dataset.basePrice = String(basePrice);
-        });
+        card
+          .querySelectorAll(".amount[data-base-price]")
+          .forEach((amountEl) => {
+            (amountEl as HTMLElement).dataset.basePrice = String(basePrice);
+          });
       }
     }
 
@@ -590,8 +637,12 @@ const faqItems: FaqItem[] = [
       const htmlButton = button as HTMLButtonElement;
       const isActive = htmlButton.dataset.billing === billing;
       htmlButton.setAttribute("aria-pressed", isActive ? "true" : "false");
-      activeClasses.forEach((className) => htmlButton.classList.toggle(className, isActive));
-      inactiveClasses.forEach((className) => htmlButton.classList.toggle(className, !isActive));
+      activeClasses.forEach((className) =>
+        htmlButton.classList.toggle(className, isActive),
+      );
+      inactiveClasses.forEach((className) =>
+        htmlButton.classList.toggle(className, !isActive),
+      );
     });
 
     const multiplier = billing === "monthly" ? 1.2 : 1;
@@ -606,49 +657,59 @@ const faqItems: FaqItem[] = [
         htmlEl.textContent = `$${formatPrice(updatedPrice)}`;
       });
 
-      card.querySelectorAll("[data-overage-kind][data-base-overage]").forEach((popoverEl) => {
-        const htmlEl = popoverEl as HTMLElement;
-        const baseOverage = Number(htmlEl.dataset.baseOverage);
-        const kind = htmlEl.dataset.overageKind;
-        const updatedOverage = Math.round(baseOverage * multiplier);
+      card
+        .querySelectorAll("[data-overage-kind][data-base-overage]")
+        .forEach((popoverEl) => {
+          const htmlEl = popoverEl as HTMLElement;
+          const baseOverage = Number(htmlEl.dataset.baseOverage);
+          const kind = htmlEl.dataset.overageKind;
+          const updatedOverage = Math.round(baseOverage * multiplier);
 
-        if (kind === "creators") {
-          htmlEl.textContent = `Add more creators for $${updatedOverage} per creator per month`;
-          return;
-        }
+          if (kind === "creators") {
+            htmlEl.textContent = `Add more creators for $${updatedOverage} per creator per month`;
+            return;
+          }
 
-        if (kind === "end-users") {
-          htmlEl.textContent = `Add more end users for $${updatedOverage} per end user per month`;
-        }
-      });
+          if (kind === "end-users") {
+            htmlEl.textContent = `Add more end users for $${updatedOverage} per end user per month`;
+          }
+        });
 
-      card.querySelectorAll("[data-addon-base][data-addon-prefix][data-addon-suffix]").forEach((addonEl) => {
-        const htmlEl = addonEl as HTMLElement;
-        const baseAddon = Number(htmlEl.dataset.addonBase);
-        if (Number.isNaN(baseAddon)) {
-          return;
-        }
+      card
+        .querySelectorAll(
+          "[data-addon-base][data-addon-prefix][data-addon-suffix]",
+        )
+        .forEach((addonEl) => {
+          const htmlEl = addonEl as HTMLElement;
+          const baseAddon = Number(htmlEl.dataset.addonBase);
+          if (Number.isNaN(baseAddon)) {
+            return;
+          }
 
-        const prefix = htmlEl.dataset.addonPrefix || "";
-        const suffix = htmlEl.dataset.addonSuffix || "";
-        const updatedAddonValue = formatPrice(baseAddon * multiplier);
-        const updatedAddonText = `${prefix}$${updatedAddonValue}${suffix}`;
-        const addonTextEl = htmlEl.querySelector("[data-addon-text]");
+          const prefix = htmlEl.dataset.addonPrefix || "";
+          const suffix = htmlEl.dataset.addonSuffix || "";
+          const updatedAddonValue = formatPrice(baseAddon * multiplier);
+          const updatedAddonText = `${prefix}$${updatedAddonValue}${suffix}`;
+          const addonTextEl = htmlEl.querySelector("[data-addon-text]");
 
-        if (addonTextEl) {
-          (addonTextEl as HTMLElement).textContent = updatedAddonText;
-        }
-      });
+          if (addonTextEl) {
+            (addonTextEl as HTMLElement).textContent = updatedAddonText;
+          }
+        });
     });
 
     const comparisonCaption = document.getElementById("comparison-caption");
     const comparisonTable = comparisonCaption?.closest("table");
 
     if (comparisonTable) {
-      const tableRows = Array.from(comparisonTable.querySelectorAll("tbody tr"));
+      const tableRows = Array.from(
+        comparisonTable.querySelectorAll("tbody tr"),
+      );
       const findRowByFeature = (featureLabel: string) =>
         tableRows.find(
-          (row) => row.querySelector("th[scope='row']")?.textContent?.trim() === featureLabel,
+          (row) =>
+            row.querySelector("th[scope='row']")?.textContent?.trim() ===
+            featureLabel,
         );
 
       const endUsersRow = findRowByFeature("End users");
@@ -658,7 +719,10 @@ const faqItems: FaqItem[] = [
           const htmlCell = cell as HTMLElement;
           const currentValue = htmlCell.textContent?.trim() || "";
           if (/\/\s*end user/.test(currentValue)) {
-            htmlCell.textContent = currentValue.replace(/\$\d+\s*\/\s*end user/, updatedEndUsersValue);
+            htmlCell.textContent = currentValue.replace(
+              /\$\d+\s*\/\s*end user/,
+              updatedEndUsersValue,
+            );
           }
         });
       }
@@ -670,7 +734,10 @@ const faqItems: FaqItem[] = [
           const htmlCell = cell as HTMLElement;
           const currentValue = htmlCell.textContent?.trim() || "";
           if (/\/\s*creator/.test(currentValue)) {
-            htmlCell.textContent = currentValue.replace(/\$\d+\s*\/\s*creator/, updatedCreatorsValue);
+            htmlCell.textContent = currentValue.replace(
+              /\$\d+\s*\/\s*creator/,
+              updatedCreatorsValue,
+            );
           }
         });
       }
@@ -678,7 +745,9 @@ const faqItems: FaqItem[] = [
   };
 
   cards.forEach((card) => {
-    const operationsSelect = card.querySelector("[data-operations-select]") as HTMLSelectElement | null;
+    const operationsSelect = card.querySelector(
+      "[data-operations-select]",
+    ) as HTMLSelectElement | null;
     if (!operationsSelect || operationsSelect.dataset.tierBound === "true") {
       return;
     }

@@ -1,9 +1,10 @@
 import { getCollection } from "astro:content";
 
-export const agentSpaceDepartments = [
+export const opsLibraryDepartments = [
   { id: "all", label: "All" },
   { id: "it", label: "IT" },
   { id: "operations", label: "Operations" },
+  { id: "company-wide", label: "Company-wide" },
   { id: "hr", label: "HR" },
   { id: "sales", label: "Sales" },
   { id: "marketing", label: "Marketing" },
@@ -11,7 +12,7 @@ export const agentSpaceDepartments = [
   { id: "internal-tools", label: "Internal tools" },
 ] as const;
 
-export type DepartmentId = (typeof agentSpaceDepartments)[number]["id"];
+export type DepartmentId = (typeof opsLibraryDepartments)[number]["id"];
 export type AgentCardDepartmentId = Exclude<DepartmentId, "all">;
 
 export interface AgentCardItem {
@@ -22,6 +23,13 @@ export interface AgentCardItem {
   description: string;
   linkUrl: string;
 }
+
+const cardLabelBySlug: Record<string, string> = {
+  "access-request": "Access Requests",
+  "internal-knowledge-assistant": "Knowledge Assistant",
+  "password-reset-agent": "Password Reset",
+  "ticket-follow-up-agent": "Ticket Follow Ups",
+};
 
 const mapRoleToDepartmentId = (role: string): AgentCardDepartmentId => {
   const normalizedRole = role.toLowerCase();
@@ -42,24 +50,31 @@ const mapRoleToDepartmentId = (role: string): AgentCardDepartmentId => {
   return "operations";
 };
 
+const getDepartmentId = (slug: string, role: string): AgentCardDepartmentId => {
+  if (slug === "internal-knowledge-assistant") return "company-wide";
+
+  return mapRoleToDepartmentId(role);
+};
+
 const getDepartmentLabel = (id: AgentCardDepartmentId) =>
-  agentSpaceDepartments.find((department) => department.id === id)?.label ??
+  opsLibraryDepartments.find((department) => department.id === id)?.label ??
   "Operations";
 
-export async function getAgentSpaceCards(): Promise<AgentCardItem[]> {
-  const workflowEntries = await getCollection("workflows");
+export async function getOpsLibraryCards(): Promise<AgentCardItem[]> {
+  const opsLibraryEntries = await getCollection("opsLibrary");
 
-  return workflowEntries
+  return opsLibraryEntries
     .map((entry) => {
-      const departmentId = mapRoleToDepartmentId(entry.data.role);
+      const slug = entry.data.slug ?? entry.id;
+      const departmentId = getDepartmentId(slug, entry.data.role);
 
       return {
-        slug: entry.data.slug ?? entry.id,
-        name: entry.data.title,
+        slug,
+        name: cardLabelBySlug[slug] ?? entry.data.title,
         departmentId,
         department: getDepartmentLabel(departmentId),
         description: entry.data.outcome,
-        linkUrl: `/agent-space/${entry.data.slug ?? entry.id}`,
+        linkUrl: `/ops/${slug}`,
       };
     })
     .sort((a, b) => a.name.localeCompare(b.name));
