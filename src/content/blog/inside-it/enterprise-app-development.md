@@ -434,6 +434,6 @@ Check out our [plug-ins documentation](https://docs.budibase.com/docs/custom-plu
 
 ### 50+ free app templates
 
-We’re so confident in what our platform can do, that we don’t just want to tell you about it, we want to show you. We’ve built more than 50 free, customizable, deployable [app templates](https://budibase.com/templates/) to help get you started.
+We’re so confident in what our platform can do, that we don’t just want to tell you about it, we want to show you. We’ve built more than 50 free, customizable, deployable [app templates](https://budibase.com/ops/) to help get you started.
 
 Sign up for Budibase for free to start building applications the smart way, today.

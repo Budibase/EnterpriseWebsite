@@ -341,6 +341,6 @@ Then, in it add a link to home, which is fixed, and a paragraph for the > diviso
 
 Today we looked into how you can create a MongoDB app with Budibase. With it, you can interact with your NoSQL database easily, with no coding knowledge.
 
-We offer support for an unrivaled variety of data sources, as well as our built-in database. To see more of what Budibase is capable of, why not check out our range of free, deployable [app templates](https://budibase.com/templates)?
+We offer support for an unrivaled variety of data sources, as well as our built-in database. To see more of what Budibase is capable of, why not check out our range of free, deployable [app templates](https://budibase.com/ops/)?
 
 We hope you’ve enjoyed it. See you again next time!

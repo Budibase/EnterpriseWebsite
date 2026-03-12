@@ -12,6 +12,11 @@
 /integration/* /product/connections/ 301
 /internal-tools /product/apps/ 301
 /internal-tools/* /product/apps/ 301
+/signup-plus /contact/ 301
+/signup-plus/ /contact/ 301
+/templates /ops/ 301
+/templates/ /ops/ 301
+/templates/* /ops/ 301
 /it/templates/* /product/apps/ 301
 /legal/templates/* /product/apps/ 301
 /logistics/templates/* /blog/tutorials/fleet-management-portal/ 301

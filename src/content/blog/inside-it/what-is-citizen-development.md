@@ -353,6 +353,6 @@ Citizen development is a powerful way to create bespoke solutions, while still m
 
 Budibase is the leading low-code platform. We’re biased, but we think it’s the perfect tool for professional developers and non-technical colleagues alike to build fast, secure, professional applications.
 
-But don’t take our word for it. We’ve also created 50+ free [app templates](https://budibase.com/templates) to show off exactly what Budibase can do.
+But don’t take our word for it. We’ve also created 50+ free [app templates](https://budibase.com/ops/) to show off exactly what Budibase can do.
 
 To get started today, sign up for Budibase for free.

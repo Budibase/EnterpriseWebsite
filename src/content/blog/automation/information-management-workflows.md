@@ -289,6 +289,6 @@ Check out our [plug-ins documentation](https://docs.budibase.com/docs/custom-plu
 
 ### 50+ free application templates
 
-Businesses in all industries choose Budibase to build web apps, internal tools, and workflow automation solutions. To show off what our platform can do, we’ve created more than fifty free, fully customizable [app templates](https://budibase.com/templates).
+Businesses in all industries choose Budibase to build web apps, internal tools, and workflow automation solutions. To show off what our platform can do, we’ve created more than fifty free, fully customizable [app templates](https://budibase.com/ops/).
 
 Sign up to Budiase for free today to start building web apps the fast, cost-effective way.

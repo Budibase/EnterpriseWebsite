@@ -354,6 +354,6 @@ Check out our [plug-ins documentation](https://docs.budibase.com/docs/custom-plu
 
 We think that Budibase is the ideal solution for building tools to manage and improve all sorts of workflows. Tens of thousands of businesses around the world agree with us.
 
-But, we’d rather show you what our platform can do. That’s why we’ve created more than 50 free, fully-deployable [app templates](https://budibase.com/templates) to get you started.
+But, we’d rather show you what our platform can do. That’s why we’ve created more than 50 free, fully-deployable [app templates](https://budibase.com/ops/) to get you started.
 
 Sign up to Budibase today to build custom applications the fast, easy way.

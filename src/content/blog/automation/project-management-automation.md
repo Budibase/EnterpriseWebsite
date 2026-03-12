@@ -288,6 +288,6 @@ Check out our [plug-ins documentation](https://docs.budibase.com/docs/custom-plu
 
 ### 50+ free application templates
 
-Businesses across all industries choose Budibase to build custom solutions for everything from project management automation to administering massive data sets. To see more of what Budibase can do, check out our collection of over 50 [free app templates.](https://budibase.com/templates)
+Businesses across all industries choose Budibase to build custom solutions for everything from project management automation to administering massive data sets. To see more of what Budibase can do, check out our collection of over 50 [free app templates.](https://budibase.com/ops/)
 
 Sign up to Budibase today to start building professional web apps the smart way.

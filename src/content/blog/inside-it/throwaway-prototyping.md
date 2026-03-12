@@ -322,6 +322,6 @@ Budibase is revolutionizing the way that businesses build custom solutions. With
 
 We offer custom components and data sources, support for external databases, customizable RBAC, optional self-hosting, intuitive design tools, free SSO, and more.
 
-We’re so confident in what Budibase can do, that we’ve also created 50+ free, deployable [app templates](https://budibase.com/templates), to help get you started.
+We’re so confident in what Budibase can do, that we’ve also created 50+ free, deployable [app templates](https://budibase.com/ops/), to help get you started.
 
 Sign up for free today to start building apps the smart way, with Budibase.

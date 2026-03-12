@@ -682,6 +682,6 @@ Check out our [deployment docs](https://docs.budibase.com/docs/deployment-inform
 
 Our low-code platform is transforming the way businesses of all sizes build tools to manage their platform.
 
-We’re so confident in what Budibase can do that we’ve built over 50 free, fully deployable [app templates](https://budibase.com/templates) to show it off.
+We’re so confident in what Budibase can do that we’ve built over 50 free, fully deployable [app templates](https://budibase.com/ops/) to show it off.
 
 Sign up to Budibase to start building applications the smart way, today.

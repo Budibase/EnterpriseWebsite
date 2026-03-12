@@ -296,6 +296,6 @@ Check out our [plug-ins documentation](https://docs.budibase.com/docs/custom-plu
 
 ### 50+ free application templates
 
-Companies around the world choose Budibase to automate processes, build internal tools, and manage their data. We’ve created more than fifty free, customizable [app templates](https://budibase.com/templates) to show off what our platform can do.
+Companies around the world choose Budibase to automate processes, build internal tools, and manage their data. We’ve created more than fifty free, customizable [app templates](https://budibase.com/ops/) to show off what our platform can do.
 
 Sign up to Budibase for free today to start building applications the fast, cost-effective way.

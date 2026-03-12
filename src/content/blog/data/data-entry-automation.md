@@ -289,6 +289,6 @@ Check out our [plugins docs](https://docs.budibase.com/docs/custom-plugin) to le
 
 ### 50+ free application templates
 
-Budibase is the ideal solution for building all kinds of use cases. To prove it, we’ve created more than 50 free, deployment-ready, and fully customizable [application templates](https://budibase.com/templates).
+Budibase is the ideal solution for building all kinds of use cases. To prove it, we’ve created more than 50 free, deployment-ready, and fully customizable [application templates](https://budibase.com/ops/).
 
 To start building internal tools the fast, easy way, sign up to Budibase today for free.

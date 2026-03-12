@@ -343,6 +343,6 @@ Check out our in-depth guide to [workflow automation](https://budibase.com/blog/
 
 In case you didn’t realize, all of our in-house development examples were built in Budibase. However, our platform is capable of so much more than this.
 
-To prove it, we’ve created 50+ free, customizable, and fully functional [app templates](https://budibase.com/templates/).
+To prove it, we’ve created 50+ free, customizable, and fully functional [app templates](https://budibase.com/ops/).
 
 To get started building applications the fast, cost-effective way, sign up to Budibase today.

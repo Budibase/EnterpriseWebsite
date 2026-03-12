@@ -200,4 +200,4 @@ At Budibase, we’re changing the way businesses build software, forever. Using 
 
 We also offer support for a wide range of external data sources, [third-party integrations](https://budibase.com/product/connections/), and hosting and deployment tools.
 
-Budibase is completely shifting the cost-benefit calculation when it comes to building new tools. Check out our range of [free app templates](https://budibase.com/templates/) to find out more.
+Budibase is completely shifting the cost-benefit calculation when it comes to building new tools. Check out our range of [free app templates](https://budibase.com/ops/) to find out more.

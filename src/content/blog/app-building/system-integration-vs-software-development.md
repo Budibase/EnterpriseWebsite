@@ -271,6 +271,6 @@ We also offer free SSO using OAuth, OpenID, Microsoft, Keycloak, and more.
 
 ### 50+ free app templates
 
-Businesses in all kinds of industries choose Budibase to build internal tools, utilities, public-facing apps, and much more. To see what our platform is capable of, check out our 50+ free, customizable [application templates](https://budibase.com/templates).
+Businesses in all kinds of industries choose Budibase to build internal tools, utilities, public-facing apps, and much more. To see what our platform is capable of, check out our 50+ free, customizable [application templates](https://budibase.com/ops/).
 
 To start building custom applications and integrated internal processes, sign up for Budibase for free today.

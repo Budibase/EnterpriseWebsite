@@ -259,6 +259,6 @@ Use intuitive design tools, flexible automations, custom RBAC, external data sup
 
 Budibase is the fast, easy way to build custom apps to improve productivity.
 
-We’ve also created over 50 free, deployment-ready [app templates](https://budibase.com/templates/), for everything from inventory management software to customer account portals, to help you get started.
+We’ve also created over 50 free, deployment-ready [app templates](https://budibase.com/ops/), for everything from inventory management software to customer account portals, to help you get started.
 
 Sign up today to start using Budibase for free.

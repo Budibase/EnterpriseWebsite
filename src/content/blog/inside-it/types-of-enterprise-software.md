@@ -259,7 +259,7 @@ Budibase offers the perfect solution for building streamlined processes and work
 
 We’re on a mission to transform the way businesses build internal tools, forever. On the one hand, Budibase is the ideal platform for building solutions from scratch. On the other, it’s always nice to have a jump start.
 
-That’s why we’ve built more than 50 free, deployable, and fully customizable [app templates](https://budibase.com/templates/) to get you off the ground.
+That’s why we’ve built more than 50 free, deployable, and fully customizable [app templates](https://budibase.com/ops/) to get you off the ground.
 
 Countless enterprises and international organizations choose Budibase to create everything from simple data entry forms to highly workflow-specific tools, in minutes.
 

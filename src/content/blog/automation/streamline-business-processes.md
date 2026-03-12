@@ -257,6 +257,6 @@ You can even leverage external events within your automations, connecting to thi
 
 Organizations all over the world choose Budibase to streamline business processes, across just about every imaginable vertical, use case, and pain point. It’s fair to say, we have a lot of confidence in what our platform can do.
 
-That’s why we decided it only makes sense to show you - by building over fifty free, deployable, and fully customizable [app templates](https://budibase.com/templates).
+That’s why we decided it only makes sense to show you - by building over fifty free, deployable, and fully customizable [app templates](https://budibase.com/ops/).
 
 To start building custom solutions for your internal processes the fast, easy way, sign up to Budibase for free today.

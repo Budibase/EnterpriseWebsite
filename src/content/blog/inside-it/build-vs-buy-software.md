@@ -474,6 +474,6 @@ To find out more, take a look at our ultimate guide to [workflow automation](htt
 
 Obviously, we’re biased, but we think Budibase is the smart way to build custom solutions. Our platform is designed to empower users to build tools in minutes, not months. But don’t just take our word for it.
 
-We’ve created over 50 fully deployable, customizable, free [app templates](https://budibase.com/templates) to show what our platform can do.
+We’ve created over 50 fully deployable, customizable, free [app templates](https://budibase.com/ops/) to show what our platform can do.
 
 To start building apps the fast, cost-effective way, sign up to Budibase today for free.

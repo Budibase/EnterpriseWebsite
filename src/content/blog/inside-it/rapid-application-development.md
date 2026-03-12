@@ -423,6 +423,6 @@ Take a look at our [pricing page](https://budibase.com/pricing) to find out more
 
 ### 50+ free app templates
 
-We’re so confident in what Budibase can do, that we’ve built more than 50 free, deployable [app templates](https://budibase.com/templates), for all sorts of use cases. Any one of these is the perfect starting point for your rapid application development project, or as a fully-fledged application.
+We’re so confident in what Budibase can do, that we’ve built more than 50 free, deployable [app templates](https://budibase.com/ops/), for all sorts of use cases. Any one of these is the perfect starting point for your rapid application development project, or as a fully-fledged application.
 
 Sign up to Budibase to start building tools for free today.

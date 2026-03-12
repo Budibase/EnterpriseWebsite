@@ -201,6 +201,6 @@ Check out our custom [plug-ins documentation](https://docs.budibase.com/docs/cus
 
 ### 50+ free application templates
 
-Budibase is the ideal solution for building all kinds of web apps, utilities, internal tools, and more. To prove it, we’ve created over fifty free, fully-customizable [app templates](https://budibase.com/templates/) to help get you started.
+Budibase is the ideal solution for building all kinds of web apps, utilities, internal tools, and more. To prove it, we’ve created over fifty free, fully-customizable [app templates](https://budibase.com/ops/) to help get you started.
 
 Whether you need MySQL admin tools or a totally bespoke solution, sign up to Budibase today to start building professional apps the fast, easy way.

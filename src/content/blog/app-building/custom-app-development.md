@@ -684,6 +684,6 @@ No other low-code platform comes close to this level of customization. Check out
 
 ### 50+ free app templates
 
-As you can tell, we have a lot of confidence in what Budibase is capable of. But why take our word for it? To prove what our platform is made of, we’ve built more than fifty free, customizable, and ready-to-ship [application templates](https://budibase.com/templates).
+As you can tell, we have a lot of confidence in what Budibase is capable of. But why take our word for it? To prove what our platform is made of, we’ve built more than fifty free, customizable, and ready-to-ship [application templates](https://budibase.com/ops/).
 
 To start developing custom apps the fast, cost-effective way, sign up to Budibase today for free.

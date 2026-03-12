@@ -339,6 +339,6 @@ Check out our [plug-ins page](https://github.com/Budibase/plugins) to learn more
 
 ### 50+ free application templates
 
-Businesses all over the world use Budibase for countless different use cases. To give a flavor of what our platform is capable of, we’ve built more than 50 free, customizable [app templates](https://budibase.com/templates).
+Businesses all over the world use Budibase for countless different use cases. To give a flavor of what our platform is capable of, we’ve built more than 50 free, customizable [app templates](https://budibase.com/ops/).
 
 To start building custom web apps the fast, easy way, sign up to Budibase today for free.

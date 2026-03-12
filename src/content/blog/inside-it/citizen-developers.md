@@ -655,7 +655,7 @@ The thing is, we have an enormous amount of confidence in our platform. So do te
 
 So why take our word for it?
 
-To prove what you can do with Budibase, we’ve created more than 50 free, deployable [app templates](https://budibase.com/templates). Use any one of them as a fully functional solution, or customize and tweak them to your heart’s content.
+To prove what you can do with Budibase, we’ve created more than 50 free, deployable [app templates](https://budibase.com/ops/). Use any one of them as a fully functional solution, or customize and tweak them to your heart’s content.
 
 Or, if you prefer, you can build your own tools from scratch. The choice is yours.
 

@@ -341,6 +341,6 @@ Check out our [plug-ins documentation](https://docs.budibase.com/docs/custom-plu
 
 ### 50+ free app templates
 
-Budibase is the ideal solution for everything from internal tools and utilities to customer-facing applications. To see more of what our platform is capable of, check out our 50+ free, fully customizable [app templates](https://budibase.com/templates).
+Budibase is the ideal solution for everything from internal tools and utilities to customer-facing applications. To see more of what our platform is capable of, check out our 50+ free, fully customizable [app templates](https://budibase.com/ops/).
 
 Sign up to Budibase for free to start turning data into action.

@@ -285,6 +285,6 @@ Budibase also offers free SSO with OAuth, OpenID, and more.
 
 ### 50+ free application templates
 
-Budibase users choose our platform to build all sorts of custom solutions. To show off what Budibase is capable of, we’ve created more than fifty, free, deployment-ready, and fully customizable [app templates](https://budibase.com/templates).
+Budibase users choose our platform to build all sorts of custom solutions. To show off what Budibase is capable of, we’ve created more than fifty, free, deployment-ready, and fully customizable [app templates](https://budibase.com/ops/).
 
 To start building applications the fast, easy way, sign up for Budibase today for free.

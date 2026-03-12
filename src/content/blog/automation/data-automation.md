@@ -371,6 +371,6 @@ Check out our [plug-ins page](https://github.com/Budibase/plugins) to learn more
 
 We have a lot of confidence in what our platform can do - but why should you take our word for it?
 
-We’ve created over 50 free, customizable [app templates](https://budibase.com/templates) to help get you started.
+We’ve created over 50 free, customizable [app templates](https://budibase.com/ops/) to help get you started.
 
 Sign up for Budibase today for free to start building custom applications the fast, easy way.

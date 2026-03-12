@@ -370,7 +370,7 @@ We’re biased, but we think Budibase is the smart choice for enterprise app UI 
 
 Our [open-source, low-code platform](https://budibase.com/blog/open-source-low-code-platforms/) is built to empower designers to create custom tools, in minutes. Enjoy custom RBAC, optional self-hosting, advanced automated, auto-generated CRUD screens, and a range of other incredible features while you build enterprise tools.
 
-We’ve even created 50+ [app templates](https://budibase.com/templates) to showcase what our platform can do.
+We’ve even created 50+ [app templates](https://budibase.com/ops/) to showcase what our platform can do.
 
 Budibase is trusted by massive organizations around the world for unrivaled functionality, security, expediency, and developer experiences.
 

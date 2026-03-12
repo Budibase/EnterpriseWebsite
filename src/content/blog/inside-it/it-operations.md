@@ -277,6 +277,6 @@ Check out our [plug-ins repo](https://github.com/Budibase/plugins) to learn more
 
 ### 50+ free application templates
 
-Businesses all around the world choose Budibase to build a huge range of use cases. To show off what our platform is capable of, we’ve built more than 50 free, deployable, and fully customizable [application templates](https://budibase.com/templates).
+Businesses all around the world choose Budibase to build a huge range of use cases. To show off what our platform is capable of, we’ve built more than 50 free, deployable, and fully customizable [application templates](https://budibase.com/ops/).
 
 Sign up for Budibase today for free to start building custom applications the fast, easy way.

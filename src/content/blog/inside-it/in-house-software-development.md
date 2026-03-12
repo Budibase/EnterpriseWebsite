@@ -537,6 +537,6 @@ Check out our ultimate guide to [workflow automation](https://budibase.com/blog/
 
 As you can probably tell, we have a lot of confidence in what Budibase can do. But, we appreciate that you might be a little bit more skeptical. So, we decided to put our money where our mouth is.
 
-We’ve created more than 50 customizable, deployable, free [app templates](https://budibase.com/templates) to help get you started, and to show off what Budibase is all about.
+We’ve created more than 50 customizable, deployable, free [app templates](https://budibase.com/ops/) to help get you started, and to show off what Budibase is all about.
 
 To get started building tools the fast, easy way, sign up to Budibase today for free.

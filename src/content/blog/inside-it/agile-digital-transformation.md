@@ -306,6 +306,6 @@ Check out our [plug-ins docs](https://docs.budibase.com/docs/custom-plugin) to l
 
 ### 50+ free application templates
 
-Budibase is the ideal solution for creating professional web applications in a fraction of the time. We’ve even created more than fifty free, deployment-ready, and fully customizable [app templates](https://budibase.com/templates/).
+Budibase is the ideal solution for creating professional web applications in a fraction of the time. We’ve even created more than fifty free, deployment-ready, and fully customizable [app templates](https://budibase.com/ops/).
 
 Sign up to Budibase today to start building tools the fast, easy way.

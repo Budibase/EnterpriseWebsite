@@ -404,6 +404,6 @@ Take a look at our [plug-ins docs](https://docs.budibase.com/docs/custom-plugin)
 
 ### 50+ free app templates
 
-Companies around the world - in all kinds of industries - choose Budibase to build secure, performant apps in a fraction of the time. To show off what’s possible, we’ve built more than fifty free, totally customizable [app templates](https://budibase.com/templates).
+Companies around the world - in all kinds of industries - choose Budibase to build secure, performant apps in a fraction of the time. To show off what’s possible, we’ve built more than fifty free, totally customizable [app templates](https://budibase.com/ops/).
 
 Sign up for Budibase today, *for free*, to start building custom tools the fast, easy way.

@@ -336,6 +336,6 @@ Take a look at our [plug-ins documentation](https://docs.budibase.com/docs/custo
 
 ### 50+ free application templates
 
-Businesses in all industries choose Budibase to build internal tools and workflow management solutions - in a fraction of the time. To show off what our platform can do, we’ve created more than fifty free, fully customizable [application templates](https://budibase.com/templates).
+Businesses in all industries choose Budibase to build internal tools and workflow management solutions - in a fraction of the time. To show off what our platform can do, we’ve created more than fifty free, fully customizable [application templates](https://budibase.com/ops/).
 
 Sign up to Budibase for free to start building custom solutions the fast, cost-effective way.

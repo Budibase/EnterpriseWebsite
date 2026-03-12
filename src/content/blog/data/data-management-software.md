@@ -1014,6 +1014,6 @@ We also offer extensive third-party integrations, with Zapier, Rest, Webhooks, a
 
 We have huge confidence in what Budiabse is capable of. But why should you take our word for it?
 
-Check out our library of over fifty free, deployable, and fully customizable [application templates](https://budibase.com/templates) to see our platform in action.
+Check out our library of over fifty free, deployable, and fully customizable [application templates](https://budibase.com/ops/) to see our platform in action.
 
 To start building data management solutions the fast, easy way, sign up for Budibase today.

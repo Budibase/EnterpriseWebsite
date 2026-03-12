@@ -339,6 +339,6 @@ It’s the perfect solution for empowering citizen developers or making your exi
 
 Budibase is the perfect solution for creating custom web apps to meet all sorts of business problems.
 
-Don’t believe us? We’ve created more than 50 free deployable [app templates](https://budibase.com/templates) to show off what our platform can do.
+Don’t believe us? We’ve created more than 50 free deployable [app templates](https://budibase.com/ops/) to show off what our platform can do.
 
 Sign up to Budibase today to get started, for free.

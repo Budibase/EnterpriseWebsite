@@ -326,7 +326,7 @@ Whether you want to save your internal developers time, cut out contractors, or 
 
 We’re biased, but we think Budibase is the smart choice for busy teams who don’t want to compromise on results. Tens of thousands of companies think the same.
 
-We’ve even created 50+ free, deployable [app templates](https://budibase.com/templates) to show off just what Budibase is capable of.
+We’ve even created 50+ free, deployable [app templates](https://budibase.com/ops/) to show off just what Budibase is capable of.
 
 Sign up to Budibase for free today to start building apps the fast, easy way.
 

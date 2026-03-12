@@ -355,6 +355,6 @@ Check out our [plug-ins page](https://github.com/Budibase/plugins) to learn more
 
 ### 50+ free app templates
 
-Budibase is the fast, easy way to build custom web apps for all kinds of use cases. To prove it, we’ve created over fifty free, deployment-ready, fully customizable [application templates](https://budibase.com/templates).
+Budibase is the fast, easy way to build custom web apps for all kinds of use cases. To prove it, we’ve created over fifty free, deployment-ready, fully customizable [application templates](https://budibase.com/ops/).
 
 Sign up to Budibase today to start building solutions the smart way.

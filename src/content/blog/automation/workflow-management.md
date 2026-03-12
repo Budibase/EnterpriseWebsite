@@ -793,6 +793,6 @@ No other low-code platform even comes close to this level of flexibility. Take a
 
 ### 50+ free app templates
 
-We have complete confidence in our platform and what it can do. But, we appreciate that you can’t just take our word for it. So, we’ve built more than 50, free, customizable, and ready-to-deploy [app templates](https://budibase.com/templates/) to prove it.
+We have complete confidence in our platform and what it can do. But, we appreciate that you can’t just take our word for it. So, we’ve built more than 50, free, customizable, and ready-to-deploy [app templates](https://budibase.com/ops/) to prove it.
 
 To get started building solutions the smart way, sign up to Budibase today for free.

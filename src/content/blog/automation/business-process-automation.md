@@ -899,6 +899,6 @@ We also offer free SSO, and support for OpenID and OAuth.
 
 Check out our [pricing page](https://budibase.com/pricing) to learn more about just how much Budibase could save you.
 
-Even better, we’ve built over 50 free [app templates](https://budibase.com/templates) to help get you started. Our template library offers ready-to-use solutions for everything from IT asset management to employee directories.
+Even better, we’ve built over 50 free [app templates](https://budibase.com/ops/) to help get you started. Our template library offers ready-to-use solutions for everything from IT asset management to employee directories.
 
 Sign up to Budibase to get started for free.

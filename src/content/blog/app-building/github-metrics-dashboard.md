@@ -411,4 +411,4 @@ To find out more about the kinds of tools you can create with Budibase, have a l
 
 We hope you’ve enjoyed it, and see you again next time!
 
-For more inspiration, check out our range of pre-built [app templates.](https://budibase.com/templates)
+For more inspiration, check out our range of pre-built [app templates.](https://budibase.com/ops/)

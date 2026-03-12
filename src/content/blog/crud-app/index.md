@@ -320,7 +320,7 @@ Check out our ultimate guide to [data sources](https://budibase.com/blog/data/da
 
 You can find over 50 CRUD app templates on the Budibase template page. These templates are free, 100% customizable, and simple to install.
 
-[View Budibase templates](https://budibase.com/templates)
+[View Budibase templates](https://budibase.com/ops/)
 
 {{< figure src="/img/meta-images/templates.png"  alt="CRUD app templates" >}}
 

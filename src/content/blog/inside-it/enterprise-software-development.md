@@ -645,7 +645,7 @@ No other platform on the market offers the same level of functionality, flexibil
 
 ### 50+ free app templates
 
-We’re so confident in what Budibase can do, that we don’t just want to talk about it - we want to show you. That’s why we’ve created more than 50 [app templates](https://budibase.com/templates/), for a huge variety of use cases.
+We’re so confident in what Budibase can do, that we don’t just want to talk about it - we want to show you. That’s why we’ve created more than 50 [app templates](https://budibase.com/ops/), for a huge variety of use cases.
 
 Better still, they’re all completely customizable, deployable, and free.
 

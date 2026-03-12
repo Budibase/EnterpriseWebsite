@@ -467,4 +467,4 @@ We offer optional self-hosting, configurable RBAC, free SSO, custom automations,
 
 Build everything from simple data entry tools, free forms, and approval platforms to complex portal apps, in a matter of minutes.
 
-We’ve also created more than 50 free [app templates](https://budibase.com/templates/) to help you get started. Sign up to Budibase for free to start building stunning, professional applications.
+We’ve also created more than 50 free [app templates](https://budibase.com/ops/) to help you get started. Sign up to Budibase for free to start building stunning, professional applications.

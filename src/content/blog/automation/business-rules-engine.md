@@ -305,6 +305,6 @@ Check out our [custom plug-ins page](https://github.com/Budibase/plugins) to lea
 
 ### 50+ free application templates
 
-Companies around the world choose Budibase to solve all kinds of business problems. For a flavor of what our platform can do, we’ve created over 50 free, deployment-ready, and fully customizable [app templates](https://budibase.com/templates).
+Companies around the world choose Budibase to solve all kinds of business problems. For a flavor of what our platform can do, we’ve created over 50 free, deployment-ready, and fully customizable [app templates](https://budibase.com/ops/).
 
 To start building custom solutions the fast, easy way, sign up to Budibase today, for free.

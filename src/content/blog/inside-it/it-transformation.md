@@ -1106,6 +1106,6 @@ Grant or restrict access to users at the level of data sources, queries, screens
 
 We have total confidence in our platform. Tens of thousands of companies around the world rely on Budibase to solve all kinds of business problems. But why take our word for it?
 
-We’ve created over 50 free, customizable [app templates](https://budibase.com/templates) to show off what Budibase is capable of.
+We’ve created over 50 free, customizable [app templates](https://budibase.com/ops/) to show off what Budibase is capable of.
 
 To start building custom solutions the fast, easy way, sign up to Budibase for free today.

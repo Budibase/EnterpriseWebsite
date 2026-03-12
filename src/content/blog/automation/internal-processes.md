@@ -911,6 +911,6 @@ Check out our [pricing page](https://budibase.com/pricing) to learn more about b
 
 We have a lot of confidence in what our platform can do. So do our users. But why should you take our word for it - or anyone else’s for that matter?
 
-We’ve built more than 50 free, customizable, and ready-to-deploy [app templates](https://budibase.com/templates) to show off what Budibase is capable of.
+We’ve built more than 50 free, customizable, and ready-to-deploy [app templates](https://budibase.com/ops/) to show off what Budibase is capable of.
 
 To start building custom applications the fast, easy way, sign up to Budibase today for free.

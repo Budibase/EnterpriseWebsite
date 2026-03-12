@@ -1,4 +1,5 @@
 ---
+import Button from "../../components/Button.astro";
 import Layout from "../../layouts/MainLayout.astro";
 
 const pageTitle = "Contact us";
@@ -14,6 +15,16 @@ const pageDescription = "Let's explore how Budibase can work for you.";
           <p class="contact-lede">
             Let's explore how Budibase can work for you.
           </p>
+
+          <div id="book-a-call" class="py-3">
+            <Button
+              label="Book a call with our sales team"
+              url="#book-a-call"
+              variant="cta"
+              size="large"
+              class="contact-book-link"
+            />
+          </div>
 
           <div class="contact-topics" aria-label="Reasons to speak to sales">
             <article class="contact-topic">
@@ -94,15 +105,6 @@ const pageDescription = "Let's explore how Budibase can work for you.";
         </div>
 
         <div class="contact-form-column">
-          <a id="book-a-call" href="#book-a-call" class="contact-book-link">
-            Book a call with our sales team
-          </a>
-
-          <p class="contact-or">or</p>
-          <p class="contact-form-copy">
-            complete the form below and we'll get back to you.
-          </p>
-
           <form
             class="contact-form"
             name="contact-sales"
@@ -261,31 +263,6 @@ const pageDescription = "Let's explore how Budibase can work for you.";
     padding-top: 0.35rem;
   }
 
-  .contact-book-link {
-    display: inline-flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #6a57f6 0%, var(--purple-500) 100%);
-    padding: 1rem 1.5rem;
-    color: white;
-    font-size: clamp(1rem, 1.5vw, 1.15rem);
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 18px 40px rgb(106 87 246 / 0.18);
-    transition:
-      transform 150ms ease,
-      box-shadow 150ms ease;
-  }
-
-  .contact-book-link:hover,
-  .contact-book-link:focus-visible {
-    transform: translateY(-1px);
-    box-shadow: 0 20px 44px rgb(106 87 246 / 0.24);
-  }
-
-  .contact-book-link:focus-visible,
   .contact-field input:focus-visible,
   .contact-field textarea:focus-visible,
   .contact-submit:focus-visible {
@@ -293,25 +270,8 @@ const pageDescription = "Let's explore how Budibase can work for you.";
     outline-offset: 3px;
   }
 
-  .contact-or {
-    margin: 1.6rem 0 0;
-    color: rgb(var(--text));
-    text-align: center;
-    font-size: clamp(1.2rem, 1.7vw, 1.5rem);
-    font-style: italic;
-    line-height: 1;
-  }
-
-  .contact-form-copy {
-    margin: 1.85rem 0 0;
-    color: rgb(var(--text));
-    text-align: center;
-    font-size: clamp(1.05rem, 1.6vw, 1.15rem);
-    line-height: 1.45;
-  }
-
   .contact-form {
-    margin-top: 2.9rem;
+    margin-top: 0;
   }
 
   .contact-form__honeypot {
@@ -425,7 +385,7 @@ const pageDescription = "Let's explore how Budibase can work for you.";
     }
 
     .contact-form {
-      margin-top: 2.35rem;
+      margin-top: 0;
     }
   }
 </style>

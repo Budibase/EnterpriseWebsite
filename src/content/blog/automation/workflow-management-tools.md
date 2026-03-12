@@ -406,6 +406,6 @@ Check out our custom [plug-ins documentation](https://docs.budibase.com/docs/cus
 
 Businesses all over the world choose Budibase to build custom solutions for all kinds of [workflow management](/blog/automation/workflow-management/) applications.
 
-We have a lot of confidence in our platform, but why should you take our word for it? To prove what Budibase is capable of, we’ve created over 50 free, customizable, and ready-to-use [app templates](https://budibase.com/templates).
+We have a lot of confidence in our platform, but why should you take our word for it? To prove what Budibase is capable of, we’ve created over 50 free, customizable, and ready-to-use [app templates](https://budibase.com/ops/).
 
 To start building applications the fast, easy way, sign up to Budibase today, for free.

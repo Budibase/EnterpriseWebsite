@@ -281,6 +281,6 @@ Tens of thousands of businesses all over the world choose Budibase for RAD and t
 
 Connect existing data, autogenerate CRUD screens, build custom components, automate workflows, customize access control, and deploy to your own infrastructure, in one intuitive platform.
 
-We’ve even built over 50 free, deployment-ready [app templates](https://budibase.com/templates/) to get you started.
+We’ve even built over 50 free, deployment-ready [app templates](https://budibase.com/ops/) to get you started.
 
 Sign up to Budibase for free to start building custom apps the fast, easy way.

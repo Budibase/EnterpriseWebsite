@@ -661,6 +661,6 @@ You can even draw on third-party tools as triggers and actions using Zapier, Web
 
 ### 50+ free app templates
 
-We have huge confidence in what our platform can do. But why take our word for it? To prove it, we’ve built more than fifty free, deployable, and fully customizable [application templates](https://budibase.com/templates/) to show off what Budibase is capable of.
+We have huge confidence in what our platform can do. But why take our word for it? To prove it, we’ve built more than fifty free, deployable, and fully customizable [application templates](https://budibase.com/ops/) to show off what Budibase is capable of.
 
 To start using Budibase for free, sign up today. 

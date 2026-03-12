@@ -282,7 +282,7 @@ We also offer a vast library of powerful built-in automations, which can be trig
 
 Unlike other low-code builders, Budibase is totally free and unlimited. We don’t charge hidden fees to build multiple apps or add extra users. We even offer free SSO across all of your Budibase tools.
 
-Check out our range of [Budibase templates](https://budibase.com/templates), to help get you started.
+Check out our range of [Budibase templates](https://budibase.com/ops/), to help get you started.
 
 ### ![5f7e0a00 c2ef 11eb 9b22 c26c59286fc7 vkbx35](https://res.cloudinary.com/daog6scxm/image/upload/v1637860395/cms/5f7e0a00-c2ef-11eb-9b22-c26c59286fc7_vkbx35.png)
 

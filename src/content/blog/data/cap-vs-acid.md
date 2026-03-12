@@ -212,6 +212,6 @@ Check out our [plug-ins documentation](https://docs.budibase.com/docs/custom-plu
 
 ### 50+ free application templates
 
-Thousands of major organizations around the world choose Budibase to build professional, performant apps in a fraction of the time they could turn around hard-coded solutions. Check out our library of 50+ free, customizable [application templates](https://budibase.com/templates) for a flavor of what’s possible.
+Thousands of major organizations around the world choose Budibase to build professional, performant apps in a fraction of the time they could turn around hard-coded solutions. Check out our library of 50+ free, customizable [application templates](https://budibase.com/ops/) for a flavor of what’s possible.
 
 If you’re ready to start building internal tools the fast, easy way, sign up for Budibase for free today.

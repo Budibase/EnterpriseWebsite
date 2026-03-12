@@ -290,6 +290,6 @@ Check out our [plug-ins docs](https://docs.budibase.com/docs/custom-plugin) to l
 
 ### 50+ free app templates
 
-Businesses around the world choose Budibase for all sorts of application projects. To show you, we’ve created more than fifty free, customizable, and ready-to-deploy [app templates](https://budibase.com/templates).
+Businesses around the world choose Budibase for all sorts of application projects. To show you, we’ve created more than fifty free, customizable, and ready-to-deploy [app templates](https://budibase.com/ops/).
 
 To start building custom solutions the fast, easy way, sign up to Budibase today for free.

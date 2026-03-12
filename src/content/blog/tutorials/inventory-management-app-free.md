@@ -351,6 +351,6 @@ Check out our custom [plug-ins documentation](https://docs.budibase.com/docs/cus
 
 ### 50+ free application templates
 
-Our users choose Budibase to build all kinds of internal tools, web apps, and utilities, in minutes, not months. We’ve even built more than fifty free, customizable [app templates](https://budibase.com/templates) to help get you started.
+Our users choose Budibase to build all kinds of internal tools, web apps, and utilities, in minutes, not months. We’ve even built more than fifty free, customizable [app templates](https://budibase.com/ops/) to help get you started.
 
 Sign up to Budibase today to start building professional applications for free.

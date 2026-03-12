@@ -648,7 +648,7 @@ Tens of thousands of businesses around the world choose Budibase to build everyt
 
 But why just take our word for it?
 
-We’ve also built more than 50 free, deployable, and fully customizable [app templates](https://budibase.com/templates) to show off what Budibase is capable of.
+We’ve also built more than 50 free, deployable, and fully customizable [app templates](https://budibase.com/ops/) to show off what Budibase is capable of.
 
 To start building better apps, faster, sign up to Budibase for free today.
 

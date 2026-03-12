@@ -344,6 +344,6 @@ Check out our ultimate guide to [workflow automation](https://budibase.com/blog/
 
 ### 50+ free, deployable app templates
 
-Budibase is the ideal way to build a wide array of solutions in minutes, not months. Don’t just take our word for it. We’ve created over 50 customizable, deployment-ready, free [app templates](https://budibase.com/templates/) to help get you started.
+Budibase is the ideal way to build a wide array of solutions in minutes, not months. Don’t just take our word for it. We’ve created over 50 customizable, deployment-ready, free [app templates](https://budibase.com/ops/) to help get you started.
 
 To start building internal software the smart way, sign up to Budibase today for free.

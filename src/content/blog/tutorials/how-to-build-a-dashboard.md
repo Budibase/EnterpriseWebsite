@@ -534,6 +534,6 @@ We also offer free SSO and user groups, so you can manage access however you nee
 
 ### 50+ free app templates
 
-Budibase is the ideal solution for building all kinds of internal tools. To prove it, we’ve created more than fifty free, deployment-ready, and fully customizable [app templates](https://budibase.com/templates) - including a whole raft of dashboard templates.
+Budibase is the ideal solution for building all kinds of internal tools. To prove it, we’ve created more than fifty free, deployment-ready, and fully customizable [app templates](https://budibase.com/ops/) - including a whole raft of dashboard templates.
 
 To start building web apps the fast, easy way, sign up to Budibase today for free.

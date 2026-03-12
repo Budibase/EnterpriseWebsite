@@ -484,6 +484,6 @@ You can even use third-party app events to initiate your automation rules in Bud
 
 ### 50+ free application templates
 
-We’re so confident in what Budibase can do that we thought we might as well show you for ourselves. That’s why we’ve built more than fifty free, customizable, and deployment-ready [application templates](https://budibase.com/templates/).
+We’re so confident in what Budibase can do that we thought we might as well show you for ourselves. That’s why we’ve built more than fifty free, customizable, and deployment-ready [application templates](https://budibase.com/ops/).
 
 To start building cloud applications the quick, easy way, sign up to Budibase today for free.

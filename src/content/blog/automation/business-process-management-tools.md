@@ -314,7 +314,7 @@ Budibase offers exceptional development experiences for a huge array of differen
 
 But don’t just take our word for it.
 
-We’ve also created more than 50 fully customizable, deployment-ready, free [app templates](https://budibase.com/templates) to get you started.
+We’ve also created more than 50 fully customizable, deployment-ready, free [app templates](https://budibase.com/ops/) to get you started.
 
 To start building tools the smart, easy way, sign up for Budibase today.
 

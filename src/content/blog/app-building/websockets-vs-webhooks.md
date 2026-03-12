@@ -265,6 +265,6 @@ Take a look at our [plug-ins documentation](https://docs.budibase.com/docs/custo
 
 ### 50+ free application templates
 
-Thousands of businesses around the world choose Budibase to manage all kinds of internal processes. To show off what you can do with our platform, we’ve created more than fifty free, fully customizable [application templates](https://budibase.com/templates).
+Thousands of businesses around the world choose Budibase to manage all kinds of internal processes. To show off what you can do with our platform, we’ve created more than fifty free, fully customizable [application templates](https://budibase.com/ops/).
 
 Sign up to Budibase today to start building custom solutions the fast, cost-effective way.

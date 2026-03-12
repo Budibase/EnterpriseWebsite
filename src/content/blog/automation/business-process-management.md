@@ -645,7 +645,7 @@ We know we’re biased, but we think that Budibase is the perfect solution for b
 
 But why should you take our word for it?
 
-To show off what our platform is capable of, we’ve created over 50 fully functional, free [app templates](https://budibase.com/templates). Each one is ready to deploy or customize to your heart’s content.
+To show off what our platform is capable of, we’ve created over 50 fully functional, free [app templates](https://budibase.com/ops/). Each one is ready to deploy or customize to your heart’s content.
 
 Did we mention that you can also use Budibase to build and deploy custom solutions for free?
 

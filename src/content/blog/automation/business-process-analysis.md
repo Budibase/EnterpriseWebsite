@@ -358,7 +358,7 @@ Budibase offers unrivaled scope to provide the perfect level of data exposure fo
 
 Budibase is the smart, easy way to build all sorts of custom solutions. But, it’s understandable if you don’t just want to take our word for it.
 
-To get you started, we’ve built more than 50 free, customizable, and fully ready-to-deploy [app templates](https://budibase.com/templates) to show off what our platform can do.
+To get you started, we’ve built more than 50 free, customizable, and fully ready-to-deploy [app templates](https://budibase.com/ops/) to show off what our platform can do.
 
 To start using Budibase today, simply sign up for free.
 

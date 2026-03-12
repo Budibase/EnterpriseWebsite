@@ -404,6 +404,6 @@ Check out our [plug-ins page](https://github.com/Budibase/plugins) to learn more
 
 ### 50+ application templates
 
-Budibase empowers IT teams in all sorts of organizations to build incredible solutions for their colleagues and customers. To show off what our platform can do, we’ve built more than fifty free, fully customizable [application templates](https://budibase.com/templates).
+Budibase empowers IT teams in all sorts of organizations to build incredible solutions for their colleagues and customers. To show off what our platform can do, we’ve built more than fifty free, fully customizable [application templates](https://budibase.com/ops/).
 
 To start building custom web apps the fast, cost-effective way, sign up to Budibase today for free.
