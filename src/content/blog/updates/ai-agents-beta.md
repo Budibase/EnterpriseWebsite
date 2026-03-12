@@ -60,6 +60,6 @@ Since Budibase Automations can be invoked as tools by Agents, this approach enab
 
 ## Start building agentic workflows today
 
-Our Agents Beta is an important step on Budibase’s journey to becoming the all-in-one open-source AI workflow toolkit. As of today, you can utilize Agents within both self-hosted and cloud versions of Budibase.
+Our Agents Beta is an important step on Budibase’s journey to becoming the all-in-one open-source AI workflow toolkit.
 
 We can’t wait to hear what you think.
