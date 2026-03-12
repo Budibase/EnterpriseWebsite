@@ -1,5 +1,5 @@
 ---
-title: "Introducting Budibase Agents (Beta)"
+title: "Introducing Budibase Agents (Beta)"
 description: "Today, we're proud to launch Budibase Agents into Beta."
 publishDate: "2026-03-12"
 author: "Michael Shanks"
