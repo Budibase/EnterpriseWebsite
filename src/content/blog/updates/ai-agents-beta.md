@@ -25,7 +25,7 @@ Each Budibase Workspace now includes an Agents tab, alongside your existing Data
 
 We can use the Chat preview to test and iterate over Agent behavior. Budibase Agents eliminate the boilerplate required to run AI workflows, providing a fast, maintainable experience for configuring agents that you can roll out with trust and confidence.
 
-![AI Agents](https://res.cloudinary.com/daog6scxm/image/upload/v1773328119/cms/agents/Rectangle_2-2_b5ahgi.webp "AI Agents")
+![AI Agents](https://res.cloudinary.com/daog6scxm/image/upload/v1773329249/cms/agents/Prompt_Bigger_okupww.webp "AI Agents")
 
 ## Chat with agents, wherever work happens
 
@@ -41,14 +41,14 @@ Budibase Agents can invoke tools and data sources from across your Workspace, in
 
 Budibase’s REST templates and built-in database actions make it quick and easy to configure agent tool calls. Simply select which tools your Agents can access, and define how they’re used within your instruction prompt. 
 
-![Tools](https://res.cloudinary.com/daog6scxm/image/upload/v1770825652/cms/agents/Group_1_fafmcn.webp "Tools")
+![Tools](https://res.cloudinary.com/daog6scxm/image/upload/v1773329204/cms/agents/Tools_Bigger_z3omrt.webp "Tools")
 
 ## Model agnostic, privacy-first
 
 In security-focused teams, AI adoption is often blocked because mission-critical data can’t be shared with opaque public models and services, or even leave their internal environment.
 
 Budibase Agents are fully model-agnostic, supporting any LLM with an OpenAI-compatible API, including locally hosted models. Select the right model for the task at hand, while retaining control over data residency within our self-hostable platform.
-![Models](https://res.cloudinary.com/daog6scxm/image/upload/v1773314200/cms/agents/AI_Config_y6wld4.webp "Models")
+![Models](https://res.cloudinary.com/daog6scxm/image/upload/v1773329353/cms/agents/Config_Bigger_z0ueet.webp "Models")
 
 ## Build Agents alongside Apps and Automations
 
