@@ -180,10 +180,10 @@ The `Access Requests` table includes the following columns:
 `Decision` (Relationship) - The rows on the `Decisions` table that relate to this request.
 
 CSV:
-{{< highlight plaintext "linenos=inline" >}}
+```csv
 createdBy,toolRequested,date,justification,decision,reason,manualDecision,oktaUser,oktaApp
 ,ExampleApp,2026-02-01T12:00:00.000Z,"Dummy justification text.",approve_recommended,"Dummy reason text.",approved,,
-{{< /highlight >}}
+```
 
 The `Decisions` table includes the following columns:
 ‘Date’ (Date) - The timestamp of when the row is created.
@@ -192,20 +192,20 @@ The `Decisions` table includes the following columns:
 `manual_approver` (Single User) - The user who gave final approval to the request, if applicable.
 
 CSV:
-{{< highlight plaintext "linenos=inline" >}}
+```csv
 date,decision,human_approver
 2026-02-03T15:26:17.764Z,"{""decision"":""jsonObject""}",
-{{< /highlight >}}
+```
 
 `Apps` stores the name and Okta ID of all apps:
 `Name` (Text) - The name of the app.
 `oktaId` (Text) - The unique identifier of the application object in Okta.
 
 CSV:
-{{< highlight plaintext "linenos=inline" >}}
+```csv
 App,oktaID
 ExampleApp,
-{{< /highlight >}}
+```
 
 API endpoints
 
