@@ -138,9 +138,9 @@ lastUpdated: 2026-03-11
 ---
 <h2 id="overview">Overview</h2>
 
-Support teams spend a lot of time combing through ticket backlogs, following up with customers, and deciding when stale issues can be closed. Those tasks matter, but they also create a large administrative burden that takes time away from actually resolving technical issues.
+Support teams spend huge amounts of time combing ticket backlogs, ensuring that issues are followed up on and closed when necessary. While this is important, it can also create an outsized admin workload, preventing support from working on actually resolving users’ issues.
 
-This guide shows how to build a Budibase Agent that reviews open tickets on a schedule, determines who needs to respond next, sends the appropriate reminder, and closes tickets that have gone stale under a clearly defined rule set.
+In this guide, we’re using Budibase Agents (Beta) to build an end-to-end workflow for follow-ups and automatic closing within a ticketing system. Along the way, we’ll outline the agent instructions, data tables, and automation rules that we need to build a fully automated solution for handling overdue and stale support tickets within Budibase.
 
 What are we building?
 
@@ -294,11 +294,15 @@ The first automation is called `Trigger Agent`. It uses a `Chron` trigger to run
 
 The only input the agent expects is the current date, so the prompt binding can simply use `{{ Date }}`.
 
+![Ticket Follow Up Agent](https://res.cloudinary.com/daog6scxm/image/upload/v1773333737/cms/agent-guides/ticket-follow-up/Auto-Close_Agent_1_j5ern2.webp "ticket Follow Up Agent")
+
 This automation turns the ticket review into a background process: each morning, the agent checks all open tickets, decides whether any need follow-up, and records its outcome.
 
 <h2 id="send-email">Send email</h2>
 
 The second automation is called `Send Email`. The agent invokes this automation when it chooses `NUDGE_INTERNAL` or `NUDGE_CUSTOMER`.
+
+![Follow Up](https://res.cloudinary.com/daog6scxm/image/upload/v1773333737/cms/agent-guides/ticket-follow-up/Autoclose_Agent_2_hsbiul.webp "Follow Up")
 
 This flow uses a `User Action` trigger with the following fields:
 
