@@ -287,7 +287,7 @@ Take a look at our row actions docs to learn more.
 
 After our trigger, we’ll add: an `Update Row` action, setting our `Table` to `Access Requests` and the `Row ID` to `{{ trigger.id }}`. We’ll then hit `Edit Fields` and set `manualDecision` to `denied`.
 
-Lastly, we’ll add a `Create Row` step for our `Decisions` table setting `date` to the current date, `decision to `{"decision": "denied"}`, `Access Request` to `{{ trigger.id }}` and `human_approver` to `{{ Current User._id }}`.
+Lastly, we’ll add a `Create Row` step for our `Decisions` table setting `date` to the current date, `decision to `"decision": "denied"`, `Access Request` to `{{ trigger.id }}` and `human_approver` to `{{ Current User._id }}`.
 
 ![Approval](https://res.cloudinary.com/daog6scxm/image/upload/v1773334435/cms/agent-guides/access-request-agent/Access_Request_Agent_30_j2ovfu.webp "Approval")
 Approving requests
