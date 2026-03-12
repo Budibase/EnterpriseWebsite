@@ -1,11 +1,10 @@
-+++
-author = "Ronan McQuillan"
-date = 2026-03-10
-description = "Take a look at our guide to integrating AI into Human Workflows."
-profilePic = "https://res.cloudinary.com/daog6scxm/image/upload/v1639756662/cms/IMG_3081_ubvpag.jpg"
-title = "Integrating AI into Human Workflows | 4 Methods"
-
-+++
+---
+author: = "Ronan McQuillan"
+publishDate: = 2026-03-10
+description: = "Take a look at our guide to integrating AI into Human Workflows."
+profilePic: = "https://res.cloudinary.com/daog6scxm/image/upload/v1639756662/cms/IMG_3081_ubvpag.jpg"
+title: "Integrating AI into Human Workflows | 4 Methods"
+---
 
 At this stage, it’s a cliché to say that AI is transforming all aspects of business operations. However, one of the biggest challenges faced by many teams when adopting AI is the need to maintain human oversight, decision-making, and accountability.
 
