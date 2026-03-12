@@ -107,7 +107,13 @@ import {
       >
 
       <div class="hidden lg:flex items-center gap-2 lg:gap-3">
-        <Button label="Log in" url="/" variant="secondary" size="small" />
+        <Button
+          label="Log in"
+          url="https://account.budibase.app/auth/login"
+          variant="secondary"
+          size="small"
+          target="_blank"
+        />
         <Button
           label="Try it free"
           url="https://account.budibase.app/register"
@@ -205,7 +211,7 @@ import {
                 ></path>
               </svg>
             </summary>
-            <ul class="mt-3 flex flex-col gap-2">
+            <ul class="mt-[18px] flex flex-col gap-2">
               {
                 productDropdownItems.map(({ href, label, prefetch, badge, target, rel, disabled }) => (
                   <li>
@@ -292,7 +298,7 @@ import {
                 ></path>
               </svg>
             </summary>
-            <ul class="mt-3 flex flex-col gap-2">
+            <ul class="mt-[18px] flex flex-col gap-2">
               {
                 resourcesDropdownItems.map(({ href, label, prefetch, badge, target, rel, disabled }) => (
                   <li>
