@@ -301,13 +301,7 @@ Configure `git/get-tree` with these default values inside Budibase:
 - `tree_sha`: the file tree identifier, which can be retrieved from `repos/get-branch` for the main branch
 - `recursive`: `1`
 
-<figure>
-  <img
-    src={githubBindingsScreenshot}
-    alt="GitHub git/get-tree request configuration showing default owner, repo, tree_sha, and recursive bindings in the Budibase API builder."
-  />
-  <figcaption>The GitHub template uses fixed defaults for repository lookup, with only the selected file path changing later in the flow.</figcaption>
-</figure>
+![API](https://res.cloudinary.com/daog6scxm/image/upload/v1773335945/cms/agent-guides/internal-knowledge-assistant/Internal_Knowledge_Assistant_1_i6ah3j.webp "API")
 
 The `repos/get-content` request requires:
 
@@ -391,13 +385,7 @@ for (const b of (data.results || [])) {
 return sections.filter(s => s.body);
 ```
 
-<figure>
-  <img
-    src={notionTransformerScreenshot}
-    alt="Budibase Notion Block_getChildren API screen showing a JavaScript transformer that extracts headings and paragraph bodies into a compact JSON structure."
-  />
-  <figcaption>The Notion transformer trims the payload down to the headings and body text that the agent actually needs.</figcaption>
-</figure>
+![JS](https://res.cloudinary.com/daog6scxm/image/upload/v1773335946/cms/agent-guides/internal-knowledge-assistant/Internal_Knowledge_Assistant_2_omdksb.webp "JS")
 
 That transformer returns a compact structure like:
 
@@ -433,14 +421,11 @@ Decisions and commitments must be documented in the appropriate system of record
 
 <h2 id="tables">Tables</h2>
 
-The workflow requires one BudibaseDB table named `Notion Pages`. The agent queries this table through `budibase.Notion Pages.list_rows` to map a human-readable page name to the Notion page ID used by the API layer.
+Our Agent also requires a single BudibaseDB table called `Notion Pages` to function correctly. This is queried by our agent using `budibase.Notion Pages.list_rows`. The table stores two attributes relating to each of our Notion Pages:
+`name` - the name of the document which can be referenced by the Agent.
+`notion_id` - the unique identifier of the document, which is required to retrieve it via our two API requests.
 
-Store two text fields:
-
-- `name`: the document name the agent can reason about
-- `notion_id`: the actual Notion page ID required by the API requests
-
-You can seed the table with a simple CSV:
+You can create this by importing the following CSV into BudibaseDB, setting the `Type` for each column to `Text`. You’ll need to provide the real `notion_id` values for each page you wish to query using the Agent.
 
 ```csv
 name,notion_id
@@ -449,30 +434,15 @@ example_name,example_id
 
 Replace the placeholder IDs with real page identifiers for each document you want the agent to search.
 
-<figure>
-  <img
-    src={notionPagesTableScreenshot}
-    alt="Budibase data table named Notion Pages with rows for HR Policy, Onboarding FAQs, and Operations Manual, each mapped to a notion_id value."
-  />
-  <figcaption>The `Notion Pages` table acts as the lookup layer between human-readable page names and the Notion IDs required by the API requests.</figcaption>
-</figure>
+![Table](https://res.cloudinary.com/daog6scxm/image/upload/v1773335946/cms/agent-guides/internal-knowledge-assistant/Internal_Knowledge_Assistant_3_e9k7a6.webp "Table")
 
 <h2 id="invoking-the-agent">Invoking the agent</h2>
 
-Because this is a conversational assistant, you have several deployment options depending on where employees already work.
+As our internal knowledge assistant is a conversational Agent, we have a few options for how we can serve it to end users. For example, we can invoke Agents from within Budibase Automations. For this use case, we might opt to use the `Email Received` Automation trigger to integrate our knowledge assistant with an internal support inbox, along with a `Send Email (SMTP)` action to enable our Agent to send a response to users. Take a look at our email listener documentation to learn more.
 
-One option is to invoke the agent through Budibase Automations. For example, you can pair an `Email Received` trigger with `Send Email (SMTP)` so the assistant can monitor a shared support inbox and reply with grounded answers.
+Alternatively, we have a couple of options for serving our Agent to users within chat-based UIs. Budibase Agents support deployment via external chat tools, including Discord and Teams, enabling end users to interact with them via existing messaging channels. We can configure this under our Agent’s `Deployment` tab.
 
-You can also deploy Budibase Agents into external chat channels such as Discord and Teams through the agent's `Deployment` tab. That gives users a familiar interface while keeping the retrieval logic and prompt inside Budibase.
+![Internal Knowledge Assistant](https://res.cloudinary.com/daog6scxm/image/upload/v1773335947/cms/agent-guides/internal-knowledge-assistant/Internal_Knowledge_Assistant_4_e4s7im.webp "Internal Knowledge Assistant")
 
-<figure>
-  <img
-    src={deploymentScreenshot}
-    alt="Budibase agent deployment screen showing Discord and Microsoft Teams messaging channel options alongside a chat preview panel."
-  />
-  <figcaption>The deployment panel supports both messaging-channel rollouts and a native Budibase chat experience.</figcaption>
-</figure>
+Budibase Agents also offer native chat capabilities, providing a ready-to-use, authenticated conversational interface that we can serve to end users, enabling them to interact with our knowledge assistant directly.
 
-Finally, Budibase provides a native authenticated chat UI. If you want a direct internal assistant experience without routing through another channel, the built-in chat interface is the simplest way to expose the agent to end users.
-
-The common requirement across all three options is the same: make sure the retrieval tools, page mappings, and response rules are in place before you expose the assistant. The delivery channel can change, but the grounding pattern should remain identical.
