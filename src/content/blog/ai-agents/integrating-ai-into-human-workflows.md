@@ -76,7 +76,7 @@ Below, we’ve created an agent that interprets and routes `Contact Us` submissi
 
 The instructions we’ve used to build this are as follows:
 
-{{< highlight plaintext "linenos=inline" >}}
+```text
 **Agent role**
 
 You are a contact routing assistant. Your job is to assess submissions from our `Contact Us` form and use the provided information to determine if they relate to `Sales`, `Support`, or `Marketing`.
@@ -110,7 +110,7 @@ You will receive the following inputs:
 **Rules**
 
 \- Each submission can only be placed into one category. Do not create rows on multiple tables for a single submission.
-{{< /highlight >}}
+```
 
 
 ![Integrating AI Into Human Workflows](https://res.cloudinary.com/daog6scxm/image/upload/v1771946281/cms/integrating-ai-into-human-workflows/AI_Human_Workflow_1_npr8gw.webp "Integrating AI Into Human Workflows")
