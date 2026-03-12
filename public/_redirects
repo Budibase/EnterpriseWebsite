@@ -1,0 +1,12 @@
+/admin-panels /product/apps/ 301
+/admin-panels/* /product/apps/ 301
+/approval-apps /product/apps/ 301
+/approval-apps/* /product/apps/ 301
+/business-apps /product/apps/ 301
+/business-apps/* /product/apps/ 301
+/directories /product/apps/ 301
+/directories/* /product/apps/ 301
+/forms /product/apps/ 301
+/forms/* /product/apps/ 301
+/customers/reworld /blog/reworld/ 301
+/eula /terms/ 301

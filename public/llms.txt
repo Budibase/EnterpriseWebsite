@@ -1,0 +1,7 @@
+# Budibase
+
+Official website for Budibase.
+
+- Canonical site: https://www.budibase.com/
+- Sitemap: https://www.budibase.com/sitemap-index.xml
+- Docs: https://docs.budibase.com/

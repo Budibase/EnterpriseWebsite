@@ -798,6 +798,16 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
       max-width: none;
     }
   }
+
+  @media (max-width: 767px) {
+    .hero-demo-left {
+      display: none;
+    }
+
+    .hero-demo-right {
+      width: 100%;
+    }
+  }
 </style>
 
 <script define:vars={{ id }}>

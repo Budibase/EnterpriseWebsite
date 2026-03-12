@@ -20,6 +20,11 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# local AI/editor config variants we are not standardizing on in this repo
+.agent/
+.codex/
+.cursor/
+
 # jetbrains setting folder
 .idea/
 
