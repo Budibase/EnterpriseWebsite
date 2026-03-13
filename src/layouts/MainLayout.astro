@@ -12,6 +12,7 @@ const { enableTransitions = false } = Astro.props;
 <html lang="en">
   <head>
     <Head {...Astro.props} />
+    <slot name="head" />
     {enableTransitions && <ClientRouter />}
   </head>
 
