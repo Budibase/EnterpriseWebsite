@@ -54,61 +54,62 @@ export default defineConfig({
     },
   },
 
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: "Inter",
+      cssVariable: "--font-inter",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/Inter-Regular.woff2"],
+            weight: 400,
+            style: "normal",
+          },
+          {
+            src: ["./src/assets/fonts/Inter-Medium.woff2"],
+            weight: 500,
+            style: "normal",
+          },
+          {
+            src: ["./src/assets/fonts/Inter-SemiBold.woff2"],
+            weight: 600,
+            style: "normal",
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
+      name: "Fraunces",
+      cssVariable: "--font-fraunces",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/Fraunces-Variable.woff2"],
+            weight: "400 600",
+            style: "normal",
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
+      name: "iA Writer Mono",
+      cssVariable: "--font-ia-writer-mono",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/iAWriter-Regular.woff2"],
+            weight: 400,
+            style: "normal",
+          },
+        ],
+      },
+    },
+  ],
+
   experimental: {
-    fonts: [
-      {
-        provider: fontProviders.local(),
-        name: "Inter",
-        cssVariable: "--font-inter",
-        options: {
-          variants: [
-            {
-              src: ["./src/assets/fonts/Inter-Regular.woff2"],
-              weight: 400,
-              style: "normal",
-            },
-            {
-              src: ["./src/assets/fonts/Inter-Medium.woff2"],
-              weight: 500,
-              style: "normal",
-            },
-            {
-              src: ["./src/assets/fonts/Inter-SemiBold.woff2"],
-              weight: 600,
-              style: "normal",
-            },
-          ],
-        },
-      },
-      {
-        provider: fontProviders.local(),
-        name: "Fraunces",
-        cssVariable: "--font-fraunces",
-        options: {
-          variants: [
-            {
-              src: ["./src/assets/fonts/Fraunces-Variable.woff2"],
-              weight: "400 600",
-              style: "normal",
-            },
-          ],
-        },
-      },
-      {
-        provider: fontProviders.local(),
-        name: "iA Writer Mono",
-        cssVariable: "--font-ia-writer-mono",
-        options: {
-          variants: [
-            {
-              src: ["./src/assets/fonts/iAWriter-Regular.woff2"],
-              weight: 400,
-              style: "normal",
-            },
-          ],
-        },
-      },
-    ],
     clientPrerender: true,
     contentIntellisense: true,
   },
