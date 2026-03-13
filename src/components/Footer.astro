@@ -186,6 +186,12 @@ const footerColumns: FooterColumn[] = [
     gap: 0.25rem;
   }
 
+  .footer-link {
+    min-height: 44px;
+    padding: 0.35rem 0;
+    align-items: center;
+  }
+
   .footer-check-icon {
     width: 16px;
     height: 16px;
@@ -208,6 +214,13 @@ const footerColumns: FooterColumn[] = [
     .footer-controls {
       width: 100%;
       justify-content: flex-start;
+    }
+  }
+
+  @media (min-width: 641px) {
+    .footer-link {
+      min-height: auto;
+      padding: 0;
     }
   }
 </style>

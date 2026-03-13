@@ -2,16 +2,23 @@
 import { Image } from "astro:assets";
 import OnePlatformAppBg from "@assets/images/homepage/onePlatform/OnePlatformApp.png";
 import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c07d627de130d801d4.svg";
-
-const rootStyle = `--one-platform-app-bg: url("${OnePlatformAppBg.src}")`;
 ---
 
 <div
   class="one-platform-app"
-  style={rootStyle}
   role="img"
   aria-label="App preview showing a request access form with system, request, and manager fields"
 >
+  <Image
+    src={OnePlatformAppBg}
+    alt=""
+    class="one-platform-app__bg"
+    aria-hidden="true"
+    format="webp"
+    quality={72}
+    loading="lazy"
+    decoding="async"
+  />
   <div class="one-platform-app__surface" aria-hidden="true">
     <div class="one-platform-app__panel">
       <p class="one-platform-app__title">Request Access Form</p>
@@ -60,14 +67,30 @@ const rootStyle = `--one-platform-app-bg: url("${OnePlatformAppBg.src}")`;
     display: flex;
     justify-content: flex-end;
     align-items: stretch;
-    background:
-      linear-gradient(
-        180deg,
-        rgb(250 249 245 / 0.64) 0%,
-        rgb(250 249 245 / 0.34) 38%,
-        rgb(250 249 245 / 0.1) 100%
-      ),
-      var(--one-platform-app-bg) center bottom / cover no-repeat;
+    background: var(--color-grey-50);
+  }
+
+  .one-platform-app::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgb(250 249 245 / 0.64) 0%,
+      rgb(250 249 245 / 0.34) 38%,
+      rgb(250 249 245 / 0.1) 100%
+    );
+  }
+
+  .one-platform-app__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .one-platform-app__surface {
@@ -78,6 +101,8 @@ const rootStyle = `--one-platform-app-bg: url("${OnePlatformAppBg.src}")`;
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
+    position: relative;
+    z-index: 2;
   }
 
   .one-platform-app__panel {

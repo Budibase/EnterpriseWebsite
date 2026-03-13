@@ -1,6 +1,5 @@
 ---
 import Favicon from "./Favicon.astro";
-import '../styles/fonts.css';
 import SEO from './SEO.astro';
 import { resolveImageReference } from "../lib/imageReference";
 
@@ -170,7 +169,13 @@ function smartypants(text: string, _mode?: number): string {
 <meta name="viewport" content="width=device-width" />
 <title set:html={smartypants(title, 1)} />
 <meta name="generator" content={Astro.generator} />
-<meta name="theme-color" content="#8D46E7" />
+<meta name="color-scheme" content="light dark" />
+<meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="mobile-web-app-capable" content="yes" />
+<link rel="manifest" href="/manifest.webmanifest" />
 <script is:inline>
   // Prevent flash of unstyled content by applying theme immediately
   // Solution based on: https://medium.com/@maiowebdesign/astro-dark-mode-flickering-62da94d08ce6
@@ -207,6 +212,17 @@ function smartypants(text: string, _mode?: number): string {
       }
     });
   })();
+</script>
+<script is:inline>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener(
+      "load",
+      () => {
+        navigator.serviceWorker.register("/sw.js").catch(() => {});
+      },
+      { once: true },
+    );
+  }
 </script>
 <style is:inline>
   /* Intentionally left blank */

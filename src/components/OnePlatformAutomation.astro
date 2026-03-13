@@ -27,16 +27,23 @@ const steps = [
     tone: "integration",
   },
 ] as const;
-
-const rootStyle = `--one-platform-automation-bg: url("${OnePlatformAutomationBg.src}")`;
 ---
 
 <div
   class="one-platform-automation"
-  style={rootStyle}
   role="img"
   aria-label="Automation preview showing four workflow steps from a new email trigger to Jira assignment"
 >
+  <Image
+    src={OnePlatformAutomationBg}
+    alt=""
+    class="one-platform-automation__bg"
+    aria-hidden="true"
+    format="webp"
+    quality={72}
+    loading="lazy"
+    decoding="async"
+  />
   <div class="one-platform-automation__surface" aria-hidden="true">
     <div class="one-platform-automation__stack">
       {
@@ -93,14 +100,30 @@ const rootStyle = `--one-platform-automation-bg: url("${OnePlatformAutomationBg.
     display: flex;
     justify-content: flex-end;
     align-items: stretch;
-    background:
-      linear-gradient(
-        180deg,
-        rgb(250 249 245 / 0.64) 0%,
-        rgb(250 249 245 / 0.34) 38%,
-        rgb(250 249 245 / 0.1) 100%
-      ),
-      var(--one-platform-automation-bg) center bottom / cover no-repeat;
+    background: var(--color-grey-50);
+  }
+
+  .one-platform-automation::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgb(250 249 245 / 0.64) 0%,
+      rgb(250 249 245 / 0.34) 38%,
+      rgb(250 249 245 / 0.1) 100%
+    );
+  }
+
+  .one-platform-automation__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .one-platform-automation__surface {
@@ -111,6 +134,8 @@ const rootStyle = `--one-platform-automation-bg: url("${OnePlatformAutomationBg.
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    position: relative;
+    z-index: 2;
   }
 
   .one-platform-automation__stack {

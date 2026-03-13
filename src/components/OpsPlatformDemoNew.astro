@@ -96,7 +96,16 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
   data-panel-active="false"
   data-ops-platform-demo-new
 >
-  <img src={bgImage} alt="" class="ops-platform-demo-new__bg" aria-hidden="true" />
+  <Image
+    src={PlatformBgImage}
+    alt=""
+    class="ops-platform-demo-new__bg"
+    aria-hidden="true"
+    format="webp"
+    quality={72}
+    loading="lazy"
+    decoding="async"
+  />
 
   <div class="ops-platform-demo-new__layout">
     <article class="ops-platform-demo-new__chat-card">
@@ -477,7 +486,7 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
     font-size: 13px;
     font-weight: 400;
     line-height: 1;
-    color: #7e7e7e;
+    color: #666663;
   }
 
   .ops-platform-demo-new__message-copy {
@@ -887,7 +896,7 @@ const id = `ops-platform-demo-new-${Math.random().toString(36).slice(2, 8)}`;
   }
 
   :global(.dark) .ops-platform-demo-new__message-time {
-    color: #7e7e7e !important;
+    color: #666663 !important;
   }
 
   :global(.dark) .ops-platform-demo-new__message-copy,
