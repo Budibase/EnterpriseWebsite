@@ -204,13 +204,13 @@
     --red-950: var(--color-red-950);
 
     --font-sans:
-      "Inter", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      var(--font-inter), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
       "Noto Color Emoji", sans-serif;
     --font-display:
-      "Fraunces", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      var(--font-fraunces), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
       "Noto Color Emoji", serif;
     --font-mono:
-      "iA Writer Mono", ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco,
+      var(--font-ia-writer-mono), ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco,
       Consolas, "Liberation Mono", "Courier New", monospace;
 
     /* Core semantic RGB tokens (Tailwind-friendly) */

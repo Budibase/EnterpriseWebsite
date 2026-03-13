@@ -1,6 +1,6 @@
 ---
+import { Font } from "astro:assets";
 import Favicon from "./Favicon.astro";
-import '../styles/fonts.css';
 import SEO from './SEO.astro';
 import { resolveImageReference } from "../lib/imageReference";
 
@@ -220,10 +220,9 @@ function smartypants(text: string, _mode?: number): string {
 </style>
 
 
-<!-- Font preloads, omit MDIO to improve initial load -->
-<link rel="preload" href="/fonts/InterDisplay-Regular.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="/fonts/Inter-Medium.woff2" as="font" type="font/woff2" crossorigin />
+<Font cssVariable="--font-inter" preload={[{ weight: 400 }, { weight: 500 }]} />
+<Font cssVariable="--font-fraunces" preload={[{ weight: 400 }]} />
+<Font cssVariable="--font-ia-writer-mono" />
 
 
 <!-- Low Priority Global Metadata -->
