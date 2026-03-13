@@ -37,7 +37,7 @@ if (kind === "caseStudy" && !caseStudy) {
 }
 
 const entry = kind === "blog" ? post! : caseStudy!;
-const hasHugoShortcodes = kind === "blog" && post!.body.includes("{{<");
+const hasHugoShortcodes = kind === "blog" && (post?.body?.includes("{{<") ?? false);
 const renderedEntry = hasHugoShortcodes ? null : await render(entry);
 const Content = renderedEntry?.Content;
 const shortcodeHtml = hasHugoShortcodes ? await renderBlogMarkdown(post!.body) : "";

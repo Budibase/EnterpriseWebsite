@@ -444,13 +444,12 @@ body {
   background-color: var(--bg-1);
 }
 
-/* Code blocks should use the same surface as selected tabs */
+/* Keep monospace treatment consistent across native and highlighted code */
 pre,
 .expressive-code,
 .expressive-code pre,
 .expressive-code .frame,
 .expressive-code .ec-frame {
-  background-color: var(--color-theme-bg-secondary) !important;
   font-family: var(--font-mono);
 }
 
@@ -775,9 +774,9 @@ article p {
   font-weight: 400;
   display: flow-root;
   margin-top: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   margin-block-start: 16px;
-  margin-block-end: 30px;
+  margin-block-end: 16px;
   margin-inline-start: 0;
   margin-inline-end: 0;
   text-size-adjust: 100%;
