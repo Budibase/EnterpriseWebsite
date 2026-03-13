@@ -529,7 +529,7 @@ ol {
 
 h1,
 .h1 {
-  font-family: "Fraunces", var(--font-display);
+  font-family: var(--font-display);
   color: var(--text-primary);
   font-size: 44px;
   font-weight: 500;
@@ -538,7 +538,7 @@ h1,
 }
 
 .hero-title {
-  font-family: "Fraunces", var(--font-display);
+  font-family: var(--font-display);
   font-weight: 500;
   font-size: 56px;
   font-variation-settings: "opsz" 72, "SOFT" 50, "WONK" 10;
@@ -547,7 +547,7 @@ h1,
 }
 
 .hero-title-small {
-  font-family: "Fraunces", var(--font-display);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: 56px;
   font-variation-settings: "opsz" 72, "SOFT" 50, "WONK" 10;
@@ -1782,7 +1782,7 @@ main ul article > a {
 
 .app-demo-workspace-brand-name {
   color: var(--grey-50);
-  font-family: "Outfit", var(--font-display);
+  font-family: var(--font-display);
   font-size: 20px;
   font-weight: 500;
   line-height: 1.3;
