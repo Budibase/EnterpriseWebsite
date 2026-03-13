@@ -14,7 +14,6 @@ import MistralLogo from "@assets/logos/Mistral.svg";
 import OpenAILogo from "@assets/logos/openai.avif";
 import OpenRouterLogo from "@assets/logos/openrouter.svg";
 import GoogleLogo from "@assets/logos/Google.svg";
-import BambooLogo from "@assets/logos/Bamboo.svg";
 import OktaLogo from "@assets/logos/okta.jpeg";
 import SlackLogo from "@assets/logos/Slack.svg";
 import TeamsLogo from "@assets/logos/microsoft-teams.svg";
@@ -132,9 +131,63 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
 
 <Layout title={pageTitle} description={pageDescription}>
   <PlatformLayout title={pageTitle} description={pageDescription}>
-    <div class="mb-8 space-y-8">
+    <Fragment slot="header">
+      <div class="mx-auto w-full max-w-3xl">
+        <h1
+          class="hero-title mb-2 leading-[0.9]! tracking-[-0.02em]! text-[var(--text-primary)]"
+        >
+          {pageTitle}
+        </h1>
+        <p class="mx-auto max-w-xl !mb-4 !text-xl text-secondary">
+          {pageDescription}
+        </p>
+
+        <section class="mx-auto mt-8 w-full max-w-2xl">
+          <div
+            class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4 md:p-5"
+          >
+            <label for="connections-search" class="sr-only">
+              Search connectors
+            </label>
+            <div class="relative">
+              <input
+                id="connections-search"
+                type="search"
+                placeholder="Search connectors..."
+                autocomplete="off"
+                data-connector-search
+                class="h-11 w-full rounded-[8px] border border-[var(--border-color)] bg-[var(--bg-1)] px-3 pr-11 text-base text-[var(--text-primary)] outline-none placeholder:text-[var(--text-secondary)] focus-visible:ring-4 focus-visible:ring-[rgb(var(--ring)_/_0.5)]"
+              />
+              <button
+                type="button"
+                data-connector-search-clear
+                aria-label="Clear search"
+                hidden
+                class="absolute right-2 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgb(var(--ring)_/_0.5)]"
+              >
+                <svg
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                >
+                  <path d="M4 4l8 8" />
+                  <path d="M12 4 4 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </Fragment>
+
+    <div class="mb-8 space-y-8" data-connections-results>
       <!-- AI model providers -->
-      <section>
+      <section data-connector-section>
         <h2 class="text-lg! text-stone-700! dark:text-stone-400! mb-4">
           AI model providers
         </h2>
@@ -177,7 +230,7 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
       </section>
 
       <!-- Tools and APIs -->
-      <section>
+      <section data-connector-section>
         <h2 class="text-lg! text-stone-700! dark:text-stone-400! mb-4">
           Tools and APIs
         </h2>
@@ -195,10 +248,6 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
           <div class="integration-card">
             <Image src={AttioLogo} alt="Attio" class="w-5 h-5" />
             <h3 class="text-base!">Attio</h3>
-          </div>
-          <div class="integration-card">
-            <Image src={BambooLogo} alt="Bamboo" class="w-5 h-5" />
-            <h3 class="text-base!">Bamboo</h3>
           </div>
           <div class="integration-card">
             <Image src={BambooHrLogo} alt="BambooHR" class="w-5 h-5" />
@@ -553,7 +602,7 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
       </section>
 
       <!-- Data -->
-      <section>
+      <section data-connector-section>
         <h2 class="text-lg! text-stone-700! dark:text-stone-400! mb-4">Data</h2>
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-2"
@@ -626,7 +675,7 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
       </section>
 
       <!-- Deployment options -->
-      <section>
+      <section data-connector-section>
         <h2 class="text-lg! text-stone-700! dark:text-stone-400! mb-4">
           Deployment options
         </h2>
@@ -651,11 +700,111 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
           </div>
         </div>
       </section>
+
+      <section
+        data-connector-empty
+        hidden
+        class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4 text-center"
+        aria-live="polite"
+      >
+        <p class="m-0 text-[var(--text-secondary)]">
+          No connectors match your search.
+        </p>
+      </section>
     </div>
   </PlatformLayout>
 </Layout>
 
+<script is:inline>
+  (() => {
+    const initConnectionsSearch = () => {
+      const searchInput = document.querySelector("[data-connector-search]");
+      const clearButton = document.querySelector("[data-connector-search-clear]");
+      const emptyState = document.querySelector("[data-connector-empty]");
+      const sections = Array.from(
+        document.querySelectorAll("[data-connector-section]"),
+      );
+
+      if (
+        !(searchInput instanceof HTMLInputElement) ||
+        !(emptyState instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      if (searchInput.dataset.connectorSearchReady === "true") {
+        return;
+      }
+      searchInput.dataset.connectorSearchReady = "true";
+
+      sections.forEach((section) => {
+        if (!(section instanceof HTMLElement)) return;
+        const cards = Array.from(section.querySelectorAll(".integration-card"));
+        cards.forEach((card) => {
+          if (!(card instanceof HTMLElement)) return;
+          const name =
+            card.querySelector("h3")?.textContent?.trim().toLowerCase() ?? "";
+          card.dataset.connectorCard = "true";
+          card.dataset.connectorName = name;
+        });
+      });
+
+      const applyFilters = () => {
+        const query = searchInput.value.trim().toLowerCase();
+
+        if (clearButton instanceof HTMLButtonElement) {
+          clearButton.hidden = query.length === 0;
+        }
+
+        let visibleCount = 0;
+
+        sections.forEach((section) => {
+          if (!(section instanceof HTMLElement)) return;
+          let sectionVisibleCount = 0;
+
+          const cards = Array.from(section.querySelectorAll("[data-connector-card]"));
+          cards.forEach((card) => {
+            if (!(card instanceof HTMLElement)) return;
+            const name = card.dataset.connectorName ?? "";
+            const isVisible = query.length === 0 || name.includes(query);
+            card.hidden = !isVisible;
+            if (isVisible) sectionVisibleCount += 1;
+          });
+
+          section.hidden = sectionVisibleCount === 0;
+          visibleCount += sectionVisibleCount;
+        });
+
+        emptyState.hidden = visibleCount > 0;
+      };
+
+      searchInput.addEventListener("input", applyFilters);
+
+      if (clearButton instanceof HTMLButtonElement) {
+        clearButton.addEventListener("click", () => {
+          searchInput.value = "";
+          searchInput.focus();
+          applyFilters();
+        });
+      }
+
+      applyFilters();
+    };
+
+    initConnectionsSearch();
+    document.addEventListener("astro:after-swap", initConnectionsSearch);
+  })();
+</script>
+
 <style>
+  [data-connector-search]::-webkit-search-cancel-button,
+  [data-connector-search]::-webkit-search-decoration,
+  [data-connector-search]::-webkit-search-results-button,
+  [data-connector-search]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
   .integration-card {
     background-color: var(--color-stone-100);
     padding: 8px 12px;

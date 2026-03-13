@@ -195,19 +195,45 @@ const logos = [
   { src: LinodeLogo, alt: "Linode" },
   { src: DigitalOceanLogo, alt: "Digital Ocean" },
 ];
+
+const mobileVisibleLogos = logos.slice(0, 25);
+const desktopVisibleLogos = logos.slice(0, 60);
 ---
 
 <div
   class="integration-banner-shell mx-auto w-full max-w-full overflow-hidden rounded-lg bg-2"
 >
   <div
-    class="integration-banner-grid grid grid-cols-[repeat(5,minmax(0,64px))] auto-rows-[34px] gap-3 p-4 justify-center sm:grid-cols-[repeat(8,minmax(0,34px))] sm:p-6 md:grid-cols-[repeat(15,50px)] md:grid-rows-[repeat(7,50px)] md:p-8 lg:grid-cols-[repeat(15,60px)] lg:grid-rows-[repeat(7,60px)]"
+    class="integration-banner-grid grid grid-cols-[repeat(5,minmax(0,48px))] auto-rows-[48px] gap-3 p-4 justify-center sm:hidden"
   >
     {
-      logos.map((logo) => {
+      mobileVisibleLogos.map((logo) => {
         return (
           <div
-            class="integration-banner-logo shadow-2 h-[34px] w-[34px] shrink-0 overflow-hidden rounded-lg bg-3 p-2 flex items-center justify-center md:h-[50px] md:w-[50px] md:p-4 lg:h-[60px] lg:w-[60px]"
+            class="integration-banner-logo shadow-2 flex h-[48px] w-[48px] shrink-0 items-center justify-center overflow-hidden rounded-lg bg-3 p-2.5"
+            style="opacity: 1; transition: opacity 300ms;"
+          >
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              class="h-full w-full object-contain"
+              width={72}
+              height={72}
+            />
+          </div>
+        );
+      })
+    }
+  </div>
+
+  <div
+    class="integration-banner-grid hidden grid-cols-[repeat(8,minmax(0,34px))] auto-rows-[34px] gap-3 justify-center p-6 sm:grid md:grid-cols-[repeat(15,50px)] md:grid-rows-[repeat(4,50px)] md:p-8 lg:grid-cols-[repeat(15,60px)] lg:grid-rows-[repeat(4,60px)]"
+  >
+    {
+      desktopVisibleLogos.map((logo) => {
+        return (
+          <div
+            class="integration-banner-logo shadow-2 flex h-[34px] w-[34px] shrink-0 items-center justify-center overflow-hidden rounded-lg bg-3 p-2 md:h-[50px] md:w-[50px] md:p-4 lg:h-[60px] lg:w-[60px]"
             style="opacity: 1; transition: opacity 300ms;"
           >
             <Image
