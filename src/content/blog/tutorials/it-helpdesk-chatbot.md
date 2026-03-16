@@ -21,7 +21,7 @@ In this tutorial, we’re going to outline the process for building an IT helpde
   - [Agent instructions](#3-agent-instructions)
   - [Adding our chat UI](#4-adding-our-chat-ui)
   - [Automations](#5-automations)
-  - [Human-in-the-loop screens](#6-human-in-the-loop screens)
+  - [Human-in-the-loop screens](#6-human-in-the-loop-screens)
 
 ## What is an IT helpdesk chatbot?
 
