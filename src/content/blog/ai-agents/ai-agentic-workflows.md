@@ -9,7 +9,7 @@ type: "ai-agents"
 
 Agentic AI is one of the hottest topics in IT, digital transformation, and automation right now. It promises to revolutionize almost all aspects of work, including replacing human colleagues within business processes.
 
-But there’s a lot of confusion out there, too.
+But there’s a lot of confusion out there, too. 
 
 Today, we’re cutting through the noise to present a full account of what AI agentic workflows are, how they work, and where they’re used.
 
@@ -30,6 +30,7 @@ Specifically, we’ll be covering:
   - [Iterative refinement](#iterative-refinement)
 - [Agentic AI use cases and examples](#agentic-ai-use-cases-and-examples)
 - [Tool stacks, architecture, and solutions](#agentic-ai-architecture-tool-stacks-and-solutions)
+- [Build agentic AI workflows with Budibase](#build-agentic-ai-workflows-with-budibase)
 - [Looking to the future](#looking-to-the-future)
 
 Let’s start with the basics
@@ -60,7 +61,7 @@ As we’ll see later, there are more specific types of agents that utilize diffe
 
 So, we can start to think more concretely about how agentic AI applies to workflow management.
 
-As we said earlier, an agentic workflow is a set of tasks within your organization that we handle with AI agents.
+As we said earlier, an agentic workflow is a set of tasks within your organization that we handle with AI agents. 
 
 Another question within this is, what makes a particular workflow suitable for agentic solutions? In other words, when would we be better off with agentic AI compared to other AI or automation tools?
 
@@ -134,7 +135,7 @@ In order for many of the components of AI agentic workflows we’ve seen so far 
 
 This requires memory. Unlike other automation tools, where execution is largely pre-defined, AI agents benefit from the ability to remember prior steps in a process, track goals across multiple sessions, learn from feedback, and adapt behavior based on past outcomes.
 
-There are two broad types of memory we need to be aware of. `Short-term memory` is the immediate context that an agent can access within a given session.
+There are two broad types of memory we need to be aware of. `Short-term memory` is the immediate context that an agent can access within a given session. 
 
 This includes recent messages, actions taken, retrieved documents, and other context to help the agent generate a cohesive response.
 
@@ -334,6 +335,8 @@ Here’s how we can apply a reactive execution agent to triage incoming tickets:
 
 Reactive execution agents are ideally positioned to automate ticketing workflows due to their ability to operate quickly at high volumes in situations where rapid, context-aware decisions are required.
 
+You might also like our ultimate guide to [AI forms](https://budibase.com/blog/ai-forms/).
+
 ### Drafting knowledge base articles
 
 Lastly, drafting knowledge-based articles is a strong example of a workflow that can be effectively managed using agents with an iterative refinement pattern.
@@ -363,7 +366,7 @@ To answer this question, we can consider the available architectures, tool stack
 
 ### Agentic AI architecture
 
-First of all, we know already that AI agents are modular systems, with distinct, specialized components that align with the underlying structure of workflows.
+First of all, we know already that AI agents are modular systems, with distinct, specialized components that align with the underlying structure of workflows. 
 
 To understand how to account for this in the real world and select specific tools for each of these components, it’s important to consider the broader architecture of agentic AI solutions.
 
@@ -461,6 +464,22 @@ While more complex to implement and manage, these kinds of systems are more suit
 Alternatively, `embedded agents` are lightweight, task-specific agents that can be integrated within existing services, applications, or other solutions. These don’t necessarily automate entire workflows but can be helpful for streamlining high-volume tasks.
 
 For instance, adding agentic categorization and triage to an existing ticketing solution.
+
+## Build AI agentic workflows with Budibase
+
+Budibase is the open-source AI workflow toolkit for privacy-first teams.
+
+![Budibase](https://res.cloudinary.com/daog6scxm/image/upload/v1770908693/cms/agents/AI_Agent_Screengrab_for_CTA_plkcsm.webp "Budibase")
+
+Adopt AI within your workflows without giving up control over your data. Budibase supports a huge range of data sources, models, and tool integrations within our agent, app, and automation builders - including local LLMs. Budibase also offers optional self-hosting, free SSO, custom RBAC, and other critical features for security focused teams.
+
+Budibase Agents offer a fast, flexible experience for connecting LLMs to data and tools. We can configure agent behavior, including tool usage, using natural language, making it easy to create highly maintainable agentic workflows.
+
+Agents can utilize any data sources, APIs, tools, or automations within our Budibase Workspace, but only when we explicitly give them access. This means that  we can grant individual agents the exact right permissions that they need to perform the task at hand.
+
+At present, Agents can be called from within Budibase Automations, giving us complete control over how and where they're used within workflows. Since Agents can also use Automations as tools, this opens the door to coordinated multi-agent systems, utilizing distinct models for individual tasks within a wider workflow.
+
+{{< cta> }}
 
 ## Looking to the future
 

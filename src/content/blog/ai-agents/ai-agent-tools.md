@@ -20,7 +20,7 @@ Specifically, we’ll be covering:
 
 - [What is an AI agent tool?](#what-is-an-ai-agent-tool)
 - [What kinds of AI agent tools are available](#what-kinds-of-ai-agent-tools-are-available)
-- [9 AI agent tools for 2025](#9-ai-agent-tools-for-2025)
+- [9 AI agent tools for 2025](#9-ai-agent-tools-for-2026)
   - [Agent frameworks](#agent-frameworks)
   - [Low-code](#low-code)
   - [No-code](#no-code)
@@ -63,7 +63,7 @@ However, it’s important to note that a degree of grey area and overlap exists 
 
 What’s important is to understand our own more granular requirements in order to make an informed decision about which platforms are most likely to be suitable for particular, real-world use cases.
 
-## 9 AI agent tools for 2025
+## 9 AI agent tools for 2026
 
 Now that we have a better grasp of what AI agent tools are, what they offer, and how we can break up the market, it’s time to start looking at some specific platforms. 
 
@@ -74,14 +74,16 @@ We’ve chosen ten tools across the four categories that we outlined a second ag
   - [AutoGen](#2-autogen)
   - [Semantic Kernel](#3-semantic-kernel)
 - [Low-code](#low-code)
-  - [IBM WatsonX.ai](#4-ibm-watsonxai)
-  - [Langflow](#5-langflow)
+  - [Budibase](#4-budibase)
+  - [IBM WatsonX.ai](#5-ibm-watsonxai)
+  - [Langflow](#6-langflow)
+
 - [No-code](#no-code)
-  - [Flowise](#6-flowise)
-  - [Zapier](#7-zapier)
+  - [Flowise](#7-flowise)
+  - [Zapier](#8-zapier)
 - [Observability, monitoring, and management](#observability-monitoring-and-management)
-  - [LangSmith](#8-langsmith)
-  - [LangFuse](#9-langfuse)
+  - [LangSmith](#9-langsmith)
+  - [LangFuse](#10-langfuse)
 
 Let’s check each one out in turn.
 
@@ -142,9 +144,27 @@ You might also like our guide to the top [open-source AI agent platforms](https:
 
 Having seen some of the most popular AI agent frameworks, we can next begin to think about platforms that leverage more visual development experiences for creating agentic systems.
 
-Here are two of the most prominent examples.
+Here are some of the most prominent examples.
 
-#### 4. IBM WatsonX.AI
+#### 4. Budibase
+
+Budibase is the open-source AI workflow toolkit for building Agents, Apps, and Automations. 
+
+![Budibase](https://res.cloudinary.com/daog6scxm/image/upload/v1770908693/cms/agents/AI_Agent_Screengrab_for_CTA_plkcsm.webp "Budibase")
+
+Budibase empowers teams to build AI agents, apps, and automations on top of all kinds of data. This includes dedicated connectors for a huge range of RDBMSs, NoSQL databases, APIs, and tools.
+
+We've recently launched Budibase Agents, empowering privacy-focused teams to create intelligent assistants for all kinds of tasks, leveraging their own tools, data, and LLMs.
+
+{{< cta >}}
+
+Budibase is perfect for security conscious organizations. With optional self-hosting, customizable RBAC, air-gapped deployments, and more, it's the ideal solution for adopting AI with trust and confidence.
+
+AI-powered features in Budibase are model-agnostic, supporting any OpenAI-compatible API, including open-source and local LLMs. Adopt AI in your workflows without sharing your internal data with opaque, public models and services.
+
+Take a look at our [features overview](https://budibase.com/product/) to learn more.
+
+#### 5. IBM WatsonX.AI
 
 WatsonX.AI is IBM’s suite of tools for building AI solutions. This includes a range of interfaces, workflows, APIs, SDKs, and other tools for utilizing large language models within development projects.
 
@@ -157,7 +177,7 @@ Watson supports a variety of foundation models, including IBM’s own offerings,
 
 As we might expect from IBM, WatsonX.AI also offers a high level of enterprise-readiness, including tools for deploying and governing AI tools, making it easier to manage solutions on both private and public networks.
 
-#### 5. Langflow
+#### 6. Langflow
 
 Next up, we have one of the bigger names in the [low-code AI agent builder](https://budibase.com/blog/ai-agents/no-code-ai-agent-builders/) space - Langflow. Langflow is a visual framework for building RAG tools and multi-agent systems.
 
@@ -176,7 +196,7 @@ Having seen some of the key code-based and low-code AI agent tools, we can next 
 
 As noted earlier, these aim to empower users to build agentic systems without needing to write any custom code. This opens agent development up to a wider range of personas - but may also sacrifice some flexibility and customizations.
 
-#### 6. Flowise
+#### 7. Flowise
 
 Flowise is another highly prominent name in the AI agent tools market. It utilizes an intuitive drag-and-drop interface to output working AI agents, making it a great fit for developers and users with less extensive technical abilities.
 
@@ -190,7 +210,7 @@ However, its no-code nature doesn’t mean that Flowise isn’t a strong offerin
 
 On top of this, Flowise offers APIs, embedded widgets, and Python and TypeScript SDKs, allowing users with higher levels of development knowledge to expand on its existing functionality.
 
-#### 7. Zapier
+#### 8. Zapier
 
 Zapier has long been one of the biggest names in the world of automation, offering a streamlined, effective experience for connecting a huge range of tools and data sources within workflows.
 
@@ -211,7 +231,7 @@ Lastly, we can consider some AI agent tools that are less focused on building so
 
 While most agent builders offer some level of functionality under this umbrella, many teams also opt for standalone observability or orchestration tools, either for more advanced capabilities or to handle agents that have been built in multiple platforms.
 
-#### 8. LangSmith
+#### 9. LangSmith
 
 Part of the LangChain ecosystem, LangSmith is a unified observability platform for testing, debugging, and monitoring AI apps, whether they’ve been developed with LangChain tools or other platforms.
 
@@ -225,7 +245,7 @@ On top of this, LangSmith offers helpful capabilities for monitoring agent perfo
 
 LangSmith also offers a set of tools for creating and improving prompts. We can use Playground to experiment with prompts and models, comparing responses, while the Prompt Canvas UI enables teammates to recommend and improve prompts.
 
-#### 9. LangFuse
+#### 10. LangFuse
 
 Lastly, we have LangFuse. This is an open-source LLM engineering platform, offering a range of capabilities including traces, evals, prompt management, and debugging for LLM applications.
 
@@ -242,6 +262,6 @@ The prompt management features are also well-optimized for production use cases,
 
 Budibase is the open-source, low-code platform that empowers IT teams to turn data into action.
 
-We offer connectivity for a range of RDBMSs, LLMs, NoSQL tools, and APIs, alongside autogenerated UIs, a visual automation builder, optional self-hosting, and free SSO.
+We offer connectivity for a range of RDBMSs, LLMs, NoSQL tools, and APIs, alongside custom AI agents, autogenerated UIs, a visual automation builder, optional self-hosting, and free SSO.
 
 There’s never been a better way to build secure, modern internal tools at speed. Check out our [features overview](https://budibase.com/product/) to learn more.
