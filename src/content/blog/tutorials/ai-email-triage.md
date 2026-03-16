@@ -63,14 +63,14 @@ When we create our Workspace, we’ll be presented with the following screen, wh
 As we said earlier, we’re using a single table in Budibase’s internal database, BudibaseDB. We have the option of creating this from scratch, but today we’re selecting the option to upload a CSV.
 
 Specifically, we’re going to upload a file containing the following data:
-​​{{< highlight plaintext "linenos=inline" >}}
+```csv
 From,Subject,Received At,Body,Category,Priority,Agent Rationale
 example,App Crashes on Login,2026-01-26T16:21:05.000Z,The app crashes every time I try to log in on my iPhone. Reinstalling didn't help.,,,
 bob@lead.com,Pricing for 50 seats,2026-01-22T10:42:00.000Z,Could you share pricing for around 50 user licenses and any volume discounts?,,,
 hr@partner.org,Contract renewal discussion,2026-01-22T10:05:00.000Z,Our current agreement expires next month and we’d like to discuss renewal terms.,,,
 invoices@vendor.com,Invoice #48392 overdue,2026-01-22T09:14:00.000Z,Please let us know when invoice 48392 will be settled. It is now 14 days overdue.,,,
 noreply@bank.com,Suspicious account activity,2026-01-22T11:10:00.000Z,We detected unusual activity on your account. Please review immediately.,,,
-{{< /highlight >}}
+```
 
 We’ll call our table `Emails` and select the following data types for our columns:
 
@@ -160,13 +160,12 @@ We’ll start by giving our Agent context for what we want to achieve and defini
 
 So, the start of our prompt will be:
 
-{{< highlight plaintext "linenos=inline" >}}
+````
 You are an email triage classifier.
-You will be given From, Subject, and Body. You will also be given a unique id for the corresponding row in the Emails table.
-
-Your task is to assign one Category, one Priority, and one Agent Rationale using the rules below.
+You will be given From, Subject, and Body. You will also be given a unique id for the corresponding row in the Emails table. Your task is to assign one Category, one Priority, and one Agent Rationale using the rules below.
 Only use the allowed values. Do not invent new labels.
-{{< /highlight >}}
+```
+````
 
 Here’s what this looks like in the instructions editor.
 
