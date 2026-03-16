@@ -11,12 +11,12 @@ Today, we’re exploring one solution to this problem by building a self-service
 
 Specifically, we’ll be covering:
 
-- [What is agentic issue resolution](#what-is-agentic-issue-resolution)
+- [What is agentic issue resolution](#what-is-agentic-ai-issue-resolution)
 - [What are we building?](#what-are-we-building)
-- [How to build an agentic issue resolution system in Budibase](#how-to-build-an-agentic-issue-resolution-system-in-budibase)
+- [How to build an agentic issue resolution system in Budibase](#how-to-build-an-agentic-ai-issue-resolution-system-in-budibase)
   - [Configuring our model](#1-configuring-our-model)
   - [Setting up tool integrations](#2-setting-up-tool-integrations)
-  - [Configuring agent behavior](#3-configuring-agent-behavaior)
+  - [Configuring agent behavior](#3-configuring-agent-behavior)
   - [Invoking the agent](#4-invoking-the-agent)
 
 Let’s start with the basics.
