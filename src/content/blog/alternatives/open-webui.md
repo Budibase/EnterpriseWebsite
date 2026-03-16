@@ -123,7 +123,7 @@ Additionally, Budibase is fully self-hostable, and model agnostic, including sup
 
 Budibase Agents can only access the data and resources we explicitly grant them permissions for, so we can create advance agentic behavior that remains under our control and governance.
 
-Check out our Agents overview to learn more.
+Check out our [Agents overview](https://budibase.com/product/agents/) to learn more.
 
 ### 2. LibreChat
 

@@ -30,7 +30,7 @@ Specifically, we’ll be covering:
   - [Iterative refinement](#iterative-refinement)
 - [Agentic AI use cases and examples](#agentic-ai-use-cases-and-examples)
 - [Tool stacks, architecture, and solutions](#agentic-ai-architecture-tool-stacks-and-solutions)
-- [Build agentic AI workflows with Budibase](#build-agentic-ai-workflows-with-budibase)
+- [Build agentic AI workflows with Budibase](#build-ai-agentic-workflows-with-budibase)
 - [Looking to the future](#looking-to-the-future)
 
 Let’s start with the basics

@@ -1,5 +1,5 @@
 ---
-title: "6 Moveworks Alternatives & Competitors for 2025"
+title: "7 Moveworks Alternatives & Competitors for 2025"
 description: "Check out our in-depth round-up of the top Moveworks alternatives."
 publishDate: "2025-05-12"
 author: "Ronan McQuillan"
@@ -118,7 +118,7 @@ Once we've connected our data, we can autogenerate forms and CRUD UIs, as well a
 
 We've also recently launched Budibase Agents, empowering privacy-focused teams to create intelligent assistants for all kinds of tasks, leveraging their own tools, data, and LLMs. We can invoked Agents via Budibase Automations, using native Chat UIs, or through existing platforms such as Slack and Discord.
 
-{{ ai-agents-cta }}
+{{< cta >}}
 
 #### Use cases
 

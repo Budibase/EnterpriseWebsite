@@ -17,7 +17,7 @@ Of course, this is a new, fast-moving space, with vendors rapidly bringing new s
 
 In this guide, we’ll give you the information you need to make a fully educated decision, including:
 
-- [What is an AI agent platform?](#what-is-an-ai-agent-platform)
+- [What is an AI agent platform?](#what-is-an-open-source-ai-agent-platform)
 - [What kinds of AI agent builders are available?](#what-kinds-of-ai-agent-builders-are-available)
 - [Why opt for an open-source solution](#why-opt-for-an-open-source-solution)
 - [Top 9 open-source AI agent platforms](#top-9-open-source-ai-agent-platforms)
@@ -95,7 +95,7 @@ Once we've connectred our data, we can autogenerate forms and CRUD UIs, as well 
 
 We've also recently launched Budibase Agents, empowering privacy-focused teams to create intelligent assistants for all kinds of tasks, leveraging their own tools, data, and LLMs. It's the perfect solution for quickly building powerful AI agents, while keeping mission-critical data within your environment.
 
-{{ ai-agents-cta }}
+{{< cta >}}
 
 #### Use cases
 

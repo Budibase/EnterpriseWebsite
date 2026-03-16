@@ -110,7 +110,7 @@ Our visual automation builder is the ideal solution for creating all kinds of ru
 
 We've recently launched Budibase Agents, enabling privacy-first teams to create intelligent assistants using their own data, tools, and models, including support for local and open-source LLMs.
 
-{{ ai-agents-cta }}
+{{< cta >}}
 
 #### Use cases
 
