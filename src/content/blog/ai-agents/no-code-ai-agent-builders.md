@@ -20,7 +20,7 @@ We’re going to cover everything you need to know, including:
 
 - [What is a no/low code AI agent builder?](#what-is-a-nolow-code-ai-agent-builder)
 - [What to look for in an agent builder](#what-to-look-for-in-an-agent-builder)
-- [11 low/no-code AI agent builders for 2026](#11-low--no-code-ai-agent-builders-for-2026)
+- [11 low/no-code AI agent builders for 2026](#11-low-no-code-ai-agent-builders-for-2026)
 
 Let’s start with the basics.
 

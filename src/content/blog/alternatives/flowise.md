@@ -1,5 +1,5 @@
 ---
-title: "5 Flowise Alternatives & Competitors for 2025"
+title: "6 Flowise Alternatives & Competitors for 2025"
 description: "Check out our in-depth round-up of the top Flowise alternatives."
 publishDate: "2025-05-21"
 author: "Ronan McQuillan"
