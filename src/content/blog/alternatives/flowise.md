@@ -19,7 +19,7 @@ Along the way, we’ll cover a range of ground, including:
 - [What is Flowise?](#what-is-flowise)
 - [Who uses Flowise?](#who-uses-flowise)
 - [Why would you need a Flowise alternative?](#why-would-you-need-a-flowise-alternative)
-- [5 Flowise alternatives for 2025](#5-flowise-alternatives-for-2025)
+- [6 Flowise alternatives for 2026](#6-flowise-alternatives-for-2026)
 
 Let’s jump right in.
 
@@ -79,7 +79,7 @@ However, we might find that other platforms offer more extensive native integrat
 
 As ever, none of these are necessarily deal-breakers. Rather, they’re important considerations to keep in mind when comparing Flowise to its competitors.
 
-## 5 Flowise alternatives for 2025
+## 6 Flowise alternatives for 2026
 
 Now that we have a strong grasp of what Flowise is, what it does, and who uses it, we can start to check out some of the alternative platforms that are available on the market today.
 
@@ -89,17 +89,44 @@ We’ve chosen a diverse range of platforms to reflect this, while also focusing
 
 Our picks are:
 
-1. [Moveworks](#1-moveworks)
-2. [Zapier](#2-zapier)
-3. [n8n](#3-n8n)
-4. [Aisera](#4-aisera)
-5. [OpenDialog](#5-opendialog)
+1. [Budibase](#1-budibase)
+2. [Moveworks](#2-moveworks)
+3. [Zapier](#3-zapier)
+4. [n8n](#4-n8n)
+5. [Aisera](#5-aisera)
+6. [OpenDialog](#6-opendialog)
 
 As we’ve said already, the goal isn’t to pick out specific tools that are generally better than others. Rather, it’s to highlight some of the most prominent options in this space, and the scenarios and use cases they’re best suited to.
 
 Let’s check each one out in turn.
 
-### 1. Moveworks
+### 1. Budibase
+
+First, we have Budibase, the all-in-one open-source AI workflow toolkit that connects to any data, LLM, or API.
+
+![Flowise Alternatives Budibase](https://res.cloudinary.com/daog6scxm/image/upload/v1770908693/cms/agents/AI_Agent_Screengrab_for_CTA_plkcsm.webp "Flowise Alternatives Budibase")
+
+#### Features
+
+Budibase is fully optimized for security-conscious teams to build AI agents, apps, and automations with their own data and models. This includes dedicated connectors for a huge range of RDBMSs, NoSQL databases, APIs, and tools.
+
+Once we've connectred our data, we can autogenerate forms and CRUD UIs, as well as using Budibase's built-in Automations builder to create streamlined workflows using a highly intuitive visual interface.
+
+We've also recently launched Budibase Agents, empowering privacy-focused teams to create intelligent assistants for all kinds of tasks, leveraging their own tools, data, and LLMs, including locally hosted models. Agents can be invoked in Budibase Automations, via native chat, or using existing tools like Slack and Discord.
+
+{{< cta >}}
+
+#### Use cases
+
+Budibase is ideally suited to the needs of highly regulated organizations. With optional self-hosting, customizable RBAC, air-gapped deployments, and more, it's the ideal solution for adopting AI with trust and confidence.
+
+AI features in Budibase are model-agnostic, supporting any OpenAI-compatible API, including open-source and local LLMs. Utilize AI without sharing your internal data with opaque, public models and services.
+
+Our users choose Budibase to handle a wide range of internal workflows, including approvals, ticketing, onboarding, incident triage, and much more.
+
+Take a look at our [features overview](https://budibase.com/product/) to learn more.
+
+### 2. Moveworks
 
 First up, we have Moveworks. Aimed largely at ITSM and other internal service functions, this is one of the biggest names in the AI agent space.
 
@@ -131,7 +158,7 @@ According to official information, scalable pricing options are available, based
 
 However, according to some reports, this may skew towards the premium end of the market, especially compared to more transparent, tiered models from other vendors.
 
-### 2. Zapier
+### 3. Zapier
 
 Next up, we have Zapier. This is a household name in the world of workflow automation. As with many platforms, though, in recent years it’s moved squarely into the AI agent-building space.
 
@@ -165,7 +192,7 @@ We’ll need custom enterprise pricing for advanced access control or observabil
 
 You might also like our guide to [digital workers](https://budibase.com/blog/ai-agents/digital-workers/).
 
-### 3. n8n
+### 4. n8n
 
 Like Zapier, n8n is another long-standing workflow automation platform that has evolved to offer more AI-focused capabilities over the past few years. However, it’s also aimed at somewhat more technical teams, compared to Zapier’s broader user personas.
 
@@ -197,7 +224,9 @@ Paid plans start from $24 for 2,500 executions per month. Increased usage limits
 
 A custom enterprise license will be needed for advanced features, such as SSO, Git-based version control, or extended data retention.
 
-### 4. Aisera
+You might also like our round-up of the top [open-source AI agent platforms](https://budibase.com/blog/ai-agents/open-source-ai-agent-platforms/).
+
+### 5. Aisera
 
 Aisera is an AI agent platform that aims to automate all kinds of internal processes, making it one of Flowise’s most direct competitors.
 
@@ -229,7 +258,7 @@ Instead, licenses are offered on a custom basis.
 
 We’ll need to contact their sales team for a quote, with costs calculated on the requirements of individual customers.
 
-### 5. OpenDialog
+### 6. OpenDialog
 
 Lastly, we have OpenDialog. This is a no-code option aimed at teams that want to build AI agents that are strong on safety and transparency.
 
@@ -265,8 +294,8 @@ You might also like our guide to [enterprise chatbots](https://budibase.com/blog
 
 ## Turn data into action with Budibase
 
-Budibase is the open-source, low-code platform that empowers IT teams to turn data into action.
+Budibase is the AI workflow toolkit for privacy-first organizations.
 
-We offer extensive connectivity for LLMs, RDBMSs, NoSQL tools, APIs, and more, alongside our autogenerated UIs, visual automation builder, optional self-hosting, and free SSO.
+We offer extensive connectivity for LLMs, RDBMSs, NoSQL tools, APIs, and more, alongside AI agents, autogenerated UIs, visual automation builder, optional self-hosting, and free SSO.
 
 Take a look at our [features overview](https://budibase.com/product/) to learn more.

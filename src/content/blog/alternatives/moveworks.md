@@ -19,7 +19,7 @@ In this guide, we’ll cover everything you need to know to determine which plat
 - [What is Moveworks?](#what-is-moveworks)
 - [Who uses Moveworks?](#who-uses-moveworks)
 - [Why would you need a Moveworks alternative?](#why-would-you-need-a-moveworks-alternative)
-- [Top 6 Moveworks alternatives in 2025](#top-6-moveworks-alternatives-in-2025)
+- [Top 7 Moveworks alternatives in 2026](#top-7-moveworks-alternatives-in-2026)
 
 Let’s jump right in.
 
@@ -81,7 +81,7 @@ Additionally, many large organizations prioritize open-source solutions, especia
 
 Take a look at our round-up of the top [open-source AI agent platforms](https://budibase.com/blog/ai-agents/open-source-ai-agent-platforms/) to learn more.
 
-## Top 6 Moveworks alternatives in 2025
+## Top 7 Moveworks alternatives in 2026
 
 Now that we have a clearer idea of exactly what we might be looking for, we can begin to consider some of our specific options from across the market.
 
@@ -93,18 +93,44 @@ You might also like our guide to choosing a [no-code AI agent builder.](https://
 
 Our picks are:
 
-1. [Aisera](#1-aisera)
-2. [Resolve Systems](#2-resolve-systems)
-3. [Freshservice + Freddy AI](#3-freshservice–freddy-ai) 
-4. [Rasa](#4-rasa)
-5. [n8n](#5-n8n)
-6. [OpenDialog](#6-opendialog)
+1. [Budibase](#1-budibase)
+2. [Aisera](#2-aisera)
+3. [Resolve Systems](#3-resolve-systems)
+4. [Freshservice + Freddy AI](#4-freshservice–freddy-ai) 
+5. [Rasa](#5-rasa)
+6. [n8n](#6-n8n)
+7. [OpenDialog](#7-opendialog)
 
 Here’s a summary of where each one sits in the market.
 
 Let’s check them out individually in more detail.
 
-### 1. Aisera
+### 1. Budibase
+
+First up, we have Budibase, the complete open-source AI workflow toolkit that connects to any data, model, or API.
+![Moveworks Alternatives Budibase](https://res.cloudinary.com/daog6scxm/image/upload/v1770908693/cms/agents/AI_Agent_Screengrab_for_CTA_plkcsm.webp "Moveworks Alternatives Budibase")
+
+#### Features
+
+Budibase offers a complete toolkit for businesses to build AI agents, apps, and automations, using their own data, models, and tools.
+
+Once we've connected our data, we can autogenerate forms and CRUD UIs, as well as using Budibase's built-in Automations builder to create streamlined workflows using a highly intuitive visual interface.
+
+We've also recently launched Budibase Agents, empowering privacy-focused teams to create intelligent assistants for all kinds of tasks, leveraging their own tools, data, and LLMs. We can invoked Agents via Budibase Automations, using native Chat UIs, or through existing platforms such as Slack and Discord.
+
+{{ ai-agents-cta }}
+
+#### Use cases
+
+Budibase is fully optimized for the needs of security conscious organizations. With optional self-hosting, customizable RBAC, air-gapped deployments, and more, it's the ideal solution for adopting AI with trust and confidence.
+
+AI-powered features in Budibase are model-agnostic, supporting any OpenAI-compatible API, including open-source and local LLMs. Utilize AI without sharing your internal data with opaque, public models and services.
+
+Security-conscious trust Budibase with a wide range of internal workflows, including approvals, ticketing, onboarding, incident triage, and much more.
+
+Take a look at our [features overview](https://budibase.com/product/) to learn more.
+
+### 2. Aisera
 
 First up, we have Aisera. One of Movework’s most direct competitors, this is a purpose-built agentic AI platform with a specific focus on automating internal processes across IT, HR, finance, and operations departments.
 
@@ -136,7 +162,7 @@ Instead, license costs are calculated on an individual basis, depending on the r
 
 This may include factors such as user volumes, the number of AI agents we need, requirements for specific modules, support arrangements, and more.
 
-### 2. Resolve Systems
+### 3. Resolve Systems
 
 Resolve Systems is another enterprise IT-focused platform. It offers a suite of tools for automating and orchestrating IT operations processes, especially for incident management and problem resolution.
 
@@ -168,7 +194,7 @@ Again, this likely draws on a range of usage-based, functional, and non-function
 
 As with any custom enterprise pricing, you’ll need to contact Resolve Systems to get a realistic quote to compare to other Moveworks alternatives.
 
-### 3. Freshservice + Freddy AI
+### 4. Freshservice + Freddy AI
 
 As a more comprehensive, end-to-end ITSM platform, Freshworks is a somewhat different proposition to some of the other platforms we’ve seen so far. However, it also offers a range of AI-powered capabilities that make it an interesting proposition in this space.
 
@@ -200,7 +226,7 @@ However, it’s important to note that Freddy AI isn’t available across the bo
 
 Naturally though, comparing the cost-effectiveness of this versus other Moveworks alternatives will be a highly situation-specific decision, given the somewhat different scope of the platform itself.
 
-### 4. Rasa
+### 5. Rasa
 
 Next, we have Rasa. This is an open-source conversational AI framework aimed at teams that need a high degree of control over the design, deployment, and behavior of AI assistants.
 
@@ -232,7 +258,7 @@ Paid licenses start at $35,000 per year for up to 500,000 conversations, as well
 
 Custom enterprise licenses are also available with enhanced security tools and support arrangements.
 
-### 5. n8n
+### 6. n8n
 
 Next up, we have n8n, one of the best-known workflow automation platforms on the market. As with many tools in this space, it’s launched a range of capabilities in the past few years for building AI-powered workflows.
 
@@ -264,7 +290,7 @@ However, there are a couple of important things to be aware of here. Paid plans 
 
 A customer enterprise license will be needed for SSO, Git-based version control, or extended data retention.
 
-### 6. OpenDialog
+### 7. OpenDialog
 
 Lastly, we have OpenDialog, a platform aimed at teams that need to build, manage, and scale AI agents safely and transparently.
 
@@ -298,7 +324,7 @@ Customer enterprise licenses offer unlimited usage, 1TB of memory storage, SSO, 
 
 ## Turn data into action with Budibase
 
-Budibase is the open-source, low-code platform that empowers IT teams to build internal tools on top of any internal data.
+Budibase is the open-source, low-code platform that empowers IT teams to build agents, apps, and automations on top of any internal data.
 
 We offer connectivity for a huge range of LLMs, RDBMSs, NoSQL tools, APIs, and more, alongside autogenerated UIs, free SSO, custom RBAC, and a powerful automation builder.
 

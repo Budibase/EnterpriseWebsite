@@ -4,34 +4,8 @@ author: "Ronan McQuillan"
 publishDate: 2025-04-25
 description: "Take a look at our round-up of the top olow & no-code AI agent builders."
 profilePic: "https://res.cloudinary.com/daog6scxm/image/upload/v1639756662/cms/IMG_3081_ubvpag.jpg"
-title: "6 Low/No-Code AI Agent Builders"
+title: "11 Low/No-Code AI Agent Builders"
 type: "ai-agents"
-
-softwareApplications:
-  - name: "CoPilot Studio"
-    applicationCategory: "businessApplication"
-    operatingSystem: "Web"
-    url: "https://copilotstudio.ai/"
-  - name: "n8n"
-    applicationCategory: "businessApplication"
-    operatingSystem: "Web"
-    url: "https://n8n.io/"
-  - name: "AutoGPT"
-    applicationCategory: "businessApplication"
-    operatingSystem: "Web"
-    url: "https://agpt.co/"
-  - name: "ChatFuel"
-    applicationCategory: "businessApplication"
-    operatingSystem: "Web"
-    url: "https://chatfuel.com/"
-  - name: "BotPress"
-    applicationCategory: "businessApplication"
-    operatingSystem: "Web"
-    url: "https://botpress.com/"
-  - name: "Watsonx.ai"
-    applicationCategory: "businessApplication"
-    operatingSystem: "Web"
-    url: "https://www.ibm.com/products/watsonx-ai/"
 ---
 
 AI agents are probably the hottest tech topic around today. In almost all industries, software vendors have rushed to add agentic workflow tools to their platforms over the past few years.
@@ -46,7 +20,7 @@ We’re going to cover everything you need to know, including:
 
 - [What is a no/low code AI agent builder?](#what-is-a-nolow-code-ai-agent-builder)
 - [What to look for in an agent builder](#what-to-look-for-in-an-agent-builder)
-- [6 low/no-code AI agent builders for 2025](#6-low--no-code-ai-agent-builders-for-2025)
+- [11 low/no-code AI agent builders for 2026](#11-low--no-code-ai-agent-builders-for-2026)
 
 Let’s start with the basics.
 
@@ -60,9 +34,9 @@ Typically, this means using a visual interface, such as a drag-and-drop builder 
 
 In any case, low/no-code tools are characterized by a high degree of pre-configuration and re-usability. Rather than building all triggers, logic, actions, or integrations ourselves, we can simply select from and configure pre-built elements.
 
-As such, these platforms are often targeted at users who lack the time, resources, or technical skills for traditional, hard-coded solutions.
+As such, these tools are often targeted at users who lack the time, resources, or technical skills for traditional, hard-coded solutions.
 
-The extent to which we can - or must - add our own custom code varies from one platform to the next, often dictated by the type of user it's aimed at.
+The extent to which we can - or must - add our own custom code varies from one option to the next, often dictated by the type of user it's aimed at. 
 
 So, there might be more scope for customization in a tool aimed at speeding up projects for developers, compared to one that’s intended for less technical users.
 
@@ -94,31 +68,59 @@ You might also like our round-up of the top [open-source AI agent platforms](htt
 
 Whichever style of low/no-code agent builder we opt for, we’ll need to be conscious of several other factors, including specific functionality and other practical considerations.
 
-One broad grouping of these relates to specific agent capabilities. For instance, we’ll need to pay careful attention to the level of autonomy the platform supports, as well as memory and context handling, and tool use and integrations.
+One broad grouping of these relates to specific agent capabilities. For instance, we’ll need to pay careful attention to the level of autonomy the specific agent builder supports supports, as well as memory and context handling, and tool use and integrations.
 
-Developer experiences are also crucial. Of course, a huge part of this is the platform’s core UX, including whether it utilizes drag-and-drop, declarative, or flowchart-style interfaces.
+Developer experiences are also crucial. Of course, a huge part of this is the solution’s core UX, including whether it utilizes drag-and-drop, declarative, or flowchart-style interfaces. 
 
 We’ll also need to consider how and when we can (or need to) add custom code when visual tools hit their limits.
 
-Lastly, we’ll need to consider operational factors. A huge part of this is observability and monitoring. So, does the platform offer run logs, debugging, performance tracking, or roll-back functionality?
+Lastly, we’ll need to consider operational factors. A huge part of this is observability and monitoring. So, does the agent builder offer run logs, debugging, performance tracking, or roll-back functionality?
 
 Similarly, hosting, deployment, and security features are also top considerations, especially in cases where AI agents will need to interact with mission-critical tools, data, or processes.
 
-## 6 low & no-code AI agent builders for 2025
+You might also like our guide to [enterprise chatbots](https://budibase.com/blog/ai-agents/enterprise-chatbots/).
 
-Now that we have a better understanding of what we’re looking for, we can begin to explore some of the specific platforms that are available on the market today.
+## 10 low & no-code AI agent builders for 2026
+
+Now that we have a better understanding of what we’re looking for, we can begin to explore some of the specific tools that are available on the market today. 
 
 In order to give a full account of what’s available, we’ve chosen a broad range of tools, aimed at a diverse set of use cases and target personas.
 
-Here’s a summary of the tools in our round-up.
-||||||||||
 Let’s check out what each one offers in more detail.
 
-### 1. CoPilot Studio
+### 1. Budibase
 
-First up, we have Microsoft’s offer in the low/no-code AI agent builder market - CoPilot Studio. This is a strong option for building business-oriented agents that integrate closely with the wider Microsoft ecosystem.
+First, we have Budibase, the complete open-source AI workflow toolkit for creating Agents, Apps, and Automations with any LLM, data, or APIs.
+
+![Budibase](https://res.cloudinary.com/daog6scxm/image/upload/v1769440705/cms/agents/AI_Agent_Screengrab_for_CTA_plkcsm.webp "Budibase")
+
+#### Features
+
+Budibase offers a complete suite of tools for building AI agents, apps, and automations on top of all kinds of data. This includes dedicated connectors for a huge range of RDBMSs, NoSQL databases, APIs, and tools.
+
+Once we've connectred our data, we can autogenerate forms and CRUD UIs, as well as using Budibase's built-in Automations builder to create streamlined workflows using a highly intuitive visual interface.
+
+We've also recently launched Budibase Agents, empowering privacy-focused teams to create intelligent assistants for all kinds of tasks, leveraging their own tools, data, and LLMs.
+
+{{< cta >}}
+
+#### Use cases
+
+Budibase is fully optimized for the needs of security conscious organizations. With optional self-hosting, customizable RBAC, air-gapped deployments, and more, it's the ideal solution for adopting AI with trust and confidence.
+
+AI-powered features in Budibase are model-agnostic, supporting any OpenAI-compatible API, including open-source and local LLMs. Utilize AI without sharing your internal data with opaque, public models and services.
+
+Our users choose Budibase to handle a wide range of internal workflows, including approvals, ticketing, onboarding, incident triage, and much more.
+
+Take a look at our [features overview](https://budibase.com/product/) to learn more.
+
+### 2. CoPilot Studio
+
+Next, we have Microsoft’s offer in the low/no-code AI agent builder market - CoPilot Studio. This is a strong option for building business-oriented agents that integrate closely with the wider Microsoft ecosystem.
 
 ![No code ai agent builder copilot studio](https://res.cloudinary.com/daog6scxm/image/upload/v1745584696/cms/ai-agents/no-low-code-agent-builders/CoPilot_Studio_i4giio.webp "No-code ai agent builder copilot studio")
+
+(Microsoft CoPilot Studio Website)
 
 #### Pros
 
@@ -132,9 +134,9 @@ As you might expect, CoPilot Studio is also highly effective for building agenti
 
 However, this close integration with the wider Microsoft ecosystem may not benefit all teams. In fact, these integrations will be of considerably less value to teams that are not already embedded in Microsoft tooling.
 
-It also lacks some of the flexibility that we can see from more developer-focused platforms. For instance, there’s support for several LLMs, but it falls short of the full bring-your-own-model approach we see in other tools.
+Some users report that more CoPilot Studio can present a steep learning curve.
 
-Technical teams might also find some aspects of the platform more opaque. Logic and behavior can be abstracted behind GUIs, with comparatively little control over granular aspects of prompt engineering or model tuning.
+On top of this, some users state that other tools might offer more fleixibilty for their particular use case.
 
 #### Pricing
 
@@ -144,27 +146,29 @@ Alternatively, CoPilot Studio can be used with existing licenses for certain Mic
 
 However, it’s important to note that certain tasks might require integration with Power Platform or the Microsoft Dataverse, which could introduce additional licensing costs.
 
-### 2. n8n
+### 3. n8n
 
 Next, we have n8n. For a long time now, this has been one of the biggest names in the world of workflow automation more generally, but in recent years it’s also established itself as a top vendor for [AI agentic workflows](https://budibase.com/blog/ai-agents/ai-agentic-workflows/).
 
 ![n8n](https://res.cloudinary.com/daog6scxm/image/upload/v1745578244/cms/ai-agents/no-low-code-agent-builders/n8n_rovlkx.webp "n8n")
 
+(n8n Website)
+
 #### Pros
 
 One of n8n’s huge strengths is its intuitive, visual experience for creating agents and automation flows. This offers a drag-and-drop interface for configuring logic and creating agents, without touching code. Scripting is available, but the core UX remains visual.
 
-n8n also boasts some of the most impressive integration and connectivity in this space. With support for a huge range of LLMs, vector DBs, APIs, and third-party tool calling, it's suitable for building agentic systems around a vast array of business processes.
+n8n also boasts some of the most impressive integration and connectivity in this space. With support for a huge range of LLMs, vector DBs, APIs, and third-party tool calling, it's suitable for building agentic systems around a vast array of business processes. 
 
 Additionally, n8n is source-code-available and offers self-hosting via virtual machines, VPSs, and a range of cloud tools, making it a great fit for security-first teams.
 
 #### Cons
 
-While undoubtedly a powerful solution, n8n is not a dedicated low-code AI agent builder. So, we may find it more limited that some other platforms in this space in terms of more advanced use cases, such as multi-agent orchestration, memory handling, or long-running autonomy.
+While undoubtedly a powerful solution, n8n is not a dedicated low-code AI agent builder. So, we may find it more limited that some other options in this space in terms of more advanced use cases, such as multi-agent orchestration, memory handling, or long-running autonomy.
 
 Although it’s a low-code tool, some technical knowledge is still helpful when working in n8n. As it assumes a basic yet working knowledge of data flows, APIs, and conditional logic, it may be best suited to more technical user personas.
 
-Additionally, some users complain that n8n’s UI is less suited to more complex workflows, leading to a need to modularize in order to avoid visual clutter and improve maintainability. This isn’t a deal breaker, but it’s important to understand the platform's best practices.
+Additionally, some users complain that n8n’s UI is less suited to more complex workflows, leading to a need to modularize in order to avoid visual clutter and improve maintainability. This isn’t a deal breaker, but it’s important to understand n8n's best practices.
 
 #### Pricing
 
@@ -174,11 +178,13 @@ Plans start from $24 per month for 2,500 executions, with unlimited steps. Howev
 
 A custom enterprise license is required for SSO, Git-based version control, and extended data retention.
 
-### 3. AutoGPT
+### 4. AutoGPT
 
 AutoGPT is a newer player, but it’s also one of the tools that helped to bring agentic AI into the popular imagination. While primarily a CLI-based tool for enabling developers to build agentic systems on top of LLMs, it also provides low-code experiences.
 
 ![AutoGPT](https://res.cloudinary.com/daog6scxm/image/upload/v1745578244/cms/ai-agents/no-low-code-agent-builders/AutoGPT_zpwri5.webp "AutoGPT")
+
+(AutoGPT Website)
 
 #### Pros
 
@@ -190,25 +196,29 @@ AutoGPT also benefits from a large, active community of users and developers. Th
 
 #### Cons
 
-One potential downside of AutoGPT is that it may require more technical knowledge than some other platforms in this space. While there are visual, low-code tools available, advanced use cases might require us to use the CLI or dive into the source code.
+One potential downside of AutoGPT is that it may require more technical knowledge than some other tools in this space. While there are visual, low-code tools available, advanced use cases might require us to use the CLI or dive into the source code.
 
-Some users also report issues with reliability, in particular with executions becoming stuck in loops. This will naturally be a concern for teams planning to deploy agentic systems within critical business processes.
+Some users also report issues with reliability, in particular with executions becoming stuck in loops. 
 
-It’s also important to note that AutoGPT is tightly coupled with OpenAI’s ChatGPT, which means that any changes to the pricing or access policies of this could have a significant impact on our solutions.
+This may naturally be a concern for teams planning to deploy agentic systems within critical business processes.
 
 #### Pricing
 
-AutoGPT itself is fully open-source and free to use, modify, and distribute under the MIT license.
+AutoGPT itself is free to use, modify, and distribute under the MIT license.
 
 However, there are two cost centers we must nonetheless consider. Firstly, we must pay for LLM calls from OpenAI, for each individual agent thought, prompt, or action.
 
 Secondly, we’ll need to account for hosting and compute costs, since we’ll need to self-host AutoGPT.
 
-### 4. ChatFuel
+You might also like our guide to [digital workers](https://budibase.com/blog/ai-agents/digital-workers/).
 
-ChatFuel is a slightly different proposition to some of the other tools we’ve seen so far, offering a no-code, visual platform for non-technical users to create conversational agents for multi-channel sales use cases.
+### 5. ChatFuel
+
+ChatFuel is a slightly different proposition to some of the other tools we’ve seen so far, offering a no-code, visual solution for non-technical users to create conversational agents for multi-channel sales use cases.
 
 ![ChatFuel](https://res.cloudinary.com/daog6scxm/image/upload/v1745578243/cms/ai-agents/no-low-code-agent-builders/ChatFuel_tmxqba.webp "ChatFuel")
+
+(ChatFuel Website)
 
 #### Pros
 
@@ -216,7 +226,7 @@ ChatFuel is aimed squarely at non-technical colleagues who need to use agentic A
 
 As part of this, it’s well optimized for teams that need to get up and running with agentic sales workflows quickly, including a wide range of pre-built, customizable templates for key use cases.
 
-It’s also a strong platform for integration options, with native support for the Meta ecosystem, along with out-of-the-box connectors for Google Sheets, Calendly, Stripe, and other relevant platforms.
+It’s also a strong offering for integration options, with native support for the Meta ecosystem, along with out-of-the-box connectors for Google Sheets, Calendly, Stripe, and other relevant tools.
 
 #### Cons
 
@@ -234,11 +244,13 @@ Business plans ship with most functionality, including triggering flows from liv
 
 Enterprise plans are also available from $300 per month, including bulk pricing, personalized account management, and bot-building services.
 
-### 5. BotPress
+### 6. BotPress
 
 Next, we have BotPress. This is an open-source, low-code platform for technical and non-technical users alike to output AI agents and intelligent chatbots, across web, mobile, and social channels.
 
 ![BotPress](https://res.cloudinary.com/daog6scxm/image/upload/v1745578242/cms/ai-agents/no-low-code-agent-builders/BotPress_oxsv9w.webp "BotPress")
+
+(BotPress Website)
 
 #### Pros
 
@@ -246,11 +258,11 @@ BotPress combines exceptional levels of customization and flexibility with an in
 
 NLP capabilities are also impressive. We have a choice of a flexible built-in language processing engine or integration with a wide range of external tools.
 
-BotPress is also one of the strongest platforms we’ve seen in terms of analytics and insights. It offers built-in capabilities for users to monitor, analyze, and track workflows, helping us to improve workflows based on real-time data.
+BotPress is also one of the strongest options we’ve seen in terms of analytics and insights. It offers built-in capabilities for users to monitor, analyze, and track workflows, helping us to improve workflows based on real-time data.
 
 #### Cons
 
-However, like all platforms BotPress also presents challenges and potential downsides. While it offers a highly intuitive visual editor, it’s still helpful to have some development knowledge. Otherwise, less technical colleagues could find it has a relatively steep learning curve.
+However, like all software tools BotPress also presents challenges and potential downsides. While it offers a highly intuitive visual editor, it’s still helpful to have some development knowledge. Otherwise, less technical colleagues could find it has a relatively steep learning curve.
 
 Some users also report issues with using BotPress for large-scale or high-volume use cases, both in terms of performance degradation and unexpected behavior, although fine-tuning may alleviate this.
 
@@ -265,11 +277,13 @@ Paid tiers start from $89 per month, with increased usage limits. However, to ac
 
 Custom enterprise pricing is also available, along with optional add-ons for usage, accounts, or integrations.
 
-### 6. Watsonx.ai
+### 7. Watsonx.ai
 
-Lastly, we have IBM’s offering in the AI agent builder space, Watsonx.ai. This is arguably the most feature-rich platform we’ve seen, offering a comprehensive, end-to-end suite of tools for building agentic systems and conversational assistants.
+Lastly, we have IBM’s offering in the AI agent builder space, Watsonx.ai. This is arguably the most feature-rich tools we’ve seen, offering a comprehensive, end-to-end suite of tools for building agentic systems and conversational assistants.
 
-![WatsonXAI](https://res.cloudinary.com/daog6scxm/image/upload/v1745578242/cms/ai-agents/no-low-code-agent-builders/Watsonxai_mlhbp7.webp "WatsonXAI)
+![WatsonXAI](https://res.cloudinary.com/daog6scxm/image/upload/v1745578242/cms/ai-agents/no-low-code-agent-builders/Watsonxai_mlhbp7.webp "WatsonXAI")
+
+(IBM Website)
 
 #### Pros
 
@@ -285,7 +299,7 @@ However, non-enterprise customers might find that other no/low-code AI agent bui
 
 It’s also perhaps best suited to teams that are already embedded in the IBM ecosystem. Otherwise, getting up to speed with associated tools may require excessive lift in order to get the most out of Watsonx.ai.
 
-Similarly, it’s comparatively dependent on the vendor’s other tools, while platforms such as n8n might slot more neatly into a wider variety of existing tech stacks.
+Similarly, it’s comparatively dependent on the vendor’s other tools, while options such as n8n might slot more neatly into a wider variety of existing tech stacks.
 
 #### Pricing
 
@@ -295,10 +309,138 @@ Paid plans bill on a pay-as-you-go usage-based basis, pulling in LLM interaction
 
 As such, it has the potential to be a relatively scalable option, although careful attention will be required to determine its cost-effectiveness for individual use cases.
 
-## Build workflow tools on top of any data with Budibase
+You might also like our ultimate guide to [AI forms](https://budibase.com/blog/ai-forms/).
 
-![Budibase](https://res.cloudinary.com/daog6scxm/image/upload/v1680181644/ui/homepage-design-ui_sizp7b.webp "Budibase")
+### 8. Langflow
 
-Budibase is the open-source, low-code platform that empowers IT teams to turn data into action. We offer leading connectivity for all kinds of LLMs, RDBMSs, NoSQL tools, APIs, and more, with autogenerated UIs and a powerful, visual automation builder.
+Next up, we have Langflow. This sits more towards the low-code end of the market for AI agent builders.
+
+![Langflow](https://res.cloudinary.com/daog6scxm/image/upload/v1765810281/cms/ai-agents/Langflow_i0qkfo.webp "Langflow")
+
+(Langflow Website)
+
+#### Pros
+
+Langflow centers around an intuitive, flexible interface for creating AI agents and MCP servers visually. This is built on top of Python and offers developers a streamlined experience for outputting custom agents, while still retaining some of the power of custom code.
+
+It's a particularly strong offering in terms of integration options. LangFlow offers hundreds of pre-built connectors, with a particularly impressive range of data sources, development tools, and other AI systems.
+
+We can also use Langflow as both an MCP client and server, which could be useful in a range of scenarios. Every Langflow project runs a separate MCP server, making our workflows callable as tools from any other MCP-compatible client.
+
+#### Cons
+
+As we said earlier, Langflow is better thought of as a low-code AI agent builder, with the option to use custom Python across the platform. While this is optional, it could still mean that some coding skills are useful to get the most out of it.
+
+So, we might want to look elsewhere for a strictly no-code AI agent builder.
+
+While Langflow does offer templates for core use cases, the selection here isn't as extensive as in some other tools, which may be important for teams that want to get up and running quickly for certain use cases.
+
+#### Pricing
+
+Langflow is free to use under the MIT license. This is a permissive license for use, modification, and redistribution, with some conditions.
+
+However, we'll still need to factor in costs associated with hosting and model usage.
+
+Professional services and support packages are also available.
+
+### 9. Zapier
+
+Next, we have Zapier. This is perhaps the best known option in the world of no-code workflow automation, which in recent years has launched several features aimed at building AI agents.
+
+![Zapier](https://res.cloudinary.com/daog6scxm/image/upload/v1765470620/cms/alternatives/n8n/Zapier_fhbnz9.webp "Zapier")
+
+(Zapier Website)
+
+#### Pros
+
+Zapier is massively well-regarded for its intuitive, user-friendly experiences for building a wide range of workflow tools. This aims to empower non-technical colleagues to create automations and other solutions based on their existing tools.
+
+As part of this, Zapier offers a highly impressive range of pre-built integrations. This includes connectors for over 8,000 apps and software tools, across all sorts of use cases and business verticals.
+
+AI agent-building capabilities in Zapier are highly optimized for the needs of less technical colleagues. We can create agents from natural language inputs using Zapier Copilot, as well as configuring triggers, enabling tools, and adjusting behavior, without requiring custom code.
+
+#### Cons
+
+At the same time, there are a few key scenarios where Zapier might not be the ideal fit. For instance, more technical teams might find that other toolss offer a greater degree of flexibility and customization.
+
+For instance, some of the other tools we've seen allow us to fall back to code more extensively across the platform.
+
+Zapier also can't be self-hosted.
+
+#### Pricing
+
+Zapier can be used for free for up to 100 tasks per month. However, this only allows two-step Zaps. We can also use AI Agents for free for up to 400 activities per month.
+
+Paid tiers start from $19.99 per month to access multi-step automations, with a sliding scale for different numbers of monthly tasks. Importantly, we'll need a Team license, starting at $69 for SAML SSO. A Pro add-on for AI agents costs $33.33 per month for 1,500 activities.
+
+Custom enterprise pricing is also available, both with and without the AI Agents add-on.
+
+### 10. Lindy
+
+Next up, we have Lindy. This is a no-code solution that offers businesses a simple way to create, share and manage AI agents.
+
+![Lindy](https://res.cloudinary.com/daog6scxm/image/upload/v1765894359/cms/alternatives/n8n/Lindy_sreqcs.webp "Lindy")(Lindy Website)
+
+#### Pros
+
+Lindy offers a highly expedient experience for creating agents without extensive development skills. As part of this, it offers agent-creation from natural language inputs, alongside thousands of integrations and a flow-based visual editor.
+
+We can also choose from a huge range of templates for common use cases and connected applications, including for sales, support, marketing, operations, and other teams.
+
+On top of this, Lindy offers capabilities that are open it up to a wider range of use cases, including virtual machines for agents and AI voice agents.
+
+#### Cons
+
+As with other no-code AI agent builders, one potential downside of Lindy is that it may not offer the same extent of flexibility and customization as we might see in options with more extensive scope for adding our own code.
+
+So, we may wish to look elsewhere if this is a firm requirement.
+
+We also can't self-host Lindy, as it's only offered as a cloud product
+
+#### Pricing
+
+We can use Lindy for free for up to 40 tasks and 400 AI credits per month. This also includes a 1M character knowledge base and over 100 integrations.
+
+Beyond this, there are two fixed pricing tiers, starting from $49 per month. These are priced on a sliding scale based on AI credits, although the cheaper tier still limits us to 1,500 monthly tasks. We'll also need to pay an additional $19.99 for extra seats.
+
+Custom enterprise licenses are also available, introducing enterprise integrations and important features such as SSO, SCIM, RBAC, and audit logs.
+
+### 11. Make
+
+Lastly, we have Make. This is another no-code automation solution, including capabilities for building and orchestrating AI agents.
+
+![Make](https://res.cloudinary.com/daog6scxm/image/upload/v1765894358/cms/alternatives/n8n/Make_jpqc3x.webp "Make")
+
+(Make Website)
+
+#### Pros
+
+Like Zapier, Make has a strong reputation for offering a highly user friendly, intuitive experience for creating workflow automations that connect to business's existing tooling. As part of this, it offers over 3,000 pre-built apps and integrations, including both verified tools and community contributions.
+
+Make's core experience for building agents is highly streamlined and largely natural language based. We can define triggers and provide instructions via prompts to OpenAI-compatible models. This provides a flexible experience for creating and managing agents, without extensive technical abilities.
+
+Another novel feature is Make Grid. This is an automatically generated visualization of our entire automation landscape, providing a helpful overview designed to make our automation systems easier to scale and maintain.
+
+#### Cons
+
+The most obvious alternative to compare Make to is Zapier, and one thing that we can note here, is that despite having a vast library of pre-built integrations, this is still somewhat lower than Make's larger competitor.
+
+Again, as with other no-code AI agent builders, some teams might find that Make lacks the flexibility and customization options they require, which could be better served in a low-code option.
+
+Lastly, like some of the other options we've seen, Make can't be self-hosted.
+
+#### Pricing
+
+Make offers highly affordable, scalable pricing, based on monthly credits, which correspond to individual actions like adding a row to a spreadsheet or fetching data. We can use it for free for up to 1,000 credits per month.
+
+Paid plans start from $9 per month for a Core license 10,000 credits, as well as API access and other features. There are two other fixed pricing tiers above this with additional features. Each of these three tiers is billed on a sliding scale based on required monthly credits.
+
+Custom pricing is also available, with enterprise integrations, additional security features, and more.
+
+## The AI workflow toolkit for privacy-first teams
+
+![Budibase](https://res.cloudinary.com/daog6scxm/image/upload/v1770908693/cms/agents/AI_Agent_Screengrab_for_CTA_plkcsm.webp "Budibase")
+
+Budibase is the open-source, privacy-first platform for building AI agents, apps, and automations. With support for a huge range of data sources, tools, and models, it's fully optimized for adopting AI without compromising on control over your data.
 
 Take a look at our [features overview](https://budibase.com/product/) to learn more.

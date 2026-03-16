@@ -1,5 +1,5 @@
 ---
-title: "6 Open WebUI Alternatives for 2025"
+title: "9 Open WebUI Alternatives for 2025"
 description: "Take a look at our round-up of the top Open WebUI alternatives for 2025."
 publishDate: "2025-11-04"
 author: "Ronan McQuillan"
@@ -19,7 +19,7 @@ To better understand this space, we’ll be covering:
 - [What is Open WebUI?](#what-is-open-webui)
 - [Why would you need an alternative to Open WebUI](#why-would-you-need-an-alternative-to-open-webui)
 - [What to look for in an Open WebUI alternative](#what-to-look-for-in-an-open-webui-alternative)
-- [6 Open WebUI alternatives](#6-open-webui-alternatives)
+- [9 Open WebUI alternatives](#9-open-webui-alternatives)
 
 Let’s start with the basics.
 
@@ -79,7 +79,7 @@ For example, the importance we place on features like security, integration opti
 
 Similarly, the extent of customization that’s available is obviously an important concern, but at the same time, this has to be balanced with appropriate experiences for our users, as well as the development resources we have available for implementation.
 
-## 6 Open WebUI alternatives
+## 9 Open WebUI alternatives
 
 With a good grasp of some of the key decisions we’re likely to encounter when comparing Open WebUI alternatives, we can move on to thinking about the specific platforms that are available on the market today.
 
@@ -89,16 +89,43 @@ As such, our specific picks aim to reflect this variation, covering different co
 
 Our picks are:
 
-1. [LibreChat](#1-librechat)
-2. [Msty](#2-msty)
-3. [Jan](#3-jan)
-4. [AnythingLLM](#4-anythingllm)
-5. [Chatbox AI](#5-chatbox-ai)
-6. [BionicGPT](#6-bionicgpt)
+1. [Budibase](#1-budibase)
+2. [LibreChat](#2-librechat)
+3. [Msty](#3-msty)
+4. [Jan](#4-jan)
+5. [AnythingLLM](#5-anythingllm)
+6. [Chatbox AI](#6-chatbox-ai)
+7. [BionicGPT](#7-bionicgpt)
+8. [LM Studio](#8-lm-studio)
+9. [GPT4All](#9-gpt4all)
 
 Let’s check each one out in turn.
 
-### 1. LibreChat
+### 1. Budibase
+
+First up, we have Budibase, the all-in-one open-source AI workflow toolkit for creating Agents, Apps, and Automations.
+
+![Budibase](https://res.cloudinary.com/daog6scxm/image/upload/v1770908693/cms/agents/AI_Agent_Screengrab_for_CTA_plkcsm.webp "Budibase")
+
+#### Features
+
+Budibase is a complete solution for creating AI-powered workflows, with dedicated Agent, Automation, and App-builders that you can connect to any LLM, data or API, and deploy anywhere. Budibase Agents are instruction-led, meaning we can build and iterate over behavior in natural language, including configuring tool calls and data retrieval.
+
+We also offer off-the-shelf chat experiences for Agents, alongside support for existing chat tools. With Budibase, it's never been easier to create fully custom conversational experiences for a huge range of workflows.
+
+Agents can also interact fully with all Data and Automations in your Budibase workspace when we grant them permissions, making it the perfect solution for invoking agentic workflows from traditional automation rules, or building human-in-the-loop controls with Budibase's leading low-code app-builder.
+
+#### Use cases
+
+Our users choose Budibase for all kinds of workflows, including internal services, ticketing, approvals, and much more. With fully customizable RBAC,  we can tightly tailor permissions to the needs of different roles and colleagues within workflows.
+
+Additionally, Budibase is fully self-hostable, and model agnostic, including support form open-source and local LLMs, making it an ideal fit for teams that want to adopt AI in their workflows, without mission-critical data leaving their secure environment.
+
+Budibase Agents can only access the data and resources we explicitly grant them permissions for, so we can create advance agentic behavior that remains under our control and governance.
+
+Check out our Agents overview to learn more.
+
+### 2. LibreChat
 
 First up, we have LibreChat. One of the most widely used open-source AI chat tools, this offers an intuitive, yet highly customizable experience for creating conversational systems on top of a wide range of models.
 
@@ -116,7 +143,7 @@ LibreChat also offers a suite of capabilities that are useful for creating more 
 
 This makes it a strong choice for teams that need to build internal chat solutions for a range of use cases and workflows, without needing to spend extensive time building UIs from scratch.
 
-### 2. Msty
+### 3. Msty
 
 Next up, we have Msty. Available as either a desktop app or a web-based solution, it offers a set of tools for creating AI-powered workflows, using both local and online models.
 
@@ -132,7 +159,7 @@ The Workspaces functionality allows us to separate projects into their own work 
 
 While a reasonably flexible platform, according to some reports, some power users with more advanced customization needs may find other Open WebUI alternatives to be more suitable for their needs.
 
-### 3. Jan
+### 4. Jan
 
 Jan is another open-source platform that offers a highly effective, ready-to-use chat UI solution that can be connected to a wide range of online and local models. 
 
@@ -148,7 +175,7 @@ The self-hosted platform, Jan Server, also offers a range of important enterpris
 
 On the whole, Jan is a great solution for teams that need an effective, easy-to-implement Open WebUI alternative, although it may fall short compared to some other platforms in key areas, such as building custom internal workflows.
 
-### 4. AnythingLLM
+### 5. AnythingLLM
 
 Next up is AnythingLLM. This is an extensive toolkit that aims to enable a wide set of users to build a variety of solutions, including AI workflows, agents, internal copilots, and chat-based document systems.
 
@@ -166,7 +193,7 @@ AnythingLLM is a popular choice for teams that need an Open WebUI alternative th
 
 It’s also highly extensible, offering an ecosystem of plug-ins and integrations that can be leveraged to extend AnythingLLM’s functionality.
 
-### 5. Chatbox AI
+### 6. Chatbox AI
 
 Next, we have Chatbox AI. Available as a desktop, mobile, or web app, as well as an open-source, self-hostable version, this is a ready-to-use AI client application and smart assistant.
 
@@ -184,9 +211,9 @@ It’s suitable for a range of research and writing tasks too, offering built-in
 
 On the whole, it has the potential to be a good fit for users that need an easy to implement internal AI platform, although some other Open WebUI alternatives may offer more extensive options in terms of managing business workflows.
 
-### 6. BionicGPT
+### 7. BionicGPT
 
-Lastly, we have BionicGPT. Billing itself as an all-in-one platform for private AI, it offers a comprehensive set of tools for building AI-powered solutions, including agents, that can connect to external systems and data.
+Next, we have BionicGPT. Billing itself as an all-in-one platform for private AI, it offers a comprehensive set of tools for building AI-powered solutions, including agents, that can connect to external systems and data.
 
 ![BionicGPT](https://res.cloudinary.com/daog6scxm/image/upload/v1762266501/cms/alternatives/chatgpt/BionicGPT_wiinzp.webp "BionicGPT")
 
@@ -202,10 +229,48 @@ In particular, it offers a range of access control, cost control, encryption, an
 
 It’s also available as an open-source or cloud-based platform, as well as offering support for a wide range of models via the OpenAI API or using Lite LLM.
 
+You might also like our round-up of the top [open-source AI agent platforms](https://budibase.com/blog/ai-agents/open-source-ai-agent-platforms/).
+
+### 8. LM Studio
+
+LM Studio is an open-source chat tool for local LLMs.
+
+![LM Studio](https://res.cloudinary.com/daog6scxm/image/upload/v1765982715/cms/alternatives/chatgpt/LM_Studio_p9yd9o.webp "LM Studio") (LM Studio Website)
+
+One key benefit here is how quickly and easily we can get up and running with a working chat tool, with minimal configuration. We simply need to download a model, load it into LM Studio, and straight away we can begin having conversations.
+
+The chat UI itself is highly attractive and easy to use, including the ability to manage and duplicate chats using a drag-and-drop experience.
+
+LM Studio supports document attachments within AI chats, and will either handle these in-context or using RAG, depending on their size and the supported context length of the model we're using.
+
+We can connect our chat systems to external tools via MCP, making LM Studio a powerful solution for creating more advanced solutions, capable of taking actions based on chat interactions.
+
+Configuration options include per-model default settings, speculative decoding, prompt templates, and more.
+
+LM Studio is potentially an attractive option for a range of types of users, although you may wish to consider other options if you need a more full-featured Open WebUI alternative for creating internal business chat systems.
+
+### 9. GPT4All
+
+Lastly, there's GPT4All. Part of the Nomic ecosystem, this is an open-source chatbot tool designed to work with local LLMs.
+
+![GPT4All](https://res.cloudinary.com/daog6scxm/image/upload/v1765982715/cms/alternatives/chatgpt/GPT4All_t4kp3w.webp "GPT4All")
+
+(GPT4All Website)
+
+This provides a highly effective, customizable chat UI that we can utilize on everyday Windows, Mac, or Linux devices.
+
+The chat UI itself is lightweight and intuitive, which will appeal to a range of different kinds of users.
+
+We can connect GPT4All to a huge range of LLMs, but it's specifically optimized for models in the 3-13B parameter count range, given its focus on use on consumer machines.
+
+GPT4All is also a highly effective tool for working with local files. In particular, the LocalDocs feature makes it easy to create collections of files on our local machine, and vectorize them for use in our chat responses.
+
+As well as this, GPT4All provides a Python SDK and support for OpenTelemetry, which could make it appealing to developers who need a chat UI for more advanced use cases.
+
 ## Turn data into action with Budibase
 
 Budibase is the open-source, low-code platform that empowers IT teams to turn data into action. 
 
-Offering extensive support for existing data, alongside autogenerated UIs, AI-powered automations, custom RBAC, optional self-hosting, and more, it’s the perfect solution for building modern, secure internal tools.
+Offering instruction-led model-agnostic Agents, extensive support for existing data, alongside autogenerated UIs, AI-powered automations, custom RBAC, optional self-hosting, and more, it’s the perfect solution for building modern, secure internal tools.
 
 Check out our [features overview](https://budibase.com/product/) to learn more.
