@@ -479,7 +479,7 @@ Agents can utilize any data sources, APIs, tools, or automations within our Budi
 
 At present, Agents can be called from within Budibase Automations, giving us complete control over how and where they're used within workflows. Since Agents can also use Automations as tools, this opens the door to coordinated multi-agent systems, utilizing distinct models for individual tasks within a wider workflow.
 
-{{< cta> }}
+{{< cta >}}
 
 ## Looking to the future
 

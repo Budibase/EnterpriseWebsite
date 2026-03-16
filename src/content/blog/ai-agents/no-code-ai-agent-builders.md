@@ -20,7 +20,7 @@ We’re going to cover everything you need to know, including:
 
 - [What is a no/low code AI agent builder?](#what-is-a-nolow-code-ai-agent-builder)
 - [What to look for in an agent builder](#what-to-look-for-in-an-agent-builder)
-- [11 low/no-code AI agent builders for 2026](#11-low-no-code-ai-agent-builders-for-2026)
+- [11 low/no-code AI agent builders for 2026](#11-low--no-code-ai-agent-builders-for-2026)
 
 Let’s start with the basics.
 
@@ -80,7 +80,7 @@ Similarly, hosting, deployment, and security features are also top consideration
 
 You might also like our guide to [enterprise chatbots](https://budibase.com/blog/ai-agents/enterprise-chatbots/).
 
-## 10 low & no-code AI agent builders for 2026
+## 11 low & no-code AI agent builders for 2026
 
 Now that we have a better understanding of what we’re looking for, we can begin to explore some of the specific tools that are available on the market today. 
 
