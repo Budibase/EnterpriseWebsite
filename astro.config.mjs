@@ -20,6 +20,8 @@ export default defineConfig({
   },
 
   redirects: {
+    "/agent-space": "/product/agents",
+    "/agents/integrations": "/product/connections",
     "/product": "/product/agents",
     "/product/integrations": "/product/connections",
     "/platform": "/product/agents",
@@ -32,6 +34,7 @@ export default defineConfig({
     "/platform/data": "/product/data",
     "/platform/resources": "/product/resources",
     "/platform/enterprise": "/product/enterprise",
+    "/talk-to-our-team": "/contact",
   },
 
   markdown: {

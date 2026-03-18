@@ -89,7 +89,7 @@ Budibase is fully optimized for teams that need to implement AI in operational w
 
 Users choose Budibase for all kinds of processes that require human users to work alongside AI. With custom end-user apps, built-in Chat UIs, and connectivity with existing tools like Discord and Teams, it’s the ideal way to put AI to work while keeping humans in the loop.
 
-Check out our [Agent Space](https://budibase.com/agent-space/) to learn more about putting AI to work with Budibase.
+Check out our [AI agents](https://budibase.com/product/agents/) to learn more about putting AI to work with Budibase.
 
 ### 2. n8n
 
