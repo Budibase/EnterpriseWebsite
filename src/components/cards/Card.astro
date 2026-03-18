@@ -7,7 +7,10 @@ import type { ImageMetadata } from "astro";
 
 interface Props {
   label: string;
-  description: string;
+  description?: string;
+  class?: string;
+  cardContentClass?: string;
+  cardTitleClass?: string;
   linkUrl?: string;
   openInNewTab?: boolean;
   showLinkIcon?: boolean;
@@ -22,7 +25,10 @@ interface Props {
 
 const {
   label,
-  description,
+  description = "",
+  class: className = "",
+  cardContentClass = "",
+  cardTitleClass = "",
   linkUrl,
   openInNewTab = true,
   showLinkIcon = true,
@@ -52,8 +58,8 @@ const descriptionStyle = truncateDescription
     class="card-link"
     target={openInNewTab ? "_blank" : "_self"}
   >
-    <div class="card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 hover:bg-stone-200! dark:hover:bg-stone-800! p-4 rounded-md">
-      <div class="card-content">
+    <div class={`card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 hover:bg-stone-200! dark:hover:bg-stone-800! p-4 rounded-md ${className}`}>
+      <div class={`card-content ${cardContentClass}`}>
         {showTagAtTop && (
           <Tag
             label={tag!}
@@ -62,18 +68,21 @@ const descriptionStyle = truncateDescription
             class={`${tagClass} mb-2`}
           />
         )}
-        <h3 class="text-lg! card-title">
+        <h3 class={`text-lg! card-title ${cardTitleClass}`}>
           {label}
           {linkUrl && showLinkIcon && (
             <ArrowUpRight class="card-icon text-stone-600 dark:text-stone-400" />
           )}
         </h3>
-        <p
-          class="w-full min-w-0 text-stone-500! dark:text-stone-400!"
-          style={descriptionStyle}
-        >
-          {description}
-        </p>
+        {description && (
+          <p
+            class="w-full min-w-0 text-stone-500! dark:text-stone-400!"
+            style={descriptionStyle}
+          >
+            {description}
+          </p>
+        )}
+        <slot />
         {showTagAtBottom && (
           <Tag
             label={tag!}
@@ -107,8 +116,8 @@ const descriptionStyle = truncateDescription
     </div>
   </Link>
 ) : (
-  <div class="card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 p-4 rounded-md">
-    <div class="card-content">
+  <div class={`card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 p-4 rounded-md ${className}`}>
+    <div class={`card-content ${cardContentClass}`}>
       {showTagAtTop && (
         <Tag
           label={tag!}
@@ -117,13 +126,16 @@ const descriptionStyle = truncateDescription
           class={`${tagClass} mb-2`}
         />
       )}
-      <h3 class="text-lg!">{label}</h3>
-      <p
-        class="w-full min-w-0 text-stone-500! dark:text-stone-400! text-sm!"
-        style={descriptionStyle}
-      >
-        {description}
-      </p>
+      <h3 class={`text-lg! card-title ${cardTitleClass}`}>{label}</h3>
+      {description && (
+        <p
+          class="w-full min-w-0 text-stone-500! dark:text-stone-400! text-sm!"
+          style={descriptionStyle}
+        >
+          {description}
+        </p>
+      )}
+      <slot />
       {showTagAtBottom && (
         <Tag
           label={tag!}

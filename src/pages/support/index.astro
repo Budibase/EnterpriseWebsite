@@ -1,0 +1,351 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import Button from "@components/Button.astro";
+import Card from "@components/cards/Card.astro";
+
+const pageTitle = "Support policy | Budibase";
+const pageDescription =
+  "Find the right Budibase support channel, from docs and community help to business and enterprise support.";
+
+const channels = [
+  {
+    label: "Help & documentation",
+    description:
+    "Start with product docs, setup guides, and reference material for the fastest answers.",
+    linkUrl: "https://docs.budibase.com",
+  },
+  {
+    label: "GitHub discussions",
+    description:
+      "Ask product and implementation questions in the Budibase community.",
+    linkUrl: "https://github.com/Budibase/budibase/discussions",
+  },
+  {
+    label: "GitHub issues",
+    description:
+      "Report reproducible bugs and track platform issues with the Budibase team.",
+    linkUrl: "https://github.com/Budibase/budibase/issues",
+  },
+  {
+    label: "Discord community",
+    description:
+      "Chat with the Budibase team and community across public support channels.",
+    linkUrl: "https://discord.com/invite/budibase-733030666647765003",
+  },
+];
+
+const tiers = [
+  {
+    title: "Community support",
+    intro:
+      "Available to everyone using Budibase through our public docs and community channels.",
+    supported: [
+      "Documentation, guides, and product reference material",
+      "Questions in GitHub Discussions and Discord",
+      "Bug reports through GitHub Issues",
+    ],
+    considerations: [
+      "Best-effort support from the Budibase team and community",
+      "No guaranteed response time",
+    ],
+  },
+  {
+    title: "Email support",
+    intro:
+      "Business plans include direct email support for product and platform questions.",
+    supported: [
+      "Questions about building Budibase apps",
+      "Investigation of platform issues",
+      "Guidance on supported Budibase capabilities and plugins",
+    ],
+    considerations: [
+      "Support focuses on the Budibase product itself",
+      "Custom project implementation and bespoke code work may need professional services",
+    ],
+  },
+  {
+    title: "Enterprise support",
+    intro:
+      "Enterprise plans add priority support, SLAs, onboarding, and closer collaboration with the Budibase team.",
+    supported: [
+      "Priority support channels",
+      "SLAs and enterprise support commitments",
+      "Onboarding and training",
+      "Commercial and account management support",
+    ],
+    considerations: [
+      "Available through Enterprise plans",
+      "Contact sales to discuss support requirements for your deployment",
+    ],
+  },
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="support-page">
+    <div class="support-shell">
+      <header class="support-hero">
+        <p class="support-eyebrow">Support</p>
+        <h1 class="support-title">Support policy</h1>
+        <p class="support-lede">
+          Budibase provides community support by default, with additional
+          support options available for Business and Enterprise customers.
+        </p>
+        <div class="support-actions">
+          <Button
+            label="Open docs"
+            url="https://docs.budibase.com"
+            variant="primary"
+            size="large"
+            target="_blank"
+          />
+          <Button
+            label="Contact sales"
+            url="/contact"
+            variant="secondary"
+            size="large"
+          />
+        </div>
+      </header>
+
+      <section class="support-section">
+        <div class="support-section-heading">
+          <h2>Support channels</h2>
+          <p>Choose the right path based on the type of help you need.</p>
+        </div>
+
+        <div class="support-grid">
+          {
+            channels.map((channel) => (
+              <Card
+                label={channel.label}
+                description={channel.description}
+                linkUrl={channel.linkUrl}
+                openInNewTab={true}
+              />
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="support-section">
+        <div class="support-section-heading">
+          <h2>Support offerings</h2>
+          <p>
+            The level of support available depends on how you use Budibase and
+            which plan you are on.
+          </p>
+        </div>
+
+        <div class="support-tier-list">
+          {
+            tiers.map((tier) => (
+              <div>
+                <div class="support-tier-copy">
+                  <h3>{tier.title}</h3>
+                  <p>{tier.intro}</p>
+                </div>
+                <div class="support-tier-columns">
+                  <Card label="What is included">
+                    <ul class="support-tier-list-items">
+                      {tier.supported.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  </Card>
+
+                  <Card label="Things to know">
+                    <ul class="support-tier-list-items">
+                      {tier.considerations.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  </Card>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="support-note">
+        <div class="support-note-copy">
+          <h2>Need private support?</h2>
+          <p>
+            If you need commercial support, onboarding, or enterprise support
+            commitments, speak with the team about the right plan.
+          </p>
+        </div>
+        <Button
+          label="Talk to sales"
+          url="/contact"
+          variant="large"
+          size="large"
+        />
+      </section>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .support-page {
+    color: rgb(var(--text));
+  }
+
+  .support-shell {
+    width: min(100%, 1240px);
+    margin: 0 auto;
+    padding:
+      max(calc(var(--site-nav-height) + 2.5rem), 5rem)
+      1rem
+      clamp(4rem, 7vw, 6rem);
+  }
+
+  .support-hero {
+    max-width: 48rem;
+    margin-bottom: 3rem;
+  }
+
+  .support-eyebrow {
+    margin: 0 0 0.85rem;
+    color: rgb(var(--text-muted));
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .support-title {
+    margin: 0;
+    font-size: clamp(3.2rem, 8vw, 5.6rem);
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+    color: rgb(var(--text));
+  }
+
+  .support-lede {
+    margin: 1.5rem 0 0;
+    max-width: 38rem;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.6;
+    color: rgb(var(--text-article));
+  }
+
+  .support-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.75rem;
+  }
+
+  .support-section {
+    margin-top: 2.5rem;
+  }
+
+  .support-section-heading {
+    margin-bottom: 1.25rem;
+  }
+
+  .support-section-heading h2,
+  .support-note h2 {
+    margin: 0;
+    font-size: clamp(1.65rem, 3vw, 2.2rem);
+    line-height: 1.1;
+    color: rgb(var(--text));
+  }
+
+  .support-section-heading p,
+  .support-note p {
+    margin: 0.5rem 0 0;
+    max-width: 42rem;
+    color: rgb(var(--text-article));
+    line-height: 1.6;
+  }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .support-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 4rem;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgb(var(--border) / 0.45);
+  }
+
+  .support-note-copy {
+    max-width: 40rem;
+  }
+
+  .support-note h2 {
+    font-size: clamp(2.1rem, 4vw, 3.6rem);
+    letter-spacing: -0.04em;
+  }
+
+  .support-note p {
+    max-width: 34rem;
+    font-size: clamp(1rem, 1.7vw, 1.2rem);
+  }
+
+  .support-tier-list {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .support-tier-list > div {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .support-tier-copy p {
+    margin: 0.5rem 0 0;
+    max-width: 42rem;
+    color: rgb(var(--text-article));
+    line-height: 1.6;
+  }
+
+  .support-tier-columns {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .support-tier-list-items {
+    margin: 0;
+    padding-left: 1.1rem;
+    list-style: disc !important;
+    color: rgb(var(--text-article));
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .support-tier-list-items li {
+    list-style: disc !important;
+    display: list-item;
+  }
+
+  .support-tier-list-items li + li {
+    margin-top: 0.35rem;
+  }
+
+  @media (min-width: 768px) {
+    .support-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .support-tier-columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .support-note {
+      padding: 4rem 2rem;
+    }
+  }
+</style>
