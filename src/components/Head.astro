@@ -12,6 +12,7 @@ export type Props = {
 	canonicalURL?: URL | null;
 	robots?: string;
 	pageType?: 'website' | 'article';
+	schema?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 
 const twitterHandle = 'budibase';
@@ -149,6 +150,7 @@ const {
 	canonicalURL = new URL(Astro.request.url, Astro.site),
 	robots,
 	pageType = 'website',
+	schema,
 } = Astro.props;
 
 const normalizedPath = normalizePath(Astro.url.pathname);
@@ -160,6 +162,29 @@ const resolvedImage = {
 	src: new URL(resolvedImageReference, Astro.site).toString(),
 	alt: image.alt || siteInfo.image.alt,
 };
+const defaultSchema =
+	normalizedPath === "/"
+		? {
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				url: "https://budibase.com/",
+				description,
+				license: "This work is licensed and owned by Budibase",
+				name: title,
+				publisher: {
+					"@type": "Organization",
+					name: "Budibase",
+					url: "https://budibase.com/",
+					sameAs: [
+						"https://www.wikidata.org/wiki/Q131328403",
+						"https://x.com/budibase",
+						"https://www.linkedin.com/company/budibase/",
+						"https://github.com/budibase/budibase",
+					],
+				},
+			}
+		: undefined;
+const resolvedSchema = schema ?? defaultSchema;
 
 // Simple smartypants-like function for typographic quotes and dashes
 function smartypants(text: string, _mode?: number): string {
@@ -296,6 +321,7 @@ function smartypants(text: string, _mode?: number): string {
 	og={{ type: pageType }}
 	canonicalURL={canonicalURL}
 	robots={robots}
+	schema={resolvedSchema}
 />
 <style>
   body {

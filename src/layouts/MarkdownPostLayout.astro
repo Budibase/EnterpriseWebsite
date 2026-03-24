@@ -14,6 +14,36 @@ const seoImage = seoImageSrc
       alt: frontmatter.title,
     }
   : undefined;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: frontmatter.title,
+  url: canonicalUrl,
+  datePublished: publishDate.toISOString(),
+  dateModified: publishDate.toISOString(),
+  license: "This work is licensed and owned by Budibase",
+  description: frontmatter.description,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonicalUrl,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Budibase",
+    url: "https://budibase.com/",
+    sameAs: [
+      "https://www.wikidata.org/wiki/Q131328403",
+      "https://x.com/budibase",
+      "https://www.linkedin.com/company/budibase/",
+      "https://github.com/budibase/budibase",
+    ],
+  },
+  author: {
+    "@type": "Person",
+    name: frontmatter.author,
+  },
+};
 
 ---
 
@@ -23,6 +53,7 @@ const seoImage = seoImageSrc
   image={seoImage}
   pageType="article"
   enableTransitions={enableTransitions}
+  schema={blogSchema}
 >
   <div class="max-w-2xl mx-auto w-full px-5 md:px-0">
     <h1 class="mb-4 mt-24" transition:name={`${transitionKey}-title`}>
