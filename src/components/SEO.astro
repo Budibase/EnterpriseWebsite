@@ -22,6 +22,7 @@ export type Props = SEOMetadata & {
 	og?: OpenGraph;
 	twitter?: Twitter;
 	robots?: string;
+	schema?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 const {
 	name,
@@ -31,7 +32,9 @@ const {
 	locale = 'en',
 	canonicalURL = new URL(Astro.url.pathname, Astro.site),
 	robots = 'max-image-preview:large',
+	schema,
 } = Astro.props;
+const schemaList = Array.isArray(schema) ? schema : schema ? [schema] : [];
 
 const og = {
 	name,
@@ -100,3 +103,8 @@ function formatCanonicalURL(url: string | URL) {
 */
 }
 <meta name="robots" content={robots} />
+
+{/* JSON-LD Structured Data */}
+{schemaList.map((item) => (
+	<script type="application/ld+json" set:html={JSON.stringify(item)} />
+))}

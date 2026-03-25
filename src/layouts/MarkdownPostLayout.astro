@@ -4,7 +4,10 @@ import { format } from 'date-fns';
 import { resolveImageReference } from "../lib/imageReference";
 
 const { frontmatter, enableTransitions = false, transitionKey = '' } = Astro.props;
-const publishDate = frontmatter.publishDate;
+const publishDate = frontmatter.publishDate instanceof Date
+  ? frontmatter.publishDate
+  : undefined;
+const publishDateIso = publishDate?.toISOString();
 const seoImageSrc =
   resolveImageReference(frontmatter.socialImage) ??
   resolveImageReference(frontmatter.coverImage);
@@ -14,6 +17,39 @@ const seoImage = seoImageSrc
       alt: frontmatter.title,
     }
   : undefined;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: frontmatter.title,
+  url: canonicalUrl,
+  license: "This work is licensed and owned by Budibase",
+  description: frontmatter.description,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonicalUrl,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Budibase",
+    url: "https://budibase.com/",
+    sameAs: [
+      "https://www.wikidata.org/wiki/Q131328403",
+      "https://x.com/budibase",
+      "https://www.linkedin.com/company/budibase/",
+      "https://github.com/budibase/budibase",
+    ],
+  },
+  author: {
+    "@type": "Person",
+    name: frontmatter.author,
+  },
+};
+
+if (publishDateIso) {
+  blogSchema.datePublished = publishDateIso;
+  blogSchema.dateModified = publishDateIso;
+}
 
 ---
 
@@ -23,6 +59,7 @@ const seoImage = seoImageSrc
   image={seoImage}
   pageType="article"
   enableTransitions={enableTransitions}
+  schema={blogSchema}
 >
   <div class="max-w-2xl mx-auto w-full px-5 md:px-0">
     <h1 class="mb-4 mt-24" transition:name={`${transitionKey}-title`}>
@@ -30,7 +67,7 @@ const seoImage = seoImageSrc
     </h1>
     <div class="post-meta" transition:name={`${transitionKey}-meta`}>
       {publishDate && (
-        <time datetime={publishDate.toISOString()}>
+        <time datetime={publishDateIso}>
           {format(publishDate, 'MMM d, yyyy')}
         </time>
       )}
