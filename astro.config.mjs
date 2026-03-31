@@ -35,6 +35,8 @@ export default defineConfig({
     "/platform/resources": "/product/resources",
     "/platform/enterprise": "/product/enterprise",
     "/talk-to-our-team": "/contact",
+    "/terms-of-service": "/terms",
+    "/self-host-master-terms": "/terms-self-host",
   },
 
   markdown: {
