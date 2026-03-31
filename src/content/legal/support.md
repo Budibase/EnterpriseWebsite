@@ -36,16 +36,24 @@ In addition to having all of the community resources available, users can contac
 
 ###### What is supported?
 
- - ✓ Answering questions about building Budibase apps
- - ✓ Investigating issues relating to the Budibase platform
- - ✓ Guidance on building custom plugins
- - ✓ The most recent version of Budibase
+ ✓ Answering questions about building Budibase apps
+ 
+ ✓ Investigating issues relating to the Budibase platform
+ 
+ ✓ Guidance on building custom plugins
+ 
+ ✓ The most recent version of Budibase
 
 ###### Not supported
- - \- Infrastructure support for self-hosted users
- - \- Maintaining custom plugins
- - \- Debugging code, such as JavaScript and SQL, etc
- - \- Community / open-source licensed instances
+ 
+ \- Infrastructure support for self-hosted users
+ 
+ \- Maintaining custom plugins
+ 
+ \- Debugging code, such as JavaScript and SQL, etc
+
+\- Community / open-source licensed instances
+
 ---
 
 #### Enterprise support
@@ -56,18 +64,28 @@ You can view the additional features included in Enterprise on the [pricing page
 
 ###### What is supported?
 
- - ✓ Answering questions about building Budibase apps
- - ✓ Investigating issues relating to the Budibase platform
- - ✓ Guidance on building custom plugins
- - ✓ Onboarding
- - ✓ Enterprise licensed instances
- - ✓ The last 5 minor versions of Budibase
- - ✓ Infrastructure support - access a Budibase DevOps engineer for an additional hourly rate
+ ✓ Answering questions about building Budibase apps
+
+ ✓ Investigating issues relating to the Budibase platform
+ 
+ ✓ Guidance on building custom plugins
+ 
+ ✓ Onboarding
+ 
+ ✓ Enterprise licensed instances
+ 
+ ✓ The last 5 minor versions of Budibase
+ 
+ ✓ Infrastructure support - access a Budibase DevOps engineer for an additional hourly rate
 
 ###### Not supported 
- - \- Maintaining custom plugins
- - \- Debugging code, such as JavaScript and SQL, etc
- - \- Community/open-source licensed instances
+ 
+ \- Maintaining custom plugins
+ 
+ \- Debugging code, such as JavaScript and SQL, etc
+ 
+ \- Community/open-source licensed instances
 
 ###### SLA
- - ✓ Response within two business days
+ 
+ ✓ Response within two business days
