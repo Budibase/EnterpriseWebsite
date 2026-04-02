@@ -36,10 +36,14 @@
 /professional-services/templates/* /product/apps/ 301
 /resources/itil-processes /blog/inside-it/itil-application-management/ 301
 /resources/itil-processes/ /blog/inside-it/itil-application-management/ 301
-/resources/itil-processes/asset-management/ /blog/inside-it/hardware-asset-management/ 301
-/resources/itil-processes/asset-management/it-asset-tracking/ /blog/inside-it/free-asset-management-software/ 301
+/resources/itil-processes/asset-management/ /blog/inside-it/free-asset-management-software/ 301
+/resources/itil-processes/asset-management/:page /blog/inside-it/free-asset-management-software/ 301
 /resources/itil-processes/change-management/ /blog/inside-it/change-management-tools/ 301
-/resources/itil-processes/service-request-management/ /blog/inside-it/service-request-management/ 301
+/resources/itil-processes/change-management/:page /blog/inside-it/change-management-tools/ 301
+/resources/itil-processes/service-request-management/ /blog/inside-it/service-request-management/
+/resources/itil-processes/service-request-management/:page /blog/inside-it/service-request-management/ 301
+/resources/itil-processes/configuration-management/ /blog/inside-it/itil-application-management/ 301
+/resources/itil-processes/configuration-management/:page /blog/inside-it/itil-application-management/ 301
 /self-host /pricing/ 301
 /self-host/ /pricing/ 301
 /about / 301
