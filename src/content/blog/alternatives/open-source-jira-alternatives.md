@@ -1,7 +1,7 @@
 ---
-title: "5 Open-Source Jira Alternatives for 2025"
+title: "6 Open-Source Jira Alternatives for 2026"
 description: "Check out our round-up of the top open-source Jira alternatives."
-publishDate: "2025-02-19"
+publishDate: "2025-06-19"
 author: "Ronan McQuillan"
 profilePic: "https://res.cloudinary.com/daog6scxm/image/upload/v1639756662/cms/IMG_3081_ubvpag.jpg"
 ---
@@ -18,11 +18,13 @@ We’ll also see how Budibase offers a different approach to managing IT workflo
 
 Let’s start with the basics.
 
-## What is Jira?
+**## What is Jira?**
 
 Part of the wider Atlassian ecosystem, Jira is a development-focused project management platform, although it’s also used by the wider IT team or even non technical departments.
 
 ![Open Source Jira Alternatives](https://res.cloudinary.com/daog6scxm/image/upload/v1739973623/cms/alternatives/open-source-jira-alternatives/Jira_Website_bbz95y.webp "open-source jira alternatives")
+
+(Jira Website)
 
 It bills itself as the number one project management tool for Agile teams. As such, its functionality is closely aligned with the Agile methodology, including Kanban boards, Scrum features, collaboration and communication tools, user stories, and more.
 
@@ -36,7 +38,7 @@ It’s aimed at teams that need an easy-to-roll-out solution with ready-to-use t
 
 So…
 
-## Why opt for an open-source Jira alternative?
+**## Why opt for an open-source Jira alternative?**
 
 We can think about this from two angles. The first is that some teams, especially large enterprises, often generally prefer open-source solutions. For example, if the ability to audit the source code of tools that interact with mission-critical systems is a firm requirement.
 
@@ -52,27 +54,35 @@ Open-source tools can also give us more flexibility as, depending on their speci
 
 You might also like our round-up of the top [Jira Service Management alternatives](https://budibase.com/blog/alternatives/jira-service-management/).
 
-## 5 open-source Jira alternatives for 2025
+**## 6 open-source Jira alternatives for 2026**
 
 We’ve chosen five distinct open-source platforms from across the market for Jira alternatives, each with its own strengths and weaknesses.
 
 These are:
 
-- [GitLab](#1-gitlab)
-- [OpenProject](#2-openproject)
-- [Redmine](#3-redmine)
-- [Odoo](#4-odoo)
-- [Taiga](#5-taiga)
+\- [GitLab](#1-gitlab)
+
+\- [OpenProject](#2-openproject)
+
+\- [Redmine](#3-redmine)
+
+\- [Odoo](#4-odoo)
+
+\- [Taiga](#5-taiga)
+
+\- [Plane](#6-plane)
 
 Let’s check each one out in turn.
 
-### 1. GitLab
+**### 1. GitLab**
 
 GitLab is an open-source platform that offers repository management, CI/CD automations, issue tracking, and project management tools. This makes it a strong alternative to Jira if your core use case is highly DevOps-focused.
 
 ![GitLab](https://res.cloudinary.com/daog6scxm/image/upload/v1739973624/cms/alternatives/open-source-jira-alternatives/GitLab_hiwvxl.webp "GitLab")
 
-#### Pros
+(GitLab Website)
+
+**#### Pros**
 
 One huge selling point of GitLab is that all project management capabilities are directly linked to the software repo itself. In Jira, we’ll likely need to integrate with an external Git tool, but GitLab is better thought of as a repository manager with added project management functionality.
 
@@ -80,7 +90,7 @@ GitLab is also a strong offering for teams that need to align their project tool
 
 It’s also a great option for security-focused teams, including custom approval rules based on security, legal, or compliance factors when pushing changes to code.
 
-#### Cons
+**#### Cons**
 
 On the flip side, GitLab is not a dedicated project management tool. So, for the likes of issue tracking, some organizations might find it somewhat less comprehensive than the likes of Jira, especially for less development-heavy use cases.
 
@@ -88,7 +98,7 @@ Similarly, GitLab is a highly advanced solution for its target use case, but som
 
 Lastly, although GitLab is open-source and offers a community edition, some features are restricted to enterprise licenses, while others, including Agile Planning, are offered as separately priced add-ons.
 
-#### Licensing
+**#### Licensing**
 
 GitLab is available as both a cloud-based or self-hosted solution. The free cloud tier is limited to five users and 400 compute minutes for the month, but there are no limits on the free open-source product.
 
@@ -98,13 +108,15 @@ Premium licenses start from $29 per user per month for both hosting options. The
 
 You might also like our tutorial on building a [GitHub metrics dashboard](https://budibase.com/blog/app-building/github-metrics-dashboard/) in Budibase.
 
-### 2. OpenProject
+**### 2. OpenProject**
 
 OpenProject is a more traditional project management platform. Rather than being tightly focused on software development projects, it accommodates a wide range of methodologies, practices, and use cases.
 
 ![OpenProject](https://res.cloudinary.com/daog6scxm/image/upload/v1739973623/cms/alternatives/open-source-jira-alternatives/OpenProject_revoct.webp "OpenProject")
 
-#### Pros
+(OpenProject Website)
+
+**#### Pros**
 
 OpenProject offers a wide suite of tools aimed at maximizing productivity within projects. So, in addition to the likes of Agile boards and Gantt charts, it also includes tools for handling time tracking, prioritizing tasks, knowledge management, and more.
 
@@ -112,7 +124,7 @@ It’s also a strong option for managing projects where security is a priority. 
 
 OpenProject also benefits from a highly active community of developers. This means that new functionality and releases are regular and highly grounded in real-world user feedback.
 
-#### Cons
+**#### Cons**
 
 Compared to Jira, one clear downside of OpenProject is a lack of more software-specific capabilities. So, it doesn’t natively support linking issues to code or linking to CI/CD workflows. As such, you may want to look elsewhere for a more developer-focused platform.
 
@@ -120,7 +132,7 @@ OpenProject may feel a little bit dated to some users. Others complain that the 
 
 OpenProject also lags behind some of the other tools in this space for integration options, although there is also a decent choice of community contributions.
 
-#### Licensing
+**#### Licensing**
 
 The free version of OpenProject is offered under the GNU license. This means that it can be freely modified as long as any derivative works also comply with the GPLv3 terms. There are also no restrictions on usage.
 
@@ -128,13 +140,15 @@ However, many key project management tools, such as Kanban Boards, team planning
 
 It’s worth noting that all features are available across all pricing tiers, with the only real difference between these being support arrangements. This means that OpenPro has the potential to be a very cost-effective option.
 
-### 3. Redmine
+**### 3. Redmine**
 
 Redmine is one of the most popular open-source Jira alternatives, offering a web-based project management solution, built on the Ruby on Rails framework.
 
 ![Redmine](https://res.cloudinary.com/daog6scxm/image/upload/v1739973622/cms/alternatives/open-source-jira-alternatives/RedMine_rbojmc.webp "Redmine")
 
-#### Pros
+(Redmine Website)
+
+**#### Pros**
 
 Of the platforms we’ve seen so far, Redmine is the first that offers all native functionality for free, without any paid tiers. As such, it has the potential to be a very attractive option for teams where pricing is a top concern.
 
@@ -142,7 +156,7 @@ It’s also a highly flexible platform, with custom user roles and issue data fi
 
 Redmine is highly extensible via plug-ins. So, we can easily add new functionality to our installation, either relying on community contributions or building our own plug-ins with Ruby on Rails.
 
-#### Cons
+**#### Cons**
 
 Redmine’s main downsides are closely related to some of the potential benefits we just saw. For one thing, since there’s no commercial version of the platform, we’ll need to find a third-party arrangement if we need support.
 
@@ -150,7 +164,7 @@ Compared to some of the other tools we’ve seen, Redmine also lacks some import
 
 According to some reports, Redmine can be somewhat more difficult than some other open-source Jira alternatives to roll out. Installation is largely manual, although third-party bundles are also available.
 
-#### Licensing
+**#### Licensing**
 
 Like OpenProject, Redmine is offered with a GNU license for use and modification. This makes it a fairly unrestrictive option. Once again, there is no paid version available from the vendors themselves.
 
@@ -158,13 +172,15 @@ Despite this, there are several instances where we may end up needing to pay a t
 
 Different companies offer paid support contracts, plug-ins, or even SaaS versions of Redmine. The cost of these will also need to be factored into any purchasing decision.
 
-### 4. Odoo
+**### 4. Odoo**
 
 Odoo is a broader open-source suite of business management tools, that includes a highly effective project management module. Once again, it’s an attractive offering for less technical use cases, but might struggle for development use cases as a direct Jira alternative.
 
 ![Odoo](https://res.cloudinary.com/daog6scxm/image/upload/v1739973622/cms/alternatives/open-source-jira-alternatives/Odoo_umd8kr.webp "Odoo")
 
-#### Pros
+(Odoo Website)
+
+**#### Pros**
 
 As a wider, modular business management platform, one key benefit of Odoo is that projects can be closely integrated with other functions, including tools for accounting, helpdesk management, field service, ERP, and a CRM.
 
@@ -172,7 +188,7 @@ Additionally, it offers a no-code solution for building custom workflow applicat
 
 Odoo’s modular design also makes it a relatively scalable option, as we can be selective about which applications we roll out to our users.
 
-#### Cons
+**#### Cons**
 
 Although it offers coverage of a wide range of use cases, many teams may find Odoo lacking as a Jira alternative. It can be an effective choice for certain IT workflows, including ticketing or knowledge management, but lacks more development-focused capabilities.
 
@@ -180,7 +196,7 @@ It’s also not as closely Agile-aligned as some other platforms straight out of
 
 While Odoo offers strong integration between its own internal modules, it’s let down by its support for external platforms. Notably, we’ll need an Enterprise license to connect to external tools via APIs.
 
-#### Licensing
+**#### Licensing**
 
 Odoo’s open-source edition is offered on the LGPLv3 license, which is slightly more restrictive in terms of usage and modification compared to GNU or MIT. It’s also worth noting that the Community edition is relatively feature-restricted.
 
@@ -188,13 +204,15 @@ So, we’ll need an Enterprise license to access the full complement of features
 
 Notably, some important capabilities like external API support or the no-code Odoo Studio are reserved for the most expensive custom licensing option.
 
-### 5. Taiga
+**### 5. Taiga**
 
-Lastly, we have Taiga. This is perhaps one of the best options for teams that need a free and open-source Jira alternative with out-of-the-box Agile alignment.
+Next, we have Taiga. This is perhaps one of the best options for teams that need a free and open-source Jira alternative with out-of-the-box Agile alignment.
 
 ![Taiga](https://res.cloudinary.com/daog6scxm/image/upload/v1739973622/cms/alternatives/open-source-jira-alternatives/Taiga_mamwfy.webp "Taiga")
 
-#### Pros
+(Taiga Website)
+
+**#### Pros**
 
 Taiga is highly optimized for cross-functional teams that adhere to the Agile methodology, with native features for handling sprints, epics, Kanbans, and project backlogs. This makes it a great option if you need a Jira alternative that’s quick and easy to roll out.
 
@@ -202,7 +220,7 @@ Similarly, Taiga offers extensive capabilities for project reporting. We can eas
 
 It’s also one of the stronger options we’ve seen from a user experience standpoint, offering a modern, intuitive interface. This could also make it comparatively easy to onboard new users. It also offers Git integrations, which many of the platforms we’ve seen so far do not.
 
-#### Cons
+**#### Cons**
 
 Taiga’s strong focus on Agile might be a hindrance to some users. For instance, it does not offer native time-tracking capabilities or the ability to create more complex issue hierarchies with parent and sub-tasks, as we see in some other platforms.
 
@@ -210,7 +228,7 @@ Some users also complain that access control and permissions within Taiga are mo
 
 Lastly, Taiga does not offer the extensive integration options that we see with some other platforms, although we can still use its API to connect to tools. Out-of-the-box integrations, including GitLab, GitHub, and Bitbucket, are mainly focused on repository management.
 
-#### Pricing
+**#### Pricing**
 
 Taiga is offered under the Mozilla Public License, meaning that it can be freely used, forked, and modified, provided that the users of any modified versions can access the source code.
 
@@ -218,7 +236,39 @@ Both the open-source version and the free cloud product offer unlimited users an
 
 Alternatively, enterprises are offered a paid self-hosted version of Taiga, with priority support, SLAs, installation support, and the ability to use the platform behind a VPN or firewall.
 
-## Turn data into action with Budibase
+**### 6. Plane**
+
+Lastly, we have Plane. This is an open-source project management tool that aims to provide a unified, streamlined workspace for all kinds of teams and tasks.
+
+![Plane](https://res.cloudinary.com/daog6scxm/image/upload/v1765972519/cms/alternatives/open-source-jira-alternatives/Plane_s57oiv.webp "Plane")(Plane Website)
+
+**#### Pros**
+
+One particularly impressive aspect of Plane is its UI. It's a highly modern, sleek interface that provides a navigable, user-friendly experience for managing project boards, knowledge sources, and more.
+
+Plane is attractive as an open-source Jira alternative for managing projects, with a high level of customization on offer, including the power to define our own work items, states, labels, and more.
+
+It also offers a range of AI capabilties to help streamline projects. This includes an intelligent assistant that can help us search through knowledge articles, generate project plans, and take actions within tasks.
+
+**#### Cons**
+
+There are a few downsides of Plane too though. It's worth noting that, while Plane is open-source, we'll need a paid license to take advantage of many features. For instance, according to the docs, we'll need a Pro or Business license to use AI capabilities in the platform.
+
+Similarly, we'll need a Pro license to integrate with GitHub, which will be a core requirement for many teams.
+
+There are also seat-limits on the free self-hosted version, as we'll see in a moment.
+
+**#### Licensing**
+
+Plane is free to use under the AGPL license as a self-hosted community edition, or as a free cloud-based product.
+
+However, as noted above this includes feature and seat restrictions. There are two fixed pricing tiers, Pro and Business, billing at $6 and $13 per seat per month, across both the cloud and self-hosted versions of the platform.
+
+Custom enterprise licenses are also available, with additional features such as LDAP, granular access control, and API-enabled audit logs.
+
+You might also like our round-up of the top [open-source AI agent platforms](https://budibase.com/blog/ai-agents/open-source-ai-agent-platforms/).
+
+**## Turn data into action with Budibase**
 
 {{< vimeo id="1058225094" title="Change Request Form" >}}
 
@@ -227,7 +277,3 @@ Budibase is the open-source, low-code platform that empowers IT teams to turn da
 Connect to any database, autogenerate UIs, create custom user roles, and automate workflows, all with minimal custom code. We also offer optional self-hosting, free SSO, custom AI configs, and more.
 
 There’s never been an easier way to ship secure tools for handling IT workflows, including ticketing, asset management, service desks, request management, and more.
-{{< template-cta template = "changeManagement" >}}
->
->
->
