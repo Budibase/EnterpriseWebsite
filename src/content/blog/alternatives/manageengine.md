@@ -369,7 +369,7 @@ We offer a visual RBAC editor and custom database views, which are perfect for w
 
 Budibase is also the smart choice for IT workflows with heightened security needs. We offer optional self-hosting, air-gapped deployments, free SSO, and much more - putting data in the hands of the exact users who need it.
 
-{{< template-cta template = "ticketingSystem" >}}
+{{< cta >}}
 
 #### Pricing
 

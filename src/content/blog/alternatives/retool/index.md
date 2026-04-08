@@ -411,7 +411,7 @@ Budibase also offers flexible branching automations, RBAC, free SSO, multi-user 
 
 On top of this, we offer powerful AI capabilities across the Budibase builder, including within the data section, as automation actions, or for generating table schemas and custom JavaScript, all powered by OpenAI, Azure, or Budibase AI.
 
-{{< custom-cta text="Build unlimited apps with the #1 open-source Retool alternative" >}}
+{{< cta >}}
 
 ### Use cases
 As a Retool alternative, Budibase is ideally suited to building internal tools and workflow apps. For instance, CRUD tools, approval apps, forms, portals, admin panels, and other simple tools that form the backbone of your internal processes.

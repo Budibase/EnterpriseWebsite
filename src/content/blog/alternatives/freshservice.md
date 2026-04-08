@@ -327,7 +327,7 @@ Once you’ve connected your data, you can create custom views, assign role perm
 
 Our platform is the perfect solution for streamlining ITSM workflows. Our automation builder offers a comprehensive library of triggers and configurable, chainable actions, complete with branching and looping logic, alongside a range of third-party integrations.
 
-{{< template-cta template = "ticketingSystem" >}}
+{{< cta >}}
 
 #### Use cases
 

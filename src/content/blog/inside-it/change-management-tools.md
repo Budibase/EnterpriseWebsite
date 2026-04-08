@@ -63,7 +63,6 @@ We’ve chosen a range of platforms, each taking a slightly different approach t
 
 Here’s a summary of the platforms we’ve chosen.
 
-```html
 <style>
   .comparison-table-wrap {
     width: 100%;
@@ -252,7 +251,6 @@ Here’s a summary of the platforms we’ve chosen.
     </tbody>
   </table>
 </div>
-```
 
 Let’s take a look at each one in turn.
 

@@ -259,7 +259,7 @@ Once you’ve connected your data, you can use Budibase to handle permissions an
 
 Budibase is also the smart choice for IT teams that need to automate workflows with minimal custom code. Our automation builder offers powerful looping and branching logic, along with extensive connectivity to external tools via WebHooks, API requests, and database queries.
 
-{{< template-cta template = "assetManagement" >}}
+{{< cta >}}
 
 #### Use cases
 

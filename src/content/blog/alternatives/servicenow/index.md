@@ -178,7 +178,7 @@ Budibase is perfectly positioned to empower non-developers within IT teams to sh
 
 Our platform is the top choice for solution architects, data professionals, systems engineers, automation specialists, infrastructure professionals, IT ops colleagues, service desk teams, and other IT pros who need to build professional, functional tools for handling internal processes.
 
-{{< template-cta template = "changeManagement" >}}
+{{< cta >}}
 
 ### Pricing
 
@@ -369,7 +369,7 @@ This is amplified by the fact that in the low-code age, the cost of building cus
 
 The other big COTS vs custom decision point is the scope and scale of your needs. Expensive off-the-shelf tools make more sense when we know that we’re going to use the full range of their capabilities. 
 
-{{< custom-cta text= "Power your ITSM workflows with Budibase" >}}
+{{< cta >}}
 
 ## How to choose a ServiceNow alternative
 There are a few key decision points that we’ll need to asses when choosing the right service desk or ITSM platform for our specific needs. These cut across functional requirements, business rules, and our specific use cases.

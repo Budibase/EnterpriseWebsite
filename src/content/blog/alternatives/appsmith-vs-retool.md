@@ -19,8 +19,6 @@ We’ll also check out where Budibase fits into the picture, serving the needs o
 
 By the end, we’ll be fully equipped to make an informed decision on which low-code platform is right for particular use cases and situations. Here's a summary of what each platform offers
 
-||||||||||
-
 Let’s jump in.
 
 ## Appsmith vs Retool: positioning
