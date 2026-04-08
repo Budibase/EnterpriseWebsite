@@ -39,14 +39,83 @@ It also offers a range of features aimed at teams who need to automate and strea
 There’s ample scope for configuration, too, alongside extensive native integration options, app plug-ins, and developer tools, making FreshService a strong option for teams that need to add additional functionality to the core ITSM offering.
 
 So…
-||||||||||
 ## Why would you look for a FreshService alternative?
 
 With a better grasp of what FreshService offers, we can start to think about some of the key reasons that an alternative platform might be a more suitable solution.
 
 Here are some of the key decision points you’ll need to consider.
 
-||||||||||
+<style>
+  .faq-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #faf9f6;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+  }
+
+  .faq-section details {
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 12px;
+    margin: 0.75rem 0;
+    overflow: hidden;
+  }
+
+  .faq-section summary {
+    cursor: pointer;
+    padding: 1rem 1.15rem;
+    color: #2b2723;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    background: #fcfbf9;
+  }
+
+  .faq-section summary:hover {
+    background: #faf9f6;
+  }
+
+  .faq-section details[open] summary {
+    border-bottom: 1px solid #ece8e1;
+  }
+
+  .faq-section p {
+    margin: 0;
+    padding: 0.85rem 1.15rem 0;
+    color: #4f4942;
+    line-height: 1.65;
+  }
+
+  .faq-section p:last-child {
+    padding-bottom: 1rem;
+  }
+</style>
+
+<div class="faq-section">
+  <details>
+    <summary>Pricing</summary>
+    <p>Pricing is, of course, one of the biggest factors in any software procurement decision. However, this is often a more difficult comparison than it might first appear.</p>
+    <p>FreshService is priced on a relatively transparent model, with three fixed per agent per month tiers, starting from $19. Custom enterprise licenses are also available.</p>
+    <p>Notably though, feature restrictions are imposed across each of these, so careful analysis will be required to determine whether or not an alternative will be more cost-effective for your specific use case.</p>
+    <p>On the flip side, as a wholly cloud-based platform, FreshService’s pricing is highly predictable since we won’t need to factor in other costs, such as hosting or maintenance.</p>
+  </details>
+
+  <details>
+    <summary>Customization &amp; configuration</summary>
+    <p>A huge differentiator between ITSM tools is the extent to which they can be customized and configured to match our particular internal workflows. Although, we must, of course, balance this with how easy a particular platform is to implement.</p>
+    <p>FreshService is relatively strong here, but it’s important to understand the type of customization on offer.</p>
+    <p>This largely relies on a no/low-code approach, especially around workflows, automations, and ticket rules.</p>
+    <p>However, some other platforms might be more suitable for more advanced automation use cases or more substantive UI customization.</p>
+  </details>
+
+  <details>
+    <summary>Self-hosted &amp; open-source options</summary>
+    <p>Lastly, FreshService is a closed-source, wholly cloud-based platform. This isn’t necessarily a problem, but many businesses prioritize open-source solutions, especially for internal IT use cases.</p>
+    <p>There are a couple of reasons for this. One is that open-source tools can often be more cost-effective. They’re also more likely to be self-hostable, although many COTS platforms are also available as on-premises solutions.</p>
+    <p>Some teams might also prefer an open-source FreshService alternative for security reasons or to avoid vendor lock-in. Often, this relates to the ability to audit the source code of solutions that interact with mission-critical processes, data, or infrastructure.</p>
+  </details>
+</div>
 
 ## 5 FreshService alternatives for 2025
 
@@ -63,7 +132,185 @@ These are:
 5. [Faveo](#5-faveo)
 
 Here’s a brief summary of how they compare.
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 980px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>FreshService</th>
+        <th>Budibase</th>
+        <th>Zendesk</th>
+        <th>Jira</th>
+        <th>ServiceNow</th>
+        <th>Faveo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Platform Type</td>
+        <td>Service Management</td>
+        <td>Low-Code</td>
+        <td>Service Management</td>
+        <td>Service Management</td>
+        <td>Service Management</td>
+        <td>Service Management</td>
+      </tr>
+      <tr>
+        <td>Pricing Model</td>
+        <td>Per-agent</td>
+        <td>Per-user/creator +<br />Creator-only</td>
+        <td>Per-agent</td>
+        <td>Per-agent</td>
+        <td>Custom</td>
+        <td>Per-agent or<br />Fixed perpetual</td>
+      </tr>
+      <tr>
+        <td>Cloud</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Self-Hosting</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>SSO</td>
+        <td><span class="tag">Free</span></td>
+        <td><span class="tag">Free</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid</span></td>
+      </tr>
+      <tr>
+        <td>Open-Source</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="tag">Source code available</span></td>
+      </tr>
+      <tr>
+        <td>API</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 Let’s check each one out in more detail.
 
 ### 1. Budibase
@@ -80,7 +327,7 @@ Once you’ve connected your data, you can create custom views, assign role perm
 
 Our platform is the perfect solution for streamlining ITSM workflows. Our automation builder offers a comprehensive library of triggers and configurable, chainable actions, complete with branching and looping logic, alongside a range of third-party integrations.
 
-{{< template-cta template = "ticketingSystem" >}}
+{{< cta >}}
 
 #### Use cases
 

@@ -59,10 +59,6 @@ However, Retool isn’t exclusively for developers. Less technical colleagues in
 
 Compared to some other platforms, though, the technical barriers to entry may be relatively high for these kinds of users - since you could need coding skills for a lot of more advanced use cases.
 
-That leads us to our next question.
-
-||||||||||
-
 ## Why would you look for a Retool alternative?
 If you’re here today, one of two things is happening. Either you’re currently using Retool and looking to switch to a competitor - or you’re weighing up your options without ever adopting a low-code platform.
 
@@ -70,7 +66,77 @@ In either case, it’s important to be familiar with the areas where Retool fall
 
 These include the following:
 
-||||||||||
+<style>
+  .faq-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #faf9f6;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+  }
+
+  .faq-section details {
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 12px;
+    margin: 0.75rem 0;
+    overflow: hidden;
+  }
+
+  .faq-section summary {
+    cursor: pointer;
+    padding: 1rem 1.15rem;
+    color: #2b2723;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    background: #fcfbf9;
+  }
+
+  .faq-section summary:hover {
+    background: #faf9f6;
+  }
+
+  .faq-section details[open] summary {
+    border-bottom: 1px solid #ece8e1;
+  }
+
+  .faq-section p {
+    margin: 0;
+    padding: 0.85rem 1.15rem 0;
+    color: #4f4942;
+    line-height: 1.65;
+  }
+
+  .faq-section p:last-child {
+    padding-bottom: 1rem;
+  }
+</style>
+
+<div class="faq-section">
+  <details>
+    <summary>Closed-source code</summary>
+    <p>Retool is entirely closed-source. This means that the source code is not publicly available.</p>
+    <p>As such, an open-source alternative may be a priority for many businesses, as Retool will likely interact with mission-critical databases, infrastructure, and processes.</p>
+  </details>
+
+  <details>
+    <summary>Security concerns</summary>
+    <p>Retool suffered major reputational damage in August 2023 after being the victim of a significant data breach, resulting from a phishing attack. Multiple user accounts were compromised, resulting in sensitive data being leaked. This allegedly cost one customer as much as $15 million.</p>
+  </details>
+
+  <details>
+    <summary>Pricing</summary>
+    <p>For many businesses, Retool’s pricing also makes it unviable. Like most other vendors in this space, Retool operates on a per-seat basis, with separate billing for app developers and end users.</p>
+    <p>Depending on your needs, other Retool alternatives may be more cost-effective. For example, their business tier is limited to 25 users, while features like SSO and custom branding are limited to the enterprise tier.</p>
+  </details>
+
+  <details>
+    <summary>Target usage</summary>
+    <p>Retool is a highly modern platform, but some tasks can be more streamlined in alternative tools, especially for less technical colleagues.</p>
+    <p>At the other end of the low-code spectrum, some technical users might find that more advanced platforms offer them more flexibility and scope for customization.</p>
+  </details>
+</div>
 
 ## 10 Retool Alternatives for 2025
 With that bit of context out of the way, we can start to think about some of the best platforms to bridge this gap as alternatives to Retool.
@@ -89,7 +155,239 @@ We’ve chosen ten tools from different points across the low-code market:
 
 Let’s jump right in.
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 1400px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Retool</th>
+        <th>Budibase</th>
+        <th>Mendix</th>
+        <th>Outsystems</th>
+        <th>Appian</th>
+        <th>PowerApps</th>
+        <th>AppSheet</th>
+        <th>Filemaker</th>
+        <th>Zoho Creator</th>
+        <th>Quickbase</th>
+        <th>Caspio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pricing Model</td>
+        <td>Per creator +<br />per user</td>
+        <td>Per creator +<br />per user</td>
+        <td>Flat fee +<br />per user</td>
+        <td>Custom</td>
+        <td>Per user +<br />usage-based</td>
+        <td>Per user</td>
+        <td>Per user</td>
+        <td>Per app</td>
+        <td>Per user</td>
+        <td>Per user</td>
+        <td>Fixed</td>
+      </tr>
+      <tr>
+        <td>Open-Source</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>Built-In Database</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Custom Components</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>Automation Builder</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="tag">Via Power Automate</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>SSO</td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Free</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+      </tr>
+      <tr>
+        <td>Security certs</td>
+        <td><span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+      </tr>
+      <tr>
+        <td>App Embeds</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## 1. Budibase
 Budibase is an open-source, low-code platform that helps teams turn data into action. Our goal is to make it as fast and easy as possible to connect to existing data, build interfaces, automate tasks, and ship professional web applications.
@@ -113,7 +411,7 @@ Budibase also offers flexible branching automations, RBAC, free SSO, multi-user 
 
 On top of this, we offer powerful AI capabilities across the Budibase builder, including within the data section, as automation actions, or for generating table schemas and custom JavaScript, all powered by OpenAI, Azure, or Budibase AI.
 
-{{< custom-cta text="Build unlimited apps with the #1 open-source Retool alternative" >}}
+{{< cta >}}
 
 ### Use cases
 As a Retool alternative, Budibase is ideally suited to building internal tools and workflow apps. For instance, CRUD tools, approval apps, forms, portals, admin panels, and other simple tools that form the backbone of your internal processes.
@@ -459,14 +757,282 @@ This is perhaps the biggest cleavage across the market for Retool alternatives. 
 
 Here’s a summary of how this breaks up:
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 1400px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Retool</th>
+        <th>Budibase</th>
+        <th>Mendix</th>
+        <th>Outsystems</th>
+        <th>Appian</th>
+        <th>PowerApps</th>
+        <th>AppSheet</th>
+        <th>Filemaker</th>
+        <th>Zoho Creator</th>
+        <th>Quickbase</th>
+        <th>Caspio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Open-source vs Closed-source</td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Open-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Builder personas
 Another huge decision point is who will ultimately be using whichever platform we choose to build tools. Broadly, the solutions we’ve seen today range from developer tools on one end of the spectrum - to more business-user-focused platforms on the other.
 
 In between, we have tools aimed primarily at technical colleagues, with at least some coding or development skills - like data professionals, product managers, solutions architects, and other IT roles.
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 1400px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Retool</th>
+        <th>Budibase</th>
+        <th>Mendix</th>
+        <th>Outsystems</th>
+        <th>Appian</th>
+        <th>PowerApps</th>
+        <th>AppSheet</th>
+        <th>Filemaker</th>
+        <th>Zoho Creator</th>
+        <th>Quickbase</th>
+        <th>Caspio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Target user technical levels</td>
+        <td><span class="tag">High - Engineers</span></td>
+        <td><span class="tag">Medium - Technical users</span></td>
+        <td><span class="tag">Medium - Technical users</span></td>
+        <td><span class="tag">High - Engineers</span></td>
+        <td><span class="tag">Medium - Technical users</span></td>
+        <td><span class="tag">Medium - Technical users</span></td>
+        <td><span class="tag">Low - Business users</span></td>
+        <td><span class="tag">Medium - Technical users</span></td>
+        <td><span class="tag">Medium - Technical users</span></td>
+        <td><span class="tag">Low - Business users</span></td>
+        <td><span class="tag">Medium - Technical users</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Extensibility
 Extensibility is how much scope we have to add our own components, integrations, or other kinds of functionality to a platform - as well as building capabilities via integrations with external tools.

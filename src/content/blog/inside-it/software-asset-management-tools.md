@@ -72,7 +72,176 @@ These are:
 
 Here’s a summary of what each one offers:
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 980px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Budibase</th>
+        <th>ServiceNow SAM</th>
+        <th>Flexera One</th>
+        <th>AssetExplorer</th>
+        <th>Zluri</th>
+        <th>Snipe-IT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>License Model</td>
+        <td>Free,<br />Per-user/per-creator,<br />Creator-only</td>
+        <td>Custom</td>
+        <td>Custom</td>
+        <td>Per-asset</td>
+        <td>Tiered</td>
+        <td>Free,<br />Optional paid hosting</td>
+      </tr>
+      <tr>
+        <td>Public API</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Cloud Platform</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Self-Hosting</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Open-Source</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Free Assets</td>
+        <td><span class="tag">Unlimited</span></td>
+        <td><span class="tag">Paid-only</span></td>
+        <td><span class="tag">Paid-only</span></td>
+        <td><span class="tag">25</span></td>
+        <td><span class="tag">Paid-only</span></td>
+        <td><span class="tag">Unlimited</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 You might also like our guide to the top [free asset management software](https://budibase.com/blog/inside-it/free-asset-management-software/) tools.
 
@@ -90,7 +259,7 @@ Once you’ve connected your data, you can use Budibase to handle permissions an
 
 Budibase is also the smart choice for IT teams that need to automate workflows with minimal custom code. Our automation builder offers powerful looping and branching logic, along with extensive connectivity to external tools via WebHooks, API requests, and database queries.
 
-{{< template-cta template = "assetManagement" >}}
+{{< cta >}}
 
 #### Use cases
 

@@ -36,13 +36,80 @@ Although it offers products for other use cases, Zendesk is still primarily aime
 
 That leads us to…
 
-||||||||||
-
 ## Why look for a Zendesk alternative?
 
 Any software procurement decision draws on a range of factors across technical requirements, the resources you have available, and suitability for your end users. Let’s check out some of the key reasons you might consider one of Zendesk’s competitors.
 
-||||||||||
+<style>
+  .faq-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #faf9f6;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+  }
+
+  .faq-section details {
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 12px;
+    margin: 0.75rem 0;
+    overflow: hidden;
+  }
+
+  .faq-section summary {
+    cursor: pointer;
+    padding: 1rem 1.15rem;
+    color: #2b2723;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    background: #fcfbf9;
+  }
+
+  .faq-section summary:hover {
+    background: #faf9f6;
+  }
+
+  .faq-section details[open] summary {
+    border-bottom: 1px solid #ece8e1;
+  }
+
+  .faq-section p {
+    margin: 0;
+    padding: 0.85rem 1.15rem 0;
+    color: #4f4942;
+    line-height: 1.65;
+  }
+
+  .faq-section p:last-child {
+    padding-bottom: 1rem;
+  }
+</style>
+
+<div class="faq-section">
+  <details>
+    <summary>Cost</summary>
+    <p>Zendesk is generally pretty affordable, starting at just $19 per agent per month for basic support desk functionality. However, it has a slightly more complex pricing structure, with a variety of tiers for support use cases, as well as the wider service suite.</p>
+    <p>Each of these has varying levels of feature restrictions. So, in some individual cases, you might need to upgrade to a more expensive license for specific pieces of functionality.</p>
+    <p>Like most platforms in this space, Zendesk primarily charges on a per-agent basis. This is the norm since it’s a highly scalable approach for most applications. However, in certain cases, you might want to consider vendors with other models.</p>
+    <p>For example, if you need to deploy a relatively simple ticketing solution to a large number of agents.</p>
+  </details>
+
+  <details>
+    <summary>Customer service-focus</summary>
+    <p>As we noted, Zendesk covers a range of use cases, but it’s primarily optimized for customer-facing situations.</p>
+    <p>Although there is a corresponding internal services platform, this is more focused on HR and other non-technical business lines.</p>
+    <p>So, if you’re looking for specific functionality for the likes of IT, ops, or other more granular use cases, you might want to look elsewhere.</p>
+  </details>
+
+  <details>
+    <summary>Self-hosting</summary>
+    <p>Zendesk is fully cloud-based. For many teams, this is the right option, offering a hassle-free, scalable way to roll out a service management solution.</p>
+    <p>However, for other teams, self-hosting is a firm requirement. This comes down to two things. Firstly, service data can be highly sensitive, so organizations prefer to manage this on their own infrastructure.</p>
+    <p>The other is that self-hosting can provide a greater degree of control over things like security protocols, integration with other systems, or how we maintain a solution.</p>
+  </details>
+</div>
 
 ## 6 Zendesk alternatives for 2025
 
@@ -58,7 +125,203 @@ These are:
 6. [Zoho Desk](#6-zoho-desk)
 
 Here’s a summary of what each platform offers.
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 1100px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Zendesk</th>
+        <th>Budibase</th>
+        <th>Jira</th>
+        <th>ServiceNow</th>
+        <th>FreshDesk</th>
+        <th>SalesForce</th>
+        <th>Zoho Desk</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Platform Type</td>
+        <td>Service Management</td>
+        <td>Low-Code</td>
+        <td>Service Management</td>
+        <td>Service Management</td>
+        <td>Service Management</td>
+        <td>Service Management</td>
+        <td>Service Management</td>
+      </tr>
+      <tr>
+        <td>Pricing Model</td>
+        <td>Per-agent</td>
+        <td>Per-user/creator +<br />Creator-only</td>
+        <td>Per-agent</td>
+        <td>Custom</td>
+        <td>Per-agent</td>
+        <td>Per-agent</td>
+        <td>Per-agent</td>
+      </tr>
+      <tr>
+        <td>Cloud</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Self-Hosting</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>SSO</td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Free</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Free</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+      </tr>
+      <tr>
+        <td>Open-Source</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>Query external DBs</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>API</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 Let’s check them out in more detail.
 
 ### 1. Budibase
@@ -83,7 +346,7 @@ Budibase is also fully optimized for security-first teams. Our unique visual RBA
 
 We also offer extensive workflow automation capabilities, including third-party integrations, branching/looping logic, and a huge range of triggers and actions. Our automation editor is ideal for triaging, categorization, and communications tasks.
 
-{{< template-cta template = "ticketingSystem" >}}
+{{< cta >}}
 
 #### Pricing
 

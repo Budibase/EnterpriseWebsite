@@ -19,10 +19,6 @@ So, we’re going to present a totally fact-based account of where each tool sit
 
 By the end, you’ll be ready to make a fully informed decision about which is the right option for your specific requirements. 
 
-Let’s jump right in with a summary of what each platform offers.
-
-||||||||||
-
 
 ## Appsmith vs Budibase: positioning
 

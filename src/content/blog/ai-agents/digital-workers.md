@@ -138,7 +138,116 @@ To begin to understand how we can build digital workforce solutions of our own, 
 
 There are two common categories that we must be aware of here.
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.95rem 0.85rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 220px;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        <th>RPA-Based Digital Worker</th>
+        <th>Agentic AI-Based Digital Worker</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Core Tech</td>
+        <td>Rules, scripts, UI automation</td>
+        <td>LLM + memory + tool use + orchestration</td>
+      </tr>
+      <tr>
+        <td>Logic Type</td>
+        <td>Deterministic</td>
+        <td>Probabilistic, goal-driven</td>
+      </tr>
+      <tr>
+        <td>Use Cases</td>
+        <td>Repetitive tasks (e.g. data entry)</td>
+        <td>Variable tasks (e.g. triaging, answering, updating)</td>
+      </tr>
+      <tr>
+        <td>Adaptability</td>
+        <td>Low - breaks with change</td>
+        <td>High - handles change and ambiguity</td>
+      </tr>
+      <tr>
+        <td>Learning</td>
+        <td>None</td>
+        <td>Learns from instructions, context, and feedback</td>
+      </tr>
+      <tr>
+        <td>Best For</td>
+        <td>High-volume, predictable processes</td>
+        <td>Dynamic, knowledge-rich tasks</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### RPA solutions
 

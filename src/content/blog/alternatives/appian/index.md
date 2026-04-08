@@ -93,10 +93,6 @@ We’re checking out a range of tools from across this spectrum. Our picks are:
 7. [Zoho Creator](#7-zoho-creator)
 8. [Caspio](#8-caspio)
 
-||||||||||
-
-Here’s a quick breakdown of what each offers:
-
 Now, let’s check each of them out in turn.
 
 ## 1. Budibase
@@ -413,14 +409,6 @@ However, there’s a lot of variation within this - including whether or not ven
 
 Therefore, one platform might be high cost-effective in certain situations, but excessively costly in others.
 
-Here’s an example scenario of what each of the Appian alternatives we’ve seen will cost for different user and app volumes, assuming we need unlimited automations and for all of our users to access the platform at least once per week.
-
-||||||||||
-
-*Appian provides a $66 discount for any user who accesses an application less than four times in a given month, so licensing costs may be considerably lower for infrequent usage.
-
-**OutSystems impose limits on Application Objects, which must be purchased on top of stated license fees. The number of these required to build a particular use case is unpredictable.
-
 ### Scalability
 Scalability is how easily we can expand our usage of a given platform - including how costs will increase as our needs grow and change. 
 
@@ -440,10 +428,6 @@ For these kinds of companies, it’s important to be able to audit the source od
 
 Closed-source technologies might require additional mitigations and policies, creating extra costs.
 
-Here’s a breakdown of how the Appian alternatives we’ve seen today sit in this regard.
-
-||||||||||
-
 
 ### Builder personas
 We’ve seen extensively that vendors in the low-code space are aimed at different kinds of users - especially with regard to their level of technical skills and expertise.
@@ -452,10 +436,6 @@ Some platforms like Appian are largely aimed at business-level users. Others, li
 
 In between, we have a range of options that empower users of varying technical abilities to handle data, manage processes, and output internal tools.
 
-Here’s one way of breaking down the platforms we’ve seen today.
-
-||||||||||
-
 
 ### Extensibility
 Lastly, extensibility is the degree to which we can add new capabilities to a platform. This can either mean building additional elements ourselves or integrating with other existing tools to add functionality.
@@ -463,8 +443,3 @@ Lastly, extensibility is the degree to which we can add new capabilities to a pl
 There are some aspects to this that most platforms have in common - like connecting to external platforms via API requests. 
 
 However, some platforms take extensibility much further than others. For instance, some of the tools that we’ve seen offer dedicated SDKs, some leverage custom plug-ins, and others offer little scope to add additional functionality.
-
-Here’s a summary of what each of our Appian alternatives offers.
-
-
-||||||||||
