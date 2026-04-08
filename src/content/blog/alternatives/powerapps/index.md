@@ -29,10 +29,90 @@ The goal isn’t just to present a list of platforms. Rather, we want to give yo
 
 Let’s jump right in.
 
-||||||||||
 ## Background
 To frame our discussion, here are some of the key details you need to know about Microsoft's internal application builder.
-||||||||||
+<style>
+  .faq-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #faf9f6;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+  }
+
+  .faq-section details {
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 12px;
+    margin: 0.75rem 0;
+    overflow: hidden;
+  }
+
+  .faq-section summary {
+    cursor: pointer;
+    padding: 1rem 1.15rem;
+    color: #2b2723;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    background: #fcfbf9;
+  }
+
+  .faq-section summary:hover {
+    background: #faf9f6;
+  }
+
+  .faq-section details[open] summary {
+    border-bottom: 1px solid #ece8e1;
+  }
+
+  .faq-section p {
+    margin: 0;
+    padding: 0.85rem 1.15rem 0;
+    color: #4f4942;
+    line-height: 1.65;
+  }
+
+  .faq-section p:last-child {
+    padding-bottom: 1rem;
+  }
+
+  .faq-section a {
+    color: #5b3f8c;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+  }
+</style>
+
+<div class="faq-section">
+  <details>
+    <summary>What is PowerApps?</summary>
+    <p>PowerApps is Microsoft’s low-code offering within the wider Power Platform ecosystem.</p>
+    <p>It’s based around building apps in a couple of different ways. PowerApps Studio is a visual builder, where creators with slightly lower levels of development skills can create interfaces on top of connected data using a drag-and-drop interface.</p>
+    <p>Advanced users can build model-driven apps by defining a sitemap, creating server-side and client-side logic, and implementing more advanced integrations.</p>
+    <p>As a Microsoft product, PowerApps skews heavily toward other platforms in their ecosystem. So, there’s close integration with the Dataverse, SQL Server, Power Automate, Dynamics, Sharepoint, and more.</p>
+    <p>Therefore, it’s a particularly powerful solution for businesses that already have Microsoft platforms deeply embedded in their ops.</p>
+  </details>
+
+  <details>
+    <summary>Who uses PowerApps?</summary>
+    <p>PowerApps users fall into two camps. On the one hand, it’s a popular platform for citizen development programs. This involves upskilling specific business users within departments to output solutions for their colleagues.</p>
+    <p>These people effectively become PowerApps specialists.</p>
+    <p>Besides citizen development, PowerApps is also popular within IT teams. In particular, it’s deeply embedded in the way many large organizations build internal tools.</p>
+    <p>So, professional developers can take advantage of a range of more advanced capabilities, including writing server-side functions using Azure, client-side functions in JavaScript, custom plug-ins, workflow extensions, and more.</p>
+  </details>
+
+  <details>
+    <summary>Why would you need a PowerApps alternative?</summary>
+    <p>There are several reasons why you might be here today, whether you’re a current PowerApps user or you’re assessing low-code development platforms for the first time. The reality is that there are several challenges of using PowerApps which have the potential to make it unviable for many use cases.</p>
+    <p>One issue is that it has a particularly steep learning curve compared to other platforms in this sector. It can be comparatively difficult for a user, technical or not, to simply jump in and start building working tools. Besides this, it’s important to be cognizant that PowerApps is heavily embedded in the wider Microsoft ecosystem. This means that developer experiences tend to prioritize working with native platforms.</p>
+    <p>On the flip side, this can mean that handling external data is somewhat more convoluted than in some of PowerApps’ competitors. This largely requires us to go through the Dataverse or Dynamics 365 in order to pull data into PowerApps projects. Similarly, the full complement of functionality can only be achieved through the use of the wider Power Platform ecosystem. For example, using PowerApps to build interfaces but relying on Power Automate for automating internal processes.</p>
+    <p>Finally, PowerApps is entirely closed-source. In many organizations, this can be a deal breaker for any platform that’s going to have access to sensitive data.</p>
+    <p>Similarly, it can’t be self-hosted. Or, much more simply, PowerApps may be a viable option for you, but you may find a more cost-effective way to meet the same objectives.</p>
+    <p>Check out our guide comparing <a href="https://budibase.com/blog/alternatives/pega-vs-appian/">Pega vs Appian</a>.</p>
+  </details>
+</div>
 
 
 ## 10 PowerApps alternatives
@@ -54,7 +134,253 @@ These are:
 9. [Filemaker](#9-filemaker)
 10. [Airtable](#10-airtable)
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 1400px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>PowerApps</th>
+        <th>Budibase</th>
+        <th>Retool</th>
+        <th>Mendix</th>
+        <th>Outsystems</th>
+        <th>Appian</th>
+        <th>AppSheet</th>
+        <th>Quickbase</th>
+        <th>Zoho Creator</th>
+        <th>Filemaker</th>
+        <th>Airtable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pricing Model</td>
+        <td>Per user</td>
+        <td>Per creator +<br />per user</td>
+        <td>Per creator +<br />per user</td>
+        <td>Flat fee +<br />per user</td>
+        <td>Custom</td>
+        <td>Per user +<br />usage-based</td>
+        <td>Per user</td>
+        <td>Per user</td>
+        <td>Per user</td>
+        <td>Per user</td>
+        <td>Per user</td>
+      </tr>
+      <tr>
+        <td>Built-In Database</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>RBAC</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Custom Components</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Automation Builder</td>
+        <td>Via Power Automate</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>SSO</td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Free</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+      </tr>
+      <tr>
+        <td>Security certs</td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span></td>
+        <td><span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span> <span class="tag">SOC 2</span></td>
+      </tr>
+      <tr>
+        <td>Audit Logs</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>App Embeds</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Let’s take each one in turn.
 
@@ -430,14 +756,282 @@ Next, we need to choose a platform that’s appropriate for the kinds of colleag
 
 Obviously, there’s a fair amount of grey area here. Broadly speaking though, here’s how the market breaks up in terms of target users:
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 1400px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>PowerApps</th>
+        <th>Budibase</th>
+        <th>Retool</th>
+        <th>Mendix</th>
+        <th>Outsystems</th>
+        <th>Appian</th>
+        <th>AppSheet</th>
+        <th>Quickbase</th>
+        <th>Zoho Creator</th>
+        <th>Filemaker</th>
+        <th>Airtable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Technical level - Target users</td>
+        <td><span class="tag">High - Engineers</span></td>
+        <td><span class="tag">Medium - IT teams</span></td>
+        <td><span class="tag">High - Engineers</span></td>
+        <td><span class="tag">High - Engineers</span></td>
+        <td><span class="tag">Medium - IT teams</span></td>
+        <td><span class="tag">Medium - IT teams</span></td>
+        <td><span class="tag">Low - Business users</span></td>
+        <td><span class="tag">Low - Business users</span></td>
+        <td><span class="tag">Medium - IT teams</span></td>
+        <td><span class="tag">Medium - IT teams</span></td>
+        <td><span class="tag">Low - Business users</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Open-source / Souce-available vs closed-source
 For some organizations - particularly enterprises, public bodies, and other security conscious businesses - open-source technology is a massive priority. The ability to audit the source code of software that interacts with mission-critical data is crucial.
 
 Here are the tools we’ve seen today, broken down by open vs closed source code:
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 1400px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>PowerApps</th>
+        <th>Budibase</th>
+        <th>Retool</th>
+        <th>Mendix</th>
+        <th>Outsystems</th>
+        <th>Appian</th>
+        <th>AppSheet</th>
+        <th>Quickbase</th>
+        <th>Zoho Creator</th>
+        <th>Filemaker</th>
+        <th>Airtable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Open-source vs Closed-source</td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Open-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+        <td><span class="tag">Closed-source</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Extensibility
 Extensibility is how much scope a particular platform affords us to add our own functionality, integrations, UI elements, or other features. This can be critical, particularly in niche use cases or situations where we’re dealing with esoteric data.

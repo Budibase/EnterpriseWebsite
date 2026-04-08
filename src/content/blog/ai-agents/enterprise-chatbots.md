@@ -49,7 +49,101 @@ Knowing that enterprise chatbots are more capable of autonomous reasoning and ac
 
 Here are three defining characteristics that we need to be aware of.
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.95rem 0.85rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 260px;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>Description</th>
+        <th>Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Conversational Automation</td>
+        <td>Uses NLP to interpret natural language inputs and trigger actions or workflows.</td>
+        <td>Issue reporting via chatbot,<br />Natural language requests</td>
+      </tr>
+      <tr>
+        <td>Autonomous Reasoning & Actions</td>
+        <td>Uses LLMs to decide and execute steps using tool/function calling.</td>
+        <td>Self-directed actions,<br />API-based tool invocation</td>
+      </tr>
+      <tr>
+        <td>Reflection & Continuous Improvement</td>
+        <td>Learns from past interactions to improve future performance.</td>
+        <td>Context retention,<br />Feedback-driven optimization</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 #### Conversational automation
 
@@ -150,7 +244,121 @@ In order to better understand what this might look like in a real-world setting,
 
 There are two key configurations that we might opt for here - either deploying purpose-built interfaces or relying on existing communications channels.
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 980px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.95rem 0.85rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 220px;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        <th>Self-Service Portals</th>
+        <th>Existing Messaging Tools</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Interface</td>
+        <td>Custom UI with textbox, status tracking, escalation options.<br />Embeds chatbot UI directly in portal workflows.</td>
+        <td>Uses native chat UI of platforms like Slack or Teams.<br />Connects via API/websocket to messaging tools.</td>
+      </tr>
+      <tr>
+        <td>User Experience</td>
+        <td>Lightweight, intuitive chat UI.</td>
+        <td>Feels like messaging a colleague, low friction.</td>
+      </tr>
+      <tr>
+        <td>Use Cases</td>
+        <td>Ideal for domain-specific or external-facing workflows.</td>
+        <td>Best for broad internal services across departments.</td>
+      </tr>
+      <tr>
+        <td>UI Flexibility</td>
+        <td>High, can customize elements and layout.</td>
+        <td>Limited, constrained by platform's native UI.</td>
+      </tr>
+      <tr>
+        <td>Authentication & Access</td>
+        <td>May require separate auth setup in the portal.</td>
+        <td>Leverages existing access and login mechanisms.</td>
+      </tr>
+      <tr>
+        <td>Benefits</td>
+        <td>Clear, structured, and purpose-built interactions.</td>
+        <td>Seamless, centralized access across teams.</td>
+      </tr>
+      <tr>
+        <td>Limitations</td>
+        <td>More setup and user onboarding required.</td>
+        <td>Less UI control; not ideal for external workflows.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Let’s think about each of these in turn.
 
@@ -280,7 +488,111 @@ To solidify this, it’s important to understand the architecture of enterprise 
 
 The easiest way to think about this is in terms of the wider system’s constituent layers. This enables us to represent the key functional elements of an enterprise chatbot, independently of the specific tools that we choose to implement each one.
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 980px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.95rem 0.85rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 240px;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Description</th>
+        <th>Functions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Interface Layer</td>
+        <td>Accepts, analyzes, and normalizes user inputs; handles output display.</td>
+        <td>Chat UI<br />NLP<br />Structured output formatting</td>
+      </tr>
+      <tr>
+        <td>Cognitive Layer</td>
+        <td>Uses LLMs to plan actions, make decisions, and handle task logic.</td>
+        <td>Task planning<br />Tool selection<br />Multi-agent orchestration</td>
+      </tr>
+      <tr>
+        <td>Execution Layer</td>
+        <td>Carries out planned tasks via tools, APIs, or external systems.</td>
+        <td>API calls<br />File operations<br />Function calling</td>
+      </tr>
+      <tr>
+        <td>Feedback & Memory Layer</td>
+        <td>Stores session context, learns from outcomes, and supports iteration.</td>
+        <td>Session memory<br />User preferences<br />Execution history</td>
+      </tr>
+      <tr>
+        <td>Data & Integration Layer</td>
+        <td>Provides external data and context via system integrations and lookups.</td>
+        <td>Knowledge base access<br />CMDB integration<br />Data enrichment</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 The first, which we’ve discussed already, is the `interface layer`. This is what enables the chatbot to communicate with end users or external software systems. At a high level, this accepts and analyzes inputs.
 
@@ -326,7 +638,121 @@ So, to start, we can think about the kind of tool stack we’ll need to create a
 
 Thankfully, we’ve already alluded to most of the components of this already.
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 980px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.95rem 0.85rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 260px;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Description</th>
+        <th>Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>LLMs</td>
+        <td>Core models that interpret input, reason, and generate output.</td>
+        <td>ChatGPT,<br />Mistral,<br />Claude</td>
+      </tr>
+      <tr>
+        <td>Agent Frameworks</td>
+        <td>Tools for building and managing LLM-based autonomous agents.</td>
+        <td>LangChain,<br />AutoGen,<br />CrewAI</td>
+      </tr>
+      <tr>
+        <td>User Interfaces</td>
+        <td>Interfaces for users to interact with the agent system.</td>
+        <td>Custom UIs,<br />Slack,<br />Low-code builders</td>
+      </tr>
+      <tr>
+        <td>Task & Workflow Runners</td>
+        <td>Coordinate and execute steps reliably and in order.</td>
+        <td>Temporal,<br />Prefect,<br />Airflow</td>
+      </tr>
+      <tr>
+        <td>Tool Interfaces & Systems Integration</td>
+        <td>Connect agents to external tools and systems.</td>
+        <td>APIs,<br />Websockets,<br />Secrets/auth tools</td>
+      </tr>
+      <tr>
+        <td>Memory & Knowledge Stores</td>
+        <td>Store state, history, and documents for context and RAG.</td>
+        <td>Vector DBs,<br />SQL/NoSQL,<br />File stores</td>
+      </tr>
+      <tr>
+        <td>Monitoring & Observability</td>
+        <td>Track system behavior and task-level outcomes.</td>
+        <td>OpenTelemetry,<br />LangFuse</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
  Here’s a fuller account of what we’ll need.
 

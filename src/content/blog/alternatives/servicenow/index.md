@@ -47,8 +47,6 @@ In recent years, ServiceNow has also established itself as a leading AI platform
 
 With that in mind…
 
-||||||||||
-
 ## Why would you need a ServiceNow alternative?
 
 
@@ -58,7 +56,89 @@ There can be misfit at a few distinct levels here, so it’s worth pausing to co
 
 Here are some of the key issues that might lead you to consider one of ServiceNow’s competitors.
 
-||||||||||
+<style>
+  .faq-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #faf9f6;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+  }
+
+  .faq-section details {
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 12px;
+    margin: 0.75rem 0;
+    overflow: hidden;
+  }
+
+  .faq-section summary {
+    cursor: pointer;
+    padding: 1rem 1.15rem;
+    color: #2b2723;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    background: #fcfbf9;
+  }
+
+  .faq-section summary:hover {
+    background: #faf9f6;
+  }
+
+  .faq-section details[open] summary {
+    border-bottom: 1px solid #ece8e1;
+  }
+
+  .faq-section p,
+  .faq-section ul {
+    margin: 0;
+    padding: 0.85rem 1.15rem 0;
+    color: #4f4942;
+    line-height: 1.65;
+  }
+
+  .faq-section ul {
+    padding-left: 2.4rem;
+  }
+
+  .faq-section li {
+    margin: 0.35rem 0;
+  }
+
+  .faq-section p:last-child,
+  .faq-section ul:last-child {
+    padding-bottom: 1rem;
+  }
+</style>
+
+<div class="faq-section">
+  <details>
+    <summary>Scale</summary>
+    <p>There are two kinds of scale we need to consider when buying software. These are:</p>
+    <ul>
+      <li><strong>Horizontal scale</strong> - The scope and variety of functionality we need.</li>
+      <li><strong>Vertical scale</strong> - The volume at which we need to use this.</li>
+    </ul>
+    <p>This is particularly important in the context of costs. That is, ServiceNow offers an extensive range of capabilities, so it could be excellent value for money if you expect to utilize the full scope of these.</p>
+    <p>For other teams, more lightweight solutions might offer better value for money.</p>
+  </details>
+
+  <details>
+    <summary>Closed source-code</summary>
+    <p>ServiceNow is also closed-source. Depending on your organizational rules, this may or may not be an issue.</p>
+    <p>Some teams may wish to prioritize open-source solutions.</p>
+  </details>
+
+  <details>
+    <summary>Customization and configuration</summary>
+    <p>Lastly, we have customization. As we said earlier, ITSM processes can vary widely from one company to the next. Individual vendors can account for this in different ways.</p>
+    <p>The critical thing, however, is the degree of customization and configuration that’s available. In other words, how effectively we can map a tool to our own internal processes and requirements. So, we might decide we need an alternative solution on the basis that there’s something we want to do that can’t easily be achieved in ServiceNow natively.</p>
+    <p>On the flip side, we might be concerned with the amount of configuration that’s required to get an ITSM solution up and running in the first place.</p>
+    <p>For instance, for a smaller team with relatively generic needs, we might want a tool we can roll out more quickly and easily.</p>
+  </details>
+</div>
 
 ## 6 ServiceNow alternatives
 Clearly, then, there are several angles that we can take here in terms of choosing a ServiceNow alternative - depending on whether or top concern is the relative cost, specific capabilities, or non-functional requirements like open source-code.

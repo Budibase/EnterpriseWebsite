@@ -77,7 +77,139 @@ These include:
 - **Latency** - WebSockets are designed for low-latency data transfer.
 - **Statefulness** - API requests are stateless, while WebSockets are stateful, retaining information and context across open connections.
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 980px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.95rem 0.85rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 220px;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        <th>Workflow Automation</th>
+        <th>Non-Agentic AI</th>
+        <th>Agentic AI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Best Used When</td>
+        <td>
+          Tasks are deterministic<br />
+          Inputs/outputs are predictable<br />
+          Logic is static<br />
+          High traceability required
+        </td>
+        <td>
+          Tasks are high-volume and repeatable<br />
+          Stateless execution is fine<br />
+          Clear I/O boundaries
+        </td>
+        <td>
+          Tasks are complex or multi-step<br />
+          Requires adaptation<br />
+          Goal is high-level
+        </td>
+      </tr>
+      <tr>
+        <td>Autonomy</td>
+        <td>None, fully rule-based.</td>
+        <td>Low, triggered per task.</td>
+        <td>High, agents operate independently.</td>
+      </tr>
+      <tr>
+        <td>Memory / Context Awareness</td>
+        <td>None.</td>
+        <td>None.</td>
+        <td>Yes, agents can track state and history.</td>
+      </tr>
+      <tr>
+        <td>Adaptability</td>
+        <td>None, requires manual updates.</td>
+        <td>Limited, fixed prompt-based behavior.</td>
+        <td>High, agents can re-plan and adapt.</td>
+      </tr>
+      <tr>
+        <td>Examples</td>
+        <td>
+          Invoice processing<br />
+          Account provisioning
+        </td>
+        <td>
+          Ticket summarization<br />
+          Sentiment classification
+        </td>
+        <td>
+          IT onboarding<br />
+          Change request triage
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Of course, these are purely functional differences. In the following sections, we’ll refer back to some of these as we think more about the practical side of working with Chabot APIs vs WebSockets.
 

@@ -42,8 +42,6 @@ On the whole, it's an attractive offering for a range of organizations, with dif
 
 So…
 
-||||||||||
-
 ## Why would you need a ManageEngine alternative?
 
 Like any software procurement decision, we need to have a realistic view of where ManageEngine sits in the market. 
@@ -52,7 +50,87 @@ As we said earlier, different vendors here target distinct organizations, person
 
 With that in mind, here are some of the core clusters of decision points that might make some of ManageEngine’s competitors a more attractive prospect.
 
-||||||||||
+<style>
+  .faq-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #faf9f6;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+  }
+
+  .faq-section details {
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 12px;
+    margin: 0.75rem 0;
+    overflow: hidden;
+  }
+
+  .faq-section summary {
+    cursor: pointer;
+    padding: 1rem 1.15rem;
+    color: #2b2723;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    background: #fcfbf9;
+  }
+
+  .faq-section summary:hover {
+    background: #faf9f6;
+  }
+
+  .faq-section details[open] summary {
+    border-bottom: 1px solid #ece8e1;
+  }
+
+  .faq-section p {
+    margin: 0;
+    padding: 0.85rem 1.15rem 0;
+    color: #4f4942;
+    line-height: 1.65;
+  }
+
+  .faq-section p:last-child {
+    padding-bottom: 1rem;
+  }
+
+  .faq-section a {
+    color: #5b3f8c;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+  }
+</style>
+
+<div class="faq-section">
+  <details>
+    <summary>Pricing</summary>
+    <p>Pricing is almost inevitably a more complex question than it might first appear.</p>
+    <p>ManageEngine offers a highly scalable pricing model across three tiers for either the cloud-based or on-prem platform. Feature restrictions apply across these, with the standard tier offering only core service desk functionality.</p>
+    <p>We’ll need an Enterprise license to unlock the full range of capabilities.</p>
+    <p>All tiers are billed on a per technician per month basis, but usage restrictions relating to asset data also apply on the Premium and Standard tiers.</p>
+    <p>Therefore, for teams with large asset estates who need specific subsets of premium features, certain ManageEngine alternatives could work out more cost-effective.</p>
+  </details>
+
+  <details>
+    <summary>Customization</summary>
+    <p>Vendors also take different approaches to enabling teams to customize and configure their platforms. While ManageEngine offers extensive scope for us to build our own workflows and even extend functionality, some other platforms might offer us more flexibility here.</p>
+    <p>There’s often a tradeoff between the extent of configuration on offer and how easy it is to roll out a solution. Compared to some competitors, ManageEngine offers an easy implementation but might lack some more advanced configurability.</p>
+    <p>Additionally, there are other tools that might be more easy to extend, or even modify the source code.</p>
+    <p>As such, it’s important to take account of how neatly our requirements fit the off-the-shelf capabilities of different platforms.</p>
+  </details>
+
+  <details>
+    <summary>Open-source vs closed source</summary>
+    <p>Lastly, ManageEngine is a closed-source solution. This isn’t necessarily a problem, but some teams do have a preference for open-source tools.</p>
+    <p>There can be a few key reasons for this. One is the need to audit the source code of any tools that will interact with mission critical infrastructure, processes, or data.</p>
+    <p>Depending on the specific license, certain open-source tools also afford us a greater amount of control over extending functionality.</p>
+    <p>Some open-source tools can also be more cost-effective, but we’ll have to pay close attention to specific licenses in this regard.</p>
+    <p>Take a look at our guide to the top <a href="https://budibase.com/blog/open-source-low-code-platforms/">open-source low-code platforms</a>.</p>
+  </details>
+</div>
 
 ## Top 6 ManageEngine alternatives for 2025
 
@@ -69,7 +147,203 @@ We’ve chosen a range of options from different points in the market. These are
 
 Here’s a summary of what makes each one tick.
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 1100px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>ManageEngine</th>
+        <th>Budibase</th>
+        <th>ServiceNow</th>
+        <th>Jira</th>
+        <th>OTRS</th>
+        <th>Zammad</th>
+        <th>GLPI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Platform Type</td>
+        <td>ITSM</td>
+        <td>Low-Code</td>
+        <td>ITSM</td>
+        <td>ITSM</td>
+        <td>ITSM</td>
+        <td>Ticketing</td>
+        <td>ITSM</td>
+      </tr>
+      <tr>
+        <td>Pricing Model</td>
+        <td>Per-agent</td>
+        <td>Per-user/creator +<br />Creator-only</td>
+        <td>Custom</td>
+        <td>Per-agent</td>
+        <td>Tiered</td>
+        <td>Per agent</td>
+        <td>Tiered</td>
+      </tr>
+      <tr>
+        <td>Cloud</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Self-Hosting</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>SSO</td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Free</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Free</span></td>
+        <td><span class="tag">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Open-Source</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Query external DBs</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>API</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Let’s check them out in detail.
 
@@ -264,6 +538,3 @@ The cloud platform bills from €19 per agent per month, including community plu
 Budibase is the open-source, low-code platform that empowers IT teams to turn data into action. With extensive external data support, autogenerated UIs, powerful automations, free SSO, and more, there’s never been an easier way to ship secure workflow tools.
 
 Take a look at our [features overview](https://budibase.com/product/) to learn more.
->
->
->

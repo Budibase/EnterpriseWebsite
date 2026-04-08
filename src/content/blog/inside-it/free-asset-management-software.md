@@ -89,9 +89,6 @@ But first, let’s start with the basics.
     <p>
       We may even predict usage trends in order to inform procurement decisions down the line.
     </p>
-    <p>
-      Check out our resource on <a href="https://budibase.com/resources/itil-processes/asset-management/">ITIL asset management</a>.
-    </p>
   </details>
 
   <details>

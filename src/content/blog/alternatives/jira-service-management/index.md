@@ -41,15 +41,80 @@ As such, it’s a particularly attractive option for teams with larger, more com
 ![Jira Service Management Alternatives](https://res.cloudinary.com/daog6scxm/image/upload/v1742482450/cms/alternatives/JSM_Website_zrpxlp.webp)
 (Atlassian Website)
 
-||||||||||
 ## Why would you need a JSM alternative?
 
 Unfortunately, despite its sizeable market share, JSM isn’t necessarily the ideal solution in all cases. In fact, within the ITSM space, there are platforms targeting a relatively wide range of organizations, workflows, and user personas.
 
 As such, it’s important to understand some of the key variables that might rule Jira Service Management out for your particular circumstances.
 
+<style>
+  .faq-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #faf9f6;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+  }
 
-||||||||||
+  .faq-section details {
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 12px;
+    margin: 0.75rem 0;
+    overflow: hidden;
+  }
+
+  .faq-section summary {
+    cursor: pointer;
+    padding: 1rem 1.15rem;
+    color: #2b2723;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    background: #fcfbf9;
+  }
+
+  .faq-section summary:hover {
+    background: #faf9f6;
+  }
+
+  .faq-section details[open] summary {
+    border-bottom: 1px solid #ece8e1;
+  }
+
+  .faq-section p {
+    margin: 0;
+    padding: 0.85rem 1.15rem 0;
+    color: #4f4942;
+    line-height: 1.65;
+  }
+
+  .faq-section p:last-child {
+    padding-bottom: 1rem;
+  }
+</style>
+
+<div class="faq-section">
+  <details>
+    <summary>Complexity</summary>
+    <p>The flip side of JSM’s extensive configurability is that it presents comparatively steep barriers to getting up and running. On the one hand, some users report that the required setup and configuration work is too high, either from a resourcing or technical skills point of view.</p>
+    <p>Another common complaint is that JSM presents a steep learning curve for IT teams, admins, and end users alike. In turn, this undercuts the benefits of implementing an ITSM platform, as it can harm adoption rates internally.</p>
+  </details>
+
+  <details>
+    <summary>Cost</summary>
+    <p>JSM is competitively priced, with several per-agent tiers. There are, nonetheless, scenarios where other platforms might work out more cost-effective. One issue is that usage limits are imposed at different pricing points, including for emails, data, and automation runs.</p>
+    <p>On top of this, certain features are also restricted to higher pricing tiers. For example, we need an enterprise license or a separate Atalassian Guard subscription to implement external SSO.</p>
+    <p>As such, you might find yourself forced to a higher license tier to access certain functionality, even if you don’t require the higher usage limits. In these cases, other ITSM platforms may be more financially viable.</p>
+  </details>
+
+  <details>
+    <summary>Out-of-the-box workflows</summary>
+    <p>Lastly, JSM is highly optimized for teams that need extensive configuration. By contrast, some users report that it falls behind some competitors in terms of out-of-the-box workflows.</p>
+    <p>For instance, other platforms can be better optimized for simply rolling out as-is, although you may sacrifice some configurability for this.</p>
+    <p>Additionally, certain key workflows require more expensive licenses with Jira. For instance, change management and approval features are reserved for the Premium and Enterprise tiers.</p>
+  </details>
+</div>
 
 
 ## 8 Jira Service Management alternatives
@@ -67,7 +132,223 @@ We’ve picked a range of platforms from across the market for ITSM workflow sof
 7. [BMC Helix](#7-bmc-helix)
 8. [ZenDesk](#8-zendesk)
 
-||||||||||
+ ```html
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 1200px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Jira</th>
+        <th>Budibase</th>
+        <th>ServiceNow</th>
+        <th>FreshService</th>
+        <th>ManageEngine</th>
+        <th>SolarWinds</th>
+        <th>SysAid</th>
+        <th>BMC Helix</th>
+        <th>Zendesk</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Platform Type</td>
+        <td>ITSM</td>
+        <td>Low-Code</td>
+        <td>ITSM</td>
+        <td>ITSM</td>
+        <td>ITSM</td>
+        <td>ITSM</td>
+        <td>ITSM</td>
+        <td>ITSM</td>
+        <td>Help Desk</td>
+      </tr>
+      <tr>
+        <td>Pricing Model</td>
+        <td>Per-agent</td>
+        <td>Per-user/creator +<br />Creator-only</td>
+        <td>Custom</td>
+        <td>Per-agent</td>
+        <td>Per-agent</td>
+        <td>Per-agent</td>
+        <td>Custom</td>
+        <td>Custom</td>
+        <td>Per-agent</td>
+      </tr>
+      <tr>
+        <td>Cloud</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Self-Hosting</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>SSO</td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Free</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+        <td><span class="tag">Paid plan</span></td>
+      </tr>
+      <tr>
+        <td>Open-Source</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>Query external DBs</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>API</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+ ```
 
 Let’s take a look at each one in turn.
 

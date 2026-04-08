@@ -86,7 +86,234 @@ Our picks are:
 - [Filemaker](#6-filemaker)
 - [SmartSheet](#7-smartsheet)
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 1200px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Quickbase</th>
+        <th>Budibase</th>
+        <th>Airtable</th>
+        <th>Appian</th>
+        <th>Zoho Creator</th>
+        <th>App Sheet</th>
+        <th>Filemaker</th>
+        <th>SmartSheet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pricing Model</td>
+        <td>Per user</td>
+        <td>Per creator +<br />per user</td>
+        <td>Per user</td>
+        <td>Per user +<br />usage-based</td>
+        <td>Per user</td>
+        <td>Per user</td>
+        <td>Per user</td>
+        <td>Per user</td>
+      </tr>
+      <tr>
+        <td>Custom data sources</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>Multiplayer mode</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>App builder</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Automation builder</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>JavaScript editor</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>Security certs</td>
+        <td><span class="tag">SOC 2</span> <span class="tag">ISO27001</span></td>
+        <td><span class="tag">ISO27001</span></td>
+        <td><span class="tag">SOC 2</span> <span class="tag">ISO27001</span></td>
+        <td><span class="tag">SOC 2</span> <span class="tag">ISO27001</span></td>
+        <td><span class="tag">SOC 2</span> <span class="tag">ISO27001</span></td>
+        <td><span class="tag">SOC 2</span> <span class="tag">ISO27001</span></td>
+        <td><span class="tag">SOC 2</span> <span class="tag">ISO27001</span></td>
+        <td><span class="tag">SOC 2</span> <span class="tag">ISO27001</span></td>
+      </tr>
+      <tr>
+        <td>Custom AI Configs</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+      <tr>
+        <td>Automation Branching</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Visual RBAC</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Let’s check out each one in turn.
 
@@ -373,10 +600,6 @@ So, a per-user estimate might be misleading because we might still need a partic
 
 Despite this, having an illustrative idea of how different user volumes will incur costs for each platform is helpful.
 
-Here’s how this might break down, assuming each of our users access our tools at least once per week.
-
-||||||||||
-
 ### Scale
 The scale of our needs - along with how we expect this to change over time - also plays an enormous role in any purchasing decision.
 
@@ -393,20 +616,12 @@ Open-source software is a big priority for a lot of larger organizations. Transp
 
 For these companies, additional assurances, policies, or other measures may be required to adopt closed-source tools, potentially slowing down procurement processes.
 
-Here’s a breakdown of the tools we’ve seen today.
-
-||||||||||
-
 ### Existing data ops
 Each of the platforms we’ve seen today also targets very different organizations in terms of their existing data operations. 
 
 Almost every business in the world stands to benefit from improving the way their users interact with data assets. 
 
 However, there is a big difference between platforms that seek to replace spreadsheets and unify SaaS data - and those that are intended for building applications on top of more advanced database management systems.
-
-Here’s a breakdown of the data connectivity offered by each of our Quickbase alternatives.
-
-||||||||||
 
 ### Creator personas
 Lastly, each vendor targets a subtly different kind of end user in terms of who is going to be building solutions on top of data assets. 

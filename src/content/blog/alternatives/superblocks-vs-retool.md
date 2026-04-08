@@ -19,7 +19,221 @@ By the end of this guide, we’ll have a clear picture of how each platform comp
 
 Let’s jump in with a summary of what each platform offers.
 
-||||||||||
+<style>
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #ece8e1;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .comparison-table th {
+    background: #faf9f6;
+    color: #2b2723;
+    font-weight: 700;
+    line-height: 1.25;
+    border-bottom: 1px solid #e3ddd5;
+  }
+
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .comparison-table th:first-child {
+    background: #faf9f6;
+    z-index: 2;
+  }
+
+  .comparison-table td:first-child {
+    background: #fff;
+    color: #181512;
+  }
+
+  .comparison-table tr:nth-child(even) td {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:nth-child(even) td:first-child {
+    background: #fcfbf9;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no,
+  .comparison-table .tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .comparison-table .yes,
+  .comparison-table .no {
+    min-width: 3rem;
+  }
+
+  .comparison-table .yes {
+    background: #e4f6ec;
+    color: #187645;
+  }
+
+  .comparison-table .no {
+    background: #ede9e3;
+    color: #4f4942;
+  }
+
+  .comparison-table .tag {
+    margin: 0.1rem;
+    background: #f2eef8;
+    color: #5b3f8c;
+  }
+</style>
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Superblocks</th>
+        <th>Retool</th>
+        <th>Budibase</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pricing Model</td>
+        <td>Per creator +<br />per user</td>
+        <td>Per creator +<br />per user</td>
+        <td>Per creator +<br />per user</td>
+      </tr>
+      <tr>
+        <td>Free Apps</td>
+        <td><span class="tag">Unlimited</span></td>
+        <td><span class="tag">Unlimited</span></td>
+        <td><span class="tag">Unlimited</span></td>
+      </tr>
+      <tr>
+        <td>Built-In Database</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Multiplayer mode</td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Front-End Scripting</td>
+        <td><span class="tag">JavaScript</span> <span class="tag">Python</span></td>
+        <td><span class="tag">JavaScript</span></td>
+        <td><span class="tag">JavaScript</span> <span class="tag">Handlebars</span></td>
+      </tr>
+      <tr>
+        <td>RBAC</td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Free</span></td>
+        <td><span class="tag">Free</span></td>
+      </tr>
+      <tr>
+        <td>Custom Components</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Custom Data Sources</td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Automation Builder</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>SSO</td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Paid</span></td>
+        <td><span class="tag">Free</span></td>
+      </tr>
+      <tr>
+        <td>Security certs</td>
+        <td><span class="tag">SOC 2</span> <span class="tag">ISO27001</span></td>
+        <td><span class="tag">SOC 2</span></td>
+        <td><span class="tag">ISO27001</span></td>
+      </tr>
+      <tr>
+        <td>Audit Logs</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>SCIM</td>
+        <td><span class="tag">Enterprise</span></td>
+        <td><span class="tag">Enterprise</span></td>
+        <td><span class="tag">Enterprise</span></td>
+      </tr>
+      <tr>
+        <td>App Embeds</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Custom AI Configs</td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Automation Branching</td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+      <tr>
+        <td>Visual RBAC</td>
+        <td><span class="no">No</span></td>
+        <td><span class="no">No</span></td>
+        <td><span class="yes">Yes</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Retool vs Superblocks: positioning
 
