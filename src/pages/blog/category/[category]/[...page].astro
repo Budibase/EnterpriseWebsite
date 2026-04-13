@@ -41,7 +41,7 @@ const category: BlogTopicRoute = isValidBlogTopic(rawCategory)
   ? rawCategory
   : "blog";
 const canonicalURL = isPaginatedArchive
-  ? `/blog/category/${category}/`
+  ? `https:/budibase.com/blog/category/${category}/`
   : undefined;
 const currentTopic = getBlogTopicItem(category);
 const currentCategoryLabel = currentTopic.label;

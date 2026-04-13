@@ -27,7 +27,7 @@ const robots = isPaginatedArchive
   : undefined;
 const blogTopic = getBlogTopicItem("blog");
 const canonicalURL = isPaginatedArchive
-  ? `/blog/`
+  ? `https:/budibase.com/blog/`
   : undefined;
 const allPages = [...Array(page.lastPage).keys()].map((num) => {
   return `/blog${num === 0 ? "" : `/${String(num + 1)}`}`;
