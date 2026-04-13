@@ -34,7 +34,7 @@ interface Props {
 const { page } = Astro.props as Props;
 const isPaginatedArchive = page.currentPage > 1;
 const robots = isPaginatedArchive
-  ? "index,follow,max-image-preview:large"
+  ? "max-image-preview:large"
   : undefined;
 const rawCategory = Astro.params.category ?? "blog";
 const category: BlogTopicRoute = isValidBlogTopic(rawCategory)
