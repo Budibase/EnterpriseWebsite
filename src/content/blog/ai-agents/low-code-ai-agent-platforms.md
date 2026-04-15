@@ -144,7 +144,7 @@ Dify is an open-source platform for building agentic workflows using visual deve
 
 ![Dify](https://res.cloudinary.com/daog6scxm/image/upload/v1776266361/cms/alternatives/low-code-agents/Dify_dkjeps.webp "Dify")
 
-(Dift Website)
+(Dify Website)
 
 The goal is to enable teams to create custom, production-ready agentic systems without having to build everything from scratch. To achieve this, Dify offers two distinct types of agents. Workflows consist of a single execution, whereas Chatflows enable conversational interactions with end users.
 
