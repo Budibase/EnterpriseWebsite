@@ -15,7 +15,7 @@ Today, we’re diving deep into everything you need to know by examining the pra
 
 Specifically, we’ll be covering:
 
-- [What is service request automation?](#what-is-service-request-automation]
+- [What is service request automation?](#what-is-service-request-automation)
   - [Types of request automation](#types-of-request-automation)
   - [Why automate service request management?](#why-automate-service-request-management)
 - [What are the most common use cases for service request automation?](#what-are-the-most-common-use-cases-for-service-request-automation)
