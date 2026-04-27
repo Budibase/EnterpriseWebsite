@@ -3,7 +3,7 @@ author: "Ronan McQuillan"
 publishDate: 2026-04-27
 description: "Take a look at our in-depth guide to service request automation."
 profilePic: "https://res.cloudinary.com/daog6scxm/image/upload/v1639756662/cms/IMG_3081_ubvpag.jpg"
-title: "What is Service Request Automation | Examples, Tools & Use Cases"
+title: "What is Service Request Automation? | Examples, Tools & Use Cases"
 
 ---
 
