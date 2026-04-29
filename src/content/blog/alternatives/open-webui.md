@@ -111,7 +111,7 @@ First up, we have Budibase, the all-in-one open-source AI workflow toolkit for c
 
 Budibase is a complete solution for creating AI-powered workflows, with dedicated Agent, Automation, and App-builders that you can connect to any LLM, data or API, and deploy anywhere. Budibase Agents are instruction-led, meaning we can build and iterate over behavior in natural language, including configuring tool calls and data retrieval.
 
-We also offer off-the-shelf chat experiences for Agents, alongside support for existing chat tools. With Budibase, it's never been easier to create fully custom conversational experiences for a huge range of workflows.
+Agents can be invoked from Budibase Automations or external chat tools such as Slack and Discord, as well as interacting with data in end-user apps. With Budibase, it's never been easier to create fully custom AI agents for a huge range of workflows.
 
 Agents can also interact fully with all Data and Automations in your Budibase workspace when we grant them permissions, making it the perfect solution for invoking agentic workflows from traditional automation rules, or building human-in-the-loop controls with Budibase's leading low-code app-builder.
 
