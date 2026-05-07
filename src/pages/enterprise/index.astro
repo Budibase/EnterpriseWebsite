@@ -4,6 +4,9 @@ import PlatformLayout from "@components/PlatformLayout.astro";
 import HeroBg from "@assets/images/homepage/valley.png";
 import { Image } from "astro:assets";
 import Card from "@components/cards/Card.astro";
+import type { ImageInputFormat } from "node_modules/astro/dist/assets/types";
+import Button from "@components/Button.astro";
+import BookACallButton from "../../components/BookACallButton.astro";
 
 const pageTitle = "Enterprise";
 const pageDescription =
@@ -19,95 +22,130 @@ const navItems = [
   },
 ];
 
-const featureCards = [
+const headlineFeatureCards = [
   {
-    label: "SOC 2 Compliant",
+    label: "ISO27001 Compliant",
     description:
       "Enterprise-grade security certifications to meet your compliance requirements.",
+    img_src:"https://res.cloudinary.com/daog6scxm/image/upload/e_grayscale/v1778073230/icons/iso27001_l5tooh.png",
+    img_format: "svg" as ImageInputFormat
   },
   {
-    label: "Self-hosted",
+    label: "Open-source",
     description: "Deploy on your own infrastructure with complete data sovereignty.",
-  },
-  {
-    label: "SSO & SCIM",
-    description:
-      "Integrate with your identity provider for seamless authentication and user provisioning.",
-  },
-  {
-    label: "Air-gapped support",
-    description: "Run completely offline in secure, isolated environments.",
-  },
-  {
-    label: "Multi-tenancy",
-    description:
-      "Isolate teams and departments with separate workspaces and data.",
-  },
-  {
-    label: "Custom branding",
-    description:
-      "White-label the platform with your own logos, colors, and domain.",
-  },
-  {
-    label: "Environment controls",
-    description:
-      "Manage development, staging, and production environments separately.",
-  },
-  {
-    label: "SOC 2 Type II",
-    description:
-      "Independently audited security controls demonstrating our commitment to data protection.",
-  },
-  {
-    label: "Encryption at rest",
-    description: "All data encrypted using AES-256 encryption standards.",
-  },
-  {
-    label: "Encryption in transit",
-    description: "TLS 1.3 for all data transmission between clients and servers.",
-  },
-  {
-    label: "SSO integration",
-    description:
-      "SAML 2.0 and OpenID Connect support for enterprise identity providers.",
-  },
-  {
-    label: "Audit logging",
-    description:
-      "Comprehensive audit trails for all user actions and system events.",
-  },
-  {
-    label: "Role-based access",
-    description:
-      "Fine-grained permissions with custom roles and group management.",
+    img_src:"https://res.cloudinary.com/daog6scxm/image/upload/e_grayscale/v1778075353/icons/open-source-logo-blueish_v4vexu.png",
+    img_format: "svg" as ImageInputFormat
   },
   {
     label: "Priority response",
     description:
       "Guaranteed response times with escalation paths for critical issues.",
+    img_src:"https://res.cloudinary.com/daog6scxm/image/upload/e_grayscale/v1778147323/icons/priority_lmbvj0.png",
+    img_format: "svg" as ImageInputFormat
+  },
+]
+
+
+const featureCardCategories = [
+  {
+    title: "Security and access",
+    cards: [
+      {
+        label: "SSO & SCIM",
+        description:
+          "Integrate with your identity provider for seamless authentication and user provisioning.",
+      },
+      {
+        label: "Role-based access",
+        description:
+          "Fine-grained permissions with custom roles and group management.",
+      },
+      {
+        label: "Audit logging",
+        description:
+          "Comprehensive audit trails for all user actions and system events.",
+      },
+      {
+        label: "Encryption at rest",
+        description: "All data encrypted using AES-256 encryption standards.",
+      },
+      {
+        label: "Encryption in transit",
+        description:
+          "TLS 1.3 for all data transmission between clients and servers.",
+      },
+      {
+        label: "SSO integration",
+        description:
+          "OpenID Connect support for enterprise identity providers.",
+      },
+    ],
   },
   {
-    label: "Dedicated CSM",
-    description:
-      "A dedicated Customer Success Manager to guide your journey.",
+    title: "Platform and control",
+    cards: [
+      {
+        label: "Self-hosting",
+        description: "Self-hosting is first class and we offer a variety of deployment options.",
+      },
+      {
+        label: "Air-gapped support",
+        description: "Run completely offline in secure, isolated environments.",
+      },
+      {
+        label: "Multi-tenancy",
+        description:
+          "Isolate teams and departments with separate workspaces and data.",
+      },
+      {
+        label: "Custom branding",
+        description:
+          "White-label the platform with your own logos, colors, and domain.",
+      },
+      {
+        label: "Environment controls",
+        description:
+          "Manage development, staging, and production environments separately.",
+      },
+      {
+        label: "REST and SQL",
+        description:
+          "Live connections to custom REST APIs and SQL Databases, wherever they are deployed.",
+      },
+    ],
   },
   {
-    label: "Onboarding assistance",
-    description: "Hands-on help to get your team up and running quickly.",
-  },
-  {
-    label: "Training sessions",
-    description:
-      "Custom training for your team on platform features and best practices.",
-  },
-  {
-    label: "Architecture review",
-    description: "Expert guidance on designing scalable, secure solutions.",
-  },
-  {
-    label: "SLA guarantees",
-    description:
-      "Contractual uptime and support commitments you can rely on.",
+    title: "Support and success",
+    cards: [
+      {
+        label: "Dedicated CSM",
+        description:
+          "A dedicated Customer Success Manager to guide your journey.",
+      },
+      {
+        label: "Professional Services",
+        description:
+          "You have access to our team of engineers to help you operationalize Budibase",
+      },
+      {
+        label: "Onboarding assistance",
+        description: "Hands-on help to get your team up and running quickly.",
+      },
+      {
+        label: "Training sessions",
+        description:
+          "Custom training for your team on platform features and best practices.",
+      },
+      {
+        label: "Architecture review",
+        description: "Expert guidance on designing scalable, secure solutions.",
+      },
+      {
+        label: "SLA guarantees",
+        description:
+          "Contractual uptime and support commitments you can rely on.",
+      },
+    ],
   },
 ];
 
@@ -158,29 +196,78 @@ const customerCards = [
     linkUrl: "/blog/minitab",
   },
 ];
+
+const headlineImageMetadata = (src:string, format:ImageInputFormat) : ImageMetadata => ({
+  src:src, 
+  format:format,
+  height: 100,
+  width: 100,
+});
+
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <PlatformLayout title={pageTitle} description={pageDescription}>
     <div class="mb-10">
+      
+      <div class="mb-4 flex justify-center">
+          <Button label="Book a demo" size="large" url="/contact"/>
+      </div>
+
       <div class="bg-stone-100 dark:bg-stone-900 rounded-md p-4 mb-4">
+        
+
         <Image
           src={HeroBg}
           alt="Enterprise overview"
           class="w-full h-96 object-cover rounded-md"
         />
+
+        
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-2">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-2 headline-features-container">
         {
-          featureCards.map((card) => (
-            <Card label={card.label} description={card.description} />
+          headlineFeatureCards.map((card) => (
+            <Card label={card.label} description={card.description} imageSrc={headlineImageMetadata(card.img_src, card.img_format)}/>
           ))
         }
       </div>
+
+      
+
+      {
+        featureCardCategories.map((category) => (
+          <section class="mb-8">
+            <h2 class="mb-6 text-xl md:text-2xl lg:text-3xl text-secondary text-center">
+              {category.title}
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-2">
+              {
+                category.cards.map((card) => (
+                  <Card label={card.label} description={card.description} />
+                ))
+              }
+            </div>
+          </section>
+        ))
+      }
     </div>
 
-    <section class="mb-8">
+    <section class="mb-8 m-16">
+      <h1 class="mb-6 text-xl md:text-2xl lg:text-3xl text-secondary text-center">
+        Contact us
+      </h1>
+      <p class="text-center">
+        Let's explore how Budibase can work for you.
+      </p>
+      <div class="mb-4 flex justify-center margin-xl m-5">
+            <Button label="Book a demo" size="large" url="/contact" variant="cta"/>
+      </div>
+    </section>
+
+    <section class="mb-8 m-16">
       <h2 class="mb-6 text-xl md:text-2xl lg:text-3xl text-secondary text-center">
         Enterprise customers
       </h2>
@@ -199,3 +286,140 @@ const customerCards = [
     </section>
   </PlatformLayout>
 </Layout>
+
+<style>
+
+.headline-features-container {
+  margin-bottom: 32px;
+  margin-top: 32px;
+}
+
+:global(.enterprise-contact) {
+  margin: 3rem auto 0;
+  max-width: 52rem;
+  width: 100%;
+}
+
+:global(.enterprise-contact__cta) {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+:global(.enterprise-contact__copy) {
+  margin: 1.5rem 0 2rem;
+  text-align: center;
+  color: rgb(var(--text));
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+:global(.enterprise-contact__form-wrap) {
+  margin: 0 auto;
+  max-width: 42rem;
+  width: 100%;
+}
+
+:global(.enterprise-contact .contact-form) {
+  margin-top: 0;
+  width: 100%;
+}
+
+:global(.enterprise-contact .contact-form__honeypot) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:global(.enterprise-contact .contact-field) {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  text-align: left;
+}
+
+:global(.enterprise-contact .contact-field + .contact-field) {
+  margin-top: 1.55rem;
+}
+
+:global(.enterprise-contact .contact-field span) {
+  color: rgb(var(--text));
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+:global(.enterprise-contact .contact-field input),
+:global(.enterprise-contact .contact-field textarea) {
+  width: 100%;
+  border: 1px solid rgb(var(--border) / 0.92);
+  border-radius: 0.55rem;
+  background: transparent;
+  color: rgb(var(--text));
+  font: inherit;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+}
+
+:global(.enterprise-contact .contact-field input) {
+  min-height: 3.1rem;
+  padding: 0 0.95rem;
+}
+
+:global(.enterprise-contact .contact-field textarea) {
+  min-height: 10.6rem;
+  resize: vertical;
+  padding: 0.9rem 0.95rem;
+}
+
+:global(.enterprise-contact .contact-field input:hover),
+:global(.enterprise-contact .contact-field textarea:hover) {
+  border-color: rgb(var(--border-strong) / 0.9);
+}
+
+:global(.enterprise-contact .contact-field input::placeholder),
+:global(.enterprise-contact .contact-field textarea::placeholder) {
+  color: rgb(var(--text-subtle));
+}
+
+:global(.enterprise-contact .contact-field input:focus-visible),
+:global(.enterprise-contact .contact-field textarea:focus-visible),
+:global(.enterprise-contact .contact-submit:focus-visible) {
+  outline: 2px solid rgb(var(--ring));
+  outline-offset: 3px;
+}
+
+:global(.enterprise-contact .contact-submit) {
+  display: block;
+  margin-top: 2.2rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(var(--text));
+  color: rgb(var(--bg));
+  min-height: 3.35rem;
+  padding: 0 1.45rem;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 150ms ease,
+    opacity 150ms ease;
+}
+
+:global(.enterprise-contact .contact-submit:hover) {
+  transform: translateY(-1px);
+  opacity: 0.94;
+}
+
+</style>

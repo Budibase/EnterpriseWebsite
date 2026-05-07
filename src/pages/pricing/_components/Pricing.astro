@@ -201,15 +201,17 @@ const faqItems: FaqItem[] = [
   {
     question: 'What are "actions"?',
     paragraphs: [
-      "Actions represent the total work your agents and automations perform.",
+      "Actions represent the total work your agents, apps and automations perform.",
       "If your agent takes an action or your workflow runs a step, that counts as an action.",
+      "If a user creates, updates or deletes a row in the Budibase DB or a SQL DB - that counts as one action.",
+      "Custom SQL queries and API requests are not included as actions."
     ],
-    bullets: ["AI agent tool calls", "Automation node executions"],
+    bullets: ["AI agent tool calls", "Automation node executions", "Save row", "Delete row"],
   },
   {
     question: "Why do you price by actions?",
     paragraphs: [
-      "Actions directly reflect the amount of useful work your AI agents are doing. This aligns pricing with real business value, not just seats or arbitrary limits.",
+      "Actions directly reflect the amount of useful work Budibase is doing. This aligns pricing with real business value, not just seats or arbitrary limits.",
     ],
   },
   {

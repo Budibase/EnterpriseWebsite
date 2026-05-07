@@ -44,14 +44,8 @@ import {
     >
       <div class="hidden items-center gap-5 whitespace-nowrap lg:flex xl:gap-7">
         <HeaderDropDown label="Product" items={productDropdownItems} />
-        <a
-          target="_self"
-          href="/ops"
-          class="text-sm nav-link transition-colors"
-          data-astro-prefetch
-        >
-          Ops
-        </a>
+        <HeaderDropDown label="Resources" items={resourcesDropdownItems} />
+        
         <a
           target="_self"
           href="/pricing"
@@ -60,28 +54,8 @@ import {
         >
           Pricing
         </a>
-        <a
-          target="_self"
-          href="/blog"
-          class="text-sm nav-link transition-colors"
-          data-astro-prefetch
-        >
-          Blog
-        </a>
-        <a
-          href="https://docs.budibase.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-sm nav-link transition-colors"
-        >
-          Docs
-        </a>
-        <a
-          href="https://discord.com/invite/budibase-733030666647765003"
-          target="_blank"
-          class="hidden text-sm nav-link transition-colors xl:inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
-          >Community</a
-        >
+        
+
       </div>
 
       <a
