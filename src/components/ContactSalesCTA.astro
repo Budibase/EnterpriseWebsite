@@ -79,11 +79,13 @@ import SectionBlock from "./SectionBlock.astro";
     width: auto;
     min-width: max-content;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
   }
 
   .mid-page-cta-action {
     display: flex;
+    align-items: center;
     width: auto;
     flex: 0 0 auto;
   }
@@ -93,6 +95,7 @@ import SectionBlock from "./SectionBlock.astro";
     width: auto !important;
     max-width: max-content;
     white-space: nowrap;
+    margin-block: 0;
   }
 
   @media (min-width: 768px) {
@@ -130,6 +133,7 @@ import SectionBlock from "./SectionBlock.astro";
     .mid-page-cta-card :global(.section-block-content) {
       min-width: 0;
       justify-content: flex-start;
+      align-items: center;
     }
   }
 </style>
