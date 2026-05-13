@@ -12,6 +12,7 @@ import AutomationTestDemo from "@components/AutomationTestDemo.astro";
 import AutomationDataFlow from "@components/AutomationDataFlow.astro";
 import AutomationLogsDemo from "@components/AutomationLogsDemo.astro";
 import AutomationLogicActionsSection from "@components/AutomationLogicActionsSection.astro";
+import ContactSalesCTA from "@components/ContactSalesCTA.astro";
 
 const { description: pageMetaDescription } = getProductPageMeta(
   Astro.url.pathname,
@@ -107,7 +108,7 @@ const pageDescription =
       </Card>
     </SectionBlock>
   </section>
-
+<ContactSalesCTA />
   <section class="mx-auto w-full max-w-7xl px-2 pb-12 pt-6 md:px-3 lg:px-0">
     <div class="flex flex-col gap-[var(--section-spacing-y)]">
       <AutomationLogicActionsSection />

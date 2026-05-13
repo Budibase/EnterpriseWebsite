@@ -1,28 +1,151 @@
 ---
 import Button from "@components/Button.astro";
-import Cards from "@components/cards/Card.astro"
+import SectionBlock from "./SectionBlock.astro";
 ---
 
-
-   <section class="mb-8 m-16">
-    <card>
-      <h1 class="mb-6 text-xl md:text-2xl lg:text-3xl text-secondary text-center">
-        Contact us
-      </h1>
-      <p class="text-center">
-        Let's explore how Budibase can work for you.
-      </p>
-        <Button
-          label="Contact sales"
-          url="/contact"
-          variant="secondary"
-          size="large"
-          class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl ml-5"
-          target="_blank"
-        />
-    </card>
-    </section>
+<section class="mid-page-cta">
+  <div class="container max-w-7xl mx-auto px-2 lg:px-0">
+    <div class="card mid-page-cta-card bg-secondary ease-in-out duration-50 rounded-md">
+      <SectionBlock
+        title="Ready to see Budibase in action?"
+        description="Reach out to our team to explore how Budibase fits into your operations."
+        align="left"
+        spacing="default"
+        class="mid-page-cta-block"
+      >
+        <div class="mid-page-cta-action">
+          <Button
+            label="Book a demo"
+            url="/contact"
+            variant="primary"
+            size="large"
+          />
+        </div>
+      </SectionBlock>
+    </div>
+  </div>
+</section>
 
 <style>
+  .mid-page-cta {
+    margin-block: 3rem;
+  }
 
+  .mid-page-cta-card {
+    position: relative;
+    width: 100%;
+    border: 1px solid var(--border);
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 1.5rem;
+  }
+
+  .mid-page-cta-card::before {
+    content: "";
+    position: absolute;
+    inset-block: 1rem;
+    left: 1rem;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--brand);
+    opacity: 0.85;
+  }
+
+  .mid-page-cta-card :global(.section-block) {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding-left: 1rem;
+  }
+
+  .mid-page-cta-card :global(.section-block-copy) {
+    flex: 1 1 auto;
+    width: auto;
+    max-width: 46rem;
+    min-width: 0;
+  }
+
+  .mid-page-cta-card :global(.section-block-description) {
+    max-width: 38rem;
+  }
+
+  .mid-page-cta-card :global(.section-block-content) {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    align-self: stretch;
+  }
+
+  .mid-page-cta-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    height: 100%;
+    flex: 0 0 auto;
+  }
+
+  .mid-page-cta-action :global(a),
+  .mid-page-cta-action :global(button) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto !important;
+    max-width: max-content;
+    white-space: nowrap;
+    margin-block: 0;
+    align-self: center;
+  }
+
+  @media (min-width: 768px) {
+    .mid-page-cta-card {
+      padding: 1.75rem 2rem;
+    }
+
+    .mid-page-cta-card::before {
+      inset-block: 1.25rem;
+      left: 1.25rem;
+    }
+
+    .mid-page-cta-card :global(.section-block) {
+      padding-left: 1.25rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .mid-page-cta-card {
+      padding: 1.25rem;
+    }
+
+    .mid-page-cta-card::before {
+      inset-block: 1.25rem;
+      left: 1.25rem;
+    }
+
+    .mid-page-cta-card :global(.section-block) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding-left: 1rem;
+    }
+
+    .mid-page-cta-card :global(.section-block-content) {
+      min-width: 0;
+      justify-content: flex-start;
+      align-self: auto;
+    }
+
+    .mid-page-cta-action {
+      height: auto;
+      justify-content: flex-start;
+    }
+  }
 </style>
