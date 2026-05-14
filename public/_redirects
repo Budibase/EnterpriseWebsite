@@ -74,4 +74,13 @@
 /blog/app-building/   /blog/category/app-building/   301
 /blog/data/           /blog/category/data/           301
 /blog/tutorials/      /blog/category/tutorials/      301
+/customers/str%C3%B6er-x/     /blog/stroer-x/ 301
 /customers/:page/     /blog/:page 301
+/resources/     /ops/ 301
+/components/     /product/apps/ 301
+/operations/     /ops/ 301
+/platform/api-integration-platform/     /product/apis/ 301
+/categories/api/     /product/connections/ 301
+/categories/auth/     /product/connections/ 301
+/categories/data/     /product/connections/ 301
+/blog/updates/v3/launchweek/     /blog/updates/v3/launchweek/day5/ 301
