@@ -1,0 +1,883 @@
+---
+import { Image } from "astro:assets";
+import CompassRoseIcon from "@assets/images/demos/app-demo/1a3e8b89f8b4dd355babb5e63a1a0d531fdbf273.svg";
+import LineSeparator from "@assets/images/demos/app-demo/6eecc9af745568dbb93585967b9fd46bf92048bf.svg";
+import TextAaIcon from "@assets/images/demos/app-demo/a55e83de9c6875ba8d05c2033e2e57bf9ebe37ee.svg";
+import RectangleDashedIcon from "@assets/images/demos/app-demo/6eda4d501581f12b87a79a2b04194f19e11aa648.svg";
+import TableIcon from "@assets/images/demos/app-demo/cb1a1d9503b8e079398c4a40c9bdc4a135625c11.svg";
+import CodeIcon from "@assets/images/demos/app-demo/a5ec71ef297b83e86a4049f8faa47cc6870536ee.svg";
+import GlobeIcon from "@assets/images/demos/app-demo/ba32e17a75ce9f17b173396f9e95f996ab9cd3a4.svg";
+import ImageIcon from "@assets/images/demos/app-demo/0a5331ed22dec851863adce7a627dc7553ed57fc.svg";
+import TextboxIcon from "@assets/images/demos/app-demo/86212d4c9941834f8ba6959bb559be522b69b4ab.svg";
+import StepsIcon from "@assets/images/demos/app-demo/459800a1e792ea7a2df8874301abf8ff27baaf21.svg";
+import ListMagnifyingGlassIcon from "@assets/images/demos/app-demo/80c5c985d88a5c0a458dbfd554b9cb1a46da5059.svg";
+import NumberCircleFiveIcon from "@assets/images/demos/app-demo/ae070055bb301fb51199cff10bb2dadf4cd5247e.svg";
+import CheckIcon from "@assets/images/demos/app-demo/663e5eb8e63262e38ae7522a1dacde9895bfddb8.svg";
+import PaperclipIcon from "@assets/images/demos/app-demo/3bd603c6169b64b0dc30ba3f4b49c521ec51613a.svg";
+import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c07d627de130d801d4.svg";
+
+interface Props {
+  backdropImage?: string;
+  backdropPaddingClass?: string;
+  class?: string;
+  appName?: string;
+  inboxRows?: RequestRow[];
+}
+
+interface RequestRow {
+  id: string;
+  request: string;
+  priority: "High" | "Medium" | "Low";
+  status: string;
+  date: string;
+  tone: "high" | "medium" | "low";
+}
+
+const defaultInboxRows: RequestRow[] = [
+  {
+    id: "IT-2041",
+    request: "Laptop setup for new marketing hire (Sarah M.)",
+    priority: "High",
+    status: "In Progress",
+    date: "Mar 5",
+    tone: "high",
+  },
+  {
+    id: "IT-2040",
+    request: "Grant HubSpot access to sales contractor",
+    priority: "Medium",
+    status: "Completed",
+    date: "Mar 4",
+    tone: "medium",
+  },
+  {
+    id: "IT-2039",
+    request: "Reset VPN access for remote employee",
+    priority: "Medium",
+    status: "Completed",
+    date: "Mar 4",
+    tone: "medium",
+  },
+  {
+    id: "IT-2038",
+    request: "Configure Slack + Google Workspace for new hire",
+    priority: "High",
+    status: "Completed",
+    date: "Mar 3",
+    tone: "high",
+  },
+  {
+    id: "IT-2037",
+    request: "Replace faulty monitor in meeting room B",
+    priority: "Low",
+    status: "In Progress",
+    date: "Mar 3",
+    tone: "low",
+  },
+];
+
+const {
+  backdropImage,
+  backdropPaddingClass = "px-6 py-6 sm:px-10 sm:py-10 lg:px-32 lg:py-12",
+  class: className = "",
+  appName = "Request inbox",
+  inboxRows = defaultInboxRows,
+} = Astro.props as Props;
+
+const id = `app-demo-${Math.random().toString(36).slice(2, 8)}`;
+const appDemoStyle = backdropImage
+  ? `--app-demo-backdrop-image: url("${backdropImage}")`
+  : undefined;
+
+const topTabs: string[] = [
+  "Home",
+  appName,
+];
+const workspaceItems: string[] = [
+  "Home",
+  appName,
+];
+const priorityTabs = [
+  { label: "All priorities", key: "all" },
+  { label: "High", key: "high" },
+  { label: "Medium", key: "medium" },
+  { label: "Low", key: "low" },
+] as const;
+
+
+
+const builderSections = [
+  {
+    items: [
+      { label: "Text", icon: TextAaIcon },
+      { label: "Container", icon: RectangleDashedIcon },
+      { label: "Table", icon: TableIcon },
+      { label: "Filter", icon: CodeIcon },
+      { label: "Button", icon: GlobeIcon },
+      { label: "Image", icon: ImageIcon },
+    ],
+  },
+  {
+    heading: "Forms",
+    items: [
+      { label: "Form", icon: TextboxIcon },
+      { label: "Form step", icon: StepsIcon },
+      { label: "Text field", icon: ListMagnifyingGlassIcon },
+      { label: "Number field", icon: NumberCircleFiveIcon },
+      { label: "Checkbox", icon: CheckIcon },
+      { label: "Attachment", icon: PaperclipIcon },
+    ],
+  },
+];
+---
+
+<div
+  id={id}
+  class:list={[
+    "app-demo demo-breakout w-full overflow-hidden",
+    className,
+  ]}
+  style={appDemoStyle}
+>
+  <div class:list={["app-demo-backdrop w-full overflow-hidden", backdropPaddingClass]}>
+    <div class="app-demo-shell w-full max-w-full overflow-hidden">
+      <section class="app-demo-screen is-active" data-app-demo-screen="inbox" aria-hidden="false">
+        <header class="app-demo-topbar">
+          <nav class="app-demo-top-tabs" aria-label="Views">
+            {
+              topTabs.map((tab, index) => (
+                <button
+                  type="button"
+                  class:list={[
+                    "app-demo-top-tab",
+                    index === 1 && "is-active",
+                  ]}
+                >
+                  {tab}
+                </button>
+              ))
+            }
+          </nav>
+          <button type="button" class="app-demo-publish">Publish changes</button>
+        </header>
+
+        <div class="app-demo-body">
+          <div class="app-demo-main-region">
+            <div class="app-demo-main-frame app-demo-main-frame-inbox">
+
+              <main class="app-demo-workspace-content">
+                <div class="app-demo-inbox-heading-wrap">
+                  <h3 class="app-demo-inbox-title">{appName}</h3>
+                </div>
+
+                <div class="app-demo-priority-tabs" role="tablist" aria-label="Priority filters">
+                  {
+                    priorityTabs.map((tab, index) => (
+                      <button
+                        type="button"
+                        role="tab"
+                        class:list={["app-demo-priority-tab", index === 0 && "is-active"]}
+                        aria-selected={index === 0 ? "true" : "false"}
+                      >
+                        {tab.label}
+                      </button>
+                    ))
+                  }
+                </div>
+
+                <div class="app-demo-table-wrap">
+                  <div class="app-demo-table">
+                    <div class="app-demo-table-header">
+                      <span>Id</span>
+                      <span>Request</span>
+                      <span class="app-demo-priority-col-head">Priority</span>
+                      <span>Status</span>
+                    </div>
+
+                    {
+                      inboxRows.map((row) => (
+                        <div class="app-demo-table-item" data-app-demo-priority={row.tone}>
+                          <Image src={LineSeparator} alt="" class="app-demo-row-separator" aria-hidden="true" />
+                          <div class="app-demo-table-row">
+                            <span class="app-demo-id-cell">{row.id}</span>
+                            <span class="app-demo-request-cell">{row.request}</span>
+                            <span class:list={["app-demo-priority-pill", `is-${row.tone}`]}>{row.priority}</span>
+                            <span class="app-demo-status-cell">{row.status}</span>
+                          </div>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<style>
+  ..app-demo {
+  color-scheme: light;
+  --app-demo-bg-dark: var(--grey-900);
+  --app-demo-bg-darker: var(--grey-950);
+  --app-demo-border: var(--grey-700);
+  --app-demo-border-soft: var(--grey-600);
+  --app-demo-workspace-bg: var(--grey-200);
+  --app-demo-surface: var(--grey-50);
+  --app-demo-surface-strong: var(--grey-50);
+  --app-demo-slate-dark: var(--grey-900);
+  --app-demo-slate-light: var(--grey-600);
+  --app-demo-grey-900: var(--grey-100);
+  --app-demo-grey-700: var(--grey-400);
+  --app-demo-grey-600: var(--grey-500);
+  --app-demo-grey-400: var(--grey-600);
+  --app-demo-cloud-light: var(--grey-300);
+  --app-demo-nav-bg: var(--color-blue-900);
+  --app-demo-nav-active: var(--color-blue-800);
+  --app-demo-pill-high: var(--red-500);
+  --app-demo-pill-medium: var(--orange-500);
+  --app-demo-pill-low: var(--blue-400);
+  --app-demo-clay-darkest: var(--color-orange-700);
+  --app-demo-submit: var(--blue-600);
+  --app-demo-backdrop-image: none;
+  --bg-1: var(--grey-200);
+  font-family: var(--font-sans);
+}
+
+.app-demo-backdrop {
+  border-radius: 8px;
+  background-image: var(--app-demo-backdrop-image);
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.app-demo-shell {
+  display: grid;
+  grid-template-areas: "stack";
+  border: 0.5px solid var(--app-demo-border);
+  border-radius: 6px;
+  background: var(--app-demo-bg-dark);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--grey-900) 25%, transparent);
+}
+
+.app-demo-screen {
+  grid-area: stack;
+  display: none;
+  flex-direction: column;
+  min-height: 708px;
+}
+
+.app-demo-screen.is-active {
+  display: flex;
+}
+
+.app-demo-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  border-bottom: 0.5px solid var(--app-demo-border);
+  padding: 6px 12px;
+  background: var(--app-demo-bg-dark);
+}
+
+.app-demo-top-tabs {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.app-demo-top-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.app-demo-top-tab {
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--app-demo-grey-700);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  padding: 4px 8px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.app-demo-top-tab.is-active {
+  border-radius: 6px;
+  background: var(--app-demo-border);
+  color: var(--grey-50);
+}
+
+.app-demo-publish {
+  margin-left: auto;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 100px;
+  background: var(--app-demo-grey-900);
+  color: var(--grey-950);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  padding: 7px 15px 8px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.app-demo-body {
+  display: flex;
+  min-height: 668px;
+  background: var(--app-demo-workspace-bg);
+}
+
+.app-demo-main-region {
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  background: var(--app-demo-bg-dark);
+}
+
+.app-demo-main-frame {
+  display: flex;
+  height: 100%;
+  border: 1px solid var(--app-demo-border-soft);
+  border-radius: 4px;
+  background: var(--app-demo-workspace-bg);
+  overflow: hidden;
+}
+
+.app-demo-main-frame-inbox {
+  gap: 0;
+}
+
+.app-demo-workspace-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+  background: var(--app-demo-nav-bg);
+  padding: 24px 16px;
+}
+
+.app-demo-workspace-brand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.app-demo-workspace-brand-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.app-demo-workspace-brand-name {
+  color: var(--grey-50);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.app-demo-workspace-link {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--grey-50);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: left;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+
+.app-demo-workspace-link.is-active {
+  background: var(--app-demo-nav-active);
+  color: var(--grey-50);
+}
+
+.app-demo-workspace-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+.app-demo-inbox-heading-wrap {
+  padding: 12px 0;
+}
+
+.app-demo-inbox-title {
+  margin: 0;
+  color: var(--app-demo-slate-dark) !important;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.app-demo-priority-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.app-demo-priority-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  border-radius: 12px;
+  color: var(--app-demo-grey-400);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  padding: 4px 8px;
+}
+
+.app-demo-priority-tab.is-active {
+  border-radius: 4px;
+  background: var(--app-demo-nav-bg);
+  color: var(--grey-50);
+}
+
+.app-demo-table-wrap {
+  width: 100%;
+}
+
+.app-demo-table {
+  border: 1px solid var(--app-demo-cloud-light);
+  border-radius: 6px;
+  background: var(--app-demo-surface);
+  overflow: hidden;
+}
+
+.app-demo-table-header,
+.app-demo-table-row {
+  display: grid;
+  grid-template-columns: 64px minmax(220px, 1fr) 74px 76px 39px;
+  align-items: center;
+  column-gap: 20px;
+  min-height: 40px;
+  padding: 0 20px;
+}
+
+.app-demo-table-header {
+  color: var(--app-demo-grey-700);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.app-demo-priority-col-head {
+  text-align: center;
+}
+
+.app-demo-row-separator {
+  display: block;
+  width: 100%;
+  height: 1px;
+}
+
+.app-demo-id-cell,
+.app-demo-request-cell,
+.app-demo-status-cell {
+  color: var(--app-demo-grey-400);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.app-demo-status-cell {
+  color: var(--app-demo-grey-600);
+}
+
+.app-demo-priority-pill {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 74px;
+  border-radius: 13px;
+  color: var(--app-demo-grey-900);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 17px;
+  padding: 2px;
+}
+
+.app-demo-priority-pill.is-high {
+  background: var(--app-demo-pill-high);
+}
+
+.app-demo-priority-pill.is-medium {
+  background: var(--app-demo-pill-medium);
+}
+
+.app-demo-priority-pill.is-low {
+  background: var(--app-demo-pill-low);
+}
+
+.app-demo-builder {
+  width: 260px;
+  flex-shrink: 0;
+  border-left: 0.5px solid var(--app-demo-border);
+  background: var(--app-demo-bg-dark);
+  padding: 12px;
+}
+
+.app-demo-builder-title {
+  color: var(--app-demo-grey-900);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+}
+
+.app-demo-builder-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 0;
+  max-height: 760px;
+  max-height: min(760px, calc(100dvh - 180px));
+  overflow-y: auto;
+}
+
+.app-demo-builder-section-heading {
+  margin: 0;
+  color: var(--app-demo-grey-700);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  padding-top: 2px;
+}
+
+.app-demo-builder-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--app-demo-border);
+  border-radius: 6px;
+  background: var(--app-demo-bg-darker);
+  min-width: 200px;
+  padding: 8px 20px 8px 12px;
+}
+
+.app-demo-builder-item-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--app-demo-clay-darkest);
+}
+
+.app-demo-builder-item-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.app-demo-builder-item-label {
+  color: var(--grey-50);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.app-demo-support-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px;
+  padding: 12px;
+  background: var(--app-demo-workspace-bg);
+}
+
+.app-demo-support-card {
+  width: 500px;
+  border: 1px solid var(--app-demo-workspace-bg);
+  border-radius: 8px;
+  background: var(--app-demo-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+}
+
+.app-demo-support-title {
+  margin: 0;
+  color: var(--app-demo-slate-dark);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.app-demo-support-description {
+  margin: -6px 0 0;
+  color: var(--app-demo-grey-600);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.app-demo-support-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.app-demo-support-field-label {
+  color: var(--app-demo-grey-600);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.app-demo-support-select {
+  height: 36px;
+  border: 1px solid var(--app-demo-cloud-light);
+  border-radius: 4px;
+  background: var(--app-demo-surface-strong);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+
+.app-demo-support-select span,
+.app-demo-support-textarea span {
+  color: var(--app-demo-slate-dark);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.app-demo-support-caret {
+  width: 16px;
+  height: 16px;
+}
+
+.app-demo-support-textarea {
+  height: 36px;
+  border: 1px solid var(--app-demo-cloud-light);
+  border-radius: 4px;
+  background: var(--app-demo-surface-strong);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.app-demo-support-submit {
+  width: fit-content;
+  border: 0;
+  border-radius: 18px;
+  background: var(--app-demo-submit);
+  color: var(--grey-50);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 17px;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.app-demo-top-tab:focus-visible,
+.app-demo-publish:focus-visible,
+.app-demo-workspace-link:focus-visible,
+.app-demo-support-submit:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--blue-500) 45%, transparent);
+}
+
+@media (max-width: 1280px) {
+  .app-demo-builder {
+    width: 260px;
+  }
+
+  .app-demo-support-card {
+    width: min(500px, 100%);
+  }
+}
+
+@media (max-width: 1100px) {
+  .app-demo-main-frame-inbox {
+    gap: 0;
+  }
+
+  .app-demo-workspace-nav {
+    width: 200px;
+  }
+
+  .app-demo-workspace-content {
+    padding: 24px;
+  }
+
+  .app-demo-table {
+    min-width: 760px;
+  }
+
+  .app-demo-table-wrap {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .app-demo-screen {
+    min-height: 0;
+  }
+
+  .app-demo-body {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .app-demo-builder {
+    width: 100%;
+    border-left: 0;
+    border-top: 0.5px solid var(--app-demo-border);
+  }
+
+  .app-demo-main-region {
+    padding: 10px;
+  }
+
+  .app-demo-main-frame-inbox {
+    flex-direction: column;
+  }
+
+  .app-demo-workspace-nav {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    padding: 16px;
+  }
+
+  .app-demo-workspace-brand {
+    grid-column: 1 / -1;
+    margin-bottom: 2px;
+  }
+
+  .app-demo-workspace-content {
+    padding: 20px;
+  }
+
+  .app-demo-support-main {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-demo-topbar {
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 8px;
+    padding: 6px 8px;
+  }
+
+  .app-demo-top-tabs {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    gap: 6px;
+    overflow: visible;
+  }
+
+  .app-demo-top-tab {
+    font-size: 12px;
+    white-space: normal;
+  }
+
+  .app-demo-publish {
+    margin-left: 0;
+    order: -1;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 7px 12px;
+  }
+
+  .app-demo-main-region {
+    padding: 8px;
+  }
+
+  .app-demo-workspace-nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-demo-workspace-content {
+    padding: 12px;
+  }
+
+  .app-demo-table {
+    min-width: 0;
+  }
+
+  .app-demo-table-header,
+  .app-demo-table-row {
+    grid-template-columns: 52px minmax(0, 1fr) 64px 72px;
+    column-gap: 8px;
+    padding: 0 10px;
+  }
+
+  .app-demo-table-header > :last-child,
+  .app-demo-table-row > :last-child {
+    display: none;
+  }
+
+  .app-demo-request-cell,
+  .app-demo-status-cell,
+  .app-demo-id-cell {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .app-demo-request-cell {
+    white-space: nowrap;
+  }
+
+  .app-demo-priority-pill {
+    width: 64px;
+    font-size: 12px;
+  }
+
+  .app-demo-builder-item {
+    min-width: 0;
+  }
+
+  .app-demo-support-card {
+    gap: 16px;
+    padding: 24px 20px;
+  }
+
+  .app-demo-support-title {
+    font-size: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-demo-screen {
+    transition: none;
+    transform: none;
+  }
+}
+
+
+ 
+</style>

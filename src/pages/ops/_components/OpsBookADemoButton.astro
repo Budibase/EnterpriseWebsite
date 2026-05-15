@@ -1,0 +1,47 @@
+---
+import {
+  getButtonClasses,
+  getButtonRel,
+} from "../../../lib/button-classes.js";
+
+type Variant = "primary" | "secondary" | "cta" | "large";
+type Size = "small" | "medium" | "large" | "sm";
+
+interface Props {
+  label?: string;
+  variant?: Variant;
+  class?: string;
+  ariaLabel?: string;
+  size?: Size;
+  target?: string;
+  rel?: string;
+  opSlug: string;
+}
+
+const {
+  label = "Book a demo",
+  variant = "primary",
+  class: className = "",
+  ariaLabel,
+  size = "medium",
+  target,
+  rel,
+} = Astro.props as Props;
+
+const classes = getButtonClasses({ variant, size, className });
+const computedRel = getButtonRel({ target, rel });
+const url = `/contact?op=${Astro.props.opSlug}`;
+
+---
+
+<a
+  href={url}
+  class={classes}
+  aria-label={ariaLabel}
+  role="button"
+  target={target}
+  rel={computedRel}
+  >
+  {label}
+</a>  
+
