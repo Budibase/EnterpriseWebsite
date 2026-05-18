@@ -45,18 +45,12 @@ export const productDropdownItems: NavDropdownItem[] = [
 ];
 
 export const resourcesDropdownItems: NavDropdownItem[] = [
-  {
+    {
     href: "https://docs.budibase.com",
     label: "Docs",
     description: "Technical documentation.",
     target: "_blank",
     rel: "noopener noreferrer",
-  },
-  {
-    href: "/enterprise/",
-    label: "Enterprise",
-    description: "How Budibase meets the needs of large organizations.",
-    prefetch: true,
   },
   {
     href: "/customers/",
@@ -66,16 +60,25 @@ export const resourcesDropdownItems: NavDropdownItem[] = [
   },
   {
     href: "/ops/",
-    label: "Ops",
+    label: "Use cases",
     description: "Common use cases.",
     prefetch: true,
   },
-  {
+   {
     href: "/blog/",
     label: "Blog",
     description: "All resources in one timeline.",
     prefetch: true,
   },
+  {
+    href: "/enterprise/",
+    label: "Enterprise",
+    description: "How Budibase meets the needs of large organizations.",
+    prefetch: true,
+  },
+  
+
+ 
   {
     href: "/changelog/",
     label: "Changelog",
