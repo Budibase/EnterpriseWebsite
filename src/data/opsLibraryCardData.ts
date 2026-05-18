@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 export const opsLibraryDepartments = [
   { id: "all", label: "All" },
   { id: "it", label: "IT" },
+  { id: "Rev Ops", label: "Rev Ops" },
   { id: "operations", label: "Operations" },
   { id: "company-wide", label: "Company-wide" },
   { id: "hr", label: "HR" },
@@ -39,6 +40,7 @@ const mapRoleToDepartmentId = (role: string): AgentCardDepartmentId => {
   if (normalizedRole.includes("sales")) return "sales";
   if (normalizedRole.includes("hr")) return "hr";
   if (normalizedRole.includes("internal")) return "internal-tools";
+  if (normalizedRole.includes("rev ops")) return "Rev Ops";
   if (
     normalizedRole.includes("it") ||
     normalizedRole.includes("security") ||

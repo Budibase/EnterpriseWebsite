@@ -1,0 +1,334 @@
+---
+slug: deal-desk-approval
+title: Deal Desk Approval
+sidebar:
+  - id: overview
+    label: Overview
+  - id: data
+    label: Data
+  - id: screens
+    label: Screens
+  - id: agents
+    label: Agents
+  - id: automations
+    label: Automations
+role: Rev Ops
+outcome: Collect deal desk requests, check commercial policy, and route non-standard terms for approval.
+setupTime: "~45 min"
+difficulty: Medium
+promptCardStyle: snippet
+tags:
+  - Apps
+  - Agents
+  - Automations
+  - Chat
+  - Human-in-the-loop
+aiAssists:
+  - Request triage
+  - Policy lookup
+  - Auto-resolution checks
+  - Escalation summaries
+humansDecide:
+  - Approval exceptions
+  - Risky or ambiguous requests
+steps:
+  - title: Request
+    description: A requester submits a deal desk approval through Slack, Teams, or the Deal Desk Request Form, creating a tracked request row.
+    humanDecision: true
+  - title: Agent Triage
+    description: The agent confirms the request type, retrieves context from CRM opportunity data and commercial policy, checks the relevant policy source, and asks for any missing details in chat.
+    humanDecision: false
+  - title: Agent Resolution
+    description: Where policy permits, the agent completes complete requests that fit standard pricing, terms, and approval thresholds and records the outcome without waiting for manual handling.
+    humanDecision: false
+  - title: Escalation
+    description: The agent escalates non-standard terms, legal clauses, discount thresholds, or missing opportunity data to the responsible owner with a decision summary and supporting context.
+    humanDecision: false
+  - title: Human Resolution
+    description: An approver reviews the escalation in chat or the Deal Desk Review Queue, then approves, rejects, or returns it for more information.
+    humanDecision: true
+integrations:
+  - Slack
+  - Teams
+  - HubSpot
+  - Salesforce
+  - Confluence
+  - SMTP
+faq:
+  - question: Can the agent complete requests without approval?
+    answer: Yes. It can auto-resolve complete requests that fit standard pricing, terms, and approval thresholds when the policy source allows it and the data is complete.
+  - question: When does a human get involved?
+    answer: Human review is used for non-standard terms, legal clauses, discount thresholds, or missing opportunity data.
+  - question: Where is the audit trail kept?
+    answer: The request table stores current state, while the Deal Desk Approval Audit Log records each decision, message, tool action, and handoff.
+  - question: Can this run from chat?
+    answer: Yes. The operation is designed for Slack or Microsoft Teams, with a Budibase app used when a queue or structured form is helpful.
+heroPrompt: |
+  # Agent role
+  You are the Deal Desk Approval agent. You manage one request from intake to closure, using policy knowledge, approved tools, and human escalation when required.
+
+  # Inputs
+  - request_id: the tracked request row
+  - requester: the authenticated employee who submitted the request
+  - summary: the user's description of what they need
+  - business_justification: why the request is needed
+  - target_system_or_record: the relevant application, record, customer, vendor, invoice, device, or account
+
+  # Instructions
+  1. Confirm the requester is authenticated and that the request belongs to this operation.
+  2. Gather missing details in Slack or Teams before taking action. Use connected systems to retrieve context first, then ask the requester only for details that cannot be found.
+  3. Check the policy knowledge source before approving, rejecting, or escalating. Do not invent policy rules.
+  4. Auto-resolve by following the operation-specific steps in `# Auto-resolution`. Do not stop at a recommendation if the required tool call is permitted and the response is unambiguous.
+  5. Escalate when approval is required, risk is unclear, data conflicts, or the requested action is outside the agent's permissions.
+  6. Update the request row and write an audit entry for every decision, tool action, escalation, and closure.
+  7. Reply to the requester with a concise status update and next step.
+
+  # Tool use
+  - Use {{ budibase.Deal Desk Approval Requests.get_row }} and {{ budibase.Deal Desk Approval Requests.update_row }} to maintain request state.
+  - Use {{ budibase.Deal Desk Approval Audit Log.create_row }} to log decisions and actions.
+  - Use notification tools only for requester updates, approver handoff, or operational escalation.
+
+  # Auto-resolution
+  - Use {{ salesforce.get_opportunity }} or {{ hubSpot.get_deal }} to retrieve amount, stage, products, discount, term length, and close date.
+  - Compare the request against the deal desk policy for standard pricing, payment terms, legal terms, and approval thresholds.
+  - If the deal meets standard policy, use {{ salesforce.update_opportunity_approval_status }} or {{ hubSpot.update_deal_stage }} to mark the request approved.
+  - Use {{ smtp.send_email }} to notify the requester and account owner of the decision when email notification is required.
+  - Escalate legal terms, non-standard pricing, missing CRM data, or approval-threshold breaches instead of approving.
+
+  # Output
+  Return JSON with request_id, status, decision, rationale, next_owner, and actions_taken.
+lastUpdated: 2026-05-18
+---
+
+import OpsLibraryAppDemo from "../../pages/ops/_components/OpsLibraryAppDemo.astro";
+import { Image } from "astro:assets";
+import SlackLogo from "@assets/logos/Slack.svg";
+import TeamsLogo from "@assets/logos/microsoft-teams.png";
+import HubspotLogo from "@assets/logos/hubspot.svg";
+import ConfluenceLogo from "@assets/logos/confluence.svg";
+import SmtpLogo from "@assets/logos/smtp.svg";
+
+<h2 id="overview">Overview</h2>
+
+Collect deal desk requests, check commercial policy, and route non-standard terms for approval. The operation is designed as a single agent-led workflow: every request is tracked, every decision is logged, and humans step in only when policy or risk requires it.
+
+#### Request
+
+A requester submits a deal desk approval through Slack, Teams, or the Deal Desk Request Form, creating a tracked request row.
+
+#### Agent Triage
+
+The agent confirms the request type, retrieves context from CRM opportunity data and commercial policy, checks the relevant policy source, and asks for any missing details in chat.
+
+#### Agent Resolution
+
+Where policy permits, the agent completes complete requests that fit standard pricing, terms, and approval thresholds and records the outcome without waiting for manual handling.
+
+#### Escalation
+
+The agent escalates non-standard terms, legal clauses, discount thresholds, or missing opportunity data to the responsible owner with a decision summary and supporting context.
+
+#### Human Resolution
+
+An approver reviews the escalation in chat or the Deal Desk Review Queue, then approves, rejects, or returns it for more information.
+
+<h2 id="agents">Agents</h2>
+
+The Deal Desk Approval agent manages intake, policy checks, tool actions, escalation, requester updates, and closure for this operation.
+
+```text
+# Agent role
+You are the Deal Desk Approval agent. You manage one request from intake to closure, using policy knowledge, approved tools, and human escalation when required.
+
+# Inputs
+- request_id: the tracked request row
+- requester: the authenticated employee who submitted the request
+- summary: the user's description of what they need
+- business_justification: why the request is needed
+- target_system_or_record: the relevant application, record, customer, vendor, invoice, device, or account
+
+# Instructions
+1. Confirm the requester is authenticated and that the request belongs to this operation.
+2. Gather missing details in Slack or Teams before taking action. Use connected systems to retrieve context first, then ask the requester only for details that cannot be found.
+3. Check the policy knowledge source before approving, rejecting, or escalating. Do not invent policy rules.
+4. Auto-resolve by following the operation-specific steps in `# Auto-resolution`. Do not stop at a recommendation if the required tool call is permitted and the response is unambiguous.
+5. Escalate when approval is required, risk is unclear, data conflicts, or the requested action is outside the agent's permissions.
+6. Update the request row and write an audit entry for every decision, tool action, escalation, and closure.
+7. Reply to the requester with a concise status update and next step.
+
+# Tool use
+- Use {{ budibase.Deal Desk Approval Requests.get_row }} and {{ budibase.Deal Desk Approval Requests.update_row }} to maintain request state.
+- Use {{ budibase.Deal Desk Approval Audit Log.create_row }} to log decisions and actions.
+- Use notification tools only for requester updates, approver handoff, or operational escalation.
+
+# Auto-resolution
+- Use {{ salesforce.get_opportunity }} or {{ hubSpot.get_deal }} to retrieve amount, stage, products, discount, term length, and close date.
+- Compare the request against the deal desk policy for standard pricing, payment terms, legal terms, and approval thresholds.
+- If the deal meets standard policy, use {{ salesforce.update_opportunity_approval_status }} or {{ hubSpot.update_deal_stage }} to mark the request approved.
+- Use {{ smtp.send_email }} to notify the requester and account owner of the decision when email notification is required.
+- Escalate legal terms, non-standard pricing, missing CRM data, or approval-threshold breaches instead of approving.
+
+# Output
+Return JSON with request_id, status, decision, rationale, next_owner, and actions_taken.
+```
+
+<h2 id="data">Data</h2>
+
+### Tables
+
+**Deal Desk Approval Requests**: Stores the request, requester, target record, status, current owner, decision, and closure details.
+
+- `request_id` : Text - Unique request identifier.
+- `requester` : User - Authenticated employee who submitted the request.
+- `summary` : Long Form Text - Short description of the request.
+- `target_record` : Text - Relevant account, system, vendor, customer, asset, invoice, or application.
+- `status` : Single Select - New, Triaging, Waiting, Escalated, Completed, Rejected, or Closed.
+- `priority` : Single Select - Low, Medium, or High.
+- `decision` : Single Select - Approved, Rejected, Escalated, or Cancelled.
+- `rationale` : Long Form Text - Agent or approver explanation.
+- `created_at` : Date - Request creation timestamp.
+- `closed_at` : Date - Completion timestamp, if closed.
+
+```csv
+request_id,requester,summary,target_record,status,priority,decision,rationale,created_at,closed_at
+DD-1048,emma.clarke@example.com,"Please process this deal desk approval.","Example target",Escalated,High,Escalated,"Requires owner approval.",2026-05-18T09:15:00.000Z,
+```
+
+**Deal Desk Approval Audit Log**: Records agent decisions, tool calls, escalations, notifications, and human actions.
+
+- `event_id` : Text - Unique audit event identifier.
+- `request_id` : Text - Related request identifier.
+- `actor` : Text - Agent, requester, approver, or integration name.
+- `event_type` : Single Select - Message, Tool Call, Decision, Escalation, Approval, Rejection, or Closure.
+- `details` : JSON - Structured event details.
+- `created_at` : Date - Event timestamp.
+
+```csv
+event_id,request_id,actor,event_type,details,created_at
+EVT-2048,DD-1048,Deal Desk Approval Agent,Escalation,"{""reason"":""Policy requires owner review""}",2026-05-18T09:18:00.000Z
+```
+
+### Connections
+
+<div class="flex flex-row justify-center gap-4 items-center content-around w-full">
+  <Image src={SlackLogo} alt="Slack" class="w-10 h-10" />
+  <Image src={TeamsLogo} alt="Teams" class="w-10 h-10" />
+  <Image src={HubspotLogo} alt="HubSpot" class="w-10 h-10" />
+  <Image src={ConfluenceLogo} alt="Confluence" class="w-10 h-10" />
+  <Image src={SmtpLogo} alt="SMTP" class="w-10 h-10" />
+</div>
+
+**Slack**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Teams**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**HubSpot**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Salesforce**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Confluence**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**SMTP**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+
+### Adding Knowledge
+
+The agent uses Confluence or SharePoint as a knowledge source when policy guidance, approval thresholds, ownership rules, or standard operating procedures are needed. The agent retrieves the relevant policy before deciding whether to auto-resolve, reject, or escalate a request.
+
+<h2 id="screens">Screens</h2>
+
+<OpsLibraryAppDemo
+  appName="Deal Desk Approval"
+  inboxRows={[
+    {
+      id: "DD-1048",
+      request: "Deal Desk Approval for Emma Clarke",
+      priority: "High",
+      status: "Needs Review",
+      date: "May 18",
+      tone: "high",
+    },
+    {
+      id: "DD-1047",
+      request: "Policy check completed for Northstar account",
+      priority: "Medium",
+      status: "In Progress",
+      date: "May 18",
+      tone: "medium",
+    },
+    {
+      id: "DD-1046",
+      request: "Standard request from Daniel Reed",
+      priority: "Low",
+      status: "Completed",
+      date: "May 17",
+      tone: "low",
+    },
+    {
+      id: "DD-1045",
+      request: "Exception raised by Revenue Ops manager",
+      priority: "High",
+      status: "Escalated",
+      date: "May 17",
+      tone: "high",
+    },
+    {
+      id: "DD-1044",
+      request: "Missing details requested from Priya Shah",
+      priority: "Medium",
+      status: "Waiting",
+      date: "May 16",
+      tone: "medium",
+    },
+    {
+      id: "DD-1043",
+      request: "Auto-resolved after policy lookup",
+      priority: "Low",
+      status: "Completed",
+      date: "May 16",
+      tone: "low",
+    },
+    {
+      id: "DD-1042",
+      request: "Approval reminder sent to owner",
+      priority: "Medium",
+      status: "Waiting",
+      date: "May 15",
+      tone: "medium",
+    },
+    {
+      id: "DD-1041",
+      request: "Duplicate request closed by agent",
+      priority: "Low",
+      status: "Closed",
+      date: "May 15",
+      tone: "low",
+    },
+    {
+      id: "DD-1040",
+      request: "High-priority request from field team",
+      priority: "High",
+      status: "In Progress",
+      date: "May 14",
+      tone: "high",
+    },
+    {
+      id: "DD-1039",
+      request: "Audit log updated for completed request",
+      priority: "Low",
+      status: "Completed",
+      date: "May 14",
+      tone: "low",
+    },
+  ]}
+/>
+
+**Deal Desk Request Form**: A structured request screen for employees who need to provide required fields, attachments, or target record details that are awkward to collect in chat.
+
+**Deal Desk Review Queue**: A queue for approvers and operations owners to review escalated requests, see the agent's rationale, and record a final decision.
+
+**Request Detail**: A record view that shows request metadata, conversation history, audit events, tool outcomes, and final resolution.
+
+<h2 id="automations">Automations</h2>
+
+**Create Request Record**: On Create Row - Sets the initial status, priority, timestamps, and default owner when a new request is submitted.
+
+**Invoke Deal Desk Approval Agent**: On Create Row - Sends the request context to the agent for triage and policy evaluation.
+
+**Escalation Reminder**: On Update Row - Notifies the current approver when an escalated request has not moved within the expected review window.
+
+**Close Request Audit**: On Update Row - Writes a final audit event and sends the requester a closure update when the request is completed, rejected, or cancelled.
