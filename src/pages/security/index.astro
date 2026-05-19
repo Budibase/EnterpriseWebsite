@@ -1,0 +1,119 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import SectionBlock from "@components/SectionBlock.astro";
+import SecurityConnections from "../_components/landing-page/SecurityConnections.astro";
+import SecurityCloud from "../_components/landing-page/SecurityCloud.astro";
+import SecuritySelfHost from "../_components/landing-page/SecuritySelfHost.astro"
+import SecurityInThePlatform from "../_components/landing-page/SecurityInThePlatform.astro";
+import SecurityBudibaseOrg from "../_components/landing-page/SecurityBudibaseOrg.astro";
+import CTA from "@components/CTA.astro"
+import ContactSalesCTA from "@components/ContactSalesCTA.astro";
+import Customers from "../_components/landing-page/Customers.astro";
+
+const pageTitle = "Build internal tools\nin minutes";
+const pageDescription =
+  "Budibase is fully optimized for highly regulated organizations. Transform internal operations without compromising on security, governance, and digital sovereignty.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="security-hero">
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
+      <div class="security-hero-grid">
+        <div class="security-hero-copy max-w-xl">
+          <TitleBlock
+            variant="hero"
+            titleColorMode="split-primary-secondary"
+            titleLines={[
+              { text: "The AI workflow toolkit" },
+              { text: "for security-first teams" },
+            ]}
+            titleClass="mb-4 w-full leading-[0.9]! tracking-[-0.02em]!"
+          />
+          <p class="hero-description-small mx-auto max-w-xl text-base md:!text-xl !mb-4">
+            {pageDescription}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
+      <div class="security-hero-grid">
+        <SecurityConnections />
+      </div>
+    </div>
+
+        <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-8">
+      <div class="security-hero-grid">
+        <Customers />
+      </div>
+    </div>
+ 
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-8">
+      <div class="security-hero-grid">
+        <SecurityInThePlatform />
+      </div>
+    </div>
+
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-24">
+      <div class="security-hero-grid">
+        <SecurityCloud />
+      </div>
+    </div>
+
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-16">
+      <div class="security-hero-grid">
+        <SecuritySelfHost />
+      </div>
+    </div>
+
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-8">
+      <ContactSalesCTA />
+    </div>
+
+        <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
+      <div class="security-hero-grid">
+        <SecurityBudibaseOrg />
+      </div>
+    </div>
+
+    <CTA />
+
+</section>
+<style>
+  .security-hero {
+    background: var(--bg-1);
+    padding-top: max(calc(var(--site-nav-height) + 1.2rem), 4.8rem);
+    padding-bottom: 3rem;
+  }
+
+    :global(#site-nav.nav-shell) {
+    background-color: var(--bg-1) !important;
+  }
+
+  .security-hero-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .security-hero-cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .security-hero :global(.hero-title-small) {
+    font-size: 54px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 767px) {
+    .security-hero {
+      padding-bottom: 2rem;
+    }
+  }
+  </style>
