@@ -217,15 +217,15 @@ EVT-2048,IT-1048,Shared Mailbox Access Request Agent,Escalation,"{""reason"":""P
   <Image src={SmtpLogo} alt="SMTP" class="w-10 h-10" />
 </div>
 
-**Slack**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Slack**: Receives shared mailbox access requests, collects the mailbox name and requested permission level, and notifies the requester when access changes are complete.
 
-**Teams**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Teams**: Provides Teams-based request intake and approval prompts for mailbox owners or IT reviewers.
 
-**Microsoft Graph API**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Microsoft Graph API**: Looks up mailbox ownership and applies approved mailbox permission changes in Microsoft 365.
 
-**Sharepoint**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Sharepoint**: Stores mailbox ownership guidance, access policy, and approval records used to validate the request.
 
-**SMTP**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**SMTP**: Sends email confirmations to the requester and mailbox owner after approval, rejection, or permission updates.
 
 ### Adding Knowledge
 

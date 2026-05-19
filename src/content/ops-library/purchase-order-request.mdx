@@ -220,17 +220,17 @@ EVT-2048,PO-1048,Purchase Order Request Agent,Escalation,"{""reason"":""Policy r
   <Image src={SmtpLogo} alt="SMTP" class="w-10 h-10" />
 </div>
 
-**Slack**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Slack**: Collects purchase order requests from employees, follows up for budget or vendor details, and posts updates when the PO is created or escalated.
 
-**Teams**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Teams**: Provides Microsoft Teams intake and approval notifications for requesters, budget owners, and procurement reviewers.
 
-**Sage**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Sage**: Checks vendor and budget information and creates or updates the purchase order record once the request is approved.
 
-**PostgreSQL**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**PostgreSQL**: Stores the PO request workflow data, validation outcomes, current owner, and audit history used by the Budibase app.
 
-**Sharepoint**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Sharepoint**: Holds procurement policy, budget guidance, vendor documents, and approval evidence linked to the request.
 
-**SMTP**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**SMTP**: Sends PO confirmations, approval requests, and supplier-facing follow-up emails when required.
 
 ### Adding Knowledge
 

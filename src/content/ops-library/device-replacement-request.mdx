@@ -217,15 +217,15 @@ EVT-2048,IT-1048,Device Replacement Request Agent,Escalation,"{""reason"":""Poli
   <Image src={SmtpLogo} alt="SMTP" class="w-10 h-10" />
 </div>
 
-**Slack**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Slack**: Receives device replacement requests from employees, gathers missing details such as damage, urgency, and shipping location, and posts fulfilment updates.
 
-**Teams**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Teams**: Supports Microsoft Teams-based intake and keeps managers or IT fulfilment contacts informed when a replacement needs approval or dispatch.
 
-**Jira**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Jira**: Creates the IT fulfilment ticket, tracks replacement approval, assignment, procurement, shipping, and closure tasks.
 
-**PostgreSQL**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**PostgreSQL**: Stores the replacement request record, device eligibility checks, decision history, and audit events used by the Budibase app.
 
-**SMTP**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**SMTP**: Sends email confirmations, manager approval requests, and delivery or collection instructions when chat is not enough.
 
 ### Adding Knowledge
 

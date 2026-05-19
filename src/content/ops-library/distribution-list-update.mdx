@@ -217,15 +217,15 @@ EVT-2048,IT-1048,Distribution List Update Agent,Escalation,"{""reason"":""Policy
   <Image src={SmtpLogo} alt="SMTP" class="w-10 h-10" />
 </div>
 
-**Slack**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Slack**: Collects distribution list membership change requests and keeps requesters updated while owner approval or policy checks are pending.
 
-**Teams**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Teams**: Handles Teams-based submissions and prompts list owners for approval when membership changes need review.
 
-**Microsoft Graph API**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Microsoft Graph API**: Reads current distribution list membership and applies approved add or remove actions in Microsoft 365.
 
-**Sharepoint**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**Sharepoint**: Provides list ownership records, membership policy, and approval evidence for restricted or sensitive groups.
 
-**SMTP**: Used to receive requests, retrieve context, apply updates, notify stakeholders, or maintain records for this operation.
+**SMTP**: Emails request outcomes to the requester, affected user, and list owner when the change is completed or rejected.
 
 ### Adding Knowledge
 
