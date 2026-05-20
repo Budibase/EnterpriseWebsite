@@ -197,6 +197,29 @@ const comparisonRows: Array<{
   },
 ];
 
+const openSourcePlanFeatures = [
+  "1 Workspace",
+  "Unlimited apps",
+  "Unlimited automations",
+  "Unlimited agents",
+  "Unlimited users",
+  "Community support",
+  "SSO",
+];
+
+const selfHostedEnterprisePlanFeatures = [
+  "Everything in open source",
+  "Custom branding",
+  "Backups and restore",
+  "Environment variables",
+  "Enforced SSO",
+  "User groups",
+  "Active directory/SCIM",
+  "365 days logs",
+  "Audit logs",
+  "Priorty support/SLAs",
+];
+
 const faqItems: FaqItem[] = [
   {
     question: 'What are "actions"?',
@@ -204,9 +227,14 @@ const faqItems: FaqItem[] = [
       "Actions represent the total work your agents, apps and automations perform.",
       "If your agent takes an action or your workflow runs a step, that counts as an action.",
       "If a user creates, updates or deletes a row in the Budibase DB or a SQL DB - that counts as one action.",
-      "Custom SQL queries and API requests are not included as actions."
+      "Custom SQL queries and API requests are not included as actions.",
     ],
-    bullets: ["AI agent tool calls", "Automation node executions", "Save row", "Delete row"],
+    bullets: [
+      "AI agent tool calls",
+      "Automation node executions",
+      "Save row",
+      "Delete row",
+    ],
   },
   {
     question: "Why do you price by actions?",
@@ -279,39 +307,77 @@ const faqItems: FaqItem[] = [
     </h1>
   </div>
   <div class="w-full flex flex-col gap-8">
-    <div class="flex flex-row gap-2 mb-2 justify-center">
-      <ul
-        role="group"
-        aria-label="Billing period"
-        class="inline-flex flex-row bg-secondary rounded-[20px] p-1"
-        id="billing-toggle"
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5 mb-2 items-center">
+      <div class="hidden md:block" aria-hidden="true"></div>
+
+      <div class="flex flex-row gap-2 justify-center md:col-start-2">
+        <ul
+          role="group"
+          aria-label="Hosting option"
+          class="inline-flex flex-row bg-secondary rounded-[20px] p-1"
+          id="hosting-toggle"
+        >
+          <li>
+            <button
+              id="cloud-hosting-button"
+              data-hosting-option="cloud"
+              aria-pressed="true"
+              class="bg-white dark:bg-stone-800 rounded-[19px] py-3 px-3 md:px-4 flex flex-row text-xs md:text-sm text-stone-900 dark:text-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2 min-h-[44px]"
+            >
+              Budibase cloud
+            </button>
+          </li>
+          <li>
+            <button
+              id="self-hosting-button"
+              data-hosting-option="self-host"
+              aria-pressed="false"
+              class="bg-transparent rounded-[19px] py-3 px-3 md:px-4 flex flex-row text-xs md:text-sm text-stone-600 dark:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-offset-2 min-h-[44px]"
+            >
+              Self-host
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div
+        class="flex flex-row gap-2 justify-center md:justify-end md:col-start-3"
+        data-billing-toggle-wrap
       >
-        <li>
-          <button
-            id="annual-button"
-            data-billing="annual"
-            aria-pressed="true"
-            class="bg-white dark:bg-stone-800 rounded-[19px] py-3 px-3 md:px-4 flex flex-row text-xs md:text-sm text-stone-900 dark:text-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2 min-h-[44px]"
-          >
-            Yearly
-          </button>
-        </li>
-        <li>
-          <button
-            id="monthly-button"
-            data-billing="monthly"
-            aria-pressed="false"
-            class="bg-transparent rounded-[19px] py-3 px-3 md:px-4 flex flex-row text-xs md:text-sm text-stone-600 dark:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2 min-h-[44px]"
-          >
-            Monthly
-          </button>
-        </li>
-      </ul>
+        <ul
+          role="group"
+          aria-label="Billing period"
+          class="inline-flex flex-row bg-secondary rounded-[20px] p-1"
+          id="billing-toggle"
+        >
+          <li>
+            <button
+              id="annual-button"
+              data-billing="annual"
+              aria-pressed="true"
+              class="bg-white dark:bg-stone-800 rounded-[19px] py-3 px-3 md:px-4 flex flex-row text-xs md:text-sm text-stone-900 dark:text-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2 min-h-[44px]"
+            >
+              Yearly
+            </button>
+          </li>
+          <li>
+            <button
+              id="monthly-button"
+              data-billing="monthly"
+              aria-pressed="false"
+              class="bg-transparent rounded-[19px] py-3 px-3 md:px-4 flex flex-row text-xs md:text-sm text-stone-600 dark:text-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 dark:focus-visible:ring-stone-400 focus-visible:ring-offset-2 min-h-[44px]"
+            >
+              Monthly
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <section class="mb-12 md:mb-20">
       <div class="pricing-cards-stage">
         <div
+          data-hosting-panel="cloud"
           class="pricing-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 justify-center items-stretch"
         >
           <PricingCard
@@ -393,7 +459,7 @@ const faqItems: FaqItem[] = [
               "User groups",
               "Email support",
             ]}
-            hostingItems={["Budibase Cloud", "Self-host on premise"]}
+            hostingItems={["Budibase Cloud"]}
           />
           <PricingCard
             title="Enterprise"
@@ -415,7 +481,48 @@ const faqItems: FaqItem[] = [
               "Audit logs",
               "Priorty support/SLAs",
             ]}
-            hostingItems={["Budibase Cloud", "Self-host on premise"]}
+            hostingItems={["Budibase Cloud", "Self-host / on-premise"]}
+          />
+        </div>
+        <div
+          data-hosting-panel="self-host"
+          class="pricing-cards-grid hidden grid grid-cols-1 md:grid-cols-2 gap-3 justify-center items-stretch max-w-3xl mx-auto"
+          aria-hidden="true"
+        >
+          <PricingCard
+            title="Open source"
+            description="Includes:"
+            creatorPrice="Free"
+            billingPlan="open-source"
+            creatorUnit=""
+            creatorLabel=""
+            additionalPriceText="Unlimited actions"
+            additionalPriceTone="primary"
+            recommended={false}
+            buttonLabel="Visit the docs"
+            buttonVariant="primary"
+            buttonUrl="https://docs.budibase.com"
+            buttonTarget="_blank"
+            addonItems={[]}
+            features={openSourcePlanFeatures}
+            hostingItems={["Self-host / on-premise"]}
+          />
+          <PricingCard
+            title="Enterprise"
+            description="Includes:"
+            creatorPrice="Custom pricing"
+            billingPlan="self-host-enterprise"
+            creatorUnit=""
+            creatorLabel=""
+            additionalPriceText="Unlimited actions"
+            additionalPriceTone="primary"
+            recommended={false}
+            buttonLabel="Contact sales"
+            buttonVariant="cta"
+            buttonUrl="/contact"
+            addonItems={["Air-gapped deployment", "Onboarding and training"]}
+            features={selfHostedEnterprisePlanFeatures}
+            hostingItems={["Budibase Cloud", "Self-host / on-premise"]}
           />
         </div>
       </div>
@@ -587,6 +694,55 @@ const faqItems: FaqItem[] = [
     "dark:text-stone-400",
   ];
 
+  const setToggleButtonState = (
+    buttons: NodeListOf<Element>,
+    dataKey: string,
+    value: string,
+  ) => {
+    buttons.forEach((button) => {
+      const htmlButton = button as HTMLButtonElement;
+      const isActive = htmlButton.dataset[dataKey] === value;
+      htmlButton.setAttribute("aria-pressed", isActive ? "true" : "false");
+      activeClasses.forEach((className) =>
+        htmlButton.classList.toggle(className, isActive),
+      );
+      inactiveClasses.forEach((className) =>
+        htmlButton.classList.toggle(className, !isActive),
+      );
+    });
+  };
+
+  // Hosting toggle (cloud/self-host)
+  const hostingButtons = document.querySelectorAll("[data-hosting-option]");
+  const hostingPanels = document.querySelectorAll("[data-hosting-panel]");
+  const billingToggleWrap = document.querySelector(
+    "[data-billing-toggle-wrap]",
+  );
+
+  const applyHosting = (hostingOption: string) => {
+    setToggleButtonState(hostingButtons, "hostingOption", hostingOption);
+
+    hostingPanels.forEach((panel) => {
+      const htmlPanel = panel as HTMLElement;
+      const isActive = htmlPanel.dataset.hostingPanel === hostingOption;
+      htmlPanel.classList.toggle("hidden", !isActive);
+      htmlPanel.setAttribute("aria-hidden", isActive ? "false" : "true");
+    });
+
+    if (billingToggleWrap) {
+      const hideBillingToggle = hostingOption === "self-host";
+      billingToggleWrap.classList.toggle("invisible", hideBillingToggle);
+      billingToggleWrap.classList.toggle(
+        "pointer-events-none",
+        hideBillingToggle,
+      );
+      billingToggleWrap.setAttribute(
+        "aria-hidden",
+        hideBillingToggle ? "true" : "false",
+      );
+    }
+  };
+
   // Billing toggle (yearly/monthly)
   const toggleButtons = document.querySelectorAll("[data-billing]");
   const cards = document.querySelectorAll("[data-billing-plan]");
@@ -637,17 +793,7 @@ const faqItems: FaqItem[] = [
 
   const applyBilling = (billing: string) => {
     currentBilling = billing;
-    toggleButtons.forEach((button) => {
-      const htmlButton = button as HTMLButtonElement;
-      const isActive = htmlButton.dataset.billing === billing;
-      htmlButton.setAttribute("aria-pressed", isActive ? "true" : "false");
-      activeClasses.forEach((className) =>
-        htmlButton.classList.toggle(className, isActive),
-      );
-      inactiveClasses.forEach((className) =>
-        htmlButton.classList.toggle(className, !isActive),
-      );
-    });
+    setToggleButtonState(toggleButtons, "billing", billing);
 
     const multiplier = billing === "monthly" ? 1.2 : 1;
 
@@ -769,6 +915,14 @@ const faqItems: FaqItem[] = [
     });
   });
 
+  hostingButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const htmlButton = button as HTMLButtonElement;
+      applyHosting(htmlButton.dataset.hostingOption || "cloud");
+    });
+  });
+
+  applyHosting("cloud");
   applyBilling("annual");
 
   const faqDetails = Array.from(
