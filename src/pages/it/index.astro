@@ -1,0 +1,151 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import Button from "@components/Button.astro";
+import ITPlatform from "../_components/landing-page/ITPlatform.astro";
+import ITSecurity from "../_components/landing-page/ITSecurity.astro";
+import CTA from "@components/CTA.astro"
+import ContactSalesCTA from "@components/ContactSalesCTA.astro";
+import Customers from "../_components/landing-page/Customers.astro";
+import PlatformOverviewMidPage from "../_components/landing-page/PlatformOverviewMidPage.astro";
+import ITUseCases from "../_components/landing-page/ITUseCases.astro";
+import HostingOptionsMidPage from "../_components/landing-page/HostingOptionsMidPage.astro";
+import ChatRequestsMidPage from "../_components/landing-page/ChatRequestsMidPage.astro"
+
+const pageTitle = "AI Workflows for IT Teams | Budibase";
+const pageDescription =
+  "Budibase is fully optimized for modern IT teams. Transform internal operations without compromising on security, governance, and control.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="security-hero">
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
+      <div class="security-hero-grid">
+        <div class="security-hero-copy">
+          <TitleBlock
+            variant="hero"
+            titleColorMode="split-primary-secondary"
+            titleLines={[
+              { text: "The AI workflow platform" },
+              { text: "for IT teams" },
+            ]}
+            titleClass="mb-4 w-full leading-[0.9]! tracking-[-0.02em]!"
+          />
+          <p class="hero-description-small mx-auto max-w-xl text-base md:!text-xl !mb-4">
+            {pageDescription}
+          </p>
+          <div class="platform-hero__cta">
+        <Button
+          label="Try it free"
+          url="https://account.budibase.app/register"
+          variant="primary"
+          size="large"
+          class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl"
+          target="_blank"
+        />
+        <Button
+          label="Contact sales"
+          url="/contact/"
+          variant="secondary"
+          size="large"
+          class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl ml-5"
+          target="_blank"
+        />
+      </div>
+        </div>
+          
+      </div>
+    </div>
+  </section>
+
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
+      <div class="security-hero-grid">
+        <ITPlatform />
+      </div>
+    </div>
+
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
+      <div class="security-hero-grid">
+        <Customers />
+      </div>
+    </div>
+
+        <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
+      <div class="security-hero-grid">
+        <PlatformOverviewMidPage />
+      </div>
+    </div>
+ 
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-16">
+      <div class="security-hero-grid">
+        <ITUseCases />
+      </div>
+    </div>
+
+     <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-16">
+      <div class="security-hero-grid">
+        <ChatRequestsMidPage />
+      </div>
+    </div>
+
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-8">
+      <ContactSalesCTA />
+    </div>
+
+         <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-8">
+      <div class="security-hero-grid">
+        <HostingOptionsMidPage />
+      </div>
+    </div>
+
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-20">
+      <div class="security-hero-grid">
+        <ITSecurity />
+      </div>
+    </div>
+
+
+    <CTA />
+
+</section>
+<style>
+  .security-hero {
+    background: var(--bg-1);
+    padding-top: max(calc(var(--site-nav-height) + 1.2rem), 4.8rem);
+    padding-bottom: 1.5rem;
+  }
+
+    :global(#site-nav.nav-shell) {
+    background-color: var(--bg-1) !important;
+  }
+
+  .security-hero-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .security-hero-cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .security-hero :global(.hero-title-small) {
+    font-size: 54px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  @media (max-width: 767px) {
+    .security-hero {
+      padding-bottom: 2rem;
+    }
+  }
+    .platform-hero__cta {
+    display: flex;
+    justify-content: center;
+  }
+  </style>

@@ -1,0 +1,231 @@
+---
+import { Image } from "astro:assets";
+import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c07d627de130d801d4.svg";
+---
+<div class="form-demo rounded-xl bg-[var(--bg-2)]" data-stage="form">
+  <div class="form-demo-flow">
+    <section class="form-demo-form-card" aria-label="Access request form">
+      <div class="form-demo-card-header">
+        <h3 class="form-demo-title">Software access request</h3>
+
+        <button class="form-demo-submit" type="button">
+          Submit
+        </button>
+      </div>
+
+      <div class="form-demo-field-group">
+        <p class="form-demo-field-label">Tool type</p>
+        <div class="form-demo-select" aria-hidden="true">
+          <span class="form-demo-select-value">VPN</span>
+          <Image src={CaretDownIcon} alt="" class="form-demo-caret" aria-hidden="true" />
+        </div>
+      </div>
+
+      <div class="form-demo-field-group">
+        <p class="form-demo-field-label">Requester</p>
+        <div class="form-demo-select" aria-hidden="true">
+          <span class="form-demo-select-value">John Smith</span>
+        </div>
+      </div>
+
+      <div class="form-demo-field-group">
+        <p class="form-demo-field-label">Justification</p>
+        <div class="form-demo-long-form" aria-hidden="true">
+          <span class="form-demo-select-value">
+            I need VPN access to securely access internal company systems while working remotely.
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<style>
+  .form-demo {
+    --form-demo-grid-dot: rgb(var(--text) / 0.12);
+    --form-demo-form-bg: var(--bg-1);
+    --form-demo-form-border: rgb(var(--border) / 0.72);
+    --form-demo-select-bg: var(--bg-1);
+    --form-demo-select-border: rgb(var(--border) / 0.82);
+
+    position: relative;
+    min-height: 520px;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid rgb(var(--border) / 0.45);
+    background:
+      radial-gradient(circle at center, var(--form-demo-grid-dot) 1.3px, transparent 1.3px) 0 0 / 20px 20px,
+      var(--bg-2);
+    animation: form-demo-dot-drift 14s linear infinite;
+  }
+
+  .form-demo-flow {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+  }
+
+  .form-demo-form-card {
+    width: min(100%, 500px);
+    border: 1px solid var(--form-demo-form-border);
+    border-radius: 8px;
+    background: var(--form-demo-form-bg);
+    padding: 32px;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.08);
+    text-align: left;
+  }
+
+  .form-demo-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .form-demo-title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .form-demo-field-group {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  .form-demo-field-label {
+    display: block;
+    margin: 0 0 12px;
+    color: var(--text-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  .form-demo-select {
+    display: flex;
+    min-height: 38px;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    border: 1px solid var(--form-demo-select-border);
+    border-radius: 4px;
+    background: var(--form-demo-select-bg);
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  .form-demo-select-value {
+    display: block;
+    width: 100%;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  .form-demo-long-form {
+    display: flex;
+    min-height: 72px;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+    border: 1px solid var(--form-demo-select-border);
+    border-radius: 4px;
+    background: var(--form-demo-select-bg);
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  .form-demo-caret {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-left: auto;
+    opacity: 0.78;
+  }
+
+  .form-demo-submit {
+    display: inline-flex;
+    min-height: 34px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 999px;
+    background: var(--orange-600);
+    color: rgb(var(--on-primary));
+    padding: 8px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 17px;
+    cursor: pointer;
+    transition:
+      background-color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .form-demo-submit:hover,
+  .form-demo-submit:focus-visible {
+    background: var(--orange-700);
+  }
+
+  .form-demo-submit:focus-visible {
+    outline: 2px solid rgb(var(--brand));
+    outline-offset: 2px;
+  }
+
+  .form-demo-submit:active {
+    transform: translateY(1px);
+  }
+
+  @keyframes form-demo-dot-drift {
+    from {
+      background-position: 0 0, 0 0;
+    }
+
+    to {
+      background-position: 20px 20px, 0 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .form-demo,
+    .form-demo-submit {
+      transition: none;
+      animation: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .form-demo {
+      min-height: 468px;
+    }
+
+    .form-demo-flow {
+      padding: 16px;
+    }
+
+    .form-demo-form-card {
+      padding: 24px 20px;
+    }
+
+    .form-demo-card-header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

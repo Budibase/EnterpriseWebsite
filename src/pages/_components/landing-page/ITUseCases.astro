@@ -1,0 +1,54 @@
+---
+import SectionBlock from "@components/SectionBlock.astro"
+import Card from "@components/cards/Card.astro"
+---
+
+     <section>
+        <SectionBlock
+          align="center"
+          maxWidth="lg"
+          titleColorMode="split-secondary-primary"
+          titleLines={[
+            { text: "Built for" },
+            { text: "Modern IT workflows" },
+          ]}
+          description="Thousands of IT teams choose Budibase to handle all kinds of approvals, request management, operations, service management, ticketing, and other workflows."
+          contentClass="grid grid-cols-1 gap-4 text-left sm:grid-cols-2 md:gap-2 lg:grid-cols-4"
+        >
+          <Card
+          tag={`/Request Management`}
+          label="Application Access Request"
+          description="Collect requests, approve low-risk access automatically, and route sensitive access to the right approver."
+          linkUrl="/ops/application-access-request/"
+          openInNewTab={false}
+          showLinkIcon={false}
+          >
+          </Card>
+          <Card
+          tag={`/Support`}
+          label="Device Replacement Request"
+          description="Triage device replacement requests, confirm eligibility, and coordinate fulfilment."
+          linkUrl="/ops/device-replacement-request/"
+          openInNewTab={false}
+          showLinkIcon={false}
+          >
+          </Card>
+          <Card
+          tag={`/ITOps`}
+          label="Cybersecurity Incident Reporting"
+          description="Capture security incidents from chat, create response records, and escalate urgent issues immediately."
+          linkUrl="/ops/cybersecurity-incident-reporting/"
+          openInNewTab={false}
+          showLinkIcon={false}
+          >
+          </Card>
+          <Card
+          tag={`/Onboarding`}
+          label="New Starter Account Setup"
+          description="Coordinate account creation, baseline access, device readiness, and onboarding checks."
+          linkUrl="/ops/new-starter-account-setup/"
+          openInNewTab={false}
+          showLinkIcon={false}
+          />
+        </SectionBlock>
+      </section>
