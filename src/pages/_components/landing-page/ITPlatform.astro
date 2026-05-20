@@ -1,24 +1,22 @@
 ---
 import CheckCircleFill from "phosphor-astro/CheckCircleFill.astro";
-import SecurityDemoTwo from "@components/SecurityDemoTwo.astro";
+import SecurityDemoOne from "@components/SecurityDemoOne.astro";
 import SectionBlock from "@components/SectionBlock.astro";
-import Button from "@components/Button.astro";
 ---
 
 <section>
   <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] lg:items-center lg:gap-20">
-
-     <div>
-      <SecurityDemoTwo />
+    <div>
+      <SecurityDemoOne />
     </div>
 
     <SectionBlock
       titleColorMode="split-secondary-primary"
       titleLines={[
-        { text: "Deploy in seconds" },
-        { text: "with Budibase Cloud" },
+        { text: "Trust Budibase to power" },
+        { text: "Mission-critical workflows" },
       ]}
-      description="Budibase Cloud provides a ready-to-use, secure platform to deploy workflow tools, without the infrastructure overhead."
+      description="IT teams in all kinds of teams trust Budibase to build Agents, Apps, and Automations, that they can connect to mission-critical systems and deploy anywhere."
       maxWidth="xl"
       spacing="default"
       contentClass="pt-1"
@@ -27,32 +25,22 @@ import Button from "@components/Button.astro";
         <li class="flex items-start gap-3">
           <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
           <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
-            All servers are hosted within the EU (Ireland) in data centers certified by SOC 1/2 and ISO 27001.
+            Open-source, with optional self-hosting and a cloud-based platform.
           </div>
         </li>
         <li class="flex items-start gap-3">
           <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
           <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
-            Mandatory HTTPS connections.
+            Connect securely to data sources, LLMs, and REST APIs.
           </div>
         </li>
         <li class="flex items-start gap-3">
           <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
           <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
-             Data-in-transit encryption using TLS 1.3. Data is also encrypted in REST with AES256.
+            Out-of-the-box audit logging, auth, user management & more.
           </div>
         </li>
       </ul>
-     <div class="mt-16">
-        <Button
-          label="Try it free"
-          url="https://account.budibase.app/register"
-          variant="primary"
-          size="large"
-          class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl"
-          target="_blank"
-        />
-      </div>
     </SectionBlock>
   </div>
 </section>

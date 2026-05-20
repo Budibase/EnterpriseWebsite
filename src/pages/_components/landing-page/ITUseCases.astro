@@ -1,0 +1,38 @@
+---
+import SectionBlock from "@components/SectionBlock.astro"
+import Card from "@components/cards/Card.astro"
+---
+
+     <section>
+        <SectionBlock
+          align="center"
+          maxWidth="lg"
+          titleColorMode="split-secondary-primary"
+          titleLines={[
+            { text: "Built for" },
+            { text: "Modern IT workflows" },
+          ]}
+          description="Thousands of IT teams choose Budibase to handle all kinds of approvals, request management, operations, service management, ticketing, and other workflows."
+          contentClass="grid grid-cols-1 gap-4 text-left sm:grid-cols-2 md:gap-2 lg:grid-cols-4"
+        >
+          <Card
+            label="Lorem Ipsum"
+            description="Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+          >
+          </Card>
+          <Card
+            label="Lorem Ipsum"
+            description="Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+          >
+          </Card>
+          <Card
+            label="Lorem Ipsum"
+            description="Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+          >
+          </Card>
+          <Card
+            label="Lorem Ipsum"
+            description="Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+          />
+        </SectionBlock>
+      </section>

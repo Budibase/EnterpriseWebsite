@@ -1,22 +1,18 @@
 ---
 import CheckCircleFill from "phosphor-astro/CheckCircleFill.astro";
-import FormDemo from "@components/FormDemo.astro";
+import BuilderDemo from "@components/BuilderDemo.astro";
 import SectionBlock from "@components/SectionBlock.astro";
 ---
 
 <section>
   <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] lg:items-center lg:gap-20">
-    <div>
-      <FormDemo />
-    </div>
-
     <SectionBlock
       titleColorMode="split-secondary-primary"
       titleLines={[
         { text: "Host Budibase" },
-        { text: "within your own environment" },
+        { text: "Within your own environment" },
       ]}
-      description="Budibase is open-source and self-hostable, enabling teams to transform operations within their own secure environments."
+      description="Budibase is open-source and self-hostable, enabling teams to transform operations entirely within their own secure environments."
       maxWidth="xl"
       spacing="default"
       contentClass="pt-1"
@@ -48,5 +44,8 @@ import SectionBlock from "@components/SectionBlock.astro";
         </li>
       </ul>
     </SectionBlock>
+        <div>
+      <BuilderDemo />
+    </div>
   </div>
 </section>

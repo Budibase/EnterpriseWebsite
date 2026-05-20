@@ -2,38 +2,39 @@
 import Layout from "../../layouts/MainLayout.astro";
 import TitleBlock from "@components/TitleBlock.astro";
 import Button from "@components/Button.astro";
-import SecurityConnections from "../_components/landing-page/SecurityConnections.astro";
-import SecurityCloud from "../_components/landing-page/SecurityCloud.astro";
-import SecuritySelfHost from "../_components/landing-page/SecuritySelfHost.astro"
-import SecurityInThePlatform from "../_components/landing-page/SecurityInThePlatform.astro";
-import SecurityBudibaseOrg from "../_components/landing-page/SecurityBudibaseOrg.astro";
+import ITPlatform from "../_components/landing-page/ITPlatform.astro";
+import ITSecurity from "../_components/landing-page/ITSecurity.astro";
 import CTA from "@components/CTA.astro"
 import ContactSalesCTA from "@components/ContactSalesCTA.astro";
 import Customers from "../_components/landing-page/Customers.astro";
+import PlatformOverviewMidPage from "../_components/landing-page/PlatformOverviewMidPage.astro";
+import ITUseCases from "../_components/landing-page/ITUseCases.astro";
+import HostingOptionsMidPage from "../_components/landing-page/HostingOptionsMidPage.astro";
+import ChatRequestsMidPage from "../_components/landing-page/ChatRequestsMidPage.astro"
 
-const pageTitle = "Security Features | Budibase";
+const pageTitle = "Budibase for IT Teams";
 const pageDescription =
-  "Budibase is fully optimized for highly regulated organizations. Transform internal operations without compromising on security, governance, and digital sovereignty.";
+  "Budibase is fully optimized for modern IT teams. Transform internal operations without compromising on security, governance, and control.";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <section class="security-hero">
     <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
       <div class="security-hero-grid">
-        <div class="security-hero-copy max-w-xl">
+        <div class="security-hero-copy">
           <TitleBlock
             variant="hero"
             titleColorMode="split-primary-secondary"
             titleLines={[
-              { text: "The AI workflow toolkit" },
-              { text: "for security-first teams" },
+              { text: "The AI workflow platform" },
+              { text: "for IT teams" },
             ]}
             titleClass="mb-4 w-full leading-[0.9]! tracking-[-0.02em]!"
           />
           <p class="hero-description-small mx-auto max-w-xl text-base md:!text-xl !mb-4">
             {pageDescription}
           </p>
-                    <div class="platform-hero__cta">
+          <div class="platform-hero__cta">
         <Button
           label="Try it free"
           url="https://account.budibase.app/register"
@@ -52,51 +53,57 @@ const pageDescription =
         />
       </div>
         </div>
+          
       </div>
     </div>
   </section>
 
     <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
       <div class="security-hero-grid">
-        <SecurityConnections />
+        <ITPlatform />
+      </div>
+    </div>
+
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
+      <div class="security-hero-grid">
+        <Customers />
       </div>
     </div>
 
         <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
       <div class="security-hero-grid">
-        <Customers />
+        <PlatformOverviewMidPage />
       </div>
     </div>
  
-    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
-      <div class="security-hero-grid">
-        <SecurityInThePlatform />
-      </div>
-    </div>
-
-         <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-16">
-      <div class="security-hero-grid">
-        <SecuritySelfHost />
-      </div>
-    </div>
-
     <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-16">
       <div class="security-hero-grid">
-        <SecurityCloud />
+        <ITUseCases />
       </div>
     </div>
 
-
+     <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-16">
+      <div class="security-hero-grid">
+        <ChatRequestsMidPage />
+      </div>
+    </div>
 
     <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-8">
       <ContactSalesCTA />
     </div>
 
-        <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0">
+         <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-8">
       <div class="security-hero-grid">
-        <SecurityBudibaseOrg />
+        <HostingOptionsMidPage />
       </div>
     </div>
+
+    <div class="mx-auto w-full max-w-7xl px-2 md:px-3 lg:px-0 mt-20">
+      <div class="security-hero-grid">
+        <ITSecurity />
+      </div>
+    </div>
+
 
     <CTA />
 
@@ -129,11 +136,16 @@ const pageDescription =
   .security-hero :global(.hero-title-small) {
     font-size: 54px;
     font-weight: 400;
+    text-align: center;
   }
 
   @media (max-width: 767px) {
     .security-hero {
       padding-bottom: 2rem;
     }
+  }
+    .platform-hero__cta {
+    display: flex;
+    justify-content: center;
   }
   </style>

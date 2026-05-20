@@ -15,10 +15,10 @@ import Button from "@components/Button.astro";
     <SectionBlock
       titleColorMode="split-secondary-primary"
       titleLines={[
-        { text: "Deploy in seconds" },
-        { text: "with Budibase Cloud" },
+        { text: "Deploy in the cloud or" },
+        { text: "Your own secure environment" },
       ]}
-      description="Budibase Cloud provides a ready-to-use, secure platform to deploy workflow tools, without the infrastructure overhead."
+      description="Choose Budibase Cloud for a ready-to-use, secure platform to deploy workflow tools, without the infrastructure overhead, or self-host for maximum control"
       maxWidth="xl"
       spacing="default"
       contentClass="pt-1"
@@ -27,19 +27,25 @@ import Button from "@components/Button.astro";
         <li class="flex items-start gap-3">
           <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
           <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
-            All servers are hosted within the EU (Ireland) in data centers certified by SOC 1/2 and ISO 27001.
+            Budibase servers are hosted within the EU (Ireland) in data centers certified by SOC 1/2 and ISO 27001.
           </div>
         </li>
         <li class="flex items-start gap-3">
           <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
           <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
-            Mandatory HTTPS connections.
+            Mandatory HTTPS connections and data encrpytion in-transit and at-rest.
           </div>
         </li>
         <li class="flex items-start gap-3">
           <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
           <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
-             Data-in-transit encryption using TLS 1.3. Data is also encrypted in REST with AES256.
+             Self-hosting via Docker, Kubernetes, and more.
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <CheckCircleFill class="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--accent-blue)]" aria-hidden="true" />
+          <div class="m-0 text-[15px] font-medium leading-6 text-[var(--text-primary)]">
+             Air-gapped deployments.
           </div>
         </li>
       </ul>
