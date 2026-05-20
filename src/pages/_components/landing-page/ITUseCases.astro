@@ -16,23 +16,39 @@ import Card from "@components/cards/Card.astro"
           contentClass="grid grid-cols-1 gap-4 text-left sm:grid-cols-2 md:gap-2 lg:grid-cols-4"
         >
           <Card
-            label="Lorem Ipsum"
-            description="Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+          tag={`/Request Management`}
+          label="Application Access Request"
+          description="Collect requests, approve low-risk access automatically, and route sensitive access to the right approver."
+          linkUrl="/ops/application-access-request/"
+          openInNewTab={false}
+          showLinkIcon={false}
           >
           </Card>
           <Card
-            label="Lorem Ipsum"
-            description="Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+          tag={`/Support`}
+          label="Device Replacement Request"
+          description="Triage device replacement requests, confirm eligibility, and coordinate fulfilment."
+          linkUrl="/ops/device-replacement-request/"
+          openInNewTab={false}
+          showLinkIcon={false}
           >
           </Card>
           <Card
-            label="Lorem Ipsum"
-            description="Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+          tag={`/ITOps`}
+          label="Cybersecurity Incident Reporting"
+          description="Capture security incidents from chat, create response records, and escalate urgent issues immediately."
+          linkUrl="/ops/cybersecurity-incident-reporting/"
+          openInNewTab={false}
+          showLinkIcon={false}
           >
           </Card>
           <Card
-            label="Lorem Ipsum"
-            description="Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+          tag={`/Onboarding`}
+          label="New Starter Account Setup"
+          description="Coordinate account creation, baseline access, device readiness, and onboarding checks."
+          linkUrl="/ops/new-starter-account-setup/"
+          openInNewTab={false}
+          showLinkIcon={false}
           />
         </SectionBlock>
       </section>
