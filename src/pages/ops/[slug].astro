@@ -8,6 +8,7 @@ import AgentAssetsRail from "@components/ops-library/AgentAssetsRail.astro";
 import RelatedAgentsSection from "@components/ops-library/RelatedAgentsSection.astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import { getOpsLibraryCards } from "../../data/opsLibraryCardData";
+import OpsBookADemoButton from "./_components/OpsBookADemoButton.astro";
 
 const ASSET_GROUP_ORDER = [
   { key: "tables", label: "Tables" },
@@ -196,27 +197,33 @@ const relatedAgents: RelatedAgent[] = allAgentCards
 <Layout title={detail.pageTitle} description={detail.outcome}>
   <div class="learn-detail-shell">
     <main class="side-rail-main-inner agent-detail-main pb-20">
+      
+
       <AgentDetailHero
         title={detail.title}
         outcome={detail.outcome}
       >
-        {
-          detail.usePromptCardExperience ? (
-            <AccessRequestPrompt
-              collapsible
-              collapsedHeight={260}
-              promptText={detail.useDefaultPromptCard ? undefined : detail.heroPrompt}
-              agentTitle={detail.title}
-              toolsUsed={detail.assetsUsed.tools}
-            />
-          ) : (
-            <AgentPromptPanel
-              prompt={detail.heroPrompt}
-              agentTitle={detail.title}
-              toolsUsed={detail.assetsUsed.tools}
-            />
-          )
-        }
+        <div class="flex flex-col gap-4 items-center">
+          <OpsBookADemoButton opSlug={detail.slug} variant="cta" size="large"  />
+            {
+            detail.usePromptCardExperience ? (
+              <AccessRequestPrompt
+                collapsible
+                collapsedHeight={260}
+                promptText={detail.useDefaultPromptCard ? undefined : detail.heroPrompt}
+                agentTitle={detail.title}
+                toolsUsed={detail.assetsUsed.tools}
+              />
+            ) : (
+              <AgentPromptPanel
+                prompt={detail.heroPrompt}
+                agentTitle={detail.title}
+                toolsUsed={detail.assetsUsed.tools}
+              />
+            )
+          }
+        </div>
+        
       </AgentDetailHero>
 
       <section class="agent-detail-content-grid">

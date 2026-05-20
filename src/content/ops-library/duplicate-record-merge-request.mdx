@@ -1,0 +1,341 @@
+---
+slug: duplicate-record-merge-request
+title: Duplicate Record Merge Request
+sidebar:
+  - id: overview
+    label: Overview
+  - id: data
+    label: Data
+  - id: screens
+    label: Screens
+  - id: agents
+    label: Agents
+  - id: automations
+    label: Automations
+role: Rev Ops
+outcome: Triage duplicate CRM records, compare survivorship rules, and merge safe duplicates with audit visibility.
+setupTime: "~45 min"
+difficulty: Medium
+promptCardStyle: snippet
+tags:
+  - Apps
+  - Agents
+  - Automations
+  - Chat
+  - Human-in-the-loop
+aiAssists:
+  - Request triage
+  - Policy lookup
+  - Auto-resolution checks
+  - Escalation summaries
+humansDecide:
+  - Approval exceptions
+  - Risky or ambiguous requests
+steps:
+  - title: Request
+    description: A requester submits a duplicate record merge request through Slack, Teams, or the Duplicate Merge Request Form, creating a tracked request row.
+    humanDecision: true
+  - title: Agent Triage
+    description: The agent confirms the request type, retrieves context from CRM records and data quality rules, checks the relevant policy source, and asks for any missing details in chat.
+    humanDecision: false
+  - title: Agent Resolution
+    description: Where policy permits, the agent completes duplicates with clear primary record, matching identifiers, and no ownership conflict and records the outcome without waiting for manual handling.
+    humanDecision: false
+  - title: Escalation
+    description: The agent escalates conflicting account ownership, open opportunities on both records, or uncertain survivorship to the responsible owner with a decision summary and supporting context.
+    humanDecision: false
+  - title: Human Resolution
+    description: An approver reviews the escalation in chat or the Data Quality Review Queue, then approves, rejects, or returns it for more information.
+    humanDecision: true
+integrations:
+  - Slack
+  - Teams
+  - HubSpot
+  - Salesforce
+  - PostgreSQL
+  - Confluence
+faq:
+  - question: Can the agent complete requests without approval?
+    answer: Yes. It can auto-resolve duplicates with clear primary record, matching identifiers, and no ownership conflict when the policy source allows it and the data is complete.
+  - question: When does a human get involved?
+    answer: Human review is used for conflicting account ownership, open opportunities on both records, or uncertain survivorship.
+  - question: Where is the audit trail kept?
+    answer: The request table stores current state, while the Duplicate Record Merge Audit Log records each decision, message, tool action, and handoff.
+  - question: Can this run from chat?
+    answer: Yes. The operation is designed for Slack or Microsoft Teams, with a Budibase app used when a queue or structured form is helpful.
+heroPrompt: |
+  # Agent role
+  You are the Duplicate Record Merge Request agent. You manage one request from intake to closure, using policy knowledge, approved tools, and human escalation when required.
+
+  # Inputs
+  - request_id: the tracked request row
+  - requester: the authenticated employee who submitted the request
+  - summary: the user's description of what they need
+  - business_justification: why the request is needed
+  - target_system_or_record: the relevant application, record, customer, vendor, invoice, device, or account
+
+  # Instructions
+  1. Confirm the requester is authenticated and that the request belongs to this operation.
+  2. Gather missing details in Slack or Teams before taking action. Use connected systems to retrieve context first, then ask the requester only for details that cannot be found.
+  3. Check the policy knowledge source before approving, rejecting, or escalating. Do not invent policy rules.
+  4. Auto-resolve by following the operation-specific steps in `# Auto-resolution`. Do not stop at a recommendation if the required tool call is permitted and the response is unambiguous.
+  5. Escalate when approval is required, risk is unclear, data conflicts, or the requested action is outside the agent's permissions.
+  6. Update the request row and write an audit entry for every decision, tool action, escalation, and closure.
+  7. Reply to the requester with a concise status update and next step.
+
+  # Tool use
+  - Use {{ budibase.Duplicate Record Merge Requests.get_row }} and {{ budibase.Duplicate Record Merge Requests.update_row }} to maintain request state.
+  - Use {{ budibase.Duplicate Record Merge Audit Log.create_row }} to log decisions and actions.
+  - Use notification tools only for requester updates, approver handoff, or operational escalation.
+
+  # Auto-resolution
+  - Use {{ salesforce.get_record }} or {{ hubSpot.get_record }} to retrieve both duplicate records and compare owner, email, domain, account, and open pipeline.
+  - Use {{ postgresql.Data Quality Rules.search_rows }} to retrieve survivorship rules for the record type.
+  - If the primary record is unambiguous and policy allows merge, use {{ salesforce.merge_records }} or {{ hubSpot.merge_contacts }}.
+  - Use {{ postgresql.Merge Audit.create_row }} to log source record, surviving record, merged fields, and rationale.
+  - Escalate when both records have open opportunities, ownership conflicts, or contradictory identifiers.
+
+  # Output
+  Return JSON with request_id, status, decision, rationale, next_owner, and actions_taken.
+lastUpdated: 2026-05-18
+---
+
+import OpsLibraryAppDemo from "../../pages/ops/_components/OpsLibraryAppDemo.astro";
+import { Image } from "astro:assets";
+import SlackLogo from "@assets/logos/Slack.svg";
+import TeamsLogo from "@assets/logos/microsoft-teams.png";
+import HubspotLogo from "@assets/logos/hubspot.svg";
+import PostgresqlLogo from "@assets/logos/Postgres.svg";
+import ConfluenceLogo from "@assets/logos/confluence.svg";
+
+<h2 id="overview">Overview</h2>
+
+Triage duplicate CRM records, compare survivorship rules, and merge safe duplicates with audit visibility. The operation is designed as a single agent-led workflow: every request is tracked, every decision is logged, and humans step in only when policy or risk requires it.
+
+#### Request
+
+A requester submits a duplicate record merge request through Slack, Teams, or the Duplicate Merge Request Form, creating a tracked request row.
+
+#### Agent Triage
+
+The agent confirms the request type, retrieves context from CRM records and data quality rules, checks the relevant policy source, and asks for any missing details in chat.
+
+#### Agent Resolution
+
+Where policy permits, the agent completes duplicates with clear primary record, matching identifiers, and no ownership conflict and records the outcome without waiting for manual handling.
+
+#### Escalation
+
+The agent escalates conflicting account ownership, open opportunities on both records, or uncertain survivorship to the responsible owner with a decision summary and supporting context.
+
+#### Human Resolution
+
+An approver reviews the escalation in chat or the Data Quality Review Queue, then approves, rejects, or returns it for more information.
+
+We’ve created this example workflow to help you get started building your own Duplicate Record Merge Request.
+
+<h2 id="agents">Agents</h2>
+
+The Duplicate Record Merge Request agent manages intake, policy checks, tool actions, escalation, requester updates, and closure for this operation.
+
+```text
+# Agent role
+You are the Duplicate Record Merge Request agent. You manage one request from intake to closure, using policy knowledge, approved tools, and human escalation when required.
+
+# Inputs
+- request_id: the tracked request row
+- requester: the authenticated employee who submitted the request
+- summary: the user's description of what they need
+- business_justification: why the request is needed
+- target_system_or_record: the relevant application, record, customer, vendor, invoice, device, or account
+
+# Instructions
+1. Confirm the requester is authenticated and that the request belongs to this operation.
+2. Gather missing details in Slack or Teams before taking action. Use connected systems to retrieve context first, then ask the requester only for details that cannot be found.
+3. Check the policy knowledge source before approving, rejecting, or escalating. Do not invent policy rules.
+4. Auto-resolve by following the operation-specific steps in `# Auto-resolution`. Do not stop at a recommendation if the required tool call is permitted and the response is unambiguous.
+5. Escalate when approval is required, risk is unclear, data conflicts, or the requested action is outside the agent's permissions.
+6. Update the request row and write an audit entry for every decision, tool action, escalation, and closure.
+7. Reply to the requester with a concise status update and next step.
+
+# Tool use
+- Use {{ budibase.Duplicate Record Merge Requests.get_row }} and {{ budibase.Duplicate Record Merge Requests.update_row }} to maintain request state.
+- Use {{ budibase.Duplicate Record Merge Audit Log.create_row }} to log decisions and actions.
+- Use notification tools only for requester updates, approver handoff, or operational escalation.
+
+# Auto-resolution
+- Use {{ salesforce.get_record }} or {{ hubSpot.get_record }} to retrieve both duplicate records and compare owner, email, domain, account, and open pipeline.
+- Use {{ postgresql.Data Quality Rules.search_rows }} to retrieve survivorship rules for the record type.
+- If the primary record is unambiguous and policy allows merge, use {{ salesforce.merge_records }} or {{ hubSpot.merge_contacts }}.
+- Use {{ postgresql.Merge Audit.create_row }} to log source record, surviving record, merged fields, and rationale.
+- Escalate when both records have open opportunities, ownership conflicts, or contradictory identifiers.
+
+# Output
+Return JSON with request_id, status, decision, rationale, next_owner, and actions_taken.
+```
+
+<h2 id="data">Data</h2>
+
+### Tables
+
+**Duplicate Record Merge Requests**: Stores the request, requester, target record, status, current owner, decision, and closure details.
+
+- `request_id` : Text - Unique request identifier.
+- `requester` : User - Authenticated employee who submitted the request.
+- `summary` : Long Form Text - Short description of the request.
+- `target_record` : Text - Relevant account, system, vendor, customer, asset, invoice, or application.
+- `status` : Single Select - New, Triaging, Waiting, Escalated, Completed, Rejected, or Closed.
+- `priority` : Single Select - Low, Medium, or High.
+- `decision` : Single Select - Approved, Rejected, Escalated, or Cancelled.
+- `rationale` : Long Form Text - Agent or approver explanation.
+- `created_at` : Date - Request creation timestamp.
+- `closed_at` : Date - Completion timestamp, if closed.
+
+```csv
+request_id,requester,summary,target_record,status,priority,decision,rationale,created_at,closed_at
+DQ-1048,emma.clarke@example.com,"Please process this duplicate record merge request.","Example target",Escalated,High,Escalated,"Requires owner approval.",2026-05-18T09:15:00.000Z,
+```
+
+**Duplicate Record Merge Audit Log**: Records agent decisions, tool calls, escalations, notifications, and human actions.
+
+- `event_id` : Text - Unique audit event identifier.
+- `request_id` : Text - Related request identifier.
+- `actor` : Text - Agent, requester, approver, or integration name.
+- `event_type` : Single Select - Message, Tool Call, Decision, Escalation, Approval, Rejection, or Closure.
+- `details` : JSON - Structured event details.
+- `created_at` : Date - Event timestamp.
+
+```csv
+event_id,request_id,actor,event_type,details,created_at
+EVT-2048,DQ-1048,Duplicate Record Merge Request Agent,Escalation,"{""reason"":""Policy requires owner review""}",2026-05-18T09:18:00.000Z
+```
+
+### Connections
+
+<div class="flex flex-row justify-center gap-4 items-center content-around w-full">
+  <Image src={SlackLogo} alt="Slack" class="w-10 h-10" />
+  <Image src={TeamsLogo} alt="Teams" class="w-10 h-10" />
+  <Image src={HubspotLogo} alt="HubSpot" class="w-10 h-10" />
+  <Image src={PostgresqlLogo} alt="PostgreSQL" class="w-10 h-10" />
+  <Image src={ConfluenceLogo} alt="Confluence" class="w-10 h-10" />
+</div>
+
+**Slack**: Captures duplicate merge requests from RevOps or sales users and notifies record owners when a merge is approved, blocked, or needs review.
+
+**Teams**: Provides Teams-based merge request intake and approval prompts for data stewards or account owners.
+
+**HubSpot**: Compares candidate contact, company, or deal records in HubSpot and applies safe merges when the survivorship decision is clear.
+
+**Salesforce**: Retrieves duplicate CRM records, ownership, activity, and field history and executes approved merges in Salesforce.
+
+**PostgreSQL**: Stores merge request metadata, field comparisons, survivorship decisions, and audit events for traceability.
+
+**Confluence**: Supplies duplicate matching rules, survivorship policy, protected-field guidance, and escalation criteria.
+
+### Adding Knowledge
+
+The agent uses Confluence or SharePoint as a knowledge source when policy guidance, approval thresholds, ownership rules, or standard operating procedures are needed. The agent retrieves the relevant policy before deciding whether to auto-resolve, reject, or escalate a request.
+
+<h2 id="screens">Screens</h2>
+
+<OpsLibraryAppDemo
+  appName="Duplicate Record Merge Request"
+  inboxRows={[
+    {
+      id: "DQ-1048",
+      request: "Duplicate Record Merge Request for Emma Clarke",
+      priority: "High",
+      status: "Needs Review",
+      date: "May 18",
+      tone: "high",
+    },
+    {
+      id: "DQ-1047",
+      request: "Policy check completed for Northstar account",
+      priority: "Medium",
+      status: "In Progress",
+      date: "May 18",
+      tone: "medium",
+    },
+    {
+      id: "DQ-1046",
+      request: "Standard request from Daniel Reed",
+      priority: "Low",
+      status: "Completed",
+      date: "May 17",
+      tone: "low",
+    },
+    {
+      id: "DQ-1045",
+      request: "Exception raised by Revenue Ops manager",
+      priority: "High",
+      status: "Escalated",
+      date: "May 17",
+      tone: "high",
+    },
+    {
+      id: "DQ-1044",
+      request: "Missing details requested from Priya Shah",
+      priority: "Medium",
+      status: "Waiting",
+      date: "May 16",
+      tone: "medium",
+    },
+    {
+      id: "DQ-1043",
+      request: "Auto-resolved after policy lookup",
+      priority: "Low",
+      status: "Completed",
+      date: "May 16",
+      tone: "low",
+    },
+    {
+      id: "DQ-1042",
+      request: "Approval reminder sent to owner",
+      priority: "Medium",
+      status: "Waiting",
+      date: "May 15",
+      tone: "medium",
+    },
+    {
+      id: "DQ-1041",
+      request: "Duplicate request closed by agent",
+      priority: "Low",
+      status: "Closed",
+      date: "May 15",
+      tone: "low",
+    },
+    {
+      id: "DQ-1040",
+      request: "High-priority request from field team",
+      priority: "High",
+      status: "In Progress",
+      date: "May 14",
+      tone: "high",
+    },
+    {
+      id: "DQ-1039",
+      request: "Audit log updated for completed request",
+      priority: "Low",
+      status: "Completed",
+      date: "May 14",
+      tone: "low",
+    },
+  ]}
+/>
+
+**Duplicate Merge Request Form**: A structured request screen for employees who need to provide required fields, attachments, or target record details that are awkward to collect in chat.
+
+**Data Quality Review Queue**: A queue for approvers and operations owners to review escalated requests, see the agent's rationale, and record a final decision.
+
+**Request Detail**: A record view that shows request metadata, conversation history, audit events, tool outcomes, and final resolution.
+
+<h2 id="automations">Automations</h2>
+
+**Create Request Record**: On Create Row - Sets the initial status, priority, timestamps, and default owner when a new request is submitted.
+
+**Invoke Duplicate Record Merge Request Agent**: On Create Row - Sends the request context to the agent for triage and policy evaluation.
+
+**Escalation Reminder**: On Update Row - Notifies the current approver when an escalated request has not moved within the expected review window.
+
+**Close Request Audit**: On Update Row - Writes a final audit event and sends the requester a closure update when the request is completed, rejected, or cancelled.

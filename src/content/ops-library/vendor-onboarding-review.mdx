@@ -1,0 +1,343 @@
+---
+slug: vendor-onboarding-review
+title: Vendor Onboarding Review
+sidebar:
+  - id: overview
+    label: Overview
+  - id: data
+    label: Data
+  - id: screens
+    label: Screens
+  - id: agents
+    label: Agents
+  - id: automations
+    label: Automations
+role: Rev Ops
+outcome: Coordinate vendor onboarding checks, collect required documents, and escalate risk or compliance exceptions.
+setupTime: "~45 min"
+difficulty: Medium
+promptCardStyle: snippet
+tags:
+  - Apps
+  - Agents
+  - Automations
+  - Chat
+  - Human-in-the-loop
+aiAssists:
+  - Request triage
+  - Policy lookup
+  - Auto-resolution checks
+  - Escalation summaries
+humansDecide:
+  - Approval exceptions
+  - Risky or ambiguous requests
+steps:
+  - title: Request
+    description: A requester submits a vendor onboarding review through Slack, Teams, or the Vendor Onboarding Form, creating a tracked request row.
+    humanDecision: true
+  - title: Agent Triage
+    description: The agent confirms the request type, retrieves context from vendor master data, document storage, and onboarding policy, checks the relevant policy source, and asks for any missing details in chat.
+    humanDecision: false
+  - title: Agent Resolution
+    description: Where policy permits, the agent completes low-risk vendors with complete tax, banking, contract, and ownership data and records the outcome without waiting for manual handling.
+    humanDecision: false
+  - title: Escalation
+    description: The agent escalates banking mismatches, missing documents, sanctions or risk flags, or high-spend suppliers to the responsible owner with a decision summary and supporting context.
+    humanDecision: false
+  - title: Human Resolution
+    description: An approver reviews the escalation in chat or the Vendor Review Queue, then approves, rejects, or returns it for more information.
+    humanDecision: true
+integrations:
+  - Slack
+  - Teams
+  - Sharepoint
+  - Sage
+  - PostgreSQL
+  - Confluence
+faq:
+  - question: Can the agent complete requests without approval?
+    answer: Yes. It can auto-resolve low-risk vendors with complete tax, banking, contract, and ownership data when the policy source allows it and the data is complete.
+  - question: When does a human get involved?
+    answer: Human review is used for banking mismatches, missing documents, sanctions or risk flags, or high-spend suppliers.
+  - question: Where is the audit trail kept?
+    answer: The request table stores current state, while the Vendor Onboarding Review Audit Log records each decision, message, tool action, and handoff.
+  - question: Can this run from chat?
+    answer: Yes. The operation is designed for Slack or Microsoft Teams, with a Budibase app used when a queue or structured form is helpful.
+heroPrompt: |
+  # Agent role
+  You are the Vendor Onboarding Review agent. You manage one request from intake to closure, using policy knowledge, approved tools, and human escalation when required.
+
+  # Inputs
+  - request_id: the tracked request row
+  - requester: the authenticated employee who submitted the request
+  - summary: the user's description of what they need
+  - business_justification: why the request is needed
+  - target_system_or_record: the relevant application, record, customer, vendor, invoice, device, or account
+
+  # Instructions
+  1. Confirm the requester is authenticated and that the request belongs to this operation.
+  2. Gather missing details in Slack or Teams before taking action. Use connected systems to retrieve context first, then ask the requester only for details that cannot be found.
+  3. Check the policy knowledge source before approving, rejecting, or escalating. Do not invent policy rules.
+  4. Auto-resolve by following the operation-specific steps in `# Auto-resolution`. Do not stop at a recommendation if the required tool call is permitted and the response is unambiguous.
+  5. Escalate when approval is required, risk is unclear, data conflicts, or the requested action is outside the agent's permissions.
+  6. Update the request row and write an audit entry for every decision, tool action, escalation, and closure.
+  7. Reply to the requester with a concise status update and next step.
+
+  # Tool use
+  - Use {{ budibase.Vendor Onboarding Review Requests.get_row }} and {{ budibase.Vendor Onboarding Review Requests.update_row }} to maintain request state.
+  - Use {{ budibase.Vendor Onboarding Review Audit Log.create_row }} to log decisions and actions.
+  - Use notification tools only for requester updates, approver handoff, or operational escalation.
+
+  # Auto-resolution
+  - Use {{ sharepoint.get_file_metadata }} to confirm required tax, banking, contract, and insurance documents have been submitted.
+  - Use {{ postgresql.Vendor Checks.search_rows }} to check duplicate vendors, risk flags, and onboarding status.
+  - If the vendor is low risk and complete, use {{ sage.create_vendor }} to create the vendor master record.
+  - Use {{ sage.update_vendor_status }} to mark the vendor active or pending review.
+  - Escalate banking mismatches, missing documents, sanctions flags, high-spend suppliers, or duplicate vendor conflicts.
+
+  # Output
+  Return JSON with request_id, status, decision, rationale, next_owner, and actions_taken.
+lastUpdated: 2026-05-18
+---
+
+import OpsLibraryAppDemo from "../../pages/ops/_components/OpsLibraryAppDemo.astro";
+import { Image } from "astro:assets";
+import SlackLogo from "@assets/logos/Slack.svg";
+import TeamsLogo from "@assets/logos/microsoft-teams.png";
+import SharepointLogo from "@assets/logos/microsoft-sharepoint.svg";
+import SageLogo from "@assets/logos/sage.svg";
+import PostgresqlLogo from "@assets/logos/Postgres.svg";
+import ConfluenceLogo from "@assets/logos/confluence.svg";
+
+<h2 id="overview">Overview</h2>
+
+Coordinate vendor onboarding checks, collect required documents, and escalate risk or compliance exceptions. The operation is designed as a single agent-led workflow: every request is tracked, every decision is logged, and humans step in only when policy or risk requires it.
+
+#### Request
+
+A requester submits a vendor onboarding review through Slack, Teams, or the Vendor Onboarding Form, creating a tracked request row.
+
+#### Agent Triage
+
+The agent confirms the request type, retrieves context from vendor master data, document storage, and onboarding policy, checks the relevant policy source, and asks for any missing details in chat.
+
+#### Agent Resolution
+
+Where policy permits, the agent completes low-risk vendors with complete tax, banking, contract, and ownership data and records the outcome without waiting for manual handling.
+
+#### Escalation
+
+The agent escalates banking mismatches, missing documents, sanctions or risk flags, or high-spend suppliers to the responsible owner with a decision summary and supporting context.
+
+#### Human Resolution
+
+An approver reviews the escalation in chat or the Vendor Review Queue, then approves, rejects, or returns it for more information.
+
+We’ve created this example workflow to help you get started building your own Vendor Onboarding Review.
+
+<h2 id="agents">Agents</h2>
+
+The Vendor Onboarding Review agent manages intake, policy checks, tool actions, escalation, requester updates, and closure for this operation.
+
+```text
+# Agent role
+You are the Vendor Onboarding Review agent. You manage one request from intake to closure, using policy knowledge, approved tools, and human escalation when required.
+
+# Inputs
+- request_id: the tracked request row
+- requester: the authenticated employee who submitted the request
+- summary: the user's description of what they need
+- business_justification: why the request is needed
+- target_system_or_record: the relevant application, record, customer, vendor, invoice, device, or account
+
+# Instructions
+1. Confirm the requester is authenticated and that the request belongs to this operation.
+2. Gather missing details in Slack or Teams before taking action. Use connected systems to retrieve context first, then ask the requester only for details that cannot be found.
+3. Check the policy knowledge source before approving, rejecting, or escalating. Do not invent policy rules.
+4. Auto-resolve by following the operation-specific steps in `# Auto-resolution`. Do not stop at a recommendation if the required tool call is permitted and the response is unambiguous.
+5. Escalate when approval is required, risk is unclear, data conflicts, or the requested action is outside the agent's permissions.
+6. Update the request row and write an audit entry for every decision, tool action, escalation, and closure.
+7. Reply to the requester with a concise status update and next step.
+
+# Tool use
+- Use {{ budibase.Vendor Onboarding Review Requests.get_row }} and {{ budibase.Vendor Onboarding Review Requests.update_row }} to maintain request state.
+- Use {{ budibase.Vendor Onboarding Review Audit Log.create_row }} to log decisions and actions.
+- Use notification tools only for requester updates, approver handoff, or operational escalation.
+
+# Auto-resolution
+- Use {{ sharepoint.get_file_metadata }} to confirm required tax, banking, contract, and insurance documents have been submitted.
+- Use {{ postgresql.Vendor Checks.search_rows }} to check duplicate vendors, risk flags, and onboarding status.
+- If the vendor is low risk and complete, use {{ sage.create_vendor }} to create the vendor master record.
+- Use {{ sage.update_vendor_status }} to mark the vendor active or pending review.
+- Escalate banking mismatches, missing documents, sanctions flags, high-spend suppliers, or duplicate vendor conflicts.
+
+# Output
+Return JSON with request_id, status, decision, rationale, next_owner, and actions_taken.
+```
+
+<h2 id="data">Data</h2>
+
+### Tables
+
+**Vendor Onboarding Review Requests**: Stores the request, requester, target record, status, current owner, decision, and closure details.
+
+- `request_id` : Text - Unique request identifier.
+- `requester` : User - Authenticated employee who submitted the request.
+- `summary` : Long Form Text - Short description of the request.
+- `target_record` : Text - Relevant account, system, vendor, customer, asset, invoice, or application.
+- `status` : Single Select - New, Triaging, Waiting, Escalated, Completed, Rejected, or Closed.
+- `priority` : Single Select - Low, Medium, or High.
+- `decision` : Single Select - Approved, Rejected, Escalated, or Cancelled.
+- `rationale` : Long Form Text - Agent or approver explanation.
+- `created_at` : Date - Request creation timestamp.
+- `closed_at` : Date - Completion timestamp, if closed.
+
+```csv
+request_id,requester,summary,target_record,status,priority,decision,rationale,created_at,closed_at
+VEN-1048,emma.clarke@example.com,"Please process this vendor onboarding review.","Example target",Escalated,High,Escalated,"Requires owner approval.",2026-05-18T09:15:00.000Z,
+```
+
+**Vendor Onboarding Review Audit Log**: Records agent decisions, tool calls, escalations, notifications, and human actions.
+
+- `event_id` : Text - Unique audit event identifier.
+- `request_id` : Text - Related request identifier.
+- `actor` : Text - Agent, requester, approver, or integration name.
+- `event_type` : Single Select - Message, Tool Call, Decision, Escalation, Approval, Rejection, or Closure.
+- `details` : JSON - Structured event details.
+- `created_at` : Date - Event timestamp.
+
+```csv
+event_id,request_id,actor,event_type,details,created_at
+EVT-2048,VEN-1048,Vendor Onboarding Review Agent,Escalation,"{""reason"":""Policy requires owner review""}",2026-05-18T09:18:00.000Z
+```
+
+### Connections
+
+<div class="flex flex-row justify-center gap-4 items-center content-around w-full">
+  <Image src={SlackLogo} alt="Slack" class="w-10 h-10" />
+  <Image src={TeamsLogo} alt="Teams" class="w-10 h-10" />
+  <Image src={SharepointLogo} alt="Sharepoint" class="w-10 h-10" />
+  <Image src={SageLogo} alt="Sage" class="w-10 h-10" />
+  <Image src={PostgresqlLogo} alt="PostgreSQL" class="w-10 h-10" />
+  <Image src={ConfluenceLogo} alt="Confluence" class="w-10 h-10" />
+</div>
+
+**Slack**: Receives vendor onboarding requests, asks requesters for missing supplier details, and posts review status or outstanding document reminders.
+
+**Teams**: Supports Teams-based vendor submissions and approval notifications for procurement, finance, and compliance reviewers.
+
+**Sharepoint**: Stores vendor documents such as tax forms, contracts, security questionnaires, and approval evidence.
+
+**Sage**: Checks existing supplier records and creates or updates vendor master data after onboarding is approved.
+
+**PostgreSQL**: Stores onboarding workflow state, risk review outcomes, outstanding requirements, and audit events for the Budibase app.
+
+**Confluence**: Provides vendor onboarding policy, risk criteria, compliance requirements, and escalation guidance.
+
+### Adding Knowledge
+
+The agent uses Confluence or SharePoint as a knowledge source when policy guidance, approval thresholds, ownership rules, or standard operating procedures are needed. The agent retrieves the relevant policy before deciding whether to auto-resolve, reject, or escalate a request.
+
+<h2 id="screens">Screens</h2>
+
+<OpsLibraryAppDemo
+  appName="Vendor Onboarding Review"
+  inboxRows={[
+    {
+      id: "VEN-1048",
+      request: "Vendor Onboarding Review for Emma Clarke",
+      priority: "High",
+      status: "Needs Review",
+      date: "May 18",
+      tone: "high",
+    },
+    {
+      id: "VEN-1047",
+      request: "Policy check completed for Northstar account",
+      priority: "Medium",
+      status: "In Progress",
+      date: "May 18",
+      tone: "medium",
+    },
+    {
+      id: "VEN-1046",
+      request: "Standard request from Daniel Reed",
+      priority: "Low",
+      status: "Completed",
+      date: "May 17",
+      tone: "low",
+    },
+    {
+      id: "VEN-1045",
+      request: "Exception raised by Revenue Ops manager",
+      priority: "High",
+      status: "Escalated",
+      date: "May 17",
+      tone: "high",
+    },
+    {
+      id: "VEN-1044",
+      request: "Missing details requested from Priya Shah",
+      priority: "Medium",
+      status: "Waiting",
+      date: "May 16",
+      tone: "medium",
+    },
+    {
+      id: "VEN-1043",
+      request: "Auto-resolved after policy lookup",
+      priority: "Low",
+      status: "Completed",
+      date: "May 16",
+      tone: "low",
+    },
+    {
+      id: "VEN-1042",
+      request: "Approval reminder sent to owner",
+      priority: "Medium",
+      status: "Waiting",
+      date: "May 15",
+      tone: "medium",
+    },
+    {
+      id: "VEN-1041",
+      request: "Duplicate request closed by agent",
+      priority: "Low",
+      status: "Closed",
+      date: "May 15",
+      tone: "low",
+    },
+    {
+      id: "VEN-1040",
+      request: "High-priority request from field team",
+      priority: "High",
+      status: "In Progress",
+      date: "May 14",
+      tone: "high",
+    },
+    {
+      id: "VEN-1039",
+      request: "Audit log updated for completed request",
+      priority: "Low",
+      status: "Completed",
+      date: "May 14",
+      tone: "low",
+    },
+  ]}
+/>
+
+**Vendor Onboarding Form**: A structured request screen for employees who need to provide required fields, attachments, or target record details that are awkward to collect in chat.
+
+**Vendor Review Queue**: A queue for approvers and operations owners to review escalated requests, see the agent's rationale, and record a final decision.
+
+**Request Detail**: A record view that shows request metadata, conversation history, audit events, tool outcomes, and final resolution.
+
+<h2 id="automations">Automations</h2>
+
+**Create Request Record**: On Create Row - Sets the initial status, priority, timestamps, and default owner when a new request is submitted.
+
+**Invoke Vendor Onboarding Review Agent**: On Create Row - Sends the request context to the agent for triage and policy evaluation.
+
+**Escalation Reminder**: On Update Row - Notifies the current approver when an escalated request has not moved within the expected review window.
+
+**Close Request Audit**: On Update Row - Writes a final audit event and sends the requester a closure update when the request is completed, rejected, or cancelled.
