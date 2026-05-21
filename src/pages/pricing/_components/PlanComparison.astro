@@ -7,7 +7,8 @@ type PlanKey = "pro" | "premium" | "business" | "enterprise" | "open_source";
 
 type FeatureValues = Record<PlanKey, string | null> & {
   category: string;
-  label?: string;
+  description?: string;
+  url?: string;
 };
 
 type FeatureEntry = {
@@ -62,7 +63,7 @@ const featuresByCategory = Object.entries(
 
   categories[category].push({
     key,
-    label: values.label || formatFeatureLabel(key),
+    label: formatFeatureLabel(key),
     values,
   });
 
@@ -112,9 +113,7 @@ const planGroupEntries = Object.entries(planGroups) as Array<
                   <th
                     scope="col"
                     class="text-left px-4 py-3 font-semibold text-stone-900 dark:text-stone-100"
-                  >
-
-                  </th>
+                  />
                   {columns.map((column) => (
                     <th
                       scope="col"
@@ -142,7 +141,31 @@ const planGroupEntries = Object.entries(planGroups) as Array<
                         scope="row"
                         class="px-4 py-3 text-left font-medium text-stone-900 dark:text-stone-100"
                       >
-                        {feature.label}
+                        {feature.values.description ? (
+                          <span class="feature-tooltip-wrap">
+                            <span class="feature-tooltip-trigger" tabindex="0">
+                              {feature.label}
+                            </span>
+                            <span
+                              role="tooltip"
+                              class="feature-tooltip text-sm text-stone-700 dark:text-stone-200"
+                            >
+                              <span>{feature.values.description}</span>
+                              {feature.values.url ? (
+                                <a
+                                  href={feature.values.url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  class="feature-tooltip-link"
+                                >
+                                  visit docs
+                                </a>
+                              ) : null}
+                            </span>
+                          </span>
+                        ) : (
+                          feature.label
+                        )}
                       </th>
                       {columns.map((column) => (
                         <td class="px-4 py-3 text-center text-stone-600 dark:text-stone-300">
@@ -183,5 +206,65 @@ const planGroupEntries = Object.entries(planGroups) as Array<
 <style>
   .plan-comparison-panel {
     background: var(--bg-2);
+  }
+
+  .feature-tooltip-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .feature-tooltip-trigger {
+    display: inline;
+    border-bottom: 1px dotted rgb(168 162 158 / 0.8);
+    cursor: help;
+    line-height: 1.35;
+  }
+
+  .feature-tooltip-trigger:focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .feature-tooltip {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 10px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 240px;
+    max-width: 320px;
+    padding: 12px;
+    background: var(--bg-1);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition:
+      opacity 150ms ease,
+      transform 150ms ease,
+      visibility 150ms ease;
+    z-index: 30;
+    white-space: normal;
+  }
+
+  .feature-tooltip-wrap:hover .feature-tooltip,
+  .feature-tooltip-wrap:focus-within .feature-tooltip {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .feature-tooltip-link {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    width: fit-content;
   }
 </style>
