@@ -1,0 +1,187 @@
+---
+import Check from "phosphor-astro/Check.astro";
+import X from "phosphor-astro/X.astro";
+import featureMatrix from "./feature-matrix.json";
+
+type PlanKey = "pro" | "premium" | "business" | "enterprise" | "open_source";
+
+type FeatureValues = Record<PlanKey, string | null> & {
+  category: string;
+  label?: string;
+};
+
+type FeatureEntry = {
+  key: string;
+  label: string;
+  values: FeatureValues;
+};
+
+type PlanColumn = {
+  key: PlanKey;
+  label: string;
+};
+
+const planGroups: Record<"cloud" | "self-host", PlanColumn[]> = {
+  cloud: [
+    { key: "pro", label: "Pro" },
+    { key: "premium", label: "Premium" },
+    { key: "business", label: "Business" },
+    { key: "enterprise", label: "Enterprise" },
+  ],
+  "self-host": [
+    { key: "open_source", label: "Open-source" },
+    { key: "enterprise", label: "Enterprise" },
+  ],
+};
+
+const formatFeatureLabel = (featureKey: string) =>
+  featureKey
+    .replace(/_/g, " ")
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+const formatFeatureValue = (value: string | null) => {
+  if (value === null || value === "") {
+    return "—";
+  }
+
+  return value;
+};
+
+const getAvailabilityValue = (value: string | null) =>
+  typeof value === "string" ? value.trim().toLowerCase() : null;
+
+const featuresByCategory = Object.entries(
+  featureMatrix as Record<string, FeatureValues>,
+).reduce<Record<string, FeatureEntry[]>>((categories, [key, values]) => {
+  const category = values.category || "Other";
+
+  if (!categories[category]) {
+    categories[category] = [];
+  }
+
+  categories[category].push({
+    key,
+    label: values.label || formatFeatureLabel(key),
+    values,
+  });
+
+  return categories;
+}, {});
+
+const categoryGroups = Object.entries(featuresByCategory);
+const planGroupEntries = Object.entries(planGroups) as Array<
+  ["cloud" | "self-host", PlanColumn[]]
+>;
+---
+
+<section class="mb-12 md:mb-20" aria-labelledby="plan-comparison-heading">
+  <h2
+    id="plan-comparison-heading"
+    class="text-3xl font-semibold text-stone-900 dark:text-stone-100 mb-4"
+  >
+    Compare plans
+  </h2>
+  <div class="space-y-4">
+    {
+      planGroupEntries.map(([hostingOption, columns]) => (
+        <div
+          data-hosting-panel={hostingOption}
+          class:list={[
+            "plan-comparison-panel rounded-md overflow-hidden border border-stone-300/70 dark:border-stone-700/70",
+            hostingOption === "self-host" && "hidden",
+          ]}
+          aria-hidden={hostingOption === "self-host" ? "true" : "false"}
+        >
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[720px] border-collapse text-sm table-fixed">
+              <caption class="sr-only">
+                Comparison of features available on currently displayed pricing
+                plans.
+              </caption>
+              <colgroup>
+                <col class="w-[240px] md:w-[280px]" />
+                {columns.map(() => (
+                  <col
+                    style={`width: calc((100% - 280px) / ${columns.length});`}
+                  />
+                ))}
+              </colgroup>
+              <thead>
+                <tr class="border-stone-300/70 dark:border-stone-700/70">
+                  <th
+                    scope="col"
+                    class="text-left px-4 py-3 font-semibold text-stone-900 dark:text-stone-100"
+                  >
+
+                  </th>
+                  {columns.map((column) => (
+                    <th
+                      scope="col"
+                      class="text-center px-4 py-3 font-semibold text-stone-900 dark:text-stone-100"
+                    >
+                      {column.label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              {categoryGroups.map(([category, features]) => (
+                <tbody>
+                  <tr class="border-b border-t border-stone-300/70 dark:border-stone-700/70">
+                    <th
+                      scope="rowgroup"
+                      colspan={columns.length + 1}
+                      class="bg-stone-50 dark:bg-stone-800/70 px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.08em] text-stone-700 dark:text-stone-300"
+                    >
+                      {category}
+                    </th>
+                  </tr>
+                  {features.map((feature) => (
+                    <tr class="border-b border-stone-300/70 dark:border-stone-700/70 last:border-b-0">
+                      <th
+                        scope="row"
+                        class="px-4 py-3 text-left font-medium text-stone-900 dark:text-stone-100"
+                      >
+                        {feature.label}
+                      </th>
+                      {columns.map((column) => (
+                        <td class="px-4 py-3 text-center text-stone-600 dark:text-stone-300">
+                          {getAvailabilityValue(feature.values[column.key]) ===
+                          "yes" ? (
+                            <span
+                              class="inline-flex h-5 w-5 items-center justify-center text-stone-900 dark:text-stone-100"
+                              aria-label="Yes"
+                            >
+                              <Check class="h-4 w-4" aria-hidden="true" />
+                            </span>
+                          ) : getAvailabilityValue(
+                              feature.values[column.key],
+                            ) === "no" ? (
+                            <span
+                              class="inline-flex h-5 w-5 items-center justify-center text-stone-500 dark:text-stone-400"
+                              aria-label="No"
+                            >
+                              <X class="h-4 w-4" aria-hidden="true" />
+                            </span>
+                          ) : (
+                            formatFeatureValue(feature.values[column.key])
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              ))}
+            </table>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .plan-comparison-panel {
+    background: var(--bg-2);
+  }
+</style>

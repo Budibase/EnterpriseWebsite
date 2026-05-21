@@ -1,0 +1,538 @@
+{
+  "Automation builder": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Platform"
+  },
+  "App builder": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Platform"
+  },
+  "Agent builder": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Platform"
+  },
+  "Internal and external datasources": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Platform"
+  },
+  "Drag-and-drop interface designer": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Platform"
+  },
+  "Workspace limit": {
+    "pro": "1",
+    "premium": "unlimited",
+    "business": "unlimited",
+    "enterprise": "unlimited",
+    "open_source": "1",
+    "category": "Platform"
+  },
+  "Hosting": {
+    "pro": "cloud",
+    "premium": "cloud",
+    "business": "cloud",
+    "enterprise": "flexible",
+    "open_source": "self",
+    "category": "Platform"
+  },
+  "Automations limit": {
+    "pro": "unlimited",
+    "premium": "unlimited",
+    "business": "unlimited",
+    "enterprise": "unlimited",
+    "open_source": "unlimited",
+    "category": "Automations"
+  },
+  "Sync automations": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Automations"
+  },
+  "20+ Triggers and actions": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Automations"
+  },
+  "Automation log retention": {
+    "pro": "1 day",
+    "premium": "7 days",
+    "business": "30 days",
+    "enterprise": "unlimited",
+    "open_source": "1 day",
+    "category": "Automations"
+  },
+  "Synchronous webhooks": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Automations"
+  },
+  "Bring your own ai key": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Agents"
+  },
+  "Budibase AI": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Agents"
+  },
+  "Tool calling": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Agents"
+  },
+  "Evals": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Agents"
+  },
+  "Knowledge sources": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Agents"
+  },
+  "Agent log retention": {
+    "pro": "1 day",
+    "premium": "7 days",
+    "business": "30 days",
+    "enterprise": "unlimited",
+    "open_source": "unlimited",
+    "category": "Agents"
+  },
+  "Datasources": {
+    "pro": "unlimited",
+    "premium": "unlimited",
+    "business": "unlimited",
+    "enterprise": "unlimited",
+    "open_source": "unlimited",
+    "category": "Data"
+  },
+  "Custom REST API connector": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Data"
+  },
+  "External records": {
+    "pro": "unlimited",
+    "premium": "unlimited",
+    "business": "unlimited",
+    "enterprise": "unlimited",
+    "open_source": "unlimited",
+    "category": "Data"
+  },
+  "Custom fields": {
+    "pro": "unlimited",
+    "premium": "unlimited",
+    "business": "unlimited",
+    "enterprise": "unlimited",
+    "open_source": "unlimited",
+    "category": "Data"
+  },
+  "View permissions": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Data"
+  },
+  "View readonly columns": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Data"
+  },
+  "Table access security": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Data"
+  },
+  "Budibase DB rows limit": {
+    "pro": "50,000",
+    "premium": "250,000",
+    "business": "500,000",
+    "enterprise": "unlimited",
+    "open_source": "unlimited",
+    "category": "Data"
+  },
+  "Multi-screen responsive apps": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Design"
+  },
+  "40+ Pre-built components": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Design"
+  },
+  "Powerful design blocks": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Design"
+  },
+  "Reusable code snippets": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Design"
+  },
+  "Custom email onboarding": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Design"
+  },
+  "Branding": {
+    "pro": "no",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Design"
+  },
+  "PDF creator": {
+    "pro": "no",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Design"
+  },
+  "Custom app scripts": {
+    "pro": "no",
+    "premium": "no",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Design"
+  },
+  "PWAs": {
+    "pro": "no",
+    "premium": "no",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Design"
+  },
+  "Public users": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Users"
+  },
+  "Included creators": {
+    "pro": "1",
+    "premium": "1",
+    "business": "3",
+    "enterprise": "custom",
+    "open_source": "unlimited",
+    "category": "Users"
+  },
+  "Included end users": {
+    "pro": "0",
+    "premium": "0",
+    "business": "0",
+    "enterprise": "custom",
+    "open_source": "unlimited",
+    "category": "Users"
+  },
+  "Max creators": {
+    "pro": "1",
+    "premium": "unlimited",
+    "business": "unlimited",
+    "enterprise": "unlimited",
+    "open_source": "unlimited",
+    "category": "Users"
+  },
+  "Max end users": {
+    "pro": "unlimited",
+    "premium": "unlimited",
+    "business": "unlimited",
+    "enterprise": "unlimited",
+    "open_source": "unlimited",
+    "category": "Users"
+  },
+  "User groups": {
+    "pro": "no",
+    "premium": "no",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Users"
+  },
+  "Plugins limit": {
+    "pro": "unlimited",
+    "premium": "unlimited",
+    "business": "unlimited",
+    "enterprise": "unlimited",
+    "open_source": "unlimited",
+    "category": "Extensibility"
+  },
+  "User interface plugins": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Extensibility"
+  },
+  "Datasource plugins": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Extensibility"
+  },
+  "Public API": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Extensibility"
+  },
+  "Expanded public API": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Extensibility"
+  },
+  "SSO": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Security and scaling"
+  },
+  "Role-based access control": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Security and scaling"
+  },
+  "Workspace backups": {
+    "pro": "no",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "Workspace admin role": {
+    "pro": "no",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "Workspace backup retention": {
+    "pro": "no",
+    "premium": "7 days",
+    "business": "unlimited",
+    "enterprise": "unlimited",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "Environment variables": {
+    "pro": "no",
+    "premium": "no",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "Enforceable SSO": {
+    "pro": "no",
+    "premium": "no",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "Recaptcha": {
+    "pro": "no",
+    "premium": "no",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "PKCE OIDC": {
+    "pro": "no",
+    "premium": "no",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "Translations": {
+    "pro": "no",
+    "premium": "no",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "Audit logs": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "Active directory sync (SCIM)": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "Offline license": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "Add-on",
+    "open_source": "no",
+    "category": "Security and scaling"
+  },
+  "Budibase forum": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Support"
+  },
+  "Budibase docs": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Support"
+  },
+  "Budibase community chat": {
+    "pro": "yes",
+    "premium": "yes",
+    "business": "yes",
+    "enterprise": "yes",
+    "open_source": "yes",
+    "category": "Support"
+  },
+  "Priority support": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Support"
+  },
+  "SLAs": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "2 business days",
+    "open_source": "no",
+    "category": "Support"
+  },
+  "Account manager": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Support"
+  },
+  "Tailored onboarding": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Support"
+  },
+  "Custom invoicing": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Support"
+  }
+}
