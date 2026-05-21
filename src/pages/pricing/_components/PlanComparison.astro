@@ -253,6 +253,15 @@ const planGroupEntries = Object.entries(planGroups) as Array<
     white-space: normal;
   }
 
+  .feature-tooltip::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -10px;
+    width: 100%;
+    height: 10px;
+  }
+
   .feature-tooltip-wrap:hover .feature-tooltip,
   .feature-tooltip-wrap:focus-within .feature-tooltip {
     opacity: 1;
