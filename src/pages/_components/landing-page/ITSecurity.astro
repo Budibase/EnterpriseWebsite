@@ -1,0 +1,62 @@
+---
+import SectionBlock from "@components/SectionBlock.astro"
+import Card from "@components/cards/Card.astro"
+---
+
+     <section>
+        <SectionBlock
+          align="center"
+          maxWidth="lg"
+          titleColorMode="split-secondary-primary"
+          titleLines={[
+            { text: "Production-ready" },
+            { text: "Apps and automations" },
+          ]}
+          description="Budibase gives you everything you need to create secure workflows without excessive engineering overhead."
+          contentClass="grid grid-cols-1 gap-4 text-left sm:grid-cols-2 md:gap-2 lg:grid-cols-3"
+        >
+        <Card
+            label="Open-Source"
+            description="Deploy on your own infrastructure with complete data sovereignty."
+          >
+          </Card>
+          <Card
+            label="ISO 27001"
+            description="Enterprise-grade security certifications to meet your compliance requirements."
+          >
+          </Card>
+          <Card
+            label="Made in Europe"
+            description="Budibase is made in Europe."
+          >
+          </Card>
+          <Card
+            label="Pen Tests and Audits"
+            description="Annual penetration tests and AWS security configuration audits from 3rd party vendors."
+          >
+          </Card>
+          <Card
+            label="RBAC"
+            description="Tightly control the data and resources users can access."
+          >
+          </Card>
+          <Card
+            label="SSO"
+            description="Integrate with auth tools including OpenID Connect."
+          >
+          </Card>
+          <Card
+            label="Audit Logs"
+            description="Comprehensive audit trails for all user actions and system events."
+          >
+          </Card>
+          <Card
+            label="SCIM & AD"
+            description="Integrate with existing user management tools."
+          />
+          <Card
+            label="Environment Variables"
+            description="Securely handle database credentials and API keys across the platform."
+          />
+        </SectionBlock>
+      </section>

@@ -1,0 +1,46 @@
+---
+import SectionBlock from "@components/SectionBlock.astro"
+import Card from "@components/cards/Card.astro"
+---
+
+     <section>
+        <SectionBlock
+          align="center"
+          maxWidth="lg"
+          titleColorMode="split-secondary-primary"
+          titleLines={[
+            { text: "Advanced security tools" },
+            { text: "Out of the box" },
+          ]}
+          description="Budibase gives you everything you need to create secure workflows without heavy engineering."
+          contentClass="grid grid-cols-1 gap-4 text-left sm:grid-cols-2 md:gap-2 lg:grid-cols-3"
+        >
+          <Card
+            label="RBAC"
+            description="Tightly control the data and resources users can access."
+          >
+          </Card>
+          <Card
+            label="SSO"
+            description="Integrate with auth tools including OpenID Connect."
+          >
+          </Card>
+          <Card
+            label="Audit Logs"
+            description="Comprehensive audit trails for all user actions and system events."
+          >
+          </Card>
+          <Card
+            label="SCIM & AD"
+            description="Integrate with existing user management tools."
+          />
+          <Card
+            label="Environment Variables"
+            description="Securely handle database credentials and API keys across the platform."
+          />
+          <Card
+            label="User Groups"
+            description="Simplify the process of managing users' access to apps."
+          />
+        </SectionBlock>
+      </section>
