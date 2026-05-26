@@ -77,20 +77,30 @@ const planGroupEntries = Object.entries(planGroups) as Array<
 >;
 ---
 
-<section class="mb-12 md:mb-20" aria-labelledby="plan-comparison-heading">
-  <details class="plan-comparison-details">
-    <summary class="flex items-center justify-between cursor-pointer list-none">
-      <h2
-        id="plan-comparison-heading"
-        class="text-3xl font-semibold text-stone-900 dark:text-stone-100"
+<section class="mb-5 md:mb-5" aria-labelledby="plan-comparison-heading">
+  <div class="plan-comparison" data-plan-comparison data-expanded="false">
+    <h2
+      id="plan-comparison-heading"
+      class="text-3xl font-semibold text-stone-900 dark:text-stone-100"
+    >
+      <button
+        type="button"
+        class="plan-comparison-header flex w-full items-center justify-between cursor-pointer text-left"
+        data-plan-comparison-trigger
+        aria-controls="plan-comparison-content"
+        aria-expanded="false"
       >
-        Compare plans
-      </h2>
-      <span class="plus-icon transition-transform duration-200">
-        <Plus class="h-5 w-5 text-stone-900 dark:text-stone-100" aria-hidden="true" />
-      </span>
-    </summary>
-    <div class="space-y-4 mt-4">
+        <span>Compare plans</span>
+        <span class="plus-icon transition-transform duration-200">
+          <Plus class="h-5 w-5" aria-hidden="true" />
+        </span>
+      </button>
+    </h2>
+    <div
+      id="plan-comparison-content"
+      class="plan-comparison-content space-y-4 mt-4"
+      data-plan-comparison-content
+    >
       {
         planGroupEntries.map(([hostingOption, columns]) => (
         <div
@@ -208,7 +218,7 @@ const planGroupEntries = Object.entries(planGroups) as Array<
       ))
     }
     </div>
-  </details>
+  </div>
 </section>
 
 <style>
@@ -285,15 +295,62 @@ const planGroupEntries = Object.entries(planGroups) as Array<
     width: fit-content;
   }
 
-  .plan-comparison-details > summary {
-    list-style: none;
+  .plan-comparison-header {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
   }
 
-  .plan-comparison-details > summary::-webkit-details-marker {
-    display: none;
+  .plan-comparison-header:focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 6px;
+    border-radius: 4px;
   }
 
-  .plan-comparison-details[open] .plus-icon {
+  .plan-comparison-content {
+    position: relative;
+  }
+
+  .plan-comparison[data-expanded="false"] > .plan-comparison-content {
+    max-height: 300px;
+    overflow: hidden;
+  }
+
+  .plan-comparison[data-expanded="false"] > .plan-comparison-content::after {
+    content: "";
+    position: absolute;
+    inset: 150px 0 0;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--bg-1) 0%, transparent),
+      color-mix(in srgb, var(--bg-1) 96%, transparent) 74%,
+      var(--bg-1)
+    );
+    pointer-events: none;
+  }
+
+  .plan-comparison[data-expanded="true"] .plus-icon {
     transform: rotate(45deg);
   }
 </style>
+
+<script>
+  const planComparison = document.querySelector("[data-plan-comparison]");
+  const planComparisonTrigger = planComparison?.querySelector(
+    "[data-plan-comparison-trigger]",
+  ) as HTMLButtonElement | null;
+
+  if (planComparison && planComparisonTrigger) {
+    planComparisonTrigger.addEventListener("click", () => {
+      const isExpanded = planComparison.dataset.expanded === "true";
+      const nextExpanded = !isExpanded;
+
+      planComparison.dataset.expanded = String(nextExpanded);
+      planComparisonTrigger.setAttribute(
+        "aria-expanded",
+        String(nextExpanded),
+      );
+    });
+  }
+</script>
