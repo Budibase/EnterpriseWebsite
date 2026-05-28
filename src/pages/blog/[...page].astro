@@ -13,6 +13,7 @@ import {
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const feedItems = await getBlogFeedItems();
+
   return paginate(feedItems, { pageSize: 12 });
 }
 
@@ -21,19 +22,31 @@ interface Props {
 }
 
 const { page } = Astro.props as Props;
+
 const isPaginatedArchive = page.currentPage > 1;
+
 const robots = isPaginatedArchive
   ? "max-image-preview:large"
   : undefined;
+
 const blogTopic = getBlogTopicItem("blog");
+
+const seoTitle = isPaginatedArchive
+  ? `${blogTopic.seoTitle} - Page ${page.currentPage}`
+  : blogTopic.seoTitle;
+
+const seoDescription = isPaginatedArchive
+  ? `Browse page ${page.currentPage} of ${page.lastPage} of the Budibase blog for the latest articles, guides, and insights.`
+  : blogTopic.seoDescription;
+
 const allPages = [...Array(page.lastPage).keys()].map((num) => {
   return `/blog${num === 0 ? "" : `/${String(num + 1)}`}`;
 });
 ---
 
 <Layout
-  title={blogTopic.seoTitle}
-  description={blogTopic.seoDescription}
+  title={seoTitle}
+  description={seoDescription}
   image={{ src: "/og/blog.jpg", alt: "What's new in the Budibase ecosystem" }}
   robots={robots}
 >
