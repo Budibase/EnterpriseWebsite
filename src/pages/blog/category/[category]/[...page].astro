@@ -17,6 +17,7 @@ import {
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const items = await getBlogFeedItems();
+
   return BLOG_TOPIC_ITEMS.flatMap((category) =>
     category.id === "blog"
       ? []
@@ -32,25 +33,40 @@ interface Props {
 }
 
 const { page } = Astro.props as Props;
+
 const isPaginatedArchive = page.currentPage > 1;
+
 const robots = isPaginatedArchive
   ? "max-image-preview:large"
   : undefined;
+
 const rawCategory = Astro.params.category ?? "blog";
+
 const category: BlogTopicRoute = isValidBlogTopic(rawCategory)
   ? rawCategory
   : "blog";
+
 const currentTopic = getBlogTopicItem(category);
 const currentCategoryLabel = currentTopic.label;
+
+const seoTitle = isPaginatedArchive
+  ? `${currentTopic.seoTitle} - Page ${page.currentPage}`
+  : currentTopic.seoTitle;
+
+const seoDescription = isPaginatedArchive
+  ? `Browse page ${page.currentPage} of ${page.lastPage} of our ${currentCategoryLabel.toLowerCase()} articles, guides, and insights.`
+  : currentTopic.seoDescription;
+
 const activePill = "blog";
+
 const allPages = [...Array(page.lastPage).keys()].map((num) => {
   return `/blog/category/${category}${num === 0 ? "" : `/${String(num + 1)}`}`;
 });
 ---
 
 <Layout
-  title={currentTopic.seoTitle}
-  description={currentTopic.seoDescription}
+  title={seoTitle}
+  description={seoDescription}
   image={{ src: "/og/blog.jpg", alt: "What's new in the Budibase ecosystem" }}
   robots={robots}
 >
