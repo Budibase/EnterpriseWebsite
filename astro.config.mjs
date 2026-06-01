@@ -120,15 +120,5 @@ export default defineConfig({
   },
 
   adapter: netlify(),
-  integrations: [sitemap({
-  filter: (page) => {
-    const isMainBlogPagination =
-      /^https:\/\/budibase\.com\/blog\/\d+\/$/.test(page);
-
-    const isCategoryPagination =
-      /^https:\/\/budibase\.com\/blog\/category\/[^/]+\/\d+\/$/.test(page);
-
-    return !isMainBlogPagination && !isCategoryPagination;
-  },
-}), expressiveCode(), mdx()],
+    integrations: [sitemap(), expressiveCode(), mdx()],
 });
