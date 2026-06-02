@@ -349,6 +349,26 @@
     "description": "Turn Budibase apps into progressive web apps for installable, app-like experiences.",
     "url": "https://docs.budibase.com/docs/progressive-web-apps"
   },
+  "Authenticated embeds": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Design",
+    "description": "Embed Budibase apps inside an IFrame, sharing authentication with the parent site.",
+    "url": "https://docs.budibase.com/docs/embedded-app"
+  },
+  "Micro frontends (MFEs)": {
+    "pro": "no",
+    "premium": "no",
+    "business": "no",
+    "enterprise": "yes",
+    "open_source": "no",
+    "category": "Design",
+    "description": "Use Budibase apps as micro frontends that can be integrated into existing React web applications.",
+    "url": "https://docs.budibase.com/docs/microfrontend-example"
+  },
   "Public users": {
     "pro": "yes",
     "premium": "yes",
