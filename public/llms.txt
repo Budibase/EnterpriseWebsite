@@ -10,4 +10,3 @@ Official website for Budibase.
 
 - [Pricing page](https://budibase.com/pricing): Human-readable pricing page
 - [Pricing JSON](https://budibase.com/pricing.json): Canonical structured pricing data for agents
-- [Pricing JSON](https://budibase.com/feature-matrix.json): Canonical structured feature matrix (Compare plans) for agents
