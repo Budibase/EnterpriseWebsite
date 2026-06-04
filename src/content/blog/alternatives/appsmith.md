@@ -1,5 +1,5 @@
 ---
-title: "7 Appsmith & Competitors for 2026"
+title: "7 Appsmith Alternatives & Competitors for 2026"
 description: "Check out our in-depth round-up of the top Appsmith alternatives."
 publishDate: "2026-06-04"
 author: "Ronan McQuillan"
