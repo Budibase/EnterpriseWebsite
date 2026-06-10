@@ -1,10 +1,21 @@
 ---
 export const prerender = false;
 
+import { getCollection } from "astro:content";
+
+const slugParam = Astro.params.slug;
+const slug = Array.isArray(slugParam) ? slugParam.join("/") : slugParam;
+
+const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
+const caseStudies = await getCollection("caseStudies");
+
 return new Response(JSON.stringify({
-  params: Astro.params,
-  url: Astro.url.pathname,
-}), {
+  slugParam,
+  slug,
+  blogIdsSample: blogPosts.slice(0, 20).map((entry) => entry.id),
+  hasExactBlogMatch: blogPosts.some((entry) => entry.id === slug),
+  hasExactCaseStudyMatch: caseStudies.some((entry) => entry.id === slug),
+}, null, 2), {
   status: 200,
   headers: { "Content-Type": "application/json" },
 });
