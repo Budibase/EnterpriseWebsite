@@ -1,24 +1,58 @@
 ---
-export const prerender = false;
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import CTA from "@components/CTA.astro";
+import MarkdownPostLayout from "../../layouts/MarkdownPostLayout.astro";
+import { renderBlogMarkdown } from "../../lib/render-blog-markdown.js";
 
-import { getCollection } from "astro:content";
+export type Props = {
+  kind: "blog" | "caseStudy";
+  post?: CollectionEntry<"blog">;
+  caseStudy?: CollectionEntry<"caseStudies">;
+};
 
-const slugParam = Astro.params.slug;
-const slug = Array.isArray(slugParam) ? slugParam.join("/") : slugParam;
+export async function getStaticPaths() {
+  const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
+  const caseStudies = await getCollection("caseStudies");
 
-const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
-const caseStudies = await getCollection("caseStudies");
+  return [
+    ...blogPosts.map((post) => ({
+      params: { slug: post.id },
+      props: { kind: "blog" as const, post },
+    })),
+    ...caseStudies.map((caseStudy) => ({
+      params: { slug: caseStudy.id },
+      props: { kind: "caseStudy" as const, caseStudy },
+    })),
+  ];
+}
 
-return new Response(JSON.stringify({
-  slugParam,
-  slug,
-  blogIdsSample: blogPosts.slice(0, 20).map((entry) => entry.id),
-  hasExactBlogMatch: blogPosts.some((entry) => entry.id === slug),
-  hasExactCaseStudyMatch: caseStudies.some((entry) => entry.id === slug),
-}, null, 2), {
-  status: 200,
-  headers: { "Content-Type": "application/json" },
-});
+const { kind, post, caseStudy } = Astro.props as Props;
+
+if (kind === "blog" && !post) {
+  throw new Error("Blog post not found");
+}
+
+if (kind === "caseStudy" && !caseStudy) {
+  throw new Error("Case study not found");
+}
+
+const entry = kind === "blog" ? post! : caseStudy!;
+const hasHugoShortcodes = kind === "blog" && (post?.body?.includes("{{<") ?? false);
+const renderedEntry = hasHugoShortcodes ? null : await render(entry);
+const Content = renderedEntry?.Content;
+const shortcodeHtml = hasHugoShortcodes ? await renderBlogMarkdown(post!.body) : "";
+const transitionKey = entry.id.replaceAll("/", "-");
+
+const frontmatter =
+  kind === "blog"
+    ? post!.data
+    : {
+        title: caseStudy!.data.title,
+        description: caseStudy!.data.quote,
+        author: caseStudy!.data.author?.name,
+        coverImage: caseStudy!.data.coverImage,
+        socialImage: caseStudy!.data.coverImage,
+      };
 ---
 
 <MarkdownPostLayout frontmatter={frontmatter} transitionKey={transitionKey}>
