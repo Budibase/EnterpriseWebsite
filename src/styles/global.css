@@ -267,7 +267,8 @@
     --accent-red: var(--color-red-500);
     --hero-demo-user-bubble: var(--color-blue-200);
     --border-color: rgb(var(--border) / 0.9);
-    --site-nav-height: 56px;
+    --site-nav-bar-height: 56px;
+    --site-nav-height: var(--site-nav-bar-height);
     --section-gap-sm: var(--spacing-section-gap-sm);
     --section-gap-md: var(--spacing-section-gap-md);
     --section-gap-lg: var(--spacing-section-gap-lg);
@@ -919,6 +920,10 @@ article blockquote p {
   z-index: 60;
   height: 100dvh;
   background: var(--bg-1);
+}
+
+.mobile-nav-overlay.hidden {
+  display: none;
 }
 
 .mobile-nav-panel {

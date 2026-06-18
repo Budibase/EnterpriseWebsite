@@ -1,9 +1,3 @@
-import { existsSync } from "node:fs";
-import path from "node:path";
-
-const publicRoot = path.resolve(process.cwd(), "public");
-const publicAssetCache = new Map();
-
 function normalizeRootRelativePath(value) {
   if (typeof value !== "string") {
     return null;
@@ -28,25 +22,7 @@ function hasPublicAsset(value) {
   if (!normalizedPath) {
     return true;
   }
-
-  let decodedPath = normalizedPath;
-
-  try {
-    decodedPath = decodeURIComponent(normalizedPath);
-  } catch {
-    decodedPath = normalizedPath;
-  }
-
-  if (publicAssetCache.has(decodedPath)) {
-    return publicAssetCache.get(decodedPath);
-  }
-
-  const assetPath = path.resolve(publicRoot, `.${decodedPath}`);
-  const exists = assetPath.startsWith(publicRoot) && existsSync(assetPath);
-
-  publicAssetCache.set(decodedPath, exists);
-
-  return exists;
+  return true;
 }
 
 function hasMeaningfulContent(node) {
@@ -63,7 +39,9 @@ function hasMeaningfulContent(node) {
       return hasPublicAsset(String(node.properties?.src ?? ""));
     }
 
-    return Array.isArray(node.children) && node.children.some(hasMeaningfulContent);
+    return (
+      Array.isArray(node.children) && node.children.some(hasMeaningfulContent)
+    );
   }
 
   return false;
@@ -74,10 +52,7 @@ function shouldRemoveNode(node) {
     return !hasPublicAsset(String(node.properties?.src ?? ""));
   }
 
-  if (
-    node?.type === "element" &&
-    ["a", "p", "figure"].includes(node.tagName)
-  ) {
+  if (node?.type === "element" && ["a", "p", "figure"].includes(node.tagName)) {
     return !hasMeaningfulContent(node);
   }
 

@@ -3,7 +3,7 @@ import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath } from "node:url";
 import { URL } from "node:url";
-import netlify from "@astrojs/netlify";
+import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 
@@ -119,6 +119,6 @@ export default defineConfig({
     contentIntellisense: true,
   },
 
-  adapter: netlify(),
-    integrations: [sitemap(), expressiveCode(), mdx()],
+  adapter: cloudflare(),
+  integrations: [sitemap(), expressiveCode(), mdx()],
 });

@@ -1,7 +1,6 @@
 ---
 import budibaseLogoBlack from "@assets/BudibaseLogoBlack.svg";
 import budibaseLogoWhite from "@assets/BudibaseLogoWhite.svg";
-import { Image } from "astro:assets";
 import Button from "@components/Button.astro";
 import HeaderDropDown from "@components/HeaderDropDown.astro";
 import {
@@ -9,6 +8,15 @@ import {
   resourcesDropdownItems,
   solutionsDropdownItems,
 } from "@components/navDropdownData";
+
+const blackLogoSrc =
+  typeof budibaseLogoBlack === "string"
+    ? budibaseLogoBlack
+    : budibaseLogoBlack.src;
+const whiteLogoSrc =
+  typeof budibaseLogoWhite === "string"
+    ? budibaseLogoWhite
+    : budibaseLogoWhite.src;
 ---
 
 <nav
@@ -18,7 +26,7 @@ import {
   transition:name="site-chrome"
 >
   <div
-    class="relative z-10 mx-auto grid h-[var(--site-nav-height)] w-full max-w-7xl grid-cols-[1fr_auto_auto] items-center px-2 md:px-3 lg:grid-cols-[auto_1fr_auto] lg:gap-6 lg:px-0"
+    class="relative z-10 mx-auto grid h-[var(--site-nav-bar-height)] w-full max-w-7xl grid-cols-[1fr_auto_auto] items-center px-2 md:px-3 lg:grid-cols-[auto_1fr_auto] lg:gap-6 lg:px-0"
   >
     <a
       href="/"
@@ -27,14 +35,18 @@ import {
       data-astro-prefetch
     >
       <div class="relative w-[120px] flex items-center">
-        <Image
-          src={budibaseLogoBlack}
+        <img
+          src={blackLogoSrc}
           alt="Budibase logo"
+          width="120"
+          height="22"
           class="block hover:cursor-pointer dark:hidden"
         />
-        <Image
-          src={budibaseLogoWhite}
+        <img
+          src={whiteLogoSrc}
           alt="Budibase logo"
+          width="120"
+          height="22"
           class="block hover:cursor-pointer hidden dark:block"
         />
       </div>
@@ -47,7 +59,7 @@ import {
         <HeaderDropDown label="Product" items={productDropdownItems} />
         <HeaderDropDown label="Solutions" items={solutionsDropdownItems} />
         <HeaderDropDown label="Resources" items={resourcesDropdownItems} />
-        
+
         <a
           target="_self"
           href="/pricing/"
@@ -56,8 +68,6 @@ import {
         >
           Pricing
         </a>
-        
-
       </div>
 
       <a
@@ -158,14 +168,18 @@ import {
         data-astro-prefetch
       >
         <div class="relative w-[120px] flex items-center">
-          <Image
-            src={budibaseLogoBlack}
+          <img
+            src={blackLogoSrc}
             alt="Budibase logo"
+            width="120"
+            height="22"
             class="block dark:hidden"
           />
-          <Image
-            src={budibaseLogoWhite}
+          <img
+            src={whiteLogoSrc}
             alt="Budibase logo"
+            width="120"
+            height="22"
             class="hidden dark:block"
           />
         </div>
@@ -259,8 +273,6 @@ import {
           </details>
         </li>
 
-
-        
         <li class="mobile-nav-item">
           <a
             href="/ops/"

@@ -41,7 +41,12 @@ const { enableTransitions = false } = Astro.props;
       const nav = document.getElementById("site-nav");
       if (!nav) return;
       const { height } = nav.getBoundingClientRect();
-      root.style.setProperty("--site-nav-height", `${Math.round(height)}px`);
+      const measuredHeight = Math.round(height);
+      const navHeight =
+        Number.isFinite(measuredHeight) && measuredHeight > 0
+          ? Math.min(measuredHeight, 96)
+          : 56;
+      root.style.setProperty("--site-nav-height", `${navHeight}px`);
     };
 
     const onReady = () => {
@@ -71,5 +76,4 @@ const { enableTransitions = false } = Astro.props;
     width: 100%;
     height: 100%;
   }
-
 </style>
