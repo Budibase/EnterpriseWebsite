@@ -14,8 +14,8 @@
     "format:fix": "prettier . --write"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.7",
-    "@astrojs/language-server": "^2.16.4",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/language-server": "^2.16.10",
     "@modelcontextprotocol/server-filesystem": "^2025.8.21",
     "docs-mcp": "github:withastro/docs-mcp",
     "prettier": "^3.3.3",
@@ -23,11 +23,11 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.0",
-    "@astrojs/netlify": "^7.0.2",
-    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/mdx": "^6.0.3",
+    "@astrojs/netlify": "^7.0.13",
+    "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "^6.0.4",
+    "astro": "^6.4.8",
     "astro-embed": "^0.12.0",
     "astro-expressive-code": "^0.41.7",
     "astro-og-canvas": "^0.10.1",

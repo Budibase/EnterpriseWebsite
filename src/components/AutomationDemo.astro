@@ -152,7 +152,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
 
 <div
   id={id}
-  class:list={["automation-demo automation-demo-theme-dark dark demo-breakout w-full overflow-hidden", className]}
+  class:list={["automation-demo automation-demo-theme-light demo-breakout w-full overflow-hidden", className]}
   style={rootStyle}
 >
   <div class:list={["automation-demo-backdrop w-full overflow-hidden", backdropPaddingClass]}>
@@ -172,26 +172,6 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
           />
         </div>
         <div class="-mr-1 flex items-center">
-          <div class="hero-demo-theme-toggle ml-3" role="group" aria-label="Demo theme selection">
-            <button
-              type="button"
-              class="hero-demo-theme-button"
-              data-hero-demo-theme="light"
-              aria-label="Light theme"
-              aria-pressed="false"
-            >
-              <Icon name="Sun" class="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              class="hero-demo-theme-button is-active"
-              data-hero-demo-theme="dark"
-              aria-label="Dark theme"
-              aria-pressed="true"
-            >
-              <Icon name="Moon" class="h-3.5 w-3.5" />
-            </button>
-          </div>
           <button
             type="button"
             class="rounded px-2 py-1 text-[13px] text-[var(--grey-400)] transition-opacity duration-200 hover:bg-[rgb(var(--text)/0.06)] cursor-pointer"
@@ -310,12 +290,6 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     --grey-700: var(--color-grey-300);
     --grey-400: var(--color-grey-600);
     --grey-100: var(--color-grey-900);
-  }
-
-  .automation-demo-theme-dark {
-    color-scheme: dark;
-    --text: 240 238 230;
-    --text-muted: 145 145 141;
   }
 
   .automation-demo-backdrop {
@@ -738,45 +712,6 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     background: var(--grey-700);
   }
 
-  .hero-demo-theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 2px;
-    border-radius: 6px;
-    padding: 2px;
-  }
-
-  .hero-demo-theme-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    border: 0;
-    border-radius: 4px;
-    background: transparent;
-    color: var(--grey-400);
-    cursor: pointer;
-    transition:
-      background-color 150ms ease,
-      color 150ms ease;
-  }
-
-  .hero-demo-theme-button:hover {
-    background: rgb(var(--text) / 0.06);
-    color: var(--grey-100);
-  }
-
-  .hero-demo-theme-button:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px rgb(var(--brand) / 0.6);
-  }
-
-  .hero-demo-theme-button.is-active {
-    background: rgb(var(--text) / 0.08);
-    color: var(--grey-100);
-  }
-
   @media (max-width: 1340px) {
     .automation-demo-body {
       grid-template-columns: minmax(0, 1fr) 280px;
@@ -883,16 +818,11 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   (() => {
     const root = document.getElementById(id);
     if (!root) return;
-
-    const DEMO_THEME_KEY = "automationDemoTheme";
     const STEP_GAP_MS = 500;
     const RUNNING_DURATION_MS = 2000;
     const WORKFLOW_SEQUENCE = ["security-agent", "alert-team", "broadcast-agent"];
     const runButton = root.querySelector(".automation-demo-run-button");
     const workflowCanvas = root.querySelector(".automation-demo-canvas");
-    const themeButtons = Array.from(
-      root.querySelectorAll("[data-hero-demo-theme]"),
-    );
     const scopeAttr = root
       .getAttributeNames()
       .find((name) => name.startsWith("data-astro-cid-"));
@@ -924,47 +854,6 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
       if (!workflowCanvas) return;
       workflowCanvas.classList.toggle("is-shimmering", isActive);
     }
-
-    function getInitialDemoTheme() {
-      try {
-        const stored = localStorage.getItem(DEMO_THEME_KEY);
-        if (stored === "light" || stored === "dark") return stored;
-      } catch {
-        // localStorage may be unavailable in restricted contexts.
-      }
-
-      return document.documentElement.classList.contains("dark")
-        ? "dark"
-        : "light";
-    }
-
-    function updateThemeButtons(activeTheme) {
-      themeButtons.forEach((button) => {
-        const htmlButton = button;
-        const theme = htmlButton.getAttribute("data-hero-demo-theme");
-        const isActive = theme === activeTheme;
-        htmlButton.setAttribute("aria-pressed", String(isActive));
-        htmlButton.classList.toggle("is-active", isActive);
-      });
-    }
-
-    function applyDemoTheme(theme, persist = true) {
-      if (theme !== "light" && theme !== "dark") return;
-
-      root.classList.toggle("dark", theme === "dark");
-      root.classList.toggle("automation-demo-theme-dark", theme === "dark");
-      root.classList.toggle("automation-demo-theme-light", theme === "light");
-      updateThemeButtons(theme);
-
-      if (persist) {
-        try {
-          localStorage.setItem(DEMO_THEME_KEY, theme);
-        } catch {
-          // localStorage may be unavailable in restricted contexts.
-        }
-      }
-    }
-
     function setWorkflowStatus(nodeId, status) {
       const node = workflowNodeMap.get(nodeId);
       if (!node) return;
@@ -1097,19 +986,6 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
         }
 
         runWorkflowSequence();
-      });
-    }
-
-    const initialTheme = getInitialDemoTheme();
-    applyDemoTheme(initialTheme, false);
-
-    if (themeButtons.length > 0) {
-      themeButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const theme = button.getAttribute("data-hero-demo-theme");
-          if (!theme) return;
-          applyDemoTheme(theme, true);
-        });
       });
     }
   })();
