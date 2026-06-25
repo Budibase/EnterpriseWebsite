@@ -1,10 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import { format } from "date-fns";
 import RocketLaunchFill from "phosphor-astro/RocketLaunchFill.astro";
+import type { ChangelogEntry } from "../../../lib/changelog";
 
 interface Props {
-  entry: CollectionEntry<"changelog">;
+  entry: ChangelogEntry;
   showConnector?: boolean;
 }
 
@@ -35,7 +35,9 @@ const placeholderGradientClass = placeholderGradientClasses[placeholderVariant];
   class="grid grid-cols-[1.9rem_minmax(0,1fr)] gap-[0.95rem] max-md:grid-cols-[1.45rem_minmax(0,1fr)] max-md:gap-[0.7rem]"
 >
   <div class="relative flex justify-center pt-[0.08rem]" aria-hidden="true">
-    <span class="z-[1] inline-flex h-[1.2rem] w-[1.2rem] items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--accent-purple)_14%,var(--bg-2))] text-[var(--accent-purple)]">
+    <span
+      class="z-[1] inline-flex h-[1.2rem] w-[1.2rem] items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--accent-purple)_14%,var(--bg-2))] text-[var(--accent-purple)]"
+    >
       <RocketLaunchFill class="h-[0.75rem] w-[0.75rem] text-current" />
     </span>
     {
@@ -85,14 +87,20 @@ const placeholderGradientClass = placeholderGradientClasses[placeholderVariant];
       >
         {entry.data.title}
       </h2>
-      <p class="mt-[0.52rem] text-[1.02rem] leading-[1.35] text-[var(--text-primary)]">
+      <p
+        class="mt-[0.52rem] text-[1.02rem] leading-[1.35] text-[var(--text-primary)]"
+      >
         {summary}
       </p>
-      <div class="mt-[0.8rem] flex items-center justify-between gap-4 text-[1rem] text-[var(--text-secondary)] max-md:text-[0.94rem]">
+      <div
+        class="mt-[0.8rem] flex items-center justify-between gap-4 text-[1rem] text-[var(--text-secondary)] max-md:text-[0.94rem]"
+      >
         <time datetime={entry.data.date.toISOString()}>
           {format(entry.data.date, "MMM d, yyyy")}
         </time>
-        <span class="whitespace-nowrap text-[var(--text-secondary)] transition-colors duration-150 group-hover:text-[var(--text-primary)]">
+        <span
+          class="whitespace-nowrap text-[var(--text-secondary)] transition-colors duration-150 group-hover:text-[var(--text-primary)]"
+        >
           Read more -&gt;
         </span>
       </div>

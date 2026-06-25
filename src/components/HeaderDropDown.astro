@@ -17,117 +17,270 @@ interface Props {
 const useTwoColumns = Astro.props.items.length > 3;
 ---
 
-<header-drop-down>
-  <details class="group relative">
-    <summary class="accordion cursor-pointer link flex items-center gap-2 text-sm font-medium px-1 text-primary hover:text-primary group-open:text-primary transition-colors">
-      {Astro.props.labelHref ? (
-        <a
-          href={Astro.props.labelHref}
-          class="flex items-center gap-2"
-          data-astro-prefetch
-          onclick="event.stopPropagation()"
-        >
-          {Astro.props.label}
-        </a>
-      ) : (
-        Astro.props.label
-      )}
-    </summary>
-    <ul
-      class:list={[
-        useTwoColumns
-          ? "grid grid-cols-[repeat(2,auto)] gap-y-[6px] gap-x-[6px]"
-          : "flex flex-col gap-[6px]",
-        "absolute left-0 top-full translate-y-2",
-        "w-fit max-w-[calc(100vw-2rem)] bg-secondary pt-2 px-[15px] pb-3 text-base shadow-xl ring-1 ring-stone-200/60 ",
-        "invisible group-open:visible group-hover:visible",
-        "origin-top scale-95 group-open:scale-100 group-hover:scale-100",
-        "opacity-0 group-open:opacity-100 group-hover:opacity-100",
-        "transition-all duration-300",
-      ]}
-    >
-      {
-        Astro.props.items.map(
-          ({
-            href,
-            label,
-            prefetch,
-            badge,
-            target,
-            rel,
-            disabled,
-          }) => (
-            <li class="min-w-[7.5rem]">
-              {disabled ? (
-                <span
-                  aria-disabled="true"
-                  class="nav__sub-nav__link inline-flex cursor-not-allowed items-center gap-2 py-[2px] text-sm font-medium text-primary"
-                >
-                  <span>{label}</span>
-                  {badge && (
-                    <span class="text-xs leading-none font-mono text-primary">
-                      {badge}
-                    </span>
-                  )}
-                </span>
-              ) : (
-                <a
-                  href={href}
-                  target={target}
-                  rel={rel ??
-                    (target === "_blank" ? "noopener noreferrer" : undefined)}
-                  data-astro-prefetch={prefetch ? "" : undefined}
-                  class="nav__sub-nav__link inline-flex items-center gap-2 py-[2px] text-sm font-medium transition-colors text-primary hover:text-primary"
-                >
-                  <span>{label}</span>
-                  {badge && (
-                    <span class="text-xs leading-none font-mono text-primary">
-                      {badge}
-                    </span>
-                  )}
-                </a>
-              )}
-            </li>
-          ),
-        )
-      }
-    </ul>
-  </details>
-</header-drop-down>
+<div class="header-dropdown" data-header-dropdown-root>
+  {
+    Astro.props.labelHref ? (
+      <a
+        href={Astro.props.labelHref}
+        class="header-dropdown-trigger nav-link flex items-center gap-2 px-1 transition-colors"
+        data-header-dropdown-trigger
+        data-astro-prefetch
+        aria-haspopup="menu"
+        aria-expanded="false"
+      >
+        {Astro.props.label}
+      </a>
+    ) : (
+      <button
+        type="button"
+        class="header-dropdown-trigger nav-link flex items-center gap-2 px-1 transition-colors"
+        data-header-dropdown-trigger
+        aria-haspopup="menu"
+        aria-expanded="false"
+      >
+        {Astro.props.label}
+      </button>
+    )
+  }
+  <ul
+    data-header-dropdown-menu
+    role="menu"
+    class:list={[
+      useTwoColumns
+        ? "grid grid-cols-[repeat(2,auto)] gap-y-[6px] gap-x-[6px]"
+        : "flex flex-col gap-[6px]",
+      "header-dropdown-menu absolute left-0 top-full",
+      "w-fit max-w-[calc(100vw-2rem)] bg-secondary pt-2 px-[15px] pb-3 text-base shadow-xl ring-1 ring-stone-200/60",
+    ]}
+  >
+    {
+      Astro.props.items.map(
+        ({ href, label, prefetch, badge, target, rel, disabled }) => (
+          <li class="min-w-[7.5rem]">
+            {disabled ? (
+              <span
+                aria-disabled="true"
+                class="nav__sub-nav__link inline-flex cursor-not-allowed items-center gap-2 py-[2px] text-sm font-medium text-primary"
+              >
+                <span>{label}</span>
+                {badge && (
+                  <span class="text-xs leading-none font-mono text-primary">
+                    {badge}
+                  </span>
+                )}
+              </span>
+            ) : (
+              <a
+                href={href}
+                target={target}
+                rel={
+                  rel ??
+                  (target === "_blank" ? "noopener noreferrer" : undefined)
+                }
+                data-astro-prefetch={prefetch ? "" : undefined}
+                role="menuitem"
+                class="nav__sub-nav__link inline-flex items-center gap-2 py-[2px] text-sm font-medium transition-colors text-primary hover:text-primary"
+              >
+                <span>{label}</span>
+                {badge && (
+                  <span class="text-xs leading-none font-mono text-primary">
+                    {badge}
+                  </span>
+                )}
+              </a>
+            )}
+          </li>
+        ),
+      )
+    }
+  </ul>
+</div>
+
+<style>
+  .header-dropdown {
+    display: inline-block;
+    position: relative;
+    padding-block: 0.75rem;
+    margin-block: -0.75rem;
+  }
+
+  .header-dropdown:hover,
+  .header-dropdown:focus-within,
+  .header-dropdown[data-open="true"] {
+    z-index: 100;
+  }
+
+  .header-dropdown::after {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max(100%, 18rem);
+    height: 0.75rem;
+    content: "";
+  }
+
+  .header-dropdown-trigger {
+    border: 0;
+    appearance: none;
+    background: transparent;
+    font-family: inherit;
+  }
+
+  .header-dropdown-menu {
+    top: 100%;
+    visibility: hidden;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .header-dropdown:hover .header-dropdown-menu,
+  .header-dropdown:focus-within .header-dropdown-menu,
+  .header-dropdown[data-open="true"] .header-dropdown-menu {
+    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
+  }
+</style>
 
 <script>
-  if (!customElements.get("header-drop-down")) {
-    customElements.define(
-      "header-drop-down",
-      class HeaderDropDown extends HTMLElement {
-        connectedCallback() {
-          const menu = this.querySelector("details");
-          if (!menu) return;
+  const dropdownWindow = window as Window & {
+    __budibaseHeaderDropdownsBound?: boolean;
+  };
 
-          let hoverTimeout: ReturnType<typeof setTimeout> | undefined;
+  if (!dropdownWindow.__budibaseHeaderDropdownsBound) {
+    dropdownWindow.__budibaseHeaderDropdownsBound = true;
 
-          this.addEventListener("mouseenter", () => {
-            clearTimeout(hoverTimeout);
-            menu.open = true;
-          });
+    const closeTimers = new WeakMap<Element, number>();
+    const rootSelector = "[data-header-dropdown-root]";
+    const triggerSelector = "[data-header-dropdown-trigger]";
+    const menuSelector = "[data-header-dropdown-menu]";
 
-          this.addEventListener("mouseleave", () => {
-            hoverTimeout = setTimeout(() => {
-              if (!menu.matches(":focus-within")) {
-                menu.open = false;
-              }
-            }, 200);
-          });
+    const closeDropdown = (root: Element) => {
+      window.clearTimeout(closeTimers.get(root));
+      root.removeAttribute("data-open");
+      root
+        .querySelector(triggerSelector)
+        ?.setAttribute("aria-expanded", "false");
+    };
 
-          menu.addEventListener("focusout", () => {
-            if (!menu.matches(":focus-within")) {
-              setTimeout(() => {
-                menu.open = false;
-              }, 200);
-            }
-          });
+    const openDropdown = (root: Element) => {
+      window.clearTimeout(closeTimers.get(root));
+      document
+        .querySelectorAll(`${rootSelector}[data-open="true"]`)
+        .forEach((openRoot) => {
+          if (openRoot !== root) {
+            closeDropdown(openRoot);
+          }
+        });
+
+      root.setAttribute("data-open", "true");
+      root
+        .querySelector(triggerSelector)
+        ?.setAttribute("aria-expanded", "true");
+    };
+
+    const scheduleClose = (root: Element) => {
+      window.clearTimeout(closeTimers.get(root));
+
+      const timer = window.setTimeout(() => {
+        const trigger = root.querySelector(triggerSelector);
+        const menu = root.querySelector(menuSelector);
+
+        if (
+          trigger?.matches(":hover") ||
+          menu?.matches(":hover") ||
+          root.matches(":focus-within")
+        ) {
+          return;
+        }
+
+        closeDropdown(root);
+      }, 180);
+
+      closeTimers.set(root, timer);
+    };
+
+    document.addEventListener(
+      "pointerenter",
+      (event) => {
+        const target = event.target as Element | null;
+        const root = target?.closest(rootSelector);
+
+        if (root) {
+          openDropdown(root);
         }
       },
+      true,
     );
+
+    document.addEventListener(
+      "pointerleave",
+      (event) => {
+        const target = event.target as Element | null;
+        const root = target?.closest(rootSelector);
+
+        if (root) {
+          scheduleClose(root);
+        }
+      },
+      true,
+    );
+
+    document.addEventListener("focusin", (event) => {
+      const target = event.target as Element | null;
+      const root = target?.closest(rootSelector);
+
+      if (root) {
+        openDropdown(root);
+      }
+    });
+
+    document.addEventListener("focusout", (event) => {
+      const target = event.target as Element | null;
+      const root = target?.closest(rootSelector);
+
+      if (root) {
+        scheduleClose(root);
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target as Element | null;
+      const trigger = target?.closest(triggerSelector);
+
+      if (trigger?.tagName === "BUTTON") {
+        event.preventDefault();
+        const root = trigger.closest(rootSelector);
+
+        if (!root) {
+          return;
+        }
+
+        if (root.hasAttribute("data-open")) {
+          closeDropdown(root);
+        } else {
+          openDropdown(root);
+        }
+
+        return;
+      }
+
+      if (!target?.closest(rootSelector)) {
+        document
+          .querySelectorAll(`${rootSelector}[data-open="true"]`)
+          .forEach(closeDropdown);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") {
+        return;
+      }
+
+      document
+        .querySelectorAll(`${rootSelector}[data-open="true"]`)
+        .forEach(closeDropdown);
+    });
   }
 </script>

@@ -6,11 +6,6 @@ import { URL } from "node:url";
 import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
-import { unified } from "@astrojs/markdown-remark";
-
-import expressiveCode from "astro-expressive-code";
-import remarkGemoji from "remark-gemoji";
-import rehypeStripMissingImages from "./src/lib/rehype-strip-missing-images.js";
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,15 +35,11 @@ export default defineConfig({
     "/self-host-master-terms": "/terms-self-host",
   },
 
-  markdown: {
-    processor: unified({
-      remarkPlugins: [remarkGemoji],
-      rehypePlugins: [rehypeStripMissingImages],
-    }),
-  },
-
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ["@astrojs/cloudflare/entrypoints/server"],
+    },
     resolve: {
       alias: {
         "@components": fileURLToPath(
@@ -142,7 +133,8 @@ export default defineConfig({
   },
 
   adapter: cloudflare({
+    configPath: "./wrangler.jsonc",
     imageService: "passthrough",
   }),
-  integrations: [sitemap(), expressiveCode(), mdx()],
+  integrations: [sitemap(), mdx()],
 });
