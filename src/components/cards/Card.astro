@@ -49,6 +49,7 @@ const descriptionStyle = truncateDescription
   : undefined;
 const resolvedImageSrc =
   typeof imageSrc === "string" ? imageSrc : imageSrc?.src;
+const hasBeforeTitle = Astro.slots.has("before-title");
 ---
 
 {
@@ -72,6 +73,7 @@ const resolvedImageSrc =
               class={`${tagClass} mb-2`}
             />
           )}
+          {hasBeforeTitle && <slot name="before-title" />}
           <h3 class={`text-lg! card-title ${cardTitleClass}`}>
             {label}
             {linkUrl && showLinkIcon && (
@@ -129,6 +131,7 @@ const resolvedImageSrc =
             class={`${tagClass} mb-2`}
           />
         )}
+        {hasBeforeTitle && <slot name="before-title" />}
         <h3 class={`text-lg! card-title ${cardTitleClass}`}>{label}</h3>
         {description && (
           <p
