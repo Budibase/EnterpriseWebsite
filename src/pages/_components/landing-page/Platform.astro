@@ -1,229 +1,141 @@
 ---
-import Button from "@components/Button.astro";
-import TitleBlock from "@components/TitleBlock.astro";
-import Card from "@components/cards/Card.astro";
-import OnePlatformAgent from "@components/OnePlatformAgent.astro";
-import OnePlatformAutomation from "@components/OnePlatformAutomation.astro";
-import OnePlatformApp from "@components/OnePlatformApp.astro";
-import OnePlatformData from "@components/OnePlatformData.astro";
-
-const cards = [
+const platformFeatures = [
   {
-    label: "Agents",
+    title: "Handle requests automatically with agents",
     description:
-      "Answer employee questions and handle requests across multiple channels.",
+      "Deploy AI agents that understand requests, take action across your systems, and resolve work without manual intervention.",
   },
   {
-    label: "Automations",
+    title: "Build operational software",
     description:
-      "Run approvals, routing, notifications, and operational workflows automatically.",
+      "Create internal tools and workflows in minutes with a visual platform designed for the teams that keep your business running.",
   },
   {
-    label: "Apps",
+    title: "Automate operational processes",
     description:
-      "Create internal tools for teams to manage processes and track work.",
+      "Connect people, systems, and AI to eliminate repetitive work and keep critical processes moving automatically.",
   },
   {
-    label: "Tables",
-    description: "Connect your databases, spreadsheets, and business systems.",
+    title: "Connect business data",
+    description:
+      "Bring together data from your existing systems so apps, automations, and AI agents always have the context they need.",
   },
 ] as const;
 ---
 
-<section class="platform-hero">
-  <div class="container max-w-[var(--site-container-max)] mx-auto px-2 lg:px-0">
-    <div class="platform-hero__copy">
-      <TitleBlock
-        variant="hero-large"
-        title="Save weeks building agents, apps, and automations"
-        containerClass="w-full"
-        titleClass=" mx-auto m-0  text-center text-[var(--text-primary)]"
-      />
-
-      <p class="platform-hero__description hero-description-small">
-        Automate workflows, handle requests, build internal tools, and connect
-        your business systems - with your own data, LLMs, and APIs.
-      </p>
-      <div class="platform-hero__cta">
-        <Button
-          label="Contact sales"
-          url="/contact/"
-          variant="primary"
-          size="large"
-          class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl"
-        />
-        <Button
-          label="Get started"
-          url="https://account.budibase.app/register"
-          variant="secondary"
-          size="large"
-          class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl ml-5"
-          target="_blank"
-        />
-      </div>
+<section class="operations-platform">
+  <div class="operations-platform__container">
+    <div class="operations-platform__header">
+      <h2 class="operations-platform__title">
+        <span>Every operations. One platform.</span>
+        <span
+          >AI agents, automations, and apps designed to work together to
+          level-up any operation.</span
+        >
+      </h2>
     </div>
 
-    <div class="platform-section__grid">
-      <div class="platform-section__card">
-        <Card label={cards[0].label} description={cards[0].description}>
-          <div
-            slot="image-overlay"
-            class="platform-section__overlay platform-section__overlay--agent"
-            aria-hidden="true"
-          >
-            <OnePlatformAgent />
-          </div>
-        </Card>
-      </div>
-
-      <div class="platform-section__card">
-        <Card label={cards[2].label} description={cards[2].description}>
-          <div
-            slot="image-overlay"
-            class="platform-section__overlay platform-section__overlay--app"
-            aria-hidden="true"
-          >
-            <OnePlatformApp />
-          </div>
-        </Card>
-      </div>
-
-      <div class="platform-section__card">
-        <Card label={cards[3].label} description={cards[3].description}>
-          <div
-            slot="image-overlay"
-            class="platform-section__overlay platform-section__overlay--data"
-            aria-hidden="true"
-          >
-            <OnePlatformData />
-          </div>
-        </Card>
-      </div>
-
-      <div class="platform-section__card">
-        <Card label={cards[1].label} description={cards[1].description}>
-          <div
-            slot="image-overlay"
-            class="platform-section__overlay platform-section__overlay--automation"
-            aria-hidden="true"
-          >
-            <OnePlatformAutomation />
-          </div>
-        </Card>
-      </div>
+    <div class="operations-platform__grid">
+      {
+        platformFeatures.map((feature) => (
+          <article class="operations-platform__card">
+            <div class="operations-platform__visual" aria-hidden="true" />
+            <div class="operations-platform__content">
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </div>
 </section>
 
 <style>
-  .platform-hero {
-    padding-top: max(calc(var(--site-nav-height) + 1.2rem), 4.8rem);
-    padding-bottom: 3rem;
+  .operations-platform {
+    width: 100%;
   }
 
-  .platform-hero__copy {
+  .operations-platform__container {
+    width: min(100%, 64rem);
+    margin-inline: auto;
+    padding-inline: 0.5rem;
+  }
+
+  .operations-platform__header {
+    max-width: 44.3125rem;
+    margin-bottom: 1.875rem;
+  }
+
+  .operations-platform__title {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 0 auto 2rem;
-    max-width: 56rem;
-    text-align: center;
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1.625rem;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: 0;
   }
 
-  .platform-hero__title {
-    line-height: 0.9 !important;
-    letter-spacing: -0.02em !important;
+  .operations-platform__title span:last-child {
+    color: var(--bb-text-subtle);
   }
 
-  .platform-hero__description {
-    margin: 1.25rem auto 0;
-    max-width: 48rem;
-    font-size: 1rem;
-    color: var(--text-primary);
-  }
-
-  .platform-hero__cta {
-    margin-top: 1.5rem;
-    display: flex;
-    justify-content: center;
-  }
-
-  .platform-section__grid {
+  .operations-platform__grid {
     display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    border: 1px solid var(--bb-border-subtle);
+    background: var(--bb-border-subtle);
   }
 
-  .platform-section__overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+  .operations-platform__card {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--bb-background-base);
   }
 
-  .platform-section__overlay--data {
-    align-items: stretch;
-    justify-content: stretch;
+  .operations-platform__visual {
+    width: 100%;
+    aspect-ratio: 1344 / 896;
+    background: var(--bb-background-raised);
   }
 
-  .platform-section__overlay--agent {
-    align-items: stretch;
-    justify-content: stretch;
+  .operations-platform__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
   }
 
-  .platform-section__overlay--automation {
-    align-items: stretch;
-    justify-content: stretch;
+  .operations-platform__content h3 {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.0625;
+    letter-spacing: 0;
   }
 
-  .platform-section__overlay--app {
-    align-items: stretch;
-    justify-content: stretch;
-  }
-
-  .platform-section__card :global(.card-image-wrap) {
-    height: 340px;
-    background: var(--bg-2);
-  }
-
-  .platform-section__card :global(.card-content) {
-    gap: 10px;
-  }
-
-  .platform-section__card :global(.card-content > p) {
-    font-size: 14px;
+  .operations-platform__content p {
+    margin: 0;
+    color: var(--bb-text-subtle);
+    font-size: 0.875rem;
+    font-weight: 400;
     line-height: 1.5;
+    letter-spacing: 0;
   }
 
   @media (min-width: 768px) {
-    .platform-hero {
-      padding-bottom: 4rem;
+    .operations-platform__container {
+      padding-inline: 0;
     }
 
-    .platform-hero__copy {
-      margin-bottom: 2.5rem;
-    }
-
-    .platform-hero__description {
-      font-size: 1.25rem;
-    }
-
-    .platform-section__grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.5rem;
-    }
-
-    .platform-section__card :global(.card-image-wrap) {
-      height: 320px;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .platform-hero {
-      padding-bottom: 2rem;
+    .operations-platform__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 </style>
