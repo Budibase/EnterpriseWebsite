@@ -1,0 +1,133 @@
+---
+interface Feature {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  features: readonly Feature[];
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  features,
+  class: className = "",
+} = Astro.props as Props;
+---
+
+<section class={`operation-platform-cards ${className}`}>
+  <div class="operation-platform-cards__container">
+    <div class="operation-platform-cards__header">
+      <h2 class="operation-platform-cards__title">
+        <span>{title}</span>
+        <span>{subtitle}</span>
+      </h2>
+    </div>
+
+    <div class="operation-platform-cards__grid">
+      {
+        features.map((feature) => (
+          <article class="operation-platform-cards__card">
+            <div class="operation-platform-cards__visual" aria-hidden="true" />
+            <div class="operation-platform-cards__content">
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .operation-platform-cards {
+    width: 100%;
+  }
+
+  .operation-platform-cards__container {
+    width: min(100%, 64rem);
+    margin-inline: auto;
+    padding-inline: 0.5rem;
+  }
+
+  .operation-platform-cards__header {
+    max-width: 44.3125rem;
+    margin-bottom: 1.875rem;
+  }
+
+  .operation-platform-cards__title {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1.625rem;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: 0;
+  }
+
+  .operation-platform-cards__title span:last-child {
+    color: var(--bb-text-subtle);
+  }
+
+  .operation-platform-cards__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    border: 1px solid var(--bb-border-subtle);
+    background: var(--bb-border-subtle);
+  }
+
+  .operation-platform-cards__card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--bb-background-base);
+  }
+
+  .operation-platform-cards__visual {
+    width: 100%;
+    aspect-ratio: 1344 / 896;
+    background: var(--bb-background-raised);
+  }
+
+  .operation-platform-cards__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .operation-platform-cards__content h3 {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.0625;
+    letter-spacing: 0;
+  }
+
+  .operation-platform-cards__content p {
+    margin: 0;
+    color: var(--bb-text-subtle);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  @media (min-width: 768px) {
+    .operation-platform-cards__container {
+      padding-inline: 0;
+    }
+
+    .operation-platform-cards__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

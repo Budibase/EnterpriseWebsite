@@ -1,27 +1,83 @@
 ---
 import Button from "@components/Button.astro";
-import SectionBlock from "@components/SectionBlock.astro";
 import IntegrationBanner from "@components/IntegrationBanner.astro";
 ---
 
-<section
-  class="container max-w-[var(--site-container-max)] mx-auto mt-12 md:mt-24 px-2 lg:px-0"
->
-  <SectionBlock
-    title="Connect the tools your business runs on"
-    description="Integrate with databases, AI models, and business apps so agents and automations can take action across your operations."
-    align="center"
-    maxWidth="3xl"
-  >
-    <div class="w-full">
-      <IntegrationBanner />
-      <div class="mt-8 flex justify-center md:mt-10">
-        <Button
-          label="See all connectors"
-          url="/product/connections/"
-          variant="primary"
-        />
-      </div>
+<section class="homepage-resources">
+  <div class="homepage-resources__container">
+    <div class="homepage-resources__header">
+      <h2 class="homepage-resources__title">
+        <span>Connect the tools your business runs on.</span>
+        <span>
+          Integrate with databases, AI models, and business apps and take action
+          across your operations.
+        </span>
+      </h2>
     </div>
-  </SectionBlock>
+
+    <IntegrationBanner />
+
+    <div class="homepage-resources__action">
+      <Button
+        label="See all connectors"
+        url="/product/connections/"
+        variant="secondary"
+        class="homepage-resources__button"
+      />
+    </div>
+  </div>
 </section>
+
+<style>
+  .homepage-resources {
+    width: 100%;
+  }
+
+  .homepage-resources__container {
+    width: min(100%, 64rem);
+    margin-inline: auto;
+    padding-inline: 0.5rem;
+  }
+
+  .homepage-resources__header {
+    max-width: 44.3125rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .homepage-resources__title {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1.625rem;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: 0;
+  }
+
+  .homepage-resources__title span:last-child {
+    color: var(--bb-text-subtle);
+  }
+
+  .homepage-resources__action {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start !important;
+    margin-top: 1rem;
+  }
+
+  :global(.homepage-resources__button) {
+    margin-inline: 0 auto !important;
+  }
+
+  @media (min-width: 768px) {
+    .homepage-resources__container {
+      padding-inline: 0;
+    }
+
+    .homepage-resources__action {
+      margin-top: 1.25rem;
+    }
+  }
+</style>

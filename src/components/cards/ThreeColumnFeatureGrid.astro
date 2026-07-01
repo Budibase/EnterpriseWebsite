@@ -1,0 +1,167 @@
+---
+interface Feature {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  features?: readonly Feature[];
+  class?: string;
+}
+
+const defaultFeatures = [
+  {
+    title: "Data and tables",
+    description:
+      "Manage operational data with a built-in database. Includes best-in-class SQL support.",
+  },
+  {
+    title: "100+ connections",
+    description: "Connect the systems your organisation already relies on.",
+  },
+  {
+    title: "Bring Your Own Models",
+    description:
+      "Use any model, hosted anywhere. Choose the AI that meets your requirements.",
+  },
+  {
+    title: "API explorer",
+    description: "Design, test, and document APIs directly inside Budibase.",
+  },
+  {
+    title: "Public API",
+    description:
+      "Extend and programatically automate every part of the platform.",
+  },
+  {
+    title: "Plugins and extensions",
+    description:
+      "Build custom functionality and extend Budibase to meet the needs of your organisation.",
+  },
+] as const;
+
+const {
+  title = "The modern operations platform.",
+  subtitle = "Connect your systems, extend the platform, and deploy AI on your terms.",
+  features = defaultFeatures,
+  class: className = "",
+} = Astro.props as Props;
+---
+
+<section class={`platform-capabilities-grid ${className}`}>
+  <div class="platform-capabilities-grid__container">
+    <div class="platform-capabilities-grid__header">
+      <h2 class="platform-capabilities-grid__title">
+        <span>{title}</span>
+        <span>{subtitle}</span>
+      </h2>
+    </div>
+
+    <div class="platform-capabilities-grid__grid">
+      {
+        features.map((feature) => (
+          <article class="platform-capabilities-grid__card">
+            <div
+              class="platform-capabilities-grid__visual"
+              aria-hidden="true"
+            />
+            <div class="platform-capabilities-grid__content">
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .platform-capabilities-grid {
+    width: 100%;
+  }
+
+  .platform-capabilities-grid__container {
+    width: min(100%, 64rem);
+    margin-inline: auto;
+    padding-inline: 0.5rem;
+  }
+
+  .platform-capabilities-grid__header {
+    max-width: 44.3125rem;
+    margin-bottom: 1.875rem;
+  }
+
+  .platform-capabilities-grid__title {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1.625rem;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: 0;
+  }
+
+  .platform-capabilities-grid__title span:last-child {
+    color: var(--bb-text-subtle);
+  }
+
+  .platform-capabilities-grid__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    border: 1px solid var(--bb-border-subtle);
+    background: var(--bb-border-subtle);
+  }
+
+  .platform-capabilities-grid__card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--bb-background-base);
+  }
+
+  .platform-capabilities-grid__visual {
+    width: 100%;
+    aspect-ratio: 1344 / 896;
+    background: var(--bb-background-raised);
+  }
+
+  .platform-capabilities-grid__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .platform-capabilities-grid__content h3 {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.0625;
+    letter-spacing: 0;
+  }
+
+  .platform-capabilities-grid__content p {
+    margin: 0;
+    color: var(--bb-text-subtle);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  @media (min-width: 768px) {
+    .platform-capabilities-grid__container {
+      padding-inline: 0;
+    }
+
+    .platform-capabilities-grid__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

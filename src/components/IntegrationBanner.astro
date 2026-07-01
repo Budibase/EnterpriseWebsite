@@ -1,214 +1,80 @@
 ---
 // Logo imports
-import DiscordLogoSvg from "@assets/logos/discord.svg?url";
-import MistralLogo from "@assets/logos/Mistral.svg?url";
-import OpenAILogo from "@assets/logos/openai.avif?url";
-import OpenRouterLogo from "@assets/logos/openrouter.svg?url";
-import GoogleLogo from "@assets/logos/Google.svg?url";
 import BambooLogo from "@assets/logos/Bamboo.svg?url";
-import OktaLogo from "@assets/logos/okta.jpeg?url";
-import SlackLogo from "@assets/logos/Slack.svg?url";
-import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
-import JiraLogo from "@assets/logos/Jira.svg?url";
-import PostgresLogo from "@assets/logos/Postgres.svg?url";
-import MySQLLogo from "@assets/logos/MYSQL.svg?url";
-import MSSQLLogo from "@assets/logos/MSSQL.svg?url";
-import SnowflakeLogo from "@assets/logos/Snowflake.svg?url";
-import OracleLogo from "@assets/logos/Oracle.svg?url";
-import AzureOpenAILogo from "@assets/logos/azure-openai.svg?url";
-import GroqLogo from "@assets/logos/groq.png?url";
-import AttioLogo from "@assets/logos/attio.png?url";
-import AnthropicLogo from "@assets/logos/anthropic.avif?url";
-import GithubLogoSvg from "@assets/logos/github.svg?url";
-import TwilioLogo from "@assets/logos/twilio.svg?url";
-import RestApiLogo from "@assets/logos/rest-api.svg?url";
-import OpenApiLogo from "@assets/logos/openapi.svg?url";
-import ExaLogo from "@assets/logos/exa.png?url";
-import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
-import TavilyLogo from "@assets/logos/tavily.png?url";
-import PagerDutyLogo from "@assets/logos/pagerduty.jpeg?url";
-import StripeSvgLogo from "@assets/logos/stripe.svg?url";
-import SmtpLogo from "@assets/logos/smtp.svg?url";
-import DatadogLogo from "@assets/logos/datadog.svg?url";
-import GoogleSheetsLogo from "@assets/logos/google-sheets.svg?url";
-import CouchDBLogo from "@assets/logos/couchdb.svg?url";
-import ElasticsearchLogo from "@assets/logos/elastic.svg?url";
-import MongoDBLogo from "@assets/logos/mongodb.svg?url";
-import DynamoDBLogo from "@assets/logos/amazon-dynamodb.svg?url";
-import RedisLogo from "@assets/logos/redis.svg?url";
-import FirestoreLogo from "@assets/logos/firestore.svg?url";
-import AmazonS3Logo from "@assets/logos/amazon-s3.svg?url";
-import SupabaseLogo from "@assets/logos/supbase.png?url";
-import CleverLogo from "@assets/logos/clever.svg?url";
 import ConfluenceLogo from "@assets/logos/confluence.svg?url";
-import FigmaLogo from "@assets/logos/figma.svg?url";
-import HubSpotLogo from "@assets/logos/hubspot.svg?url";
-import MicrosoftSharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
-import SplunkLogo from "@assets/logos/splunk.svg?url";
-import VirusTotalLogo from "@assets/logos/virustotal.svg?url";
-import ZendeskLogo from "@assets/logos/zendesk.svg?url";
-import AnsibleLogo from "@assets/logos/ansible.svg?url";
-import AshbyLogo from "@assets/logos/ashby.svg?url";
-import BambooHrLogo from "@assets/logos/bamboohr.svg?url";
-import BanksApiLogo from "@assets/logos/banksapi.svg?url";
-import BaremetricsLogo from "@assets/logos/baremetrics.svg?url";
-import BillsbyLogo from "@assets/logos/billsby.svg?url";
-import BreezyHrLogo from "@assets/logos/breezy-hr.svg?url";
-import BrevoLogo from "@assets/logos/brevo.svg?url";
-import BulkSmsLogo from "@assets/logos/bulksms-com.svg?url";
-import ButtondownLogo from "@assets/logos/buttondown.svg?url";
-import ClickUpLogo from "@assets/logos/clickup.svg?url";
-import DeelLogo from "@assets/logos/deel.svg?url";
-import DixaLogo from "@assets/logos/dixa.svg?url";
-import DotsLogo from "@assets/logos/dots.svg?url";
-import FactorialLogo from "@assets/logos/factorial.svg?url";
-import FastSpringLogo from "@assets/logos/fastspring.svg?url";
-import FountainLogo from "@assets/logos/fountain.svg?url";
-import GitLabLogo from "@assets/logos/gitlab.svg?url";
-import GoodyLogo from "@assets/logos/goody.svg?url";
-import HelcimLogo from "@assets/logos/helcim.svg?url";
-import HiBobLogo from "@assets/logos/hibob.svg?url";
-import HomerunLogo from "@assets/logos/homerun.svg?url";
-import HypatosLogo from "@assets/logos/hypatos.svg?url";
-import IntercomLogo from "@assets/logos/intercom.svg?url";
-import IroncladLogo from "@assets/logos/ironclad.svg?url";
-import JinaAiLogo from "@assets/logos/jina-ai.svg?url";
-import JobsoidLogo from "@assets/logos/jobsoid.svg?url";
-import KeatextAiLogo from "@assets/logos/keatext-ai.svg?url";
-import KenjoLogo from "@assets/logos/kenjo.svg?url";
-import LambdaLogo from "@assets/logos/lambda.svg?url";
-import LobLogo from "@assets/logos/lob.svg?url";
-import LocalizelyLogo from "@assets/logos/localizely.svg?url";
-import LogisticsOsLogo from "@assets/logos/logisticsos.svg?url";
-import MastercardLogo from "@assets/logos/mastercard.svg?url";
-import MeasureOneLogo from "@assets/logos/measureone.svg?url";
-import NanonetsLogo from "@assets/logos/nanonets.svg?url";
-import NotionLogo from "@assets/logos/notion.svg?url";
-import OysterLogo from "@assets/logos/oyster.svg?url";
-import PeachPaymentsLogo from "@assets/logos/peach-payments.svg?url";
-import PinpointLogo from "@assets/logos/pinpoint.svg?url";
-import PodiumLogo from "@assets/logos/podium.svg?url";
-import RemoteLogo from "@assets/logos/remote.svg?url";
-import ResendLogo from "@assets/logos/resend.svg?url";
+import DatadogLogo from "@assets/logos/datadog.svg?url";
 import DockerLogo from "@assets/logos/Docker.svg?url";
+import ElasticsearchLogo from "@assets/logos/elasticsearch.svg?url";
+import GitLabLogo from "@assets/logos/gitlab.svg?url";
+import GithubLogoSvg from "@assets/logos/github.svg?url";
+import GoogleLogo from "@assets/logos/Google.svg?url";
+import HubSpotLogo from "@assets/logos/hubspot.svg?url";
+import JiraLogo from "@assets/logos/Jira.svg?url";
 import KubernetesLogo from "@assets/logos/kubernetes.svg?url";
-import NextcloudLogo from "@assets/logos/nextcloud.svg?url";
-import LinodeLogo from "@assets/logos/linode.svg?url";
-import DigitalOceanLogo from "@assets/logos/digital-ocean.svg?url";
+import MicrosoftSharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+import MistralLogo from "@assets/logos/Mistral.svg?url";
+import MongoDBLogo from "@assets/logos/mongodb.svg?url";
+import MySQLLogo from "@assets/logos/MYSQL.svg?url";
+import OktaLogo from "@assets/logos/okta.jpeg?url";
+import OpenAILogo from "@assets/logos/OpenAI.svg?url";
+import OracleLogo from "@assets/logos/Oracle.svg?url";
+import PagerDutyLogo from "@assets/logos/pagerduty.jpeg?url";
+import PostgresLogo from "@assets/logos/Postgres.svg?url";
+import SalesforceLogo from "@assets/logos/Salesforce.svg?url";
+import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
+import SlackLogo from "@assets/logos/Slack.svg?url";
+import SnowflakeLogo from "@assets/logos/Snowflake.svg?url";
+import SplunkLogo from "@assets/logos/splunk.svg?url";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+import WorkdayLogo from "@assets/logos/Workday.jpeg?url";
+import ZendeskLogo from "@assets/logos/zendesk.svg?url";
 
 const logos = [
-  { src: DiscordLogoSvg, alt: "Discord" },
-  { src: MistralLogo, alt: "Mistral" },
-  { src: OpenAILogo, alt: "OpenAI" },
-  { src: OpenRouterLogo, alt: "OpenRouter" },
-  { src: GoogleLogo, alt: "Google" },
-  { src: BambooLogo, alt: "Bamboo" },
-  { src: OktaLogo, alt: "Okta" },
-  { src: SlackLogo, alt: "Slack" },
-  { src: TeamsLogo, alt: "Microsoft Teams" },
-  { src: JiraLogo, alt: "Jira" },
-  { src: PostgresLogo, alt: "PostgreSQL" },
-  { src: MySQLLogo, alt: "MySQL" },
-  { src: MSSQLLogo, alt: "MSSQL" },
-  { src: SnowflakeLogo, alt: "Snowflake" },
-  { src: OracleLogo, alt: "Oracle" },
-  { src: AzureOpenAILogo, alt: "Azure OpenAI" },
-  { src: GroqLogo, alt: "Groq" },
-  { src: AttioLogo, alt: "Attio" },
-  { src: AnthropicLogo, alt: "Anthropic" },
-  { src: GithubLogoSvg, alt: "GitHub" },
-  { src: TwilioLogo, alt: "Twilio" },
-  { src: RestApiLogo, alt: "REST API" },
-  { src: OpenApiLogo, alt: "OpenAPI" },
-  { src: ExaLogo, alt: "Exa" },
   { src: ServiceNowLogo, alt: "ServiceNow" },
-  { src: TavilyLogo, alt: "Tavily" },
-  { src: PagerDutyLogo, alt: "PagerDuty" },
-  { src: StripeSvgLogo, alt: "Stripe" },
-  { src: SmtpLogo, alt: "SMTP" },
-  { src: DatadogLogo, alt: "Datadog" },
-  { src: GoogleSheetsLogo, alt: "Google Sheets" },
-  { src: CouchDBLogo, alt: "CouchDB" },
-  { src: ElasticsearchLogo, alt: "Elasticsearch" },
-  { src: MongoDBLogo, alt: "MongoDB" },
-  { src: DynamoDBLogo, alt: "DynamoDB" },
-  { src: RedisLogo, alt: "Redis" },
-  { src: FirestoreLogo, alt: "Firestore" },
-  { src: AmazonS3Logo, alt: "Amazon S3" },
-  { src: SupabaseLogo, alt: "Supabase" },
-  { src: CleverLogo, alt: "Clever" },
-  { src: ConfluenceLogo, alt: "Confluence" },
-  { src: FigmaLogo, alt: "Figma" },
+  { src: SalesforceLogo, alt: "Salesforce" },
+  { src: BambooLogo, alt: "Bamboo" },
+  { src: WorkdayLogo, alt: "Workday" },
   { src: HubSpotLogo, alt: "HubSpot" },
   { src: MicrosoftSharePointLogo, alt: "Microsoft SharePoint" },
-  { src: SplunkLogo, alt: "Splunk" },
-  { src: VirusTotalLogo, alt: "VirusTotal" },
+  { src: GoogleLogo, alt: "Google" },
+  { src: ConfluenceLogo, alt: "Confluence" },
+  { src: JiraLogo, alt: "Jira" },
   { src: ZendeskLogo, alt: "Zendesk" },
-  { src: AnsibleLogo, alt: "Ansible" },
-  { src: AshbyLogo, alt: "Ashby" },
-  { src: BambooHrLogo, alt: "BambooHR" },
-  { src: BanksApiLogo, alt: "BanksAPI" },
-  { src: BaremetricsLogo, alt: "Baremetrics" },
-  { src: BillsbyLogo, alt: "Billsby" },
-  { src: BreezyHrLogo, alt: "Breezy HR" },
-  { src: BrevoLogo, alt: "Brevo" },
-  { src: BulkSmsLogo, alt: "BulkSMS" },
-  { src: ButtondownLogo, alt: "Buttondown" },
-  { src: ClickUpLogo, alt: "ClickUp" },
-  { src: DeelLogo, alt: "Deel" },
-  { src: DixaLogo, alt: "Dixa" },
-  { src: DotsLogo, alt: "Dots" },
-  { src: FactorialLogo, alt: "Factorial" },
-  { src: FastSpringLogo, alt: "FastSpring" },
-  { src: FountainLogo, alt: "Fountain" },
+  { src: OktaLogo, alt: "Okta" },
+  { src: GithubLogoSvg, alt: "GitHub" },
   { src: GitLabLogo, alt: "GitLab" },
-  { src: GoodyLogo, alt: "Goody" },
-  { src: HelcimLogo, alt: "Helcim" },
-  { src: HiBobLogo, alt: "HiBob" },
-  { src: HomerunLogo, alt: "Homerun" },
-  { src: HypatosLogo, alt: "Hypatos" },
-  { src: IntercomLogo, alt: "Intercom" },
-  { src: IroncladLogo, alt: "Ironclad" },
-  { src: JinaAiLogo, alt: "Jina AI" },
-  { src: JobsoidLogo, alt: "Jobsoid" },
-  { src: KeatextAiLogo, alt: "Keatext AI" },
-  { src: KenjoLogo, alt: "Kenjo" },
-  { src: LambdaLogo, alt: "Lambda" },
-  { src: LobLogo, alt: "Lob" },
-  { src: LocalizelyLogo, alt: "Localizely" },
-  { src: LogisticsOsLogo, alt: "LogisticsOS" },
-  { src: MastercardLogo, alt: "Mastercard" },
-  { src: MeasureOneLogo, alt: "MeasureOne" },
-  { src: NanonetsLogo, alt: "Nanonets" },
-  { src: NotionLogo, alt: "Notion" },
-  { src: OysterLogo, alt: "Oyster" },
-  { src: PeachPaymentsLogo, alt: "Peach Payments" },
-  { src: PinpointLogo, alt: "Pinpoint" },
-  { src: PodiumLogo, alt: "Podium" },
-  { src: RemoteLogo, alt: "Remote" },
-  { src: ResendLogo, alt: "Resend" },
+  { src: PostgresLogo, alt: "PostgreSQL" },
+  { src: MySQLLogo, alt: "MySQL" },
+  { src: MongoDBLogo, alt: "MongoDB" },
+  { src: ElasticsearchLogo, alt: "Elasticsearch" },
+  { src: OracleLogo, alt: "Oracle" },
+  { src: SnowflakeLogo, alt: "Snowflake" },
+  { src: DatadogLogo, alt: "Datadog" },
+  { src: SplunkLogo, alt: "Splunk" },
+  { src: PagerDutyLogo, alt: "PagerDuty" },
   { src: DockerLogo, alt: "Docker" },
   { src: KubernetesLogo, alt: "Kubernetes" },
-  { src: NextcloudLogo, alt: "Nextcloud" },
-  { src: LinodeLogo, alt: "Linode" },
-  { src: DigitalOceanLogo, alt: "Digital Ocean" },
+  { src: TeamsLogo, alt: "Microsoft Teams" },
+  { src: SlackLogo, alt: "Slack" },
+  { src: OpenAILogo, alt: "OpenAI" },
+  { src: MistralLogo, alt: "Mistral" },
 ];
 
-const mobileVisibleLogos = logos.slice(0, 25);
-const desktopVisibleLogos = logos.slice(0, 60);
+const mobileVisibleLogos = logos;
+const desktopVisibleLogos = logos;
 ---
 
 <div
-  class="integration-banner-shell mx-auto w-full max-w-full overflow-hidden rounded-lg bg-2"
+  class="integration-banner-shell mx-auto w-full max-w-full overflow-hidden rounded-lg"
 >
   <div
-    class="integration-banner-grid grid grid-cols-[repeat(5,minmax(0,48px))] auto-rows-[48px] gap-3 p-4 justify-center sm:hidden"
+    class="integration-banner-grid grid grid-cols-[repeat(5,minmax(0,48px))] auto-rows-[48px] justify-start gap-2 py-4 sm:hidden"
   >
     {
       mobileVisibleLogos.map((logo) => {
         return (
           <div
-            class="integration-banner-logo shadow-2 flex h-[48px] w-[48px] shrink-0 items-center justify-center overflow-hidden rounded-lg bg-3 p-2.5"
+            class="integration-banner-logo shadow-2 flex h-[48px] w-[48px] shrink-0 items-center justify-center overflow-hidden rounded-sm bg-3 p-2.5"
             style="opacity: 1; transition: opacity 300ms;"
           >
             <img
@@ -225,13 +91,13 @@ const desktopVisibleLogos = logos.slice(0, 60);
   </div>
 
   <div
-    class="integration-banner-grid hidden grid-cols-[repeat(8,minmax(0,34px))] auto-rows-[34px] gap-3 justify-center p-6 sm:grid md:grid-cols-[repeat(15,50px)] md:grid-rows-[repeat(4,50px)] md:p-8 lg:grid-cols-[repeat(15,60px)] lg:grid-rows-[repeat(4,60px)]"
+    class="integration-banner-grid hidden grid-cols-[repeat(7,minmax(0,44px))] auto-rows-[44px] justify-start gap-2 py-6 sm:grid md:grid-cols-[repeat(14,50px)] md:grid-rows-[repeat(2,50px)] md:py-8 lg:grid-cols-[repeat(14,60px)] lg:grid-rows-[repeat(2,60px)]"
   >
     {
       desktopVisibleLogos.map((logo) => {
         return (
           <div
-            class="integration-banner-logo shadow-2 flex h-[34px] w-[34px] shrink-0 items-center justify-center overflow-hidden rounded-lg bg-3 p-2 md:h-[50px] md:w-[50px] md:p-4 lg:h-[60px] lg:w-[60px]"
+            class="integration-banner-logo shadow-2 flex h-[44px] w-[44px] shrink-0 items-center justify-center overflow-hidden rounded-sm bg-3 p-2 md:h-[50px] md:w-[50px] md:p-4 lg:h-[60px] lg:w-[60px]"
             style="opacity: 1; transition: opacity 300ms;"
           >
             <img

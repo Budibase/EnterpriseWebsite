@@ -1,0 +1,290 @@
+---
+import Button from "@components/Button.astro";
+import Icon from "@components/Icon.astro";
+import ReworldLogo from "@assets/images/homepage/customer-stories/reworld-logo.png?url";
+import ReworldFacility from "@assets/images/homepage/customer-stories/reworld-facility.png?url";
+import BulgariaLogo from "@assets/images/homepage/customer-stories/bulgaria-logo.png?url";
+import MinitabLogo from "@assets/images/homepage/customer-stories/minitab-logo.png?url";
+import BasqueLogo from "@assets/images/homepage/customer-stories/basque-logo.png?url";
+
+const customerStories = [
+  {
+    title: "Bulgarian government rehomes 300k refugees",
+    url: "/blog/bulgarian-government/",
+    logo: BulgariaLogo,
+    logoAlt: "Bulgarian Government",
+    logoClass: "is-bulgaria",
+  },
+  {
+    title: "Minitab centralized campaign operations",
+    url: "/blog/minitab/",
+    logo: MinitabLogo,
+    logoAlt: "Minitab",
+    logoClass: "is-minitab",
+  },
+  {
+    title: "Basque Country powers their water network operations",
+    url: "/blog/pays-basque/",
+    logo: BasqueLogo,
+    logoAlt: "Basque Country Water Network",
+    logoClass: "is-basque",
+  },
+] as const;
+---
+
+<section class="customer-stories-feature">
+  <div class="customer-stories-feature__container">
+    <div class="customer-stories-feature__header">
+      <h2>
+        Powering regulated enterprises.{" "}
+        <span>
+          Run your operations on a reliable platform that adapts to your needs.
+        </span>
+      </h2>
+    </div>
+
+    <div class="customer-stories-feature__featured">
+      <div class="customer-stories-feature__featured-bar">
+        <div class="customer-stories-feature__story-title">
+          <span class="customer-stories-feature__logo is-reworld">
+            <img src={ReworldLogo} alt="Reworld" loading="lazy" />
+          </span>
+          <h3>Reworld saves $3m</h3>
+        </div>
+
+        <Button
+          label="Read the story"
+          url="/blog/reworld/"
+          variant="secondary"
+          size="medium"
+          target="_blank"
+          rel="noopener noreferrer"
+        />
+      </div>
+
+      <a
+        class="customer-stories-feature__image-link"
+        href="/blog/reworld/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Read the Reworld customer story"
+      >
+        <img
+          src={ReworldFacility}
+          alt="Reworld industrial facility"
+          loading="lazy"
+        />
+      </a>
+    </div>
+
+    <ul class="customer-stories-feature__rows" aria-label="Customer stories">
+      {
+        customerStories.map((story) => (
+          <li class="customer-stories-feature__row">
+            <a
+              class="customer-stories-feature__row-main"
+              href={story.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class={`customer-stories-feature__logo ${story.logoClass}`}>
+                <img src={story.logo} alt={story.logoAlt} loading="lazy" />
+              </span>
+              <h3>{story.title}</h3>
+            </a>
+
+            <a
+              class="customer-stories-feature__icon-link"
+              href={story.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Read the ${story.logoAlt} customer story`}
+            >
+              <Icon name="ArrowUpRight" size="20" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .customer-stories-feature {
+    width: 100%;
+  }
+
+  .customer-stories-feature__container {
+    width: min(100%, 64rem);
+    margin-inline: auto;
+    padding-inline: 0.5rem;
+  }
+
+  .customer-stories-feature__header {
+    max-width: 44.3125rem;
+    margin-bottom: 1.625rem;
+  }
+
+  .customer-stories-feature__header h2 {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1.625rem;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: 0;
+  }
+
+  .customer-stories-feature__header span:last-child {
+    color: var(--bb-text-subtle);
+  }
+
+  .customer-stories-feature__featured {
+    border-bottom: 1px solid var(--bb-border-subtle);
+    padding-block: 1rem;
+  }
+
+  .customer-stories-feature__featured-bar,
+  .customer-stories-feature__row {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .customer-stories-feature__story-title,
+  .customer-stories-feature__row-main {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.875rem;
+  }
+
+  .customer-stories-feature__story-title h3,
+  .customer-stories-feature__row h3 {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1.375rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .customer-stories-feature__logo {
+    display: flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .customer-stories-feature__logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .customer-stories-feature__logo.is-reworld {
+    padding: 0.375rem;
+    background: var(--bb-blue-1100);
+  }
+
+  .customer-stories-feature__logo.is-bulgaria img {
+    width: 2.5rem;
+    height: 2.125rem;
+  }
+
+  .customer-stories-feature__logo.is-minitab img {
+    width: 2.5rem;
+    height: 2.25rem;
+  }
+
+  .customer-stories-feature__logo.is-basque img {
+    border-radius: 50%;
+  }
+
+  .customer-stories-feature__image-link {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .customer-stories-feature__image-link img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1114 / 537;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  .customer-stories-feature__rows {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .customer-stories-feature__row {
+    min-height: 4.5rem;
+    border-bottom: 1px solid var(--bb-border-subtle);
+    padding-block: 1rem;
+  }
+
+  .customer-stories-feature__row-main {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .customer-stories-feature__row-main:hover {
+    color: inherit;
+  }
+
+  .customer-stories-feature__icon-link {
+    display: inline-flex;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--bb-brand);
+    background: var(--bb-background-raised);
+    text-decoration: none;
+    transition:
+      color 150ms ease,
+      background-color 150ms ease;
+  }
+
+  .customer-stories-feature__icon-link:hover {
+    color: var(--bb-brand-state);
+    background: var(--bb-green-100);
+  }
+
+  @media (min-width: 768px) {
+    .customer-stories-feature__container {
+      padding-inline: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .customer-stories-feature__featured-bar {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .customer-stories-feature__story-title h3,
+    .customer-stories-feature__row h3 {
+      font-size: 1.125rem;
+    }
+
+    .customer-stories-feature__row {
+      align-items: flex-start;
+    }
+  }
+</style>

@@ -1,7 +1,7 @@
 const variantClasses = {
   primary: "bg-grey-900 text-grey-50 hover:bg-grey-800   ",
   secondary:
-    "border bg-white !text-[var(--bb-text-base)] hover:bg-[var(--bb-gray-100)]",
+    "border bg-white !text-[var(--bb-text-base)] hover:bg-[var(--bb-background-subtle)] hover:!text-brand",
   cta: "bg-[var(--bb-green-1000)] !text-on-brand hover:bg-[var(--bb-green-1100)] active:bg-[var(--bb-green-1100)] ",
   "cta-on-base":
     "border-transparent bg-[var(--bb-chartreuse-300)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-chartreuse-200)]",

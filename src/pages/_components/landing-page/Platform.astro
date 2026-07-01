@@ -1,4 +1,6 @@
 ---
+import TwoColumnFeatureGrid from "@components/cards/TwoColumnFeatureGrid.astro";
+
 const platformFeatures = [
   {
     title: "Handle requests automatically with agents",
@@ -6,7 +8,7 @@ const platformFeatures = [
       "Deploy AI agents that understand requests, take action across your systems, and resolve work without manual intervention.",
   },
   {
-    title: "Build operational software",
+    title: "Build secure apps and forms",
     description:
       "Create internal tools and workflows in minutes with a visual platform designed for the teams that keep your business running.",
   },
@@ -23,119 +25,8 @@ const platformFeatures = [
 ] as const;
 ---
 
-<section class="operations-platform">
-  <div class="operations-platform__container">
-    <div class="operations-platform__header">
-      <h2 class="operations-platform__title">
-        <span>Every operations. One platform.</span>
-        <span
-          >AI agents, automations, and apps designed to work together to
-          level-up any operation.</span
-        >
-      </h2>
-    </div>
-
-    <div class="operations-platform__grid">
-      {
-        platformFeatures.map((feature) => (
-          <article class="operations-platform__card">
-            <div class="operations-platform__visual" aria-hidden="true" />
-            <div class="operations-platform__content">
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
-            </div>
-          </article>
-        ))
-      }
-    </div>
-  </div>
-</section>
-
-<style>
-  .operations-platform {
-    width: 100%;
-  }
-
-  .operations-platform__container {
-    width: min(100%, 64rem);
-    margin-inline: auto;
-    padding-inline: 0.5rem;
-  }
-
-  .operations-platform__header {
-    max-width: 44.3125rem;
-    margin-bottom: 1.875rem;
-  }
-
-  .operations-platform__title {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    color: var(--bb-text-base);
-    font-size: 1.625rem;
-    font-weight: 500;
-    line-height: 1.12;
-    letter-spacing: 0;
-  }
-
-  .operations-platform__title span:last-child {
-    color: var(--bb-text-subtle);
-  }
-
-  .operations-platform__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1px;
-    border: 1px solid var(--bb-border-subtle);
-    background: var(--bb-border-subtle);
-  }
-
-  .operations-platform__card {
-    display: flex;
-    min-width: 0;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding: 1rem;
-    background: var(--bb-background-base);
-  }
-
-  .operations-platform__visual {
-    width: 100%;
-    aspect-ratio: 1344 / 896;
-    background: var(--bb-background-raised);
-  }
-
-  .operations-platform__content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-
-  .operations-platform__content h3 {
-    margin: 0;
-    color: var(--bb-text-base);
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.0625;
-    letter-spacing: 0;
-  }
-
-  .operations-platform__content p {
-    margin: 0;
-    color: var(--bb-text-subtle);
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0;
-  }
-
-  @media (min-width: 768px) {
-    .operations-platform__container {
-      padding-inline: 0;
-    }
-
-    .operations-platform__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-</style>
+<TwoColumnFeatureGrid
+  title="Every operation. One platform."
+  subtitle="AI agents, automations, and apps designed to work together to level-up any operation."
+  features={platformFeatures}
+/>

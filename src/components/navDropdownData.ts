@@ -27,25 +27,24 @@ const productItemsByHref = new Map(
 );
 
 export const productDropdownItems: NavDropdownItem[] = [
-  ...productItemOrder
-    .flatMap(({ href, label }) => {
-      const item = productItemsByHref.get(href);
-      if (!item) return [];
-      return [
-        {
-          href: item.link,
-          label,
-          description: item.pageDescription,
-          prefetch: true,
-          badge: item.tag?.label,
-          disabled: item.disabled,
-        },
-      ];
-    }),
+  ...productItemOrder.flatMap(({ href, label }) => {
+    const item = productItemsByHref.get(href);
+    if (!item) return [];
+    return [
+      {
+        href: item.link,
+        label,
+        description: item.pageDescription,
+        prefetch: true,
+        badge: item.tag?.label,
+        disabled: item.disabled,
+      },
+    ];
+  }),
 ];
 
 export const resourcesDropdownItems: NavDropdownItem[] = [
-    {
+  {
     href: "https://docs.budibase.com",
     label: "Docs",
     description: "Technical documentation.",
@@ -58,15 +57,13 @@ export const resourcesDropdownItems: NavDropdownItem[] = [
     description: "Customer stories and case studies.",
     prefetch: true,
   },
-   {
+  {
     href: "/blog/",
     label: "Blog",
     description: "All resources in one timeline.",
     prefetch: true,
   },
-  
 
- 
   {
     href: "/changelog/",
     label: "Changelog",
@@ -83,19 +80,26 @@ export const solutionsDropdownItems: NavDropdownItem[] = [
     prefetch: true,
   },
   {
+    href: "/customers/",
+    label: "Customers",
+    description: "Customer stories and case studies.",
+    prefetch: true,
+  },
+  {
     href: "/enterprise/",
     label: "Enterprise",
     description: "How Budibase meets the needs of large organizations.",
     prefetch: true,
   },
-    {
+  {
     href: "/security/",
     label: "Security",
-    description: "How Budibase meets the needs of security-first organizations.",
+    description:
+      "How Budibase meets the needs of security-first organizations.",
     prefetch: true,
   },
 
-      {
+  {
     href: "/it/",
     label: "IT Teams",
     description: "How Budibase meets the needs of IT teams.",
