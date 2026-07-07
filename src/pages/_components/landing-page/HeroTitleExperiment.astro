@@ -9,18 +9,18 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
   <div
     class="container max-w-[var(--site-container-max)] mx-auto px-2 lg:px-0 flex w-full flex-col"
   >
-    <div
-      class="mx-auto flex w-full max-w-4xl flex-col gap-8 md:flex-row md:gap-12"
-    >
-      <div class="flex min-w-0 flex-1 flex-col">
-        <h1 class="hero-title-original mx-auto mb-5 block w-full text-pretty">
-          The open source platform for running <span>AI operations</span>.{" "}
-          <span class="text-text-muted"
-            >Apps, automations, and AI agents for modern Enterprise Ops teams -
-            from everyday requests to mission critical operations.</span
-          >
+    <div class="mx-auto flex w-full max-w-6xl flex-col items-center">
+      <div
+        class="hero-copy-experiment flex min-w-0 flex-1 flex-col items-center text-center"
+      >
+        <h1 class="hero-title-experiment mx-auto mb-5 block w-full text-balance">
+          The open-source platform for enterprise operations
         </h1>
-        <div class="flex flex-row gap-4">
+        <p class="hero-subheading mx-auto max-w-3xl text-balance">
+          Build intelligent enterprise operations with AI agents, automations,
+          apps, and human oversight.
+        </p>
+        <div class="hero-actions flex flex-row flex-wrap justify-center gap-4">
           <Button
             label="Book a demo"
             url="https://account.budibase.app/register"
@@ -60,14 +60,31 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
 </section>
 
 <style>
-  .hero-title-original {
-    color: var(--bb-text-base);
-    font-family: var(--font-sans);
-    font-size: 38px;
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: -1px;
-    text-transform: none;
+  .hero-copy-experiment {
+    padding-top: calc(clamp(3rem, 5vw, 5rem) - 16px);
   }
 
+  .hero-title-experiment {
+    color: var(--bb-text-base);
+    font-family: var(--bb-text-display-medium-font-family);
+    font-size: var(--bb-text-display-medium-font-size);
+    font-weight: var(--bb-text-display-medium-font-weight);
+    line-height: var(--bb-text-display-medium-line-height);
+    letter-spacing: var(--bb-text-display-medium-letter-spacing);
+    text-transform: var(--bb-text-display-medium-text-transform);
+  }
+
+  .hero-subheading {
+    color: var(--bb-text-base) !important;
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.15px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .hero-actions {
+    margin-top: calc(2rem - 8px);
+  }
 </style>

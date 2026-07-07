@@ -175,7 +175,7 @@
     --bb-celery-1100: #2c5c09;
     --bb-celery-1200: #234b06;
     --bb-celery-1300: #1b3c03;
-    --bb-celery-1400: #132e00;
+    --bb-celery-1400: #163300;
     --bb-celery-1500: #0c2100;
     --bb-celery-1600: #040f00;
     --bb-green-100: #edfcf1;
@@ -391,19 +391,19 @@
     --bb-text-display-large-font-size: 96px;
     --bb-text-display-large-font-weight: 900;
     --bb-text-display-large-line-height: 0.85;
-    --bb-text-display-large-letter-spacing: 0.02em;
+    --bb-text-display-large-letter-spacing: 0.005em;
     --bb-text-display-large-text-transform: uppercase;
     --bb-text-display-medium-font-family: var(--font-sans);
     --bb-text-display-medium-font-size: 64px;
     --bb-text-display-medium-font-weight: 900;
     --bb-text-display-medium-line-height: 0.85;
-    --bb-text-display-medium-letter-spacing: 0.015em;
+    --bb-text-display-medium-letter-spacing: 0.005em;
     --bb-text-display-medium-text-transform: uppercase;
     --bb-text-display-small-font-family: var(--font-sans);
     --bb-text-display-small-font-size: 40px;
     --bb-text-display-small-font-weight: 900;
     --bb-text-display-small-line-height: 0.85;
-    --bb-text-display-small-letter-spacing: 0.015em;
+    --bb-text-display-small-letter-spacing: 0.005em;
     --bb-text-display-small-text-transform: uppercase;
 
     /* Core semantic RGB tokens (Tailwind-friendly) */
@@ -747,8 +747,8 @@ article blockquote p {
 
 .nav-shell .nav-link {
   color: var(--text-primary);
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
   line-height: 1.25rem;
 }
 
@@ -758,7 +758,7 @@ article blockquote p {
 
 .nav-shell .header-dropdown [data-header-dropdown-trigger] {
   color: var(--text-primary) !important;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .nav-shell .header-dropdown [data-header-dropdown-trigger]:hover,
