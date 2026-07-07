@@ -1,23 +1,23 @@
 ---
 import Button from "@components/Button.astro";
+import CtaRiverBackground from "@assets/images/homepage/cta-river-background.png?url";
 ---
 
 <div
-  class="gap-4 lg:gap-5 mx-auto w-full max-w-[var(--site-container-max)] px-4 md:px-6 lg:px-8 grid-cols-1 lg:grid-cols-6 box-border flex items-center my-0! py-12 md:py-25 lg:py-35 bg-[var(--bb-brand-forest-green)] text-[var(--bb-text-base)]"
+  class="cta-section gap-4 lg:gap-5 mx-auto w-full max-w-[var(--site-container-max)] px-4 md:px-6 lg:px-8 grid-cols-1 lg:grid-cols-6 box-border flex items-center my-0! py-12 md:py-25 lg:py-35 text-[var(--bb-text-base)]"
+  style={`--cta-background-image: url("${CtaRiverBackground}")`}
 >
   <div
     class="w-full col-span-1 lg:col-span-6 flex flex-col items-center text-center"
   >
-    <h2
-      class="text-2xl md:text-3xl lg:text-5xl! text-[var(--bb-text-base)] mb-4 max-w-lg px-2"
-    >
+    <h2 class="cta-title mb-8 max-w-5xl px-2">
       Let’s transform operations together
     </h2>
     <div class="flex flex-wrap items-center justify-center gap-3">
       <Button
         label="Book a demo"
         url="/contact/"
-        variant="cta"
+        variant="primary"
         size="large"
       />
       <Button
@@ -29,3 +29,30 @@ import Button from "@components/Button.astro";
     </div>
   </div>
 </div>
+
+<style>
+  .cta-section {
+    position: relative;
+    overflow: hidden;
+    background: var(--bb-background-dark-raised);
+    background-image:
+      linear-gradient(
+        color-mix(in srgb, var(--bb-background-dark-raised) 85%, transparent),
+        color-mix(in srgb, var(--bb-background-dark-raised) 85%, transparent)
+      ),
+      var(--cta-background-image);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .cta-title {
+    color: var(--bb-text-on-base);
+    font-family: var(--bb-text-display-medium-font-family);
+    font-size: var(--bb-text-display-medium-font-size);
+    font-weight: var(--bb-text-display-medium-font-weight);
+    line-height: var(--bb-text-display-medium-line-height);
+    letter-spacing: var(--bb-text-display-medium-letter-spacing);
+    text-transform: var(--bb-text-display-medium-text-transform);
+  }
+</style>

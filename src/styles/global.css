@@ -24,11 +24,12 @@
     --bb-dark-gold: var(--bb-brown-1300);
     --bb-dark-charcoal: var(--bb-silver-1500);
     --bb-dark-maroon: var(--bb-red-1500);
-    --bb-brand: var(--bb-brand-forest-green);
-    --bb-brand-state: var(--bb-brand-forest-green);
+    --bb-brand: var(--bb-celery-1400);
+    --bb-brand-state: var(--bb-celery-1400);
     --bb-white: #ffffff;
     --bb-black: #000000;
-    --bb-text-base: var(--bb-brand-forest-green);
+    --bb-text-base: var(--bb-celery-1400);
+    --font-primary: var(--bb-celery-1400);
     --bb-text-subtle: #717171;
     --bb-text-muted: rgb(0 0 0 / 0.69);
     --bb-text-on-base: #f8f8f8;
@@ -37,6 +38,8 @@
     --bb-background-base: #ffffff;
     --bb-background-surface: #f8f8f8;
     --bb-background-raised: #16330014;
+    --bb-background-dark-base: var(--bb-brand-forest-green);
+    --bb-background-dark-raised: var(--bb-celery-1500);
     --bb-border-base: #dadada;
     --bb-border-bold: #8f8f8f;
     --bb-border-subtle: rgb(0 0 0 / 0.141);
@@ -384,6 +387,25 @@
       SF Mono, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
       monospace;
 
+    --bb-text-display-large-font-family: var(--font-sans);
+    --bb-text-display-large-font-size: 96px;
+    --bb-text-display-large-font-weight: 900;
+    --bb-text-display-large-line-height: 0.85;
+    --bb-text-display-large-letter-spacing: 0.02em;
+    --bb-text-display-large-text-transform: uppercase;
+    --bb-text-display-medium-font-family: var(--font-sans);
+    --bb-text-display-medium-font-size: 64px;
+    --bb-text-display-medium-font-weight: 900;
+    --bb-text-display-medium-line-height: 0.85;
+    --bb-text-display-medium-letter-spacing: 0.015em;
+    --bb-text-display-medium-text-transform: uppercase;
+    --bb-text-display-small-font-family: var(--font-sans);
+    --bb-text-display-small-font-size: 40px;
+    --bb-text-display-small-font-weight: 900;
+    --bb-text-display-small-line-height: 0.85;
+    --bb-text-display-small-letter-spacing: 0.015em;
+    --bb-text-display-small-text-transform: uppercase;
+
     /* Core semantic RGB tokens (Tailwind-friendly) */
     --bg: 255 255 255;
     /* bb background/base */
@@ -427,7 +449,7 @@
     --bg-1: rgb(var(--bg));
     --bg-2: rgb(var(--surface));
     --bg-3: rgb(var(--surface-2));
-    --text-primary: rgb(var(--text));
+    --text-primary: var(--font-primary);
     --text-secondary: rgb(var(--text-muted));
     --text-body: rgb(var(--text-article));
     --accent-grey: var(--bb-gray-500);
@@ -1100,7 +1122,7 @@ main ul article > a {
 
 .site-grid-section--hero {
   padding-top: 0;
-  padding-bottom: clamp(2.25rem, 5vw, 4.5rem);
+  padding-bottom: 0;
 }
 
 .site-grid-section--hero::before {

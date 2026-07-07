@@ -1,11 +1,11 @@
 const variantClasses = {
   primary:
-    "bg-[var(--bb-brand-bright-green)] !text-[var(--bb-brand-forest-green)] hover:bg-[var(--bb-brand-bright-green)] ",
+    "bg-[var(--bb-brand-bright-green)] !text-[var(--bb-celery-1400)] hover:bg-[var(--bb-brand-bright-green)] ",
   secondary:
     "border bg-white !text-[var(--bb-text-base)] hover:bg-[var(--bb-background-surface)] hover:!text-brand",
-  cta: "bg-[var(--bb-brand-forest-green)] !text-[var(--bb-celery-100)] hover:bg-[var(--bb-brand-forest-green)] active:bg-[var(--bb-brand-forest-green)] ",
+  cta: "bg-[var(--bb-celery-1300)] !text-[var(--bb-text-on-base)] hover:bg-[var(--bb-celery-1400)] active:bg-[var(--bb-celery-1400)] ",
   "cta-on-base":
-    "border-transparent bg-[var(--bb-brand-bright-green)] !text-[var(--bb-brand-forest-green)] hover:bg-[var(--bb-brand-bright-green)]",
+    "border-transparent bg-[var(--bb-brand-bright-green)] !text-[var(--bb-celery-1400)] hover:bg-[var(--bb-brand-bright-green)]",
   "outline-on-base":
     "border border-[var(--bb-brand-bright-green)] bg-transparent !text-[var(--bb-brand-bright-green)] hover:border-[var(--bb-brand-bright-green)] hover:bg-[var(--bb-transparent-white-75)] hover:!text-[var(--bb-celery-100)]",
   large: "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-hover ",
@@ -24,7 +24,7 @@ const gapClasses = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-[50px] !font-medium transition-colors duration-150 active:scale-[0.98] no-underline cursor-pointer font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "inline-flex items-center justify-center rounded-[50px] !font-semibold transition-colors duration-150 active:scale-[0.98] no-underline cursor-pointer font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 function normalizeSize(size = "medium") {
   return size === "sm" ? "small" : size;
