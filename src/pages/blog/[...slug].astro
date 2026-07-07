@@ -1,6 +1,5 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
-import CTA from "@components/CTA.astro";
 import MarkdownPostLayout from "../../layouts/MarkdownPostLayout.astro";
 
 export type Props = {
@@ -74,5 +73,4 @@ const frontmatter =
       )
     }
   </article>
-  <CTA />
 </MarkdownPostLayout>

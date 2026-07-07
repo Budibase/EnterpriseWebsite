@@ -5,25 +5,38 @@
   :root {
     /* bb design tokens */
     --site-container-max: 88rem;
+    --padding-x-small: 8px;
+    --padding-small: 16px;
+    --padding-medium: 24px;
+    --padding-large: 32px;
     --bb-gradient: linear-gradient(
       to bottom right,
       var(--bb-green-1000) 15%,
       var(--bb-cinnamon-900) 100%
     );
-    --bb-brand: var(--bb-green-900);
-    --bb-brand-state: var(--bb-green-1000);
+    --bb-brand-forest-green: var(--bb-celery-1400);
+    --bb-brand-bright-green: var(--bb-celery-300);
+    --bb-bright-orange: var(--bb-orange-300);
+    --bb-bright-yellow: var(--bb-orange-400);
+    --bb-bright-blue: var(--bb-seafoam-300);
+    --bb-bright-pink: var(--bb-pink-300);
+    --bb-dark-purple: var(--bb-fuchsia-1600);
+    --bb-dark-gold: var(--bb-brown-1300);
+    --bb-dark-charcoal: var(--bb-silver-1500);
+    --bb-dark-maroon: var(--bb-red-1500);
+    --bb-brand: var(--bb-brand-forest-green);
+    --bb-brand-state: var(--bb-brand-forest-green);
     --bb-white: #ffffff;
     --bb-black: #000000;
-    --bb-text-base: #131313;
+    --bb-text-base: var(--bb-brand-forest-green);
     --bb-text-subtle: #717171;
     --bb-text-muted: rgb(0 0 0 / 0.69);
     --bb-text-on-base: #f8f8f8;
     --bb-text-on-base-subtle: #e1e1e1;
     --bb-text-on-base-muted: rgb(255 255 255 / 0.39);
     --bb-background-base: #ffffff;
-    --bb-background-subtle: #f8f8f8;
     --bb-background-surface: #f8f8f8;
-    --bb-background-raised: #f3f3f3;
+    --bb-background-raised: #16330014;
     --bb-border-base: #dadada;
     --bb-border-bold: #8f8f8f;
     --bb-border-subtle: rgb(0 0 0 / 0.141);
@@ -1100,6 +1113,14 @@ main ul article > a {
 
 .site-grid-section--logos {
   padding-block: clamp(1rem, 2.5vw, 2rem);
+}
+
+.site-grid-section--no-top {
+  padding-top: 0;
+}
+
+.site-grid-section--no-top::before {
+  content: none;
 }
 
 .site-grid-section--border-bottom {

@@ -1,0 +1,369 @@
+---
+import FourColumnFeatureGrid from "@components/cards/FourColumnFeatureGrid.astro";
+import HomepageSectionHeader from "@components/HomepageSectionHeader.astro";
+import Iso27001Logo from "@assets/logos/enterprise-grid/iso-27001.png?url";
+import GdprLogo from "@assets/logos/enterprise-grid/gdpr.svg?url";
+import EuAiActLogo from "@assets/logos/enterprise-grid/eu-ai-act.png?url";
+import IronBankLogo from "@assets/logos/enterprise-grid/iron-bank.png?url";
+import OpenSourceLogo from "@assets/logos/enterprise-grid/open-source.png?url";
+
+const enterpriseFeatures = [
+  {
+    iconName: "CloudCheck",
+    iconWeight: "fill",
+    title: "Deploy anywhere",
+    description:
+      "Run on-premise, in private cloud environments, air-gapped networks, or public cloud infrastructure.",
+  },
+  {
+    iconName: "ShieldCheck",
+    iconWeight: "fill",
+    title: "Security & compliance",
+    description:
+      "Role-based access control, audit logging, SSO, and enterprise governance built into the platform.",
+  },
+  {
+    iconName: "Gauge",
+    iconWeight: "fill",
+    title: "Reliable at scale",
+    description:
+      "Support thousands of users, millions of actions, and mission-critical operational processes.",
+  },
+  {
+    iconName: "Keyhole",
+    iconWeight: "fill",
+    title: "Open source foundation",
+    description:
+      "Built on open source principles with the transparency, flexibility, and community enterprises expect.",
+  },
+] as const;
+
+const complianceItems = [
+  {
+    src: Iso27001Logo,
+    alt: "ISO 27001",
+    title: "ISO 27001",
+  },
+  {
+    src: GdprLogo,
+    alt: "GDPR",
+    title: "GDPR",
+  },
+  {
+    src: EuAiActLogo,
+    alt: "EU AI Act",
+    title: "EU AI Act",
+  },
+  {
+    src: IronBankLogo,
+    alt: "Iron Bank",
+    title: "Iron bank",
+  },
+  {
+    src: OpenSourceLogo,
+    alt: "Open source",
+    title: "Open source",
+  },
+] as const;
+
+const metrics = [
+  { value: "117M+", label: "actions automated" },
+  { value: "400,000", label: "teams" },
+  { value: "99.99%", label: "Uptime" },
+  { value: "28.6K", label: "Github stars" },
+] as const;
+---
+
+<section class="enterprise-section">
+  <div class="enterprise-section__rails" aria-hidden="true">
+    <div class="enterprise-section__rails-inner"></div>
+  </div>
+
+  <div class="enterprise-section__container">
+    <div class="enterprise-section__block">
+      <FourColumnFeatureGrid
+        title="Designed for regulated enterprises."
+        subtitle="Built for critical operations."
+        features={enterpriseFeatures}
+        iconSize="28"
+        tone="on-dark"
+        class="enterprise-section__feature-grid"
+      />
+    </div>
+
+    <div class="enterprise-section__divider" aria-hidden="true"></div>
+
+    <div class="enterprise-section__block enterprise-section__block--metrics">
+      <HomepageSectionHeader
+        title="Scale with confidence."
+        subtitle="Automate thousands of actions per day with consistent speed and reliability."
+        class="enterprise-section__header"
+      />
+
+      <div class="enterprise-section__dot-pattern" aria-hidden="true"></div>
+
+      <div class="enterprise-section__metrics">
+        {
+          metrics.map((metric) => (
+            <div class="enterprise-section__metric">
+              <p class="enterprise-section__metric-value">{metric.value}</p>
+              <p class="enterprise-section__metric-label">{metric.label}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="enterprise-section__divider" aria-hidden="true"></div>
+
+    <div class="enterprise-section__block">
+      <HomepageSectionHeader
+        title="Enterprise-Grade Security."
+        subtitle="Certified to protect your data and operations, no matter the industry or use case."
+        class="enterprise-section__header"
+      />
+
+      <div class="enterprise-section__compliance-grid">
+        {
+          complianceItems.map((item) => (
+            <article class="enterprise-section__compliance-card">
+              <div class="enterprise-section__badge">
+                <img src={item.src} alt={item.alt} loading="lazy" />
+              </div>
+              <h3>{item.title}</h3>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .enterprise-section {
+    --enterprise-content-width: 64rem;
+    --enterprise-section-inline-padding: clamp(1rem, 2.5vw, 2rem);
+    --enterprise-grid-line: color-mix(
+      in srgb,
+      var(--bb-transparent-white-300) 82%,
+      transparent
+    );
+    --enterprise-grid-line-subtle: color-mix(
+      in srgb,
+      var(--bb-transparent-white-200) 72%,
+      transparent
+    );
+    --enterprise-horizontal-line: repeating-linear-gradient(
+      to right,
+      var(--enterprise-grid-line-subtle) 0 2px,
+      transparent 2px 7px
+    );
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    margin-top: clamp(3rem, 6vw, 5rem);
+    margin-left: -50vw;
+    overflow: hidden;
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+    isolation: isolate;
+  }
+
+  .enterprise-section__rails {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .enterprise-section__rails-inner {
+    position: relative;
+    width: min(100%, var(--site-container-max));
+    height: 100%;
+    margin-inline: auto;
+  }
+
+  .enterprise-section__rails-inner::before,
+  .enterprise-section__rails-inner::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    content: "";
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--enterprise-grid-line) 0 2px,
+      transparent 2px 7px
+    );
+  }
+
+  .enterprise-section__rails-inner::before {
+    left: 0;
+  }
+
+  .enterprise-section__rails-inner::after {
+    right: 0;
+  }
+
+  .enterprise-section__container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: min(100%, var(--enterprise-content-width));
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 5rem);
+    margin-inline: auto;
+    padding: clamp(3rem, 7vw, 5rem) var(--enterprise-section-inline-padding);
+  }
+
+  .enterprise-section__block {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1.875rem;
+    margin-inline: auto;
+  }
+
+  :global(.enterprise-section__header) {
+    max-width: 44.3125rem;
+    margin-bottom: 0;
+  }
+
+  :global(.enterprise-section__header .homepage-section-header__title) {
+    color: var(--bb-text-on-base);
+  }
+
+  :global(
+    .enterprise-section__header .homepage-section-header__title span:last-child
+  ) {
+    color: var(--bb-text-on-base-muted);
+  }
+
+  :global(.enterprise-section__feature-grid) {
+    --four-column-feature-grid-container-width: var(--enterprise-content-width);
+    --four-column-feature-grid-border: var(--enterprise-grid-line-subtle);
+    --four-column-feature-grid-title-size: 0.875rem;
+    --four-column-feature-grid-title-line-height: 1.214;
+  }
+
+  .enterprise-section__compliance-card h3 {
+    margin: 0;
+    color: var(--bb-text-on-base) !important;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.214;
+    letter-spacing: 0 !important;
+  }
+
+  .enterprise-section__divider {
+    position: relative;
+    left: 50%;
+    width: min(100vw, var(--site-container-max));
+    height: 1px;
+    transform: translateX(-50%);
+    background-image: var(--enterprise-horizontal-line);
+  }
+
+  .enterprise-section__compliance-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .enterprise-section__compliance-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .enterprise-section__badge {
+    display: flex;
+    width: 5rem;
+    height: 5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .enterprise-section__badge img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .enterprise-section__block--metrics {
+    gap: 1.5rem;
+  }
+
+  .enterprise-section__dot-pattern {
+    width: 100%;
+    height: clamp(4rem, 10vw, 7.5rem);
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--bb-celery-100) 58%, transparent) 0 0.3125rem,
+      transparent 0.34375rem
+    );
+    background-size: 1rem 1rem;
+  }
+
+  .enterprise-section__metrics {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .enterprise-section__metric {
+    min-width: 0;
+  }
+
+  .enterprise-section__metric-value {
+    margin: 0;
+    color: var(--bb-celery-100) !important;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0 !important;
+  }
+
+  .enterprise-section__metric-label {
+    margin: 0;
+    color: var(--bb-text-on-base-subtle) !important;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0 !important;
+  }
+
+  .enterprise-section__metric-value {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+  }
+
+  .enterprise-section__metric-label {
+    font-size: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .enterprise-section__compliance-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .enterprise-section__metrics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .enterprise-section__compliance-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .enterprise-section__metrics {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: end;
+      justify-content: space-between;
+    }
+  }
+</style>

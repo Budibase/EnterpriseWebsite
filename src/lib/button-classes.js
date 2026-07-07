@@ -1,10 +1,13 @@
 const variantClasses = {
-  primary: "bg-grey-900 text-grey-50 hover:bg-grey-800   ",
+  primary:
+    "bg-[var(--bb-brand-bright-green)] !text-[var(--bb-brand-forest-green)] hover:bg-[var(--bb-brand-bright-green)] ",
   secondary:
-    "border bg-white !text-[var(--bb-text-base)] hover:bg-[var(--bb-background-subtle)] hover:!text-brand",
-  cta: "bg-[var(--bb-green-1000)] !text-on-brand hover:bg-[var(--bb-green-1100)] active:bg-[var(--bb-green-1100)] ",
+    "border bg-white !text-[var(--bb-text-base)] hover:bg-[var(--bb-background-surface)] hover:!text-brand",
+  cta: "bg-[var(--bb-brand-forest-green)] !text-[var(--bb-celery-100)] hover:bg-[var(--bb-brand-forest-green)] active:bg-[var(--bb-brand-forest-green)] ",
   "cta-on-base":
-    "border-transparent bg-[var(--bb-chartreuse-300)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-chartreuse-200)]",
+    "border-transparent bg-[var(--bb-brand-bright-green)] !text-[var(--bb-brand-forest-green)] hover:bg-[var(--bb-brand-bright-green)]",
+  "outline-on-base":
+    "border border-[var(--bb-brand-bright-green)] bg-transparent !text-[var(--bb-brand-bright-green)] hover:border-[var(--bb-brand-bright-green)] hover:bg-[var(--bb-transparent-white-75)] hover:!text-[var(--bb-celery-100)]",
   large: "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-hover ",
 };
 

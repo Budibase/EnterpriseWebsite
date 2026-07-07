@@ -1,4 +1,6 @@
 ---
+import HomepageSectionHeader from "@components/HomepageSectionHeader.astro";
+
 interface Feature {
   title: string;
   description: string;
@@ -52,12 +54,7 @@ const {
 
 <section class={`platform-capabilities-grid ${className}`}>
   <div class="platform-capabilities-grid__container">
-    <div class="platform-capabilities-grid__header">
-      <h2 class="platform-capabilities-grid__title">
-        <span>{title}</span>
-        <span>{subtitle}</span>
-      </h2>
-    </div>
+    <HomepageSectionHeader title={title} subtitle={subtitle} />
 
     <div class="platform-capabilities-grid__grid">
       {
@@ -87,26 +84,6 @@ const {
     width: min(100%, 64rem);
     margin-inline: auto;
     padding-inline: 0.5rem;
-  }
-
-  .platform-capabilities-grid__header {
-    max-width: 44.3125rem;
-    margin-bottom: 1.875rem;
-  }
-
-  .platform-capabilities-grid__title {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    color: var(--bb-text-base);
-    font-size: 1.625rem;
-    font-weight: 500;
-    line-height: 1.12;
-    letter-spacing: 0;
-  }
-
-  .platform-capabilities-grid__title span:last-child {
-    color: var(--bb-text-subtle);
   }
 
   .platform-capabilities-grid__grid {

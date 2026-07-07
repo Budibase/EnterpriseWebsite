@@ -1,4 +1,6 @@
 ---
+import HomepageSectionHeader from "@components/HomepageSectionHeader.astro";
+
 interface Feature {
   title: string;
   description: string;
@@ -21,12 +23,7 @@ const {
 
 <section class={`operation-platform-cards ${className}`}>
   <div class="operation-platform-cards__container">
-    <div class="operation-platform-cards__header">
-      <h2 class="operation-platform-cards__title">
-        <span>{title}</span>
-        <span>{subtitle}</span>
-      </h2>
-    </div>
+    <HomepageSectionHeader title={title} subtitle={subtitle} />
 
     <div class="operation-platform-cards__grid">
       {
@@ -53,26 +50,6 @@ const {
     width: min(100%, 64rem);
     margin-inline: auto;
     padding-inline: 0.5rem;
-  }
-
-  .operation-platform-cards__header {
-    max-width: 44.3125rem;
-    margin-bottom: 1.875rem;
-  }
-
-  .operation-platform-cards__title {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    color: var(--bb-text-base);
-    font-size: 1.625rem;
-    font-weight: 500;
-    line-height: 1.12;
-    letter-spacing: 0;
-  }
-
-  .operation-platform-cards__title span:last-child {
-    color: var(--bb-text-subtle);
   }
 
   .operation-platform-cards__grid {

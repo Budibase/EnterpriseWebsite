@@ -6,6 +6,7 @@ import ReworldFacility from "@assets/images/homepage/customer-stories/reworld-fa
 import BulgariaLogo from "@assets/images/homepage/customer-stories/bulgaria-logo.png?url";
 import MinitabLogo from "@assets/images/homepage/customer-stories/minitab-logo.png?url";
 import BasqueLogo from "@assets/images/homepage/customer-stories/basque-logo.png?url";
+import HomepageSectionHeader from "@components/HomepageSectionHeader.astro";
 
 const customerStories = [
   {
@@ -34,14 +35,10 @@ const customerStories = [
 
 <section class="customer-stories-feature">
   <div class="customer-stories-feature__container">
-    <div class="customer-stories-feature__header">
-      <h2>
-        Powering regulated enterprises.{" "}
-        <span>
-          Run your operations on a reliable platform that adapts to your needs.
-        </span>
-      </h2>
-    </div>
+    <HomepageSectionHeader
+      title="Powering regulated enterprises."
+      subtitle="Run your operations on a reliable platform that adapts to your needs."
+    />
 
     <div class="customer-stories-feature__featured">
       <div class="customer-stories-feature__featured-bar">
@@ -120,27 +117,9 @@ const customerStories = [
     padding-inline: 0.5rem;
   }
 
-  .customer-stories-feature__header {
-    max-width: 44.3125rem;
-    margin-bottom: 1.625rem;
-  }
-
-  .customer-stories-feature__header h2 {
-    margin: 0;
-    color: var(--bb-text-base);
-    font-size: 1.625rem;
-    font-weight: 500;
-    line-height: 1.12;
-    letter-spacing: 0;
-  }
-
-  .customer-stories-feature__header span:last-child {
-    color: var(--bb-text-subtle);
-  }
-
   .customer-stories-feature__featured {
     border-bottom: 1px solid var(--bb-border-subtle);
-    padding-block: 1rem;
+    padding-bottom: 1rem;
   }
 
   .customer-stories-feature__featured-bar,

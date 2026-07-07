@@ -1,0 +1,176 @@
+---
+import Icon from "@components/Icon.astro";
+import HomepageSectionHeader from "@components/HomepageSectionHeader.astro";
+
+interface Feature {
+  title: string;
+  description: string;
+  iconName?: string;
+  iconWeight?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  features: readonly Feature[];
+  class?: string;
+  iconSize?: string;
+  tone?: "default" | "on-dark";
+}
+
+const {
+  title,
+  subtitle,
+  features,
+  class: className = "",
+  iconSize = "24",
+  tone = "default",
+} = Astro.props as Props;
+
+const toneClass = tone === "on-dark" ? "four-column-feature-grid--on-dark" : "";
+---
+
+<section class={`four-column-feature-grid ${toneClass} ${className}`}>
+  <div class="four-column-feature-grid__container">
+    <HomepageSectionHeader
+      title={title}
+      subtitle={subtitle}
+      class="four-column-feature-grid__header"
+    />
+
+    <div class="four-column-feature-grid__grid">
+      {
+        features.map((feature) => (
+          <article class="four-column-feature-grid__card">
+            {feature.iconName && (
+              <Icon
+                name={feature.iconName}
+                size={iconSize}
+                weight={feature.iconWeight}
+                class="four-column-feature-grid__icon"
+              />
+            )}
+            <div class="four-column-feature-grid__content">
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .four-column-feature-grid {
+    width: 100%;
+  }
+
+  .four-column-feature-grid--on-dark {
+    --four-column-feature-grid-border: var(--bb-transparent-white-200);
+    --four-column-feature-grid-card-background: var(--bb-brand-forest-green);
+    --four-column-feature-grid-header-title-color: var(--bb-text-on-base);
+    --four-column-feature-grid-header-subtitle-color: var(
+      --bb-text-on-base-muted
+    );
+    --four-column-feature-grid-icon-color: var(--bb-celery-100);
+    --four-column-feature-grid-title-color: var(--bb-text-on-base);
+    --four-column-feature-grid-description-color: var(--bb-text-on-base-subtle);
+  }
+
+  .four-column-feature-grid__container {
+    width: min(100%, var(--four-column-feature-grid-container-width, 64rem));
+    margin-inline: auto;
+    padding-inline: 0.5rem;
+  }
+
+  .four-column-feature-grid__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    border: 1px solid
+      var(--four-column-feature-grid-border, var(--bb-border-subtle));
+    background: var(--four-column-feature-grid-border, var(--bb-border-subtle));
+  }
+
+  :global(.four-column-feature-grid__header .homepage-section-header__title) {
+    color: var(
+      --four-column-feature-grid-header-title-color,
+      var(--bb-text-base)
+    ) !important;
+  }
+
+  :global(
+    .four-column-feature-grid__header
+      .homepage-section-header__title
+      span:last-child
+  ) {
+    color: var(
+      --four-column-feature-grid-header-subtitle-color,
+      var(--bb-text-subtle)
+    ) !important;
+  }
+
+  .four-column-feature-grid__card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(
+      --four-column-feature-grid-card-background,
+      var(--bb-background-base)
+    );
+  }
+
+  :global(.four-column-feature-grid__icon) {
+    flex: 0 0 auto;
+    color: var(--four-column-feature-grid-icon-color, var(--bb-text-base));
+    fill: currentColor;
+  }
+
+  :global(.four-column-feature-grid__icon *) {
+    fill: currentColor;
+  }
+
+  .four-column-feature-grid__content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .four-column-feature-grid__content h3 {
+    margin: 0;
+    color: var(
+      --four-column-feature-grid-title-color,
+      var(--bb-text-base)
+    ) !important;
+    font-size: var(--four-column-feature-grid-title-size, 1rem);
+    font-weight: 500;
+    line-height: var(--four-column-feature-grid-title-line-height, 1.0625);
+    letter-spacing: 0 !important;
+  }
+
+  .four-column-feature-grid__content p {
+    margin: 0;
+    color: var(
+      --four-column-feature-grid-description-color,
+      var(--bb-text-subtle)
+    ) !important;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.214;
+    letter-spacing: 0 !important;
+  }
+
+  @media (min-width: 768px) {
+    .four-column-feature-grid__container {
+      padding-inline: 0;
+    }
+
+    .four-column-feature-grid__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

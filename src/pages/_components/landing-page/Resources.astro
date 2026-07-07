@@ -1,19 +1,16 @@
 ---
 import Button from "@components/Button.astro";
 import IntegrationBanner from "@components/IntegrationBanner.astro";
+import HomepageSectionHeader from "@components/HomepageSectionHeader.astro";
+import EnterpriseSection from "./EnterpriseSection.astro";
 ---
 
 <section class="homepage-resources">
   <div class="homepage-resources__container">
-    <div class="homepage-resources__header">
-      <h2 class="homepage-resources__title">
-        <span>Connect the tools your business runs on.</span>
-        <span>
-          Integrate with databases, AI models, and business apps and take action
-          across your operations.
-        </span>
-      </h2>
-    </div>
+    <HomepageSectionHeader
+      title="Connect your business."
+      subtitle="Integrate with databases, AI models, and business applications."
+    />
 
     <IntegrationBanner />
 
@@ -28,6 +25,8 @@ import IntegrationBanner from "@components/IntegrationBanner.astro";
   </div>
 </section>
 
+<EnterpriseSection />
+
 <style>
   .homepage-resources {
     width: 100%;
@@ -37,26 +36,6 @@ import IntegrationBanner from "@components/IntegrationBanner.astro";
     width: min(100%, 64rem);
     margin-inline: auto;
     padding-inline: 0.5rem;
-  }
-
-  .homepage-resources__header {
-    max-width: 44.3125rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .homepage-resources__title {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    color: var(--bb-text-base);
-    font-size: 1.625rem;
-    font-weight: 500;
-    line-height: 1.12;
-    letter-spacing: 0;
-  }
-
-  .homepage-resources__title span:last-child {
-    color: var(--bb-text-subtle);
   }
 
   .homepage-resources__action {
