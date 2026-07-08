@@ -10,21 +10,29 @@ import CtaRiverBackground from "@assets/images/homepage/cta-river-background.png
   <div
     class="w-full col-span-1 lg:col-span-6 flex flex-col items-center text-center"
   >
-    <h2 class="cta-title mb-8 max-w-5xl px-2">
-      Let’s transform operations together
+    <h2 class="cta-title mb-5 max-w-5xl px-2">
+      Build the future of enterprise operations
     </h2>
-    <div class="flex flex-wrap items-center justify-center gap-3">
+    <p
+      class="cta-subtitle mx-auto max-w-3xl text-balance px-2 !text-[var(--bb-text-on-base)]"
+    >
+      Everything you need to build, automate, and govern operational work with
+      apps, automations, and AI agents.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
       <Button
         label="Book a demo"
         url="/contact/"
         variant="primary"
         size="large"
+        class="cta-button"
       />
       <Button
         label="Get started"
         url="https://account.budibase.app/register"
         variant="secondary"
         size="large"
+        class="cta-button"
       />
     </div>
   </div>
@@ -54,5 +62,21 @@ import CtaRiverBackground from "@assets/images/homepage/cta-river-background.png
     line-height: var(--bb-text-display-medium-line-height);
     letter-spacing: var(--bb-text-display-medium-letter-spacing);
     text-transform: var(--bb-text-display-medium-text-transform);
+  }
+
+  .cta-subtitle {
+    color: var(--bb-text-on-base) !important;
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0;
+    margin-bottom: 0 !important;
+  }
+
+  :global(.cta-button) {
+    min-height: 48px;
+    padding: 12px 24px;
+    font-size: 17px;
   }
 </style>

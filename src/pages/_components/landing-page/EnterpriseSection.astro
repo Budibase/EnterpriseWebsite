@@ -7,6 +7,13 @@ import EuAiActLogo from "@assets/logos/enterprise-grid/eu-ai-act.png?url";
 import IronBankLogo from "@assets/logos/enterprise-grid/iron-bank.png?url";
 import OpenSourceLogo from "@assets/logos/enterprise-grid/open-source.png?url";
 
+interface Props {
+  variant?: "overview" | "security";
+}
+
+const { variant = "overview" } = Astro.props;
+const isSecurityOnly = variant === "security";
+
 const enterpriseFeatures = [
   {
     iconName: "CloudCheck",
@@ -74,68 +81,77 @@ const metrics = [
 ] as const;
 ---
 
-<section class="enterprise-section">
+<section
+  class:list={[
+    "enterprise-section",
+    isSecurityOnly && "enterprise-section--security",
+  ]}
+>
   <div class="enterprise-section__rails" aria-hidden="true">
     <div class="enterprise-section__rails-inner"></div>
   </div>
 
   <div class="enterprise-section__container">
-    <div class="enterprise-section__block">
-      <FourColumnFeatureGrid
-        title="Designed for regulated enterprises."
-        subtitle="Built for critical operations."
-        features={enterpriseFeatures}
-        iconSize="28"
-        tone="on-dark"
-        class="enterprise-section__feature-grid"
-      />
-    </div>
+    {
+      !isSecurityOnly && (
+        <>
+          <div class="enterprise-section__block">
+            <FourColumnFeatureGrid
+              title="Designed for regulated enterprises."
+              subtitle="Built for critical operations."
+              features={enterpriseFeatures}
+              iconSize="28"
+              tone="on-dark"
+              class="enterprise-section__feature-grid"
+            />
+          </div>
 
-    <div class="enterprise-section__divider" aria-hidden="true"></div>
+          <div class="enterprise-section__divider" aria-hidden="true" />
 
-    <div class="enterprise-section__block enterprise-section__block--metrics">
-      <HomepageSectionHeader
-        title="Scale with confidence."
-        subtitle="Automate thousands of actions per day with consistent speed and reliability."
-        class="enterprise-section__header"
-      />
+          <div class="enterprise-section__block enterprise-section__block--metrics">
+            <HomepageSectionHeader
+              title="Scale with confidence."
+              subtitle="Automate thousands of actions per day with consistent speed and reliability."
+              class="enterprise-section__header"
+            />
 
-      <div class="enterprise-section__dot-pattern" aria-hidden="true"></div>
+            <div class="enterprise-section__dot-pattern" aria-hidden="true" />
 
-      <div class="enterprise-section__metrics">
-        {
-          metrics.map((metric) => (
-            <div class="enterprise-section__metric">
-              <p class="enterprise-section__metric-value">{metric.value}</p>
-              <p class="enterprise-section__metric-label">{metric.label}</p>
+            <div class="enterprise-section__metrics">
+              {metrics.map((metric) => (
+                <div class="enterprise-section__metric">
+                  <p class="enterprise-section__metric-value">{metric.value}</p>
+                  <p class="enterprise-section__metric-label">{metric.label}</p>
+                </div>
+              ))}
             </div>
-          ))
-        }
-      </div>
-    </div>
+          </div>
+        </>
+      )
+    }
 
-    <div class="enterprise-section__divider" aria-hidden="true"></div>
+    {
+      isSecurityOnly && (
+        <div class="enterprise-section__block">
+          <HomepageSectionHeader
+            title="Enterprise-Grade Security."
+            subtitle="Certified to protect your data and operations, no matter the industry or use case."
+            class="enterprise-section__header"
+          />
 
-    <div class="enterprise-section__block">
-      <HomepageSectionHeader
-        title="Enterprise-Grade Security."
-        subtitle="Certified to protect your data and operations, no matter the industry or use case."
-        class="enterprise-section__header"
-      />
-
-      <div class="enterprise-section__compliance-grid">
-        {
-          complianceItems.map((item) => (
-            <article class="enterprise-section__compliance-card">
-              <div class="enterprise-section__badge">
-                <img src={item.src} alt={item.alt} loading="lazy" />
-              </div>
-              <h3>{item.title}</h3>
-            </article>
-          ))
-        }
-      </div>
-    </div>
+          <div class="enterprise-section__compliance-grid">
+            {complianceItems.map((item) => (
+              <article class="enterprise-section__compliance-card">
+                <div class="enterprise-section__badge">
+                  <img src={item.src} alt={item.alt} loading="lazy" />
+                </div>
+                <h3>{item.title}</h3>
+              </article>
+            ))}
+          </div>
+        </div>
+      )
+    }
   </div>
 </section>
 
@@ -167,6 +183,22 @@ const metrics = [
     background: var(--bb-background-dark-raised);
     color: var(--bb-text-on-base);
     isolation: isolate;
+  }
+
+  .enterprise-section--security {
+    --enterprise-content-width: 64rem;
+    --enterprise-grid-line: color-mix(
+      in srgb,
+      var(--bb-border-subtle) 82%,
+      transparent
+    );
+    --enterprise-grid-line-subtle: color-mix(
+      in srgb,
+      var(--bb-border-subtle) 72%,
+      transparent
+    );
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
   }
 
   .enterprise-section__rails {
@@ -216,6 +248,10 @@ const metrics = [
     padding: clamp(3rem, 7vw, 5rem) var(--enterprise-section-inline-padding);
   }
 
+  .enterprise-section--security .enterprise-section__container {
+    padding: 0;
+  }
+
   .enterprise-section__block {
     display: flex;
     width: 100%;
@@ -239,6 +275,28 @@ const metrics = [
     color: var(--bb-text-on-base-muted);
   }
 
+  :global(
+    .enterprise-section--security
+      .enterprise-section__header
+      .homepage-section-header__title
+  ) {
+    color: var(--bb-text-base);
+  }
+
+  :global(
+    .enterprise-section--security
+      .enterprise-section__header
+      .homepage-section-header__title
+      span:last-child
+  ) {
+    color: var(--bb-text-muted);
+  }
+
+  :global(.enterprise-section--security .enterprise-section__header) {
+    margin-inline: auto;
+    text-align: center;
+  }
+
   :global(.enterprise-section__feature-grid) {
     --four-column-feature-grid-container-width: var(--enterprise-content-width);
     --four-column-feature-grid-border: var(--enterprise-grid-line-subtle);
@@ -249,7 +307,7 @@ const metrics = [
 
   .enterprise-section__compliance-card h3 {
     margin: 0;
-    color: var(--bb-text-on-base) !important;
+    color: var(--bb-text-base) !important;
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.214;

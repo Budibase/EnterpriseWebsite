@@ -1,0 +1,76 @@
+---
+import {
+  flattenMenuItems,
+  type NavDropdownMenu,
+} from "@components/navDropdownData";
+
+interface Props {
+  label: string;
+  menu: NavDropdownMenu;
+}
+
+const { label, menu } = Astro.props;
+const items = flattenMenuItems(menu);
+---
+
+<li class="mobile-nav-item">
+  <details class="mobile-nav-accordion" data-mobile-nav-accordion>
+    <summary class="mobile-nav-row mobile-nav-accordion-summary">
+      <span class="mobile-nav-row-label font-medium nav-link transition-colors">
+        {label}
+      </span>
+      <svg
+        class="mobile-nav-plus-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 5v14M5 12h14"></path>
+      </svg>
+    </summary>
+    <ul class="mobile-nav-sub-list">
+      {
+        items.map(({ href, label, prefetch, badge, target, rel, disabled }) => (
+          <li class="mobile-nav-sub-item">
+            {disabled ? (
+              <span
+                aria-disabled="true"
+                class="mobile-nav-sub-link mobile-nav-sub-link-disabled"
+              >
+                <span>{label}</span>
+                {badge && (
+                  <span class="text-sm leading-none font-mono text-[var(--text-secondary)]">
+                    {badge}
+                  </span>
+                )}
+              </span>
+            ) : (
+              <a
+                href={href}
+                target={target}
+                rel={
+                  rel ??
+                  (target === "_blank" ? "noopener noreferrer" : undefined)
+                }
+                data-astro-prefetch={prefetch ? "" : undefined}
+                class="mobile-nav-sub-link font-medium nav-link transition-colors"
+              >
+                <span>{label}</span>
+                {badge && (
+                  <span class="text-sm leading-none font-mono text-[var(--text-secondary)]">
+                    {badge}
+                  </span>
+                )}
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+</li>

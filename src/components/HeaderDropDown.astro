@@ -1,107 +1,191 @@
 ---
+import Icon from "@components/Icon.astro";
+import type { NavDropdownMenu } from "@components/navDropdownData";
+
 interface Props {
   label: string;
-  labelHref?: string;
-  items: Array<{
-    href: string;
-    label: string;
-    prefetch?: boolean;
-    badge?: string;
-    description?: string;
-    target?: string;
-    rel?: string;
-    disabled?: boolean;
-  }>;
+  menu: NavDropdownMenu;
 }
 
-const useTwoColumns = Astro.props.items.length > 3;
+const { label, menu } = Astro.props;
+const dropdownId = `header-dropdown-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+const isCompact = menu.columns.length === 1;
 ---
 
-<div class="header-dropdown" data-header-dropdown-root>
-  {
-    Astro.props.labelHref ? (
-      <a
-        href={Astro.props.labelHref}
-        class="header-dropdown-trigger nav-link flex items-center gap-2 px-1 transition-colors"
-        data-header-dropdown-trigger
-        data-astro-prefetch
-        aria-haspopup="menu"
-        aria-expanded="false"
-      >
-        {Astro.props.label}
-      </a>
-    ) : (
-      <button
-        type="button"
-        class="header-dropdown-trigger nav-link flex items-center gap-2 px-1 transition-colors"
-        data-header-dropdown-trigger
-        aria-haspopup="menu"
-        aria-expanded="false"
-      >
-        {Astro.props.label}
-      </button>
-    )
-  }
-  <ul
-    data-header-dropdown-menu
-    role="menu"
-    class:list={[
-      useTwoColumns
-        ? "grid grid-cols-[repeat(2,auto)] gap-y-[6px] gap-x-[6px]"
-        : "flex flex-col gap-[6px]",
-      "header-dropdown-menu absolute left-0 top-full",
-      "w-fit max-w-[calc(100vw-2rem)] bg-secondary pt-2 px-[15px] pb-3 text-base shadow-xl ring-1 ring-stone-200/60",
-    ]}
+<div
+  class:list={["header-dropdown", isCompact && "header-dropdown--compact"]}
+  data-header-dropdown-root
+>
+  <button
+    type="button"
+    class="header-dropdown-trigger nav-link"
+    data-header-dropdown-trigger
+    aria-expanded="false"
+    aria-controls={dropdownId}
+    aria-haspopup="true"
   >
-    {
-      Astro.props.items.map(
-        ({ href, label, prefetch, badge, target, rel, disabled }) => (
-          <li class="min-w-[7.5rem]">
-            {disabled ? (
-              <span
-                aria-disabled="true"
-                class="nav__sub-nav__link inline-flex cursor-not-allowed items-center gap-2 py-[2px] text-sm font-medium text-primary"
-              >
-                <span>{label}</span>
-                {badge && (
-                  <span class="text-xs leading-none font-mono text-primary">
-                    {badge}
-                  </span>
-                )}
+    <span>{label}</span>
+  </button>
+
+  <div
+    id={dropdownId}
+    class="header-dropdown-panel"
+    data-header-dropdown-menu
+    aria-label={`${label} navigation`}
+  >
+    <div class="header-dropdown-panel__inner">
+      {
+        !isCompact && (
+          <a
+            href={menu.featuredCard.href}
+            class="header-dropdown-feature-card"
+            data-astro-prefetch={
+              menu.featuredCard.href.startsWith("/") ? "" : undefined
+            }
+          >
+            <span
+              class:list={[
+                "header-dropdown-feature-card__media",
+                menu.featuredCard.imageTint &&
+                  "header-dropdown-feature-card__media--tinted",
+              ]}
+            >
+              <img
+                src={menu.featuredCard.image}
+                alt=""
+                class="header-dropdown-feature-card__image"
+                loading="eager"
+              />
+            </span>
+            <span class="header-dropdown-feature-card__body">
+              <span class="header-dropdown-feature-card__title">
+                {menu.featuredCard.title}
               </span>
-            ) : (
-              <a
-                href={href}
-                target={target}
-                rel={
-                  rel ??
-                  (target === "_blank" ? "noopener noreferrer" : undefined)
-                }
-                data-astro-prefetch={prefetch ? "" : undefined}
-                role="menuitem"
-                class="nav__sub-nav__link inline-flex items-center gap-2 py-[2px] text-sm font-medium transition-colors text-primary hover:text-primary"
-              >
-                <span>{label}</span>
-                {badge && (
-                  <span class="text-xs leading-none font-mono text-primary">
-                    {badge}
-                  </span>
+              <span class="header-dropdown-feature-card__description">
+                {menu.featuredCard.description}
+              </span>
+              <span class="header-dropdown-feature-card__cta">
+                {menu.featuredCard.ctaLabel}
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  aria-hidden="true"
+                  class="header-dropdown-feature-card__cta-icon"
+                >
+                  <path
+                    d="M3.25 8H12.5M8.75 4.25L12.5 8L8.75 11.75"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </span>
+          </a>
+        )
+      }
+
+      <div class="header-dropdown-columns">
+        {
+          menu.columns.map((column) => (
+            <section
+              class:list={[
+                "header-dropdown-column",
+                column.columnSpan === 2 && "header-dropdown-column--span-2",
+              ]}
+              aria-label={column.heading}
+            >
+              {!isCompact && (
+                <h2 class="header-dropdown-column__heading">
+                  {column.heading}
+                </h2>
+              )}
+              <ul class="header-dropdown-column__list">
+                {column.items.map(
+                  ({
+                    href,
+                    label,
+                    description,
+                    prefetch,
+                    badge,
+                    target,
+                    rel,
+                    disabled,
+                  }) => (
+                    <li class="header-dropdown-column__item">
+                      {disabled ? (
+                        <span
+                          aria-disabled="true"
+                          class="header-dropdown-link header-dropdown-link--disabled"
+                        >
+                          <span class="header-dropdown-link__label">
+                            {label}
+                            {badge && (
+                              <span class="header-dropdown-link__badge">
+                                {badge}
+                              </span>
+                            )}
+                          </span>
+                          {description && (
+                            <span class="header-dropdown-link__description">
+                              {description}
+                            </span>
+                          )}
+                        </span>
+                      ) : (
+                        <a
+                          href={href}
+                          target={target}
+                          rel={
+                            rel ??
+                            (target === "_blank"
+                              ? "noopener noreferrer"
+                              : undefined)
+                          }
+                          data-astro-prefetch={prefetch ? "" : undefined}
+                          class="header-dropdown-link"
+                        >
+                          <span class="header-dropdown-link__label">
+                            {label}
+                            {badge && (
+                              <span class="header-dropdown-link__badge">
+                                {badge}
+                              </span>
+                            )}
+                            <span
+                              class="header-dropdown-link__arrow"
+                              aria-hidden="true"
+                            >
+                              <Icon name="ArrowRightBold" size="14" />
+                            </span>
+                          </span>
+                          {description && (
+                            <span class="header-dropdown-link__description">
+                              {description}
+                            </span>
+                          )}
+                        </a>
+                      )}
+                    </li>
+                  ),
                 )}
-              </a>
-            )}
-          </li>
-        ),
-      )
-    }
-  </ul>
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
   .header-dropdown {
-    display: inline-block;
-    position: relative;
-    padding-block: 0.75rem;
-    margin-block: -0.75rem;
+    display: inline-flex;
+    position: static;
+    align-items: center;
+    padding-block: 0.625rem;
+    margin-block: -0.625rem;
   }
 
   .header-dropdown:hover,
@@ -114,173 +198,374 @@ const useTwoColumns = Astro.props.items.length > 3;
     position: absolute;
     top: 100%;
     left: 0;
-    width: max(100%, 18rem);
+    right: 0;
     height: 0.75rem;
     content: "";
+    pointer-events: none;
+  }
+
+  .header-dropdown--compact::after {
+    top: 100%;
+  }
+
+  .header-dropdown--compact {
+    position: relative;
   }
 
   .header-dropdown-trigger {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding: 0.45rem 0.75rem;
     border: 0;
+    border-radius: 9999px;
     appearance: none;
     background: transparent;
+    color: var(--text-primary);
     font-family: inherit;
+    cursor: pointer;
+    transition:
+      background-color 220ms ease,
+      color 220ms ease,
+      transform 220ms ease;
   }
 
-  .header-dropdown-menu {
-    top: 100%;
+  .header-dropdown-trigger:hover,
+  .header-dropdown[data-open="true"] .header-dropdown-trigger,
+  .header-dropdown:hover .header-dropdown-trigger {
+    background: var(--bb-celery-200);
+    color: var(--text-primary) !important;
+  }
+
+  .header-dropdown-trigger:focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .header-dropdown-panel {
+    position: absolute;
+    top: var(--site-nav-height);
+    left: 0;
+    right: 0;
+    z-index: 90;
     visibility: hidden;
-    z-index: 100;
-    pointer-events: none;
+    padding: clamp(1.5rem, 2.6vw, 2.5rem) 0 clamp(1.75rem, 3vw, 2.75rem);
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-1);
     opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.75rem);
+    transition:
+      opacity 220ms ease,
+      transform 240ms ease,
+      visibility 0ms linear 240ms;
   }
 
-  .header-dropdown:hover .header-dropdown-menu,
-  .header-dropdown:focus-within .header-dropdown-menu,
-  .header-dropdown[data-open="true"] .header-dropdown-menu {
+  .header-dropdown:hover .header-dropdown-panel,
+  .header-dropdown[data-open="true"] .header-dropdown-panel {
     visibility: visible;
-    pointer-events: auto;
     opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition:
+      opacity 220ms ease,
+      transform 240ms ease,
+      visibility 0ms linear;
+  }
+
+  .header-dropdown-panel__inner {
+    display: grid;
+    width: min(100%, var(--site-container-max));
+    margin: 0 auto;
+    padding-inline: clamp(1rem, 2.5vw, 2rem);
+    grid-template-columns: minmax(17rem, 24rem) minmax(0, 1fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .header-dropdown--compact .header-dropdown-panel {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: auto;
+    width: min(18rem, calc(100vw - 2rem));
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+  }
+
+  .header-dropdown--compact .header-dropdown-panel__inner {
+    display: block;
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  .header-dropdown-feature-card {
+    display: flex;
+    min-width: 0;
+    overflow: hidden;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background: var(--bg-1);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .header-dropdown-feature-card:hover,
+  .header-dropdown-feature-card:focus-visible {
+    border-color: var(--bb-brand-bright-green);
+    background: var(--bb-celery-200);
+    color: var(--text-primary);
+  }
+
+  .header-dropdown-feature-card:focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .header-dropdown-feature-card__media {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 1.85 / 1;
+  }
+
+  .header-dropdown-feature-card__media--tinted::after {
+    position: absolute;
+    inset: 0;
+    background: var(--bb-brand-forest-green);
+    content: "";
+    opacity: 0.42;
+    pointer-events: none;
+  }
+
+  .header-dropdown-feature-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .header-dropdown-feature-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.125rem;
+  }
+
+  .header-dropdown-feature-card__title {
+    color: var(--text-primary);
+    font-family: var(--bb-text-display-small-font-family);
+    font-size: var(--bb-text-display-small-font-size);
+    font-weight: var(--bb-text-display-small-font-weight);
+    line-height: var(--bb-text-display-small-line-height);
+    letter-spacing: var(--bb-text-display-small-letter-spacing);
+    text-transform: var(--bb-text-display-small-text-transform);
+  }
+
+  .header-dropdown-feature-card__description {
+    max-width: 22rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .header-dropdown-feature-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .header-dropdown-feature-card__cta-icon {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 180ms ease;
+  }
+
+  .header-dropdown-feature-card:hover .header-dropdown-feature-card__cta-icon,
+  .header-dropdown-feature-card:focus-visible
+    .header-dropdown-feature-card__cta-icon {
+    transform: translateX(2px);
+  }
+
+  .header-dropdown-columns {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .header-dropdown--compact .header-dropdown-columns {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .header-dropdown-column {
+    min-width: 0;
+  }
+
+  .header-dropdown-column--span-2 {
+    grid-column: span 2;
+  }
+
+  .header-dropdown-column--span-2 .header-dropdown-column__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+    row-gap: 1rem;
+  }
+
+  .header-dropdown-column__heading {
+    margin: 0 0 1rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0 !important;
+  }
+
+  .header-dropdown-column__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .header-dropdown-column__item {
+    min-width: 0;
+  }
+
+  .header-dropdown-link {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.25rem;
+    border-radius: 0.375rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    white-space: normal;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .header-dropdown-link:hover,
+  .header-dropdown-link:focus-visible {
+    color: var(--text-primary);
+  }
+
+  .header-dropdown-link:focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .header-dropdown-link--disabled {
+    cursor: not-allowed;
+    opacity: 0.58;
+  }
+
+  .header-dropdown-link--disabled:hover {
+    transform: none;
+  }
+
+  .header-dropdown-link__label {
+    display: inline-flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    transition: color 180ms ease;
+  }
+
+  .header-dropdown-link:hover .header-dropdown-link__label,
+  .header-dropdown-link:focus-visible .header-dropdown-link__label {
+    color: var(--bb-celery-900);
+  }
+
+  .header-dropdown-link__description {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.35;
+    transition: color 180ms ease;
+  }
+
+  .header-dropdown-link:hover .header-dropdown-link__description,
+  .header-dropdown-link:focus-visible .header-dropdown-link__description {
+    color: var(--bb-text-base);
+  }
+
+  .header-dropdown-link__arrow {
+    display: none;
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 0.875rem;
+    color: var(--bb-celery-900);
+    opacity: 0;
+    transform: translateX(-0.25rem);
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .header-dropdown-link:hover .header-dropdown-link__arrow,
+  .header-dropdown-link:focus-visible .header-dropdown-link__arrow {
+    display: inline-flex;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .header-dropdown-link__badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    background: var(--bg-2);
+    color: var(--text-secondary);
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.2rem 0.38rem;
+  }
+
+  @media (max-width: 1120px) {
+    .header-dropdown-panel__inner {
+      grid-template-columns: minmax(14rem, 19rem) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .header-dropdown-columns {
+      gap: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .header-dropdown-trigger,
+    .header-dropdown-panel,
+    .header-dropdown-feature-card,
+    .header-dropdown-feature-card__cta-icon,
+    .header-dropdown-link,
+    .header-dropdown-link__label,
+    .header-dropdown-link__description,
+    .header-dropdown-link__arrow {
+      transition-duration: 0ms;
+    }
   }
 </style>
-
-<script>
-  const dropdownWindow = window as Window & {
-    __budibaseHeaderDropdownsBound?: boolean;
-  };
-
-  if (!dropdownWindow.__budibaseHeaderDropdownsBound) {
-    dropdownWindow.__budibaseHeaderDropdownsBound = true;
-
-    const closeTimers = new WeakMap<Element, number>();
-    const rootSelector = "[data-header-dropdown-root]";
-    const triggerSelector = "[data-header-dropdown-trigger]";
-    const menuSelector = "[data-header-dropdown-menu]";
-
-    const closeDropdown = (root: Element) => {
-      window.clearTimeout(closeTimers.get(root));
-      root.removeAttribute("data-open");
-      root
-        .querySelector(triggerSelector)
-        ?.setAttribute("aria-expanded", "false");
-    };
-
-    const openDropdown = (root: Element) => {
-      window.clearTimeout(closeTimers.get(root));
-      document
-        .querySelectorAll(`${rootSelector}[data-open="true"]`)
-        .forEach((openRoot) => {
-          if (openRoot !== root) {
-            closeDropdown(openRoot);
-          }
-        });
-
-      root.setAttribute("data-open", "true");
-      root
-        .querySelector(triggerSelector)
-        ?.setAttribute("aria-expanded", "true");
-    };
-
-    const scheduleClose = (root: Element) => {
-      window.clearTimeout(closeTimers.get(root));
-
-      const timer = window.setTimeout(() => {
-        const trigger = root.querySelector(triggerSelector);
-        const menu = root.querySelector(menuSelector);
-
-        if (
-          trigger?.matches(":hover") ||
-          menu?.matches(":hover") ||
-          root.matches(":focus-within")
-        ) {
-          return;
-        }
-
-        closeDropdown(root);
-      }, 180);
-
-      closeTimers.set(root, timer);
-    };
-
-    document.addEventListener(
-      "pointerenter",
-      (event) => {
-        const target = event.target as Element | null;
-        const root = target?.closest(rootSelector);
-
-        if (root) {
-          openDropdown(root);
-        }
-      },
-      true,
-    );
-
-    document.addEventListener(
-      "pointerleave",
-      (event) => {
-        const target = event.target as Element | null;
-        const root = target?.closest(rootSelector);
-
-        if (root) {
-          scheduleClose(root);
-        }
-      },
-      true,
-    );
-
-    document.addEventListener("focusin", (event) => {
-      const target = event.target as Element | null;
-      const root = target?.closest(rootSelector);
-
-      if (root) {
-        openDropdown(root);
-      }
-    });
-
-    document.addEventListener("focusout", (event) => {
-      const target = event.target as Element | null;
-      const root = target?.closest(rootSelector);
-
-      if (root) {
-        scheduleClose(root);
-      }
-    });
-
-    document.addEventListener("click", (event) => {
-      const target = event.target as Element | null;
-      const trigger = target?.closest(triggerSelector);
-
-      if (trigger?.tagName === "BUTTON") {
-        event.preventDefault();
-        const root = trigger.closest(rootSelector);
-
-        if (!root) {
-          return;
-        }
-
-        if (root.hasAttribute("data-open")) {
-          closeDropdown(root);
-        } else {
-          openDropdown(root);
-        }
-
-        return;
-      }
-
-      if (!target?.closest(rootSelector)) {
-        document
-          .querySelectorAll(`${rootSelector}[data-open="true"]`)
-          .forEach(closeDropdown);
-      }
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key !== "Escape") {
-        return;
-      }
-
-      document
-        .querySelectorAll(`${rootSelector}[data-open="true"]`)
-        .forEach(closeDropdown);
-    });
-  }
-</script>

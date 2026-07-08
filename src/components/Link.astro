@@ -5,11 +5,13 @@
 // - url: string (href)
 // - target?: string (e.g. '_blank')
 // - variant?: 'primary' | 'secondary' | 'cta' (default 'primary')
+// - appearance?: 'default' | 'quiet' (default 'default')
 // - size?: 'small' | 'medium' | 'large' (default 'medium')
 // - class?: string (extra classes)
 // - underline?: boolean (adds underline decoration when true)
 
 type Variant = "primary" | "secondary" | "cta";
+type Appearance = "default" | "quiet";
 type Size = "small" | "medium" | "large";
 
 interface Props {
@@ -17,6 +19,7 @@ interface Props {
   url: string;
   target?: string;
   variant?: Variant;
+  appearance?: Appearance;
   size?: Size;
   class?: string;
   ariaLabel?: string;
@@ -33,6 +36,7 @@ const {
   url,
   target = "_self",
   variant = "primary",
+  appearance = "default",
   size = "medium",
   class: className = "",
   ariaLabel,
@@ -46,30 +50,9 @@ const {
 
 const sizeClass = size !== "medium" ? size : "";
 const variantClass = variant;
-const underlineClass = underline ? "underline" : "";
+const appearanceClass = underline ? "default" : appearance;
 
-// Build Tailwind classes for variants
-const variantColorClasses = {
-  primary: "text-stone-900 ",
-  secondary: "text-stone-500 ",
-  cta: "text-brand",
-};
-
-const hoverColorClasses = {
-  primary: "hover:text-stone-700 ",
-  secondary: "hover:text-stone-700 ",
-  cta: "hover:text-brand-hover",
-};
-
-const classes = [
-  "alink",
-  sizeClass,
-  variantClass,
-  underlineClass,
-  variantColorClasses[variant],
-  hoverColorClasses[variant],
-  className,
-]
+const classes = ["alink", sizeClass, variantClass, appearanceClass, className]
   .filter(Boolean)
   .join(" ");
 
@@ -98,8 +81,54 @@ const computedRel =
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
+    border-color: transparent;
+    color: var(--bb-brand-forest-green);
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 0.5px;
+    transition:
+      color 150ms ease-out,
+      opacity 150ms ease-out;
+  }
+
+  .alink.primary,
+  .alink.cta {
+    color: var(--bb-brand-forest-green);
+  }
+
+  .alink.primary:hover,
+  .alink.cta:hover {
+    color: var(--bb-celery-1500);
+  }
+
+  .alink.primary.quiet:hover,
+  .alink.cta.quiet:hover {
+    color: var(--bb-brand-forest-green);
+  }
+
+  .alink.secondary {
+    color: var(--bb-celery-100);
+  }
+
+  .alink.secondary:hover {
+    color: var(--bb-celery-200);
+  }
+
+  .alink.secondary.quiet:hover {
+    color: var(--bb-celery-100);
+  }
+
+  .alink.default {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .alink.quiet {
     text-decoration: none;
-    transition: color 150ms ease-out;
+  }
+
+  .alink.quiet:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 
   /* Sizes */
@@ -113,20 +142,11 @@ const computedRel =
     font-size: 18px;
   }
 
-  /* Hover opacity - colors are handled by Tailwind classes */
   .alink:hover {
     opacity: 0.9;
   }
 
   .alink.cta:hover {
     opacity: 1;
-  }
-
-  /* Underline styling */
-  .alink.underline {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-thickness: 0.5px;
-    text-decoration-color: currentColor;
   }
 </style>

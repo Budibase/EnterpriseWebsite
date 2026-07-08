@@ -1,18 +1,17 @@
 ---
 import Button from "@components/Button.astro";
 import HeaderDropDown from "@components/HeaderDropDown.astro";
-import {
-  productDropdownItems,
-  resourcesDropdownItems,
-  solutionsDropdownItems,
-} from "@components/navDropdownData";
+import MobileNavAccordion from "@components/MobileNavAccordion.astro";
+import { navDropdownMenus } from "@components/navDropdownData";
 
 const navLogoSrc = "/greenbudibaselogo.svg";
+const [platformNavMenu, solutionsNavMenu, resourcesNavMenu] = navDropdownMenus;
+const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 ---
 
 <nav
   id="site-nav"
-  class="nav-shell sticky top-0 z-50 w-full bg-1 transition-colors duration-150"
+  class="nav-shell relative z-50 w-full bg-1 transition-colors duration-150"
 >
   <div
     class="relative z-10 mx-auto grid h-[var(--site-nav-bar-height)] w-full max-w-[var(--site-container-max)] grid-cols-[1fr_auto_auto] items-center px-2 md:px-3 lg:grid-cols-[auto_1fr_auto] lg:gap-6 lg:px-0"
@@ -35,27 +34,29 @@ const navLogoSrc = "/greenbudibaselogo.svg";
     </a>
 
     <div
-      class="z-10 hidden items-center gap-5 justify-self-start whitespace-nowrap lg:flex xl:gap-7"
+      class="z-10 hidden items-center gap-1 justify-self-start whitespace-nowrap lg:flex"
+      data-desktop-nav-list
     >
-      <HeaderDropDown label="Platform" items={productDropdownItems} />
-      <HeaderDropDown label="Solutions" items={solutionsDropdownItems} />
+      <HeaderDropDown
+        label={platformNavMenu.label}
+        menu={platformNavMenu.menu}
+      />
+      <HeaderDropDown
+        label={solutionsNavMenu.label}
+        menu={solutionsNavMenu.menu}
+      />
       <a
         target="_self"
         href="/pricing/"
-        class="text-sm font-medium nav-link transition-colors"
+        class="desktop-nav-link inline-flex min-h-9 items-center rounded-full px-3 py-[0.45rem] text-sm font-medium nav-link transition-colors"
         data-astro-prefetch
       >
         Pricing
       </a>
-      <HeaderDropDown label="Resources" items={resourcesDropdownItems} />
-      <a
-        target="_self"
-        href="/partners/"
-        class="text-sm font-medium nav-link transition-colors"
-        data-astro-prefetch
-      >
-        Company
-      </a>
+      <HeaderDropDown
+        label={resourcesNavMenu.label}
+        menu={resourcesNavMenu.menu}
+      />
     </div>
 
     <div
@@ -191,139 +192,13 @@ const navLogoSrc = "/greenbudibaselogo.svg";
 
     <nav class="mobile-nav-scroll">
       <ul class="mobile-nav-list">
-        <li class="mobile-nav-item">
-          <details class="mobile-nav-accordion" data-mobile-nav-accordion>
-            <summary class="mobile-nav-row mobile-nav-accordion-summary">
-              <span
-                class="mobile-nav-row-label font-medium nav-link transition-colors"
-                >Platform</span
-              >
-              <svg
-                class="mobile-nav-plus-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 5v14M5 12h14"></path>
-              </svg>
-            </summary>
-            <ul class="mobile-nav-sub-list">
-              {
-                productDropdownItems.map(
-                  ({ href, label, prefetch, badge, target, rel, disabled }) => (
-                    <li class="mobile-nav-sub-item">
-                      {disabled ? (
-                        <span
-                          aria-disabled="true"
-                          class="mobile-nav-sub-link mobile-nav-sub-link-disabled"
-                        >
-                          <span>{label}</span>
-                          {badge && (
-                            <span class="text-sm leading-none font-mono text-[var(--text-secondary)]">
-                              {badge}
-                            </span>
-                          )}
-                        </span>
-                      ) : (
-                        <a
-                          href={href}
-                          target={target}
-                          rel={
-                            rel ??
-                            (target === "_blank"
-                              ? "noopener noreferrer"
-                              : undefined)
-                          }
-                          data-astro-prefetch={prefetch ? "" : undefined}
-                          class="mobile-nav-sub-link font-medium nav-link transition-colors"
-                        >
-                          <span>{label}</span>
-                          {badge && (
-                            <span class="text-sm leading-none font-mono text-[var(--text-secondary)]">
-                              {badge}
-                            </span>
-                          )}
-                        </a>
-                      )}
-                    </li>
-                  ),
-                )
-              }
-            </ul>
-          </details>
-        </li>
-
-        <li class="mobile-nav-item">
-          <details class="mobile-nav-accordion" data-mobile-nav-accordion>
-            <summary class="mobile-nav-row mobile-nav-accordion-summary">
-              <span
-                class="mobile-nav-row-label font-medium nav-link transition-colors"
-                >Solutions</span
-              >
-              <svg
-                class="mobile-nav-plus-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 5v14M5 12h14"></path>
-              </svg>
-            </summary>
-            <ul class="mobile-nav-sub-list">
-              {
-                solutionsDropdownItems.map(
-                  ({ href, label, prefetch, badge, target, rel, disabled }) => (
-                    <li class="mobile-nav-sub-item">
-                      {disabled ? (
-                        <span
-                          aria-disabled="true"
-                          class="mobile-nav-sub-link mobile-nav-sub-link-disabled"
-                        >
-                          <span>{label}</span>
-                          {badge && (
-                            <span class="text-sm leading-none font-mono text-[var(--text-secondary)]">
-                              {badge}
-                            </span>
-                          )}
-                        </span>
-                      ) : (
-                        <a
-                          href={href}
-                          target={target}
-                          rel={
-                            rel ??
-                            (target === "_blank"
-                              ? "noopener noreferrer"
-                              : undefined)
-                          }
-                          data-astro-prefetch={prefetch ? "" : undefined}
-                          class="mobile-nav-sub-link font-medium nav-link transition-colors"
-                        >
-                          <span>{label}</span>
-                          {badge && (
-                            <span class="text-sm leading-none font-mono text-[var(--text-secondary)]">
-                              {badge}
-                            </span>
-                          )}
-                        </a>
-                      )}
-                    </li>
-                  ),
-                )
-              }
-            </ul>
-          </details>
-        </li>
+        {
+          mobileNavMenus
+            .slice(0, 2)
+            .map(({ label, menu }) => (
+              <MobileNavAccordion label={label} menu={menu} />
+            ))
+        }
         <li class="mobile-nav-item">
           <a
             href="/pricing/"
@@ -333,81 +208,13 @@ const navLogoSrc = "/greenbudibaselogo.svg";
             Pricing
           </a>
         </li>
-        <li class="mobile-nav-item">
-          <details class="mobile-nav-accordion" data-mobile-nav-accordion>
-            <summary class="mobile-nav-row mobile-nav-accordion-summary">
-              <span
-                class="mobile-nav-row-label font-medium nav-link transition-colors"
-                >Resources</span
-              >
-              <svg
-                class="mobile-nav-plus-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 5v14M5 12h14"></path>
-              </svg>
-            </summary>
-            <ul class="mobile-nav-sub-list">
-              {
-                resourcesDropdownItems.map(
-                  ({ href, label, prefetch, badge, target, rel, disabled }) => (
-                    <li class="mobile-nav-sub-item">
-                      {disabled ? (
-                        <span
-                          aria-disabled="true"
-                          class="mobile-nav-sub-link mobile-nav-sub-link-disabled"
-                        >
-                          <span>{label}</span>
-                          {badge && (
-                            <span class="text-sm leading-none font-mono text-[var(--text-secondary)]">
-                              {badge}
-                            </span>
-                          )}
-                        </span>
-                      ) : (
-                        <a
-                          href={href}
-                          target={target}
-                          rel={
-                            rel ??
-                            (target === "_blank"
-                              ? "noopener noreferrer"
-                              : undefined)
-                          }
-                          data-astro-prefetch={prefetch ? "" : undefined}
-                          class="mobile-nav-sub-link font-medium nav-link transition-colors"
-                        >
-                          <span>{label}</span>
-                          {badge && (
-                            <span class="text-sm leading-none font-mono text-[var(--text-secondary)]">
-                              {badge}
-                            </span>
-                          )}
-                        </a>
-                      )}
-                    </li>
-                  ),
-                )
-              }
-            </ul>
-          </details>
-        </li>
-        <li class="mobile-nav-item">
-          <a
-            href="/partners/"
-            class="mobile-nav-row font-medium nav-link transition-colors"
-            data-astro-prefetch
-          >
-            Company
-          </a>
-        </li>
+        {
+          mobileNavMenus
+            .slice(2)
+            .map(({ label, menu }) => (
+              <MobileNavAccordion label={label} menu={menu} />
+            ))
+        }
       </ul>
     </nav>
 
@@ -432,6 +239,193 @@ const navLogoSrc = "/greenbudibaselogo.svg";
 
 <script>
   (function () {
+    function initHeaderDropdowns() {
+      if (window.__budibaseHeaderDropdownsBound) return;
+      window.__budibaseHeaderDropdownsBound = true;
+
+      const closeTimers = new WeakMap();
+      const rootSelector = "[data-header-dropdown-root]";
+      const triggerSelector = "[data-header-dropdown-trigger]";
+      const menuSelector = "[data-header-dropdown-menu]";
+      const siteNavSelector = "#site-nav";
+
+      function closeDropdown(root, focusTrigger = false) {
+        window.clearTimeout(closeTimers.get(root));
+        root.removeAttribute("data-open");
+
+        const trigger = root.querySelector(triggerSelector);
+        trigger?.setAttribute("aria-expanded", "false");
+
+        if (focusTrigger) {
+          trigger?.focus();
+        }
+      }
+
+      function openDropdown(root) {
+        window.clearTimeout(closeTimers.get(root));
+        document
+          .querySelectorAll(`${rootSelector}[data-open="true"]`)
+          .forEach((openRoot) => {
+            if (openRoot !== root) {
+              closeDropdown(openRoot);
+            }
+          });
+
+        root.setAttribute("data-open", "true");
+        root
+          .querySelector(triggerSelector)
+          ?.setAttribute("aria-expanded", "true");
+      }
+
+      function closeAllDropdowns(exceptRoot = null) {
+        document
+          .querySelectorAll(`${rootSelector}[data-open="true"]`)
+          .forEach((openRoot) => {
+            if (openRoot !== exceptRoot) {
+              closeDropdown(openRoot);
+            }
+          });
+      }
+
+      function scheduleClose(root) {
+        window.clearTimeout(closeTimers.get(root));
+
+        const timer = window.setTimeout(() => {
+          const trigger = root.querySelector(triggerSelector);
+          const menu = root.querySelector(menuSelector);
+
+          if (
+            trigger?.matches(":hover") ||
+            menu?.matches(":hover") ||
+            root.matches(":focus-within")
+          ) {
+            return;
+          }
+
+          closeDropdown(root);
+        }, 160);
+
+        closeTimers.set(root, timer);
+      }
+
+      document.addEventListener(
+        "pointerover",
+        (event) => {
+          const target = event.target;
+          const root = target?.closest(rootSelector);
+
+          if (root) {
+            closeAllDropdowns(root);
+            openDropdown(root);
+          }
+        },
+        true,
+      );
+
+      document.addEventListener(
+        "pointerleave",
+        (event) => {
+          const target = event.target;
+          const root = target?.closest(rootSelector);
+
+          if (root) {
+            scheduleClose(root);
+          }
+        },
+        true,
+      );
+
+      document.addEventListener("focusin", (event) => {
+        const target = event.target;
+        const root = target?.closest(rootSelector);
+
+        if (root) {
+          openDropdown(root);
+          return;
+        }
+
+        if (target?.closest(siteNavSelector)) {
+          closeAllDropdowns();
+        }
+      });
+
+      document.addEventListener("focusout", (event) => {
+        const target = event.target;
+        const root = target?.closest(rootSelector);
+
+        if (root) {
+          scheduleClose(root);
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        const trigger = target?.closest(triggerSelector);
+
+        if (trigger) {
+          event.preventDefault();
+          const root = trigger.closest(rootSelector);
+
+          if (root) {
+            if (!root.hasAttribute("data-open")) {
+              openDropdown(root);
+            }
+          }
+
+          return;
+        }
+
+        if (!target?.closest(rootSelector)) {
+          closeAllDropdowns();
+        }
+      });
+
+      document.addEventListener(
+        "pointerover",
+        (event) => {
+          const target = event.target;
+          const root = target?.closest(rootSelector);
+
+          if (target?.closest(siteNavSelector) && !root) {
+            closeAllDropdowns();
+          }
+        },
+        true,
+      );
+
+      document.addEventListener("keydown", (event) => {
+        const target = event.target;
+        const trigger = target?.closest(triggerSelector);
+
+        if (trigger && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault();
+          const root = trigger.closest(rootSelector);
+
+          if (root) {
+            if (root.hasAttribute("data-open")) {
+              closeDropdown(root);
+            } else {
+              openDropdown(root);
+            }
+          }
+
+          return;
+        }
+
+        if (event.key !== "Escape") {
+          return;
+        }
+
+        const openRoots = document.querySelectorAll(
+          `${rootSelector}[data-open="true"]`,
+        );
+
+        openRoots.forEach((root) => closeDropdown(root, true));
+      });
+    }
+
+    initHeaderDropdowns();
+
     if (window.__siteMobileNavBound) return;
     window.__siteMobileNavBound = true;
 
