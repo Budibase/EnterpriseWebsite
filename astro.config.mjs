@@ -70,6 +70,20 @@ export default defineConfig({
     },
     {
       provider: fontProviders.local(),
+      name: "TikTok Sans Condensed",
+      cssVariable: "--font-tiktok-sans-condensed",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/TikTokSans-CondensedBlack.ttf"],
+            weight: 900,
+            style: "normal",
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
       name: "Inter",
       cssVariable: "--font-inter",
       options: {

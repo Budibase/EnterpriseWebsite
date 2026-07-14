@@ -13,7 +13,9 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
       <div
         class="hero-copy-experiment flex min-w-0 flex-1 flex-col items-center text-center"
       >
-        <h1 class="hero-title-experiment mx-auto mb-5 block w-full text-balance">
+        <h1
+          class="hero-title-experiment mx-auto mb-5 block w-full text-balance"
+        >
           The open-source platform for enterprise operations
         </h1>
         <p class="hero-subheading mx-auto max-w-3xl text-balance">
@@ -46,9 +48,7 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
       <EnterpriseLogoGrid placement="hero-compact" />
     </div>
   </SectionGrid>
-  <div
-    class="container mx-auto max-w-[var(--site-container-max)] px-2 lg:px-0"
-  >
+  <div class="container mx-auto max-w-[var(--site-container-max)] px-2 lg:px-0">
     <img
       src={HeroImage}
       alt="Budibase live action view dashboard"
@@ -66,12 +66,14 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
 
   .hero-title-experiment {
     color: var(--bb-text-base);
-    font-family: var(--bb-text-display-medium-font-family);
-    font-size: var(--bb-text-display-medium-font-size);
-    font-weight: var(--bb-text-display-medium-font-weight);
-    line-height: var(--bb-text-display-medium-line-height);
-    letter-spacing: var(--bb-text-display-medium-letter-spacing);
-    text-transform: var(--bb-text-display-medium-text-transform);
+    font-family: var(--bb-text-display-large-font-family);
+    font-size: var(--bb-text-display-large-font-size);
+    font-weight: var(--bb-text-display-large-font-weight);
+    line-height: var(--bb-text-display-large-line-height);
+    letter-spacing: var(--bb-text-display-large-letter-spacing);
+    text-transform: var(--bb-text-display-large-text-transform);
+    transform: scaleX(0.86);
+    transform-origin: center;
   }
 
   .hero-subheading {

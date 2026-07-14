@@ -9,6 +9,7 @@ import JiraLogo from "@assets/logos/Jira.svg";
 interface Props {
   backdropImage?: string;
   backdropPaddingClass?: string;
+  breakout?: boolean;
   class?: string;
 }
 
@@ -48,6 +49,7 @@ interface SidebarSection {
 const {
   backdropImage,
   backdropPaddingClass = "px-6 py-6 sm:px-10 sm:py-10 lg:px-32 lg:py-12",
+  breakout = true,
   class: className = "",
 } = Astro.props as Props;
 
@@ -152,18 +154,39 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
 
 <div
   id={id}
-  class:list={["automation-demo automation-demo-theme-light demo-breakout w-full overflow-hidden", className]}
+  class:list={[
+    "automation-demo automation-demo-theme-light w-full overflow-hidden",
+    breakout && "demo-breakout",
+    className,
+  ]}
   style={rootStyle}
 >
-  <div class:list={["automation-demo-backdrop w-full overflow-hidden", backdropPaddingClass]}>
-    <div class="automation-demo-shell w-full max-w-full overflow-hidden rounded-[6px] border-[0.5px] border-[var(--bb-gray-800)] bg-[var(--bb-gray-1000)] shadow-[0px_10px_30px_rgb(var(--text)/0.25)]">
-      <div class="group relative flex h-7 items-center justify-between border-b-[0.5px] border-[var(--bb-gray-800)] px-2 bg-[var(--bb-gray-900)]">
+  <div
+    class:list={[
+      "automation-demo-backdrop w-full overflow-hidden",
+      backdropPaddingClass,
+    ]}
+  >
+    <div
+      class="automation-demo-shell w-full max-w-full overflow-hidden rounded-[6px] border-[0.5px] border-[var(--bb-gray-800)] bg-[var(--bb-gray-1000)] shadow-[0px_10px_30px_rgb(var(--text)/0.25)]"
+    >
+      <div
+        class="group relative flex h-7 items-center justify-between border-b-[0.5px] border-[var(--bb-gray-800)] px-2 bg-[var(--bb-gray-900)]"
+      >
         <div class="flex items-center gap-1.5">
-          <span class="inline-block h-2.5 w-2.5 rounded-full" style="background-color: rgb(var(--text-muted) / 0.6);"></span>
-          <span class="inline-block h-2.5 w-2.5 rounded-full" style="background-color: rgb(var(--text-muted) / 0.6);"></span>
-          <span class="inline-block h-2.5 w-2.5 rounded-full" style="background-color: rgb(var(--text-muted) / 0.6);"></span>
+          <span
+            class="inline-block h-2.5 w-2.5 rounded-full"
+            style="background-color: rgb(var(--text-muted) / 0.6);"></span>
+          <span
+            class="inline-block h-2.5 w-2.5 rounded-full"
+            style="background-color: rgb(var(--text-muted) / 0.6);"></span>
+          <span
+            class="inline-block h-2.5 w-2.5 rounded-full"
+            style="background-color: rgb(var(--text-muted) / 0.6);"></span>
         </div>
-        <div class="absolute left-1/2 top-1/2 w-[min(540px,calc(100%-12.5rem))] -translate-x-1/2 -translate-y-1/2">
+        <div
+          class="absolute left-1/2 top-1/2 w-[min(540px,calc(100%-12.5rem))] -translate-x-1/2 -translate-y-1/2"
+        >
           <input
             type="text"
             placeholder="budibase/automations"
@@ -182,9 +205,23 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
       </div>
 
       <div class="automation-demo-toolbar">
-        <div class="automation-demo-tabs" role="tablist" aria-label="Automation view tabs">
-          <button class="automation-demo-tab is-active" type="button" role="tab" aria-selected="true">Editor</button>
-          <button class="automation-demo-tab" type="button" role="tab" aria-selected="false">Logs</button>
+        <div
+          class="automation-demo-tabs"
+          role="tablist"
+          aria-label="Automation view tabs"
+        >
+          <button
+            class="automation-demo-tab is-active"
+            type="button"
+            role="tab"
+            aria-selected="true">Editor</button
+          >
+          <button
+            class="automation-demo-tab"
+            type="button"
+            role="tab"
+            aria-selected="false">Logs</button
+          >
         </div>
         <Button
           label="Test automation"
@@ -201,22 +238,43 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
               {
                 workflowNodes.map((node, index) => (
                   <div class="automation-demo-flow-item">
-                    <article class="automation-demo-node" data-workflow-node-id={node.id}>
-                      <span class="automation-demo-status is-hidden" data-workflow-status></span>
+                    <article
+                      class="automation-demo-node"
+                      data-workflow-node-id={node.id}
+                    >
+                      <span
+                        class="automation-demo-status is-hidden"
+                        data-workflow-status
+                      />
                       <div class="automation-demo-node-card">
-                        <span class:list={["automation-demo-node-icon", nodeIconClassMap[node.tone]]}>
-                          {
-                            node.tone === "alert" ? (
-                              <Image src={SlackLogo} alt="Slack" class="h-3.5 w-3.5" />
-                            ) : (
-                              <Icon name={nodeIconMap[node.tone]} weight="fill" class="h-3.5 w-3.5" />
-                            )
-                          }
+                        <span
+                          class:list={[
+                            "automation-demo-node-icon",
+                            nodeIconClassMap[node.tone],
+                          ]}
+                        >
+                          {node.tone === "alert" ? (
+                            <Image
+                              src={SlackLogo}
+                              alt="Slack"
+                              class="h-3.5 w-3.5"
+                            />
+                          ) : (
+                            <Icon
+                              name={nodeIconMap[node.tone]}
+                              weight="fill"
+                              class="h-3.5 w-3.5"
+                            />
+                          )}
                         </span>
-                        <span class="automation-demo-node-label">{node.label}</span>
+                        <span class="automation-demo-node-label">
+                          {node.label}
+                        </span>
                       </div>
                     </article>
-                    {index < workflowNodes.length - 1 && <span class="automation-demo-edge" aria-hidden="true"></span>}
+                    {index < workflowNodes.length - 1 && (
+                      <span class="automation-demo-edge" aria-hidden="true" />
+                    )}
                   </div>
                 ))
               }
@@ -229,41 +287,79 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
           {
             sidebarSections.map((section) => (
               <section class="automation-demo-sidebar-section">
-                {section.title && <h4 class="automation-demo-sidebar-title">{section.title}</h4>}
+                {section.title && (
+                  <h4 class="automation-demo-sidebar-title">{section.title}</h4>
+                )}
                 <ul class="automation-demo-sidebar-list">
-                {section.items.map((item) => (
-                  <li>
-                    {item.tone === "connector" ? (
-                      <a
-                        class="automation-demo-sidebar-item"
-                        href="/product/connections/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <span class:list={["automation-demo-sidebar-icon", sidebarIconClassMap[item.tone]]}>
-                          <Icon name={sidebarIconMap[item.tone]} weight="fill" class="h-3 w-3" />
-                        </span>
-                        <span class="automation-demo-sidebar-label">{item.label}</span>
-                        <span class="automation-demo-sidebar-logos">
-                          <span class="automation-demo-sidebar-logo-chip">
-                            <Image src={SlackLogo} alt="Slack" class="h-3 w-3" />
+                  {section.items.map((item) => (
+                    <li>
+                      {item.tone === "connector" ? (
+                        <a
+                          class="automation-demo-sidebar-item"
+                          href="/product/connections/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span
+                            class:list={[
+                              "automation-demo-sidebar-icon",
+                              sidebarIconClassMap[item.tone],
+                            ]}
+                          >
+                            <Icon
+                              name={sidebarIconMap[item.tone]}
+                              weight="fill"
+                              class="h-3 w-3"
+                            />
                           </span>
-                          <span class="automation-demo-sidebar-logo-chip">
-                            <Image src={JiraLogo} alt="Jira" class="h-3 w-3" />
+                          <span class="automation-demo-sidebar-label">
+                            {item.label}
                           </span>
-                          <span class="automation-demo-sidebar-logo-block" aria-hidden="true"></span>
-                        </span>
-                      </a>
-                    ) : (
-                      <button class="automation-demo-sidebar-item" type="button">
-                        <span class:list={["automation-demo-sidebar-icon", sidebarIconClassMap[item.tone]]}>
-                          <Icon name={sidebarIconMap[item.tone]} weight="fill" class="h-3 w-3" />
-                        </span>
-                        <span class="automation-demo-sidebar-label">{item.label}</span>
-                      </button>
-                    )}
-                  </li>
-                ))}
+                          <span class="automation-demo-sidebar-logos">
+                            <span class="automation-demo-sidebar-logo-chip">
+                              <Image
+                                src={SlackLogo}
+                                alt="Slack"
+                                class="h-3 w-3"
+                              />
+                            </span>
+                            <span class="automation-demo-sidebar-logo-chip">
+                              <Image
+                                src={JiraLogo}
+                                alt="Jira"
+                                class="h-3 w-3"
+                              />
+                            </span>
+                            <span
+                              class="automation-demo-sidebar-logo-block"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </a>
+                      ) : (
+                        <button
+                          class="automation-demo-sidebar-item"
+                          type="button"
+                        >
+                          <span
+                            class:list={[
+                              "automation-demo-sidebar-icon",
+                              sidebarIconClassMap[item.tone],
+                            ]}
+                          >
+                            <Icon
+                              name={sidebarIconMap[item.tone]}
+                              weight="fill"
+                              class="h-3 w-3"
+                            />
+                          </span>
+                          <span class="automation-demo-sidebar-label">
+                            {item.label}
+                          </span>
+                        </button>
+                      )}
+                    </li>
+                  ))}
                 </ul>
               </section>
             ))
@@ -366,8 +462,11 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     z-index: 0;
     pointer-events: none;
     opacity: 0.74;
-    background-image:
-      radial-gradient(circle at center, color-mix(in srgb, var(--bb-gray-800) 70%, transparent) 1px, transparent 1px);
+    background-image: radial-gradient(
+      circle at center,
+      color-mix(in srgb, var(--bb-gray-800) 70%, transparent) 1px,
+      transparent 1px
+    );
     background-size: 18px 18px;
     background-position: 0 0;
   }
@@ -379,8 +478,11 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     z-index: 0;
     pointer-events: none;
     opacity: 0;
-    background-image:
-      radial-gradient(circle at center, color-mix(in srgb, var(--bb-gray-500) 42%, transparent) 1px, transparent 1px);
+    background-image: radial-gradient(
+      circle at center,
+      color-mix(in srgb, var(--bb-gray-500) 42%, transparent) 1px,
+      transparent 1px
+    );
     background-size: 18px 18px;
     background-position: 9px 9px;
   }
@@ -590,7 +692,11 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     width: 26px;
     height: 1px;
     margin: 0 6px;
-    background-image: linear-gradient(to right, var(--bb-blue-700) 50%, transparent 0);
+    background-image: linear-gradient(
+      to right,
+      var(--bb-blue-700) 50%,
+      transparent 0
+    );
     background-size: 6px 1px;
     background-repeat: repeat-x;
     opacity: 0.85;
@@ -772,7 +878,11 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
       width: 1px;
       height: 18px;
       margin: 6px 0;
-      background-image: linear-gradient(to bottom, var(--bb-blue-700) 50%, transparent 0);
+      background-image: linear-gradient(
+        to bottom,
+        var(--bb-blue-700) 50%,
+        transparent 0
+      );
       background-size: 1px 6px;
       background-repeat: repeat-y;
     }
@@ -820,7 +930,11 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     if (!root) return;
     const STEP_GAP_MS = 500;
     const RUNNING_DURATION_MS = 2000;
-    const WORKFLOW_SEQUENCE = ["security-agent", "alert-team", "broadcast-agent"];
+    const WORKFLOW_SEQUENCE = [
+      "security-agent",
+      "alert-team",
+      "broadcast-agent",
+    ];
     const runButton = root.querySelector(".automation-demo-run-button");
     const workflowCanvas = root.querySelector(".automation-demo-canvas");
     const scopeAttr = root
@@ -830,7 +944,9 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     const workflowNodeElements = Array.from(
       root.querySelectorAll("[data-workflow-node-id]"),
     );
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
     let hasAutoRunSequence = false;
     let sequenceId = 0;
     let observer;
@@ -861,7 +977,12 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
       const statusEl = node.querySelector("[data-workflow-status]");
       if (!statusEl) return;
 
-      statusEl.classList.remove("is-trigger", "is-running", "is-complete", "is-hidden");
+      statusEl.classList.remove(
+        "is-trigger",
+        "is-running",
+        "is-complete",
+        "is-hidden",
+      );
 
       if (status === "hidden") {
         statusEl.classList.add("is-hidden");

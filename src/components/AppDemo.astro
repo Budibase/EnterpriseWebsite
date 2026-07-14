@@ -19,6 +19,7 @@ import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c
 interface Props {
   backdropImage?: string;
   backdropPaddingClass?: string;
+  breakout?: boolean;
   class?: string;
 }
 
@@ -34,6 +35,7 @@ interface RequestRow {
 const {
   backdropImage,
   backdropPaddingClass = "px-6 py-6 sm:px-10 sm:py-10 lg:px-32 lg:py-12",
+  breakout = true,
   class: className = "",
 } = Astro.props as Props;
 
@@ -174,32 +176,42 @@ const builderSections = [
 <div
   id={id}
   class:list={[
-    "app-demo demo-breakout w-full overflow-hidden",
+    "app-demo w-full overflow-hidden",
+    breakout && "demo-breakout",
     className,
   ]}
   style={appDemoStyle}
 >
-  <div class:list={["app-demo-backdrop w-full overflow-hidden", backdropPaddingClass]}>
+  <div
+    class:list={[
+      "app-demo-backdrop w-full overflow-hidden",
+      backdropPaddingClass,
+    ]}
+  >
     <div class="app-demo-shell w-full max-w-full overflow-hidden">
-      <section class="app-demo-screen is-active" data-app-demo-screen="inbox" aria-hidden="false">
+      <section
+        class="app-demo-screen is-active"
+        data-app-demo-screen="inbox"
+        aria-hidden="false"
+      >
         <header class="app-demo-topbar">
           <nav class="app-demo-top-tabs" aria-label="Views">
             {
               topTabs.map((tab, index) => (
                 <button
                   type="button"
-                  class:list={[
-                    "app-demo-top-tab",
-                    index === 1 && "is-active",
-                  ]}
-                  data-app-demo-to-support={tab === "IT support form" ? true : undefined}
+                  class:list={["app-demo-top-tab", index === 1 && "is-active"]}
+                  data-app-demo-to-support={
+                    tab === "IT support form" ? true : undefined
+                  }
                 >
                   {tab}
                 </button>
               ))
             }
           </nav>
-          <button type="button" class="app-demo-publish">Publish changes</button>
+          <button type="button" class="app-demo-publish">Publish changes</button
+          >
         </header>
 
         <div class="app-demo-body">
@@ -207,19 +219,21 @@ const builderSections = [
             <div class="app-demo-main-frame app-demo-main-frame-inbox">
               <aside class="app-demo-workspace-nav">
                 <div class="app-demo-workspace-brand">
-                  <Image src={CompassRoseIcon} alt="" class="app-demo-workspace-brand-icon" aria-hidden="true" />
+                  <Image
+                    src={CompassRoseIcon}
+                    alt=""
+                    class="app-demo-workspace-brand-icon"
+                    aria-hidden="true"
+                  />
                   <span class="app-demo-workspace-brand-name">PinPoint</span>
                 </div>
 
                 {
-                  workspaceItems.map((item) => (
+                  workspaceItems.map((item) =>
                     item === "IT support form" ? (
                       <button
                         type="button"
-                        class:list={[
-                          "app-demo-workspace-link",
-                          "is-active",
-                        ]}
+                        class:list={["app-demo-workspace-link", "is-active"]}
                         data-app-demo-to-support
                       >
                         {item}
@@ -233,8 +247,8 @@ const builderSections = [
                       >
                         {item}
                       </span>
-                    )
-                  ))
+                    ),
+                  )
                 }
               </aside>
 
@@ -243,13 +257,20 @@ const builderSections = [
                   <h3 class="app-demo-inbox-title">Request inbox</h3>
                 </div>
 
-                <div class="app-demo-priority-tabs" role="tablist" aria-label="Priority filters">
+                <div
+                  class="app-demo-priority-tabs"
+                  role="tablist"
+                  aria-label="Priority filters"
+                >
                   {
                     priorityTabs.map((tab, index) => (
                       <button
                         type="button"
                         role="tab"
-                        class:list={["app-demo-priority-tab", index === 0 && "is-active"]}
+                        class:list={[
+                          "app-demo-priority-tab",
+                          index === 0 && "is-active",
+                        ]}
                         aria-selected={index === 0 ? "true" : "false"}
                         data-app-demo-priority-tab={tab.key}
                       >
@@ -271,13 +292,32 @@ const builderSections = [
 
                     {
                       inboxRows.map((row) => (
-                        <div class="app-demo-table-item" data-app-demo-priority={row.tone}>
-                          <Image src={LineSeparator} alt="" class="app-demo-row-separator" aria-hidden="true" />
+                        <div
+                          class="app-demo-table-item"
+                          data-app-demo-priority={row.tone}
+                        >
+                          <Image
+                            src={LineSeparator}
+                            alt=""
+                            class="app-demo-row-separator"
+                            aria-hidden="true"
+                          />
                           <div class="app-demo-table-row">
                             <span class="app-demo-id-cell">{row.id}</span>
-                            <span class="app-demo-request-cell">{row.request}</span>
-                            <span class:list={["app-demo-priority-pill", `is-${row.tone}`]}>{row.priority}</span>
-                            <span class="app-demo-status-cell">{row.status}</span>
+                            <span class="app-demo-request-cell">
+                              {row.request}
+                            </span>
+                            <span
+                              class:list={[
+                                "app-demo-priority-pill",
+                                `is-${row.tone}`,
+                              ]}
+                            >
+                              {row.priority}
+                            </span>
+                            <span class="app-demo-status-cell">
+                              {row.status}
+                            </span>
                             <span class="app-demo-status-cell">{row.date}</span>
                           </div>
                         </div>
@@ -295,21 +335,26 @@ const builderSections = [
               {
                 builderSections.map((section) => (
                   <>
-                    {
-                      section.heading && (
-                        <p class="app-demo-builder-section-heading">{section.heading}</p>
-                      )
-                    }
-                    {
-                      section.items.map((item) => (
-                        <div class="app-demo-builder-item">
-                          <span class="app-demo-builder-item-icon-wrap">
-                            <Image src={item.icon} alt="" class="app-demo-builder-item-icon" aria-hidden="true" />
-                          </span>
-                          <span class="app-demo-builder-item-label">{item.label}</span>
-                        </div>
-                      ))
-                    }
+                    {section.heading && (
+                      <p class="app-demo-builder-section-heading">
+                        {section.heading}
+                      </p>
+                    )}
+                    {section.items.map((item) => (
+                      <div class="app-demo-builder-item">
+                        <span class="app-demo-builder-item-icon-wrap">
+                          <Image
+                            src={item.icon}
+                            alt=""
+                            class="app-demo-builder-item-icon"
+                            aria-hidden="true"
+                          />
+                        </span>
+                        <span class="app-demo-builder-item-label">
+                          {item.label}
+                        </span>
+                      </div>
+                    ))}
                   </>
                 ))
               }
@@ -318,7 +363,11 @@ const builderSections = [
         </div>
       </section>
 
-      <section class="app-demo-screen" data-app-demo-screen="support" aria-hidden="true">
+      <section
+        class="app-demo-screen"
+        data-app-demo-screen="support"
+        aria-hidden="true"
+      >
         <header class="app-demo-topbar">
           <nav class="app-demo-top-tabs" aria-label="Views">
             {
@@ -329,14 +378,17 @@ const builderSections = [
                     "app-demo-top-tab",
                     tab === "IT support form" && "is-active",
                   ]}
-                  data-app-demo-to-inbox={tab === "Request inbox" ? true : undefined}
+                  data-app-demo-to-inbox={
+                    tab === "Request inbox" ? true : undefined
+                  }
                 >
                   {tab}
                 </button>
               ))
             }
           </nav>
-          <button type="button" class="app-demo-publish">Publish changes</button>
+          <button type="button" class="app-demo-publish">Publish changes</button
+          >
         </header>
 
         <div class="app-demo-body">
@@ -344,19 +396,21 @@ const builderSections = [
             <div class="app-demo-main-frame app-demo-main-frame-inbox">
               <aside class="app-demo-workspace-nav">
                 <div class="app-demo-workspace-brand">
-                  <Image src={CompassRoseIcon} alt="" class="app-demo-workspace-brand-icon" aria-hidden="true" />
+                  <Image
+                    src={CompassRoseIcon}
+                    alt=""
+                    class="app-demo-workspace-brand-icon"
+                    aria-hidden="true"
+                  />
                   <span class="app-demo-workspace-brand-name">PinPoint</span>
                 </div>
 
                 {
-                  workspaceItems.map((item) => (
+                  workspaceItems.map((item) =>
                     item === "Request Inbox" ? (
                       <button
                         type="button"
-                        class:list={[
-                          "app-demo-workspace-link",
-                          "is-active",
-                        ]}
+                        class:list={["app-demo-workspace-link", "is-active"]}
                         data-app-demo-to-inbox
                       >
                         {item}
@@ -370,8 +424,8 @@ const builderSections = [
                       >
                         {item}
                       </span>
-                    )
-                  ))
+                    ),
+                  )
                 }
               </aside>
 
@@ -386,37 +440,62 @@ const builderSections = [
                     </p>
 
                     <div class="app-demo-support-field-group">
-                      <label class="app-demo-support-field-label">Request type</label>
+                      <label class="app-demo-support-field-label"
+                        >Request type</label
+                      >
                       <div class="app-demo-support-select">
                         <span>Employee onboarding request</span>
-                        <Image src={CaretDownIcon} alt="" class="app-demo-support-caret" aria-hidden="true" />
+                        <Image
+                          src={CaretDownIcon}
+                          alt=""
+                          class="app-demo-support-caret"
+                          aria-hidden="true"
+                        />
                       </div>
                     </div>
 
                     <div class="app-demo-support-field-group">
-                      <label class="app-demo-support-field-label">Employee first and last name</label>
+                      <label class="app-demo-support-field-label"
+                        >Employee first and last name</label
+                      >
                       <div class="app-demo-support-textarea">
                         <span>Joe Smith</span>
                       </div>
                     </div>
 
                     <div class="app-demo-support-field-group">
-                      <label class="app-demo-support-field-label">Job Role</label>
+                      <label class="app-demo-support-field-label"
+                        >Job Role</label
+                      >
                       <div class="app-demo-support-select">
                         <span>Engineering</span>
-                        <Image src={CaretDownIcon} alt="" class="app-demo-support-caret" aria-hidden="true" />
+                        <Image
+                          src={CaretDownIcon}
+                          alt=""
+                          class="app-demo-support-caret"
+                          aria-hidden="true"
+                        />
                       </div>
                     </div>
 
                     <div class="app-demo-support-field-group">
-                      <label class="app-demo-support-field-label">Services Needed</label>
+                      <label class="app-demo-support-field-label"
+                        >Services Needed</label
+                      >
                       <div class="app-demo-support-select">
                         <span>Github, Cursor, Microsoft Teams, Bamboo HR</span>
-                        <Image src={CaretDownIcon} alt="" class="app-demo-support-caret" aria-hidden="true" />
+                        <Image
+                          src={CaretDownIcon}
+                          alt=""
+                          class="app-demo-support-caret"
+                          aria-hidden="true"
+                        />
                       </div>
                     </div>
 
-                    <button type="button" class="app-demo-support-submit">Submit</button>
+                    <button type="button" class="app-demo-support-submit"
+                      >Submit</button
+                    >
                   </div>
                 </div>
               </main>
@@ -429,21 +508,26 @@ const builderSections = [
               {
                 builderSections.map((section) => (
                   <>
-                    {
-                      section.heading && (
-                        <p class="app-demo-builder-section-heading">{section.heading}</p>
-                      )
-                    }
-                    {
-                      section.items.map((item) => (
-                        <div class="app-demo-builder-item">
-                          <span class="app-demo-builder-item-icon-wrap">
-                            <Image src={item.icon} alt="" class="app-demo-builder-item-icon" aria-hidden="true" />
-                          </span>
-                          <span class="app-demo-builder-item-label">{item.label}</span>
-                        </div>
-                      ))
-                    }
+                    {section.heading && (
+                      <p class="app-demo-builder-section-heading">
+                        {section.heading}
+                      </p>
+                    )}
+                    {section.items.map((item) => (
+                      <div class="app-demo-builder-item">
+                        <span class="app-demo-builder-item-icon-wrap">
+                          <Image
+                            src={item.icon}
+                            alt=""
+                            class="app-demo-builder-item-icon"
+                            aria-hidden="true"
+                          />
+                        </span>
+                        <span class="app-demo-builder-item-label">
+                          {item.label}
+                        </span>
+                      </div>
+                    ))}
                   </>
                 ))
               }
@@ -455,13 +539,648 @@ const builderSections = [
   </div>
 </div>
 
+<style>
+  .app-demo {
+    color-scheme: light;
+    --app-demo-bg-strong: var(--bb-gray-900);
+    --app-demo-bg-deep: var(--bb-gray-1000);
+    --app-demo-border: var(--bb-gray-800);
+    --app-demo-border-soft: var(--bb-gray-700);
+    --app-demo-workspace-bg: var(--bb-gray-100);
+    --app-demo-surface: var(--bb-gray-50);
+    --app-demo-surface-strong: var(--bb-gray-50);
+    --app-demo-slate-strong: var(--bb-gray-900);
+    --app-demo-slate-light: var(--bb-gray-700);
+    --app-demo-grey-900: var(--bb-gray-75);
+    --app-demo-grey-700: var(--bb-gray-500);
+    --app-demo-grey-600: var(--bb-gray-600);
+    --app-demo-grey-400: var(--bb-gray-700);
+    --app-demo-cloud-light: var(--bb-gray-300);
+    --app-demo-nav-bg: var(--bb-brand-forest-green);
+    --app-demo-nav-active: var(--bb-background-dark-raised);
+    --app-demo-pill-high: var(--bb-red-700);
+    --app-demo-pill-medium: var(--bb-orange-700);
+    --app-demo-pill-low: var(--bb-blue-700);
+    --app-demo-clay-strong: var(--bb-orange-1000);
+    --app-demo-submit: var(--bb-blue-1000);
+    --app-demo-backdrop-image: none;
+    font-family: var(--font-sans);
+  }
+
+  .app-demo-backdrop {
+    border-radius: 8px;
+    background-image: var(--app-demo-backdrop-image);
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+  }
+
+  .app-demo-shell {
+    display: grid;
+    grid-template-areas: "stack";
+    border: 0.5px solid var(--app-demo-border);
+    border-radius: 6px;
+    background: var(--app-demo-bg-strong);
+    box-shadow: 0 10px 30px
+      color-mix(in srgb, var(--bb-gray-900) 25%, transparent);
+  }
+
+  .app-demo-screen {
+    grid-area: stack;
+    display: none;
+    flex-direction: column;
+    min-height: 708px;
+  }
+
+  .app-demo-screen.is-active {
+    display: flex;
+  }
+
+  .app-demo-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    border-bottom: 0.5px solid var(--app-demo-border);
+    padding: 6px 12px;
+    background: var(--app-demo-bg-strong);
+  }
+
+  .app-demo-top-tabs {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .app-demo-top-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .app-demo-top-tab {
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--app-demo-grey-700);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 4px 8px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .app-demo-top-tab.is-active {
+    border-radius: 6px;
+    background: var(--app-demo-border);
+    color: var(--bb-gray-50);
+  }
+
+  .app-demo-publish {
+    margin-left: auto;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 100px;
+    background: var(--app-demo-grey-900);
+    color: var(--bb-gray-1000);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+    padding: 7px 15px 8px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .app-demo-body {
+    display: flex;
+    min-height: 668px;
+    background: var(--app-demo-workspace-bg);
+  }
+
+  .app-demo-main-region {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    background: var(--app-demo-bg-strong);
+  }
+
+  .app-demo-main-frame {
+    display: flex;
+    height: 100%;
+    border: 1px solid var(--app-demo-border-soft);
+    border-radius: 4px;
+    background: var(--app-demo-workspace-bg);
+    overflow: hidden;
+  }
+
+  .app-demo-workspace-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+    background: var(--app-demo-nav-bg);
+    padding: 24px 16px;
+  }
+
+  .app-demo-workspace-brand {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 4px;
+  }
+
+  .app-demo-workspace-brand-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .app-demo-workspace-brand-name {
+    color: var(--bb-gray-50);
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .app-demo-workspace-link {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--bb-gray-50);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: left;
+    padding: 4px 6px;
+    cursor: pointer;
+  }
+
+  .app-demo-workspace-link.is-active {
+    background: var(--app-demo-nav-active);
+  }
+
+  .app-demo-workspace-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .app-demo-inbox-heading-wrap {
+    padding: 12px 0;
+  }
+
+  .app-demo-inbox-title {
+    margin: 0;
+    color: var(--app-demo-slate-strong) !important;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .app-demo-priority-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 4px 0;
+  }
+
+  .app-demo-priority-tab {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    border-radius: 12px;
+    color: var(--app-demo-grey-400);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 4px 8px;
+  }
+
+  .app-demo-priority-tab.is-active {
+    border-radius: 4px;
+    background: var(--app-demo-nav-bg);
+    color: var(--bb-gray-50);
+  }
+
+  .app-demo-table-wrap {
+    width: 100%;
+  }
+
+  .app-demo-table {
+    border: 1px solid var(--app-demo-cloud-light);
+    border-radius: 6px;
+    background: var(--app-demo-surface);
+    overflow: hidden;
+  }
+
+  .app-demo-table-header,
+  .app-demo-table-row {
+    display: grid;
+    grid-template-columns: 64px minmax(220px, 1fr) 74px 76px 39px;
+    align-items: center;
+    column-gap: 20px;
+    min-height: 40px;
+    padding: 0 20px;
+  }
+
+  .app-demo-table-header {
+    color: var(--app-demo-grey-700);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .app-demo-priority-col-head {
+    text-align: center;
+  }
+
+  .app-demo-row-separator {
+    display: block;
+    width: 100%;
+    height: 1px;
+  }
+
+  .app-demo-id-cell,
+  .app-demo-request-cell,
+  .app-demo-status-cell {
+    color: var(--app-demo-grey-400);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .app-demo-status-cell {
+    color: var(--app-demo-grey-600);
+  }
+
+  .app-demo-priority-pill {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 74px;
+    border-radius: 13px;
+    color: var(--app-demo-grey-900);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 17px;
+    padding: 2px;
+  }
+
+  .app-demo-priority-pill.is-high {
+    background: var(--app-demo-pill-high);
+  }
+
+  .app-demo-priority-pill.is-medium {
+    background: var(--app-demo-pill-medium);
+  }
+
+  .app-demo-priority-pill.is-low {
+    background: var(--app-demo-pill-low);
+  }
+
+  .app-demo-builder {
+    width: 260px;
+    flex-shrink: 0;
+    border-left: 0.5px solid var(--app-demo-border);
+    background: var(--app-demo-bg-strong);
+    padding: 12px;
+  }
+
+  .app-demo-builder-title {
+    color: var(--app-demo-grey-900);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+  }
+
+  .app-demo-builder-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px 0;
+    max-height: min(760px, calc(100dvh - 180px));
+    overflow-y: auto;
+  }
+
+  .app-demo-builder-section-heading {
+    margin: 0;
+    color: var(--app-demo-grey-700);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    padding-top: 2px;
+  }
+
+  .app-demo-builder-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--app-demo-border);
+    border-radius: 6px;
+    background: var(--app-demo-bg-deep);
+    min-width: 200px;
+    padding: 8px 20px 8px 12px;
+  }
+
+  .app-demo-builder-item-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: var(--app-demo-clay-strong);
+  }
+
+  .app-demo-builder-item-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .app-demo-builder-item-label {
+    color: var(--bb-gray-50);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+  }
+
+  .app-demo-support-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 12px;
+    padding: 12px;
+    background: var(--app-demo-workspace-bg);
+  }
+
+  .app-demo-support-card {
+    width: 500px;
+    border: 1px solid var(--app-demo-workspace-bg);
+    border-radius: 8px;
+    background: var(--app-demo-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px;
+  }
+
+  .app-demo-support-title {
+    margin: 0;
+    color: var(--app-demo-slate-strong);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .app-demo-support-description {
+    margin: -6px 0 0;
+    color: var(--app-demo-grey-600);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .app-demo-support-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .app-demo-support-field-label {
+    color: var(--app-demo-grey-600);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .app-demo-support-select,
+  .app-demo-support-textarea {
+    min-height: 36px;
+    border: 1px solid var(--app-demo-cloud-light);
+    border-radius: 4px;
+    background: var(--app-demo-surface-strong);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  .app-demo-support-select {
+    justify-content: space-between;
+  }
+
+  .app-demo-support-select span,
+  .app-demo-support-textarea span {
+    color: var(--app-demo-slate-strong);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .app-demo-support-caret {
+    width: 16px;
+    height: 16px;
+  }
+
+  .app-demo-support-submit {
+    width: fit-content;
+    border: 0;
+    border-radius: 18px;
+    background: var(--app-demo-submit);
+    color: var(--bb-gray-50);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 17px;
+    padding: 8px 20px;
+    cursor: pointer;
+  }
+
+  .app-demo-top-tab:focus-visible,
+  .app-demo-publish:focus-visible,
+  .app-demo-workspace-link:focus-visible,
+  .app-demo-support-submit:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 2px
+      color-mix(in srgb, var(--bb-brand-forest-green) 45%, transparent);
+  }
+
+  @media (max-width: 1100px) {
+    .app-demo-workspace-nav {
+      width: 200px;
+    }
+
+    .app-demo-workspace-content {
+      padding: 24px;
+    }
+
+    .app-demo-table {
+      min-width: 760px;
+    }
+
+    .app-demo-table-wrap {
+      overflow-x: auto;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .app-demo-screen {
+      min-height: 0;
+    }
+
+    .app-demo-body {
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .app-demo-builder {
+      width: 100%;
+      border-left: 0;
+      border-top: 0.5px solid var(--app-demo-border);
+    }
+
+    .app-demo-main-region {
+      padding: 10px;
+    }
+
+    .app-demo-main-frame-inbox {
+      flex-direction: column;
+    }
+
+    .app-demo-workspace-nav {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      padding: 16px;
+    }
+
+    .app-demo-workspace-brand {
+      grid-column: 1 / -1;
+      margin-bottom: 2px;
+    }
+
+    .app-demo-workspace-content {
+      padding: 20px;
+    }
+
+    .app-demo-support-main {
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .app-demo-topbar {
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 8px;
+      padding: 6px 8px;
+    }
+
+    .app-demo-top-tabs {
+      flex: 1 1 100%;
+      flex-wrap: wrap;
+      gap: 6px;
+      overflow: visible;
+    }
+
+    .app-demo-top-tab {
+      font-size: 12px;
+      white-space: normal;
+    }
+
+    .app-demo-publish {
+      margin-left: 0;
+      order: -1;
+      font-size: 12px;
+      line-height: 16px;
+      padding: 7px 12px;
+    }
+
+    .app-demo-main-region {
+      padding: 8px;
+    }
+
+    .app-demo-workspace-nav {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .app-demo-workspace-content {
+      padding: 12px;
+    }
+
+    .app-demo-table {
+      min-width: 0;
+    }
+
+    .app-demo-table-header,
+    .app-demo-table-row {
+      grid-template-columns: 52px minmax(0, 1fr) 64px 72px;
+      column-gap: 8px;
+      padding: 0 10px;
+    }
+
+    .app-demo-table-header > :last-child,
+    .app-demo-table-row > :last-child {
+      display: none;
+    }
+
+    .app-demo-request-cell,
+    .app-demo-status-cell,
+    .app-demo-id-cell {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .app-demo-request-cell {
+      white-space: nowrap;
+    }
+
+    .app-demo-priority-pill {
+      width: 64px;
+      font-size: 12px;
+    }
+
+    .app-demo-builder-item {
+      min-width: 0;
+    }
+
+    .app-demo-support-card {
+      gap: 16px;
+      padding: 24px 20px;
+      width: min(500px, 100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app-demo-screen {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>
+
 <script define:vars={{ id }}>
   (() => {
     const root = document.getElementById(id);
     if (!root) return;
 
     const inboxScreen = root.querySelector('[data-app-demo-screen="inbox"]');
-    const supportScreen = root.querySelector('[data-app-demo-screen="support"]');
+    const supportScreen = root.querySelector(
+      '[data-app-demo-screen="support"]',
+    );
     const toSupportButtons = Array.from(
       root.querySelectorAll("[data-app-demo-to-support]"),
     );
@@ -471,7 +1190,9 @@ const builderSections = [
     const priorityTabButtons = Array.from(
       root.querySelectorAll("[data-app-demo-priority-tab]"),
     );
-    const tableItems = Array.from(root.querySelectorAll(".app-demo-table-item"));
+    const tableItems = Array.from(
+      root.querySelectorAll(".app-demo-table-item"),
+    );
 
     if (!inboxScreen || !supportScreen) return;
 

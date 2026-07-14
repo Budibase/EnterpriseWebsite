@@ -19,14 +19,14 @@ import GoogleLogo from "@assets/logos/Google.svg?url";
 import OpenAILogo from "@assets/logos/OpenAI.svg?url";
 import Slack from "@assets/logos/Slack.svg?url";
 import Jira from "@assets/logos/Jira.svg?url";
-import AgentDemoBackground from "@assets/images/backgrounds/AgentDemo/background.png?url";
+import AgentDemoBackground from "@assets/images/backgrounds/AgentDemo/resources-agent-demo-bg.jpg?url";
 
 const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
-<div id={id} class="hero-demo demo-breakout w-full overflow-hidden">
+<div id={id} class="hero-demo w-full overflow-hidden">
   <div
-    class="hero-demo-backdrop w-full overflow-hidden px-6 py-6 sm:px-10 sm:py-10 lg:px-32 lg:py-12"
+    class="hero-demo-backdrop w-full overflow-hidden px-6 py-6 sm:px-10 sm:py-10 lg:px-12 lg:py-12"
   >
     <img
       src={AgentDemoBackground}
@@ -357,7 +357,6 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
     width: 100%;
     object-fit: cover;
     object-position: center;
-    opacity: 0.75;
     pointer-events: none;
   }
 

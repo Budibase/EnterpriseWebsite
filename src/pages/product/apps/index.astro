@@ -2,8 +2,8 @@
 export const prerender = false;
 
 import Layout from "../../../layouts/MainLayout.astro";
-import PlatformLayout from "@components/PlatformLayout.astro";
-import Mountains2 from "@assets/images/backgrounds/mountains/2.png";
+import AppDemoBackground from "@assets/images/backgrounds/app-demo-bg.jpg?url";
+import Button from "@components/Button.astro";
 import Card from "@components/cards/Card.astro";
 import AppProcessOutcomeSection from "@components/AppProcessOutcomeSection.astro";
 import AppDemo from "@components/AppDemo.astro";
@@ -97,18 +97,55 @@ Budibase Apps offer custom JavaScript and CSS for advanced use cases.
     {
       headers: {
         "Content-Type": "text/markdown; charset=utf-8",
-        "Vary": "Accept",
+        Vary: "Accept",
       },
-    }
+    },
   );
 }
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <PlatformLayout title={pageTitle} description={pageDescription}>
+  <section class="apps-hero">
+    <div
+      class="mx-auto w-full max-w-[var(--site-container-max)] px-2 md:px-3 lg:px-0"
+    >
+      <div class="apps-hero-copy mx-auto max-w-6xl">
+        <h1 class="apps-hero-title mx-auto mb-5 block w-full text-balance">
+          Build internal tools in minutes
+        </h1>
+        <p class="apps-hero-subheading mx-auto max-w-3xl text-balance">
+          {pageDescription}
+        </p>
+      </div>
+      <div class="apps-hero-cta">
+        <Button
+          label="Book a demo"
+          url="https://account.budibase.app/register"
+          variant="cta"
+          size="large"
+          target="_blank"
+        />
+        <Button
+          label="Get started"
+          url="https://account.budibase.app/register"
+          variant="secondary"
+          size="large"
+          target="_blank"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="mx-auto w-full max-w-[var(--site-container-max)] px-2 pb-12 pt-6 md:px-3 lg:px-0"
+  >
     <div class="flex flex-col gap-[var(--section-spacing-y)]">
       <div class="flex flex-col gap-[var(--section-gap-lg)]">
-        <AppDemo backdropImage={Mountains2.src} />
+        <AppDemo
+          backdropImage={AppDemoBackground}
+          backdropPaddingClass="px-6 py-6 sm:px-10 sm:py-10 lg:px-12 lg:py-12"
+          breakout={false}
+        />
         <AppProcessOutcomeSection />
       </div>
 
@@ -163,80 +200,122 @@ Budibase Apps offer custom JavaScript and CSS for advanced use cases.
         </SectionBlock>
       </section>
       <ContactSalesCTA />
-     <AppProductionReadyFeatures />
+      <AppProductionReadyFeatures />
     </div>
     <section class="mt-16 lg:mt-24">
-  <SectionBlock
-    align="center"
-    maxWidth="lg"
-    titleColorMode="split-secondary-primary"
-    titleLines={[
-      { text: "Data collection" },
-      { text: "your way" },
-    ]}
-    description="Budibase offers customizable data collection UIs for any data source or API."
-    contentClass="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-2 lg:grid-cols-4"
-  >
-    <Card
-      label="Create forms on top of your database"
-      description="Generate and build forms on top of multiple databases, including PostgreSQL, MySQL, MongoDB, and more."
-    />
+      <SectionBlock
+        align="center"
+        maxWidth="lg"
+        titleColorMode="split-secondary-primary"
+        titleLines={[{ text: "Data collection" }, { text: "your way" }]}
+        description="Budibase offers customizable data collection UIs for any data source or API."
+        contentClass="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-2 lg:grid-cols-4"
+      >
+        <Card
+          label="Create forms on top of your database"
+          description="Generate and build forms on top of multiple databases, including PostgreSQL, MySQL, MongoDB, and more."
+        />
 
-    <Card
-      label="Multi-step forms"
-      description="Create multi-step forms and surveys with ease using Budibase."
-    />
+        <Card
+          label="Multi-step forms"
+          description="Create multi-step forms and surveys with ease using Budibase."
+        />
 
-    <Card
-      label="Validation"
-      description="Set up form validation rules, including regex support and built-in validations for common form-based apps."
-    />
+        <Card
+          label="Validation"
+          description="Set up form validation rules, including regex support and built-in validations for common form-based apps."
+        />
 
-    <Card
-      label="Highly customizable"
-      description="Build forms of all levels of complexity with Budibase."
-    />
-  </SectionBlock>
-</section>
+        <Card
+          label="Highly customizable"
+          description="Build forms of all levels of complexity with Budibase."
+        />
+      </SectionBlock>
+    </section>
 
-      <section class="mt-16 lg:mt-24">
-        <SectionBlock
-          align="center"
-          maxWidth="lg"
-          titleColorMode="split-secondary-primary"
-          titleLines={[
-            { text: "Simple by default" },
-            { text: "customizable with code" },
-          ]}
-          description="Budibase Apps offer custom JavaScript and CSS for advanced use cases."
-          contentClass="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-2 lg:grid-cols-4"
-        >
-          <Card
-            label="Optional JavaScript"
-            description="From adding logic to your components to transforming data, Budibase allows to write JavaScript almost anywhere in the builder."
-          >
-          </Card>
-          <Card
-            label="Live Evaluation"
-            description="With Live Evaluation, you can see the output of your code in real-time, directly next to the code editor."
-          >
-          </Card>
-          <Card
-            label="Reusable Snippets"
-            description="Reusable Code Snippets speed up development by enabling you to write code once and then effortlessly apply it anywhere."
-          >
-          </Card>
-          <Card
-            label="AI Code Generation"
-            description="Use Budibase AI to generate custom JavaScript from natural language instructions."
-          >
-          </Card>
-        </SectionBlock>
-      </section>
-  </PlatformLayout>
+    <section class="mt-16 lg:mt-24">
+      <SectionBlock
+        align="center"
+        maxWidth="lg"
+        titleColorMode="split-secondary-primary"
+        titleLines={[
+          { text: "Simple by default" },
+          { text: "customizable with code" },
+        ]}
+        description="Budibase Apps offer custom JavaScript and CSS for advanced use cases."
+        contentClass="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-2 lg:grid-cols-4"
+      >
+        <Card
+          label="Optional JavaScript"
+          description="From adding logic to your components to transforming data, Budibase allows to write JavaScript almost anywhere in the builder."
+        />
+        <Card
+          label="Live Evaluation"
+          description="With Live Evaluation, you can see the output of your code in real-time, directly next to the code editor."
+        />
+        <Card
+          label="Reusable Snippets"
+          description="Reusable Code Snippets speed up development by enabling you to write code once and then effortlessly apply it anywhere."
+        />
+        <Card
+          label="AI Code Generation"
+          description="Use Budibase AI to generate custom JavaScript from natural language instructions."
+        />
+      </SectionBlock>
+    </section>
+  </section>
 </Layout>
 
 <style>
+  .apps-hero {
+    background: var(--bg-1);
+    padding-top: max(calc(var(--site-nav-height) + 1.2rem), 4.8rem);
+    padding-bottom: 3rem;
+    text-align: center;
+  }
+
+  :global(#site-nav.nav-shell) {
+    background-color: var(--bg-1) !important;
+  }
+
+  .apps-hero-title {
+    color: var(--bb-text-base);
+    font-family: var(--bb-text-display-large-font-family);
+    font-size: var(--bb-text-display-large-font-size);
+    font-weight: var(--bb-text-display-large-font-weight);
+    line-height: var(--bb-text-display-large-line-height);
+    letter-spacing: var(--bb-text-display-large-letter-spacing);
+    margin: 0 auto;
+    text-transform: var(--bb-text-display-large-text-transform);
+    transform: scaleX(0.86);
+    transform-origin: center;
+  }
+
+  .apps-hero-subheading {
+    color: var(--bb-text-base) !important;
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.15px !important;
+    margin-bottom: 0 !important;
+    margin-top: 1.25rem;
+  }
+
+  .apps-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: calc(2rem - 8px);
+  }
+
+  @media (max-width: 767px) {
+    .apps-hero {
+      padding-bottom: 2rem;
+    }
+  }
+
   .app-card-overlay {
     width: 100%;
     height: 350px;

@@ -392,23 +392,26 @@
       SF Mono, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
       monospace;
 
-    --bb-text-display-large-font-family: var(--font-sans);
-    --bb-text-display-large-font-size: 96px;
+    --bb-text-display-large-font-family:
+      var(--font-tiktok-sans-condensed), var(--font-sans);
+    --bb-text-display-large-font-size: 90px;
     --bb-text-display-large-font-weight: 900;
     --bb-text-display-large-line-height: 0.85;
-    --bb-text-display-large-letter-spacing: 0.005em;
+    --bb-text-display-large-letter-spacing: -0.01em;
     --bb-text-display-large-text-transform: uppercase;
-    --bb-text-display-medium-font-family: var(--font-sans);
+    --bb-text-display-medium-font-family:
+      var(--font-tiktok-sans-condensed), var(--font-sans);
     --bb-text-display-medium-font-size: 64px;
     --bb-text-display-medium-font-weight: 900;
     --bb-text-display-medium-line-height: 0.85;
-    --bb-text-display-medium-letter-spacing: 0.005em;
+    --bb-text-display-medium-letter-spacing: -0.01em;
     --bb-text-display-medium-text-transform: uppercase;
-    --bb-text-display-small-font-family: var(--font-sans);
+    --bb-text-display-small-font-family:
+      var(--font-tiktok-sans-condensed), var(--font-sans);
     --bb-text-display-small-font-size: 40px;
     --bb-text-display-small-font-weight: 900;
     --bb-text-display-small-line-height: 0.85;
-    --bb-text-display-small-letter-spacing: 0.005em;
+    --bb-text-display-small-letter-spacing: -0.01em;
     --bb-text-display-small-text-transform: uppercase;
 
     /* Core semantic RGB tokens (Tailwind-friendly) */
@@ -714,7 +717,7 @@ article p {
   font-weight: 400;
   text-wrap: pretty;
   margin-bottom: calc(1rem * 1.4);
-  font-size: 15px;
+  font-size: 1rem;
   line-height: 1.5;
   letter-spacing: -0.15px !important;
 }
@@ -725,7 +728,7 @@ article ol {
   color: rgb(var(--text-article)) !important;
   text-wrap: pretty;
   margin-bottom: calc(1rem * 1.4);
-  font-size: 15px;
+  font-size: 1rem;
   line-height: 1.5;
   letter-spacing: -0.15px !important;
   margin: 0.2rem 0.4rem !important;
@@ -737,12 +740,19 @@ article strong {
 }
 article a {
   font-weight: 400;
-  color: rgb(var(--primary)) !important;
-  text-decoration: none;
+  border-color: transparent;
+  color: var(--bb-brand-forest-green) !important;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+  transition:
+    color 150ms ease-out,
+    opacity 150ms ease-out;
 }
 
 article a:hover {
-  color: var(--bb-blue-700) !important;
+  color: var(--bb-celery-1500) !important;
 }
 
 article blockquote {

@@ -5,9 +5,9 @@ import Layout from "../../../layouts/MainLayout.astro";
 import Button from "@components/Button.astro";
 import { getProductPageMeta } from "../_pageMeta";
 import AutomationDemo from "@components/AutomationDemo.astro";
+import AutomationDemoBackground from "@assets/images/backgrounds/automation-demo-bg.jpg?url";
 import AutomationTriggerOutcomeSection from "@components/AutomationTriggerOutcomeSection.astro";
 import Card from "@components/cards/Card.astro";
-import TitleBlock from "@components/TitleBlock.astro";
 import SectionBlock from "@components/SectionBlock.astro";
 import AutomationTestDemo from "@components/AutomationTestDemo.astro";
 import AutomationDataFlow from "@components/AutomationDataFlow.astro";
@@ -98,37 +98,30 @@ Add looping, branching, and conditional logic to craft intelligent rules for rea
       class="mx-auto w-full max-w-[var(--site-container-max)] px-2 md:px-3 lg:px-0"
     >
       <div class="automations-hero-grid">
-        <div class="automations-hero-copy max-w-xl">
-          <TitleBlock
-            variant="hero"
-            titleColorMode="split-primary-secondary"
-            titleLines={[
-              { text: "Automate workflows" },
-              { text: "with any data, LLM, or REST API" },
-            ]}
-            titleClass="mb-4 w-full leading-[0.9]! tracking-[-0.02em]!"
-          />
-          <p
-            class="hero-description-small mx-auto max-w-xl text-base md:!text-xl !mb-4"
+        <div class="automations-hero-copy mx-auto max-w-6xl">
+          <h1
+            class="automations-hero-title mx-auto mb-5 block w-full text-balance"
           >
+            Automations you can control and rely on
+          </h1>
+          <p class="automations-hero-subheading mx-auto max-w-3xl text-balance">
             {pageDescription}
           </p>
         </div>
 
         <div class="automations-hero-cta">
           <Button
-            label="Try for free"
+            label="Book a demo"
             url="https://account.budibase.app/register"
-            variant="primary"
+            variant="cta"
             size="large"
             target="_blank"
           />
           <Button
-            label="Contact sales"
-            url="/contact/"
+            label="Get started"
+            url="https://account.budibase.app/register"
             variant="secondary"
             size="large"
-            class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl ml-5"
             target="_blank"
           />
         </div>
@@ -141,7 +134,11 @@ Add looping, branching, and conditional logic to craft intelligent rules for rea
   >
     <div class="flex flex-col gap-[var(--section-spacing-y)]">
       <div class="flex flex-col gap-[var(--section-gap-lg)]">
-        <AutomationDemo />
+        <AutomationDemo
+          backdropImage={AutomationDemoBackground}
+          backdropPaddingClass="px-6 py-6 sm:px-10 sm:py-10 lg:px-12 lg:py-12"
+          breakout={false}
+        />
         <AutomationTriggerOutcomeSection />
       </div>
     </div>
@@ -222,12 +219,35 @@ Add looping, branching, and conditional logic to craft intelligent rules for rea
 
   .automations-hero-cta {
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     justify-content: center;
+    margin-top: calc(2rem - 8px);
   }
 
-  .automations-hero :global(.hero-title-small) {
-    font-size: 54px;
-    font-weight: 400;
+  .automations-hero-title {
+    color: var(--bb-text-base);
+    font-family: var(--font-tiktok-sans-condensed), var(--font-sans);
+    font-size: var(--bb-text-display-large-font-size);
+    font-weight: var(--bb-text-display-large-font-weight);
+    letter-spacing: var(--bb-text-display-large-letter-spacing);
+    line-height: var(--bb-text-display-large-line-height);
+    margin: 0 auto;
+    max-width: none;
+    text-transform: var(--bb-text-display-large-text-transform);
+    transform: scaleX(0.86);
+    transform-origin: center;
+  }
+
+  .automations-hero-subheading {
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.15px;
+    line-height: 1.4;
+    margin-bottom: 0;
+    margin-top: 1.25rem;
   }
 
   @media (max-width: 767px) {

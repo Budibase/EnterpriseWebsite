@@ -24,7 +24,7 @@ const gapClasses = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-[50px] !font-semibold transition-colors duration-150 active:scale-[0.98] no-underline cursor-pointer font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "inline-flex items-center justify-center rounded-[50px] !font-semibold transition-colors duration-150 active:scale-[0.98] !no-underline cursor-pointer font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 function normalizeSize(size = "medium") {
   return size === "sm" ? "small" : size;
