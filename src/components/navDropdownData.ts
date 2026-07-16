@@ -67,8 +67,8 @@ export const platformDropdownMenu: NavDropdownMenu = {
         },
         {
           href: "/blog/ai-agents/digital-workers/",
-          label: "Workers",
-          description: "Digital workers for repeatable business processes.",
+          label: "Functions",
+          description: "Server-side functions for your workflows.",
           prefetch: true,
         },
       ],

@@ -1,0 +1,302 @@
+---
+import Button from "@components/Button.astro";
+import FeatureBadge from "@components/FeatureBadge.astro";
+import Icon from "@components/Icon.astro";
+import Link from "@components/Link.astro";
+
+type Variant = "white" | "light" | "bright-green" | "forest-green";
+type ImagePosition = "left" | "right";
+
+interface Badge {
+  label: string;
+  icon?: string;
+  iconWeight?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+  variant?:
+    | "celery"
+    | "light"
+    | "bright-blue"
+    | "bright-pink"
+    | "bright-yellow"
+    | "bright-orange";
+}
+
+interface Bullet {
+  icon: string;
+  text: string;
+  iconWeight?: string;
+}
+
+interface Action {
+  label: string;
+  href: string;
+  target?: string;
+  rel?: string;
+}
+
+interface Props {
+  image: string;
+  imageAlt: string;
+  imagePosition?: ImagePosition;
+  variant?: Variant;
+  badge?: Badge;
+  headline: string;
+  body?: string;
+  bullets?: readonly Bullet[];
+  primaryAction?: Action;
+  linkAction?: Action;
+  class?: string;
+}
+
+const {
+  image,
+  imageAlt,
+  imagePosition = "left",
+  variant = "white",
+  badge,
+  headline,
+  body,
+  bullets = [],
+  primaryAction,
+  linkAction,
+  class: className = "",
+} = Astro.props as Props;
+
+const visibleBullets = bullets.slice(0, 3);
+const isForest = variant === "forest-green";
+const buttonVariant = variant === "bright-green" ? "cta" : "primary";
+const linkVariant = isForest ? "secondary" : "primary";
+---
+
+<section
+  class:list={[
+    "feature-section",
+    `feature-section--${variant}`,
+    `feature-section--image-${imagePosition}`,
+    className,
+  ]}
+>
+  <div class="feature-section__container">
+    <figure class="feature-section__image-panel">
+      <img src={image} alt={imageAlt} loading="lazy" />
+    </figure>
+
+    <div class="feature-section__content">
+      {badge && <FeatureBadge {...badge} />}
+      <h2>{headline}</h2>
+      {body && <p class="feature-section__body">{body}</p>}
+
+      {
+        visibleBullets.length > 0 && (
+          <div class="feature-section__bullets">
+            {visibleBullets.map((bullet) => (
+              <article class="feature-section__bullet">
+                <div class="feature-section__bullet-icon" aria-hidden="true">
+                  <Icon
+                    name={bullet.icon}
+                    size="24"
+                    weight={bullet.iconWeight}
+                  />
+                </div>
+                <div class="feature-section__bullet-copy">
+                  <h3>{bullet.text}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
+        )
+      }
+
+      {
+        (primaryAction || linkAction) && (
+          <div class="feature-section__actions">
+            {primaryAction && (
+              <Button
+                label={primaryAction.label}
+                url={primaryAction.href}
+                target={primaryAction.target}
+                rel={primaryAction.rel}
+                variant={buttonVariant}
+              />
+            )}
+            {linkAction && (
+              <Link
+                label={linkAction.label}
+                url={linkAction.href}
+                target={linkAction.target}
+                rel={linkAction.rel}
+                variant={linkVariant}
+                appearance="quiet"
+                class="feature-section__link"
+              >
+                <Icon name="ArrowRight" size="18" aria-hidden="true" />
+              </Link>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-section {
+    --feature-section-background: var(--bb-background-base);
+    --feature-section-text: var(--bb-text-base);
+    --feature-section-body: var(--bb-text-muted);
+    --feature-section-divider: var(--bb-border-subtle);
+    --feature-section-icon-background: var(--bb-background-surface);
+    width: 100%;
+    background: var(--feature-section-background);
+    color: var(--feature-section-text);
+  }
+
+  .feature-section--light {
+    --feature-section-background: var(--bb-background-surface);
+  }
+
+  .feature-section--bright-green {
+    --feature-section-background: var(--bb-celery-200);
+    --feature-section-icon-background: color-mix(
+      in srgb,
+      var(--bb-text-base) 8%,
+      transparent
+    );
+  }
+
+  .feature-section--forest-green {
+    --feature-section-background: var(--bb-brand-forest-green);
+    --feature-section-text: var(--bb-text-on-base);
+    --feature-section-body: var(--bb-text-on-base);
+    --feature-section-divider: var(--bb-transparent-white-200);
+    --feature-section-icon-background: var(--bb-transparent-white-100);
+  }
+
+  .feature-section--forest-green .feature-section__bullet h3 {
+    color: var(--bb-text-on-base) !important;
+  }
+
+  .feature-section__container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 7rem);
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 3vw, 2rem);
+  }
+
+  .feature-section__image-panel {
+    order: 0;
+    min-width: 0;
+    aspect-ratio: 3 / 4;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 0;
+  }
+
+  .feature-section__image-panel img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .feature-section__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    gap: 1.5rem;
+  }
+
+  .feature-section__content h2,
+  .feature-section__bullet h3,
+  .feature-section__content p {
+    margin: 0;
+    color: inherit;
+  }
+
+  .feature-section__content h2 {
+    font-family: var(--font-inter), var(--font-sans);
+    font-size: clamp(2.5rem, 4vw, 3.125rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .feature-section__body {
+    max-width: 38rem;
+    color: var(--feature-section-body) !important;
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .feature-section__bullets {
+    border-top: 1px solid var(--feature-section-divider);
+  }
+
+  .feature-section__bullet {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--feature-section-divider);
+  }
+
+  .feature-section__bullet-icon {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--feature-section-icon-background);
+  }
+
+  .feature-section__bullet-copy {
+    min-width: 0;
+  }
+
+  .feature-section__bullet h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .feature-section__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  :global(.feature-section__link:focus-visible) {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 768px) {
+    .feature-section__container {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .feature-section__image-panel {
+      height: 100%;
+      min-height: 100%;
+    }
+
+    .feature-section--image-right .feature-section__image-panel {
+      order: 2;
+    }
+
+    .feature-section--image-right .feature-section__content {
+      order: 1;
+    }
+  }
+</style>

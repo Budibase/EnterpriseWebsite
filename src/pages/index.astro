@@ -6,7 +6,35 @@ import Platform from "./_components/landing-page/Platform.astro";
 import CustomerStoriesFeature from "./_components/landing-page/CustomerStoriesFeature.astro";
 import PlatformCapabilities from "./_components/landing-page/PlatformCapabilities.astro";
 import EnterpriseSection from "./_components/landing-page/EnterpriseSection.astro";
+import FeatureSection from "@components/FeatureSection.astro";
+import StatSection from "@components/StatSection.astro";
 import CTA from "@components/CTA.astro";
+import criticalOperationsImage from "@assets/images/feature-sections/critical-operations.png?url";
+
+const enterpriseFeatureBullets = [
+  {
+    icon: "CloudCheck",
+    iconWeight: "fill",
+    text: "Run on-premise, in private cloud environments, air-gapped networks, or public cloud infrastructure.",
+  },
+  {
+    icon: "ShieldCheck",
+    iconWeight: "fill",
+    text: "Role-based access control, audit logging, SSO, and enterprise governance built into the platform.",
+  },
+  {
+    icon: "Gauge",
+    iconWeight: "fill",
+    text: "Support thousands of users, millions of actions, and mission-critical operational processes.",
+  },
+] as const;
+
+const enterpriseStats = [
+  { icon: "Lightning", title: "900M actions automated" },
+  { icon: "BuildingOffice", title: "100+ enterprises transformed" },
+  { icon: "Users", title: "1M+ users" },
+  { icon: "Timer", title: "99.9% uptime" },
+] as const;
 ---
 
 <Layout rawTitle="Budibase | Agents, Workflows & Internal Tools Made Easy">
@@ -22,6 +50,35 @@ import CTA from "@components/CTA.astro";
     </div>
     <div class="site-grid-section">
       <Resources />
+    </div>
+    <div
+      class="site-grid-section site-grid-section--no-top site-grid-section--no-bottom site-grid-section--forest-green"
+    >
+      <FeatureSection
+        variant="forest-green"
+        image={criticalOperationsImage}
+        imageAlt="Person wearing glasses working on a laptop"
+        badge={{
+          icon: "ShieldCheck",
+          iconWeight: "fill",
+          label: "Designed for regulated enterprises",
+          variant: "celery",
+        }}
+        headline="Built for critical operations"
+        body="Built for complex environments, Budibase gives teams the control, security, and reliability to run essential operations with confidence."
+        bullets={enterpriseFeatureBullets}
+      />
+    </div>
+    <div
+      class="site-grid-section site-grid-section--no-top site-grid-section--spacious-bottom"
+    >
+      <StatSection
+        class="stat-section--adjacent"
+        variant="forest-green"
+        headline="Scale enterprise operations with confidence"
+        description="Automate thousands of actions per day with consistent speed and reliability, giving every team the confidence to scale critical operations without compromise."
+        cards={enterpriseStats}
+      />
     </div>
     <div class="site-grid-section site-grid-section--no-top">
       <CustomerStoriesFeature />

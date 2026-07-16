@@ -1,0 +1,174 @@
+---
+import Button from "@components/Button.astro";
+import FeatureBadge from "@components/FeatureBadge.astro";
+import EnterpriseLogoGrid from "../pages/_components/landing-page/EnterpriseLogoGrid.astro";
+
+type BadgeVariant =
+  | "celery"
+  | "light"
+  | "bright-blue"
+  | "bright-pink"
+  | "bright-yellow"
+  | "bright-orange";
+
+interface Badge {
+  label: string;
+  icon?: string;
+  iconWeight?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+  variant?: BadgeVariant;
+}
+
+interface Action {
+  label: string;
+  href: string;
+  target?: string;
+  rel?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  image: string;
+  imageAlt: string;
+  logosHeading: string;
+  badge?: Badge;
+  action: Action;
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  image,
+  imageAlt,
+  logosHeading,
+  badge,
+  action,
+  class: className = "",
+} = Astro.props as Props;
+---
+
+<section class:list={["hero-small", className]}>
+  <div class="hero-small__container">
+    <div class="hero-small__main">
+      <div class="hero-small__content">
+        {
+          badge && (
+            <FeatureBadge {...badge} variant={badge.variant ?? "light"} />
+          )
+        }
+        <h1>{title}</h1>
+        <p>{subtitle}</p>
+        <Button
+          label={action.label}
+          url={action.href}
+          target={action.target}
+          rel={action.rel}
+          variant="cta"
+          size="large"
+        />
+      </div>
+
+      <figure class="hero-small__image">
+        <img src={image} alt={imageAlt} loading="eager" decoding="async" />
+      </figure>
+    </div>
+
+    <div class="hero-small__logos">
+      <h2>{logosHeading}</h2>
+      <EnterpriseLogoGrid placement="hero-compact" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-small {
+    width: 100%;
+    background: var(--bb-background-surface);
+    color: var(--bb-text-base);
+  }
+
+  .hero-small__container {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, 2rem);
+  }
+
+  .hero-small__main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-small__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.5rem;
+    min-width: 0;
+    padding: clamp(2rem, 6vw, 6rem);
+    background: var(--bb-background-surface);
+  }
+
+  .hero-small__content h1,
+  .hero-small__content p,
+  .hero-small__logos h2 {
+    margin: 0;
+  }
+
+  .hero-small__content h1 {
+    font-family: var(--bb-text-display-medium-font-family);
+    font-size: clamp(3rem, 5vw, var(--bb-text-display-medium-font-size));
+    font-weight: var(--bb-text-display-medium-font-weight);
+    line-height: var(--bb-text-display-medium-line-height);
+    letter-spacing: var(--bb-text-display-medium-letter-spacing);
+    text-transform: var(--bb-text-display-medium-text-transform);
+  }
+
+  .hero-small__content p {
+    max-width: 38rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .hero-small__image {
+    aspect-ratio: 1;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 0;
+  }
+
+  .hero-small__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-small__logos {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    padding-block: clamp(3rem, 7vw, 6rem);
+  }
+
+  .hero-small__logos h2 {
+    font-family: var(--font-inter), var(--font-sans);
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  @media (min-width: 768px) {
+    .hero-small__main {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

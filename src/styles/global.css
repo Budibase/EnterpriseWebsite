@@ -1179,6 +1179,18 @@ main ul article > a {
   padding-top: 0;
 }
 
+.site-grid-section--no-bottom {
+  padding-bottom: 0;
+}
+
+.site-grid-section--spacious-bottom {
+  padding-bottom: clamp(5rem, 10vw, 10rem);
+}
+
+.site-grid-section--forest-green {
+  background: var(--bb-brand-forest-green);
+}
+
 .site-grid-section--no-top::before {
   content: none;
 }

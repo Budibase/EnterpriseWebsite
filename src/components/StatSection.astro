@@ -1,0 +1,170 @@
+---
+import Icon from "@components/Icon.astro";
+
+type Variant = "white" | "light" | "bright-green" | "forest-green";
+
+interface StatCard {
+  icon: string;
+  title: string;
+  iconWeight?: string;
+}
+
+interface Props {
+  headline: string;
+  description: string;
+  cards: readonly StatCard[];
+  variant?: Variant;
+  class?: string;
+}
+
+const {
+  headline,
+  description,
+  cards,
+  variant = "white",
+  class: className = "",
+} = Astro.props as Props;
+
+const visibleCards = cards.slice(0, 4);
+---
+
+<section class:list={["stat-section", `stat-section--${variant}`, className]}>
+  <div class="stat-section__container">
+    <div class="stat-section__intro">
+      <h2>{headline}</h2>
+      <p>{description}</p>
+    </div>
+
+    <div class="stat-section__grid">
+      {
+        visibleCards.map((card) => (
+          <article class="stat-section__card">
+            <div class="stat-section__icon" aria-hidden="true">
+              <Icon name={card.icon} size="24" weight={card.iconWeight} />
+            </div>
+            <h3>{card.title}</h3>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .stat-section {
+    --stat-section-background: var(--bb-background-base);
+    --stat-section-text: var(--bb-text-base);
+    --stat-section-icon-background: var(--bb-background-surface);
+    width: 100%;
+    background: var(--stat-section-background);
+    color: var(--stat-section-text);
+  }
+
+  .stat-section--light {
+    --stat-section-background: var(--bb-background-surface);
+  }
+
+  .stat-section--bright-green {
+    --stat-section-background: var(--bb-celery-200);
+    --stat-section-icon-background: color-mix(
+      in srgb,
+      var(--bb-text-base) 8%,
+      transparent
+    );
+  }
+
+  .stat-section--forest-green {
+    --stat-section-background: var(--bb-brand-forest-green);
+    --stat-section-text: var(--bb-text-on-base);
+    --stat-section-icon-background: var(--bb-transparent-white-100);
+  }
+
+  .stat-section--forest-green .stat-section__intro h2,
+  .stat-section--forest-green .stat-section__intro p,
+  .stat-section--forest-green .stat-section__card h3 {
+    color: var(--bb-text-on-base) !important;
+  }
+
+  .stat-section--forest-green .stat-section__icon {
+    color: var(--bb-text-on-base);
+  }
+
+  .stat-section__container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 7rem);
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding: clamp(2.5rem, 6vw, 6rem) clamp(1rem, 3vw, 2rem);
+  }
+
+  .stat-section--adjacent .stat-section__container {
+    padding-top: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .stat-section__intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .stat-section__intro h2,
+  .stat-section__intro p,
+  .stat-section__card h3 {
+    margin: 0;
+    color: inherit;
+  }
+
+  .stat-section__intro h2 {
+    font-family: var(--font-inter), var(--font-sans);
+    font-size: clamp(2.5rem, 4vw, 3.125rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .stat-section__intro p {
+    max-width: 38rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .stat-section__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.75rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 4rem);
+  }
+
+  .stat-section__card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  .stat-section__icon {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--stat-section-icon-background);
+  }
+
+  .stat-section__card h3 {
+    font-size: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .stat-section__container {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: center;
+    }
+  }
+</style>

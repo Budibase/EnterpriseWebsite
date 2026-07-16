@@ -1,0 +1,111 @@
+---
+import Icon from "@components/Icon.astro";
+
+type Variant =
+  | "celery"
+  | "light"
+  | "bright-blue"
+  | "bright-pink"
+  | "bright-yellow"
+  | "bright-orange";
+
+interface Props {
+  label: string;
+  icon?: string;
+  iconWeight?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+  variant?: Variant;
+}
+
+const {
+  label,
+  icon,
+  iconWeight,
+  href,
+  target,
+  rel,
+  variant = "light",
+} = Astro.props as Props;
+
+const computedRel =
+  rel ?? (target === "_blank" ? "noopener noreferrer" : undefined);
+const className = `feature-badge feature-badge--${variant}`;
+---
+
+{
+  href ? (
+    <a href={href} target={target} rel={computedRel} class={className}>
+      {icon && (
+        <Icon name={icon} size="16" weight={iconWeight} aria-hidden="true" />
+      )}
+      <span>{label}</span>
+      <Icon name="ArrowRight" size="16" aria-hidden="true" />
+    </a>
+  ) : (
+    <span class={className}>
+      {icon && (
+        <Icon name={icon} size="16" weight={iconWeight} aria-hidden="true" />
+      )}
+      <span>{label}</span>
+    </span>
+  )
+}
+
+<style>
+  .feature-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+    min-height: 2rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 999px;
+    color: var(--bb-text-base);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-decoration: none;
+  }
+
+  a.feature-badge {
+    transition:
+      transform 150ms ease-out,
+      opacity 150ms ease-out;
+  }
+
+  a.feature-badge:hover {
+    opacity: 0.88;
+  }
+
+  a.feature-badge:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .feature-badge--celery {
+    background-color: var(--bb-celery-1200) !important;
+    color: var(--bb-celery-200) !important;
+  }
+
+  .feature-badge--celery :global(svg) {
+    color: currentColor;
+    fill: currentColor;
+  }
+  .feature-badge--light {
+    background: var(--bb-background-raised);
+  }
+  .feature-badge--bright-blue {
+    background: var(--bb-bright-blue);
+  }
+  .feature-badge--bright-pink {
+    background: var(--bb-bright-pink);
+  }
+  .feature-badge--bright-yellow {
+    background: var(--bb-bright-yellow);
+  }
+  .feature-badge--bright-orange {
+    background: var(--bb-bright-orange);
+  }
+</style>
