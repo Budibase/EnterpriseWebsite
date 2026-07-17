@@ -7,7 +7,7 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
 
 <section class="flex w-full flex-col mt-8 md:mt-8">
   <div
-    class="container max-w-[var(--site-container-max)] mx-auto px-2 lg:px-0 flex w-full flex-col"
+    class="container max-w-[var(--site-container-max)] mx-auto px-[var(--site-content-inset)] flex w-full flex-col"
   >
     <div class="mx-auto flex w-full max-w-6xl flex-col items-center">
       <div
@@ -43,12 +43,14 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
   </div>
   <SectionGrid borderBottom class="site-grid-section--logos mt-8 md:mt-10">
     <div
-      class="container mx-auto max-w-[var(--site-container-max)] px-2 lg:px-0"
+      class="container mx-auto max-w-[var(--site-container-max)] px-[var(--site-content-inset)]"
     >
       <EnterpriseLogoGrid placement="hero-compact" />
     </div>
   </SectionGrid>
-  <div class="container mx-auto max-w-[var(--site-container-max)] px-2 lg:px-0">
+  <div
+    class="container mx-auto max-w-[var(--site-container-max)] px-[var(--site-content-inset)]"
+  >
     <img
       src={HeroImage}
       alt="Budibase live action view dashboard"

@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/MainLayout.astro";
-import Resources from "./_components/landing-page/Resources.astro";
 import Hero from "./_components/landing-page/HeroTitleExperiment.astro";
 import Platform from "./_components/landing-page/Platform.astro";
 import CustomerStoriesFeature from "./_components/landing-page/CustomerStoriesFeature.astro";
@@ -28,13 +27,6 @@ const enterpriseFeatureBullets = [
     text: "Support thousands of users, millions of actions, and mission-critical operational processes.",
   },
 ] as const;
-
-const enterpriseStats = [
-  { icon: "Lightning", title: "900M actions automated" },
-  { icon: "BuildingOffice", title: "100+ enterprises transformed" },
-  { icon: "Users", title: "1M+ users" },
-  { icon: "Timer", title: "99.9% uptime" },
-] as const;
 ---
 
 <Layout rawTitle="Budibase | Agents, Workflows & Internal Tools Made Easy">
@@ -47,9 +39,6 @@ const enterpriseStats = [
     </div>
     <div class="site-grid-section">
       <PlatformCapabilities />
-    </div>
-    <div class="site-grid-section">
-      <Resources />
     </div>
     <div
       class="site-grid-section site-grid-section--no-top site-grid-section--no-bottom site-grid-section--forest-green"
@@ -72,13 +61,7 @@ const enterpriseStats = [
     <div
       class="site-grid-section site-grid-section--no-top site-grid-section--spacious-bottom"
     >
-      <StatSection
-        class="stat-section--adjacent"
-        variant="forest-green"
-        headline="Scale enterprise operations with confidence"
-        description="Automate thousands of actions per day with consistent speed and reliability, giving every team the confidence to scale critical operations without compromise."
-        cards={enterpriseStats}
-      />
+      <StatSection class="stat-section--adjacent" variant="forest-green" />
     </div>
     <div class="site-grid-section site-grid-section--no-top">
       <CustomerStoriesFeature />

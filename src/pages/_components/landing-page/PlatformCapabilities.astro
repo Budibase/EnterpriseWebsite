@@ -1,5 +1,42 @@
 ---
-import ThreeColumnFeatureGrid from "@components/cards/ThreeColumnFeatureGrid.astro";
+import CardCluster from "@components/cards/CardCluster.astro";
+
+const cards = [
+  {
+    title: "Data and tables",
+    description:
+      "Manage operational data with a built-in database. Includes best-in-class SQL support.",
+  },
+  {
+    title: "100+ connections",
+    description: "Connect the systems your organisation already relies on.",
+  },
+  {
+    title: "Bring Your Own Models",
+    description:
+      "Use any model, hosted anywhere. Choose the AI that meets your requirements.",
+  },
+  {
+    title: "API explorer",
+    description: "Design, test, and document APIs directly inside Budibase.",
+  },
+  {
+    title: "Public API",
+    description:
+      "Extend and programatically automate every part of the platform.",
+  },
+  {
+    title: "Plugins and extensions",
+    description:
+      "Build custom functionality and extend Budibase to meet the needs of your organisation.",
+  },
+] as const;
 ---
 
-<ThreeColumnFeatureGrid />
+<CardCluster
+  SectionTitle="The modern operations platform."
+  SectionDescription="Connect your systems, extend the platform, and deploy AI on your terms."
+  CardBackgroundColor="forest-green"
+  Variant="white"
+  {cards}
+/>

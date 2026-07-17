@@ -2,11 +2,12 @@
 export const prerender = false;
 
 import Layout from "../../../layouts/MainLayout.astro";
-import Button from "@components/Button.astro";
+import HeroLarge from "@components/HeroLarge.astro";
 import AgentDemo from "@components/AgentDemo.astro";
 import AgentUseCases from "@components/AgentUseCases.astro";
 import AgentFeatureCards from "../../_components/landing-page/AgentFeatureCards.astro";
 import AgentOperationsSections from "./_components/AgentOperationsSections.astro";
+import AgentHeroBackground from "@assets/images/backgrounds/AgentDemo/resources-agent-demo-bg.jpg?url";
 
 const pageTitle = "AI agents that\nrun your operations";
 const pageDescription =
@@ -72,48 +73,18 @@ Access internal data tables and external APIs to execute operational tasks.
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <section class="agents-hero">
-    <div
-      class="mx-auto w-full max-w-[var(--site-container-max)] px-2 md:px-3 lg:px-0"
-    >
-      <div class="agents-hero-grid">
-        <div class="agents-hero-copy max-w-6xl">
-          <h1 class="agents-hero-title mx-auto mb-5 block w-full text-balance">
-            AI agents that run your operations
-          </h1>
-          <p class="agents-hero-subheading mx-auto max-w-3xl text-balance">
-            {pageDescription}
-          </p>
-        </div>
-
-        <div
-          class="agents-hero-cta flex flex-row flex-wrap justify-center gap-4"
-        >
-          <Button
-            label="Book a demo"
-            url="https://account.budibase.app/register"
-            variant="cta"
-            size="large"
-            target="_blank"
-          />
-          <Button
-            label="Get started"
-            url="https://account.budibase.app/register"
-            variant="secondary"
-            size="large"
-            target="_blank"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <HeroLarge
+    title="AI agents that run your operations"
+    description={pageDescription}
+    demo={AgentDemo}
+    backgroundImage={AgentHeroBackground}
+  />
 
   <section
-    class="mx-auto w-full max-w-[var(--site-container-max)] px-2 pb-12 pt-6 md:px-3 lg:px-0"
+    class="mx-auto w-full max-w-[var(--site-container-max)] px-2 py-12 md:px-3 lg:px-0"
   >
     <div class="flex flex-col gap-[var(--section-spacing-y)]">
       <div class="flex flex-col gap-[var(--section-gap-lg)]">
-        <AgentDemo />
         <AgentUseCases />
         <AgentOperationsSections />
         <AgentFeatureCards />
@@ -123,54 +94,7 @@ Access internal data tables and external APIs to execute operational tasks.
 </Layout>
 
 <style>
-  .agents-hero {
-    background: var(--bg-1);
-    padding-top: max(calc(var(--site-nav-height) + 1.2rem), 4.8rem);
-    padding-bottom: 3rem;
-  }
-
   :global(#site-nav.nav-shell) {
     background-color: var(--bg-1) !important;
-  }
-
-  .agents-hero-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-    text-align: center;
-  }
-
-  .agents-hero-title {
-    color: var(--bb-text-base);
-    font-family: var(--bb-text-display-large-font-family);
-    font-size: var(--bb-text-display-large-font-size);
-    font-weight: var(--bb-text-display-large-font-weight);
-    line-height: var(--bb-text-display-large-line-height);
-    letter-spacing: var(--bb-text-display-large-letter-spacing);
-    text-transform: var(--bb-text-display-large-text-transform);
-    transform: scaleX(0.86);
-    transform-origin: center;
-  }
-
-  .agents-hero-subheading {
-    color: var(--bb-text-base) !important;
-    font-family: var(--font-sans);
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1.4;
-    letter-spacing: -0.15px !important;
-    margin-bottom: 0 !important;
-  }
-
-  .agents-hero-cta {
-    margin-top: calc(2rem - 8px);
-  }
-
-  @media (max-width: 767px) {
-    .agents-hero {
-      padding-bottom: 2rem;
-    }
   }
 </style>

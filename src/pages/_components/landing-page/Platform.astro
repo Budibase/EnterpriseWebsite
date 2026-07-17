@@ -1,5 +1,5 @@
 ---
-import TwoColumnFeatureGrid from "@components/cards/TwoColumnFeatureGrid.astro";
+import CardCluster from "@components/cards/CardCluster.astro";
 
 const platformFeatures = [
   {
@@ -25,8 +25,11 @@ const platformFeatures = [
 ] as const;
 ---
 
-<TwoColumnFeatureGrid
-  title="Every operation. One platform."
-  subtitle="AI agents, automations, and apps designed to work together to level-up any operation."
-  features={platformFeatures}
+<CardCluster
+  columns={2}
+  CardBackgroundColor="raised"
+  SectionTitle={`Every operation.
+One platform.`}
+  SectionDescription="AI agents, automations, and apps designed to work together to level-up any operation."
+  cards={platformFeatures}
 />

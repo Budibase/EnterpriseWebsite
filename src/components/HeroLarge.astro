@@ -1,0 +1,191 @@
+---
+import Button from "@components/Button.astro";
+import type { AstroComponentFactory } from "astro/runtime/server";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  demo?: AstroComponentFactory;
+  demoProps?: Record<string, unknown>;
+  backgroundImage?: string;
+}
+
+const { title, description, image, demo, demoProps, backgroundImage } =
+  Astro.props as Props;
+
+if (!image && !demo) {
+  throw new Error("HeroLarge requires either an image or demo component.");
+}
+
+if (image && demo) {
+  throw new Error(
+    "HeroLarge accepts either an image or demo component, not both.",
+  );
+}
+
+const Demo = demo;
+---
+
+<section class="hero-large">
+  <div class="hero-large__container">
+    <div class="hero-large__copy">
+      <h1>{title}</h1>
+      <p>{description}</p>
+      <div class="hero-large__actions">
+        <Button
+          label="Book a demo"
+          url="https://account.budibase.app/register"
+          variant="cta"
+          size="large"
+          target="_blank"
+        />
+        <Button
+          label="Get started"
+          url="https://account.budibase.app/register"
+          variant="secondary"
+          size="large"
+          target="_blank"
+        />
+      </div>
+    </div>
+
+    <div
+      class:list={[
+        "hero-large__media",
+        { "hero-large__media--with-background": backgroundImage },
+      ]}
+    >
+      {
+        backgroundImage && (
+          <img
+            src={backgroundImage}
+            alt=""
+            aria-hidden="true"
+            class="hero-large__background-image"
+            loading="eager"
+            decoding="async"
+          />
+        )
+      }
+      {
+        Demo ? (
+          <div class="hero-large__demo">
+            <Demo {...demoProps} showBackground={false} />
+          </div>
+        ) : (
+          image && (
+            <img
+              src={image}
+              alt=""
+              class="hero-large__image"
+              loading="eager"
+              decoding="async"
+            />
+          )
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-large {
+    width: 100%;
+    margin-top: clamp(2rem, 4vw, 2.5rem);
+  }
+
+  .hero-large__container {
+    display: flex;
+    width: min(100%, var(--site-container-max));
+    flex-direction: column;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  .hero-large__copy {
+    display: flex;
+    width: min(100%, 72rem);
+    flex-direction: column;
+    align-items: center;
+    margin-inline: auto;
+    padding-top: calc(clamp(3rem, 5vw, 5rem) - 1rem);
+    text-align: center;
+  }
+
+  .hero-large__copy h1,
+  .hero-large__copy p {
+    margin: 0;
+  }
+
+  .hero-large__copy h1 {
+    width: 100%;
+    color: var(--bb-text-base);
+    font-family: var(--bb-text-display-large-font-family);
+    font-size: var(--bb-text-display-large-font-size);
+    font-weight: var(--bb-text-display-large-font-weight);
+    line-height: var(--bb-text-display-large-line-height);
+    letter-spacing: var(--bb-text-display-large-letter-spacing);
+    text-transform: var(--bb-text-display-large-text-transform);
+    text-wrap: balance;
+    transform: scaleX(0.86);
+    transform-origin: center;
+  }
+
+  .hero-large__copy p {
+    max-width: 48rem;
+    margin-top: 1.25rem;
+    color: var(--bb-text-base) !important;
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.15px !important;
+    text-wrap: balance;
+  }
+
+  .hero-large__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: calc(2rem - 0.5rem);
+  }
+
+  .hero-large__media {
+    position: relative;
+    width: 100%;
+    margin-top: clamp(3rem, 6vw, 6rem);
+    overflow: hidden;
+  }
+
+  .hero-large__background-image,
+  .hero-large__image {
+    display: block;
+    width: 100%;
+  }
+
+  .hero-large__background-image {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-large__media--with-background {
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .hero-large__image {
+    position: relative;
+    z-index: 1;
+    height: auto;
+  }
+
+  .hero-large__demo {
+    position: relative;
+    z-index: 1;
+  }
+
+</style>

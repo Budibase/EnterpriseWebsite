@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import SolutionLandingPage from "@components/SolutionLandingPage.astro";
+import {
+  solutionLandingPages,
+  solutionSlugs,
+  type SolutionLandingContent,
+} from "../../data/solutionLandingPages";
+
+export function getStaticPaths() {
+  return solutionSlugs.map((slug) => ({
+    params: { slug },
+    props: { content: solutionLandingPages[slug] },
+  }));
+}
+
+const { content } = Astro.props as { content: SolutionLandingContent };
+---
+
+<Layout
+  rawTitle={`${content.title} | Budibase`}
+  description={content.metaDescription}
+>
+  <SolutionLandingPage content={content} />
+</Layout>

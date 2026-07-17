@@ -66,7 +66,7 @@ export const platformDropdownMenu: NavDropdownMenu = {
           prefetch: true,
         },
         {
-          href: "/blog/ai-agents/digital-workers/",
+          href: "/product/functions/",
           label: "Functions",
           description: "Server-side functions for your workflows.",
           prefetch: true,
@@ -95,7 +95,7 @@ export const platformDropdownMenu: NavDropdownMenu = {
           prefetch: true,
         },
         {
-          href: "/product/agents/",
+          href: "/product/knowledge/",
           label: "Knowledge",
           description: "Ground agents with retrieval workflows.",
           prefetch: true,
@@ -106,25 +106,25 @@ export const platformDropdownMenu: NavDropdownMenu = {
       heading: "Scale",
       items: [
         {
-          href: "/ops/access-request/",
+          href: "/product/requests/",
           label: "Requests & Approvals",
           description: "Handle intake, approvals, and follow-up.",
           prefetch: true,
         },
         {
-          href: "/product/agents/",
+          href: "/product/activity/",
           label: "Activity & Insights",
           description: "Track activity across operational workflows.",
           prefetch: true,
         },
         {
-          href: "/security/",
+          href: "/product/admin-security/",
           label: "Admin & Security",
           description: "Controls for secure enterprise operations.",
           prefetch: true,
         },
         {
-          href: "/enterprise/",
+          href: "/product/self-host/",
           label: "Self-hosting",
           description: "Deploy Budibase in your own environment.",
           prefetch: true,
@@ -149,25 +149,25 @@ export const solutionsDropdownMenu: NavDropdownMenu = {
       heading: "Industries",
       items: [
         {
-          href: "/ops/",
+          href: "/solutions/public-sector/",
           label: "Public sector",
           description: "Secure workflows for public service teams.",
           prefetch: true,
         },
         {
-          href: "/ops/",
+          href: "/solutions/finance/",
           label: "Finance",
           description: "Controlled tools for finance operations.",
           prefetch: true,
         },
         {
-          href: "/ops/",
+          href: "/solutions/utilities/",
           label: "Utilities",
           description: "Operational workflows for utility teams.",
           prefetch: true,
         },
         {
-          href: "/ops/",
+          href: "/solutions/manufacturing/",
           label: "Manufacturing",
           description: "Digitize manufacturing operations.",
           prefetch: true,
@@ -244,27 +244,28 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
       heading: "Build",
       items: [
         {
-          href: "https://docs.budibase.com/docs/installation",
+          href: "https://docs.budibase.com/docs/hosting-methods",
           label: "Install",
           description: "Install Budibase in your own environment.",
           target: "_blank",
           rel: "noopener noreferrer",
         },
         {
-          href: "https://docs.budibase.com",
+          href: "https://docs.budibase.com/",
           label: "Docs",
           description: "Read the Budibase documentation.",
           target: "_blank",
           rel: "noopener noreferrer",
         },
         {
-          href: "/product/apis/",
+          href: "https://docs.budibase.com/reference/appcreate",
           label: "API reference",
           description: "Explore Budibase API resources.",
-          prefetch: true,
+          target: "_blank",
+          rel: "noopener noreferrer",
         },
         {
-          href: "https://github.com/budibase/budibase",
+          href: "https://github.com/Budibase/budibase",
           label: "Source code",
           description: "View the Budibase source code.",
           target: "_blank",
@@ -294,10 +295,11 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
           prefetch: true,
         },
         {
-          href: "/changelog/",
+          href: "https://github.com/Budibase/budibase/releases",
           label: "Changelog",
           description: "Product updates and release notes.",
-          prefetch: true,
+          target: "_blank",
+          rel: "noopener noreferrer",
         },
         {
           href: "https://github.com/Budibase/budibase/discussions",
@@ -318,9 +320,11 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
       heading: "Company",
       items: [
         {
-          href: "/roadmap/",
+          href: "https://github.com/orgs/Budibase/projects/15/views/7",
           label: "Roadmap",
           description: "See what the Budibase team is building.",
+          target: "_blank",
+          rel: "noopener noreferrer",
         },
         {
           href: "/about/",
@@ -328,9 +332,11 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
           description: "Learn more about Budibase.",
         },
         {
-          href: "/jobs/",
+          href: "https://budibase.bamboohr.com/careers/",
           label: "Jobs",
           description: "Explore open roles at Budibase.",
+          target: "_blank",
+          rel: "noopener noreferrer",
         },
         {
           href: "/events/",

@@ -26,7 +26,6 @@ interface Badge {
 interface Bullet {
   icon: string;
   text: string;
-  iconWeight?: string;
 }
 
 interface Action {
@@ -94,11 +93,7 @@ const linkVariant = isForest ? "secondary" : "primary";
             {visibleBullets.map((bullet) => (
               <article class="feature-section__bullet">
                 <div class="feature-section__bullet-icon" aria-hidden="true">
-                  <Icon
-                    name={bullet.icon}
-                    size="24"
-                    weight={bullet.iconWeight}
-                  />
+                  <Icon name={bullet.icon} size="24" weight="bold" />
                 </div>
                 <div class="feature-section__bullet-copy">
                   <h3>{bullet.text}</h3>
@@ -184,7 +179,7 @@ const linkVariant = isForest ? "secondary" : "primary";
     gap: clamp(2.5rem, 6vw, 7rem);
     width: min(100%, var(--site-container-max));
     margin-inline: auto;
-    padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 3vw, 2rem);
+    padding: clamp(1.5rem, 4vw, 4rem) var(--site-content-inset);
   }
 
   .feature-section__image-panel {

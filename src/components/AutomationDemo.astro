@@ -10,6 +10,7 @@ interface Props {
   backdropImage?: string;
   backdropPaddingClass?: string;
   breakout?: boolean;
+  showBackground?: boolean;
   class?: string;
 }
 
@@ -50,11 +51,14 @@ const {
   backdropImage,
   backdropPaddingClass = "px-6 py-6 sm:px-10 sm:py-10 lg:px-32 lg:py-12",
   breakout = true,
+  showBackground = true,
   class: className = "",
 } = Astro.props as Props;
 
 const resolvedBackdropImage = backdropImage ?? BackgroundAutomation.src;
-const rootStyle = `--automation-demo-backdrop-image: url("${resolvedBackdropImage}")`;
+const rootStyle = showBackground
+  ? `--automation-demo-backdrop-image: url("${resolvedBackdropImage}")`
+  : undefined;
 const id = `automation-demo-${Math.random().toString(36).slice(2, 8)}`;
 
 const workflowNodes: WorkflowNode[] = [
@@ -164,7 +168,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   <div
     class:list={[
       "automation-demo-backdrop w-full overflow-hidden",
-      backdropPaddingClass,
+      showBackground && backdropPaddingClass,
     ]}
   >
     <div

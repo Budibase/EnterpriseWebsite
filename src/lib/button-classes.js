@@ -15,12 +15,14 @@ const sizeClasses = {
   small: "px-2.5 py-[4.5px] text-base",
   medium: "px-3 py-1.5 text-base",
   large: "px-4 py-2 text-base",
+  "extra-large": "px-7 py-2.5 text-xl",
 };
 
 const gapClasses = {
   small: "gap-1",
   medium: "gap-1.5",
   large: "gap-2",
+  "extra-large": "gap-2.5",
 };
 
 const baseClasses =
@@ -58,6 +60,7 @@ export function getButtonIconSize(size = "medium") {
     small: "16",
     medium: "18",
     large: "20",
+    "extra-large": "24",
   };
 
   return iconSizes[normalizedSize] ?? iconSizes.medium;

@@ -1023,3 +1023,69 @@ const showHostingSection = hostingItems.length > 0;
     transform: translate(-50%, 0);
   }
 </style>
+
+<script>
+  const pricingCards = document.querySelectorAll<HTMLElement>(
+    ".pricing-card[data-billing-plan]",
+  );
+
+  pricingCards.forEach((card) => {
+    const operationsSelect = card.querySelector<HTMLSelectElement>(
+      "[data-operations-select]",
+    );
+
+    if (!operationsSelect || operationsSelect.dataset.priceBound === "true") {
+      return;
+    }
+
+    operationsSelect.dataset.priceBound = "true";
+
+    operationsSelect.addEventListener("change", () => {
+      const selectedOption = operationsSelect.selectedOptions[0];
+      const amount = card.querySelector<HTMLElement>(
+        ".amount[data-annual-price]",
+      );
+
+      if (!selectedOption || !amount) {
+        return;
+      }
+
+      const currentMonthlyPrice = amount.dataset.monthlyPrice;
+      const isMonthly =
+        currentMonthlyPrice !== undefined &&
+        amount.textContent?.trim() === `$${currentMonthlyPrice}`;
+      const annualPrice = selectedOption.dataset.tierAnnualPrice;
+      const monthlyPrice = selectedOption.dataset.tierMonthlyPrice;
+      const nextPrice = isMonthly ? monthlyPrice : annualPrice;
+
+      card.dataset.tierIndex = selectedOption.dataset.tierIndex ?? "0";
+
+      if (annualPrice !== undefined) {
+        amount.dataset.annualPrice = annualPrice;
+      }
+
+      if (monthlyPrice !== undefined) {
+        amount.dataset.monthlyPrice = monthlyPrice;
+      }
+
+      if (nextPrice !== undefined) {
+        amount.textContent = `$${nextPrice}`;
+      }
+
+      const aiCredits = selectedOption.dataset.tierAi;
+      const aiCreditsValue = card.querySelector<HTMLElement>(
+        "[data-tier-ai-value]",
+      );
+      const aiCreditsItem =
+        aiCreditsValue?.closest<HTMLElement>("[data-tier-ai]");
+
+      if (aiCredits && aiCreditsValue) {
+        aiCreditsValue.textContent = aiCredits;
+
+        if (aiCreditsItem) {
+          aiCreditsItem.dataset.tierAi = aiCredits;
+        }
+      }
+    });
+  });
+</script>

@@ -11,6 +11,8 @@ interface Props {
   cardContentClass?: string;
   cardTitleClass?: string;
   linkUrl?: string;
+  linkAppearance?: "default" | "quiet";
+  linkUnderline?: boolean;
   openInNewTab?: boolean;
   showLinkIcon?: boolean;
   truncateDescription?: boolean;
@@ -29,6 +31,8 @@ const {
   cardContentClass = "",
   cardTitleClass = "",
   linkUrl,
+  linkAppearance = "default",
+  linkUnderline = false,
   openInNewTab = true,
   showLinkIcon = true,
   truncateDescription = false,
@@ -60,6 +64,8 @@ const hasBeforeTitle = Astro.slots.has("before-title");
       ariaLabel={label}
       class="card-link"
       target={openInNewTab ? "_blank" : "_self"}
+      appearance={linkAppearance}
+      underline={linkUnderline}
     >
       <div
         class={`card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 hover:bg-stone-200!  p-4 rounded-md ${className}`}

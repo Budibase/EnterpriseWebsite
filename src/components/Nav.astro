@@ -4,7 +4,7 @@ import HeaderDropDown from "@components/HeaderDropDown.astro";
 import MobileNavAccordion from "@components/MobileNavAccordion.astro";
 import { navDropdownMenus } from "@components/navDropdownData";
 
-const navLogoSrc = "/greenbudibaselogo.svg";
+const navLogoSrc = "/budibase-nav.svg";
 const [platformNavMenu, solutionsNavMenu, resourcesNavMenu] = navDropdownMenus;
 const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 ---
@@ -22,12 +22,12 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       class="z-10 shrink-0 flex items-center"
       data-astro-prefetch
     >
-      <div class="relative w-[120px] flex items-center">
+      <div class="relative w-[140px] flex items-center">
         <img
           src={navLogoSrc}
           alt="Budibase logo"
-          width="120"
-          height="32"
+          width="140"
+          height="21"
           class="block hover:cursor-pointer"
         />
       </div>
@@ -164,7 +164,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
             src={navLogoSrc}
             alt="Budibase logo"
             width="120"
-            height="32"
+            height="18"
             class="block"
           />
         </div>

@@ -157,7 +157,14 @@ const isCompact = menu.columns.length === 1;
                               class="header-dropdown-link__arrow"
                               aria-hidden="true"
                             >
-                              <Icon name="ArrowRightBold" size="14" />
+                              <Icon
+                                name={
+                                  target === "_blank"
+                                    ? "ArrowUpRightBold"
+                                    : "ArrowRightBold"
+                                }
+                                size="14"
+                              />
                             </span>
                           </span>
                           {description && (

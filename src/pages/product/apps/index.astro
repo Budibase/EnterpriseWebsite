@@ -3,7 +3,7 @@ export const prerender = false;
 
 import Layout from "../../../layouts/MainLayout.astro";
 import AppDemoBackground from "@assets/images/backgrounds/app-demo-bg.jpg?url";
-import Button from "@components/Button.astro";
+import HeroLarge from "@components/HeroLarge.astro";
 import Card from "@components/cards/Card.astro";
 import AppProcessOutcomeSection from "@components/AppProcessOutcomeSection.astro";
 import AppDemo from "@components/AppDemo.astro";
@@ -105,47 +105,19 @@ Budibase Apps offer custom JavaScript and CSS for advanced use cases.
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <section class="apps-hero">
-    <div
-      class="mx-auto w-full max-w-[var(--site-container-max)] px-2 md:px-3 lg:px-0"
-    >
-      <div class="apps-hero-copy mx-auto max-w-6xl">
-        <h1 class="apps-hero-title mx-auto mb-5 block w-full text-balance">
-          Build internal tools in minutes
-        </h1>
-        <p class="apps-hero-subheading mx-auto max-w-3xl text-balance">
-          {pageDescription}
-        </p>
-      </div>
-      <div class="apps-hero-cta">
-        <Button
-          label="Book a demo"
-          url="https://account.budibase.app/register"
-          variant="cta"
-          size="large"
-          target="_blank"
-        />
-        <Button
-          label="Get started"
-          url="https://account.budibase.app/register"
-          variant="secondary"
-          size="large"
-          target="_blank"
-        />
-      </div>
-    </div>
-  </section>
+  <HeroLarge
+    title="Build internal tools in minutes"
+    description={pageDescription}
+    demo={AppDemo}
+    demoProps={{ breakout: false }}
+    backgroundImage={AppDemoBackground}
+  />
 
   <section
-    class="mx-auto w-full max-w-[var(--site-container-max)] px-2 pb-12 pt-6 md:px-3 lg:px-0"
+    class="mx-auto w-full max-w-[var(--site-container-max)] px-2 py-12 md:px-3 lg:px-0"
   >
     <div class="flex flex-col gap-[var(--section-spacing-y)]">
       <div class="flex flex-col gap-[var(--section-gap-lg)]">
-        <AppDemo
-          backdropImage={AppDemoBackground}
-          backdropPaddingClass="px-6 py-6 sm:px-10 sm:py-10 lg:px-12 lg:py-12"
-          breakout={false}
-        />
         <AppProcessOutcomeSection />
       </div>
 
@@ -267,53 +239,8 @@ Budibase Apps offer custom JavaScript and CSS for advanced use cases.
 </Layout>
 
 <style>
-  .apps-hero {
-    background: var(--bg-1);
-    padding-top: max(calc(var(--site-nav-height) + 1.2rem), 4.8rem);
-    padding-bottom: 3rem;
-    text-align: center;
-  }
-
   :global(#site-nav.nav-shell) {
     background-color: var(--bg-1) !important;
-  }
-
-  .apps-hero-title {
-    color: var(--bb-text-base);
-    font-family: var(--bb-text-display-large-font-family);
-    font-size: var(--bb-text-display-large-font-size);
-    font-weight: var(--bb-text-display-large-font-weight);
-    line-height: var(--bb-text-display-large-line-height);
-    letter-spacing: var(--bb-text-display-large-letter-spacing);
-    margin: 0 auto;
-    text-transform: var(--bb-text-display-large-text-transform);
-    transform: scaleX(0.86);
-    transform-origin: center;
-  }
-
-  .apps-hero-subheading {
-    color: var(--bb-text-base) !important;
-    font-family: var(--font-sans);
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1.4;
-    letter-spacing: -0.15px !important;
-    margin-bottom: 0 !important;
-    margin-top: 1.25rem;
-  }
-
-  .apps-hero-cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: calc(2rem - 8px);
-  }
-
-  @media (max-width: 767px) {
-    .apps-hero {
-      padding-bottom: 2rem;
-    }
   }
 
   .app-card-overlay {

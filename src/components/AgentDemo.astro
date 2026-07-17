@@ -21,22 +21,34 @@ import Slack from "@assets/logos/Slack.svg?url";
 import Jira from "@assets/logos/Jira.svg?url";
 import AgentDemoBackground from "@assets/images/backgrounds/AgentDemo/resources-agent-demo-bg.jpg?url";
 
+interface Props {
+  showBackground?: boolean;
+}
+
+const { showBackground = true } = Astro.props as Props;
 const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
 <div id={id} class="hero-demo w-full overflow-hidden">
   <div
-    class="hero-demo-backdrop w-full overflow-hidden px-6 py-6 sm:px-10 sm:py-10 lg:px-12 lg:py-12"
+    class:list={[
+      "hero-demo-backdrop w-full overflow-hidden px-6 py-6 sm:px-10 sm:py-10 lg:px-12 lg:py-12",
+      { "hero-demo-backdrop--bare": !showBackground },
+    ]}
   >
-    <img
-      src={AgentDemoBackground}
-      alt=""
-      aria-hidden="true"
-      class="hero-demo-backdrop-image"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-    />
+    {
+      showBackground && (
+        <img
+          src={AgentDemoBackground}
+          alt=""
+          aria-hidden="true"
+          class="hero-demo-backdrop-image"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      )
+    }
     <div
       class="hero-demo-shell w-full max-w-full overflow-hidden rounded-[6px] border-[0.5px] border-[var(--border-color)] bg-[var(--bg-1)] shadow-[0px_10px_30px_rgb(var(--text)/0.25)]"
     >
@@ -348,6 +360,10 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
   .hero-demo-backdrop {
     position: relative;
     border-radius: 8px;
+  }
+
+  .hero-demo-backdrop--bare {
+    padding: 0;
   }
 
   .hero-demo-backdrop-image {

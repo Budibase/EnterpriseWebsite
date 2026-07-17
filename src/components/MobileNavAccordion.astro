@@ -3,6 +3,7 @@ import {
   flattenMenuItems,
   type NavDropdownMenu,
 } from "@components/navDropdownData";
+import Icon from "@components/Icon.astro";
 
 interface Props {
   label: string;
@@ -42,7 +43,17 @@ const items = flattenMenuItems(menu);
                 aria-disabled="true"
                 class="mobile-nav-sub-link mobile-nav-sub-link-disabled"
               >
-                <span>{label}</span>
+                <span class="mobile-nav-sub-link__label">
+                  {label}
+                  {target === "_blank" && (
+                    <Icon
+                      name="ArrowUpRightBold"
+                      size="14"
+                      class="mobile-nav-sub-link__external-icon"
+                      aria-hidden="true"
+                    />
+                  )}
+                </span>
                 {badge && (
                   <span class="text-sm leading-none font-mono text-[var(--text-secondary)]">
                     {badge}
@@ -60,7 +71,17 @@ const items = flattenMenuItems(menu);
                 data-astro-prefetch={prefetch ? "" : undefined}
                 class="mobile-nav-sub-link font-medium nav-link transition-colors"
               >
-                <span>{label}</span>
+                <span class="mobile-nav-sub-link__label">
+                  {label}
+                  {target === "_blank" && (
+                    <Icon
+                      name="ArrowUpRightBold"
+                      size="14"
+                      class="mobile-nav-sub-link__external-icon"
+                      aria-hidden="true"
+                    />
+                  )}
+                </span>
                 {badge && (
                   <span class="text-sm leading-none font-mono text-[var(--text-secondary)]">
                     {badge}
@@ -74,3 +95,17 @@ const items = flattenMenuItems(menu);
     </ul>
   </details>
 </li>
+
+<style>
+  .mobile-nav-sub-link__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .mobile-nav-sub-link__external-icon {
+    flex: 0 0 0.875rem;
+    color: currentColor;
+    transform: translateY(-0.1rem);
+  }
+</style>

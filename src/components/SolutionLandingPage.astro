@@ -1,0 +1,75 @@
+---
+import CTA from "@components/CTA.astro";
+import FeatureSection from "@components/FeatureSection.astro";
+import HeroSmall from "@components/HeroSmall.astro";
+import StatSection from "@components/StatSection.astro";
+import type { SolutionLandingContent } from "../data/solutionLandingPages";
+import EnterpriseSection from "../pages/_components/landing-page/EnterpriseSection.astro";
+import HeroImage from "@assets/images/solutions/industry-hero.png?url";
+import FirstFeatureImage from "@assets/images/feature-sections/critical-operations.png?url";
+import SecondFeatureImage from "@assets/images/feature-sections/regulated-enterprises.png?url";
+
+interface Props {
+  content: SolutionLandingContent;
+}
+
+const { content } = Astro.props as Props;
+
+const featureImages = [
+  {
+    src: FirstFeatureImage,
+    alt: "Person working on a laptop",
+  },
+  {
+    src: SecondFeatureImage,
+    alt: "Abstract landscape illustration",
+  },
+] as const;
+---
+
+<div class="solution-landing-page">
+  <div class="site-grid-section site-grid-section--hero">
+    <HeroSmall
+      class="hero-small--white"
+      image={HeroImage}
+      imageAlt="Modern office building exterior"
+      badge={{
+        icon: content.hero.badgeIcon,
+        iconWeight: content.hero.badgeIconWeight,
+        label: content.hero.badgeLabel,
+        variant: "light",
+      }}
+      title={content.hero.headline}
+      subtitle={content.hero.subtitle}
+      action={{ label: "Book a demo", href: "/contact/" }}
+      logosHeading={content.hero.logosHeading}
+    />
+  </div>
+
+  {
+    content.features.map((feature, index) => (
+      <div class="site-grid-section site-grid-section--no-top">
+        <FeatureSection
+          variant={feature.variant}
+          image={featureImages[index].src}
+          imageAlt={featureImages[index].alt}
+          headline={feature.headline}
+          body={feature.body}
+          bullets={feature.bullets}
+        />
+      </div>
+    ))
+  }
+
+  <div class="site-grid-section site-grid-section--no-top">
+    <StatSection variant="forest-green" />
+  </div>
+
+  <div class="site-grid-section site-grid-section--no-top">
+    <EnterpriseSection variant="security" />
+  </div>
+
+  <div class="site-grid-section site-grid-section--no-top">
+    <CTA />
+  </div>
+</div>

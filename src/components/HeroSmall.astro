@@ -33,9 +33,9 @@ interface Props {
   subtitle: string;
   image: string;
   imageAlt: string;
-  logosHeading: string;
+  logosHeading?: string;
   badge?: Badge;
-  action: Action;
+  action?: Action;
   class?: string;
 }
 
@@ -62,14 +62,19 @@ const {
         }
         <h1>{title}</h1>
         <p>{subtitle}</p>
-        <Button
-          label={action.label}
-          url={action.href}
-          target={action.target}
-          rel={action.rel}
-          variant="cta"
-          size="large"
-        />
+        {
+          action && (
+            <Button
+              label={action.label}
+              url={action.href}
+              target={action.target}
+              rel={action.rel}
+              variant="cta"
+              size="extra-large"
+            />
+          )
+        }
+        <slot name="content-extra" />
       </div>
 
       <figure class="hero-small__image">
@@ -77,16 +82,21 @@ const {
       </figure>
     </div>
 
-    <div class="hero-small__logos">
-      <h2>{logosHeading}</h2>
-      <EnterpriseLogoGrid placement="hero-compact" />
-    </div>
+    {
+      logosHeading && (
+        <div class="hero-small__logos">
+          <h2>{logosHeading}</h2>
+          <EnterpriseLogoGrid placement="hero-compact" />
+        </div>
+      )
+    }
   </div>
 </section>
 
 <style>
   .hero-small {
     width: 100%;
+    padding-block: clamp(3rem, 7vw, 6rem);
     background: var(--bb-background-surface);
     color: var(--bb-text-base);
   }
@@ -94,12 +104,30 @@ const {
   .hero-small__container {
     width: min(100%, var(--site-container-max));
     margin-inline: auto;
-    padding-inline: clamp(1rem, 3vw, 2rem);
+    padding-inline: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  .hero-small--white,
+  .hero-small--white .hero-small__content {
+    background: var(--bb-background-base);
+  }
+
+  .hero-small--forest-green,
+  .hero-small--forest-green .hero-small__content {
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+  }
+
+  .hero-small--forest-green .hero-small__content h1,
+  .hero-small--forest-green .hero-small__content p,
+  .hero-small--forest-green .hero-small__logos h2 {
+    color: var(--bb-text-on-base) !important;
   }
 
   .hero-small__main {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    gap: clamp(3rem, 7vw, 7rem);
   }
 
   .hero-small__content {
@@ -109,7 +137,6 @@ const {
     justify-content: center;
     gap: 1.5rem;
     min-width: 0;
-    padding: clamp(2rem, 6vw, 6rem);
     background: var(--bb-background-surface);
   }
 
@@ -121,7 +148,7 @@ const {
 
   .hero-small__content h1 {
     font-family: var(--bb-text-display-medium-font-family);
-    font-size: clamp(3rem, 5vw, var(--bb-text-display-medium-font-size));
+    font-size: var(--bb-text-display-medium-font-size);
     font-weight: var(--bb-text-display-medium-font-weight);
     line-height: var(--bb-text-display-medium-line-height);
     letter-spacing: var(--bb-text-display-medium-letter-spacing);

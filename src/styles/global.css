@@ -5,6 +5,7 @@
   :root {
     /* bb design tokens */
     --site-container-max: 88rem;
+    --site-content-inset: clamp(1rem, 2.5vw, 2rem);
     --padding-x-small: 8px;
     --padding-small: 16px;
     --padding-medium: 24px;
@@ -489,6 +490,9 @@
       --radius-large: 24px;
       --radius-x-large: 32px;
       --radius-2x-large: 48px;
+      --bb-text-display-large-font-size: 48px;
+      --bb-text-display-medium-font-size: 40px;
+      --bb-text-display-small-font-size: 32px;
     }
   }
 }
@@ -792,6 +796,12 @@ article blockquote p {
   min-height: 2.25rem;
   padding: 0.45rem 0.75rem;
   border-radius: 9999px;
+}
+
+.nav-shell .desktop-nav-link:hover,
+.nav-shell .desktop-nav-link:focus-visible {
+  background: var(--bb-celery-200);
+  color: var(--text-primary) !important;
 }
 
 .nav-shell .header-dropdown [data-header-dropdown-trigger]:hover,
@@ -1204,12 +1214,12 @@ main ul article > a {
 .site-grid-section > div.container {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
-  padding-inline: clamp(1rem, 2.5vw, 2rem) !important;
+  padding-inline: var(--site-content-inset) !important;
 }
 
 .nav-shell > div,
 .footer-container {
-  padding-inline: clamp(1rem, 2.5vw, 2rem) !important;
+  padding-inline: var(--site-content-inset) !important;
 }
 
 @media (max-width: 767px) {

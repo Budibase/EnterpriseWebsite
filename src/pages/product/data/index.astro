@@ -1,11 +1,10 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
-import PlatformLayout from "@components/PlatformLayout.astro";
-import TitleBlock from "@components/TitleBlock.astro";
-import Button from "@components/Button.astro";
+import HeroLarge from "@components/HeroLarge.astro";
 import { getProductPageMeta } from "../_pageMeta";
 import TableDemo from "@components/TableDemo.astro";
 import Card from "@components/cards/Card.astro";
+import DataHeroBackground from "@assets/images/data/DataHeroBg.png?url";
 
 const { title: pageTitle, description: pageDescription } = getProductPageMeta(
   Astro.url.pathname,
@@ -13,101 +12,61 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <PlatformLayout
-    title={pageTitle}
-    description={pageDescription}
-    heroHeader={true}
+  <HeroLarge
+    title="Tables for operational data"
+    description="Store new data or connect PostgreSQL, MySQL, Google Sheets and more. Work with data in a spreadsheet-style interface, create views, and run AI on rows."
+    demo={TableDemo}
+    demoProps={{ breakout: false }}
+    backgroundImage={DataHeroBackground}
+  />
+
+  <section
+    class="mx-auto w-full max-w-[var(--site-container-max)] px-2 py-12 md:px-3 lg:px-0"
   >
-    <Fragment slot="header">
-      <div class="mx-auto max-w-xl">
-        <TitleBlock
-          variant="hero"
-          titleLines={[
-            { text: "Tables for" },
-            { text: "operational data" },
-          ]}
-          titleColorMode="split-primary-secondary"
-          titleClass="mb-4 w-full leading-[0.9]! tracking-[-0.02em]!"
-        />
-        <p
-          class="hero-description-small mx-auto max-w-xl text-base md:!text-xl !mb-4"
-        >
-          Store new data or connect PostgreSQL, MySQL, Google Sheets and more.
-          Work with data in a spreadsheet-style interface, create views, and
-          run AI on rows.
-        </p>
-      </div>
-      <div class="flex justify-center">
-        <Button
-          label="Try for free"
-          url="https://account.budibase.app/register"
-          variant="primary"
-          size="large"
-          target="_blank"
-        />
-        <Button
-          label="Contact sales"
-          url="/contact/"
-          variant="secondary"
-          size="large"
-          class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl ml-5"
-          target="_blank"
-        />
-      </div>
-    </Fragment>
-
-    <div class="mb-8">
-      <div class="mb-4">
-        <TableDemo />
-      </div>
-
-      <section class="mt-16 mb-8">
-        <h2 class="text-primary text-center mb-4">
-          Structure workflows with clean, reliable operational data.
-        </h2>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-2"
-        >
-          <Card
-            label="Built-in database"
-            description="Use a built-in data layer to power operational apps and workflows."
-          />
-          <Card
-            label="Spreadsheet-like GUI"
-            description="Manage data quickly with a familiar, spreadsheet-style interface."
-          />
-          <Card
-            label="External database connectors"
-            description="Connect Postgres, MySQL, and other external databases without migration overhead."
-          />
-          <Card
-            label="Structured operational data"
-            description="Model clean, reliable data to power apps, workflows, and agents."
-          />
-          <Card
-            label="Flexible data architecture"
-            description="Use built-in tables or connect external databases without disrupting your stack."
-          />
-          <Card
-            label="Table-level security"
-            description="Apply RBAC on tables and Views to control read and write access by role."
-          />
-          <Card
-            label="Data validation rules"
-            description="Enforce data quality with structured validation rules at the table level."
-          />
-          <Card
-            label="Query builder"
-            description="Create queries visually or with SQL for flexible data retrieval."
-          />
-          <Card
-            label="Audit history"
-            description="Review data changes with built-in audit history for operational traceability."
-          />
-        </div>
-      </section>
+    <h2 class="text-primary mb-4 text-center">
+      Structure workflows with clean, reliable operational data.
+    </h2>
+    <div
+      class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-2 lg:grid-cols-3"
+    >
+      <Card
+        label="Built-in database"
+        description="Use a built-in data layer to power operational apps and workflows."
+      />
+      <Card
+        label="Spreadsheet-like GUI"
+        description="Manage data quickly with a familiar, spreadsheet-style interface."
+      />
+      <Card
+        label="External database connectors"
+        description="Connect Postgres, MySQL, and other external databases without migration overhead."
+      />
+      <Card
+        label="Structured operational data"
+        description="Model clean, reliable data to power apps, workflows, and agents."
+      />
+      <Card
+        label="Flexible data architecture"
+        description="Use built-in tables or connect external databases without disrupting your stack."
+      />
+      <Card
+        label="Table-level security"
+        description="Apply RBAC on tables and Views to control read and write access by role."
+      />
+      <Card
+        label="Data validation rules"
+        description="Enforce data quality with structured validation rules at the table level."
+      />
+      <Card
+        label="Query builder"
+        description="Create queries visually or with SQL for flexible data retrieval."
+      />
+      <Card
+        label="Audit history"
+        description="Review data changes with built-in audit history for operational traceability."
+      />
     </div>
-  </PlatformLayout>
+  </section>
 </Layout>
 
 <style>

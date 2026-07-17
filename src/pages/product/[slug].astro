@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import ProductFeatureLandingPage from "@components/ProductFeatureLandingPage.astro";
+import {
+  productFeatureLandingPages,
+  productFeatureSlugs,
+  type ProductFeatureLandingContent,
+  type ProductFeatureSlug,
+} from "../../data/productFeatureLandingPages";
+
+export function getStaticPaths() {
+  return productFeatureSlugs.map((slug) => ({
+    params: { slug },
+    props: { slug, content: productFeatureLandingPages[slug] },
+  }));
+}
+
+const { slug, content } = Astro.props as {
+  slug: ProductFeatureSlug;
+  content: ProductFeatureLandingContent;
+};
+---
+
+<Layout title={content.title} description={content.metaDescription}>
+  <ProductFeatureLandingPage {slug} {content} />
+</Layout>

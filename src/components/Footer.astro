@@ -1,5 +1,5 @@
 ---
-import bbSymbolUrl from "@assets/BBSymbolWhite.svg?url";
+import footerLogoUrl from "@assets/budibase_celery200.svg?url";
 import Check from "phosphor-astro/CheckCircle.astro";
 import GlobeSimple from "phosphor-astro/GlobeSimple.astro";
 import Certificate from "phosphor-astro/Certificate.astro";
@@ -184,8 +184,7 @@ const currentYear = new Date().getFullYear();
     <div class="footer-bottom">
       <div class="footer-brand-row">
         <a href="/" class="footer-brand-link" aria-label="Budibase home">
-          <img src={bbSymbolUrl} alt="" loading="lazy" />
-          <span>Budibase</span>
+          <img src={footerLogoUrl} alt="Budibase" loading="lazy" />
         </a>
 
         <nav class="footer-social" aria-label="Social links">
@@ -364,8 +363,9 @@ const currentYear = new Date().getFullYear();
   }
 
   .footer-brand-link img {
-    width: 1.75rem;
-    height: 1.75rem;
+    display: block;
+    width: 140px;
+    height: 21px;
   }
 
   .footer-nav {

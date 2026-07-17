@@ -10,22 +10,21 @@ interface StatCard {
 }
 
 interface Props {
-  headline: string;
-  description: string;
-  cards: readonly StatCard[];
   variant?: Variant;
   class?: string;
 }
 
-const {
-  headline,
-  description,
-  cards,
-  variant = "white",
-  class: className = "",
-} = Astro.props as Props;
+const { variant = "white", class: className = "" } = Astro.props as Props;
 
-const visibleCards = cards.slice(0, 4);
+const headline = "Scale enterprise operations with confidence";
+const description =
+  "Automate thousands of actions per day with consistent speed and reliability, giving every team the confidence to scale critical operations without compromise.";
+const cards: readonly StatCard[] = [
+  { icon: "Lightning", title: "900M actions automated" },
+  { icon: "BuildingOffice", title: "100+ enterprises transformed" },
+  { icon: "Users", title: "1M+ users" },
+  { icon: "Timer", title: "99.9% uptime" },
+];
 ---
 
 <section class:list={["stat-section", `stat-section--${variant}`, className]}>
@@ -37,7 +36,7 @@ const visibleCards = cards.slice(0, 4);
 
     <div class="stat-section__grid">
       {
-        visibleCards.map((card) => (
+        cards.map((card) => (
           <article class="stat-section__card">
             <div class="stat-section__icon" aria-hidden="true">
               <Icon name={card.icon} size="24" weight={card.iconWeight} />
@@ -95,11 +94,12 @@ const visibleCards = cards.slice(0, 4);
     gap: clamp(2.5rem, 6vw, 7rem);
     width: min(100%, var(--site-container-max));
     margin-inline: auto;
-    padding: clamp(2.5rem, 6vw, 6rem) clamp(1rem, 3vw, 2rem);
+    padding: calc(clamp(2.5rem, 6vw, 6rem) + 2.5rem) clamp(1rem, 3vw, 2rem);
   }
 
   .stat-section--adjacent .stat-section__container {
-    padding-top: clamp(1.5rem, 3vw, 3rem);
+    padding-top: calc(clamp(1.5rem, 3vw, 3rem) + 2.5rem);
+    padding-bottom: calc(clamp(2.5rem, 6vw, 6rem) + 7.5rem);
   }
 
   .stat-section__intro {

@@ -2,7 +2,7 @@
 export const prerender = false;
 
 import Layout from "../../../layouts/MainLayout.astro";
-import Button from "@components/Button.astro";
+import HeroLarge from "@components/HeroLarge.astro";
 import { getProductPageMeta } from "../_pageMeta";
 import AutomationDemo from "@components/AutomationDemo.astro";
 import AutomationDemoBackground from "@assets/images/backgrounds/automation-demo-bg.jpg?url";
@@ -93,52 +93,19 @@ Add looping, branching, and conditional logic to craft intelligent rules for rea
 ---
 
 <Layout title={pageTitle} description={pageMetaDescription}>
-  <section class="automations-hero">
-    <div
-      class="mx-auto w-full max-w-[var(--site-container-max)] px-2 md:px-3 lg:px-0"
-    >
-      <div class="automations-hero-grid">
-        <div class="automations-hero-copy mx-auto max-w-6xl">
-          <h1
-            class="automations-hero-title mx-auto mb-5 block w-full text-balance"
-          >
-            Automations you can control and rely on
-          </h1>
-          <p class="automations-hero-subheading mx-auto max-w-3xl text-balance">
-            {pageDescription}
-          </p>
-        </div>
-
-        <div class="automations-hero-cta">
-          <Button
-            label="Book a demo"
-            url="https://account.budibase.app/register"
-            variant="cta"
-            size="large"
-            target="_blank"
-          />
-          <Button
-            label="Get started"
-            url="https://account.budibase.app/register"
-            variant="secondary"
-            size="large"
-            target="_blank"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+  <HeroLarge
+    title="Automations you can control and rely on"
+    description={pageDescription}
+    demo={AutomationDemo}
+    demoProps={{ breakout: false }}
+    backgroundImage={AutomationDemoBackground}
+  />
 
   <section
-    class="mx-auto w-full max-w-[var(--site-container-max)] px-2 pt-6 md:px-3 lg:px-0"
+    class="mx-auto w-full max-w-[var(--site-container-max)] px-2 py-12 md:px-3 lg:px-0"
   >
     <div class="flex flex-col gap-[var(--section-spacing-y)]">
       <div class="flex flex-col gap-[var(--section-gap-lg)]">
-        <AutomationDemo
-          backdropImage={AutomationDemoBackground}
-          backdropPaddingClass="px-6 py-6 sm:px-10 sm:py-10 lg:px-12 lg:py-12"
-          breakout={false}
-        />
         <AutomationTriggerOutcomeSection />
       </div>
     </div>
@@ -198,62 +165,8 @@ Add looping, branching, and conditional logic to craft intelligent rules for rea
 </Layout>
 
 <style>
-  .automations-hero {
-    background: var(--bg-1);
-    padding-top: max(calc(var(--site-nav-height) + 1.2rem), 4.8rem);
-    padding-bottom: 3rem;
-  }
-
   :global(#site-nav.nav-shell) {
     background-color: var(--bg-1) !important;
-  }
-
-  .automations-hero-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-    text-align: center;
-  }
-
-  .automations-hero-cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: calc(2rem - 8px);
-  }
-
-  .automations-hero-title {
-    color: var(--bb-text-base);
-    font-family: var(--font-tiktok-sans-condensed), var(--font-sans);
-    font-size: var(--bb-text-display-large-font-size);
-    font-weight: var(--bb-text-display-large-font-weight);
-    letter-spacing: var(--bb-text-display-large-letter-spacing);
-    line-height: var(--bb-text-display-large-line-height);
-    margin: 0 auto;
-    max-width: none;
-    text-transform: var(--bb-text-display-large-text-transform);
-    transform: scaleX(0.86);
-    transform-origin: center;
-  }
-
-  .automations-hero-subheading {
-    color: var(--bb-text-base);
-    font-family: var(--font-sans);
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: -0.15px;
-    line-height: 1.4;
-    margin-bottom: 0;
-    margin-top: 1.25rem;
-  }
-
-  @media (max-width: 767px) {
-    .automations-hero {
-      padding-bottom: 2rem;
-    }
   }
 
   .automation-test-card-overlay,

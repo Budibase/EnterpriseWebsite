@@ -2,11 +2,13 @@
 import { Image } from "astro:assets";
 import Icon from "@components/Icon.astro";
 import BudibaseLogo from "@assets/logos/bbSymbol.svg";
-import DataHeroBg from "@assets/images/data/DataHeroBg.png";
+import TableDemoBackdrop from "@assets/images/data/TableDemoBackdrop.png";
 
 interface Props {
   backdropImage?: string;
   backdropPaddingClass?: string;
+  breakout?: boolean;
+  showBackground?: boolean;
 }
 
 interface DemoTab {
@@ -48,11 +50,15 @@ interface DetailField {
 const {
   backdropImage,
   backdropPaddingClass = "px-6 py-6 sm:px-10 sm:py-10 lg:px-32 lg:py-12",
+  breakout = true,
+  showBackground = true,
 } = Astro.props as Props;
 
 const id = `table-demo-${Math.random().toString(36).slice(2, 8)}`;
-const resolvedBackdropImage = backdropImage ?? DataHeroBg.src;
-const rootStyle = `--table-demo-backdrop-image: url("${resolvedBackdropImage}")`;
+const resolvedBackdropImage = backdropImage ?? TableDemoBackdrop.src;
+const rootStyle = showBackground
+  ? `--table-demo-backdrop-image: url("${resolvedBackdropImage}")`
+  : undefined;
 
 const tabs: DemoTab[] = [
   { label: "Budibase DB", showLogo: true },
@@ -179,10 +185,18 @@ const detailFields: DetailField[] = [
 
 <div
   id={id}
-  class="table-demo demo-breakout w-full overflow-hidden"
+  class:list={[
+    "table-demo w-full overflow-hidden",
+    breakout && "demo-breakout",
+  ]}
   style={rootStyle}
 >
-  <div class:list={["table-demo-backdrop w-full overflow-hidden", backdropPaddingClass]}>
+  <div
+    class:list={[
+      "table-demo-backdrop w-full overflow-hidden",
+      showBackground && backdropPaddingClass,
+    ]}
+  >
     <div class="table-demo-shell">
       <div class="table-demo-window-bar">
         <div class="table-demo-window-dots" aria-hidden="true">
@@ -191,101 +205,154 @@ const detailFields: DetailField[] = [
           <span class="table-demo-window-dot"></span>
         </div>
         <div class="table-demo-window-address">budibase/data</div>
-        <button type="button" class="table-demo-window-cta">Get Budibase</button>
+        <button type="button" class="table-demo-window-cta">Get Budibase</button
+        >
       </div>
 
       <div class="table-demo-main">
         <div class="table-demo-content">
           <div class="table-demo-tabs" role="tablist" aria-label="Data tables">
-            {tabs.map((tab) => (
-              <button
-                type="button"
-                role="tab"
-                aria-selected={tab.isActive ? "true" : "false"}
-                class:list={[
-                  "table-demo-tab",
-                  tab.isActive && "is-active",
-                  tab.isIconOnly && "is-icon-only",
-                ]}
-              >
-                {tab.showLogo && (
-                  <span class="table-demo-tab-logo">
-                    <Image src={BudibaseLogo} alt="" class="h-full w-full" />
-                  </span>
-                )}
-                {tab.isIconOnly ? (
-                  <Icon name="Plus" class="h-4 w-4" />
-                ) : (
-                  <span>{tab.label}</span>
-                )}
-              </button>
-            ))}
+            {
+              tabs.map((tab) => (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={tab.isActive ? "true" : "false"}
+                  class:list={[
+                    "table-demo-tab",
+                    tab.isActive && "is-active",
+                    tab.isIconOnly && "is-icon-only",
+                  ]}
+                >
+                  {tab.showLogo && (
+                    <span class="table-demo-tab-logo">
+                      <Image src={BudibaseLogo} alt="" class="h-full w-full" />
+                    </span>
+                  )}
+                  {tab.isIconOnly ? (
+                    <Icon name="Plus" class="h-4 w-4" />
+                  ) : (
+                    <span>{tab.label}</span>
+                  )}
+                </button>
+              ))
+            }
           </div>
 
           <div class="table-demo-body">
             <div class="table-demo-grid-wrap">
-              <div class="table-demo-grid" role="table" aria-label="Access requests table">
-                <div class="table-demo-grid-row table-demo-grid-row-header" role="row">
-                  {columns.map((column) => (
-                    <div class="table-demo-grid-cell table-demo-grid-heading" role="columnheader">
-                      {column}
-                    </div>
-                  ))}
+              <div
+                class="table-demo-grid"
+                role="table"
+                aria-label="Access requests table"
+              >
+                <div
+                  class="table-demo-grid-row table-demo-grid-row-header"
+                  role="row"
+                >
+                  {
+                    columns.map((column) => (
+                      <div
+                        class="table-demo-grid-cell table-demo-grid-heading"
+                        role="columnheader"
+                      >
+                        {column}
+                      </div>
+                    ))
+                  }
                 </div>
 
-                {rows.map((row) => (
-                  <div
-                    class:list={[
-                      "table-demo-grid-row",
-                      row.isHighlighted && "is-highlighted",
-                    ]}
-                    role="row"
-                  >
-                    <div class="table-demo-grid-cell" role="cell">{row.requestId}</div>
-                    <div class="table-demo-grid-cell" role="cell">
-                      <span class="table-demo-pill table-demo-pill-neutral">
-                        {row.employee}
-                      </span>
+                {
+                  rows.map((row) => (
+                    <div
+                      class:list={[
+                        "table-demo-grid-row",
+                        row.isHighlighted && "is-highlighted",
+                      ]}
+                      role="row"
+                    >
+                      <div class="table-demo-grid-cell" role="cell">
+                        {row.requestId}
+                      </div>
+                      <div class="table-demo-grid-cell" role="cell">
+                        <span class="table-demo-pill table-demo-pill-neutral">
+                          {row.employee}
+                        </span>
+                      </div>
+                      <div class="table-demo-grid-cell" role="cell">
+                        {row.system}
+                      </div>
+                      <div class="table-demo-grid-cell" role="cell">
+                        {row.request}
+                      </div>
+                      <div class="table-demo-grid-cell" role="cell">
+                        <span
+                          class:list={[
+                            "table-demo-pill",
+                            `table-demo-pill-${row.categoryTone}`,
+                          ]}
+                        >
+                          {row.category}
+                        </span>
+                      </div>
+                      <div class="table-demo-grid-cell" role="cell">
+                        {row.submitted}
+                      </div>
+                      <div class="table-demo-grid-cell" role="cell">
+                        <span
+                          class:list={[
+                            "table-demo-pill",
+                            `table-demo-pill-${row.statusTone}`,
+                          ]}
+                        >
+                          {row.status}
+                        </span>
+                      </div>
                     </div>
-                    <div class="table-demo-grid-cell" role="cell">{row.system}</div>
-                    <div class="table-demo-grid-cell" role="cell">{row.request}</div>
-                    <div class="table-demo-grid-cell" role="cell">
-                      <span class:list={["table-demo-pill", `table-demo-pill-${row.categoryTone}`]}>
-                        {row.category}
-                      </span>
-                    </div>
-                    <div class="table-demo-grid-cell" role="cell">{row.submitted}</div>
-                    <div class="table-demo-grid-cell" role="cell">
-                      <span class:list={["table-demo-pill", `table-demo-pill-${row.statusTone}`]}>
-                        {row.status}
-                      </span>
-                    </div>
-                  </div>
-                ))}
+                  ))
+                }
               </div>
             </div>
 
-            <aside class="table-demo-detail" aria-label="Selected access request details">
+            <aside
+              class="table-demo-detail"
+              aria-label="Selected access request details"
+            >
               <div class="table-demo-detail-header">AR-1024</div>
 
               <div class="table-demo-detail-fields">
-                {detailFields.map((field) => (
-                  <div class="table-demo-field">
-                    <div class="table-demo-field-label">{field.label}</div>
-                    <div class:list={["table-demo-field-input", field.textarea && "is-textarea"]}>
-                      {field.badge ? (
-                        <span class:list={["table-demo-pill", `table-demo-pill-${field.badgeTone}`]}>
-                          {field.badge}
-                        </span>
-                      ) : (
-                        <span>{field.value}</span>
-                      )}
-                      {field.hasCaret && (
-                        <Icon name="CaretDown" class="h-3 w-3 shrink-0 text-[var(--table-demo-select-icon)]" />
-                      )}
+                {
+                  detailFields.map((field) => (
+                    <div class="table-demo-field">
+                      <div class="table-demo-field-label">{field.label}</div>
+                      <div
+                        class:list={[
+                          "table-demo-field-input",
+                          field.textarea && "is-textarea",
+                        ]}
+                      >
+                        {field.badge ? (
+                          <span
+                            class:list={[
+                              "table-demo-pill",
+                              `table-demo-pill-${field.badgeTone}`,
+                            ]}
+                          >
+                            {field.badge}
+                          </span>
+                        ) : (
+                          <span>{field.value}</span>
+                        )}
+                        {field.hasCaret && (
+                          <Icon
+                            name="CaretDown"
+                            class="h-3 w-3 shrink-0 text-[var(--table-demo-select-icon)]"
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                }
               </div>
             </aside>
           </div>

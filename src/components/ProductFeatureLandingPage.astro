@@ -1,0 +1,119 @@
+---
+import CTA from "@components/CTA.astro";
+import FeatureSection from "@components/FeatureSection.astro";
+import HeroSmall from "@components/HeroSmall.astro";
+import StatSection from "@components/StatSection.astro";
+import CardCluster from "@components/cards/CardCluster.astro";
+import type {
+  ProductFeatureLandingContent,
+  ProductFeatureSlug,
+} from "../data/productFeatureLandingPages";
+
+import FunctionsHeroImage from "@assets/images/platform/AgentInAutomations.png?url";
+import FunctionsFeatureOneImage from "@assets/images/platform/AgentTools.png?url";
+import FunctionsFeatureTwoImage from "@assets/images/automations/BackgroundAutomationSquare.png?url";
+import KnowledgeHeroImage from "@assets/images/platform/AgentInstructions.png?url";
+import KnowledgeFeatureOneImage from "@assets/images/platform/AgentPreview.png?url";
+import KnowledgeFeatureTwoImage from "@assets/images/platform/AgentInstructions2.png?url";
+import RequestsHeroImage from "@assets/images/apps/apps hero.png?url";
+import RequestsFeatureOneImage from "@assets/images/homepage/Website_Hero_Activity_Screen.png?url";
+import RequestsFeatureTwoImage from "@assets/images/apps/cards/2.png?url";
+import ActivityHeroImage from "@assets/images/homepage/Website_Hero_Activity_Screen.png?url";
+import ActivityFeatureOneImage from "@assets/images/platform/AgentLogs.png?url";
+import ActivityFeatureTwoImage from "@assets/images/DataTables/hero.png?url";
+import SelfHostHeroImage from "@assets/images/feature-sections/critical-operations.png?url";
+import SelfHostFeatureOneImage from "@assets/images/feature-sections/regulated-enterprises.png?url";
+import SelfHostFeatureTwoImage from "@assets/images/platform/PlatformCockapoo.png?url";
+import AdminSecurityHeroImage from "@assets/images/feature-sections/regulated-enterprises.png?url";
+import AdminSecurityFeatureOneImage from "@assets/images/feature-sections/critical-operations.png?url";
+import AdminSecurityFeatureTwoImage from "@assets/images/homepage/connectionsBGImage.png?url";
+
+interface Props {
+  slug: ProductFeatureSlug;
+  content: ProductFeatureLandingContent;
+}
+
+const { slug, content } = Astro.props as Props;
+
+const pageImages: Record<
+  ProductFeatureSlug,
+  {
+    hero: string;
+    features: readonly [string, string];
+  }
+> = {
+  functions: {
+    hero: FunctionsHeroImage,
+    features: [FunctionsFeatureOneImage, FunctionsFeatureTwoImage],
+  },
+  knowledge: {
+    hero: KnowledgeHeroImage,
+    features: [KnowledgeFeatureOneImage, KnowledgeFeatureTwoImage],
+  },
+  requests: {
+    hero: RequestsHeroImage,
+    features: [RequestsFeatureOneImage, RequestsFeatureTwoImage],
+  },
+  activity: {
+    hero: ActivityHeroImage,
+    features: [ActivityFeatureOneImage, ActivityFeatureTwoImage],
+  },
+  "self-host": {
+    hero: SelfHostHeroImage,
+    features: [SelfHostFeatureOneImage, SelfHostFeatureTwoImage],
+  },
+  "admin-security": {
+    hero: AdminSecurityHeroImage,
+    features: [AdminSecurityFeatureOneImage, AdminSecurityFeatureTwoImage],
+  },
+};
+
+const images = pageImages[slug];
+---
+
+<div class="product-feature-landing-page">
+  <div class="site-grid-section site-grid-section--hero">
+    <HeroSmall
+      image={images.hero}
+      imageAlt={content.hero.imageAlt}
+      badge={{
+        icon: content.hero.badgeIcon,
+        label: content.hero.badgeLabel,
+      }}
+      title={content.hero.headline}
+      subtitle={content.hero.subtitle}
+      action={{ label: "Book a demo", href: "/contact/" }}
+      logosHeading={content.hero.logosHeading}
+    />
+  </div>
+
+  {
+    content.features.map((feature, index) => (
+      <div class="site-grid-section site-grid-section--no-top">
+        <FeatureSection
+          image={images.features[index]}
+          imageAlt={`${feature.headline} product interface`}
+          headline={feature.headline}
+          body={feature.body}
+          bullets={feature.bullets}
+        />
+      </div>
+    ))
+  }
+
+  <div class="site-grid-section site-grid-section--no-top">
+    <CardCluster
+      SectionTitle={content.cardCluster.title}
+      SectionDescription={content.cardCluster.description}
+      cards={content.cardCluster.cards}
+    />
+  </div>
+
+  <div class="site-grid-section site-grid-section--no-top">
+    <StatSection />
+  </div>
+
+  <div class="site-grid-section site-grid-section--no-top">
+    <CTA />
+  </div>
+</div>
