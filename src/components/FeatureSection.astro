@@ -31,6 +31,7 @@ interface Bullet {
 interface Action {
   label: string;
   href: string;
+  variant?: "primary" | "secondary" | "cta" | "cta-on-base" | "outline-on-base";
   target?: string;
   rel?: string;
 }
@@ -113,7 +114,7 @@ const linkVariant = isForest ? "secondary" : "primary";
                 url={primaryAction.href}
                 target={primaryAction.target}
                 rel={primaryAction.rel}
-                variant={buttonVariant}
+                variant={primaryAction.variant ?? buttonVariant}
               />
             )}
             {linkAction && (

@@ -1,0 +1,628 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import Button from "@components/Button.astro";
+import FeatureBadge from "@components/FeatureBadge.astro";
+import FeatureSection from "@components/FeatureSection.astro";
+import StatSection from "@components/StatSection.astro";
+import CardCluster from "@components/cards/CardCluster.astro";
+import cavehillImage from "@assets/images/backgrounds/light/apps-cavehill.jpg?url";
+
+const pageTitle = "About Budibase | Building better operations";
+const pageDescription =
+  "Meet Budibase, the open platform for building agents, apps, and automations that run your operations.";
+
+const storyBullets = [
+  {
+    icon: "GitFork",
+    iconWeight: "fill",
+    text: "Open source at the foundation, so teams can inspect, extend, and shape the platform.",
+  },
+  {
+    icon: "CloudCheck",
+    iconWeight: "fill",
+    text: "Deploy with Budibase Cloud or in your own infrastructure, including air-gapped environments.",
+  },
+  {
+    icon: "Path",
+    iconWeight: "fill",
+    text: "Connect the systems you already trust instead of moving everything into another walled garden.",
+  },
+] as const;
+
+const principles = [
+  {
+    number: "1",
+    title: "Operations are every organization’s competitive advantage.",
+    description:
+      "Every organization runs on operations. The businesses that execute operational work faster, more accurately, and more efficiently deliver better outcomes for their customers, employees, and stakeholders.",
+  },
+  {
+    number: "2",
+    title: "AI must be governed, not just intelligent.",
+    description:
+      "Enterprise AI must be transparent, auditable, and accountable. Human oversight, policies, and governance are essential for organizations to trust AI with critical operational work.",
+  },
+  {
+    number: "3",
+    title: "Organizations deserve digital sovereignty.",
+    description:
+      "Organizations should control their data, infrastructure, and AI—not be constrained by proprietary platforms or vendor lock-in. Open architectures and deployment flexibility give enterprises the freedom to build on their own terms.",
+  },
+] as const;
+
+const leaders = [
+  { name: "Joseph Johnston", initials: "JJ" },
+  { name: "Michael Shanks", initials: "MS" },
+  { name: "Conor", initials: "C" },
+  { name: "Jose", initials: "J" },
+  { name: "Kira", initials: "K" },
+] as const;
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <div class="about-page">
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="about-shell about-hero__inner">
+        <h1 id="about-title">About Budibase</h1>
+        <p class="about-hero__lede">
+          Budibase is the open platform for creating agents, apps, and
+          automations that run your operations. Connect your systems, build the
+          workflow you need, and deploy it where it makes sense for your team.
+        </p>
+        <div class="about-hero__actions">
+          <Button
+            label="Explore the platform"
+            url="/product/apps/"
+            variant="cta"
+            size="large"
+          />
+          <Button
+            label="View on GitHub"
+            url="https://github.com/Budibase/budibase"
+            variant="secondary"
+            size="large"
+            target="_blank"
+            rel="noopener noreferrer"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="about-statement" aria-labelledby="about-mission-title">
+      <div class="about-shell about-statement__inner">
+        <FeatureBadge label="Our mission" />
+        <h2 id="about-mission-title">
+          Our mission is to make the workplace faster
+        </h2>
+        <p class="about-statement__supporting">
+          Every regulated enterprise should be able to build, automate, and
+          govern its operations without sacrificing control of its data,
+          infrastructure, or processes.
+        </p>
+      </div>
+    </section>
+
+    <div class="about-feature-wrap">
+      <FeatureSection
+        variant="white"
+        image={cavehillImage}
+        imageAlt="An illustrated view across Belfast from Cave Hill"
+        badge={{
+          icon: "Sparkle",
+          iconWeight: "fill",
+          label: "The Budibase story",
+          variant: "celery",
+        }}
+        headline="It started with a problem we knew too well."
+        body="At our old jobs, we kept rebuilding the same foundations every time a team needed an internal tool. Budibase began as a better answer: one open platform that gives builders the speed to move and organizations the control to operate with confidence."
+        bullets={storyBullets}
+        primaryAction={{
+          label: "See what Budibase can do",
+          href: "/product/apps/",
+          variant: "cta",
+        }}
+      />
+    </div>
+
+    <div class="about-stats">
+      <StatSection variant="bright-green" />
+    </div>
+
+    <section
+      id="leadership"
+      class="about-leadership"
+      aria-labelledby="leadership-title"
+    >
+      <div class="about-shell">
+        <header class="about-leadership__header">
+          <FeatureBadge label="Leadership" />
+          <h2 id="leadership-title">The people leading Budibase.</h2>
+          <p>
+            A team of builders focused on making operational software more open,
+            useful, and secure.
+          </p>
+        </header>
+
+        <div class="about-leadership__grid">
+          {
+            leaders.map((leader) => (
+              <article class="about-leadership__card">
+                <div class="about-leadership__monogram" aria-hidden="true">
+                  {leader.initials}
+                </div>
+                <div>
+                  <h3>{leader.name}</h3>
+                  <p>Leadership team</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="about-principles" aria-label="How Budibase is built">
+      <CardCluster
+        columns={3}
+        Variant="white"
+        CardBackgroundColor="surface"
+        CardTitleTag="h4"
+        SectionTitle="Three things we believe about enterprise operations"
+        cards={principles}
+        class="about-principles__cluster"
+      />
+    </section>
+
+    <section class="about-open" aria-labelledby="about-open-title">
+      <div class="about-shell about-open__inner">
+        <div class="about-open__copy">
+          <p class="about-eyebrow">Open is a product decision</p>
+          <h2 id="about-open-title">Built in public. Ready for your world.</h2>
+        </div>
+        <div class="about-open__body">
+          <p>
+            Open source is part of how Budibase earns trust. It gives teams a
+            transparent foundation, the freedom to self-host, and a direct way
+            to help improve the product.
+          </p>
+          <p>
+            That same thinking shapes the whole platform: connect to the tools
+            you choose, bring the models you trust, and keep ownership of the
+            systems that run your operations.
+          </p>
+          <Button
+            label="Join the community"
+            url="https://github.com/Budibase/budibase/discussions"
+            variant="cta-on-base"
+            size="large"
+            target="_blank"
+            rel="noopener noreferrer"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="about-next" aria-labelledby="about-next-title">
+      <div class="about-shell about-next__inner">
+        <FeatureBadge label="Careers" />
+        <h2 id="about-next-title">
+          Build the future of enterprise operations.
+        </h2>
+        <p class="about-next__supporting">
+          Help organizations build, automate, and govern the work that keeps the
+          world moving.
+        </p>
+        <Button
+          label="View open roles"
+          url="https://budibase.bamboohr.com/careers/"
+          variant="cta"
+          size="large"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="about-next__action"
+        />
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  :global(#site-nav.nav-shell) {
+    background: var(--bb-celery-200) !important;
+  }
+
+  :global(.site-grid-shell) {
+    --site-grid-line: color-mix(
+      in srgb,
+      var(--bb-celery-1400) 18%,
+      transparent
+    );
+    --site-grid-dot-line: color-mix(
+      in srgb,
+      var(--bb-celery-1400) 25%,
+      transparent
+    );
+  }
+
+  .about-page {
+    --about-background: var(--bb-celery-200);
+    --about-ink: var(--bb-celery-1400);
+    background: var(--about-background);
+    color: var(--about-ink);
+    overflow: hidden;
+  }
+
+  .about-shell {
+    width: min(100%, var(--site-container-max));
+    box-sizing: border-box;
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+
+  .about-hero {
+    min-height: min(50rem, calc(100svh - var(--site-nav-height)));
+    display: flex;
+    align-items: center;
+  }
+
+  .about-hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: clamp(5rem, 11vw, 10rem);
+    text-align: center;
+  }
+
+  .about-eyebrow {
+    margin: 0 0 1.5rem;
+    color: inherit !important;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase;
+  }
+
+  .about-hero h1 {
+    max-width: 75rem;
+    margin: 0;
+    color: inherit;
+    font-family: var(--bb-text-display-large-font-family);
+    font-size: clamp(4.5rem, 10.5vw, 9.5rem);
+    font-weight: 600;
+    line-height: 0.83;
+    letter-spacing: var(--bb-text-display-large-letter-spacing);
+    text-transform: var(--bb-text-display-large-text-transform);
+    text-wrap: balance;
+  }
+
+  .about-hero__lede {
+    max-width: 48rem;
+    margin: clamp(2rem, 4vw, 3.5rem) 0 0;
+    color: inherit !important;
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    font-weight: 500;
+    line-height: 1.4;
+    text-wrap: balance;
+  }
+
+  .about-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .about-statement {
+    background: var(--bb-background-surface);
+  }
+
+  .about-statement__inner {
+    padding-block: clamp(4rem, 9vw, 8rem);
+  }
+
+  .about-statement :global(.feature-badge) {
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .about-statement h2 {
+    max-width: 68rem;
+    margin: 0;
+    color: inherit !important;
+    font-family: var(--bb-text-display-medium-font-family);
+    font-size: var(--bb-text-display-medium-font-size);
+    font-weight: var(--bb-text-display-medium-font-weight);
+    line-height: var(--bb-text-display-medium-line-height);
+    letter-spacing: var(--bb-text-display-medium-letter-spacing);
+    text-transform: var(--bb-text-display-medium-text-transform);
+    text-wrap: balance;
+  }
+
+  .about-statement__supporting {
+    max-width: 48rem;
+    margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+    color: inherit !important;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4;
+    text-wrap: balance;
+  }
+
+  .about-feature-wrap :global(.feature-section__container) {
+    padding-block: clamp(4rem, 9vw, 8rem);
+  }
+
+  .about-feature-wrap :global(.feature-section__image-panel) {
+    min-height: clamp(30rem, 50vw, 46rem);
+  }
+
+  .about-feature-wrap :global(.feature-section__content h2) {
+    font-size: clamp(2.75rem, 5vw, 5rem);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+  }
+
+  .about-principles {
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+    padding-block: clamp(5rem, 10vw, 9rem);
+  }
+
+  .about-leadership {
+    scroll-margin-top: calc(var(--site-nav-height) + 2rem);
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+    padding-block: clamp(5rem, 10vw, 9rem);
+  }
+
+  .about-leadership__header {
+    max-width: 56rem;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .about-leadership__header :global(.feature-badge) {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-leadership__header h2 {
+    margin: 0;
+    color: inherit;
+    font-family: var(--bb-text-display-medium-font-family);
+    font-size: var(--bb-text-display-medium-font-size);
+    font-weight: var(--bb-text-display-medium-font-weight);
+    line-height: var(--bb-text-display-medium-line-height);
+    letter-spacing: var(--bb-text-display-medium-letter-spacing);
+    text-transform: var(--bb-text-display-medium-text-transform);
+    text-wrap: balance;
+  }
+
+  .about-leadership__header > p:last-child {
+    max-width: 42rem;
+    margin: 1.5rem 0 0;
+    color: inherit !important;
+    font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+    line-height: 1.5;
+  }
+
+  .about-leadership__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid color-mix(in srgb, var(--about-ink) 24%, transparent);
+    border-left: 1px solid color-mix(in srgb, var(--about-ink) 24%, transparent);
+  }
+
+  .about-leadership__card {
+    display: flex;
+    min-width: 0;
+    min-height: 12rem;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    border-right: 1px solid
+      color-mix(in srgb, var(--about-ink) 24%, transparent);
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--about-ink) 24%, transparent);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: color-mix(in srgb, var(--bb-celery-100) 42%, transparent);
+  }
+
+  .about-leadership__monogram {
+    display: grid;
+    width: 3.5rem;
+    height: 3.5rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--about-ink);
+    color: var(--about-background);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .about-leadership__card h3,
+  .about-leadership__card p {
+    margin: 0;
+    color: inherit !important;
+  }
+
+  .about-leadership__card h3 {
+    overflow-wrap: anywhere;
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .about-leadership__card p {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    opacity: 0.72;
+  }
+
+  .about-principles :global(.card-cluster) {
+    --card-cluster-card-background: var(--bb-background-surface);
+    --card-cluster-card-text: var(--bb-text-base);
+    --card-cluster-card-description: color-mix(
+      in srgb,
+      var(--bb-text-base) 76%,
+      transparent
+    );
+  }
+
+  .about-principles :global(.card-cluster__header h2),
+  .about-principles :global(.card-cluster__header p) {
+    color: var(--bb-text-base) !important;
+  }
+
+  .about-principles :global(.card-cluster__image-wrap) {
+    justify-items: start;
+    padding: clamp(2rem, 4vw, 2.75rem);
+  }
+
+  .about-principles :global(.card-cluster__card) {
+    border-radius: var(--radius-large);
+  }
+
+  .about-principles :global(.card-cluster__content) {
+    min-height: 0;
+    padding: 0 clamp(2rem, 4vw, 2.75rem) clamp(2rem, 4vw, 2.75rem);
+  }
+
+  .about-principles :global(.card-cluster__card-title) {
+    font-size: clamp(1.35rem, 2vw, 1.75rem);
+    line-height: 1.1;
+  }
+
+  .about-principles :global(.card-cluster__content p) {
+    font-size: 1.0625rem;
+    line-height: 1.45;
+  }
+
+  .about-open {
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+  }
+
+  .about-open__inner {
+    display: grid;
+    gap: clamp(3rem, 8vw, 8rem);
+    padding-block: clamp(5rem, 10vw, 9rem);
+  }
+
+  .about-open h2 {
+    max-width: 42rem;
+    margin: 0;
+    color: inherit;
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.055em !important;
+    text-wrap: balance;
+  }
+
+  .about-open__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    max-width: 40rem;
+  }
+
+  .about-open__body p {
+    margin: 0;
+    color: var(--bb-text-on-base) !important;
+    font-size: clamp(1.15rem, 1.7vw, 1.35rem);
+    line-height: 1.55;
+  }
+
+  .about-open__body :global(a) {
+    margin-top: 0.75rem;
+  }
+
+  .about-next__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: clamp(6rem, 13vw, 12rem);
+    text-align: center;
+  }
+
+  .about-next {
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+  }
+
+  .about-next h2 {
+    max-width: 72rem;
+    margin: clamp(1rem, 2vw, 1.5rem) auto 0;
+    color: inherit;
+    font-family: var(--bb-text-display-large-font-family);
+    font-size: var(--bb-text-display-large-font-size);
+    font-weight: var(--bb-text-display-large-font-weight);
+    line-height: var(--bb-text-display-large-line-height);
+    letter-spacing: var(--bb-text-display-large-letter-spacing);
+    text-transform: var(--bb-text-display-large-text-transform);
+    text-wrap: balance;
+  }
+
+  .about-next__supporting {
+    max-width: 45rem;
+    margin: 2.5rem auto 0;
+    color: inherit !important;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    line-height: 1.5;
+  }
+
+  .about-next :global(.about-next__action) {
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .about-leadership__grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .about-leadership__card {
+      min-height: 18rem;
+    }
+
+    .about-open__inner {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      align-items: start;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .about-hero {
+      min-height: auto;
+    }
+
+    .about-hero h1 {
+      font-size: clamp(3.8rem, 18vw, 5.5rem);
+    }
+
+    .about-hero__actions {
+      width: 100%;
+    }
+
+    .about-hero__actions :global(a) {
+      width: 100%;
+      min-height: 3rem;
+    }
+
+    .about-feature-wrap :global(.feature-section__image-panel) {
+      min-height: auto;
+      aspect-ratio: 4 / 3;
+    }
+
+    .about-leadership__card:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-page :global(*) {
+      scroll-behavior: auto !important;
+    }
+  }
+</style>

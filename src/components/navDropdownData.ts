@@ -330,6 +330,7 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
           href: "/about/",
           label: "About",
           description: "Learn more about Budibase.",
+          prefetch: true,
         },
         {
           href: "https://budibase.bamboohr.com/careers/",
@@ -344,9 +345,10 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
           description: "Join upcoming Budibase events.",
         },
         {
-          href: "/leadership/",
+          href: "/about/#leadership",
           label: "Leadership",
           description: "Meet the Budibase leadership team.",
+          prefetch: true,
         },
       ],
     },

@@ -16,6 +16,7 @@ type CardBackgroundColor =
 interface Card {
   title: string;
   description?: string;
+  number?: string;
   image?: ImageMetadata | string;
   link?: string;
 }
@@ -24,6 +25,7 @@ interface Props {
   columns?: Columns;
   Variant?: Variant;
   CardBackgroundColor?: CardBackgroundColor;
+  CardTitleTag?: "h3" | "h4";
   SectionTitle?: string;
   SectionDescription?: string;
   cards?: readonly Card[];
@@ -71,6 +73,7 @@ const {
   columns = 3,
   Variant = "white",
   CardBackgroundColor = "forest-green",
+  CardTitleTag: cardTitleTag = "h3",
   SectionTitle,
   SectionDescription,
   cards = defaultCards,
@@ -79,6 +82,7 @@ const {
 
 const sectionVariantClass = `card-cluster--${Variant}`;
 const cardBackgroundClass = `card-cluster--cards-${CardBackgroundColor}`;
+const CardTitle = cardTitleTag;
 ---
 
 <section
@@ -117,7 +121,9 @@ const cardBackgroundClass = `card-cluster--cards-${CardBackgroundColor}`;
                 )}
 
                 <div class="card-cluster__image-wrap">
-                  {typeof image === "string" ? (
+                  {card.number ? (
+                    <span class="card-cluster__card-number">{card.number}</span>
+                  ) : typeof image === "string" ? (
                     <img
                       src={image}
                       alt={card.title}
@@ -135,7 +141,9 @@ const cardBackgroundClass = `card-cluster--cards-${CardBackgroundColor}`;
                 </div>
 
                 <div class="card-cluster__content">
-                  <h3>{card.title}</h3>
+                  <CardTitle class="card-cluster__card-title">
+                    {card.title}
+                  </CardTitle>
                   {card.description && <p>{card.description}</p>}
                 </div>
               </article>
@@ -276,6 +284,16 @@ const cardBackgroundClass = `card-cluster--cards-${CardBackgroundColor}`;
     object-position: center;
   }
 
+  .card-cluster__card-number {
+    color: var(--card-cluster-card-text);
+    font-family: var(--bb-text-display-large-font-family);
+    font-size: var(--bb-text-display-large-font-size);
+    font-weight: var(--bb-text-display-large-font-weight);
+    line-height: var(--bb-text-display-large-line-height);
+    letter-spacing: var(--bb-text-display-large-letter-spacing);
+    text-transform: var(--bb-text-display-large-text-transform);
+  }
+
   .card-cluster__content {
     display: flex;
     min-height: 9rem;
@@ -286,7 +304,7 @@ const cardBackgroundClass = `card-cluster--cards-${CardBackgroundColor}`;
     padding: 1.25rem 0;
   }
 
-  .card-cluster__content h3 {
+  .card-cluster__card-title {
     margin: 0;
     color: var(--card-cluster-card-text);
     font-size: 1.125rem;

@@ -46,7 +46,6 @@
 /resources/itil-processes/configuration-management/:page /blog/inside-it/itil-application-management/ 301
 /self-host /pricing/ 301
 /self-host/ /pricing/ 301
-/about / 301
 /careers / 301
 /blog/building-a-crud-app-with-budibase-and-next.js/ /blog/data/building-a-crud-app-with-budibase-and-nextjs/ 301
 /blog/data /blog/category/data/ 301
