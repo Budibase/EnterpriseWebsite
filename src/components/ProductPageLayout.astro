@@ -1,0 +1,83 @@
+---
+import TitleBlock from "@components/TitleBlock.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "" } = Astro.props as Props;
+const hasHeaderSlot = Astro.slots.has("header");
+---
+
+<div class="product-page-layout">
+  <div class="product-page-layout__container">
+    <header class="product-page-layout__header">
+      {
+        hasHeaderSlot ? (
+          <slot name="header" />
+        ) : (
+          <TitleBlock
+            variant="hero"
+            title={title}
+            description={description}
+            descriptionAlign="center"
+            containerClass="product-page-layout__title-block"
+            titleClass="mb-2 leading-[0.9]! tracking-[-0.02em]! text-[var(--text-primary)]"
+            descriptionClass="mx-auto max-w-xl !mb-4 !text-xl text-secondary"
+          />
+        )
+      }
+    </header>
+
+    <main class="product-page-layout__main">
+      <slot />
+    </main>
+  </div>
+</div>
+
+<style>
+  .product-page-layout {
+    width: 100%;
+  }
+
+  .product-page-layout__container {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding: 1.5rem 0.5rem 3rem;
+  }
+
+  .product-page-layout__header {
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  :global(.product-page-layout__title-block) {
+    width: 100%;
+  }
+
+  .product-page-layout__main {
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .product-page-layout__container {
+      padding-inline: 0.75rem;
+    }
+
+    .product-page-layout__header {
+      margin-top: 3.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product-page-layout__container {
+      padding-inline: 0;
+    }
+
+    .product-page-layout__header {
+      margin-top: 5rem;
+    }
+  }
+</style>

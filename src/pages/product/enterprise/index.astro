@@ -1,6 +1,6 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
-import PlatformLayout from "@components/PlatformLayout.astro";
+import ProductPageLayout from "@components/ProductPageLayout.astro";
 import HeroBg from "@assets/images/homepage/valley.png";
 import { Image } from "astro:assets";
 import Card from "@components/cards/Card.astro";
@@ -10,17 +10,15 @@ const pageDescription =
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <PlatformLayout title={pageTitle} description={pageDescription}>
+  <ProductPageLayout title={pageTitle} description={pageDescription}>
     <div
       id="control-section"
       data-section="control"
       class="content-section mb-8"
     >
-      <div class="bg-stone-100  rounded-md p-4 mb-4">
-        <h2 class="text-lg! text-stone-900 ">Control</h2>
-        <p
-          class="text-base! text-stone-600!  mb-4! lg:max-w-lg"
-        >
+      <div class="bg-stone-100 rounded-md p-4 mb-4">
+        <h2 class="text-lg! text-stone-900">Control</h2>
+        <p class="text-base! text-stone-600! mb-4! lg:max-w-lg">
           Take full control of your organization's infrastructure with advanced
           management features, custom limits, and flexible billing options.
         </p>
@@ -59,11 +57,9 @@ const pageDescription =
       data-section="support"
       class="content-section mb-8"
     >
-      <div class="bg-stone-100  rounded-md p-4 mb-4">
-        <h2 class="text-lg! text-stone-900 ">Support</h2>
-        <p
-          class="text-base! text-stone-600!  mb-4! lg:max-w-lg"
-        >
+      <div class="bg-stone-100 rounded-md p-4 mb-4">
+        <h2 class="text-lg! text-stone-900">Support</h2>
+        <p class="text-base! text-stone-600! mb-4! lg:max-w-lg">
           Get the support you need with dedicated account management,
           professional services, and guaranteed service level agreements.
         </p>
@@ -102,11 +98,9 @@ const pageDescription =
       data-section="security"
       class="content-section mb-8"
     >
-      <div class="bg-stone-100  rounded-md p-4 mb-4">
-        <h2 class="text-lg! text-stone-900 ">Security</h2>
-        <p
-          class="text-base! text-stone-600!  mb-4! lg:max-w-lg"
-        >
+      <div class="bg-stone-100 rounded-md p-4 mb-4">
+        <h2 class="text-lg! text-stone-900">Security</h2>
+        <p class="text-base! text-stone-600! mb-4! lg:max-w-lg">
           Enterprise-grade security features including single sign-on,
           comprehensive audit logs, secure configuration management, and
           self-hosting options.
@@ -140,5 +134,5 @@ const pageDescription =
         />
       </div>
     </div>
-  </PlatformLayout>
+  </ProductPageLayout>
 </Layout>

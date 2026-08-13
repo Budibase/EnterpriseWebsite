@@ -1,6 +1,6 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
-import PlatformLayout from "@components/PlatformLayout.astro";
+import ProductPageLayout from "@components/ProductPageLayout.astro";
 import { getProductPageMeta } from "../_pageMeta";
 import Sparkle from "phosphor-astro/Sparkle.astro";
 
@@ -129,7 +129,7 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <PlatformLayout title={pageTitle} description={pageDescription}>
+  <ProductPageLayout title={pageTitle} description={pageDescription}>
     <Fragment slot="header">
       <div class="mx-auto w-full max-w-3xl">
         <h1
@@ -705,7 +705,7 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
         </p>
       </section>
     </div>
-  </PlatformLayout>
+  </ProductPageLayout>
 </Layout>
 
 <script is:inline>

@@ -1,6 +1,6 @@
 ---
 import FourColumnFeatureGrid from "@components/cards/FourColumnFeatureGrid.astro";
-import HomepageSectionHeader from "@components/HomepageSectionHeader.astro";
+import TitleBlock from "@components/TitleBlock.astro";
 import Iso27001Logo from "@assets/logos/enterprise-grid/iso-27001.png?url";
 import GdprLogo from "@assets/logos/enterprise-grid/gdpr.svg?url";
 import EuAiActLogo from "@assets/logos/enterprise-grid/eu-ai-act.png?url";
@@ -109,10 +109,16 @@ const metrics = [
           <div class="enterprise-section__divider" aria-hidden="true" />
 
           <div class="enterprise-section__block enterprise-section__block--metrics">
-            <HomepageSectionHeader
-              title="Scale with confidence."
-              subtitle="Automate thousands of actions per day with consistent speed and reliability."
-              class="enterprise-section__header"
+            <TitleBlock
+              variant="homepage-section"
+              titleColorMode="split-primary-secondary"
+              titleLines={[
+                { text: "Scale with confidence." },
+                {
+                  text: "Automate thousands of actions per day with consistent speed and reliability.",
+                },
+              ]}
+              containerClass="homepage-section-header enterprise-section__header"
             />
 
             <div class="enterprise-section__dot-pattern" aria-hidden="true" />
@@ -133,10 +139,16 @@ const metrics = [
     {
       isSecurityOnly && (
         <div class="enterprise-section__block">
-          <HomepageSectionHeader
-            title="Enterprise-Grade Security."
-            subtitle="Certified to protect your data and operations, no matter the industry or use case."
-            class="enterprise-section__header"
+          <TitleBlock
+            variant="homepage-section"
+            titleColorMode="split-primary-secondary"
+            titleLines={[
+              { text: "Enterprise-Grade Security." },
+              {
+                text: "Certified to protect your data and operations, no matter the industry or use case.",
+              },
+            ]}
+            containerClass="homepage-section-header enterprise-section__header"
           />
 
           <div class="enterprise-section__compliance-grid">
@@ -183,6 +195,11 @@ const metrics = [
     background: var(--bb-background-dark-raised);
     color: var(--bb-text-on-base);
     isolation: isolate;
+  }
+
+  :global(.homepage-section-header) {
+    max-width: 44.3125rem;
+    margin-bottom: 2rem;
   }
 
   .enterprise-section--security {

@@ -6,7 +6,7 @@ import ReworldFacility from "@assets/images/homepage/customer-stories/reworld-fa
 import BulgariaLogo from "@assets/images/homepage/customer-stories/bulgaria-logo.png?url";
 import MinitabLogo from "@assets/images/homepage/customer-stories/minitab-logo.png?url";
 import BasqueLogo from "@assets/images/homepage/customer-stories/basque-logo.png?url";
-import HomepageSectionHeader from "@components/HomepageSectionHeader.astro";
+import TitleBlock from "@components/TitleBlock.astro";
 
 const customerStories = [
   {
@@ -35,9 +35,16 @@ const customerStories = [
 
 <section class="customer-stories-feature">
   <div class="customer-stories-feature__container">
-    <HomepageSectionHeader
-      title="Powering regulated enterprises."
-      subtitle="Run your operations on a reliable platform that adapts to your needs."
+    <TitleBlock
+      variant="homepage-section"
+      titleColorMode="split-primary-secondary"
+      titleLines={[
+        { text: "Powering regulated enterprises." },
+        {
+          text: "Run your operations on a reliable platform that adapts to your needs.",
+        },
+      ]}
+      containerClass="homepage-section-header"
     />
 
     <div class="customer-stories-feature__featured">
@@ -115,6 +122,11 @@ const customerStories = [
     width: min(100%, 64rem);
     margin-inline: auto;
     padding-inline: 0.5rem;
+  }
+
+  :global(.homepage-section-header) {
+    max-width: 44.3125rem;
+    margin-bottom: 2rem;
   }
 
   .customer-stories-feature__featured {

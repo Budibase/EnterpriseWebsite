@@ -1,6 +1,6 @@
 ---
 import Icon from "@components/Icon.astro";
-import HomepageSectionHeader from "@components/HomepageSectionHeader.astro";
+import TitleBlock from "@components/TitleBlock.astro";
 
 interface Feature {
   title: string;
@@ -32,10 +32,11 @@ const toneClass = tone === "on-dark" ? "four-column-feature-grid--on-dark" : "";
 
 <section class={`four-column-feature-grid ${toneClass} ${className}`}>
   <div class="four-column-feature-grid__container">
-    <HomepageSectionHeader
-      title={title}
-      subtitle={subtitle}
-      class="four-column-feature-grid__header"
+    <TitleBlock
+      variant="homepage-section"
+      titleColorMode="split-primary-secondary"
+      titleLines={[{ text: title }, { text: subtitle }]}
+      containerClass="homepage-section-header four-column-feature-grid__header"
     />
 
     <div class="four-column-feature-grid__grid">
@@ -82,6 +83,11 @@ const toneClass = tone === "on-dark" ? "four-column-feature-grid--on-dark" : "";
     width: min(100%, var(--four-column-feature-grid-container-width, 64rem));
     margin-inline: auto;
     padding-inline: 0.5rem;
+  }
+
+  :global(.homepage-section-header) {
+    max-width: 44.3125rem;
+    margin-bottom: 2rem;
   }
 
   .four-column-feature-grid__grid {

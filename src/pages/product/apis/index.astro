@@ -1,10 +1,10 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
-import PlatformLayout from "@components/PlatformLayout.astro";
+import ProductPageLayout from "@components/ProductPageLayout.astro";
 import { getProductPageMeta } from "../_pageMeta";
 import Card from "@components/cards/Card.astro";
 import APIExplorerDemo from "@components/APIExplorerDemo.astro";
-import Button from "@components/Button.astro"
+import Button from "@components/Button.astro";
 
 const { title: pageTitle, description: pageDescription } = getProductPageMeta(
   Astro.url.pathname,
@@ -12,25 +12,25 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <PlatformLayout title={pageTitle} description={pageDescription}>
+  <ProductPageLayout title={pageTitle} description={pageDescription}>
     <div class="mb-8">
-                        <div class="platform-page-header-cta">
-                  <Button
-                    label="Try for free"
-                    url="https://account.budibase.app/register"
-                    variant="primary"
-                    size="large"
-                    target="_blank"
-                  />
-                  <Button
-                    label="Contact sales"
-                     url="/contact/"
-                     variant="secondary"
-                     size="large"
-                     class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl ml-5"
-                     target="_blank"
-                   />
-                </div>
+      <div class="platform-page-header-cta">
+        <Button
+          label="Try for free"
+          url="https://account.budibase.app/register"
+          variant="primary"
+          size="large"
+          target="_blank"
+        />
+        <Button
+          label="Contact sales"
+          url="/contact/"
+          variant="secondary"
+          size="large"
+          class="px-6 py-3 text-xl md:px-7 md:py-3.5 md:text-xl ml-5"
+          target="_blank"
+        />
+      </div>
       <div class="mb-4">
         <APIExplorerDemo />
       </div>
@@ -81,13 +81,13 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
         </div>
       </section>
     </div>
-  </PlatformLayout>
+  </ProductPageLayout>
 </Layout>
 
 <style>
-    .platform-page-header-cta {
+  .platform-page-header-cta {
     display: flex;
     justify-content: center;
-    margin-bottom: 16px
+    margin-bottom: 16px;
   }
 </style>

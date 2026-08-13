@@ -5,7 +5,7 @@ interface TitleLine {
 }
 
 interface Props {
-  variant: "hero-large" | "hero" | "section";
+  variant: "hero-large" | "hero" | "section" | "homepage-section";
   title?: string;
   titleLines?: TitleLine[];
   titleColorMode?:
@@ -36,10 +36,13 @@ const titleBaseClass =
     ? "hero-title"
     : variant === "hero"
       ? "hero-title-small"
-      : "section-title";
+      : variant === "homepage-section"
+        ? "homepage-section-header__title"
+        : "section-title";
 const mobileHeroTitleClass =
   variant === "hero" ? "max-md:text-[44px]!" : undefined;
-const HeadingTag = variant === "section" ? "h2" : "h1";
+const HeadingTag =
+  variant === "section" || variant === "homepage-section" ? "h2" : "h1";
 const hasTitleLines = titleLines.length > 0;
 
 function getLineColorClass(index: number) {
@@ -117,5 +120,14 @@ function getLineColorClass(index: number) {
   .section-title {
     font-size: 32px;
     line-height: 1.1;
+  }
+
+  .homepage-section-header__title {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1.625rem;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: 0;
   }
 </style>

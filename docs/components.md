@@ -15,10 +15,9 @@ responsive behavior, and interaction patterns remain consistent.
 - `src/pages/**/_components/` contains components owned by a specific page or
   page family. Move one into `src/components/` when unrelated pages begin using
   it.
-- `src/components/ui/` currently contains the shared `FilterTabs` component and
-  an experimental component set used by `/ui-kit/`. Do not treat the
-  experimental components as replacements for production components without a
-  deliberate migration.
+- `src/components/ui/` contains small, reusable interface primitives that do
+  not fit a content-specific family. `FilterTabs` is currently the canonical
+  component in this directory.
 
 ## Core components
 
@@ -80,6 +79,17 @@ responsive layout.
 These heroes serve different layouts and should remain separate. For a unique
 homepage hero, keep the implementation page-scoped unless another page adopts
 the same pattern.
+
+### Product page layouts
+
+- Use `src/components/ProductPageLayout.astro` for product pages with bespoke
+  body content and the standard compact product header.
+- Use `ProductFeatureLandingPage.astro` for data-driven product feature pages
+  that follow the hero, feature sections, card cluster, stats, and CTA pattern.
+
+`ProductPageLayout` accepts a custom `header` slot for pages such as the
+connections directory that need controls inside the header. It does not infer
+layout behavior from the current URL.
 
 ### Page composition
 
