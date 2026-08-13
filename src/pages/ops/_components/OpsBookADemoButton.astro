@@ -1,8 +1,9 @@
 ---
-import { getButtonClasses, getButtonRel } from "../../../lib/button-classes.js";
+import Button from "@components/Button.astro";
 
-type Variant = "primary" | "secondary" | "cta" | "large";
-type Size = "small" | "medium" | "large" | "sm";
+type Variant =
+  "primary" | "secondary" | "cta" | "cta-on-base" | "outline-on-base" | "large";
+type Size = "small" | "medium" | "large" | "extra-large" | "sm";
 
 interface Props {
   label?: string;
@@ -25,18 +26,16 @@ const {
   rel,
 } = Astro.props as Props;
 
-const classes = getButtonClasses({ variant, size, className });
-const computedRel = getButtonRel({ target, rel });
 const url = `/contact?op=${encodeURIComponent(Astro.props.opSlug)}`;
 ---
 
-<a
-  href={url}
-  class={classes}
-  aria-label={ariaLabel}
-  role="button"
-  target={target}
-  rel={computedRel}
->
+<Button
   {label}
-</a>
+  {url}
+  {variant}
+  class={className}
+  {ariaLabel}
+  {size}
+  target={target}
+  {rel}
+/>

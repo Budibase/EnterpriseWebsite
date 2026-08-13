@@ -34,7 +34,8 @@ styles, and the footer. Do not create page-specific copies of the site shell.
 - Use `src/components/Link.astro` for inline or quiet links that should not look
   like buttons.
 - Use a small wrapper around `Button` when an action needs additional behavior,
-  such as scheduling metadata. Keep the visual treatment in `Button`.
+  such as scheduling metadata. Pass specialized HTML attributes through the
+  `attributes` prop and keep the visual treatment in `Button`.
 
 ### Titles and sections
 

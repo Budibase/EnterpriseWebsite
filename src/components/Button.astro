@@ -16,14 +16,10 @@ import {
 // - size?: 'small' | 'medium' | 'large' | 'extra-large' (defaults to 'medium')
 // - icon?: string (optional icon name to display before the label)
 // - iconSize?: string (optional icon size in pixels, overrides default size-based calculation)
+// - attributes?: additional HTML attributes for specialized wrappers
 
 type Variant =
-  | "primary"
-  | "secondary"
-  | "cta"
-  | "cta-on-base"
-  | "outline-on-base"
-  | "large";
+  "primary" | "secondary" | "cta" | "cta-on-base" | "outline-on-base" | "large";
 type Size = "small" | "medium" | "large" | "extra-large" | "sm";
 
 interface Props {
@@ -38,6 +34,7 @@ interface Props {
   iconSize?: string;
   target?: string;
   rel?: string;
+  attributes?: Record<string, string | boolean | undefined>;
 }
 
 const {
@@ -52,6 +49,7 @@ const {
   iconSize: providedIconSize,
   target,
   rel,
+  attributes = {},
 } = Astro.props as Props;
 const iconSize = icon
   ? (providedIconSize ?? getButtonIconSize(size))
@@ -69,12 +67,13 @@ const computedRel = getButtonRel({ target, rel });
       role="button"
       target={target}
       rel={computedRel}
+      {...attributes}
     >
       {icon && iconSize && <Icon name={icon} size={iconSize} />}
       {label}
     </a>
   ) : (
-    <button type={type} class={classes} aria-label={ariaLabel}>
+    <button type={type} class={classes} aria-label={ariaLabel} {...attributes}>
       {icon && iconSize && <Icon name={icon} size={iconSize} />}
       {label}
     </button>
