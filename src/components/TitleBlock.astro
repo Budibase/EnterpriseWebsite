@@ -15,6 +15,7 @@ interface Props {
   titleId?: string;
   containerClass?: string;
   titleClass?: string;
+  descriptionClass?: string;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   titleId,
   containerClass,
   titleClass,
+  descriptionClass,
 } = Astro.props as Props;
 
 const titleBaseClass =
@@ -74,6 +76,7 @@ function getLineColorClass(index: number) {
         class:list={[
           "title-block__description",
           descriptionAlign === "center" && "title-block__description--center",
+          descriptionClass,
         ]}
       >
         {description}

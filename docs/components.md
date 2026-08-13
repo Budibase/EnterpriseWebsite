@@ -39,10 +39,11 @@ styles, and the footer. Do not create page-specific copies of the site shell.
 
 ### Titles and sections
 
-- Use `src/components/TitleBlock.astro` for a standalone page or section title,
-  including split-color titles and an optional introductory description.
-- Use `src/components/SectionBlock.astro` when a title and description introduce
-  a larger section of slotted content.
+- Use `src/components/TitleBlock.astro` for all page and section title markup,
+  including split-color titles and introductory descriptions.
+- Use `src/components/SectionBlock.astro` when a `TitleBlock` introduces a larger
+  section of slotted content. `SectionBlock` owns layout, width, alignment, and
+  spacing; it delegates the title and description markup to `TitleBlock`.
 - Use `src/components/SectionGrid.astro` for the standard site-width section
   grid.
 

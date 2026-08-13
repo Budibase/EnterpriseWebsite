@@ -10,7 +10,8 @@ interface Props {
   variant?: "section";
   title?: string;
   titleLines?: TitleLine[];
-  titleColorMode?: "single" | "split-secondary-primary" | "split-primary-secondary";
+  titleColorMode?:
+    "single" | "split-secondary-primary" | "split-primary-secondary";
   description?: string;
   align?: "left" | "center";
   maxWidth?: "lg" | "xl" | "2xl" | "3xl" | "full";
@@ -61,10 +62,27 @@ function getWidthClass(width: Props["maxWidth"]) {
 }
 
 const copyWidthClass = getWidthClass(maxWidth);
-const rootClass = joinClasses("section-block", `is-align-${align}`, `is-spacing-${spacing}`, containerClass);
-const copyWrapperClass = joinClasses("section-block-copy", "w-full", copyWidthClass, copyClass);
-const titleWrapperClass = joinClasses("section-block-title-wrap", align === "center" && "w-full");
-const resolvedTitleClass = joinClasses("m-0", align === "center" && "w-full !text-center", titleClass);
+const rootClass = joinClasses(
+  "section-block",
+  `is-align-${align}`,
+  `is-spacing-${spacing}`,
+  containerClass,
+);
+const copyWrapperClass = joinClasses(
+  "section-block-copy",
+  "w-full",
+  copyWidthClass,
+  copyClass,
+);
+const titleWrapperClass = joinClasses(
+  "section-block-title-wrap",
+  align === "center" && "w-full",
+);
+const resolvedTitleClass = joinClasses(
+  "m-0",
+  align === "center" && "w-full !text-center",
+  titleClass,
+);
 const resolvedDescriptionClass = joinClasses(
   "section-block-description",
   "hero-description-small",
@@ -81,17 +99,21 @@ const resolvedContentClass = joinClasses("section-block-content", contentClass);
       title={title}
       titleLines={titleLines}
       titleColorMode={titleColorMode}
+      description={description}
+      descriptionAlign={align === "center" ? "center" : "start"}
       containerClass={titleWrapperClass}
       titleClass={resolvedTitleClass}
+      descriptionClass={resolvedDescriptionClass}
     />
-    {description && <p class={resolvedDescriptionClass}>{description}</p>}
   </div>
 
-  {hasContent && (
-    <div class={resolvedContentClass}>
-      <slot />
-    </div>
-  )}
+  {
+    hasContent && (
+      <div class={resolvedContentClass}>
+        <slot />
+      </div>
+    )
+  }
 </div>
 
 <style>
@@ -118,8 +140,8 @@ const resolvedContentClass = joinClasses("section-block-content", contentClass);
   }
 
   .section-block.is-align-center .section-block-copy,
-  .section-block.is-align-center .section-block-title-wrap,
-  .section-block.is-align-center .section-block-description,
+  .section-block.is-align-center :global(.section-block-title-wrap),
+  .section-block.is-align-center :global(.section-block-description),
   .section-block.is-align-center .section-block-content {
     margin-inline: auto;
   }
@@ -141,12 +163,18 @@ const resolvedContentClass = joinClasses("section-block-content", contentClass);
     gap: var(--section-block-copy-gap);
   }
 
-  .section-block-title-wrap,
+  .section-block :global(.section-block-title-wrap),
   .section-block-content {
     width: 100%;
   }
 
-  .section-block-description {
+  .section-block :global(.section-block-title-wrap) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-block-copy-gap);
+  }
+
+  .section-block :global(.section-block-description) {
     margin: 0;
   }
 
