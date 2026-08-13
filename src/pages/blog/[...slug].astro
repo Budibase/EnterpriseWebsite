@@ -50,7 +50,11 @@ const transitionKey = post!.id.replaceAll("/", "-");
 const frontmatter = post!.data;
 ---
 
-<MarkdownPostLayout frontmatter={frontmatter} transitionKey={transitionKey}>
+<MarkdownPostLayout
+  frontmatter={frontmatter}
+  transitionKey={transitionKey}
+  showCTA
+>
   <article class="article my-8 max-w-2xl mx-auto">
     {
       hasHugoShortcodes ? (

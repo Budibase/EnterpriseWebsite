@@ -79,9 +79,10 @@ const caseStudyFrontmatter = caseStudy
       transitionKey={transitionKey}
       backHref="/customers/"
       backLabel="All customers"
+      showCoverImage
+      showCTA
     >
       <article class="article my-8 mx-auto max-w-2xl">
-        <div class="mb-4 text-sm text-stone-500">Customers</div>
         {CaseStudyContent && <CaseStudyContent />}
       </article>
     </MarkdownPostLayout>

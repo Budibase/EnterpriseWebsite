@@ -1,7 +1,25 @@
 ---
 import Layout from "./MainLayout.astro";
+import CTA from "@components/CTA.astro";
 import { format } from "date-fns";
 import { resolveImageReference } from "../lib/imageReference";
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    publishDate?: Date;
+    author?: string;
+    socialImage?: string;
+    coverImage?: string;
+  };
+  enableTransitions?: boolean;
+  transitionKey?: string;
+  backHref?: string;
+  backLabel?: string;
+  showCoverImage?: boolean;
+  showCTA?: boolean;
+}
 
 const {
   frontmatter,
@@ -9,7 +27,9 @@ const {
   transitionKey = "",
   backHref = "/blog/",
   backLabel = "All posts",
-} = Astro.props;
+  showCoverImage = false,
+  showCTA = false,
+} = Astro.props as Props;
 const publishDate =
   frontmatter.publishDate instanceof Date ? frontmatter.publishDate : undefined;
 const publishDateIso = publishDate?.toISOString();
@@ -89,8 +109,44 @@ if (publishDateIso) {
         )
       }
     </div>
+    {
+      showCoverImage && seoImageSrc && (
+        <img
+          src={seoImageSrc}
+          alt={frontmatter.title}
+          class="markdown-post-layout__cover mt-8 aspect-video w-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      )
+    }
   </div>
-  <div class="max-w-2xl mx-auto w-full px-5 md:px-0">
+  <div class="markdown-post-layout__body max-w-2xl mx-auto w-full px-5 md:px-0">
     <slot />
   </div>
+  {
+    showCTA && (
+      <div class="site-grid-section site-grid-section--no-top">
+        <CTA />
+      </div>
+    )
+  }
 </Layout>
+
+<style>
+  :global(.markdown-post-layout__body article) {
+    color: var(--bb-brand-forest-green);
+    font-size: 18px;
+  }
+
+  :global(.markdown-post-layout__body article p),
+  :global(.markdown-post-layout__body article ul),
+  :global(.markdown-post-layout__body article ol),
+  :global(.markdown-post-layout__body article li),
+  :global(.markdown-post-layout__body article strong),
+  :global(.markdown-post-layout__body article blockquote) {
+    color: var(--bb-brand-forest-green) !important;
+    font-size: 18px;
+  }
+</style>
