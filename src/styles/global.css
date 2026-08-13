@@ -1040,10 +1040,7 @@ main ul article > a {
 }
 
 .site-grid-rails {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+  display: none;
 }
 
 .site-grid-rails__inner {
@@ -1097,14 +1094,7 @@ main ul article > a {
 
 .nav-shell::after,
 .site-grid-shell > .footer::before {
-  position: absolute;
-  left: 50%;
-  width: min(100%, var(--site-grid-max));
-  height: 1px;
-  content: "";
-  background-image: var(--site-grid-horizontal-line);
-  transform: translateX(-50%);
-  pointer-events: none;
+  content: none;
 }
 
 .nav-shell::after {
@@ -1121,17 +1111,7 @@ main ul article > a {
 
 .nav-shell > div::before,
 .nav-shell > div::after {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  content: "";
-  background-image: repeating-linear-gradient(
-    to bottom,
-    var(--site-grid-dot-line) 0 2px,
-    transparent 2px 7px
-  );
-  pointer-events: none;
+  content: none;
 }
 
 .nav-shell > div::before {
@@ -1150,14 +1130,7 @@ main ul article > a {
 
 .site-grid-section::before,
 .site-grid-section--border-bottom::after {
-  position: absolute;
-  left: 50%;
-  width: min(100%, var(--site-grid-max));
-  height: 1px;
-  content: "";
-  background-image: var(--site-grid-horizontal-line);
-  transform: translateX(-50%);
-  pointer-events: none;
+  content: none;
 }
 
 .site-grid-section::before {

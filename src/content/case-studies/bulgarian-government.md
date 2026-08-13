@@ -2,7 +2,7 @@
 title: Bulgarian Government
 quote: "The Bulgarian Gov rehomes 100,000 refugees using Budibase"
 employees: "83,943 employees"
-industry: Government
+industry: Government & Public Services
 coverImage: /src/assets/images/case-studies/bulgarian-government.jpg
 author:
   name: Bozhidar Bozhanov
@@ -28,4 +28,3 @@ Budibase was mission-critical for us and went a long way in preventing what coul
 We have plans to use Budibase in the future for other governmental use cases here in Bulgaria, including data collection applications, forms, questionnaires, and workflow-based applications internally.
 
 I'd like to thank the Budibase team for creating such a wonderful platform.
-

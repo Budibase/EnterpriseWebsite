@@ -3,6 +3,7 @@ import Button from "@components/Button.astro";
 import Card from "@components/cards/Card.astro";
 import FeatureBadge from "@components/FeatureBadge.astro";
 import Icon from "@components/Icon.astro";
+import TitleBlock from "@components/TitleBlock.astro";
 import EnterpriseLogoGrid from "../../_components/landing-page/EnterpriseLogoGrid.astro";
 import PricingCard from "./PricingCard.astro";
 import pricingData from "./pricing.json";
@@ -379,13 +380,13 @@ const faqItems: FaqItem[] = [
     <section class="pricing-hero" aria-labelledby="pricing-heading">
       <div class="pricing-hero__copy">
         <FeatureBadge label="Pricing" />
-        <h1 id="pricing-heading" class="pricing-hero__title">
-          Open source flexibility. Enterprise control.
-        </h1>
-        <p class="pricing-hero__subtitle">
-          Start for free. Scale with the controls and support your organization
-          needs.
-        </p>
+        <TitleBlock
+          variant="hero-large"
+          titleId="pricing-heading"
+          title="Open source flexibility. Enterprise control."
+          description="Start for free. Scale with the controls and support your organization needs."
+          descriptionAlign="center"
+        />
       </div>
 
       <div id="self-host-pricing" class="pricing-self-host-grid">
@@ -517,15 +518,12 @@ const faqItems: FaqItem[] = [
       >
         FAQs
       </h2>
-      <div
-        data-faq-accordion
-        class="border-t border-dotted border-stone-300/80"
-      >
+      <div data-faq-accordion>
         {
           faqItems.map((item) => (
             <details
               data-faq-item
-              class="group border-b border-dotted border-stone-300/80 "
+              class="group"
             >
               <summary class="list-none [&::-webkit-details-marker]:hidden min-h-[64px] py-4 md:py-5 cursor-pointer flex items-center justify-between gap-4 text-left text-stone-900  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500  focus-visible:ring-offset-2">
                 <h3 class="m-0 text-lg md:text-xl text-stone-900 ">
@@ -590,31 +588,8 @@ const faqItems: FaqItem[] = [
     text-align: center;
   }
 
-  .pricing-hero__title {
-    margin: 0;
-    color: var(--bb-text-base);
-    font-family: var(--bb-text-display-medium-font-family);
-    font-size: var(--bb-text-display-medium-font-size);
-    font-weight: var(--bb-text-display-medium-font-weight);
-    line-height: var(--bb-text-display-medium-line-height);
-    letter-spacing: var(--bb-text-display-medium-letter-spacing);
-    text-transform: var(--bb-text-display-medium-text-transform);
-    text-wrap: balance;
-  }
-
   .pricing-hero__copy :global(.feature-badge) {
     margin-bottom: 1.25rem;
-  }
-
-  .pricing-hero__subtitle {
-    max-width: 38rem;
-    margin: 1.25rem auto 0;
-    color: var(--bb-text-subtle);
-    font-family: var(--font-sans);
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.4;
-    text-wrap: balance;
   }
 
   .pricing-self-host-grid {
@@ -776,12 +751,7 @@ const faqItems: FaqItem[] = [
   }
 
   .pricing-grid-divider {
-    width: min(100vw, var(--site-container-max));
-    height: 1px;
-    margin: clamp(1.75rem, 4vw, 3rem) auto 0;
-    margin-left: 50%;
-    background-image: var(--site-grid-horizontal-line);
-    transform: translateX(-50%);
+    display: none;
   }
 
   .pricing-logo-grid {

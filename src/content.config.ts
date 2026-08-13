@@ -105,7 +105,9 @@ const caseStudies = defineCollection({
       ),
     industry: z
       .string()
-      .describe("Industry or sector, e.g. 'Transport and logistics'"),
+      .describe(
+        "Consolidated industry or sector, e.g. 'Logistics & Transportation'",
+      ),
     coverImage: z
       .string()
       .optional()

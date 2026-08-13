@@ -49,7 +49,6 @@
 /careers / 301
 /blog/building-a-crud-app-with-budibase-and-next.js/ /blog/data/building-a-crud-app-with-budibase-and-nextjs/ 301
 /blog/data /blog/category/data/ 301
-/customers/reworld /blog/reworld/ 301
 /eula /terms/ 301
 /integrations/*  /product/connections/  301
 /host-a-web-app /product/apps/ 301
@@ -61,6 +60,17 @@
 /budibase.com / 301
 /blog/web-applicationdevelopment/ /blog/web-application-development/ 301
 /customers/covanta /customers/ 301
+/blog/bulgarian-government/ /customers/bulgarian-government/ 301
+/blog/geis/ /customers/geis/ 301
+/blog/herrenknecht/ /customers/herrenknecht/ 301
+/blog/knights-brown/ /customers/knights-brown/ 301
+/blog/logistic-properties-of-the-americas/ /customers/logistic-properties-of-the-americas/ 301
+/blog/minitab/ /customers/minitab/ 301
+/blog/monoma/ /customers/monoma/ 301
+/blog/pays-basque/ /customers/pays-basque/ 301
+/blog/reworld/ /customers/reworld/ 301
+/blog/schnellecke/ /customers/schnellecke/ 301
+/blog/stroer-x/ /customers/stroer-x/ 301
 /blog/updates/page/:number  /changelog/  301
 /blog/updates/        /changelog/        301
 /blog/:category/page/:number /blog/category/:category/:number 301
@@ -72,8 +82,7 @@
 /blog/app-building/   /blog/category/app-building/   301
 /blog/data/           /blog/category/data/           301
 /blog/tutorials/      /blog/category/tutorials/      301
-/customers/str%C3%B6er-x/     /blog/stroer-x/ 301
-/customers/:page/     /blog/:page 301
+/customers/str%C3%B6er-x/     /customers/stroer-x/ 301
 /resources/     /ops/ 301
 /components/     /product/apps/ 301
 /operations/     /ops/ 301

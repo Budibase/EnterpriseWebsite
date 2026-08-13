@@ -3,26 +3,27 @@ import type { GetStaticPathsOptions, Page } from "astro";
 import Pagination from "../../../../components/Pagination.astro";
 import CardCluster from "../../../../components/cards/CardCluster.astro";
 import Layout from "../../../../layouts/MainLayout.astro";
-import BlogTopicPills from "../../../blog/_components/BlogTopicPills.astro";
+import TitleBlock from "../../../../components/TitleBlock.astro";
+import CustomerIndustryPills from "../../_components/CustomerIndustryPills.astro";
 import {
-  BLOG_TOPIC_ITEMS,
-  filterBlogFeedByTopic,
+  CUSTOMER_INDUSTRY_ITEMS,
+  filterCustomerFeedByIndustry,
+  getCustomerIndustryItem,
   getBlogFeedItems,
-  getBlogTopicItem,
-  isValidBlogTopic,
-  type BlogTopicRoute,
+  isValidCustomerIndustry,
   type BlogFeedItem,
+  type CustomerIndustryRoute,
 } from "../../../blog/_feed";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const items = await getBlogFeedItems();
 
-  return BLOG_TOPIC_ITEMS.flatMap((category) =>
-    category.id === "blog"
+  return CUSTOMER_INDUSTRY_ITEMS.flatMap((industry) =>
+    industry.id === "all"
       ? []
-      : paginate(filterBlogFeedByTopic(items, category.id), {
+      : paginate(filterCustomerFeedByIndustry(items, industry.id), {
           pageSize: 12,
-          params: { category: category.id },
+          params: { industry: industry.id },
         }),
   );
 }
@@ -32,6 +33,13 @@ interface Props {
 }
 
 const { page } = Astro.props as Props;
+const rawIndustry = Astro.params.industry ?? "all";
+const industry: Exclude<CustomerIndustryRoute, "all"> = isValidCustomerIndustry(
+  rawIndustry,
+)
+  ? rawIndustry
+  : "government-public-services";
+const currentIndustry = getCustomerIndustryItem(industry);
 
 const cards = page.data.map((item) => ({
   title: item.title,
@@ -41,36 +49,22 @@ const cards = page.data.map((item) => ({
 }));
 
 const isPaginatedArchive = page.currentPage > 1;
-
-const robots = isPaginatedArchive ? "max-image-preview:large" : undefined;
-
-const rawCategory = Astro.params.category ?? "blog";
-
-const category: BlogTopicRoute = isValidBlogTopic(rawCategory)
-  ? rawCategory
-  : "blog";
-
-const currentTopic = getBlogTopicItem(category);
-const currentCategoryLabel = currentTopic.label;
-
 const seoTitle = isPaginatedArchive
-  ? `${currentTopic.seoTitle} - Page ${page.currentPage}`
-  : currentTopic.seoTitle;
-
+  ? `${currentIndustry.label} Customer Stories - Page ${page.currentPage}`
+  : `${currentIndustry.label} Customer Stories`;
 const seoDescription = isPaginatedArchive
-  ? `Browse page ${page.currentPage} of ${page.lastPage} of our ${currentCategoryLabel.toLowerCase()} articles, guides, and insights.`
-  : currentTopic.seoDescription;
-
+  ? `Browse page ${page.currentPage} of ${page.lastPage} of Budibase customer stories in ${currentIndustry.label.toLowerCase()}.`
+  : `Explore Budibase customer stories from organizations in ${currentIndustry.label.toLowerCase()}.`;
 const allPages = [...Array(page.lastPage).keys()].map((num) => {
-  return `/blog/category/${category}${num === 0 ? "" : `/${String(num + 1)}`}`;
+  return `/customers/industry/${industry}${num === 0 ? "" : `/${String(num + 1)}`}`;
 });
 ---
 
 <Layout
   title={seoTitle}
   description={seoDescription}
-  image={{ src: "/og/blog.jpg", alt: "What's new in the Budibase ecosystem" }}
-  robots={robots}
+  image={{ src: "/og/blog.jpg", alt: "Budibase customer stories" }}
+  robots={isPaginatedArchive ? "max-image-preview:large" : undefined}
 >
   <div
     class="mt-[clamp(5.6rem,8vw,7.2rem)] w-full pb-16 max-md:mt-[max(calc(var(--site-nav-height)+1.1rem),4.8rem)]"
@@ -78,12 +72,12 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
     <header
       class="mx-auto mb-[1.4rem] grid w-full min-w-0 max-w-[var(--site-container-max)] gap-6 px-[var(--site-content-inset)] max-md:mb-4 max-md:gap-5"
     >
-      <h1
-        class="hero-title m-0 text-[clamp(2.8rem,2.3rem+2vw,4.75rem)] sm:!text-[70px] leading-[0.9] tracking-[-0.02em] text-[var(--text-primary)]"
-      >
-        Blog
-      </h1>
-      <BlogTopicPills activeTopic={category} />
+      <TitleBlock
+        variant="hero-large"
+        title="Customers"
+        description="Budibase serves over 400,000 teams in over 160+ countries and territories"
+      />
+      <CustomerIndustryPills activeIndustry={industry} />
     </header>
 
     <main class="min-h-[60vh] min-w-0">
@@ -92,7 +86,8 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
           <div class="mx-auto w-full max-w-[var(--site-container-max)] px-[var(--site-content-inset)]">
             <section class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4">
               <p class="m-0 text-[var(--text-secondary)]">
-                No posts available for {currentCategoryLabel.toLowerCase()} yet.
+                No customer stories available for{" "}
+                {currentIndustry.label.toLowerCase()} yet.
               </p>
             </section>
           </div>
@@ -101,6 +96,7 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
             columns={4}
             CardBackgroundColor="surface"
             cards={cards}
+            imageAspectRatio="16/9"
             responsiveLayout="stack"
           />
         )

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import MarkdownPostLayout from "../../layouts/MarkdownPostLayout.astro";
+import { renderBlogMarkdown } from "../../lib/render-blog-markdown.js";
 
 export type Props = {
   kind: "blog" | "caseStudy";
@@ -34,37 +35,23 @@ if (kind === "caseStudy" && !caseStudy) {
   throw new Error("Case study not found");
 }
 
-const entry = kind === "blog" ? post! : caseStudy!;
-const hasHugoShortcodes =
-  kind === "blog" && (post?.body?.includes("{{<") ?? false);
-const renderedEntry = hasHugoShortcodes ? null : await render(entry);
+if (kind === "caseStudy") {
+  return Astro.redirect(`/customers/${caseStudy!.id}/`, 301);
+}
+
+const hasHugoShortcodes = post?.body?.includes("{{<") ?? false;
+const renderedEntry = hasHugoShortcodes ? null : await render(post!);
 const Content = renderedEntry?.Content;
 const shortcodeHtml = hasHugoShortcodes
-  ? await (
-      await import("../../lib/render-blog-markdown.js")
-    ).renderBlogMarkdown(post!.body)
+  ? await renderBlogMarkdown(post!.body)
   : "";
-const transitionKey = entry.id.replaceAll("/", "-");
+const transitionKey = post!.id.replaceAll("/", "-");
 
-const frontmatter =
-  kind === "blog"
-    ? post!.data
-    : {
-        title: caseStudy!.data.title,
-        description: caseStudy!.data.quote,
-        author: caseStudy!.data.author?.name,
-        coverImage: caseStudy!.data.coverImage,
-        socialImage: caseStudy!.data.coverImage,
-      };
+const frontmatter = post!.data;
 ---
 
 <MarkdownPostLayout frontmatter={frontmatter} transitionKey={transitionKey}>
   <article class="article my-8 max-w-2xl mx-auto">
-    {
-      kind === "caseStudy" && (
-        <div class="mb-4 text-sm text-stone-500 ">Customers</div>
-      )
-    }
     {
       hasHugoShortcodes ? (
         <Fragment set:html={shortcodeHtml} />

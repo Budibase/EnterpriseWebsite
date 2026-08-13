@@ -2,21 +2,22 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import { resolveImageReference } from "../../lib/imageReference";
 import { getPublishedChangelogEntries } from "../../lib/changelog";
 
+const localFeedImages = import.meta.glob<string>(
+  "/src/assets/images/**/*.{avif,gif,jpeg,jpg,png,svg,webp}",
+  { eager: true, import: "default", query: "?url" },
+);
+
 export type ResourceCategory =
-  | "all"
-  | "blog"
-  | "product"
-  | "customers"
-  | "useCases";
+  "all" | "blog" | "product" | "customers" | "useCases";
 export type BlogCategoryRoute = "all" | "blog" | "product" | "customers";
 export const BLOG_TOPIC_ITEMS = [
   {
     id: "blog",
     label: "All blog",
     href: "/blog/",
-    seoTitle: "Blog and Resources",
+    seoTitle: "Budibase Blog",
     seoDescription:
-      "Product updates, customer stories, and workflow guides from Budibase.",
+      "Guides and insights on AI agents, app building, automation, data, and modern IT operations.",
   },
   {
     id: "ai-agents",
@@ -85,9 +86,56 @@ export const BLOG_TOPIC_ITEMS = [
 ] as const;
 export type BlogTopicRoute = (typeof BLOG_TOPIC_ITEMS)[number]["id"];
 export type BlogTopicItem = (typeof BLOG_TOPIC_ITEMS)[number];
+export const CUSTOMER_INDUSTRY_ITEMS = [
+  {
+    id: "all",
+    label: "All industries",
+    href: "/customers/",
+  },
+  {
+    id: "government-public-services",
+    label: "Government & Public Services",
+    href: "/customers/industry/government-public-services/",
+  },
+  {
+    id: "construction-engineering",
+    label: "Construction & Engineering",
+    href: "/customers/industry/construction-engineering/",
+  },
+  {
+    id: "logistics-transportation",
+    label: "Logistics & Transportation",
+    href: "/customers/industry/logistics-transportation/",
+  },
+  {
+    id: "real-estate-property",
+    label: "Real Estate & Property",
+    href: "/customers/industry/real-estate-property/",
+  },
+  {
+    id: "software-technology",
+    label: "Software & Technology",
+    href: "/customers/industry/software-technology/",
+  },
+  {
+    id: "energy-utilities",
+    label: "Energy & Utilities",
+    href: "/customers/industry/energy-utilities/",
+  },
+  {
+    id: "marketing-media",
+    label: "Marketing & Media",
+    href: "/customers/industry/marketing-media/",
+  },
+] as const;
+export type CustomerIndustryRoute =
+  (typeof CUSTOMER_INDUSTRY_ITEMS)[number]["id"];
+export type CustomerIndustryItem = (typeof CUSTOMER_INDUSTRY_ITEMS)[number];
 type BlogFeedCategory = Exclude<ResourceCategory, "all">;
 type BlogFeedCategoryLabel = "Blog" | "Product" | "Customers" | "Use cases";
-const BLOG_TOPIC_SET = new Set<string>(BLOG_TOPIC_ITEMS.map((topic) => topic.id));
+const BLOG_TOPIC_SET = new Set<string>(
+  BLOG_TOPIC_ITEMS.map((topic) => topic.id),
+);
 
 export const BLOG_CATEGORY_ITEMS: Array<{
   id: BlogCategoryRoute;
@@ -114,6 +162,7 @@ export interface BlogFeedItem {
   authorAvatar?: string;
   previewImage?: string;
   blogTopic?: BlogTopicRoute;
+  customerIndustry?: Exclude<CustomerIndustryRoute, "all">;
   blogPost?: CollectionEntry<"blog">;
   caseStudy?: CollectionEntry<"caseStudies">;
 }
@@ -146,6 +195,29 @@ function getFirstValidImage(
   return undefined;
 }
 
+export function resolvePreviewImageReference(
+  value?: string,
+): string | undefined {
+  if (!value) return undefined;
+
+  const localImage = localFeedImages[value];
+  if (localImage) return localImage;
+
+  if (value.startsWith("/src/")) return undefined;
+  return resolveImageReference(value);
+}
+
+function getFirstValidPreviewImage(
+  ...values: Array<string | undefined>
+): string | undefined {
+  for (const value of values) {
+    const resolved = resolvePreviewImageReference(value);
+    if (resolved) return resolved;
+  }
+
+  return undefined;
+}
+
 function toBlogTopic(value: string | undefined): BlogTopicRoute | undefined {
   if (!value) return undefined;
   const normalized = value.trim().toLowerCase();
@@ -153,7 +225,9 @@ function toBlogTopic(value: string | undefined): BlogTopicRoute | undefined {
   return normalized as BlogTopicRoute;
 }
 
-function getBlogTopicForPost(post: CollectionEntry<"blog">): BlogTopicRoute | undefined {
+function getBlogTopicForPost(
+  post: CollectionEntry<"blog">,
+): BlogTopicRoute | undefined {
   const frontmatterTopic = toBlogTopic(post.data.category);
   if (frontmatterTopic && frontmatterTopic !== "blog") return frontmatterTopic;
 
@@ -217,7 +291,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
         transitionKey: toTransitionKey(post.id),
         authorName,
         authorAvatar,
-        previewImage: getFirstValidImage(
+        previewImage: getFirstValidPreviewImage(
           post.data.coverImage,
           post.data.socialImage,
         ),
@@ -248,7 +322,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
         transitionKey: toTransitionKey(post.id),
         authorName,
         authorAvatar,
-        previewImage: getFirstValidImage(
+        previewImage: getFirstValidPreviewImage(
           post.data.coverImage,
           post.data.socialImage,
         ),
@@ -259,7 +333,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
   const caseStudyItems: BlogFeedItem[] = caseStudies.map((entry) => ({
     kind: "caseStudy",
     slug: entry.id,
-    href: `/blog/${entry.id}/`,
+    href: `/customers/${entry.id}/`,
     title: entry.data.title,
     description: entry.data.quote,
     category: "customers",
@@ -267,7 +341,8 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
     transitionKey: toTransitionKey(entry.id),
     sortOrder: entry.data.order,
     authorName: entry.data.author?.name,
-    previewImage: getFirstValidImage(entry.data.coverImage),
+    previewImage: getFirstValidPreviewImage(entry.data.coverImage),
+    customerIndustry: getCustomerIndustryForLabel(entry.data.industry),
     caseStudy: entry,
   }));
 
@@ -294,7 +369,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
     categoryLabel: "Product",
     publishDate: entry.data.date,
     transitionKey: toTransitionKey(`changelog-${entry.id}`),
-    previewImage: getFirstValidImage(entry.data.image?.src),
+    previewImage: getFirstValidPreviewImage(entry.data.image?.src),
   }));
 
   return sortFeed([
@@ -321,6 +396,48 @@ export function filterBlogFeedByTopic(
   const blogItems = items.filter((item) => item.category === "blog");
   if (topic === "blog") return blogItems;
   return blogItems.filter((item) => item.blogTopic === topic);
+}
+
+export function filterCustomerFeedByIndustry(
+  items: BlogFeedItem[],
+  industry: Exclude<CustomerIndustryRoute, "all">,
+): BlogFeedItem[] {
+  return items.filter(
+    (item) =>
+      item.category === "customers" && item.customerIndustry === industry,
+  );
+}
+
+function getCustomerIndustryForLabel(
+  label: string,
+): Exclude<CustomerIndustryRoute, "all"> {
+  const item = CUSTOMER_INDUSTRY_ITEMS.find((entry) => entry.label === label);
+
+  if (!item || item.id === "all") {
+    throw new Error(`Unknown customer industry: ${label}`);
+  }
+
+  return item.id;
+}
+
+export function getCustomerIndustryItem(
+  industry: Exclude<CustomerIndustryRoute, "all">,
+): CustomerIndustryItem {
+  const item = CUSTOMER_INDUSTRY_ITEMS.find((entry) => entry.id === industry);
+
+  if (!item) {
+    throw new Error(`Unknown customer industry: ${industry}`);
+  }
+
+  return item;
+}
+
+export function isValidCustomerIndustry(
+  value: string,
+): value is Exclude<CustomerIndustryRoute, "all"> {
+  return CUSTOMER_INDUSTRY_ITEMS.some(
+    (industry) => industry.id === value && industry.id !== "all",
+  );
 }
 
 export function getBlogTopicItem(topic: BlogTopicRoute): BlogTopicItem {

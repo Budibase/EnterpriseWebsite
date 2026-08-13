@@ -1,18 +1,18 @@
 ---
 import type { GetStaticPathsOptions, Page } from "astro";
 import Pagination from "../../components/Pagination.astro";
+import CardCluster from "../../components/cards/CardCluster.astro";
 import Layout from "../../layouts/MainLayout.astro";
-import BlogTimelineRow from "./_components/BlogTimelineRow.astro";
-import BlogFilterPills from "./_components/BlogFilterPills.astro";
 import BlogTopicPills from "./_components/BlogTopicPills.astro";
 import {
+  filterBlogFeed,
   getBlogFeedItems,
   getBlogTopicItem,
   type BlogFeedItem,
 } from "./_feed";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const feedItems = await getBlogFeedItems();
+  const feedItems = filterBlogFeed(await getBlogFeedItems(), "blog");
 
   return paginate(feedItems, { pageSize: 12 });
 }
@@ -23,11 +23,16 @@ interface Props {
 
 const { page } = Astro.props as Props;
 
+const cards = page.data.map((item) => ({
+  title: item.title,
+  description: item.description,
+  image: item.previewImage,
+  link: item.href,
+}));
+
 const isPaginatedArchive = page.currentPage > 1;
 
-const robots = isPaginatedArchive
-  ? "max-image-preview:large"
-  : undefined;
+const robots = isPaginatedArchive ? "max-image-preview:large" : undefined;
 
 const blogTopic = getBlogTopicItem("blog");
 
@@ -51,37 +56,42 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
   robots={robots}
 >
   <div
-    class="mx-auto mt-[clamp(5.6rem,8vw,7.2rem)] w-full max-w-[62rem] px-4 pb-16 max-md:mt-[max(calc(var(--site-nav-height)+1.1rem),4.8rem)] max-md:px-[0.9rem]"
+    class="mt-[clamp(5.6rem,8vw,7.2rem)] w-full pb-16 max-md:mt-[max(calc(var(--site-nav-height)+1.1rem),4.8rem)]"
   >
-    <header class="mb-[1.4rem] grid min-w-0 gap-6 max-md:mb-4 max-md:gap-5">
-      <h1 class="hero-title m-0 text-[clamp(2.8rem,2.3rem+2vw,4.75rem)] sm:!text-[70px] leading-[0.9] tracking-[-0.02em] text-[var(--text-primary)]">
+    <header
+      class="mx-auto mb-[1.4rem] grid w-full min-w-0 max-w-[var(--site-container-max)] gap-6 px-[var(--site-content-inset)] max-md:mb-4 max-md:gap-5"
+    >
+      <h1
+        class="hero-title m-0 text-[clamp(2.8rem,2.3rem+2vw,4.75rem)] sm:!text-[70px] leading-[0.9] tracking-[-0.02em] text-[var(--text-primary)]"
+      >
         Blog
       </h1>
-      <BlogFilterPills context="blog" activePill="all" />
       <BlogTopicPills activeTopic="blog" />
     </header>
 
     <main class="min-h-[60vh] min-w-0">
       {
         page.data.length === 0 ? (
-          <section class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4">
-            <p class="m-0 text-[var(--text-secondary)]">No blog entries yet.</p>
-          </section>
+          <div class="mx-auto w-full max-w-[var(--site-container-max)] px-[var(--site-content-inset)]">
+            <section class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4">
+              <p class="m-0 text-[var(--text-secondary)]">
+                No blog entries yet.
+              </p>
+            </section>
+          </div>
         ) : (
-          <ul class="m-0 flex min-w-0 list-none flex-col p-0">
-            {page.data.map((item, index) => (
-              <li class="min-w-0">
-                <BlogTimelineRow
-                  item={item}
-                  showConnector={index < page.data.length - 1}
-                />
-              </li>
-            ))}
-          </ul>
+          <CardCluster
+            columns={4}
+            CardBackgroundColor="surface"
+            cards={cards}
+            responsiveLayout="stack"
+          />
         )
       }
 
-      <div class="mt-4 w-full">
+      <div
+        class="mx-auto mt-8 w-full max-w-[var(--site-container-max)] px-[var(--site-content-inset)]"
+      >
         <Pagination restRoute allPages={allPages} page={page} />
       </div>
     </main>

@@ -1,12 +1,17 @@
 ---
-import Layout from './MainLayout.astro';
-import { format } from 'date-fns';
+import Layout from "./MainLayout.astro";
+import { format } from "date-fns";
 import { resolveImageReference } from "../lib/imageReference";
 
-const { frontmatter, enableTransitions = false, transitionKey = '' } = Astro.props;
-const publishDate = frontmatter.publishDate instanceof Date
-  ? frontmatter.publishDate
-  : undefined;
+const {
+  frontmatter,
+  enableTransitions = false,
+  transitionKey = "",
+  backHref = "/blog/",
+  backLabel = "All posts",
+} = Astro.props;
+const publishDate =
+  frontmatter.publishDate instanceof Date ? frontmatter.publishDate : undefined;
 const publishDateIso = publishDate?.toISOString();
 const seoImageSrc =
   resolveImageReference(frontmatter.socialImage) ??
@@ -50,7 +55,6 @@ if (publishDateIso) {
   blogSchema.datePublished = publishDateIso;
   blogSchema.dateModified = publishDateIso;
 }
-
 ---
 
 <Layout
@@ -62,22 +66,28 @@ if (publishDateIso) {
   schema={blogSchema}
 >
   <div class="max-w-2xl mx-auto w-full px-5 md:px-0 pt-20">
-        <a class="opacity-75 font-weight-medium a-alt mt-8" href="/blog/">&lt;- All posts</a>
+    <a class="opacity-75 font-weight-medium a-alt mt-8" href={backHref}
+      >&lt;- {backLabel}</a
+    >
     <h1 class="mb-4 mt-4" transition:name={`${transitionKey}-title`}>
       {frontmatter.title}
     </h1>
     <div class="post-meta" transition:name={`${transitionKey}-meta`}>
-      {publishDate && (
-        <time datetime={publishDateIso}>
-          {format(publishDate, 'MMM d, yyyy')}
-        </time>
-      )}
-      {frontmatter.author && (
-        <span>
-          {publishDate ? 'by ' : 'By '}
-          {frontmatter.author}
-        </span>
-      )}
+      {
+        publishDate && (
+          <time datetime={publishDateIso}>
+            {format(publishDate, "MMM d, yyyy")}
+          </time>
+        )
+      }
+      {
+        frontmatter.author && (
+          <span>
+            {publishDate ? "by " : "By "}
+            {frontmatter.author}
+          </span>
+        )
+      }
     </div>
   </div>
   <div class="max-w-2xl mx-auto w-full px-5 md:px-0">

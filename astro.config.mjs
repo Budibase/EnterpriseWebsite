@@ -7,6 +7,30 @@ import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 
+const cloudflareServerOptimizer = {
+  name: "cloudflare-server-optimizer",
+  configEnvironment(environment) {
+    if (environment === "client") return;
+
+    return {
+      optimizeDeps: {
+        include: [
+          "@astrojs/cloudflare/entrypoints/server",
+          "astro/assets/services/noop",
+          "unified",
+          "remark-parse",
+          "remark-gfm",
+          "remark-rehype",
+          "remark-gemoji",
+          "rehype-raw",
+          "rehype-slug",
+          "rehype-stringify",
+        ],
+      },
+    };
+  },
+};
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://budibase.com",
@@ -36,10 +60,7 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [tailwindcss()],
-    optimizeDeps: {
-      exclude: ["@astrojs/cloudflare/entrypoints/server"],
-    },
+    plugins: [tailwindcss(), cloudflareServerOptimizer],
     resolve: {
       alias: {
         "@components": fileURLToPath(

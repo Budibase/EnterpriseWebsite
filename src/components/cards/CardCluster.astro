@@ -5,6 +5,8 @@ import defaultCardImage from "@assets/images/backgrounds/light/card-cluster-defa
 
 type Columns = 2 | 3 | 4;
 type Variant = "white" | "light";
+type ResponsiveLayout = "scroll" | "stack";
+type ImageAspectRatio = "auto" | "16/9";
 type CardBackgroundColor =
   | "white"
   | "surface"
@@ -29,6 +31,8 @@ interface Props {
   SectionTitle?: string;
   SectionDescription?: string;
   cards?: readonly Card[];
+  responsiveLayout?: ResponsiveLayout;
+  imageAspectRatio?: ImageAspectRatio;
   class?: string;
 }
 
@@ -77,11 +81,15 @@ const {
   SectionTitle,
   SectionDescription,
   cards = defaultCards,
+  responsiveLayout = "scroll",
+  imageAspectRatio = "auto",
   class: className = "",
 } = Astro.props as Props;
 
 const sectionVariantClass = `card-cluster--${Variant}`;
 const cardBackgroundClass = `card-cluster--cards-${CardBackgroundColor}`;
+const responsiveLayoutClass = `card-cluster--responsive-${responsiveLayout}`;
+const imageAspectRatioClass = `card-cluster--images-${imageAspectRatio.replace("/", "-")}`;
 const CardTitle = cardTitleTag;
 ---
 
@@ -90,6 +98,8 @@ const CardTitle = cardTitleTag;
     "card-cluster",
     sectionVariantClass,
     cardBackgroundClass,
+    responsiveLayoutClass,
+    imageAspectRatioClass,
     className,
   ]}
   style={`--card-cluster-columns: ${columns};`}
@@ -284,6 +294,21 @@ const CardTitle = cardTitleTag;
     object-position: center;
   }
 
+  .card-cluster--images-16-9 .card-cluster__image-wrap {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .card-cluster--images-16-9 .card-cluster__image-wrap img {
+    position: absolute;
+    inset: 2rem;
+    width: calc(100% - 4rem);
+    height: calc(100% - 4rem);
+    object-fit: cover;
+  }
+
   .card-cluster__card-number {
     color: var(--card-cluster-card-text);
     font-family: var(--bb-text-display-large-font-family);
@@ -338,6 +363,30 @@ const CardTitle = cardTitleTag;
         minmax(16rem, 78vw)
       );
       scroll-snap-type: inline mandatory;
+    }
+  }
+
+  .card-cluster--responsive-stack .card-cluster__scroller {
+    overflow-x: visible;
+  }
+
+  .card-cluster--responsive-stack .card-cluster__grid {
+    grid-template-columns: minmax(0, 1fr);
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .card-cluster--responsive-stack .card-cluster__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .card-cluster--responsive-stack .card-cluster__grid {
+      grid-template-columns: repeat(
+        var(--card-cluster-columns),
+        minmax(0, 1fr)
+      );
     }
   }
 </style>

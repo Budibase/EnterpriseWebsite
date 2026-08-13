@@ -202,10 +202,7 @@ const metrics = [
   }
 
   .enterprise-section__rails {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
+    display: none;
   }
 
   .enterprise-section__rails-inner {
@@ -320,7 +317,7 @@ const metrics = [
     width: min(100vw, var(--site-container-max));
     height: 1px;
     transform: translateX(-50%);
-    background-image: var(--enterprise-horizontal-line);
+    background-image: none;
   }
 
   .enterprise-section__compliance-grid {

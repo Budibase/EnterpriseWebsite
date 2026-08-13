@@ -1,7 +1,8 @@
 ---
 title: Logistic Properties of the Americas (LPA)
 quote: "Managing complexity at scale, without the overhead"
-industry: Logistics, Real Estate
+industry: Real Estate & Property
+coverImage: /src/assets/images/case-studies/lpa.png
 featured: true
 employees: "11-50"
 order: 5
@@ -19,7 +20,7 @@ LPA’s operating model is built on the principle of staying strategically lean 
 
 However, this approach, alongside LPA’s multinational operations, introduces some important challenges. Specifically, the risk of fragmentation and siloed data is very real with a growing ecosystem of specialized software systems across multiple locales and external providers. This makes connecting information across the organization a significant burden.
 
-> *"The challenge wasn't a lack of tools - it was the sprawl … We had corporate cloud storage, specialized platforms for each function, and every team managing their own data in their own way. Finding information was hard enough. Connecting it was even harder."*
+> _"The challenge wasn't a lack of tools - it was the sprawl … We had corporate cloud storage, specialized platforms for each function, and every team managing their own data in their own way. Finding information was hard enough. Connecting it was even harder."_
 
 Like many Latin American companies, LPA is also constrained by the fact that many off-the-shelf enterprise software solutions aren’t optimized for the needs of teams operating in emerging markets. Adapting these platforms to the needs of multiple Latin American countries simultaneously is often an impossibility.
 
@@ -67,9 +68,9 @@ LPA uses Budibase to handle its team's non-sensitive HR workflows, including emp
 
 ## The Results: A Lean Team Delivering Enterprise-Scale Governance
 
-Budibase has been transformative for how LPA’s team operates across departments, functions, and geographies. 
+Budibase has been transformative for how LPA’s team operates across departments, functions, and geographies.
 
-> *"Budibase lets us stay lean and still deliver. We don't need a large development team or an external firm to build and maintain what we need. We can respond to user feedback, iterate, and improve - all within our existing capacity."*
+> _"Budibase lets us stay lean and still deliver. We don't need a large development team or an external firm to build and maintain what we need. We can respond to user feedback, iterate, and improve - all within our existing capacity."_
 
 The team highlights three key ways in which Budibase has impacted their wider organizational capabilities:
 
@@ -77,7 +78,7 @@ The team highlights three key ways in which Budibase has impacted their wider or
 
 Budibase has empowered LPA to unify data and workflows across the organization. Information that previously lived in dispersed sources now flows through structured pipelines into centralized databases. Departments that previously operated in parallel share a unified interface for key processes.
 
-> *"Budibase doesn't just help us run individual processes better - it helps us connect them. For a company operating across four countries with a lean team, that connectivity is what makes the difference."*
+> _"Budibase doesn't just help us run individual processes better - it helps us connect them. For a company operating across four countries with a lean team, that connectivity is what makes the difference."_
 
 ### Agile Delivery Without a Development Team
 
@@ -89,18 +90,12 @@ LPA is a quickly growing, evolving company, recently expanding into new jurisdic
 
 ## Working with Budibase
 
-LPA’s team also highlights how the nature of the vendor relationship sets Budibase apart. 
+LPA’s team also highlights how the nature of the vendor relationship sets Budibase apart.
 
-> *"What sets Budibase apart is that change feels collaborative, not imposed. When they introduce updates or new features, they communicate clearly, explain the reasoning, and give clients the tools to manage transitions in an orderly way. For a publicly traded company, where change carries institutional weight, that approach is not a minor consideration - it's a prerequisite."*
+> _"What sets Budibase apart is that change feels collaborative, not imposed. When they introduce updates or new features, they communicate clearly, explain the reasoning, and give clients the tools to manage transitions in an orderly way. For a publicly traded company, where change carries institutional weight, that approach is not a minor consideration - it's a prerequisite."_
 
 In particular, they praise how Budibase approaches product innovation, with new capabilities, including recent AI releases, being additive rather than disruptive, empowering teams with new ways of working, rather than forcing wholesale changes to their existing workflows.
 
 For LPA, the key thing is that Budibase does not impose a single framework or workflow model. Instead, it provides enough structure to remove unnecessary technical barriers, while still offering the flexibility for users to build the exact workflows they need, based on their unique expertise.
 
-> *"Budibase doesn't tell you how to work. It gives you the means to work the way your organization actually needs to - and in our case, that meant building a management system that fits four countries, multiple frameworks, and a business that keeps evolving."*
-
-
-
-
-
- 
+> _"Budibase doesn't tell you how to work. It gives you the means to work the way your organization actually needs to - and in our case, that meant building a management system that fits four countries, multiple frameworks, and a business that keeps evolving."_

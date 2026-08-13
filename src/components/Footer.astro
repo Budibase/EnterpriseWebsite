@@ -303,7 +303,7 @@ const currentYear = new Date().getFullYear();
   }
 
   :global(.site-grid-shell > .footer)::before {
-    background-image: var(--footer-horizontal-line);
+    content: none;
   }
 
   .footer-shell {
@@ -320,7 +320,7 @@ const currentYear = new Date().getFullYear();
     z-index: 0;
     width: 1px;
     content: "";
-    background-image: var(--footer-vertical-line);
+    background-image: none;
   }
 
   .footer-shell::before {
@@ -344,7 +344,7 @@ const currentYear = new Date().getFullYear();
     left: 0;
     height: 1px;
     content: "";
-    background-image: var(--footer-horizontal-line);
+    background-image: none;
   }
 
   .footer-nav-wrap {

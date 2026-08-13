@@ -9,9 +9,10 @@ interface Props {
   title?: string;
   titleLines?: TitleLine[];
   titleColorMode?:
-    | "single"
-    | "split-secondary-primary"
-    | "split-primary-secondary";
+    "single" | "split-secondary-primary" | "split-primary-secondary";
+  description?: string;
+  descriptionAlign?: "start" | "center";
+  titleId?: string;
   containerClass?: string;
   titleClass?: string;
 }
@@ -21,6 +22,9 @@ const {
   title,
   titleLines = [],
   titleColorMode = "single",
+  description,
+  descriptionAlign = "start",
+  titleId,
   containerClass,
   titleClass,
 } = Astro.props as Props;
@@ -32,7 +36,7 @@ const titleBaseClass =
       ? "hero-title-small"
       : "section-title";
 const mobileHeroTitleClass =
-  variant === "section" ? undefined : "max-md:text-[44px]!";
+  variant === "hero" ? "max-md:text-[44px]!" : undefined;
 const HeadingTag = variant === "section" ? "h2" : "h1";
 const hasTitleLines = titleLines.length > 0;
 
@@ -48,7 +52,10 @@ function getLineColorClass(index: number) {
 ---
 
 <div class={containerClass}>
-  <HeadingTag class:list={[titleBaseClass, mobileHeroTitleClass, titleClass]}>
+  <HeadingTag
+    id={titleId}
+    class:list={[titleBaseClass, mobileHeroTitleClass, titleClass]}
+  >
     {
       hasTitleLines
         ? titleLines.map((line, index) => (
@@ -61,9 +68,49 @@ function getLineColorClass(index: number) {
         : title
     }
   </HeadingTag>
+  {
+    description && (
+      <p
+        class:list={[
+          "title-block__description",
+          descriptionAlign === "center" && "title-block__description--center",
+        ]}
+      >
+        {description}
+      </p>
+    )
+  }
 </div>
 
 <style>
+  .hero-title {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-family: var(--bb-text-display-medium-font-family);
+    font-size: var(--bb-text-display-medium-font-size);
+    font-weight: var(--bb-text-display-medium-font-weight);
+    line-height: var(--bb-text-display-medium-line-height);
+    letter-spacing: var(--bb-text-display-medium-letter-spacing);
+    text-transform: var(--bb-text-display-medium-text-transform);
+    text-wrap: balance;
+  }
+
+  .title-block__description {
+    max-width: 38rem;
+    margin: 1.25rem 0 0;
+    color: var(--bb-text-subtle);
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4;
+    text-transform: none;
+    text-wrap: balance;
+  }
+
+  .title-block__description--center {
+    margin-inline: auto;
+  }
+
   .section-title {
     font-size: 32px;
     line-height: 1.1;
