@@ -1,0 +1,42 @@
+---
+import FeatureSection from "@components/FeatureSection.astro";
+import ProductPageFooter from "@components/ProductPageFooter.astro";
+import StatSection from "@components/StatSection.astro";
+import CardCluster from "@components/cards/CardCluster.astro";
+import type { ProductFeatureLandingContent } from "../data/productFeatureLandingPages";
+
+interface Props {
+  content: Pick<ProductFeatureLandingContent, "features" | "cardCluster">;
+  featureImages: readonly [string, string];
+}
+
+const { content, featureImages } = Astro.props as Props;
+---
+
+<div class="site-grid-section">
+  <CardCluster
+    SectionTitle={content.cardCluster.title}
+    SectionDescription={content.cardCluster.description}
+    cards={content.cardCluster.cards}
+  />
+</div>
+
+{
+  content.features.map((feature, index) => (
+    <div class="site-grid-section site-grid-section--no-top">
+      <FeatureSection
+        image={featureImages[index]}
+        imageAlt={`${feature.headline} product interface`}
+        headline={feature.headline}
+        body={feature.body}
+        bullets={feature.bullets}
+      />
+    </div>
+  ))
+}
+
+<div class="site-grid-section site-grid-section--no-top">
+  <StatSection />
+</div>
+
+<ProductPageFooter />

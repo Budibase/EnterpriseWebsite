@@ -5,7 +5,8 @@ interface TitleLine {
 }
 
 interface Props {
-  variant: "hero-large" | "hero" | "section" | "homepage-section";
+  variant:
+    "hero-large" | "hero" | "section" | "display-small" | "homepage-section";
   title?: string;
   titleLines?: TitleLine[];
   titleColorMode?:
@@ -36,13 +37,19 @@ const titleBaseClass =
     ? "hero-title"
     : variant === "hero"
       ? "hero-title-small"
-      : variant === "homepage-section"
-        ? "homepage-section-header__title"
-        : "section-title";
+      : variant === "display-small"
+        ? "display-small-title"
+        : variant === "homepage-section"
+          ? "homepage-section-header__title"
+          : "section-title";
 const mobileHeroTitleClass =
   variant === "hero" ? "max-md:text-[44px]!" : undefined;
 const HeadingTag =
-  variant === "section" || variant === "homepage-section" ? "h2" : "h1";
+  variant === "section" ||
+  variant === "display-small" ||
+  variant === "homepage-section"
+    ? "h2"
+    : "h1";
 const hasTitleLines = titleLines.length > 0;
 
 function getLineColorClass(index: number) {
@@ -120,6 +127,18 @@ function getLineColorClass(index: number) {
   .section-title {
     font-size: 32px;
     line-height: 1.1;
+  }
+
+  .display-small-title {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-family: var(--bb-text-display-small-font-family);
+    font-size: var(--bb-text-display-small-font-size);
+    font-weight: var(--bb-text-display-small-font-weight);
+    line-height: var(--bb-text-display-small-line-height);
+    letter-spacing: var(--bb-text-display-small-letter-spacing);
+    text-transform: var(--bb-text-display-small-text-transform);
+    text-wrap: balance;
   }
 
   .homepage-section-header__title {

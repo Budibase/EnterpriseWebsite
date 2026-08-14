@@ -1,6 +1,7 @@
 ---
 import Layout from "../../../layouts/MainLayout.astro";
 import ProductPageLayout from "@components/ProductPageLayout.astro";
+import ProductPageFooter from "@components/ProductPageFooter.astro";
 import { getProductPageMeta } from "../_pageMeta";
 import Sparkle from "phosphor-astro/Sparkle.astro";
 
@@ -706,6 +707,7 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
       </section>
     </div>
   </ProductPageLayout>
+  <ProductPageFooter />
 </Layout>
 
 <script is:inline>

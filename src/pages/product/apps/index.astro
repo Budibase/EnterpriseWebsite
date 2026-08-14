@@ -4,19 +4,76 @@ export const prerender = false;
 import Layout from "../../../layouts/MainLayout.astro";
 import AppDemoBackground from "@assets/images/backgrounds/app-demo-bg.jpg?url";
 import HeroLarge from "@components/HeroLarge.astro";
-import Card from "@components/cards/Card.astro";
-import AppProcessOutcomeSection from "@components/AppProcessOutcomeSection.astro";
 import AppDemo from "@components/AppDemo.astro";
-import AppDataSourcesPreview from "@components/AppDataSourcesPreview.astro";
-import AppRequestsPreview from "@components/AppRequestsPreview.astro";
-import AppRolesPreview from "@components/AppRolesPreview.astro";
-import SectionBlock from "@components/SectionBlock.astro";
-import AppProductionReadyFeatures from "@components/AppProductionReadyFeatures.astro";
-import ContactSalesCTA from "@components/ContactSalesCTA.astro";
+import ProductFeatureBody from "@components/ProductFeatureBody.astro";
+import AppFeatureOneImage from "@assets/images/apps/cards/1.png?url";
+import AppFeatureTwoImage from "@assets/images/apps/cards/2.png?url";
+import type { ProductFeatureLandingContent } from "../../../data/productFeatureLandingPages";
 
 const pageTitle = "Build internal tools\nin minutes";
 const pageDescription =
   "Create apps for approvals, operations, and internal requests without engineering resources. Connect your data and give your team simple tools that keep work moving.";
+
+const bodyContent = {
+  features: [
+    {
+      headline: "Turn messy processes into simple apps",
+      body: "Growing businesses run on requests, approvals, and internal processes, but too often those live in spreadsheets, inboxes, or Slack threads. Within Budibase, you can turn those processes into simple internal apps your team can rely on.",
+      bullets: [
+        {
+          icon: "Browser",
+          text: "Collect complete, consistent requests with purpose-built forms.",
+        },
+        {
+          icon: "Path",
+          text: "Track work through structured, connected workflows.",
+        },
+        {
+          icon: "Users",
+          text: "Give teams one place to manage operations without engineering support.",
+        },
+      ],
+    },
+    {
+      headline: "Production-ready apps without the overhead",
+      body: "Budibase empowers teams to ship production-ready apps in the cloud or on their own infrastructure, with no auth to stand up or code-base to maintain.",
+      bullets: [
+        {
+          icon: "ShieldCheck",
+          text: "Control access with customizable role-based permissions.",
+        },
+        {
+          icon: "Keyhole",
+          text: "Connect enterprise identity providers with single sign-on.",
+        },
+        {
+          icon: "UserSwitch",
+          text: "Use built-in authentication and user management from day one.",
+        },
+      ],
+    },
+  ],
+  cardCluster: {
+    title: "Build apps quickly with powerful tools",
+    description:
+      "Budibase gives you everything you need to create internal tools without heavy engineering.",
+    cards: [
+      {
+        title: "Drag-and-drop builder",
+        description: "Create forms, dashboards, and workflows visually.",
+      },
+      {
+        title: "Connect your data",
+        description: "Use Postgres, MySQL, REST APIs, Sheets, and more.",
+      },
+      {
+        title: "Customizable with code",
+        description:
+          "Add JavaScript and CSS when your use case needs more control.",
+      },
+    ],
+  },
+} satisfies Pick<ProductFeatureLandingContent, "features" | "cardCluster">;
 
 const accept = Astro.request.headers.get("accept") ?? "";
 Astro.response.headers.set("Vary", "Accept");
@@ -113,142 +170,14 @@ Budibase Apps offer custom JavaScript and CSS for advanced use cases.
     backgroundImage={AppDemoBackground}
   />
 
-  <section
-    class="mx-auto w-full max-w-[var(--site-container-max)] px-2 py-12 md:px-3 lg:px-0"
-  >
-    <div class="flex flex-col gap-[var(--section-spacing-y)]">
-      <div class="flex flex-col gap-[var(--section-gap-lg)]">
-        <AppProcessOutcomeSection />
-      </div>
-
-      <section>
-        <SectionBlock
-          align="center"
-          maxWidth="lg"
-          titleColorMode="split-secondary-primary"
-          titleLines={[
-            { text: "Build apps quickly" },
-            { text: "with powerful tools" },
-          ]}
-          description="Budibase gives you everything you need to create internal tools without heavy engineering."
-          contentClass="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-2 lg:grid-cols-3"
-        >
-          <Card
-            label="Drag-and-drop builder"
-            description="Create forms, dashboards, and workflows visually."
-          >
-            <div slot="image-overlay" class="app-card-overlay">
-              <AppRequestsPreview />
-            </div>
-          </Card>
-          <Card
-            label="Connect your data"
-            description="Use Postgres, MySQL, REST APIs, Sheets, and more."
-          >
-            <div slot="image-overlay" class="app-card-overlay">
-              <AppDataSourcesPreview />
-            </div>
-          </Card>
-          <Card
-            label="User permissions built in"
-            description="Control who can submit, approve, or manage data."
-          >
-            <div slot="image-overlay" class="app-card-overlay">
-              <AppRolesPreview />
-            </div>
-          </Card>
-          <Card
-            label="Responsive layouts"
-            description="Create app experiences that work across desktop and mobile screens."
-          />
-          <Card
-            label="Generate apps from data with 1 click"
-            description="Turn Data Tables and external databases into working apps instantly."
-          />
-          <Card
-            label="Embed workflows and operational actions"
-            description="Run workflows and operational actions directly inside your app experiences."
-          />
-        </SectionBlock>
-      </section>
-      <ContactSalesCTA />
-      <AppProductionReadyFeatures />
-    </div>
-    <section class="mt-16 lg:mt-24">
-      <SectionBlock
-        align="center"
-        maxWidth="lg"
-        titleColorMode="split-secondary-primary"
-        titleLines={[{ text: "Data collection" }, { text: "your way" }]}
-        description="Budibase offers customizable data collection UIs for any data source or API."
-        contentClass="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-2 lg:grid-cols-4"
-      >
-        <Card
-          label="Create forms on top of your database"
-          description="Generate and build forms on top of multiple databases, including PostgreSQL, MySQL, MongoDB, and more."
-        />
-
-        <Card
-          label="Multi-step forms"
-          description="Create multi-step forms and surveys with ease using Budibase."
-        />
-
-        <Card
-          label="Validation"
-          description="Set up form validation rules, including regex support and built-in validations for common form-based apps."
-        />
-
-        <Card
-          label="Highly customizable"
-          description="Build forms of all levels of complexity with Budibase."
-        />
-      </SectionBlock>
-    </section>
-
-    <section class="mt-16 lg:mt-24">
-      <SectionBlock
-        align="center"
-        maxWidth="lg"
-        titleColorMode="split-secondary-primary"
-        titleLines={[
-          { text: "Simple by default" },
-          { text: "customizable with code" },
-        ]}
-        description="Budibase Apps offer custom JavaScript and CSS for advanced use cases."
-        contentClass="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-2 lg:grid-cols-4"
-      >
-        <Card
-          label="Optional JavaScript"
-          description="From adding logic to your components to transforming data, Budibase allows to write JavaScript almost anywhere in the builder."
-        />
-        <Card
-          label="Live Evaluation"
-          description="With Live Evaluation, you can see the output of your code in real-time, directly next to the code editor."
-        />
-        <Card
-          label="Reusable Snippets"
-          description="Reusable Code Snippets speed up development by enabling you to write code once and then effortlessly apply it anywhere."
-        />
-        <Card
-          label="AI Code Generation"
-          description="Use Budibase AI to generate custom JavaScript from natural language instructions."
-        />
-      </SectionBlock>
-    </section>
-  </section>
+  <ProductFeatureBody
+    content={bodyContent}
+    featureImages={[AppFeatureOneImage, AppFeatureTwoImage]}
+  />
 </Layout>
 
 <style>
   :global(#site-nav.nav-shell) {
     background-color: var(--bg-1) !important;
-  }
-
-  .app-card-overlay {
-    width: 100%;
-    height: 350px;
-    padding: 28px;
-    background-color: var(--bb-blue-800);
-    border-radius: 6px;
-    pointer-events: auto;
   }
 </style>

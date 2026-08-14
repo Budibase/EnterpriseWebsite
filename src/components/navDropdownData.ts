@@ -12,6 +12,7 @@ export interface NavDropdownItem {
   target?: string;
   rel?: string;
   disabled?: boolean;
+  icon?: string;
 }
 
 export interface NavDropdownColumn {
@@ -52,24 +53,28 @@ export const platformDropdownMenu: NavDropdownMenu = {
           label: "Agents",
           description: "AI agents that handle operational work.",
           prefetch: true,
+          icon: "Robot",
         },
         {
           href: "/product/apps/",
           label: "Apps",
           description: "Secure internal tools for every team.",
           prefetch: true,
+          icon: "AppWindow",
         },
         {
           href: "/product/automations/",
           label: "Automations",
           description: "Event-driven workflows across your stack.",
           prefetch: true,
+          icon: "Lightning",
         },
         {
           href: "/product/functions/",
           label: "Functions",
           description: "Server-side functions for your workflows.",
           prefetch: true,
+          icon: "Function",
         },
       ],
     },
@@ -81,24 +86,28 @@ export const platformDropdownMenu: NavDropdownMenu = {
           label: "Tables",
           description: "Structured data for apps and workflows.",
           prefetch: true,
+          icon: "Table",
         },
         {
           href: "/product/connections/",
           label: "Connections",
           description: "Connect data, tools, models, and APIs.",
           prefetch: true,
+          icon: "PlugsConnected",
         },
         {
           href: "/product/apis/",
           label: "API Explorer",
           description: "Explore and connect external APIs.",
           prefetch: true,
+          icon: "Code",
         },
         {
           href: "/product/knowledge/",
           label: "Knowledge",
           description: "Ground agents with retrieval workflows.",
           prefetch: true,
+          icon: "BookOpen",
         },
       ],
     },
@@ -110,24 +119,28 @@ export const platformDropdownMenu: NavDropdownMenu = {
           label: "Requests & Approvals",
           description: "Handle intake, approvals, and follow-up.",
           prefetch: true,
+          icon: "EnvelopeOpen",
         },
         {
           href: "/product/activity/",
           label: "Activity & Insights",
           description: "Track activity across operational workflows.",
           prefetch: true,
+          icon: "Gauge",
         },
         {
           href: "/product/admin-security/",
           label: "Admin & Security",
           description: "Controls for secure enterprise operations.",
           prefetch: true,
+          icon: "ShieldCheck",
         },
         {
           href: "/product/self-host/",
           label: "Self-hosting",
           description: "Deploy Budibase in your own environment.",
           prefetch: true,
+          icon: "CloudCheck",
         },
       ],
     },

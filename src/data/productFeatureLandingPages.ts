@@ -110,6 +110,154 @@ export const productFeatureLandingPages = {
       ],
     },
   },
+  data: {
+    title: "Tables",
+    metaDescription:
+      "Manage structured operational data that powers AI agents, workflows, and internal apps.",
+    hero: {
+      badgeLabel: "Tables",
+      badgeIcon: "Table",
+      headline: "Structure data for every operation",
+      subtitle:
+        "Store new data or connect PostgreSQL, MySQL, Google Sheets, and more. Work with data in a spreadsheet-style interface, create views, and run AI on rows.",
+      imageAlt: "Structured operational data in Budibase tables",
+      logosHeading: "Trusted by teams building enterprise operations",
+    },
+    features: [
+      {
+        headline: "Keep operational data clean and accessible",
+        body: "Give teams a familiar interface for managing the structured data behind apps, workflows, and agents.",
+        bullets: [
+          {
+            icon: "Table",
+            text: "Create built-in tables for operational records and requests.",
+          },
+          {
+            icon: "Browser",
+            text: "Work quickly through a familiar spreadsheet-style interface.",
+          },
+          {
+            icon: "CheckCircle",
+            text: "Apply validation rules that keep incoming data dependable.",
+          },
+        ],
+      },
+      {
+        headline: "Connect data without disrupting your stack",
+        body: "Use built-in tables or work directly with external databases while retaining the controls each operation needs.",
+        bullets: [
+          {
+            icon: "PlugsConnected",
+            text: "Connect PostgreSQL, MySQL, and other existing data sources.",
+          },
+          {
+            icon: "Code",
+            text: "Build queries visually or use SQL for flexible retrieval.",
+          },
+          {
+            icon: "ShieldCheck",
+            text: "Control table access with roles and review changes through audit history.",
+          },
+        ],
+      },
+    ],
+    cardCluster: {
+      title: "Build a reliable data foundation",
+      description:
+        "Give every operational app, workflow, and agent structured data it can depend on.",
+      cards: [
+        {
+          title: "Built-in database",
+          description:
+            "Create structured tables without provisioning another data service.",
+        },
+        {
+          title: "External data sources",
+          description:
+            "Use existing databases without migrating operational data.",
+        },
+        {
+          title: "Secure data access",
+          description:
+            "Apply roles, validation, and audit history around critical records.",
+        },
+      ],
+    },
+  },
+  apis: {
+    title: "API Explorer",
+    metaDescription:
+      "Connect the tools you rely on so agents and workflows can securely take action across your stack.",
+    hero: {
+      badgeLabel: "API Explorer",
+      badgeIcon: "Code",
+      headline: "Connect every operational system",
+      subtitle:
+        "Explore, test, and reuse API calls so apps, agents, and automations can securely take action across your stack.",
+      imageAlt: "API connection configured for an operational workflow",
+      logosHeading: "Trusted by teams building enterprise operations",
+    },
+    features: [
+      {
+        headline: "Explore and test APIs in one place",
+        body: "Configure external services through one controlled explorer before using them in operational workflows.",
+        bullets: [
+          {
+            icon: "Code",
+            text: "Build and execute REST API requests from a unified interface.",
+          },
+          {
+            icon: "Keyhole",
+            text: "Store authentication credentials securely in one place.",
+          },
+          {
+            icon: "GitFork",
+            text: "Map request inputs and response outputs into structured data.",
+          },
+        ],
+      },
+      {
+        headline: "Reuse connections across every workflow",
+        body: "Define reliable API actions once, then make them available wherever operational work needs them.",
+        bullets: [
+          {
+            icon: "Path",
+            text: "Reuse API actions across apps, automations, and agents.",
+          },
+          {
+            icon: "Lightning",
+            text: "Use webhooks to trigger connected operational workflows.",
+          },
+          {
+            icon: "Gauge",
+            text: "Monitor executions with logs for visibility and troubleshooting.",
+          },
+        ],
+      },
+    ],
+    cardCluster: {
+      title: "Build reusable API connections",
+      description:
+        "Connect external systems once and make dependable actions available across the platform.",
+      cards: [
+        {
+          title: "REST API connector",
+          description:
+            "Configure requests to the external services your operation relies on.",
+        },
+        {
+          title: "Secure credentials",
+          description:
+            "Centralise authentication without exposing sensitive values.",
+        },
+        {
+          title: "Reusable API actions",
+          description:
+            "Use tested integrations throughout apps, agents, and automations.",
+        },
+      ],
+    },
+  },
   knowledge: {
     title: "Knowledge",
     metaDescription:

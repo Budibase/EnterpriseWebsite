@@ -67,8 +67,6 @@ responsive layout.
   families can provide thin typed wrappers, such as `BlogTopicPills` and
   `CustomerIndustryPills`.
 - Use `src/components/Pagination.astro` for paginated archives.
-- Use `src/components/Tabs.astro` only for interactive in-page tab panels. It is
-  not a navigation filter.
 
 ### Heroes
 
@@ -85,7 +83,13 @@ the same pattern.
 - Use `src/components/ProductPageLayout.astro` for product pages with bespoke
   body content and the standard compact product header.
 - Use `ProductFeatureLandingPage.astro` for data-driven product feature pages
-  that follow the hero, feature sections, card cluster, stats, and CTA pattern.
+  that combine `HeroSmall` with the canonical `ProductFeatureBody` composition.
+- Use `ProductFeatureBody.astro` after a bespoke product hero when the page needs
+  the standard three-card overview, two feature sections, stats, and canonical
+  product footer.
+- Use `ProductPageFooter.astro` as the canonical ending for the 12 platform
+  pages. It renders the homepage CTA followed by `ProductFeatureNav.astro`,
+  leaving platform navigation immediately above the global footer.
 
 `ProductPageLayout` accepts a custom `header` slot for pages such as the
 connections directory that need controls inside the header. It does not infer
@@ -93,8 +97,16 @@ layout behavior from the current URL.
 
 ### Page composition
 
-- `ProductFeatureLandingPage.astro` composes product feature pages from a hero,
-  feature sections, stats, cards, and the closing CTA.
+- `ProductFeatureBody.astro` is the canonical product-page body composition. It
+  owns the card overview, feature sections, stats, site-grid wrappers, and
+  `ProductPageFooter` shared by the standard platform landing pages, including
+  Functions, Tables, API Explorer, Agents, Apps, and Automations. Its sequence
+  is overview, detail, proof, and next action.
+- `ProductFeatureNav.astro` reads labels, destinations, grouping, prefetch
+  behavior, and icons from the platform dropdown data so both navigation
+  surfaces stay in sync.
+- `ProductFeatureLandingPage.astro` composes `HeroSmall` with
+  `ProductFeatureBody.astro` for data-driven product feature pages.
 - `SolutionLandingPage.astro` provides the corresponding solution-page
   composition.
 - `FeatureSection.astro`, `StatSection.astro`, and the page-scoped

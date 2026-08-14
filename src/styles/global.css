@@ -497,6 +497,77 @@
   }
 }
 
+/* Development palette study: override existing APIs without migrating components. */
+:root[data-gray-palette="olive"] {
+  --bb-gray-25: #ffffff;
+  --bb-gray-50: #fafaf8;
+  --bb-gray-75: #f4f5f0;
+  --bb-gray-100: #e6e8df;
+  --bb-gray-200: #d2d5c8;
+  --bb-gray-300: #bdc1b2;
+  --bb-gray-400: #a8ad9a;
+  --bb-gray-500: #7f856d;
+  --bb-gray-600: #616750;
+  --bb-gray-700: #4a4f3e;
+  --bb-gray-800: #353a2d;
+  --bb-gray-900: #25281f;
+  --bb-gray-1000: #12150f;
+  --bb-text-subtle: var(--bb-gray-600);
+  --bb-text-muted: rgb(18 21 15 / 0.69);
+  --bb-text-on-base: var(--bb-gray-50);
+  --bb-text-on-base-subtle: var(--bb-gray-200);
+  --bb-background-base: #ffffff;
+  --bb-background-surface: var(--bb-gray-50);
+  --bb-background-raised: rgb(74 79 62 / 0.08);
+  --bb-border-base: var(--bb-gray-300);
+  --bb-border-bold: var(--bb-gray-500);
+  --bb-border-subtle: rgb(18 21 15 / 0.14);
+  --bg: 255 255 255;
+  --surface: 250 250 248;
+  --surface-2: 244 245 240;
+  --border: 189 193 178;
+  --border-strong: 127 133 109;
+  --text: 18 21 15;
+  --text-article: 74 79 62;
+  --text-muted: 97 103 80;
+  --text-subtle: 127 133 109;
+}
+
+:root[data-gray-palette="mist"] {
+  --bb-gray-25: #ffffff;
+  --bb-gray-50: #f8faf9;
+  --bb-gray-75: #f1f4f3;
+  --bb-gray-100: #e1e7e5;
+  --bb-gray-200: #cbd4d1;
+  --bb-gray-300: #b5c1bd;
+  --bb-gray-400: #9eaeaa;
+  --bb-gray-500: #718580;
+  --bb-gray-600: #536762;
+  --bb-gray-700: #40514d;
+  --bb-gray-800: #303e3a;
+  --bb-gray-900: #222c29;
+  --bb-gray-1000: #101714;
+  --bb-text-subtle: var(--bb-gray-600);
+  --bb-text-muted: rgb(16 23 20 / 0.69);
+  --bb-text-on-base: var(--bb-gray-50);
+  --bb-text-on-base-subtle: var(--bb-gray-200);
+  --bb-background-base: #ffffff;
+  --bb-background-surface: var(--bb-gray-50);
+  --bb-background-raised: rgb(64 81 77 / 0.08);
+  --bb-border-base: var(--bb-gray-300);
+  --bb-border-bold: var(--bb-gray-500);
+  --bb-border-subtle: rgb(16 23 20 / 0.14);
+  --bg: 255 255 255;
+  --surface: 248 250 249;
+  --surface-2: 241 244 243;
+  --border: 181 193 189;
+  --border-strong: 113 133 128;
+  --text: 16 23 20;
+  --text-article: 64 81 77;
+  --text-muted: 83 103 98;
+  --text-subtle: 113 133 128;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 200ms;
@@ -995,7 +1066,7 @@ main ul article > a {
 
 .bg,
 .bg-primary {
-  background-color: var(--bg);
+  background-color: rgb(var(--bg));
 }
 
 .bg-2,

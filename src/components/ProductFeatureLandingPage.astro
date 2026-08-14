@@ -1,9 +1,6 @@
 ---
-import CTA from "@components/CTA.astro";
-import FeatureSection from "@components/FeatureSection.astro";
 import HeroSmall from "@components/HeroSmall.astro";
-import StatSection from "@components/StatSection.astro";
-import CardCluster from "@components/cards/CardCluster.astro";
+import ProductFeatureBody from "@components/ProductFeatureBody.astro";
 import type {
   ProductFeatureLandingContent,
   ProductFeatureSlug,
@@ -27,6 +24,12 @@ import SelfHostFeatureTwoImage from "@assets/images/platform/PlatformCockapoo.pn
 import AdminSecurityHeroImage from "@assets/images/feature-sections/regulated-enterprises.png?url";
 import AdminSecurityFeatureOneImage from "@assets/images/feature-sections/critical-operations.png?url";
 import AdminSecurityFeatureTwoImage from "@assets/images/homepage/connectionsBGImage.png?url";
+import TablesHeroImage from "@assets/images/DataTables/hero.png?url";
+import TablesFeatureOneImage from "@assets/images/DataTables/cards/2.png?url";
+import TablesFeatureTwoImage from "@assets/images/DataTables/cards/3.png?url";
+import ApiExplorerHeroImage from "@assets/images/backgrounds/light/api-explorer-sunset.png?url";
+import ApiExplorerFeatureOneImage from "@assets/images/backgrounds/light/api.png?url";
+import ApiExplorerFeatureTwoImage from "@assets/images/backgrounds/dark/apis.png?url";
 
 interface Props {
   slug: ProductFeatureSlug;
@@ -45,6 +48,14 @@ const pageImages: Record<
   functions: {
     hero: FunctionsHeroImage,
     features: [FunctionsFeatureOneImage, FunctionsFeatureTwoImage],
+  },
+  data: {
+    hero: TablesHeroImage,
+    features: [TablesFeatureOneImage, TablesFeatureTwoImage],
+  },
+  apis: {
+    hero: ApiExplorerHeroImage,
+    features: [ApiExplorerFeatureOneImage, ApiExplorerFeatureTwoImage],
   },
   knowledge: {
     hero: KnowledgeHeroImage,
@@ -87,33 +98,5 @@ const images = pageImages[slug];
     />
   </div>
 
-  {
-    content.features.map((feature, index) => (
-      <div class="site-grid-section site-grid-section--no-top">
-        <FeatureSection
-          image={images.features[index]}
-          imageAlt={`${feature.headline} product interface`}
-          headline={feature.headline}
-          body={feature.body}
-          bullets={feature.bullets}
-        />
-      </div>
-    ))
-  }
-
-  <div class="site-grid-section site-grid-section--no-top">
-    <CardCluster
-      SectionTitle={content.cardCluster.title}
-      SectionDescription={content.cardCluster.description}
-      cards={content.cardCluster.cards}
-    />
-  </div>
-
-  <div class="site-grid-section site-grid-section--no-top">
-    <StatSection />
-  </div>
-
-  <div class="site-grid-section site-grid-section--no-top">
-    <CTA />
-  </div>
+  <ProductFeatureBody content={content} featureImages={images.features} />
 </div>

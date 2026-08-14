@@ -1,0 +1,146 @@
+---
+import Icon from "@components/Icon.astro";
+import Link from "@components/Link.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import { platformDropdownMenu } from "@components/navDropdownData";
+
+const normalizePath = (path: string) =>
+  path.length > 1 ? path.replace(/\/+$/, "") : path;
+const currentPath = normalizePath(Astro.url.pathname);
+---
+
+<section
+  class="product-feature-nav"
+  aria-labelledby="product-feature-nav-title"
+>
+  <div class="product-feature-nav__container">
+    <TitleBlock
+      variant="display-small"
+      title="Explore the platform"
+      titleId="product-feature-nav-title"
+      containerClass="product-feature-nav__header"
+      titleClass="product-feature-nav__title"
+    />
+
+    <nav aria-label="Product features">
+      <div class="product-feature-nav__columns">
+        {
+          platformDropdownMenu.columns.map((column) => (
+            <ul class="product-feature-nav__group" aria-label={column.heading}>
+              {column.items.map((item) => {
+                const isCurrent = currentPath === normalizePath(item.href);
+
+                return (
+                  <li>
+                    <Link
+                      label={item.label}
+                      url={item.href}
+                      class="product-feature-nav__link"
+                      weight="medium"
+                      ariaCurrent={isCurrent ? "page" : undefined}
+                      prefetch={item.prefetch}
+                    >
+                      {item.icon && (
+                        <span
+                          slot="leading"
+                          class="product-feature-nav__icon"
+                          aria-hidden="true"
+                        >
+                          <Icon name={item.icon} size="20" weight="fill" />
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          ))
+        }
+      </div>
+    </nav>
+  </div>
+</section>
+
+<style>
+  .product-feature-nav {
+    width: 100%;
+    min-width: 0;
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+  }
+
+  .product-feature-nav__container {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+
+  :global(.product-feature-nav__header) {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+  }
+
+  :global(.product-feature-nav__title) {
+    margin: 0;
+    color: var(--bb-brand-forest-green);
+    text-align: center;
+  }
+
+  .product-feature-nav__columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 40rem;
+    min-width: 0;
+    margin-inline: auto;
+  }
+
+  .product-feature-nav__group {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .product-feature-nav__group li {
+    min-width: 0;
+  }
+
+  :global(.product-feature-nav__link) {
+    justify-content: flex-start;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    overflow-wrap: anywhere;
+  }
+
+  .product-feature-nav__icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    color: var(--bb-celery-700);
+  }
+
+  :global(.product-feature-nav__link[aria-current="page"])
+    .product-feature-nav__icon {
+    color: var(--bb-celery-800);
+  }
+
+  @media (min-width: 768px) {
+    .product-feature-nav__columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product-feature-nav__columns {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 1.5rem;
+    }
+  }
+</style>

@@ -7,12 +7,20 @@
 // - variant?: 'primary' | 'secondary' | 'cta' (default 'primary')
 // - appearance?: 'default' | 'quiet' (default 'default')
 // - size?: 'small' | 'medium' | 'large' (default 'medium')
+// - weight?: 'medium' (optional 500 weight)
 // - class?: string (extra classes)
 // - underline?: boolean (adds underline decoration when true)
+// - ariaCurrent?: valid aria-current value
+// - prefetch?: boolean (enables Astro link prefetching)
+// Slots:
+// - leading: optional content before the label
+// - default: optional content after the label
 
 type Variant = "primary" | "secondary" | "cta";
 type Appearance = "default" | "quiet";
 type Size = "small" | "medium" | "large";
+type Weight = "medium";
+type AriaCurrent = "page" | "step" | "location" | "date" | "time" | "true";
 
 interface Props {
   label: string;
@@ -21,6 +29,7 @@ interface Props {
   variant?: Variant;
   appearance?: Appearance;
   size?: Size;
+  weight?: Weight;
   class?: string;
   ariaLabel?: string;
   rel?: string;
@@ -29,6 +38,8 @@ interface Props {
   dataCalLink?: string;
   dataCalNamespace?: string;
   dataCalConfig?: string;
+  ariaCurrent?: AriaCurrent;
+  prefetch?: boolean;
 }
 
 const {
@@ -38,6 +49,7 @@ const {
   variant = "primary",
   appearance = "default",
   size = "medium",
+  weight,
   class: className = "",
   ariaLabel,
   rel,
@@ -46,13 +58,23 @@ const {
   dataCalLink,
   dataCalNamespace,
   dataCalConfig,
+  ariaCurrent,
+  prefetch = false,
 } = Astro.props as Props;
 
 const sizeClass = size !== "medium" ? size : "";
+const weightClass = weight ? `weight-${weight}` : "";
 const variantClass = variant;
 const appearanceClass = underline ? "default" : appearance;
 
-const classes = ["alink", sizeClass, variantClass, appearanceClass, className]
+const classes = [
+  "alink",
+  sizeClass,
+  weightClass,
+  variantClass,
+  appearanceClass,
+  className,
+]
   .filter(Boolean)
   .join(" ");
 
@@ -66,11 +88,14 @@ const computedRel =
   rel={computedRel}
   class={classes}
   aria-label={ariaLabel}
+  aria-current={ariaCurrent}
+  data-astro-prefetch={prefetch ? "" : undefined}
   data-section={dataSection}
   data-cal-link={dataCalLink}
   data-cal-namespace={dataCalNamespace}
   data-cal-config={dataCalConfig}
 >
+  <slot name="leading" />
   {label}
   <slot />
   <!-- allow optional icon/content -->
@@ -142,8 +167,26 @@ const computedRel =
     font-size: 18px;
   }
 
+  .alink.weight-medium {
+    font-weight: 500;
+  }
+
   .alink:hover {
     opacity: 0.9;
+  }
+
+  .alink[aria-current="page"] {
+    color: var(--bb-celery-800);
+  }
+
+  .alink[aria-current="page"]:hover {
+    color: var(--bb-celery-800);
+  }
+
+  .alink:focus-visible {
+    border-radius: 4px;
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
   }
 
   .alink.cta:hover {

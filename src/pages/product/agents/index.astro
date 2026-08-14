@@ -4,14 +4,78 @@ export const prerender = false;
 import Layout from "../../../layouts/MainLayout.astro";
 import HeroLarge from "@components/HeroLarge.astro";
 import AgentDemo from "@components/AgentDemo.astro";
-import AgentUseCases from "@components/AgentUseCases.astro";
-import AgentFeatureCards from "../../_components/landing-page/AgentFeatureCards.astro";
-import AgentOperationsSections from "./_components/AgentOperationsSections.astro";
+import ProductFeatureBody from "@components/ProductFeatureBody.astro";
 import AgentHeroBackground from "@assets/images/backgrounds/AgentDemo/resources-agent-demo-bg.jpg?url";
+import AgentInstructionsImage from "@assets/images/platform/AgentInstructions.png?url";
+import AgentToolsImage from "@assets/images/platform/AgentTools.png?url";
+import type { ProductFeatureLandingContent } from "../../../data/productFeatureLandingPages";
 
 const pageTitle = "AI agents that\nrun your operations";
 const pageDescription =
   "Build agents that handle requests, answer questions, and take action across your business. Connect your data, trigger automations, and let AI manage the routine work that keeps teams moving.";
+
+const bodyContent = {
+  features: [
+    {
+      headline: "Agents that handle everyday requests",
+      body: "Budibase agents help teams handle routine operational work automatically. They can understand requests, gather information, and take action across your systems.",
+      bullets: [
+        {
+          icon: "ChatCircle",
+          text: "Give employees instant answers to everyday workplace questions.",
+        },
+        {
+          icon: "CheckCircle",
+          text: "Collect context and run structured approval workflows.",
+        },
+        {
+          icon: "Headset",
+          text: "Categorize support requests and route them to the right team.",
+        },
+      ],
+    },
+    {
+      headline: "Agents that take action",
+      body: "Budibase agents don’t just answer questions. They run workflows across your business - creating records, routing approvals, updating apps, and notifying teams automatically.",
+      bullets: [
+        {
+          icon: "Path",
+          text: "Connect agents to hundreds of tools and thousands of operations.",
+        },
+        {
+          icon: "Sparkle",
+          text: "Ground responses with trusted knowledge and retrieval workflows.",
+        },
+        {
+          icon: "Cube",
+          text: "Access internal data tables and external APIs to complete work.",
+        },
+      ],
+    },
+  ],
+  cardCluster: {
+    title: "Everything you need to build useful agents",
+    description:
+      "Create controlled agents that use the right models, follow clear instructions, and work where your teams already collaborate.",
+    cards: [
+      {
+        title: "Build agents like writing a list",
+        description:
+          "Define controlled agent behavior with structured instructions and reusable guidance.",
+      },
+      {
+        title: "Choose between 100s of AI models",
+        description:
+          "Run agents with OpenAI, Anthropic, Mistral, or custom model providers.",
+      },
+      {
+        title: "Deploy where work happens",
+        description:
+          "Run agents inside Automations, Budibase Chat, Discord, and soon Teams and Slack.",
+      },
+    ],
+  },
+} satisfies Pick<ProductFeatureLandingContent, "features" | "cardCluster">;
 
 const accept = Astro.request.headers.get("accept") ?? "";
 Astro.response.headers.set("Vary", "Accept");
@@ -80,17 +144,10 @@ Access internal data tables and external APIs to execute operational tasks.
     backgroundImage={AgentHeroBackground}
   />
 
-  <section
-    class="mx-auto w-full max-w-[var(--site-container-max)] px-2 py-12 md:px-3 lg:px-0"
-  >
-    <div class="flex flex-col gap-[var(--section-spacing-y)]">
-      <div class="flex flex-col gap-[var(--section-gap-lg)]">
-        <AgentUseCases />
-        <AgentOperationsSections />
-        <AgentFeatureCards />
-      </div>
-    </div>
-  </section>
+  <ProductFeatureBody
+    content={bodyContent}
+    featureImages={[AgentInstructionsImage, AgentToolsImage]}
+  />
 </Layout>
 
 <style>
