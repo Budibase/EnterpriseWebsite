@@ -3,15 +3,28 @@ import Button from "@components/Button.astro";
 import HeaderDropDown from "@components/HeaderDropDown.astro";
 import MobileNavAccordion from "@components/MobileNavAccordion.astro";
 import { navDropdownMenus } from "@components/navDropdownData";
+import navLogoOnDark from "@assets/budibase_celery200.svg?url";
 
 const navLogoSrc = "/budibase-nav.svg";
+type NavTheme = "default" | "brand-dark";
+
+interface Props {
+  theme?: NavTheme;
+}
+
+const { theme = "default" } = Astro.props as Props;
+const isBrandDark = theme === "brand-dark";
+const desktopNavLogoSrc = isBrandDark ? navLogoOnDark : navLogoSrc;
 const [platformNavMenu, solutionsNavMenu, resourcesNavMenu] = navDropdownMenus;
 const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 ---
 
 <nav
   id="site-nav"
-  class="nav-shell relative z-50 w-full bg-1 transition-colors duration-150"
+  class:list={[
+    "nav-shell relative z-50 w-full bg-1 transition-colors duration-150",
+    isBrandDark && "nav-shell--brand-dark",
+  ]}
 >
   <div
     class="relative z-10 mx-auto grid h-[var(--site-nav-bar-height)] w-full max-w-[var(--site-container-max)] grid-cols-[1fr_auto_auto] items-center px-2 md:px-3 lg:grid-cols-[auto_1fr_auto] lg:gap-6 lg:px-0"
@@ -24,7 +37,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     >
       <div class="relative w-[140px] flex items-center">
         <img
-          src={navLogoSrc}
+          src={desktopNavLogoSrc}
           alt="Budibase logo"
           width="140"
           height="21"
@@ -65,7 +78,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       <a
         href="https://github.com/budibase/budibase"
         target="_blank"
-        class="relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm transition-all hover:bg-stone-200 border-transparent text-xs hidden xl:flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+        class="nav-github-link relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm transition-all hover:bg-stone-200 border-transparent text-xs hidden xl:flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
         ><span class="truncate"
           ><span
             class="flex text-sm font-medium items-center gap-0.5 nav-link transition-colors"
@@ -95,21 +108,21 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         <Button
           label="Get started"
           url="https://account.budibase.app/register"
-          variant="secondary"
+          variant={isBrandDark ? "outline-on-dark" : "secondary"}
           size="small"
           target="_blank"
         />
         <Button
           label="Book a demo"
           url="/contact/"
-          variant="cta"
+          variant={isBrandDark ? "bright-on-dark" : "cta"}
           size="small"
         />
       </div>
 
       <button
         id="mobile-menu-button"
-        class="lg:hidden p-2 text-stone-800 hover:bg-stone-200 rounded transition-colors"
+        class="mobile-menu-trigger lg:hidden p-2 text-stone-800 hover:bg-stone-200 rounded transition-colors"
         aria-label="Toggle mobile menu"
         aria-expanded="false"
       >
@@ -243,14 +256,11 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       if (window.__budibaseHeaderDropdownsBound) return;
       window.__budibaseHeaderDropdownsBound = true;
 
-      const closeTimers = new WeakMap();
       const rootSelector = "[data-header-dropdown-root]";
       const triggerSelector = "[data-header-dropdown-trigger]";
-      const menuSelector = "[data-header-dropdown-menu]";
-      const siteNavSelector = "#site-nav";
+      const desktopBreakpoint = window.matchMedia("(min-width: 1024px)");
 
       function closeDropdown(root, focusTrigger = false) {
-        window.clearTimeout(closeTimers.get(root));
         root.removeAttribute("data-open");
 
         const trigger = root.querySelector(triggerSelector);
@@ -262,7 +272,6 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       }
 
       function openDropdown(root) {
-        window.clearTimeout(closeTimers.get(root));
         document
           .querySelectorAll(`${rootSelector}[data-open="true"]`)
           .forEach((openRoot) => {
@@ -287,74 +296,15 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
           });
       }
 
-      function scheduleClose(root) {
-        window.clearTimeout(closeTimers.get(root));
-
-        const timer = window.setTimeout(() => {
-          const trigger = root.querySelector(triggerSelector);
-          const menu = root.querySelector(menuSelector);
-
-          if (
-            trigger?.matches(":hover") ||
-            menu?.matches(":hover") ||
-            root.matches(":focus-within")
-          ) {
-            return;
-          }
-
-          closeDropdown(root);
-        }, 160);
-
-        closeTimers.set(root, timer);
-      }
-
-      document.addEventListener(
-        "pointerover",
-        (event) => {
-          const target = event.target;
-          const root = target?.closest(rootSelector);
-
-          if (root) {
-            closeAllDropdowns(root);
-            openDropdown(root);
-          }
-        },
-        true,
-      );
-
-      document.addEventListener(
-        "pointerleave",
-        (event) => {
-          const target = event.target;
-          const root = target?.closest(rootSelector);
-
-          if (root) {
-            scheduleClose(root);
-          }
-        },
-        true,
-      );
-
       document.addEventListener("focusin", (event) => {
         const target = event.target;
-        const root = target?.closest(rootSelector);
+        const focusedRoot = target?.closest(rootSelector);
+        const openRoot = document.querySelector(
+          `${rootSelector}[data-open="true"]`,
+        );
 
-        if (root) {
-          openDropdown(root);
-          return;
-        }
-
-        if (target?.closest(siteNavSelector)) {
-          closeAllDropdowns();
-        }
-      });
-
-      document.addEventListener("focusout", (event) => {
-        const target = event.target;
-        const root = target?.closest(rootSelector);
-
-        if (root) {
-          scheduleClose(root);
+        if (openRoot && openRoot !== focusedRoot) {
+          closeDropdown(openRoot);
         }
       });
 
@@ -363,41 +313,6 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         const trigger = target?.closest(triggerSelector);
 
         if (trigger) {
-          event.preventDefault();
-          const root = trigger.closest(rootSelector);
-
-          if (root) {
-            if (!root.hasAttribute("data-open")) {
-              openDropdown(root);
-            }
-          }
-
-          return;
-        }
-
-        if (!target?.closest(rootSelector)) {
-          closeAllDropdowns();
-        }
-      });
-
-      document.addEventListener(
-        "pointerover",
-        (event) => {
-          const target = event.target;
-          const root = target?.closest(rootSelector);
-
-          if (target?.closest(siteNavSelector) && !root) {
-            closeAllDropdowns();
-          }
-        },
-        true,
-      );
-
-      document.addEventListener("keydown", (event) => {
-        const target = event.target;
-        const trigger = target?.closest(triggerSelector);
-
-        if (trigger && (event.key === "Enter" || event.key === " ")) {
           event.preventDefault();
           const root = trigger.closest(rootSelector);
 
@@ -412,16 +327,39 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
           return;
         }
 
+        if (!target?.closest(rootSelector)) {
+          closeAllDropdowns();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
         if (event.key !== "Escape") {
           return;
         }
 
-        const openRoots = document.querySelectorAll(
+        const openRoot = document.querySelector(
           `${rootSelector}[data-open="true"]`,
         );
 
-        openRoots.forEach((root) => closeDropdown(root, true));
+        if (openRoot) {
+          closeDropdown(openRoot, true);
+        }
       });
+
+      const handleDesktopBreakpointChange = () => {
+        if (!desktopBreakpoint.matches) {
+          closeAllDropdowns();
+        }
+      };
+
+      if (desktopBreakpoint.addEventListener) {
+        desktopBreakpoint.addEventListener(
+          "change",
+          handleDesktopBreakpointChange,
+        );
+      } else {
+        desktopBreakpoint.addListener(handleDesktopBreakpointChange);
+      }
     }
 
     initHeaderDropdowns();
@@ -504,3 +442,53 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     }
   })();
 </script>
+
+<style>
+  .nav-shell.nav-shell--brand-dark {
+    background-color: var(--bb-celery-1300) !important;
+    color: var(--bb-white);
+  }
+
+  .nav-shell.nav-shell--brand-dark :global(.nav-link) {
+    color: var(--bb-white) !important;
+  }
+
+  .nav-shell.nav-shell--brand-dark :global(.nav-link:hover),
+  .nav-shell.nav-shell--brand-dark :global(.nav-link:focus-visible) {
+    color: var(--bb-white) !important;
+  }
+
+  .nav-shell.nav-shell--brand-dark .desktop-nav-link:hover,
+  .nav-shell.nav-shell--brand-dark .desktop-nav-link:focus-visible,
+  .nav-shell.nav-shell--brand-dark
+    :global(.header-dropdown [data-header-dropdown-trigger]:hover),
+  .nav-shell.nav-shell--brand-dark
+    :global(.header-dropdown [data-header-dropdown-trigger]:focus-visible) {
+    background: var(--bb-transparent-white-100);
+    color: var(--bb-white) !important;
+  }
+
+  .nav-shell.nav-shell--brand-dark
+    :global(.header-dropdown[data-open="true"] [data-header-dropdown-trigger]) {
+    background: var(--bb-celery-200);
+    color: var(--bb-celery-1200) !important;
+  }
+
+  .nav-shell.nav-shell--brand-dark .nav-github-link:hover {
+    background: var(--bb-transparent-white-100);
+  }
+
+  .nav-shell.nav-shell--brand-dark .nav-github-link:focus-visible,
+  .nav-shell.nav-shell--brand-dark .mobile-menu-trigger:focus-visible {
+    outline: 2px solid var(--bb-celery-200);
+    outline-offset: 2px;
+  }
+
+  .nav-shell.nav-shell--brand-dark .mobile-menu-trigger {
+    color: var(--bb-white);
+  }
+
+  .nav-shell.nav-shell--brand-dark .mobile-menu-trigger:hover {
+    background: var(--bb-transparent-white-100);
+  }
+</style>

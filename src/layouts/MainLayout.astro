@@ -5,7 +5,12 @@ import Head from "@components/Head.astro";
 import Footer from "@components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 
-const { enableTransitions = false } = Astro.props;
+type NavTheme = "default" | "brand-dark";
+
+const { enableTransitions = false, navTheme = "default" } = Astro.props as {
+  enableTransitions?: boolean;
+  navTheme?: NavTheme;
+};
 ---
 
 <!doctype html>
@@ -25,7 +30,7 @@ const { enableTransitions = false } = Astro.props;
               <div class="site-grid-rails" aria-hidden="true">
                 <div class="site-grid-rails__inner"></div>
               </div>
-              <Nav />
+              <Nav theme={navTheme} />
               <div class="site-grid-main">
                 <slot />
               </div>
@@ -50,7 +55,7 @@ const { enableTransitions = false } = Astro.props;
       const navHeight =
         Number.isFinite(measuredHeight) && measuredHeight > 0
           ? Math.min(measuredHeight, 96)
-          : 56;
+          : 80;
       root.style.setProperty("--site-nav-height", `${navHeight}px`);
     };
 

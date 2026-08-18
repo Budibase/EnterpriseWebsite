@@ -21,7 +21,6 @@ export interface ProductFeatureLandingContent {
     headline: string;
     subtitle: string;
     imageAlt: string;
-    logosHeading: string;
   };
   features: readonly [ProductFeatureSection, ProductFeatureSection];
   cardCluster: {
@@ -47,7 +46,6 @@ export const productFeatureLandingPages = {
       subtitle:
         "Create reusable server-side functions that validate data, connect services, and handle the logic behind your most important operations.",
       imageAlt: "Operational function connected to an automated workflow",
-      logosHeading: "Trusted by teams building enterprise operations",
     },
     features: [
       {
@@ -121,7 +119,6 @@ export const productFeatureLandingPages = {
       subtitle:
         "Store new data or connect PostgreSQL, MySQL, Google Sheets, and more. Work with data in a spreadsheet-style interface, create views, and run AI on rows.",
       imageAlt: "Structured operational data in Budibase tables",
-      logosHeading: "Trusted by teams building enterprise operations",
     },
     features: [
       {
@@ -195,7 +192,6 @@ export const productFeatureLandingPages = {
       subtitle:
         "Explore, test, and reuse API calls so apps, agents, and automations can securely take action across your stack.",
       imageAlt: "API connection configured for an operational workflow",
-      logosHeading: "Trusted by teams building enterprise operations",
     },
     features: [
       {
@@ -269,7 +265,6 @@ export const productFeatureLandingPages = {
       subtitle:
         "Connect trusted knowledge to your agents so they can answer questions, understand requests, and support operational work with relevant context.",
       imageAlt: "Agent instructions connected to operational knowledge",
-      logosHeading: "Trusted by teams building enterprise operations",
     },
     features: [
       {
@@ -343,7 +338,6 @@ export const productFeatureLandingPages = {
       subtitle:
         "Give employees a clear way to ask for help, then route, approve, and resolve each request through one connected operational workflow.",
       imageAlt: "Operational request intake and approval interface",
-      logosHeading: "Trusted by teams building enterprise operations",
     },
     features: [
       {
@@ -417,7 +411,6 @@ export const productFeatureLandingPages = {
       subtitle:
         "Track requests, decisions, agent actions, and automated steps so teams know what happened, what is moving, and what needs attention.",
       imageAlt: "Operational activity and insights dashboard",
-      logosHeading: "Trusted by teams building enterprise operations",
     },
     features: [
       {
@@ -491,7 +484,6 @@ export const productFeatureLandingPages = {
       subtitle:
         "Run Budibase in the environment you control, close to your systems and data, with deployment options designed for secure enterprise operations.",
       imageAlt: "Secure self-hosted enterprise operations",
-      logosHeading: "Trusted by teams building enterprise operations",
     },
     features: [
       {
@@ -565,7 +557,6 @@ export const productFeatureLandingPages = {
       subtitle:
         "Give administrators the identity, access, and governance controls to protect operational work without slowing teams down.",
       imageAlt: "Enterprise administration and security controls",
-      logosHeading: "Trusted by teams building enterprise operations",
     },
     features: [
       {

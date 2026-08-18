@@ -8,6 +8,10 @@ const variantClasses = {
     "border-transparent bg-[var(--bb-brand-bright-green)] !text-[var(--bb-celery-1400)] hover:bg-[var(--bb-brand-bright-green)]",
   "outline-on-base":
     "border border-[var(--bb-brand-bright-green)] bg-transparent !text-[var(--bb-brand-bright-green)] hover:border-[var(--bb-brand-bright-green)] hover:bg-[var(--bb-transparent-white-75)] hover:!text-[var(--bb-celery-100)]",
+  "bright-on-dark":
+    "border-0 bg-[var(--bb-celery-200)] !text-[var(--bb-celery-1200)] hover:bg-[var(--bb-celery-300)] active:bg-[var(--bb-celery-400)] focus-visible:ring-[var(--bb-celery-200)] focus-visible:ring-offset-[var(--bb-celery-1300)]",
+  "outline-on-dark":
+    "border border-[var(--bb-white)] bg-transparent !text-[var(--bb-white)] hover:bg-[var(--bb-transparent-white-100)] hover:!text-[var(--bb-white)] active:bg-[var(--bb-transparent-white-200)] focus-visible:ring-[var(--bb-white)] focus-visible:ring-offset-[var(--bb-celery-1300)]",
   large: "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-hover ",
 };
 

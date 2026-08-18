@@ -148,13 +148,18 @@ Add looping, branching, and conditional logic to craft intelligent rules for rea
 }
 ---
 
-<Layout title={pageTitle} description={pageMetaDescription}>
+<Layout
+  title={pageTitle}
+  description={pageMetaDescription}
+  navTheme="brand-dark"
+>
   <HeroLarge
     title="Automations you can control and rely on"
     description={pageDescription}
     demo={AutomationDemo}
     demoProps={{ breakout: false }}
     backgroundImage={AutomationDemoBackground}
+    theme="brand-dark"
   />
 
   <ProductFeatureBody
@@ -162,9 +167,3 @@ Add looping, branching, and conditional logic to craft intelligent rules for rea
     featureImages={[AutomationFeatureOneImage, AutomationFeatureTwoImage]}
   />
 </Layout>
-
-<style>
-  :global(#site-nav.nav-shell) {
-    background-color: var(--bg-1) !important;
-  }
-</style>

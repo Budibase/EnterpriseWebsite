@@ -25,6 +25,9 @@ const isCompact = menu.columns.length === 1;
     aria-haspopup="true"
   >
     <span>{label}</span>
+    <span class="header-dropdown-trigger__caret" aria-hidden="true">
+      <Icon name="CaretDown" size="12" weight="bold" />
+    </span>
   </button>
 
   <div
@@ -195,24 +198,8 @@ const isCompact = menu.columns.length === 1;
     margin-block: -0.625rem;
   }
 
-  .header-dropdown:hover,
-  .header-dropdown:focus-within,
   .header-dropdown[data-open="true"] {
     z-index: 100;
-  }
-
-  .header-dropdown::after {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    height: 0.75rem;
-    content: "";
-    pointer-events: none;
-  }
-
-  .header-dropdown--compact::after {
-    top: 100%;
   }
 
   .header-dropdown--compact {
@@ -222,6 +209,7 @@ const isCompact = menu.columns.length === 1;
   .header-dropdown-trigger {
     display: inline-flex;
     align-items: center;
+    gap: 0.5rem;
     min-height: 2.25rem;
     padding: 0.45rem 0.75rem;
     border: 0;
@@ -237,9 +225,22 @@ const isCompact = menu.columns.length === 1;
       transform 220ms ease;
   }
 
+  .header-dropdown-trigger__caret {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+    transform: rotate(0deg);
+    transition: transform 180ms ease;
+  }
+
+  .header-dropdown[data-open="true"] .header-dropdown-trigger__caret {
+    transform: rotate(180deg);
+  }
+
   .header-dropdown-trigger:hover,
-  .header-dropdown[data-open="true"] .header-dropdown-trigger,
-  .header-dropdown:hover .header-dropdown-trigger {
+  .header-dropdown[data-open="true"] .header-dropdown-trigger {
     background: var(--bb-celery-200);
     color: var(--text-primary) !important;
   }
@@ -268,7 +269,6 @@ const isCompact = menu.columns.length === 1;
       visibility 0ms linear 240ms;
   }
 
-  .header-dropdown:hover .header-dropdown-panel,
   .header-dropdown[data-open="true"] .header-dropdown-panel {
     visibility: visible;
     opacity: 1;
@@ -565,6 +565,7 @@ const isCompact = menu.columns.length === 1;
 
   @media (prefers-reduced-motion: reduce) {
     .header-dropdown-trigger,
+    .header-dropdown-trigger__caret,
     .header-dropdown-panel,
     .header-dropdown-feature-card,
     .header-dropdown-feature-card__cta-icon,

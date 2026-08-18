@@ -9,10 +9,19 @@ interface Props {
   demo?: AstroComponentFactory;
   demoProps?: Record<string, unknown>;
   backgroundImage?: string;
+  theme?: "default" | "brand-dark";
 }
 
-const { title, description, image, demo, demoProps, backgroundImage } =
-  Astro.props as Props;
+const {
+  title,
+  description,
+  image,
+  demo,
+  demoProps,
+  backgroundImage,
+  theme = "default",
+} = Astro.props as Props;
+const isBrandDark = theme === "brand-dark";
 
 if (!image && !demo) {
   throw new Error("HeroLarge requires either an image or demo component.");
@@ -27,29 +36,33 @@ if (image && demo) {
 const Demo = demo;
 ---
 
-<section class="hero-large">
-  <div class="hero-large__container">
-    <div class="hero-large__copy">
-      <h1>{title}</h1>
-      <p>{description}</p>
-      <div class="hero-large__actions">
-        <Button
-          label="Book a demo"
-          url="https://account.budibase.app/register"
-          variant="cta"
-          size="large"
-          target="_blank"
-        />
-        <Button
-          label="Get started"
-          url="https://account.budibase.app/register"
-          variant="secondary"
-          size="large"
-          target="_blank"
-        />
+<section class:list={["hero-large", isBrandDark && "hero-large--brand-dark"]}>
+  <div class="hero-large__copy-surface">
+    <div class="hero-large__container">
+      <div class="hero-large__copy">
+        <h1>{title}</h1>
+        <p>{description}</p>
+        <div class="hero-large__actions">
+          <Button
+            label="Book a demo"
+            url="https://account.budibase.app/register"
+            variant={isBrandDark ? "bright-on-dark" : "cta"}
+            size="large"
+            target="_blank"
+          />
+          <Button
+            label="Get started"
+            url="https://account.budibase.app/register"
+            variant={isBrandDark ? "outline-on-dark" : "secondary"}
+            size="large"
+            target="_blank"
+          />
+        </div>
       </div>
     </div>
+  </div>
 
+  <div class="hero-large__container">
     <div
       class:list={[
         "hero-large__media",
@@ -95,6 +108,14 @@ const Demo = demo;
     margin-top: clamp(2rem, 4vw, 2.5rem);
   }
 
+  .hero-large--brand-dark {
+    margin-top: 0;
+  }
+
+  .hero-large--brand-dark .hero-large__copy-surface {
+    background: var(--bb-celery-1300);
+  }
+
   .hero-large__container {
     display: flex;
     width: min(100%, var(--site-container-max));
@@ -111,6 +132,11 @@ const Demo = demo;
     margin-inline: auto;
     padding-top: calc(clamp(3rem, 5vw, 5rem) - 1rem);
     text-align: center;
+  }
+
+  .hero-large--brand-dark .hero-large__copy {
+    padding-top: clamp(3.5rem, 6vw, 6rem);
+    padding-bottom: clamp(3.5rem, 6vw, 6rem);
   }
 
   .hero-large__copy h1,
@@ -130,6 +156,11 @@ const Demo = demo;
     text-wrap: balance;
     transform: scaleX(0.86);
     transform-origin: center;
+  }
+
+  .hero-large--brand-dark .hero-large__copy h1,
+  .hero-large--brand-dark .hero-large__copy p {
+    color: var(--bb-white) !important;
   }
 
   .hero-large__copy p {
@@ -157,6 +188,7 @@ const Demo = demo;
     width: 100%;
     margin-top: clamp(3rem, 6vw, 6rem);
     overflow: hidden;
+    border-radius: var(--radius-small);
   }
 
   .hero-large__background-image,
@@ -187,5 +219,4 @@ const Demo = demo;
     position: relative;
     z-index: 1;
   }
-
 </style>

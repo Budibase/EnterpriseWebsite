@@ -19,8 +19,17 @@ const { slug, content } = Astro.props as {
   slug: ProductFeatureSlug;
   content: ProductFeatureLandingContent;
 };
+const usesBrandDarkTheme = slug === "apis" || slug === "data";
 ---
 
-<Layout title={content.title} description={content.metaDescription}>
-  <ProductFeatureLandingPage {slug} {content} />
+<Layout
+  title={content.title}
+  description={content.metaDescription}
+  navTheme={usesBrandDarkTheme ? "brand-dark" : "default"}
+>
+  <ProductFeatureLandingPage
+    {slug}
+    {content}
+    theme={usesBrandDarkTheme ? "brand-dark" : "default"}
+  />
 </Layout>

@@ -36,6 +36,8 @@ interface Props {
   logosHeading?: string;
   badge?: Badge;
   action?: Action;
+  secondaryAction?: Action;
+  theme?: "default" | "brand-dark";
   class?: string;
 }
 
@@ -47,11 +49,20 @@ const {
   logosHeading,
   badge,
   action,
+  secondaryAction,
+  theme = "default",
   class: className = "",
 } = Astro.props as Props;
+const isBrandDark = theme === "brand-dark";
 ---
 
-<section class:list={["hero-small", className]}>
+<section
+  class:list={[
+    "hero-small",
+    isBrandDark && "hero-small--brand-dark",
+    className,
+  ]}
+>
   <div class="hero-small__container">
     <div class="hero-small__main">
       <div class="hero-small__content">
@@ -63,15 +74,29 @@ const {
         <h1>{title}</h1>
         <p>{subtitle}</p>
         {
-          action && (
-            <Button
-              label={action.label}
-              url={action.href}
-              target={action.target}
-              rel={action.rel}
-              variant="cta"
-              size="extra-large"
-            />
+          (action || secondaryAction) && (
+            <div class="hero-small__actions">
+              {action && (
+                <Button
+                  label={action.label}
+                  url={action.href}
+                  target={action.target}
+                  rel={action.rel}
+                  variant={isBrandDark ? "bright-on-dark" : "cta"}
+                  size="extra-large"
+                />
+              )}
+              {secondaryAction && (
+                <Button
+                  label={secondaryAction.label}
+                  url={secondaryAction.href}
+                  target={secondaryAction.target}
+                  rel={secondaryAction.rel}
+                  variant={isBrandDark ? "outline-on-dark" : "secondary"}
+                  size="extra-large"
+                />
+              )}
+            </div>
           )
         }
         <slot name="content-extra" />
@@ -99,6 +124,22 @@ const {
     padding-block: clamp(3rem, 7vw, 6rem);
     background: var(--bb-background-surface);
     color: var(--bb-text-base);
+  }
+
+  .hero-small--brand-dark {
+    padding-block: clamp(2rem, 4vw, 3.5rem);
+    background: var(--bb-celery-1300);
+  }
+
+  .hero-small--brand-dark .hero-small__content {
+    background: var(--bb-celery-1300);
+    color: var(--bb-white);
+  }
+
+  .hero-small--brand-dark .hero-small__content h1,
+  .hero-small--brand-dark .hero-small__content p,
+  .hero-small--brand-dark .hero-small__logos h2 {
+    color: var(--bb-white) !important;
   }
 
   .hero-small__container {
@@ -162,11 +203,27 @@ const {
     line-height: 1.4;
   }
 
+  .hero-small__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero-small--brand-dark .hero-small__logos :global(img) {
+    filter: grayscale(1) brightness(0) invert(1);
+  }
+
+  .hero-small--brand-dark
+    .hero-small__logos
+    :global(.enterprise-logo-grid__northrop) {
+    color: var(--bb-white);
+  }
+
   .hero-small__image {
     aspect-ratio: 1;
     margin: 0;
     overflow: hidden;
-    border-radius: 0;
+    border-radius: var(--radius-small);
   }
 
   .hero-small__image img {

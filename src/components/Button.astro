@@ -10,7 +10,7 @@ import {
 // Props:
 // - label: string (required)
 // - url?: string (if provided, renders an anchor)
-// - variant?: 'primary' | 'secondary' | 'cta' | 'cta-on-base' | 'outline-on-base' | 'large' (defaults to 'primary')
+// - variant?: 'primary' | 'secondary' | 'cta' | 'cta-on-base' | 'outline-on-base' | 'bright-on-dark' | 'outline-on-dark' | 'large' (defaults to 'primary')
 // - type?: 'button' | 'submit' | 'reset' (button only)
 // - class?: string (additional classes)
 // - size?: 'small' | 'medium' | 'large' | 'extra-large' (defaults to 'medium')
@@ -19,7 +19,14 @@ import {
 // - attributes?: additional HTML attributes for specialized wrappers
 
 type Variant =
-  "primary" | "secondary" | "cta" | "cta-on-base" | "outline-on-base" | "large";
+  | "primary"
+  | "secondary"
+  | "cta"
+  | "cta-on-base"
+  | "outline-on-base"
+  | "bright-on-dark"
+  | "outline-on-dark"
+  | "large";
 type Size = "small" | "medium" | "large" | "extra-large" | "sm";
 
 interface Props {

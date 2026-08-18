@@ -34,9 +34,10 @@ import ApiExplorerFeatureTwoImage from "@assets/images/backgrounds/dark/apis.png
 interface Props {
   slug: ProductFeatureSlug;
   content: ProductFeatureLandingContent;
+  theme?: "default" | "brand-dark";
 }
 
-const { slug, content } = Astro.props as Props;
+const { slug, content, theme = "default" } = Astro.props as Props;
 
 const pageImages: Record<
   ProductFeatureSlug,
@@ -90,11 +91,19 @@ const images = pageImages[slug];
       badge={{
         icon: content.hero.badgeIcon,
         label: content.hero.badgeLabel,
+        variant: theme === "brand-dark" ? "celery" : "light",
       }}
       title={content.hero.headline}
       subtitle={content.hero.subtitle}
       action={{ label: "Book a demo", href: "/contact/" }}
-      logosHeading={content.hero.logosHeading}
+      secondaryAction={theme === "brand-dark"
+        ? {
+            label: "Get started",
+            href: "https://account.budibase.app/register",
+            target: "_blank",
+          }
+        : undefined}
+      {theme}
     />
   </div>
 
