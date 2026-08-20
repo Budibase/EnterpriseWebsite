@@ -15,9 +15,14 @@ You see, spreadsheets offer a huge amount of flexibility - there’s a reason wh
 
 At Budibase, we’re on a mission to revolutionize the way businesses build tools, manage data, and streamline their processes.
 
-{{< youtube Wxyyj3qWHEk >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/Wxyyj3qWHEk" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
-{{< custom-cta text="Build custom workflow apps on top of any data with Budibase" >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Build custom workflow apps on top of any data with Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Why would I want to make an app from an Excel spreadsheet?
 
@@ -118,7 +123,10 @@ Our mission is to build the world’s largest suite of open-source business solu
 
 Check out our [pricing page](https://budibase.com/pricing) for more information.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 2. Connect or import your data
 

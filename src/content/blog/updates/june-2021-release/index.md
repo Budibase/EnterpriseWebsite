@@ -7,7 +7,9 @@ socialImage: "/releases/2021/june/layout.png"
 draft: false
 ---
 
-{{< youtube tGsc70p8YqQ >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/tGsc70p8YqQ" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 The June release significantly improves the developer experience when; building CRUD apps with an SQL database, laying out components, and delivering responsive apps.
 
@@ -42,7 +44,9 @@ Previous to this release, SQL was supported but the experience was tedious. We t
 
 You can now customize the layout of your user interface (UI) using the new layout settings bar. The settings bar is activated by clicking on a container within the design screen, and it makes designing UIs easier, faster, and in our opinion, greatly improves user experience. 
 
-{{< figure src="/releases/2021/june/layout.png" alt="Budibase layout settings bar" >}}
+<figure class="blog-figure">
+<img src="/releases/2021/june/layout.png" alt="Budibase layout settings bar" loading="lazy" />
+</figure>
 
 
 
@@ -62,7 +66,9 @@ Many of the apps created with Budibase follow similar design patterns. With this
 
 The new Navigation Layout replaces the existing Top Navigation Layout, and now comes with two presets; top navigation and side navigation. The side navigation is a welcomed addition and common request from the community, and with this release, it’s just 2 clicks away - and it looks awesome. I’m also happy to announce the new navigation layout is responsive, and works seamlessly across mobile, tablet and desktop. To top it off, the navigation layout now comes with a new portal icon that, when clicked, allows users to return to their portal and log out.
 
-{{< figure src="/releases/2021/june/responsive-design.png" alt="Budibase responsive nabber" >}}
+<figure class="blog-figure">
+<img src="/releases/2021/june/responsive-design.png" alt="Budibase responsive nabber" loading="lazy" />
+</figure>
 
 
 
@@ -72,7 +78,9 @@ The new Navigation Layout replaces the existing Top Navigation Layout, and now c
 
 A lot of work has gone into improving the interactivity of the design screen, including component labels, improved highlighting, and component stabilization. Hopefully you’ll agree, the design experience is smoother, more informative and enjoyable.
 
-{{< figure src="/releases/2021/june/nav.gif" alt="Budibase new side nav" >}}
+<figure class="blog-figure">
+<img src="/releases/2021/june/nav.gif" alt="Budibase new side nav" loading="lazy" />
+</figure>
 
 
 

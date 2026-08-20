@@ -20,7 +20,9 @@ The use cases for both crop up when the value from doing things quicker outweigh
 
 Rather than bury the lead, here’s a quick demo of what we put together:
 
-{{< youtube ZqN70bM1AMw >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/ZqN70bM1AMw" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 We used a tool called UI.Vision to set up a bot that creates CRUD apps for Postgres in Budibase.
 

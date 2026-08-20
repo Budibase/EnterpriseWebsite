@@ -15,7 +15,9 @@ Today, we’re going to see how Budibase empowers teams to build advanced forms 
 
 Specifically, we’re going to build a fully custom, multi-step client intake form. Even better, we’ll have a working UI in just a few minutes.
 
-{{< youtube 28CkwakDm6I >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/28CkwakDm6I" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 But before we begin…
 
@@ -35,7 +37,9 @@ So…
 
 We’re building a multi-step client intake form on top of an existing MySQL database. So, we’ll be using Budibase to build our UI, although it won’t actually store our form data. Rather, it will simply act as a proxy to query our external database.
 
-{{< vimeo id="912153496" title="Client Intake Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/912153496?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Client Intake Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 The beauty of our open-source, low-code platform is its market-leading support for external data sources.
 
@@ -49,7 +53,10 @@ On top of this, our internal database offers unrivaled flexibility in the form-b
 
 Let’s jump in! If you haven’t already, sign up for a free Budibase account to start building as many forms as you like.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Connecting to our database
 
@@ -83,8 +90,7 @@ Our database only has a single table, so we’re fetching this. Once we’ve don
 
 Here’s a query you can use to create a table just like ours:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE client_data (
 
   client_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -122,13 +128,11 @@ CREATE TABLE client_data (
   intake_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
-
-{{< /highlight >}}
+```
 
 And one to populate it with dummy data:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 INSERT INTO client_data 
 
   (first_name, last_name, email, phone_number, address, city, state, zip_code, date_of_birth, preferred_contact_method, role, industry, company_name, project_overview, additional_notes)
@@ -140,8 +144,7 @@ VALUES
   ('Jane', 'Smith', 'jane.smith@email.com', '555-5678', '456 Oak St', 'Sometown', 'NY', '12345', '1975-08-22', 'Phone', 'Engineer', 'Manufacturing', 'XYZ Inc', 'Project overview for Jane Smith.', 'Additional notes for Jane Smith.'),
 
   ('Bob', 'Johnson', 'bob.johnson@email.com', '555-9876', '789 Pine St', 'Anycity', 'TX', '76543', '1990-03-05', 'Email', 'Analyst', 'Finance', '123 Investments', 'Project overview for Bob Johnson.', 'Additional notes for Bob Johnson.');
-
-{{< /highlight >}}
+```
 
 Our data model for this app is pretty basic. We can store key information about the company we’re working with, our primary contact point, and some longer form text on the project itself.
 

@@ -130,7 +130,10 @@ Orchestration is the automation of container deployment, management, monitoring,
 
 So, we can tell container orchestration tools *where* we want our software to be deployed at any given moment, and the platform will essentially take care of everything for us. We’ll see some examples of these kinds of tools a little bit later.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Containers vs virtual machines
 

@@ -74,7 +74,9 @@ Let’s check each one out in turn.
 
 Budibase is the [open-source, low-code platform](https://budibase.com/blog/open-source-low-code-platforms/) that empowers IT teams to turn data into action. Large organizations across the globe choose our platform to build tools for all kinds of ticketing, request management, approval, and other use cases.
 
-{{< vimeo id="1054494533" title="Ticketing System Template" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1054494533?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Ticketing System Template" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 #### Features
 
@@ -84,7 +86,10 @@ Simply connect your data, configure your permissions, and use Budibase to autoge
 
 We also offer a powerful visual automation builder, custom AI configs, optional self-hosting, and much more. There’s never been a better way to build advanced solutions for handling internal IT workflows.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Use cases
 

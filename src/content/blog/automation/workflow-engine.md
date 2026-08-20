@@ -86,7 +86,10 @@ To this end, operations or IT colleagues might build or configure centralized wo
 
 This offers a number of important benefits, including increased oversight, ease of maintenance, and cost-effectiveness.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 3 types of workflow engines
 
@@ -152,7 +155,9 @@ With that in mind, here are our five top picks for open-source workflow engines 
 
 ### 1. Budibase - for IT teams
 
-{{< vimeo id="953876374" title="Workflow Engine" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/953876374?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Workflow Engine" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Budibase is the open-source, low-code platform that turns data into action. With extensive external data support, intuitive visual design tools, a powerful automation builder, a public API, and enterprise-grade security, it’s the ideal solution for handling all kinds of internal workflows.
 
@@ -166,7 +171,10 @@ Budibase is the top choice for security-focused teams. Our open-source product i
 
 Check out our guide to using Budibase as a [business rules engine](https://budibase.com/blog/automation/business-rules-engine/) to learn more.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 2. Gitea - for DevOps teams
 

@@ -429,7 +429,9 @@ Just like in Retool, this source control is only available for custom-priced lic
 
 ## Turn data into action with Budibase
 
-{{< vimeo id="930591556" title="Budibase Mini Demo" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/930591556?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Budibase Mini Demo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Superblocks and Retool are two of the biggest names in the low-code space. However, they’re also two platforms that occupy a very tight niche, primarily targeting engineers and other colleagues with a high level of coding knowledge.
 

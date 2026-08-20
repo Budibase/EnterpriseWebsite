@@ -82,7 +82,10 @@ Budibase also offers custom pricing for enterprises with air-gapped deployments,
 
 Check out our [pricing page](https://budibase.com/pricing/) to learn more.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Building apps in Budibase and Appsmith
 
@@ -208,7 +211,9 @@ You might also like our guide comparing [Appsmith vs Retool](https://budibase.co
 
 ## Turn data into action with Budibase
 
-{{< vimeo id="930591556" title="Budibase Mini Demo" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/930591556?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Budibase Mini Demo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Budibase is the open-source, low-code platform that helps IT teams turn data into action. 
 

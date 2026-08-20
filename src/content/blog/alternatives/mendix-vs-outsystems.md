@@ -225,7 +225,9 @@ In fact, as two of the oldest names in an industry that’s faced extensive disr
 
 And Budibase is leading the charge.
 
-{{< vimeo id="930591556" title="Budibase Mini Demo" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/930591556?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Budibase Mini Demo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Our open-source, low-code platform is the fast, easy way to build custom applications on top of just about any data source - with direct connections to RDBMSs, NoSQL tools, APIs, Google Sheets, and custom data sources - as well as our built-in database. Seemlessly build interfaces on top of any data, including using powerful custom views.
 

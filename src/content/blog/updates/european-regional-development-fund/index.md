@@ -7,7 +7,9 @@ profilePic: "/img/img/mike-blog.png"
 draft: false
 ---
 
-{{< figure src="/european-regional-development-fund/erdf.png" alt="European Regional Development Fund Logo" >}}
+<figure class="blog-figure">
+<img src="/european-regional-development-fund/erdf.png" alt="European Regional Development Fund Logo" loading="lazy" />
+</figure>
 
 Budibase was founded in Belfast, Northern Ireland. We are proud to be part of such an amazing tech and business community. 
 

@@ -89,7 +89,10 @@ Having extensively looked at what AI data entry is, where it’s used, and the b
 
 If you haven’t already, sign up for a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 We’re going to explore four of the most common use cases for AI within data entry workflows. Let’s dive right in.
 
@@ -150,8 +153,7 @@ Here, we can access all of the individual field values from our trigger row, und
 ![AI Data Entry](https://res.cloudinary.com/daog6scxm/image/upload/v1762446221/cms/ai-data-entry/AI_Data_Entry_9_uzmzw5.webp "AI Data Entry")
 The specific expression we’re going to use is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 Subject:
 
 {{ trigger.row.Subject }}
@@ -159,8 +161,7 @@ Subject:
 Description:
 
 {{ trigger.row.Description }}
-
-{{< /highlight >}}
+```
 
 ![Bindings](https://res.cloudinary.com/daog6scxm/image/upload/v1762446221/cms/ai-data-entry/AI_Data_Entry_10_jpq42y.webp "Bindings")
 We’ll then add our possible categories to match the options from our data table. These are ‘Software’, ‘Hardware’, ‘Network’, ‘Account’, and ‘Other’.
@@ -213,8 +214,7 @@ This will allow us to send more in-depth instructions to the model than we could
 ![Bindings](https://res.cloudinary.com/daog6scxm/image/upload/v1762446190/cms/ai-data-entry/AI_Data_Entry_22_qrxymd.webp "Bindings")
 Our prompt is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 You are an IT maintenance triage assistant.
 
 {{ Description }} is a maintenance request submitted by a user.
@@ -262,8 +262,7 @@ Return only a valid JSON object in this format — no extra text, explanations, 
 }
 
 If the input is unclear, still return a valid JSON object with "Category": "Other", "Priority": "Low", and a brief justification.
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1762446190/cms/ai-data-entry/AI_Data_Entry_23_tsygdc.webp "Prompts")
 One last time, we’ll add a test submission to our form.

@@ -47,7 +47,9 @@ Connect ChatGPT to Budibase automations and build AI apps in minutes with the ne
 
 With the Budibase Embed feature, you can share your public apps outside of Budibase and integrate them directly within websites or apps. You can try a Budibase embed below:
 
-{{< iframe "https://budimaster.budibase.app/embed/inventory" >}} 
+<div class="blog-embed blog-embed--app">
+<iframe src="https://budimaster.budibase.app/embed/inventory" title="Budibase inventory app demo" loading="lazy"></iframe>
+</div>
 
 _**The embed above is restricted to read-only access for demo purposes. You'll not be able to access the embed if your browser is set to Incognito.**_
 
@@ -55,7 +57,10 @@ _**The embed above is restricted to read-only access for demo purposes. You'll n
 
 ---
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ---
 
@@ -113,7 +118,10 @@ We've moved app settings from the portal to the app building experience. The exp
 
 ---
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ---
 

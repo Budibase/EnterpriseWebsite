@@ -64,7 +64,10 @@ Budibase is fully optimized for busy IT teams that need to build secure, profess
 
 Sign up today to build along with this tutorial.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 We’re going to build a simple system access request form with a fixed schema, which will allow users to select a resource, provide a justification and a timeframe, and submit their request for approval.
 
@@ -78,8 +81,7 @@ We’re going to select the option to create a new table in BudibaseDB by upload
 
 The specific data we’re using is:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 Date From,Date To,Justification,Status,System
 
 2025-03-01,2025-03-10,Required to perform configuration changes for scheduled feature release,Pending,CRM
@@ -87,8 +89,7 @@ Date From,Date To,Justification,Status,System
 2025-04-05,2025-04-07,Access needed to diagnose and resolve a critical performance incident,Approved,ERP
 
 2025-05-12,2025-05-20,Required to complete compliance verification for quarterly internal audit,Rejected,Inventory
-
-{{< /highlight >}}
+```
 
 We’re calling our table `System Requests`, and setting our columns to the following data types:
 

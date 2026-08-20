@@ -108,7 +108,10 @@ The Budibase Automation editor provides a powerful, streamlined experience for c
 
 We've recently launched Budibase Agents, offering a secure, model-agnostic experience for creating intelligent assistants that connect to your existing tools and data. Budibase supports any LLM with an OpenAI-compatible model, including local models, so you can adopt AI within workflows without handing over your data to opaque public services.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Use cases
 

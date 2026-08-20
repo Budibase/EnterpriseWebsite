@@ -29,7 +29,9 @@ In this article, we’ll dive into how you can do this using Budibase, and creat
 
 Let’s get started!
 
-{{< youtube PZQNxwMk0es >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/PZQNxwMk0es" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ##  What are we building?
 
@@ -48,7 +50,9 @@ Let’s jump right in.
 
 The first thing we need to do is create a new Budibase app. If you haven’t already, sign up for a free account using the link below.
 
-{{< form-builder-cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 When we hit *create new app* we’ll be given the choice of using a template or starting from scratch. We’re going to start from scratch. We’re prompted to give our new app a name, which will also be used to generate a URL slug:
 
@@ -94,7 +98,9 @@ Here’s what we have so far:
 
 We can view all of the records in our table, click on any row to access an update form, or use the *Create row* button to add a new entry.
 
-{{< vimeo id="910036079" title="Forms for SQL Databases" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/910036079?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Forms for SQL Databases" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 We can also add form fields for searchability using the *search fields* dropdown:
 
@@ -126,7 +132,9 @@ Here’s what this will look like:
 
 We want a multi-step form with two steps. The first will let the user choose a title for their post. The second will allow them to input their content, choose a category, and save the new blog article to the database.
 
-{{< vimeo id="910036098" title="Forms for SQL Databases" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/910036098?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Forms for SQL Databases" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 We’ll start by adding a *multi-step form block*. As the name suggests, this creates a multi-step form for whichever data source we point it at:
 
@@ -188,7 +196,10 @@ Finally, we’ll alter the theme of our entire application under Screen and Them
 
 When we’re ready, we can hit Publish and share our live app with our team.
 
-{{< custom-cta text="Build custom workflow apps on top of any data with Budibase" >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Build custom workflow apps on top of any data with Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Build secure, advanced forms with Budibase
 

@@ -75,7 +75,10 @@ We’ll do this in only four steps:
 
 If you haven’t already, sign up for a free Budibase account to start building as many applications as you need.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 Note that today, we’re using a self-hosted instance of Budibase, but you can also take advantage of a range of AI features alongside our internal database within our cloud platform.
 
@@ -191,8 +194,7 @@ Our prompt will do three separate things.
 
 For demo purposes, we’re using the following basic logic to assess the submission, although you could modify this however you need to match your own workflow.
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an IT incident triage assistant.
 
 Classify the impact level of the following incident as one of: Low, Medium, or High.
@@ -202,29 +204,25 @@ Classify the impact level of the following incident as one of: Low, Medium, or H
 \- Medium: Noticeable issue affecting some users or business functions.
 
 \- High: Major disruption affecting many users or critical systems.
-
-{{< /highlight >}}
+```
 
 ![Logic](https://res.cloudinary.com/daog6scxm/image/upload/v1748446642/cms/ai-agents/connect-llm-to-mysql/Connect_LLM_to_MySQL_17_ndwoxm.webp "Logic")
 
 We can access the values we need from our trigger row under `Trigger Outputs`. We’ll add the following to our prompt to signpost these for the model.
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 Incident description:
 
 {{ trigger.row.description }}
 
 Number of users affected: {{ trigger.row.users_affected }}
-
-{{< /highlight >}}
+```
 
 ![Bindings](https://res.cloudinary.com/daog6scxm/image/upload/v1748446642/cms/ai-agents/connect-llm-to-mysql/Connect_LLM_to_MySQL_18_selxmf.webp "Bindings")
 
 Lastly, we’ll provide an example of the JSON object we’d like returned.
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 Respond ONLY with a JSON object in the following format:
 
 {
@@ -232,15 +230,13 @@ Respond ONLY with a JSON object in the following format:
  "impact_level": "<Low|Medium|High>"
 
 }
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1748446641/cms/ai-agents/connect-llm-to-mysql/Connect_LLM_to_MySQL_19_mnuibr.webp "Prompt")
 
 To recap, here’s the final prompt.
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an IT incident triage assistant.
 
 Classify the impact level of the following incident as one of: Low, Medium, or High.
@@ -264,8 +260,7 @@ Respond ONLY with a JSON object in the following format:
  "impact_level": "<Low|Medium|High>"
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll finish by hitting `Save`.
 
@@ -301,13 +296,11 @@ We’re going to declare a variable called response, and use the `JSON.parse()` 
 
 We’ll do this with the following code.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var response = JSON.parse($("steps.OpenAI.response"))
 
 return response["impact_level"];
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1748446638/cms/ai-agents/connect-llm-to-mysql/Connect_LLM_to_MySQL_26_bdwkns.webp "JavaScript")
 

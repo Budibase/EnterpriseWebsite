@@ -161,9 +161,15 @@ Finally, we have scalability. As ever, we’re dealing with two related issues h
 Let’s think about each in turn. Unstructured data management enables vertical scalability by allowing us to store large volumes of information with comparatively direct or indirect costs.
 
 Horizontal scalability is enhanced by greater flexibility to store unique information about individual data objects - allowing us to represent much more complex phenomena that would be possible with structured data.
-{{< alert-positive "Get the must-read stories for IT professionals, straight to your inbox.">}}
->
-{{< cta >}}
+
+<aside class="blog-callout blog-callout--positive" role="note">
+<p>Get the must-read stories for IT professionals, straight to your inbox.</p>
+</aside>
+
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Challenges for managing unstructured data
 

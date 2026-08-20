@@ -6,7 +6,9 @@ author: "Joe Johnston"
 socialImage: "/open-source-low-code-platforms/open-source-low-code-platforms.jpg"
 ---
 
-{{< figure src="/open-source-low-code-platforms/open-source-low-code-platforms.jpg" alt="Top 10 open source low-code platforms" >}}
+<figure class="blog-figure">
+<img src="/open-source-low-code-platforms/open-source-low-code-platforms.jpg" alt="Top 10 open source low-code platforms" loading="lazy" />
+</figure>
 
 Low-code and no-code are the latest phenomena to take over our strategy meetings and development chats. These solutions are not new, but the emergence of new technologies and a shift in how we work has accelerated their need within the workplace.
 
@@ -104,7 +106,9 @@ Below are the top open source low-code platforms:
 
 ### Budibase - The low-code platform for building business apps
 
-{{< youtube 6wZAr-148u0 >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/6wZAr-148u0" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 [Budibase](https://budibase.com) is an all-in-one open source low-code platform for building internal tools. IT teams in thousands of companies across all industries choose it as the leading open source low code platform - and for a good reason.
 
@@ -122,13 +126,18 @@ Budibase also empowers users to automate complete workflows, with optional custo
 
 Actively maintained - Yes
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ***
 
 ### Huginn - The low-code automation platform
 
-{{< youtube LkYPZ6xxK6U >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/LkYPZ6xxK6U" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Huginn is an automation low-code platform akin to Zapier and Integromat. The critical difference is that Huginn is open source.  With over 30,000 stars on Github and a very active community, Huginn is a solid bet when choosing a low-code automation platform.
 
@@ -146,7 +155,9 @@ Actively maintained - Yes
 
 ### WordPress - The open-source low-code platform for building websites
 
-{{< youtube jmqu4HC3zmo >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/jmqu4HC3zmo" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 WordPress is the leading low-code platform for building websites. Today, WordPress powers more than 41% of the web - from simple blogs to enterprise websites.
 
@@ -164,7 +175,9 @@ Actively maintained - Yes
 
 ### Node-Red - the open source low-code platform for build event-driven / IoT applications
 
-{{< youtube ksGeUD26Mw0 >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/ksGeUD26Mw0" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Node-RED is a programming tool for wiring together hardware devices, APIs, and online services. It provides a browser-based GUI that makes it easy to connect nodes to create flows that can be deployed to its runtime in a single click.
 
@@ -180,7 +193,9 @@ Actively maintained - Yes
 
 ### PyCaret - Open source low-code platform python and machine learning
 
-{{< youtube 4Rn4YMLUjGc >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/4Rn4YMLUjGc" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 PyCaret is an open-source, low-code machine learning library in Python that aims to reduce the cycle time from hypothesis to insights.
 
@@ -209,7 +224,9 @@ Actively maintained - Yes
 ***
 ### StackStorm - best for DevOps automation.
 
-{{< youtube MtPw1WC9pxA >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/MtPw1WC9pxA" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 StackStorm is an event-driven workflow automation tool. We can create simple if-this-then-that rules or more complex automations, using customizable internal and external triggers.
 
@@ -251,7 +268,10 @@ Actively maintained - Yes
 
 ***
 ### AppFlowy - best for collaboration and project management.
-{{< youtube Y1OHGh_OGdw >}}
+
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/Y1OHGh_OGdw" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 AppFlowy is an open-source alternative to Notion, providing a streamlined, collaborative platform for managing wikis, projects, notes, and other information securely.
 

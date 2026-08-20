@@ -54,7 +54,10 @@ Lastly, for issues that need to be escalated to our human team, the Agent can cr
 
 Budibase is the complete AI workflow toolkit that connects to any data, API, or LLM. To build along with this tutorial, sign up for our cloud or self-hosted platform.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Configuring our model
 

@@ -37,12 +37,13 @@ So...
 
 We’re actually going to build two forms today using an API that stores questions for a survey.
 
-{{< vimeo id="914423121" title="Send form data to an API" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/914423121?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Send form data to an API" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Here’s an example of the data objects that are stored for each question:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "id": 1,
@@ -88,8 +89,7 @@ Here’s an example of the data objects that are stored for each question:
  ]
 
 }
-
-{{< /highlight >}}
+```
 
 For the purpose of our forms, we’re only worried about a handful of these attributes. These are the id, question, and choice fields.
 
@@ -108,7 +108,10 @@ Budibase is the fast, easy way to build advanced forms on top of any data source
 
 If you haven’t already, sign up for a free account now.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Creating our API requests
 
@@ -160,8 +163,7 @@ We can do this using a form interface, but since our schema that we saw earlier 
 
 We’ll start by adding the basic structure of our body parameters. We know from our API docs that our request body should look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "question": "",
@@ -179,8 +181,7 @@ We’ll start by adding the basic structure of our body parameters. We know from
  ]
 
 }
-
-{{< /highlight >}}
+```
 
 So, that’s what we’ll add.
 
@@ -190,8 +191,7 @@ Then, all we need to do is populate the blank values with our bindings. We can r
 
 So, our completed JSON object will be:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "question": "{{Binding.question}}",
@@ -209,8 +209,7 @@ So, our completed JSON object will be:
  ]
 
 }
-
-{{< /highlight >}}
+```
 
 ![Dynamic request](https://res.cloudinary.com/daog6scxm/image/upload/v1708349806/cms/send-form-data-to-api/Send_Form_Data_to_API_8_smdlog.webp "Dynamic request")
 
@@ -366,11 +365,9 @@ To do that, we need to add an on-click action.
 
 We’re going to add a Navigate To action and set the page path to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 /put-form/{{ Clicked row.id }}
-
-{{< /highlight >}}
+```
 
 We’re using the {{ Clicked row.id }} binding to populate the :id variable that we added to our URL earlier.
 
@@ -394,8 +391,7 @@ We can then use the Default Value field for each of our form fields to populate 
 
 Our data schema contains several nested objects, so it’s worth taking another look at what we’re dealing with.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "id": 1,
@@ -439,21 +435,17 @@ Our data schema contains several nested objects, so it’s worth taking another 
  ]
 
 }
-
-{{< /highlight >}}
+```
 
 The binding for our question attribute will be:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ Data Provider.Rows.0.question }}
-
-{{< /highlight >}}
+```
 
 For our choices, we’re using:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ Data Provider.Rows.0.choices.0.choice }}
 
 {{ Data Provider.Rows.0.choices.1.choice }}
@@ -461,8 +453,7 @@ For our choices, we’re using:
 {{ Data Provider.Rows.0.choices.2.choice }}
 
 {{ Data Provider.Rows.0.choices.3.choice }}
-
-{{< /highlight >}}
+```
 
 ![Default value](https://res.cloudinary.com/daog6scxm/image/upload/v1708349797/cms/send-form-data-to-api/Send_Form_Data_to_API_43_mi20we.webp "Default value")
 

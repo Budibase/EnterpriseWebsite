@@ -6,7 +6,9 @@ author: "Joe Johnston"
 socialImage: "/web-app-ideas/dashboard-web-app.jpg"
 ---
 
-{{< figure src="/web-app-ideas/dashboard-web-app.jpg" alt="The CEO Dashboard Web App" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/dashboard-web-app.jpg" alt="The CEO Dashboard Web App" loading="lazy" />
+</figure>
 
 Every once in a while, I'll come across examples of web application design that really draw me in. I've listed these web applications below and ranked them from 10 - 1.
 
@@ -153,13 +155,17 @@ Creativity - 🌟🌟
 
 ### 5. Intercom
 
-{{< figure src="/web-app-design/intercom.png" alt="Intercom UI" >}}
+<figure class="blog-figure">
+<img src="/web-app-design/intercom.png" alt="Intercom UI" loading="lazy" />
+</figure>
 
 Next on our list is Intercom.
 
 Intercom describes their company as a suite of messaging-first products, designed to accelerate business growth. Founded in 2011, the Intercom suite of products have went through multiple design iterations.
 
-{{< figure src="/web-app-design/intercom-old-v-new.png" alt="Intercom old v new UI" >}}
+<figure class="blog-figure">
+<img src="/web-app-design/intercom-old-v-new.png" alt="Intercom old v new UI" loading="lazy" />
+</figure>
 
 The most recent design attracted a lot of praise, and also some negativity from the darker corners of the internet - but we're going to ignore the trolls as we're huge fans.
 
@@ -173,7 +179,9 @@ Creativity - 🌟🌟
 
 ### 4. Buffer
 
-{{< figure src="/web-app-design/buffer.png" alt="Buffer UI" >}}
+<figure class="blog-figure">
+<img src="/web-app-design/buffer.png" alt="Buffer UI" loading="lazy" />
+</figure>
 
 Buffer is one of the original social media management platforms. In 2014, Buffer solved one of my biggest problems as a young digital marketer - scheduling social media posts. Since then, Buffer has grown and just recently divided their offering into 3 products. Along with the new offering, was a new UI.
 
@@ -191,7 +199,9 @@ Creativity - 🌟🌟🌟
 
 ### 3. Notion
 
-{{< figure src="/web-app-design/notion.png" alt="Notion UI" >}}
+<figure class="blog-figure">
+<img src="/web-app-design/notion.png" alt="Notion UI" loading="lazy" />
+</figure>
 
 I am a huge fan of Notion, and I’ve been an avid user since 2016. It’s minimalist and uncluttered feel provides the user with a blank canvas, free from distraction - making it a great example of modern web app design.
 
@@ -211,7 +221,9 @@ Creativity - 🌟🌟🌟🌟🌟
 
 ### 2. Netlify
 
-{{< figure src="/web-app-design/netlify.PNG" alt="Netlify UI" >}}
+<figure class="blog-figure">
+<img src="/web-app-design/netlify.PNG" alt="Netlify UI" loading="lazy" />
+</figure>
 
 Netlify takes the complicated and makes it simple.
 
@@ -235,7 +247,9 @@ Creativity - 🌟🌟🌟
 
 ### 1. Mailchimp
 
-{{< figure src="/web-app-design/mailchimp.PNG" alt="Mailchimp UI" >}}
+<figure class="blog-figure">
+<img src="/web-app-design/mailchimp.PNG" alt="Mailchimp UI" loading="lazy" />
+</figure>
 
 Mailchimp started as a side project over ten years ago. In 2009 they added a freemium version and their customers jumped from 85,000 - 450,000. Today they provide millions of startups / small companies around the world with a simple, beautiful marketing platform (it's now more than the email platform it use to be).
 

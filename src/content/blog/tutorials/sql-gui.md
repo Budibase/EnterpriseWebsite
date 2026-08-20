@@ -100,17 +100,24 @@ Our second cohort, called **Query Editors**, will be able to write, send, test, 
 
 Here’s what our CRUD screens look like.
 
-{{< vimeo id="1027314576" title="SQL GUI" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1027314576?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="SQL GUI" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 And our query editor.
 
-{{< vimeo id="1027314554" title="SQL GUI" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1027314554?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="SQL GUI" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## How to build a SQL GUI in 5 Steps
 
 Let’s dive into creating our SQL GUI. If you haven’t already, sign up for a free Budibase account to build as many apps as you like, for free. 
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 We’ll provide the queries you need to create the database tables we’re using in our example a little bit later.
 
@@ -150,8 +157,7 @@ This one creates the employees table:
 
 This query creates the submissions table:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create the table
 
 CREATE TABLE timesheet (
@@ -201,13 +207,11 @@ INSERT INTO timesheet (
 (38, 'john.doe@example.com', '2024-01-29', 'Wednesday', 9, 0, 16, 0, 'Database design', 1),
 
 (39, 'john.doe@example.com', '2024-01-29', 'Friday', 8, 30, 15, 30, 'Code review', 1);
-
-{{< /highlight >}}
+```
 
 This one creates our employees table:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create the employees table
 
 CREATE TABLE employees (
@@ -227,8 +231,7 @@ INSERT INTO employees (id, first_name, last_name) VALUES
 (1, 'John', 'Doe'),
 
 (2, 'Jane', 'Smith');
-
-{{< /highlight >}}
+```
 
 ### 2. Building our CRUD tools within our SQL GUI
 
@@ -382,8 +385,7 @@ Alternatively, you could rely on the existing, already secure query testing and 
 
 The prepared statement we’re relying on is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE PROCEDURE execute_immediate(IN query TEXT)
 
 BEGIN
@@ -431,8 +433,7 @@ BEGIN
   END IF;
 
 END;
-
-{{< /highlight >}}
+```
 
 We can create this by sending it under the Query tab of our MySQL connection in Budibase’s data section. We can also save this for future reference if we like.
 
@@ -448,21 +449,17 @@ We’ll start by creating a query called Execute Immediate, setting its function
 
 We’ll then need to configure this to accept a user input. To do this, we’ll add a binding and call it **query**. We can set a default value for testing purposes. We’ll use:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT * FROM employees;
-
-{{< /highlight >}}
+```
 
 ![SQL GUI](https://res.cloudinary.com/daog6scxm/image/upload/v1730990337/cms/updated-sql-gui/GUI_27_vljnlp.webp "SQL GUI")
 
 Then, we’ll call our stored procedure with this binding, using:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CALL execute_immediate( {{ query }} );
-
-{{< /highlight >}}
+```
 
 ![Execute](https://res.cloudinary.com/daog6scxm/image/upload/v1730990337/cms/updated-sql-gui/GUI_28_fpjvfx.webp "Execute")
 
@@ -472,11 +469,9 @@ We can then run this.
 
 This returns more data than we need. We only want the first part of the response, with the actual returned values from the query. So, we’ll add the following JavaScript transformer.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return data[0];
-
-{{< /highlight >}}
+```
 
 ![Transformer](https://res.cloudinary.com/daog6scxm/image/upload/v1730990315/cms/updated-sql-gui/GUI_30_jr2hpj.webp "Transformer")
 
@@ -550,8 +545,7 @@ To enable this, we’ll use a little bit of custom JavaScript. Start by opening 
 
 The code we’re going to use is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 let str = String($("Create row form block.Fields.query"));
 
 // Remove all newline characters (both \n and \r\n)
@@ -559,8 +553,7 @@ let str = String($("Create row form block.Fields.query"));
 let cleanedStr = str.replace(/(\r\n|\n|\r)/g, ' ');
 
 return cleanedStr;
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1730990328/cms/updated-sql-gui/GUI_40_vgaqsy.webp "JavaScript")
 
@@ -580,13 +573,11 @@ Within our **Run** button’s **Actions** menu, we’ll add a second step. This 
 
 We can access the output of the previous action within the bindings menu. We’re going to populate a value for our state using the following JavaScript expression to format the **data** object from our response as JSON:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const jsonObj = $("Action 1.Query result")
 
 return jsonObj.data
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1730990331/cms/updated-sql-gui/GUI_42_he42rc.webp "JavaScript")
 
@@ -630,13 +621,11 @@ We’ll add all three columns - **date, query,** and **response.**
 
 We’re going to set the **data** column to the current date and time. We can do this using the following JavaScript.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var date = new Date();
 
 return date;
-
-{{< /highlight >}}
+```
 
 For our **query** field, we’re going to use the same JavaScript expression we used earlier. 
 
@@ -738,20 +727,17 @@ After this, we’ll add an **external data connector** action, which will fire o
 
 Lastly, we’ll add a **create row** action, which we’ll point at our history table. We’ll bind the **data** field to the same JavaScript we used earlier to get the current date:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var date = new Date();
 
 return date
-
-{{< /highlight >}}
+```
 
 For the **query** value, we’ll use {{ steps.Query rows.rows.0.query }}.
 
 And we’ll use the following JavaScript to clean and format our response:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 // Initialize an empty array inside an object with a "data" key
 
 let myObj = {
@@ -777,8 +763,7 @@ for (let i = 0; i < responseArray.length; i++) {
 // Return the final object
 
 return myObj;
-
-{{< /highlight >}}
+```
 
 ![Automation](https://res.cloudinary.com/daog6scxm/image/upload/v1730990318/cms/updated-sql-gui/GUI_66_jtj0s4.webp "Automation")
 
@@ -834,7 +819,9 @@ When we’re ready to send our app to end-users, we can hit **Publish** to push 
 
 Here’s a reminder of what our finished SQL GUI looks like.
 
-{{< vimeo id="1027314554" title="SQL GUI" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1027314554?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="SQL GUI" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## Turn data into action with Budibase
 

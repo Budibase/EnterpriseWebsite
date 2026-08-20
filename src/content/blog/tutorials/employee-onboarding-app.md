@@ -43,7 +43,9 @@ With Budibase, we can build a working employee onboarding app in a fraction of t
 
 Let’s check out how!
 
-{{< youtube wuuxBFgt0Fs >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/wuuxBFgt0Fs" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## What are we building?
 
@@ -180,18 +182,15 @@ This first one will be the email that we send to our new hire’s *manager*. So,
 
 For the subject line, we’ll use:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ trigger.row.Name }} has been hired! 
-
-{{< /highlight >}}
+```
 
 
 
 Finally, we can use HTML to populate our actual email body. Ours will look something like this:
 
-{{< highlight html "linenos=inline" >}}
-
+```html
 <p>Hi,</p>
 
 <p>{{ trigger.row.Name }} has been hired and you are their manager. Congrats. There are a few tasks that you’ll need to do before they start. Here they are:</p>
@@ -211,8 +210,7 @@ Finally, we can use HTML to populate our actual email body. Ours will look somet
 <p>{{ trigger.row.HRLead }} is taking the lead in HR and would love to answer any questions you might have</p>
 
 <p>Thanks!</p>
-
-{{< /highlight >}}
+```
 
 ![Email automation](https://res.cloudinary.com/daog6scxm/image/upload/v1696866679/cms/employee-onboarding-app/Onboarding_16_clhzav.webp "Email automation")
 
@@ -250,15 +248,13 @@ We’ll add two filters. One will be that the *start date* should be more than t
 
 The other will be that the start date is less than the following JavaScript expression:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const nextWeek = new Date(); 
 
 nextWeek.setDate(nextWeek.getDate() + 8); 
 
 return nextWeek;
-
-{{< /highlight >}}
+```
 
 This just adds 8 days onto the current date.
 
@@ -270,17 +266,18 @@ This just adds 8 days onto the current date.
 
 For the email block itself we’ll use the following binding as the recipients:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ loop.currentItem.ITLead }}, {{ loop.currentItem.Manager }}, {{ loop.currentItem.HRLead }}
-
-{{< /highlight >}}
+```
 
 And we can use whatever subject line and email body we want to remind all of these stakeholders of their respective responsibilities.
 
 ![Employee onboarding app](https://res.cloudinary.com/daog6scxm/image/upload/v1696866678/cms/employee-onboarding-app/Outsourcing_24_ceuli5.png "Employee onboarding app")
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 6. Create a CRUD screen for managing entries
 
@@ -326,13 +323,11 @@ Now, we can use HTML to embed whatever documents we want in here.
 
 For our first one, we’ll use the following HTML:
 
-{{< highlight html "linenos=inline" >}}
-
+```html
 <object data=”yourexampleurl.com” type=application/pdf width=”100” height=”100”>
 
 <p>Couldn’t embed the pdf. Read it here: <ahref=”yourexampleurl.com”> Health and Safety </a></p> </object>
-
-{{< /highlight >}}
+```
 
 Basically, what this will do is embed the document we add a link to and allow it to take up 100% of the space allocated to the embed component. There’s also a paragraph that will show up if the embed fails, providing a direct link to the resource.
 

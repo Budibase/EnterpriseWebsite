@@ -17,7 +17,9 @@ Whether they're entering details on a construction site or looking at data back 
 
 Today, we’re going to check out how we can use Budibase to build professional, performant project cost management software - in a fraction of the time it would take with traditional development.
 
-{{< youtube r_PrXGnjQXM >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/r_PrXGnjQXM" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 First, though, let’s explore a bit more of the background.
 
@@ -59,7 +61,10 @@ Let’s get started.
 
 If you haven’t already, sign up for a free Budiabse account so you can build along with us.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Create a Budibase application and connect your data
 
@@ -203,8 +208,7 @@ This is a relatively simple one. We want to extract the SUM() of the *amount* at
 
 So, our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT SUM(amount) AS total_spend_this_month
 
 FROM costs
@@ -212,8 +216,7 @@ FROM costs
 WHERE EXTRACT(MONTH FROM date_incurred) = EXTRACT(MONTH FROM CURRENT_DATE)
 
 AND EXTRACT(YEAR FROM date_incurred) = EXTRACT(YEAR FROM CURRENT_DATE)
-
-{{< /highlight >}}
+```
 
 
 
@@ -221,15 +224,13 @@ AND EXTRACT(YEAR FROM date_incurred) = EXTRACT(YEAR FROM CURRENT_DATE)
 
 Here’s the data object that this returns:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "total_spend_this_month": "107000.00"
 
 }
-
-{{< /highlight >}}
+```
 
 While we’re in the *data* section - we might as well create the query for our other card too. We’ll call this one *TotalUnderOver*.
 
@@ -239,8 +240,7 @@ But - it’s going to be slightly more complicated - because our budget data and
 
 We can achieve this using a WITH statement, so our query will be:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH TotalBudgets AS (
 
  SELECT SUM(budget) AS total_budgets
@@ -266,15 +266,13 @@ SELECT
 ​	(tb.total_budgets - tc.total_costs) AS difference
 
 FROM TotalBudgets tb, TotalCosts tc;
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1698939520/cms/project-cost-management/Project_Cost_Management_27_s3k1dk.webp "Response")
 
 And the returned data object looks like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "total_budgets": "2900000.00",
@@ -284,8 +282,7 @@ And the returned data object looks like this:
  "difference": "1439500.00"
 
 }
-
-{{< /highlight >}}
+```
 
 Back to the *design* tab, we’ll set the *data* for our *cards block* to our new queries:
 
@@ -315,13 +312,11 @@ But, we’re going to use a JavaScript binding with a ternary operator instead.
 
 So, we need to bind our *subtitle* to the following piece of JavaScript:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const overUnder = parseInt($("TotalUnderOver Cards block.TotalOverUnder.difference")) < 0 ? "over" : "under"
 
 return `Total ${overUnder} budget`
-
-{{< /highlight >}}
+```
 
 If you’re not familiar with the ternary operator - basically what we’ve done is create a variable called *overUnder*. If *difference* is less than zero - we set this to *over*. If not, we set it to *under*.
 
@@ -341,8 +336,7 @@ We’ll SELECT the *budget* and *project_name* from the *projects* table and use
 
 So, the overall query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH ProjectCosts AS (
 
  SELECT project_name, SUM(amount) AS total_cost
@@ -358,15 +352,13 @@ SELECT p.project_name, p.budget, pc.total_cost
 FROM projects p
 
 JOIN ProjectCosts pc ON p.project_name = pc.project_name;
-
-{{< /highlight >}}
+```
 
 ![New Query](https://res.cloudinary.com/daog6scxm/image/upload/v1698939515/cms/project-cost-management/Project_Cost_Management_33_fufkiv.webp "New Query")
 
 And we get back a data object that looks like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "project_name": "Downtown Bridge Construction",
@@ -376,8 +368,7 @@ And we get back a data object that looks like this:
  "total_cost": "218100.00"
 
 }
-
-{{< /highlight >}}
+```
 
 Save that and head back to the *design* section.
 
@@ -403,8 +394,7 @@ We’ll group this by *category* and sort by the COUNT of the *ID*s, descending.
 
 So, our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT category, COUNT(id) AS transaction_count
 
 FROM costs
@@ -412,13 +402,11 @@ FROM costs
 GROUP BY category
 
 ORDER BY transaction_count DESC;
-
-{{< /highlight >}}
+```
 
 And it returns a data object like this:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 {
 
  "category": "Materials",
@@ -426,8 +414,7 @@ And it returns a data object like this:
  "transaction_count": "10"
 
 }
-
-{{< /highlight >}}
+```
 
 Now, lets add a chart block inside our new container - with its *chart type* set to *pie* and its data set to our new query.
 
@@ -451,8 +438,7 @@ We want to select the numerical *month* and the sum of all of the *amounts* from
 
 We can use this query:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
 ​	EXTRACT(MONTH from date_incurred) AS month,
@@ -468,13 +454,11 @@ WHERE date_incurred BETWEEN (current_date - INTERVAL '1 year') AND current_date
 GROUP BY month
 
 ORDER BY month;
-
-{{< /highlight >}}
+```
 
 Which will return this data object:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "month": "1",
@@ -482,8 +466,7 @@ Which will return this data object:
  "monthly_expenditure": "4500.00"
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll add a *line* chart and set its data to this new query. We’ll set the *label column* to *month* and the *data column* to *monthly_expenditure*:
 

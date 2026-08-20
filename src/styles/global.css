@@ -573,6 +573,10 @@ html {
   color: var(--text-primary);
   background-color: var(--bg-1);
   text-rendering: optimizeLegibility;
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1,
+    "ss04" 1;
   font-variant-numeric: normal;
 }
 
@@ -580,6 +584,15 @@ body {
   margin: 0;
   line-height: inherit;
   background-color: var(--bg-1);
+}
+
+time,
+.operational-data {
+  font-variant-numeric: tabular-nums;
+}
+
+.technical-identifier {
+  font-variant-numeric: tabular-nums slashed-zero;
 }
 
 /* Code blocks should use the same surface as selected tabs */

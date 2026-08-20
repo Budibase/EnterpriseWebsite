@@ -234,7 +234,10 @@ Honestly though, which of these is right for specific scenarios is outside of th
 
 Rather, we only wanted to give this as a bit of context to how our workflow management database design *could* be implemented.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Workflow management database design: other considerations
 

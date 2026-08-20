@@ -54,13 +54,18 @@ With Budibase, we have the option of connecting to a huge range of external data
 
 We could then use the data captured using our form app within a whole host of other workflows and tools, using our employee database as a single source of truth.
 
-{{< vimeo id="910036115" title="Employee Information Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/910036115?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Employee Information Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## How to build an employee information form in 6 steps
 
 If you haven’t already, start by signing up for a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Connect your database
 
@@ -284,11 +289,9 @@ Our data provider retrieves the employees table and then makes the attributes st
 
 Lastly, we’ve set the Row ID attribute for our multi-step form block to the ID the data provider outputs, using the following handlebars expression:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ New Data Provider.Rows.0._id }}
-
-{{< /highlight >}}
+```
 
 Now, when we access the update form, we’re shown the row that we’ve added ourselves as the corresponding user for:
 

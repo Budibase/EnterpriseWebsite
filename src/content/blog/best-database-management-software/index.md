@@ -44,7 +44,9 @@ Check out our guide to [system integration vs software development](https://budi
 
 Below, I have listed my 14 best DBMS examples. Some examples support multiple types of models, but I have grouped them according to what I feel is their primary model type. For those of you who are considering building a web app / internal tool, I have also outlined whether the listed database is supported by [Budibase](https://budibase.com) - an open source development platform for building internal tools in minutes. If it is supported by Budibase, you can simply connect that database and build anything from dashboards, admin panels to approval applications in minutes. 
 
-{{< figure src="/best-database-management-software/best-dbms.png" alt="List of the best DBMS">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/best-dbms.png" alt="List of the best DBMS" loading="lazy" />
+</figure>
 
 
 
@@ -52,7 +54,9 @@ Below, I have listed my 14 best DBMS examples. Some examples support multiple ty
 
 #### 1. PostgreSQL
 
-{{< figure src="/best-database-management-software/postgresql.png" alt="PostgreSQL logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/postgresql.png" alt="PostgreSQL logo" loading="lazy" />
+</figure>
 
 In many situations, PostgreSQL is the go-to solution for performing complicated, high-volume data operations. It is feature-rich and object-relational, ACID-compliant, and highly concurrent.
 
@@ -66,7 +70,9 @@ In many situations, PostgreSQL is the go-to solution for performing complicated,
 
 #### 2. Oracle
 
-{{< figure src="/best-database-management-software/oracle.png" alt="oracle logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/oracle.png" alt="oracle logo" loading="lazy" />
+</figure>
 
 Oracle DBMS a widely used relational DBMS, developed and maintained by Oracle since the 80s. It is a database commonly used for running online transaction processing, data warehousing, and mixed database workloads.
 
@@ -80,7 +86,9 @@ Oracle DBMS a widely used relational DBMS, developed and maintained by Oracle si
 
 #### 3. MySQL
 
-{{< figure src="/best-database-management-software/mysql.png" alt="mysql logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/mysql.png" alt="mysql logo" loading="lazy" />
+</figure>
 
 MySQL is another database from Oracle, but this one is free and open-source. Historically, I always associated MySQL for its speed and simplicity. In recent versions, the creators changed the engine, adding additional functionality and the detriment of speed. These additional features are essential for enterprise clients and include transactions and key constraints. MySQL was my go-to relational DB, but I've since moved to PostgreSQL due to its handling of concurrency.
 
@@ -94,7 +102,9 @@ MySQL is another database from Oracle, but this one is free and open-source. His
 
 #### 4. Snowflake
 
-{{< figure src="/best-database-management-software/snowflake.png" alt="snowflake logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/snowflake.png" alt="snowflake logo" loading="lazy" />
+</figure>
 
 Snowflake is a cloud solution for data warehousing, data lakes, data engineering, data science, data application development, and securely sharing and consuming shared data. Its growth in recent years has been inspiring, and for a good reason. Snowflake can automatically scale up and down to get the right balance of cost vs. performance. Its primary 
 
@@ -108,7 +118,9 @@ Snowflake is a cloud solution for data warehousing, data lakes, data engineering
 
 #### 5. Clickhouse
 
-{{< figure src="/best-database-management-software/clickhouse.png" alt="Clickhouse logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/clickhouse.png" alt="Clickhouse logo" loading="lazy" />
+</figure>
 
 ClickHouse is a column-oriented database management system (DBMS) for the online analytical processing of queries (OLAP).
 
@@ -128,7 +140,9 @@ ClickHouse is a column-oriented database management system (DBMS) for the online
 
 #### 6. MongoDB
 
-{{< figure src="/best-database-management-software/mongodb.png" alt="MongoDB logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/mongodb.png" alt="MongoDB logo" loading="lazy" />
+</figure>
 
 On the MongoDB website, they describe themselves as a general-purpose, document-based, distributed database built for modern application developers and the cloud era. We feel this description is pretty solid and summarizes the critical ingredients of this Budibase favorite. 
 
@@ -142,7 +156,9 @@ On the MongoDB website, they describe themselves as a general-purpose, document-
 
 #### 7. Amazon DynamoDB
 
-{{< figure src="/best-database-management-software/dynamodb.png" alt="DynamoDB logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/dynamodb.png" alt="DynamoDB logo" loading="lazy" />
+</figure>
 
 On its website, Amazon describes DynamoDB as a key-value and document database that delivers single-digit millisecond performance at any scale. It's a fully managed, multi-region, multi-active, durable database with built-in security, backup and restore, and in-memory caching for internet-scale applications. DynamoDB can handle more than 10 trillion requests per day and support peaks of more than 20 million requests per second. Budibase uses DynamoDB to make the data operations within its hosting portal.
 
@@ -156,7 +172,9 @@ On its website, Amazon describes DynamoDB as a key-value and document database t
 
 #### 8. CouchDB
 
-{{< figure src="/best-database-management-software/couchdb.png" alt="CouchDB logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/couchdb.png" alt="CouchDB logo" loading="lazy" />
+</figure>
 
 CouchDB is a document store database that uses JSON for documents, JavaScript for MapReduce indexes, and regular HTTP for its API. Access your documents and query your indexes with your web browser via HTTP. With CouchDB, you can Index, combine, and transform your data with JavaScript.
 
@@ -176,7 +194,9 @@ Budibase uses CouchDB for its database, and we're particularly huge fans of the 
 
 #### 9. Redis
 
-{{< figure src="/best-database-management-software/redis.png" alt="Redis logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/redis.png" alt="Redis logo" loading="lazy" />
+</figure>
 
 Redis is an open-source in-memory data structure store used as a database, cache, and message broker. For me, Redis is the best solution for storing cache.
 
@@ -194,7 +214,9 @@ Redis is an open-source in-memory data structure store used as a database, cache
 
 #### 10. Elasticsearch
 
-{{< figure src="/best-database-management-software/elasticsearch.png" alt="Elasticsearch logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/elasticsearch.png" alt="Elasticsearch logo" loading="lazy" />
+</figure>
 
 Elasticsearch is a distributed document-oriented search engine that stores data in the form of a document. In other words, it is a quick and easy way to implement search in your application.
 
@@ -212,7 +234,9 @@ Elasticsearch is a distributed document-oriented search engine that stores data 
 
 #### 11. Cassandra
 
-{{< figure src="/best-database-management-software/cassandra.png" alt="Cassandra logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/cassandra.png" alt="Cassandra logo" loading="lazy" />
+</figure>
 
 Cassandra is a wide-column database. It offers continuous availability, high scalability and performance, robust security, and operational simplicity while lowering ownership's overall cost. 
 
@@ -230,7 +254,9 @@ Cassandra is a wide-column database. It offers continuous availability, high sca
 
 #### 12. ArangoDB
 
-{{< figure src="/best-database-management-software/arangodb.png" alt="Arangodb logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/arangodb.png" alt="Arangodb logo" loading="lazy" />
+</figure>
 
 ArangoDB is a free and open-source native multi-model database system developed by ArangoDB GmbH. The database system supports three data models with one database core and a unified query language AQL. The query language is declarative and allows the combination of different data access patterns in a single query. Neo4j was the graph DB of choice for so long, but ArangoDB is now my go-to choice for the reasons below.
 
@@ -244,7 +270,9 @@ ArangoDB is a free and open-source native multi-model database system developed 
 
 #### 13. Neo4j
 
-{{< figure src="/best-database-management-software/neo4j.png" alt="Neo4j logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/neo4j.png" alt="Neo4j logo" loading="lazy" />
+</figure>
 
 Neo4j is a native graph database built from the ground up to leverage data and data relationships. It is the largest graph database ecosystem with more than 15 million downloads, and Docker pulls. It is also one of the oldest and is more well-known than Arangodb.
 
@@ -262,7 +290,9 @@ Neo4j is a native graph database built from the ground up to leverage data and d
 
 #### 14. InfluxDB
 
-{{< figure src="/best-database-management-software/influxdb.png" alt="InfluxDB logo">}} 
+<figure class="blog-figure">
+<img src="/best-database-management-software/influxdb.png" alt="InfluxDB logo" loading="lazy" />
+</figure>
 
 InfluxDB is an open-source time-series database from the InfluxData company. It is widely used to monitor applications, infrastructure, IoT, and data analysis. 
 

@@ -193,8 +193,7 @@ Then, click on the lightening bolt beside *Formula*, and we can access Budibase�
 
 Here’s our code:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var startTime = new Date($("Start Time"));
 
 var startHours = startTime.getHours() + 1;
@@ -232,8 +231,7 @@ if (startHours + taskDuration > 17){
 ​	return endDate
 
 }
-
-{{< /highlight >}}
+```
 
 We start by setting a few variables:
 
@@ -250,8 +248,7 @@ If it’s a Saturday (6), we add two.
 
 The formula variables on our *Employees* table are a little bit simpler. Again, here’s the code and we’ll talk you through it after.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var dateNow = new Date();
 
 var available = "Yes";
@@ -273,8 +270,7 @@ for (i=0; i<$("Tasks").length; i++){
 }
 
 return available
-
-{{< /highlight >}}
+```
 
 So, we’re setting two variables to start. *dateNow* is the current date, and *available* gets a default value of *Yes*.
 
@@ -284,8 +280,7 @@ After the *for loop,* we return *available.*
 
 The *Next Available* formula variable works pretty much the same way:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var dateNow = new Date();
 
 var nextAvailability = new Date();
@@ -307,8 +302,7 @@ for (i=0; i<$("Tasks").length; i++){
 }
 
 ​	return nextAvailability
-
-{{< /highlight >}}
+```
 
 This time we have a variable called *nextAvailability* with a default value of the current time. We loop through all of the assigned tasks just like before - only this time we set *nextAvailability* to the *endTime* of the last task.
 
@@ -342,11 +336,9 @@ Within the *calendar* component, we map the *Title* to *Title* and the *Date* to
 
 Our headline uses a handlebars expression to personalize the UX a little bit:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 Hello {{ Employee Repeater.Employees.First Name }}. Here are your tasks for this week.
-
-{{< /highlight >}}
+```
 
 We’ve also given this a conditionality rule - so it’s hidden if the current user’s role is *Power* or *Admin*.
 
@@ -376,11 +368,9 @@ For native Budibase components, we could simply use a handlebars expression like
 
 However, our calendar plug-in is a community contribution, and the only exposed binding is {{ clicked event }}, which returns the whole row in a JSON object. So, we need to use the following JavaScript expression for our URL:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return "/task-details/" + $("Clicked Event.extendedProps.event._id")
-
-{{< /highlight >}}
+```
 
 And that’s our calendar UI finished.
 

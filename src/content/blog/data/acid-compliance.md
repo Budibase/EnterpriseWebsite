@@ -73,7 +73,10 @@ The reason this is important should be fairly obvious.
 
 Say we ran an ecommerce site. We’d have a lot of unhappy customers to deal with if all of that day’s orders were lost any time our power dropped out.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Why does ACID compliance matter?
 

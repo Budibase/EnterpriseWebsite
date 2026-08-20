@@ -60,7 +60,9 @@ Our trouble ticketing system will also offer support for commenting on tickets, 
 
 Here’s what the finished product looks like.
 
-{{< vimeo id="954806288" title="Trouble Ticketing System" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/954806288?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Trouble Ticketing System" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Let’s jump in.
 
@@ -68,7 +70,10 @@ Let’s jump in.
 
 If you haven’t already, sign up for a free Budibase account to start building unlimited apps with our open-source, low-code platform.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 The first thing we need to do is create a new application. We can do this using a pre-built template or by importing an existing app dump. Today, though, we’re going to start from scratch.
 
@@ -104,8 +109,7 @@ The tickets table stores values called title, status, created_at, description, u
 
 You can create these in your own database using the following query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Creating the tickets table
 
 CREATE TABLE tickets (
@@ -163,8 +167,7 @@ VALUES
 (2, 'This is a comment on ticket 2.', '2024-06-02 11:20:00'),
 
 (3, 'This is a reply on ticket 1.', '2024-06-01 11:20:00');
-
-{{< /highlight >}}
+```
 
 Before we go any further, though, we’re going to make a few tweaks to each table. 
 
@@ -366,13 +369,11 @@ We’ll add a Paragraph component inside this and set its color to off-white, as
 
 We want this to display the name of the user who submitted the comment and the created_at date, followed by the comment itself on a new line. So, we’re binding our Text setting to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ Comments Repeater Block.comments.created_by.firstName }} - {{ date Comments Repeater Block.comments.created_at "DD/MM hh:mm" }}
 
 {{ Comments Repeater Block.comments.comment }}
-
-{{< /highlight >}}
+```
 
 ![Sample Ticket](https://res.cloudinary.com/daog6scxm/image/upload/v1717767118/cms/trouble-ticketing-system/Trouble_Ticketing_System_48_lkyqrp.webp "Sample Ticket")
 
@@ -396,11 +397,9 @@ Here’s how this should look.
 
 Then, we’ll add a similar rule to our Comment Container, this time changing the Custom CSS setting to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 background-color: #52CC7A
-
-{{< /highlight >}}
+```
 
 ![Custom CSS](https://res.cloudinary.com/daog6scxm/image/upload/v1717767115/cms/trouble-ticketing-system/Trouble_Ticketing_System_53_gawsht.webp "Custom CSS")
 

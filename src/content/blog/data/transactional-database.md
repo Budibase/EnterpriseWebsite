@@ -208,7 +208,12 @@ We can contrast this with a *column-based store*, where all values for a given a
 The point is that, in order to handle a transaction, the querying actor must have exposure to the full record for a relevant entity - or at least an index or view thereof.
 
 In other words, transactional databases are structured for efficiency in terms of manipulating individual entries - rather than performing aggregation or analysis across the data set as a whole.
-{{< cta >}}
+
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
+
 ## Examples of transactional databases
 
 We’ve covered a whole lot of theory at this point. Now, it’s time to start thinking about some real-world examples of transactional databases.
@@ -259,7 +264,10 @@ For many, the real selling point is JavaScript transactions. These enable you to
 
 Budibase offers dedicated data connectors for all of the above - and many more data sources for building professional web apps at pace. Check out our [features overview](https://budibase.com/product/) to learn more about how we’re empowering teams to turn data into action.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Optimizing transactional databases
 

@@ -424,7 +424,10 @@ Premium users also have access to custom branding, synchronous automations, and 
 
 Enterprise licenses offer custom pricing, with enforceable SSO, environment variables, user groups, audit logging, air-gapped deployments, priority support, and much more.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 2. Mendix
 Mendix is another one of the more established names in the low-code space. It’s also one of the most developer-centric platforms on our list - aimed firmly at expediting projects for traditional development teams.

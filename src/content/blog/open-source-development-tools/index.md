@@ -55,7 +55,9 @@ Here are our picks for the best open-source development software for professiona
 
 ### 1. VS Code
 
-{{< figure src="/web-development-tools/visual-studio.gif" alt="Visual Studio UI" >}}
+<figure class="blog-figure">
+<img src="/web-development-tools/visual-studio.gif" alt="Visual Studio UI" loading="lazy" />
+</figure>
 
 Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS, and Linux. It comes with built-in support for JavaScript, TypeScript, and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go).
 
@@ -83,7 +85,9 @@ Release/Updates: 10/10
 
 ### 2. Budibase
 
-{{< figure src="/img/ui/design-wide.webp" alt="BudibaseUI" >}}
+<figure class="blog-figure">
+<img src="/img/ui/design-wide.webp" alt="BudibaseUI" loading="lazy" />
+</figure>
 
 [Budibase](https://github.com/budibase/budibase) is an open source low-code platform, bringing together everything required to build internal tools and custom business apps, such as; forms, admin panels, approval apps, portals, and everything in between. Within minutes, transform data and processes into powerful internal tools.
 
@@ -123,7 +127,10 @@ Release/Updates: 10/10
 ---
 
 ### 3. Vercel
-{{< figure src="/open-source-development-tools/vercel.png" alt="Vercel UI" >}}
+
+<figure class="blog-figure">
+<img src="/open-source-development-tools/vercel.png" alt="Vercel UI" loading="lazy" />
+</figure>
 
 Vercel is a deployment and collaboration platform for frontend developers. It's also one of the best open-source tools for development. Vercel puts the frontend developer first, giving them comprehensive tools to build high-performance websites and applications.
 
@@ -153,7 +160,9 @@ Release/Updates: 10/10
 
 ### 4. Oh My Zsh
 
-{{< figure src="/open-source-development-tools/oh-my-zsh.jpeg" alt="Oh My Zsh UI" >}}
+<figure class="blog-figure">
+<img src="/open-source-development-tools/oh-my-zsh.jpeg" alt="Oh My Zsh UI" loading="lazy" />
+</figure>
 
 Oh My Zsh is an open source, community-driven framework for managing your Zsh configuration. It's great if you use the command line often.
 
@@ -180,7 +189,9 @@ Release/Updates: 9/10
 
 ### 5. Gitlab
 
-{{< figure src="/web-development-tools/gitlab.png" alt="Gitlab UI" >}}
+<figure class="blog-figure">
+<img src="/web-development-tools/gitlab.png" alt="Gitlab UI" loading="lazy" />
+</figure>
 
 GitLab is a single application that spans the entire software development lifecycle. If you're not using GitLab, your DevOps lifecycle is likely spread across any number of applications. These silos take overhead to integrate, manage, configure, and maintain, slowing down your team and your deployments. Moving to a single application will speed up your workflow and help you deliver better software faster. 
 
@@ -206,7 +217,9 @@ Release/Updates: 8/10
 
 ### 6. Supabase
 
-{{< figure src="/open-source-development-tools/supabase.png" alt="Supabase UI" >}}
+<figure class="blog-figure">
+<img src="/open-source-development-tools/supabase.png" alt="Supabase UI" loading="lazy" />
+</figure>
 
 Supabase is an open source Firebase alternative. Rather than one platform, Supabase is a 'suite of open source tools, stitched together to build a seamless developer experience.'
 
@@ -233,7 +246,9 @@ Release/Updates: 9/10
 
 ### 7. Posthog
 
-{{< figure src="/small-business-apps/posthog.png" alt="Posthog UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/posthog.png" alt="Posthog UI" loading="lazy" />
+</figure>
 
 PostHog is a product analytics platform built for the enterprise, with the differentiators of being open source and having a broader view of the tools needed to make a product successful.
 
@@ -261,7 +276,9 @@ Release/Updates: 7/10
 
 ### 8. Snyk
 
-{{< figure src="/open-source-development-tools/snyk.png" alt="snyk UI" >}}
+<figure class="blog-figure">
+<img src="/open-source-development-tools/snyk.png" alt="snyk UI" loading="lazy" />
+</figure>
 
 Snyk is a developer-first platform for building cloud-native applications securely. In addition, it helps and encourages developers to remediate open source vulnerabilities during the development process.
 
@@ -291,7 +308,9 @@ Release/Updates: 7/10
 
 ### 9. Prisma
 
-{{< figure src="/open-source-development-tools/prisma.png" alt="Prisma UI" >}}
+<figure class="blog-figure">
+<img src="/open-source-development-tools/prisma.png" alt="Prisma UI" loading="lazy" />
+</figure>
 
 Prisma is an open source next-generation ORM. It consists of the following parts:
 
@@ -327,7 +346,9 @@ Release/Updates: 8/10
 
 ### 10. Storybook
 
-{{< figure src="/open-source-development-tools/storybook.png" alt="Storybook UI" >}}
+<figure class="blog-figure">
+<img src="/open-source-development-tools/storybook.png" alt="Storybook UI" loading="lazy" />
+</figure>
 
 Storybook is a tool for UI development. It makes development faster and easier by isolating components, allowing developers to work on one component at a time. As a result, you can develop entire UIs without needing to start up a complex dev stack, force specific data into your database, or navigate around your application.
 

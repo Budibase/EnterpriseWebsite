@@ -12,16 +12,22 @@ Introducing an easier way to build interfaces with Budibase with the new Grid la
 
 You can now drag components around your screen and quickly resize them using the anchors on the corners and sides. 
 
-{{< vimeo id="1003122129" title="Drag and Drop" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1003122129?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Drag and Drop" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 
 As shown above, some components, such as tables, expand to fill the full container space. However, with components such as buttons, where we want the size to remain consistent and fixed, it doesn’t make sense for them to expand to all edges of the container. Components such as these are instead positioned inside the container and can be moved around and aligned as you see fit:
 
-{{< vimeo id="1003122161" title="Button" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1003122161?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Button" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 All new screens and containers will use the new Grid layout by default. If you want to toggle between the old Flex Box layout, and the new Grid layout, you can do so in your settings. Depending on your preference, the layout can be applied at either the screen or container level. 
 
-{{< vimeo id="1003122188" title="Select Grid" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1003122188?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Select Grid" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 You can now also overlap components, without restrictions, opening up new opportunities for screen design in Budibase. 
 
@@ -30,7 +36,9 @@ Both systems have pros and cons. The Grid layout gives you more control over how
 
 That isn’t to say you can’t make mobile screens with Grid - it just means you have to check and make adjustments manually, which now, thanks to the rest of the benefits from the Grid template, is extremely straightforward. 
 
-{{< vimeo id="1003122176" title="Mobile" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1003122176?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Mobile" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Our recommendation is to use the Grid layout by default. That said, if your application is heavily dependent on the mobile experience and has grown to the point where manually managing/designing all of the mobile and desktop screens is unrealistic, then Flex Box may be better suited to your needs.  
 

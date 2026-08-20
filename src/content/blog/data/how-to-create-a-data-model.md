@@ -17,9 +17,14 @@ Today, we’re going to look at exactly how you can create a successful data mod
 
 Budibase is the fast, easy way to connect to just about any data source and build professional UIs in minutes.
 
-{{< vimeo id="922836741" title="Create a data model" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/922836741?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Create a data model" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 First thing’s first, let’s start with the basics.
 
@@ -212,7 +217,10 @@ These are dedicated interfaces for establishing a connection to specific kinds o
 
 Depending on the tool and data source, you can then manually create the queries you need, or import all available queries provided by the source.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 8. Normalization and ensuring the integrity of data
 

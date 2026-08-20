@@ -52,7 +52,9 @@ We’ll provide all of the code and SQL expression we need as we go.
 
 Here’s what our MariaDB GUI will look like when we’re finished.
 
-{{< vimeo id="946635436" title="MariaDB GUI" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/946635436?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="MariaDB GUI" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 
 
@@ -62,7 +64,10 @@ Let’s jump in.
 
 The first thing we need to do is sign up for a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 We’ll begin by creating a new application. We have the option of importing an existing app dump or using a template, but today, we’re going to start from scratch. When we choose this option, we’re prompted to give our new Budibase app a name and URL extension.
 
@@ -124,11 +129,9 @@ Then, we’re going to add a binding. This accepts two values - a name and a def
 
 We’re going to call our binding ‘query’ and set its default value to a familiar SQL expression:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT * FROM customers;
-
-{{< /highlight >}}
+```
 
 We’ll also add our binding to the query itself.
 
@@ -250,8 +253,7 @@ Basically, JavaScript snippets in Budibase allow us to declare and return functi
 
 Our cleanQuery snippet will accept a string argument and then remove any linebreaks from this. So, the specific code snippet we’re adding is.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return function cleanQuery(myString){
 
  let str = myString;
@@ -261,18 +263,15 @@ let cleanedStr = str.replace(/\n/g, '');
 return cleanedStr;
 
 }
-
-{{< /highlight >}}
+```
 
 ![MariaDB GUI](https://res.cloudinary.com/daog6scxm/image/upload/v1715787325/cms/mariadb-gui/MariaDB_GUI_31_ztnb9t.webp "MariaDB GUI")
 
 Hit Save, and then we can call our snippet in our query binding by passing our form field input into it, using:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.cleanQuery($("Form.Fields.query"))
-
-{{< /highlight >}}
+```
 
 ![State](https://res.cloudinary.com/daog6scxm/image/upload/v1715787325/cms/mariadb-gui/MariaDB_GUI_32_bcjfvw.webp "State")
 
@@ -302,8 +301,7 @@ We’ll use a JavaScript binding to take the name of any keys in our response JS
 
 We’ll call this one getSchema and use the following code for our snippet to return the structure, keys, and data types for our response.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return function getSchema(myString) {let originalString = myString;
 
 // Parse the original JSON string
@@ -367,18 +365,15 @@ let typeObject = { data: generateTypeObject(jsonObject.data[0]) }; // Assuming "
 return JSON.stringify(typeObject, null, 2);
 
 }
-
-{{< /highlight >}}
+```
 
 ![Snippet](https://res.cloudinary.com/daog6scxm/image/upload/v1715787323/cms/mariadb-gui/MariaDB_GUI_37_whnley.webp "Snippet")
 
 Then, we’ll call this snippet and pass our response state to it in our binding for the response_schema column using:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.getSchema($("State.response"))
-
-{{< /highlight >}}
+```
 
 ![Snippet](https://res.cloudinary.com/daog6scxm/image/upload/v1715787322/cms/mariadb-gui/MariaDB_GUI_38_txrm5z.webp "Snippet")
 
@@ -410,8 +405,7 @@ We’ll use this to display the query response that we’ve stored in our app st
 
 So, once again we’ll open the bindings drawer and create a new JavaScript snippet. We’ll call this stylizeJson and use the following code to apply appropriate coloring and indentation for displaying a JSON object.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return function stylizeJson(myString){
 
  let originalString = myString;
@@ -439,18 +433,15 @@ let styledJson = `<pre style="color: white;">${formattedJson}</pre>`;
 return styledJson
 
 }
-
-{{< /highlight >}}
+```
 
 ![Snippet](https://res.cloudinary.com/daog6scxm/image/upload/v1715787319/cms/mariadb-gui/MariaDB_GUI_44_cnptsu.webp "Snippet")
 
 We’ll then call this in our binding, using our response state as the argument, with:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.stylizeJson($("State.response"))
-
-{{< /highlight >}}
+```
 
 ![Call SNippet](https://res.cloudinary.com/daog6scxm/image/upload/v1715787319/cms/mariadb-gui/MariaDB_GUI_45_yauul0.webp "Call Snippet")
 
@@ -460,11 +451,9 @@ For our second Markdown Viewer, we want to apply our stylizeJson to the output o
 
 So, the JavaScript we’re using is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.stylizeJson(snippets.getSchema($("State.response")))
-
-{{< /highlight >}}
+```
 
 ![MariaDB GUI](https://res.cloudinary.com/daog6scxm/image/upload/v1715787319/cms/mariadb-gui/MariaDB_GUI_46_cadqxy.webp "MariaDB GUI")
 
@@ -496,13 +485,11 @@ Next, we need to add values for all three columns.
 
 To assign a value to date_time, we’re using the following JavaScript:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var date = new Date();
 
 return date
-
-{{< /highlight >}}
+```
 
 Here’s how this looks, including Budibase’s live evaluation.
 
@@ -510,11 +497,9 @@ Here’s how this looks, including Budibase’s live evaluation.
 
 For our query, we’ll use the same JavaScript as earlier, applying our cleanQuery snippet to the user input with:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.cleanQuery($("Form.Fields.query"))
-
-{{< /highlight >}}
+```
 
 ![Code SNippets](https://res.cloudinary.com/daog6scxm/image/upload/v1715787316/cms/mariadb-gui/MariaDB_GUI_52_im1ecv.webp "Code Snippets")
 
@@ -600,13 +585,11 @@ We want to stylize the response just like we did earlier. However, our internal 
 
 The JavaScript for doing this is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var jsonOutput = JSON.stringify($("Repeater.history.response"));
 
 return snippets.stylizeJson(jsonOutput)
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1715787308/cms/mariadb-gui/MariaDB_GUI_69_rhbgle.webp "JavaSCript")
 
@@ -686,13 +669,11 @@ We’ll start by adding a headline component, setting its Size to Small and its 
 
 We’ll use a JavaScript binding so that this displays:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var jsonOutput = JSON.stringify($("Repeater.queries.response_schema"));
 
 return snippets.stylizeJson(jsonOutput)
-
-{{< /highlight >}}
+```
 
 ![Code](https://res.cloudinary.com/daog6scxm/image/upload/v1715787301/cms/mariadb-gui/MariaDB_GUI_85_orvnp7.webp "Code")
 
@@ -702,11 +683,9 @@ Then, we’ll open the Markdown Viewer’s conditionality drawer and add an Upda
 
 We’ll update this to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.stylizeJson($("State.response"))
-
-{{< /highlight >}}
+```
 
 If {{ State.response }} is not empty.
 

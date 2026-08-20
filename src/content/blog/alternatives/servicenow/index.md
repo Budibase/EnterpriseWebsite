@@ -152,7 +152,9 @@ Budibase is the open-source, low-code platform that empowers IT teams to turn da
 
 Tens of thousands of businesses in all sorts of industries choose Budibase to ship custom solutions, the fast, easy way.
 
-{{< vimeo id="1001639751" title="change request form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1001639751?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="change request form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Here’s what makes our platform tick.
 
@@ -178,7 +180,10 @@ Budibase is perfectly positioned to empower non-developers within IT teams to sh
 
 Our platform is the top choice for solution architects, data professionals, systems engineers, automation specialists, infrastructure professionals, IT ops colleagues, service desk teams, and other IT pros who need to build professional, functional tools for handling internal processes.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### Pricing
 
@@ -369,7 +374,10 @@ This is amplified by the fact that in the low-code age, the cost of building cus
 
 The other big COTS vs custom decision point is the scope and scale of your needs. Expensive off-the-shelf tools make more sense when we know that we’re going to use the full range of their capabilities. 
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## How to choose a ServiceNow alternative
 There are a few key decision points that we’ll need to asses when choosing the right service desk or ITSM platform for our specific needs. These cut across functional requirements, business rules, and our specific use cases.

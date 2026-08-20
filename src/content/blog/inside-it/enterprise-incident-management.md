@@ -35,7 +35,9 @@ As such, it’s helpful to break incident management into two strands:
 
 Ultimately, the goal of incident management is to minimize the wider business impact of issues with our IT ecosystem.
 
-{{< vimeo id="963211946" title="Enterprise Incident Management" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/963211946?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Enterprise Incident Management" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Let’s think about how this works in a little bit more detail.
 
@@ -99,9 +101,14 @@ We must then have tools in place to share this information with relevant stakeho
 
 For example, we might use a knowledge base to record information relevant to preventing different incidents.
 
-{{< vimeo id="925338789" title="Knowledge base" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/925338789?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Knowledge base" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 8 types of IT incidents
 
@@ -260,7 +267,9 @@ Check out our [forms page](https://budibase.com/product/apps/) to learn more abo
 
 Ticketing systems are at the core of just about every ITSM workflow. These are tools that allow service users to submit requests which can then be picked up, managed, and actioned by service desk colleagues within the IT team.
 
-{{< vimeo id="954806288" title="Ticketing" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/954806288?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Ticketing" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 In the context of incident management, ticketing can play a couple of key roles.
 
@@ -306,7 +315,9 @@ This also helps us to track the associated costs of restoring services when inci
 
 Lastly, asset management tools are helpful for predicting, preventing, identifying, and responding to IT incidents.
 
-{{< vimeo id="956383530" title="Asset Management" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/956383530?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Asset Management" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 By creating a centralized overview of our IT hardware estate, asset management tools play a central role in understanding our vulnerabilities and formulating plans to mitigate the impact of incidents.
 

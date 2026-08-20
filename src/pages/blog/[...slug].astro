@@ -1,7 +1,6 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import MarkdownPostLayout from "../../layouts/MarkdownPostLayout.astro";
-import { renderBlogMarkdown } from "../../lib/render-blog-markdown.js";
 
 export type Props = {
   kind: "blog" | "caseStudy";
@@ -39,12 +38,8 @@ if (kind === "caseStudy") {
   return Astro.redirect(`/customers/${caseStudy!.id}/`, 301);
 }
 
-const hasHugoShortcodes = post?.body?.includes("{{<") ?? false;
-const renderedEntry = hasHugoShortcodes ? null : await render(post!);
+const renderedEntry = await render(post!);
 const Content = renderedEntry?.Content;
-const shortcodeHtml = hasHugoShortcodes
-  ? await renderBlogMarkdown(post!.body)
-  : "";
 const transitionKey = post!.id.replaceAll("/", "-");
 
 const frontmatter = post!.data;
@@ -56,12 +51,6 @@ const frontmatter = post!.data;
   showCTA
 >
   <article class="article my-8 max-w-2xl mx-auto">
-    {
-      hasHugoShortcodes ? (
-        <Fragment set:html={shortcodeHtml} />
-      ) : (
-        Content && <Content />
-      )
-    }
+    {Content && <Content />}
   </article>
 </MarkdownPostLayout>

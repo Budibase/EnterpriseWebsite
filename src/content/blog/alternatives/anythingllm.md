@@ -212,7 +212,9 @@ Budibase also offers a low-code experience for building UIs, including forms, ap
 
 We can invoke Agents from within Budibase Automations, opening up a huge range of use cases, including triggering workflows based on in-app actions, WebHooks, database events, cron jobs, and more.
 
-{{< ai-agents-cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 2. LM Studio
 

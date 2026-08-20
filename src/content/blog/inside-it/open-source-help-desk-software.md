@@ -85,7 +85,9 @@ Let’s jump in.
 
 ### 1. Budibase
 
-{{< vimeo id="925338777" title="Open source help desk software" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/925338777?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Open source help desk software" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 First up, we have Budibase, the open-source, low-code platform that empowers IT teams to turn data into action. Systems architects, solutions architects, data professionals, and other IT colleagues choose Budibase to ship professional tools quickly, with minimal custom code.
 
@@ -117,7 +119,10 @@ Alongside our self-hosted, open-source product, Budibase pricing is designed to 
 
 Custom enterprise licenses are also available, with enhanced security, enforceable SSO, creator RBAC, air-gapped deployments, priority support, SLAs, and more. Check out our [pricing page](https://budibase.com/pricing/) to learn more.
 
-{{< template-cta template = "ticketingSystem" >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">ticketing system template</p>
+<a class="blog-inline-cta__button" href="https://budibase.app/builder?template=app/it-help-desk" target="_blank" rel="noopener noreferrer">Use template</a>
+</aside>
 
 ### 2. GLPI
 
@@ -249,7 +254,9 @@ Custom pricing is available to deploy SupportSystem to virtual appliances, inclu
 
 ## Turn data into action with Budibase
 
-{{< vimeo id="925338789" title="Open source help desk software" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/925338789?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Open source help desk software" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Budibase is the ideal solution for building custom ITSM tools on top of any data source. Busy IT teams choose our open-source, low-code platform to ship professional solutions in a fraction of the time.
 

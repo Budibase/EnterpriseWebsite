@@ -43,7 +43,9 @@ We’re building a flexible, looping availability form on top of an external MyS
 
 More specifically, since our form will loop and allow several submissions at a time, we want to minimize the number of user inputs required for even a single submission. So, we’ll be making heavy use of contextual bindings and auto-populating fields.
 
-{{< vimeo id="916641996" title="Availability Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/916641996?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Availability Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 We’ll also extensively use Budibase’s built-in conditionality rules in order to create a form that’s flexible, efficient, and easy to use.
 
@@ -55,7 +57,10 @@ Let’s jump right into it.
 
 If you haven’t already, sign up below for a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Connecting to our database
 
@@ -83,8 +88,7 @@ Our database only has a single table called employee_availability, which we’re
 
 If you’d like to build along with this tutorial, you can use the following MySQL query to copy our schema in your own database.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE employee_availability (
 
   availability_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -104,13 +108,11 @@ CREATE TABLE employee_availability (
   UNIQUE KEY unique_availability (first_name, last_name, week_number, day_of_week, start_time, end_time)
 
 );
-
-{{< /highlight >}}
+```
 
 And you can add some dummy data with this query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 INSERT INTO employee_availability (first_name, last_name, week_number, day_of_week, start_time, end_time)
 
 VALUES
@@ -150,8 +152,7 @@ VALUES
   ('Bob', 'Johnson', 1, 'Thursday', '08:00', '16:00'),
 
   ('Bob', 'Johnson', 1, 'Friday', '08:00', '16:00');
-
-{{< /highlight >}}
+```
 
 Here’s what our table looks like in Budibase’s Data section. We can use this spreadsheet-like interface to edit stored values or the schema itself.
 
@@ -219,8 +220,7 @@ Here, we can use any values our form is exposed to as bindings within JavaScript
 
 Basically, we want to display the current user’s name, followed by the current week. We can achieve this using the following piece of code.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 // Declare a new constant for the current date.
 
 const now = new Date();
@@ -232,8 +232,7 @@ const currentWeek = Math.ceil(((now - new Date(now.getFullYear(), 0, 1)) / 86400
 // Returns the current user's full name along with the current numerical week.
 
 return $("Current User.firstName") + " " + $("Current User.lastName") + ": " + "Week " + currentWeek
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1708940357/cms/availability-form/Availability_Form_16_fwogwu.webp "JavaScript")
 
@@ -309,15 +308,13 @@ We’ll also repeat this process for our last_name attribute.
 
 For our week_number attribute, we’re going to use the following JavaScript expression:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const now = new Date();
 
 const currentWeek = Math.ceil(((now - new Date(now.getFullYear(), 0, 1)) / 86400000 + 1) / 7);
 
 return currentWeek
-
-{{< /highlight >}}
+```
 
 ![Javascript](https://res.cloudinary.com/daog6scxm/image/upload/v1708940362/cms/availability-form/Availability_Form_32_owzt2u.webp "Javascript")
 

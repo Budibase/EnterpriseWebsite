@@ -130,11 +130,9 @@ Here, connections are established using what’s referred to as a *connection st
 
 Essentially, this is a series of semi-colon-separated key/value pairs, providing information about the database we want to access and the information we need to provide to do so. So, it might look something like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 Key1=Value1;Key2=Value2;Key3=Value3;Key4=Value4
-
-{{< /highlight >}}
+```
 
 These keys might be the address of the server, the name of the database, and our username and password, for instance.
 

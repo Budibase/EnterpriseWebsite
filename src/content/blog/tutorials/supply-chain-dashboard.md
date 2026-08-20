@@ -15,7 +15,9 @@ Today, we’re exploring how Budibase empowers teams to build custom dashboards 
 
 Along the way, we’ll see how we can create and save custom queries to transform data and present the results in professional UIs, with minimal design skills.
 
-{{< youtube bEE-cy_MhOM >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/bEE-cy_MhOM" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 But first, a bit of background.
 
@@ -57,7 +59,10 @@ So, let’s jump right in.
 
 If you haven’t already, sign up for a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Create a Budibase app and connect your data
 
@@ -112,11 +117,9 @@ We want this to read *This Month:* followed by the current month in the format *
 
 The specific handlebars expression we’re using is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 This Month: {{ date now "MM/YYYY" }}
-
-{{< /highlight >}}
+```
 
 Below our headline, we’re going to display our row of cards. We’ll add a *container* and set its direction to horizontal:
 
@@ -155,8 +158,7 @@ We’ll then order and group these by *year* and *month*.
 
 So, our query will be:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  EXTRACT(YEAR FROM po.issue_date)::INTEGER AS year,
@@ -174,15 +176,13 @@ FROM purchase_orders po
 GROUP BY year, month
 
 ORDER BY year, month;
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1699624347/cms/supply-chain-dashboard/Supply_Chain_Dashboard_13_gz0yki.webp "Response")
 
 The response object looks like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "year": 2023,
@@ -196,8 +196,7 @@ The response object looks like this:
  "po_count": 2
 
 }
-
-{{< /highlight >}}
+```
 
 Now, head back to the *design* tab and point your *cards block* at this new query, under its *data* field:
 
@@ -207,11 +206,9 @@ Note that now we have three cards, because we have three months of dummy data. W
 
 For this *cards block* we want the *title* field to display the query response for the *average cost*. We’ll use the binding:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 ${{ round Average Cards block.CostStatsByMonth.avg_cost }}
-
-{{< /highlight >}}
+```
 
 We’ve placed a dollar sign in front of the value and used the *round* helper to display the average cost as an integer:
 
@@ -231,13 +228,11 @@ This time, instead of using handlebars, we’ll write a little bit of JavaScript
 
 So we’re filtering the *month* to equal:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return currentDate.getMonth() + 1;
-
-{{< /highlight >}}
+```
 
 Note that JavaScript uses zero-based counting for months, so we need to add 1 to the output of the .getMonth() function.
 
@@ -245,13 +240,11 @@ Note that JavaScript uses zero-based counting for months, so we need to add 1 to
 
 For the year, we’re using:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return currentDate.getFullYear();
-
-{{< /highlight >}}
+```
 
 ![Card](https://res.cloudinary.com/daog6scxm/image/upload/v1699624337/cms/supply-chain-dashboard/Supply_Chain_Dashboard_19_igwapt.webp "Card")
 
@@ -292,8 +285,7 @@ We’re also going to GROUP and ORDER BY *category, month,* and *year*.
 
 Our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  v.category,
@@ -313,15 +305,13 @@ JOIN vendors v ON s.vendor_id = v.v_id
 GROUP BY v.category, year, month
 
 ORDER BY v.category, year, month;
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1699624318/cms/supply-chain-dashboard/Supply_Chain_Dashboard_24_erih1i.webp "Response")
 
 The response schema is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "category": "Biotechnology",
@@ -333,8 +323,7 @@ The response schema is:
  "total_cost": 2942
 
 }
-
-{{< /highlight >}}
+```
 
 Back to *design*, we’ll add a *chart block* inside our new container:
 
@@ -362,8 +351,7 @@ This will work the exact same way as our previous query, just replacing the *cat
 
 So, our new query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  v.company_name,
@@ -383,15 +371,13 @@ JOIN vendors v ON s.vendor_id = v.v_id
 GROUP BY v.company_name, year, month
 
 ORDER BY v.company_name, year, month;
-
-{{< /highlight >}}
+```
 
 ![Query](https://res.cloudinary.com/daog6scxm/image/upload/v1699624350/cms/supply-chain-dashboard/Supply_Chain_Dashboard_30_w0ofgo.webp "Query")
 
 This returns:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "company_name": "Cassin and Sons",
@@ -403,8 +389,7 @@ This returns:
  "total_cost": 3078
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll duplicate our existing chart, rename it, set the *type* to *bar*, and point it at this new query:
 
@@ -440,8 +425,7 @@ We’ll then aggregate these quantities to calculate the total change, and GROUP
 
 We’ll call this query *CumulativeChangeByItemByMonth*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH AllStockChanges AS (
 
   SELECT
@@ -505,15 +489,13 @@ FROM AllStockChanges
 GROUP BY item_name, year, month
 
 ORDER BY item_name, year, month;
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1699624329/cms/supply-chain-dashboard/Supply_Chain_Dashboard_35_sbmvkg.webp "Response")
 
 The response will look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "item_name": "Bulldozer",
@@ -525,8 +507,7 @@ The response will look like this:
  "total_stock_change": 110
 
 }
-
-{{< /highlight >}}
+```
 
 Now, head back to the *design* tab, and we’ll populate our third chart with the *item_name* and *total_stock_change* attributes from this new query, as well as setting its *type* to bar and editing the *title*:
 
@@ -544,8 +525,7 @@ We’ll also use a COALESCE function so that we return an entry for each date in
 
 We’ll call this query *CumulativeSpendThisMonth*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH date_series AS (
 
  SELECT
@@ -577,15 +557,13 @@ FROM date_series ds
 LEFT JOIN purchase_orders po ON ds.series_date::DATE = po.issue_date::DATE
 
 ORDER BY ds.series_date;
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1699624344/cms/supply-chain-dashboard/Supply_Chain_Dashboard_37_xxddmm.webp "Response")
 
 It will return a data object like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "year": 2023,
@@ -597,8 +575,7 @@ It will return a data object like this:
  "running_daily_cumulative_cost": 4820
 
 }
-
-{{< /highlight >}}
+```
 
 To present this on our final chart, we’ll change its *type* to *line*, its *data* to our new query, the *label column* to *day* and the *data column* to *running_daily_cumulative_cost*. We’ll also set the *curve* field to *straight* and update the *title*:
 

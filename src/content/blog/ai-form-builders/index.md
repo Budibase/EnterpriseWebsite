@@ -146,7 +146,9 @@ Budibase is also the clear choice for security-first teams. With free SSO, custo
 
 On top of this, Budibase is ideal for busy IT teams that need to output professional solutions, at speed, including multi-player collaboration and reusable data sources and automation rules within Workspaces.
 
-{{< form-builder-cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Pricing
 

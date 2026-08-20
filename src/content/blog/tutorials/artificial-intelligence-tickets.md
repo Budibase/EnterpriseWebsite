@@ -60,7 +60,9 @@ Then, we’re going to build interfaces for service users and service desk colle
 
 Here’s what our artificial intelligence ticketing system will look like when we’re done.
 
-{{< vimeo id="968666181" title="Artificial Intelligence Tickets" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/968666181?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Artificial Intelligence Tickets" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 You might also enjoy our guide to [open-source help desk software](https://budibase.com/blog/inside-it/open-source-help-desk-software/).
 
@@ -70,7 +72,10 @@ Let’s start building.
 
 The first thing you’ll want to do is sign up for a free Budibase account to start building as many apps as you want. We offer a cloud-based product, but today we’re going to use a self-hosted instance so that we can access the OpenAI integration.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 We’ll start by creating a new application. We can import an existing app dump or use one of Budibase’s pre-built templates, but today, we’re going to start from scratch.
 
@@ -187,35 +192,29 @@ Start by hitting the lightning bolt icon beside Prompt to open the bindings draw
 
 The first thing we want to do in our prompt is provide the Title and Description, and give context to what these are using the following statement:
 
-{{< highlight plaintext "linenos=false" >}}
-
+```plaintext
 The following text is the title and description field from an IT ticket: Title: {{ trigger.fields.title }}, Description: {{ trigger.fields.description }}.
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1719397450/cms/artificial-intelligence-tickets/Artificial_Intelligence_Tickets_16_icu4oh.webp "Prompt")
 
 We’ll then add a statement to translate the ticket if it’s not already in English.
 
-{{< highlight plaintext "linenos=false" >}}
-
+```plaintext
 The following text is the title and description field from an IT ticket: Title: {{ trigger.fields.title }}, Description: {{ trigger.fields.description }}.
 
 If a ticket is submitted in a language other than English, translate it to English before proceeding.
-
-{{< /highlight >}}
+```
 
 The first attribute we want to set is our ticket’s category. We’ll do this by providing the same options that we defined in our data model earlier.
 
-{{< highlight plaintext "linenos=false" >}}
-
+```plaintext
 The following text is the title and description field from an IT ticket: Title: {{ trigger.fields.title }}, Description: {{ trigger.fields.description }}.
 
 If a ticket is submitted in a language other than English, translate it to English before proceeding.
 
 Use this to decide if the ticket's category should be Hardware, Software, Security, Network, Account, Service Request, or Other.
-
-{{< /highlight >}}
+```
 
 Of course, we could provide more detailed logic for how to choose the category, but for demo purposes, we’ll keep it simple.
 
@@ -231,8 +230,7 @@ We can carry on making adjustments to our prompt and testing the responses as ne
 
 We’ll also add a statement with some basic logic on setting a priority level.
 
-{{< highlight plaintext "linenos=false" >}}
-
+```plaintext
 The following text is the title and description field from an IT ticket: Title: {{ trigger.fields.title }}, Description: {{ trigger.fields.description }}.
 
 If a ticket is submitted in a language other than English, translate it to English before proceeding.
@@ -240,8 +238,7 @@ If a ticket is submitted in a language other than English, translate it to Engli
 Use this to decide if the ticket's category should be Hardware, Software, Security, Network, Account, Service Request, or Other.
 
 Also, provide a priority based on how many employees it is likely to affect - High, Medium, or Low.
-
-{{< /highlight >}}
+```
 
 And again, we’ll test this out.
 
@@ -249,8 +246,7 @@ And again, we’ll test this out.
 
 However, our response now includes the rationale for why a particular priority level was chosen. We don’t want this, so we’ll need to add a statement on how to format our response.
 
-{{< highlight plaintext "linenos=false" >}}
-
+```plaintext
 The following text is the title and description field from an IT ticket: Title: {{ trigger.fields.title }}, Description: {{ trigger.fields.description }}.
 
 If a ticket is submitted in a language other than English, translate it to English before proceeding.
@@ -260,8 +256,7 @@ Use this to decide if the ticket's category should be Hardware, Software, Securi
 Also, provide a priority based on how many employees it is likely to affect - High, Medium, or Low.
 
 Response should be parsable key/value pairs.
-
-{{< /highlight >}}
+```
 
 Here’s what our new response looks like.
 
@@ -269,8 +264,7 @@ Here’s what our new response looks like.
 
 Lastly, we’re going to add a statement to provide the English version of the submitted Title and Description, the original language, and a boolean value for whether or not the submission was translated.
 
-{{< highlight plaintext "linenos=false" >}}
-
+```plaintext
 The following text is the title and description field from an IT ticket: Title: {{ trigger.fields.title }}, Description: {{ trigger.fields.description }}.
 
 If a ticket is submitted in a language other than English, translate it to English before proceeding.
@@ -282,8 +276,7 @@ Also, provide a priority based on how many employees it is likely to affect - Hi
 When a ticket is translated, return the title and description as translatedTitle and translatedDescription. Provide a boolean value for whether or not the original ticket was translated. Call this translated. Also, return the original language and call it language.
 
 The response should be parsable key/value pairs.
-
-{{< /highlight >}}
+```
 
 Now, we’ll test this out with a non-English submission.
 
@@ -303,8 +296,7 @@ We need to assign values to the Priority, Category, Ticket Translation, Translat
 
 The easiest way to do this is using the JSON.parse() JavaScript method to access the individual values. Start by hitting the lightning bolt icon next to the priority field and selecting JavaScript. Here, we’ll add the following code.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var jsonString = $("steps.1.response")
 
 var ticketObject = JSON.parse(jsonString);
@@ -314,15 +306,13 @@ var ticketObject = JSON.parse(jsonString);
 var priority = ticketObject.priority;
 
 return priority
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1719397702/cms/artificial-intelligence-tickets/Artificial_Intelligence_Tickets_24_qkeron.webp "JavaScript")
 
 We’ll use very similar code for our remaining fields. Here’s what this will look like for our Category.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var jsonString = $("steps.1.response")
 
 var ticketObject = JSON.parse(jsonString);
@@ -332,13 +322,11 @@ var ticketObject = JSON.parse(jsonString);
 var category = ticketObject.category;
 
 return category
-
-{{< /highlight >}}
+```
 
 Language:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var jsonString = $("steps.1.response")
 
 var ticketObject = JSON.parse(jsonString);
@@ -348,13 +336,11 @@ var ticketObject = JSON.parse(jsonString);
 var language = ticketObject.language;
 
 return language
-
-{{< /highlight >}}
+```
 
 Translated:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var jsonString = $("steps.1.response")
 
 var ticketObject = JSON.parse(jsonString);
@@ -364,13 +350,11 @@ var ticketObject = JSON.parse(jsonString);
 var translated = ticketObject.translated;
 
 return translated
-
-{{< /highlight >}}
+```
 
 And Ticket Translation:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const jsonString = $("steps.1.response");
 
 // Parse the JSON string into a JavaScript object
@@ -394,8 +378,7 @@ const jsonObject = {
 // Return the jsonObject
 
 return jsonObject
-
-{{< /highlight >}}
+```
 
 We’ll then test this out with the data from one of our real rows and confirm that it has executed as expected.
 
@@ -413,13 +396,11 @@ We’ll start by creating a new rule called Translate Comments, again using an A
 
 We’ll then add an OpenAI action with the following prompt.
 
-{{< highlight plaintext "linenos=false" >}}
-
+```plaintext
 Translate the following response from English into {{ trigger.fields.language }}
 
 {{ trigger.fields.comment }}
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1719396364/cms/artificial-intelligence-tickets/Artificial_Intelligence_Tickets_27_nvnfgq.webp "Prompt")
 
@@ -469,13 +450,11 @@ Lastly, since our form UI only offers subset of our tables fields, we’ll need 
 
 Start by opening the actions drawer for our Save button. Under the Save Row action, we’ll hit the Add Column button to populate values for the Status and Date Created fields. We’ll set Status to Open and Date Created to the following JavaScript expression.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var date = new Date();
 
 return date;
-
-{{< /highlight >}}
+```
 
 However, we also want to add a record of who created the ticket. Back in the Data section, we’ll add a Single User column called Created By. This will link rows in our Tickets table to Budibase’s internal Users table.
 
@@ -625,13 +604,11 @@ To wrap up, we’re going to make a couple of tweaks to our Save button actions,
 
 So, we’ll start by opening the Save Row action and hitting Add Column. Just like we did earlier, we’re going to set Date Updated to the following JavaScript.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var date = new Date();
 
 return date;
-
-{{< /highlight >}}
+```
 
 ![Date](https://res.cloudinary.com/daog6scxm/image/upload/v1719396316/cms/artificial-intelligence-tickets/Artificial_Intelligence_TIckets_66_ebgicl.webp "Date")
 

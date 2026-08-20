@@ -33,7 +33,9 @@ With that in mind…
 
 We’re building a simple employee portal to handle a series of related internal admin processes. This will include a basic employee directory, as well as handling vacation requests, peer feedback submissions, and company-wide announcements.
 
-{{< vimeo id="931074515" title="Employee Portal" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/931074515?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Employee Portal" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 With Budibase, we could build this on top of just about any data source. Today, we’re using an existing PostgreSQL database. We’ll also provide all of the queries you need to create this for yourself so you can build it with us.
 
@@ -49,7 +51,10 @@ Let’s jump in.
 
 If you haven’t already, sign up for a free Budibase account to start building as many custom portals as you like.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 The first thing we need to do is create a new application. We can do this using a pre-built template or by importing an existing app dump, but today, we’re starting from scratch.
 
@@ -87,8 +92,7 @@ The announcements table, which you can see above, contains attributes called pub
 
 We can create it using the following query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create Announcements Table
 
 CREATE TABLE Announcements (
@@ -118,15 +122,13 @@ VALUES
   ('Holiday Closure', 'The office will be closed on Monday for the holiday.', '2024-08-30'),
 
   ('Upcoming Training', 'Reminder: Training session on new software scheduled for next week.', '2024-09-20');
-
-{{< /highlight >}}
+```
 
 Our employees table stored columns called first_name, last_name, email, department, position, and employee_id. 
 
 We can create it using this query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create Employees Table
 
 CREATE TABLE Employees (
@@ -160,8 +162,7 @@ VALUES
   ('Emily', 'Williams', 'emily.williams@example.com', 'Sales', 'Sales Representative'),
 
   ('David', 'Brown', 'david.brown@example.com', 'IT', 'Software Developer');
-
-{{< /highlight >}}
+```
 
 ![Employees](https://res.cloudinary.com/daog6scxm/image/upload/v1712324845/cms/employee-portal/Employee_Portal_6_v6itlp.webp "Employees")
 
@@ -169,8 +170,7 @@ The feedback table contains attributes called submission_date, feedback_message,
 
 Here’s the query we can use to create this.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create Feedback Table
 
 CREATE TABLE Feedback (
@@ -204,15 +204,13 @@ VALUES
   (4, 1, CURRENT_TIMESTAMP, 'Punctuality could be better.'),
 
   (5, 2, CURRENT_TIMESTAMP, 'Outstanding teamwork!');
-
-{{< /highlight >}}
+```
 
 ![Feedback](https://res.cloudinary.com/daog6scxm/image/upload/v1712324845/cms/employee-portal/Employee_Portal_7_db8vhq.webp "Feedback")
 
 Lastly, the leave_requests table stores attributes called start_date, end_date, status, reason, employee_id, and feedback_id. The employee_id column corresponds to a row in the employees table.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create leave_requests Table
 
 CREATE TABLE leave_requests (
@@ -248,8 +246,7 @@ VALUES
   (4, '2024-08-20', '2024-08-25', 'Personal Leave', 'Approved'),
 
   (5, '2024-09-15', '2024-09-18', 'Vacation', 'Pending');
-
-{{< /highlight >}}
+```
 
 ![leave_requests](https://res.cloudinary.com/daog6scxm/image/upload/v1712324843/cms/employee-portal/Employee_Portal_8_zpv0fr.webp "leave_requests")
 

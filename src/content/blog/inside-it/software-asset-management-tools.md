@@ -249,7 +249,9 @@ You might also like our guide to the top [free asset management software](https:
 
 Budibase is the open-source low-code platform that turns data into action. IT teams across the globe choose it to power all kinds of workflows, including asset management.
 
-{{< vimeo id="1058925495" title="Software Asset Management Tools" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1058925495?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Software Asset Management Tools" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 #### Features
 
@@ -259,7 +261,10 @@ Once you’ve connected your data, you can use Budibase to handle permissions an
 
 Budibase is also the smart choice for IT teams that need to automate workflows with minimal custom code. Our automation builder offers powerful looping and branching logic, along with extensive connectivity to external tools via WebHooks, API requests, and database queries.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Use cases
 

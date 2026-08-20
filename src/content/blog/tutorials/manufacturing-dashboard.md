@@ -15,7 +15,9 @@ Any time we set out to build dashboards, the biggest challenge is getting all of
 
 Today, we’re checking out how Budibase makes it easier than ever to output professional dashboards based on existing data sources.
 
-{{< youtube 5E-_77p5kpo >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/5E-_77p5kpo" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 But, before we get to that, let’s get to grips with the basics.
 
@@ -55,7 +57,10 @@ Let’s dive right in.
 
 If you haven’t already, sign up for a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Create a Budibase app and connect your data
 
@@ -113,11 +118,9 @@ We want our headline to read *This Month:* followed by the current month in the 
 
 To achieve this, we’re going to use the following handlebars expression:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 This Month: {{ date now "MM" }}/{{ date now "YYYY"}}
-
-{{< /highlight >}}
+```
 
 
 
@@ -151,8 +154,7 @@ We’ll use a LEFT JOIN statement between *p.id* and *qa*.*production_id* and GR
 
 So, our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  EXTRACT(YEAR FROM p.date)::INTEGER AS year,
@@ -168,15 +170,13 @@ LEFT JOIN qa ON p.id = qa.production_id
 GROUP BY year, month
 
 ORDER BY year, month;
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1699627451/cms/manufacturing-dashboard/Manufacturing_Dashboard_15_mf8fo1.webp "Response")
 
 The data object this returns looks like:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "year": 2023,
@@ -186,8 +186,7 @@ The data object this returns looks like:
  "pass_percentage": 90
 
 }
-
-{{< /highlight >}}
+```
 
 Now, head back to the *design* section, and we’ll point the *data* field for our *cards block* to our new query:
 
@@ -211,23 +210,19 @@ Finally, we’ll add two filtering statements - based on the *month* and *year* 
 
 This time, we’re going to use JavaScript for our bindings instead of handlebars. So, we’ll filter the year against:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return currentDate.getFullYear():
-
-{{< /highlight >}}
+```
 
 For the month, we’ll use:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return currentDate.getMonth() + 1;
-
-{{< /highlight >}}
+```
 
 We have to add one here because JavaScript uses zero-based counting for dates. So, the index for January is *0*.
 
@@ -245,8 +240,7 @@ The second card will show the total number of stock breakages we’ve had this w
 
 We’ll create a new query called *BreakagesByMonth*. This time we want to *SELECT* to COUNT of rows and the numerical *month* and *year* from the *breakages* table, grouped and ordered by *month* and *year*.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  EXTRACT(YEAR FROM date)::INTEGER AS year,
@@ -260,13 +254,11 @@ FROM breakages
 GROUP BY year, month
 
 ORDER BY year, month;
-
-{{< /highlight >}}
+```
 
 The response schema is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "year": 2023,
@@ -276,13 +268,11 @@ The response schema is:
  "breakages_count": 5
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll also create a query called *IncidentsByMonth* to retrieve the same information from the *incidents* table.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  EXTRACT(YEAR FROM date)::INTEGER AS year,
@@ -296,13 +286,11 @@ FROM incidents
 GROUP BY year, month
 
 ORDER BY year, month;
-
-{{< /highlight >}}
+```
 
 This returns:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "year": 2023,
@@ -312,8 +300,7 @@ This returns:
  "incidents_count": 41
 
 }
-
-{{< /highlight >}}
+```
 
 Now, we can simply swap the *data* for our new cards to these queries and update the title bindings and subtitles.
 
@@ -342,8 +329,7 @@ We’ll SELECT the *machine_name* from *machines* along with the following from 
 
 We’ll then LEFT JOIN on *m.id = p.machine_id* and GROUP BY *machine_name, month,* and *year*.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  m.machine_name,
@@ -361,13 +347,11 @@ LEFT JOIN production p ON m.id = p.machine_id
 GROUP BY m.machine_name, year, month
 
 ORDER BY m.machine_name, year, month;
-
-{{< /highlight >}}
+```
 
 This returns:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "machine_name": "Machine 1",
@@ -379,8 +363,7 @@ This returns:
  "production_count": 7
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll set the *data* for our chart block to this query - and choose *bar* for its type. We’ll also give it a descriptive *title*:
 
@@ -410,8 +393,7 @@ For the second chart, we’ll use a similar query that calculates the count of p
 
 We’ll call this *ProductionCountByLocationByMonth*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  m.location,
@@ -429,13 +411,11 @@ LEFT JOIN production p ON m.id = p.machine_id
 GROUP BY m.location, year, month
 
 ORDER BY m.location, year, month;
-
-{{< /highlight >}}
+```
 
 This returns:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "location": "Anaheim",
@@ -447,8 +427,7 @@ This returns:
  "production_count": 16
 
 }
-
-{{< /highlight >}}
+```
 
 Back on the design section, we can swap the data for our second chart to this query’s response:
 
@@ -476,8 +455,7 @@ We’ll call the first one *BreakagesByMonthByProduct*. This will SELECT the sam
 
 We’ll JOIN *breakages* to *production* on *b.production_id* *= p.id*.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  EXTRACT(YEAR FROM b.date)::INTEGER AS year,
@@ -495,13 +473,11 @@ JOIN production p ON b.production_id = p.id
 GROUP BY year, month, p.product
 
 ORDER BY year, month, p.product;
-
-{{< /highlight >}}
+```
 
 This will return:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "year": 2023,
@@ -513,8 +489,7 @@ This will return:
  "breakages_count": 1
 
 }
-
-{{< /highlight >}}
+```
 
 Back on the *design* screen, we’ll update our third chart to point it at this new query. We’ll also set its *type* to *pie*, *label column* to *product,* and *data column* to *breakages_count*.
 
@@ -524,8 +499,7 @@ Our last query will be called *IncidentsByMachine*. We need the *machine_name* f
 
 We’ll JOIN these on *i.machine_id = m.id*.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  m.machine_name,
@@ -543,13 +517,11 @@ JOIN machines m ON i.machine_id = m.id
 GROUP BY m.machine_name, year, month
 
 ORDER BY m.machine_name, year, month;
-
-{{< /highlight >}}
+```
 
 This will return:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "machine_name": "Machine 1",
@@ -561,8 +533,7 @@ This will return:
  "incidents_count": 12
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll swap the data for our final chart to match this query response - this time deselecting the *horizontal* option.
 

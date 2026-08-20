@@ -10,13 +10,17 @@ draft: false
 
 The September release introduces Budibase Cloud, making it invitingly easy to try Budibase and build internal tools in minutes. This is our largest and most significant release to date. 
 
-{{< youtube GupimFbzJxs >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/GupimFbzJxs" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ---
 
 ## Budibase Cloud is in beta
 
-{{< figure src="/releases/2021/september/meta-image.jpg" alt="SSO" target="_blank" >}}
+<figure class="blog-figure">
+<a href="/releases/2021/september/meta-image.jpg" target="_blank" rel="noopener noreferrer"><img src="/releases/2021/september/meta-image.jpg" alt="SSO" loading="lazy" /></a>
+</figure>
 
 Before Budibase Cloud, it wasn't easy to try Budibase if you were unfamiliar with Docker, Kubernetes, or Digital Ocean. With Budibase Cloud, you can experience the power, sleekness, and simplicity of Budibase in just a few seconds. It is also the beginning of a momentous drive to make Budibase more accessible and intuitive, and offer a best-in-class experience. 
 

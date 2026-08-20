@@ -46,13 +46,18 @@ You might also like our guide on building a [MariaDB GUI](https://budibase.com/b
 
 Here’s what our SQLite GUI will look like when we’re finished.
 
-{{< vimeo id="947417166" title="SQLite GUI" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/947417166?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="SQLite GUI" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## How to build a SQLite GUI in 5 steps
 
 If you haven’t already, sign up for a free Budibase account to start building as many apps as you want.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 The first thing we’ll do is create a new Budibase application. We have the option of starting with a template or importing an existing app dump, but today, we’re going to start from scratch.
 
@@ -94,8 +99,7 @@ We need to populate a body for our API request to tell it what SQL command to ex
 
 The specific piece of JSON we’re going to use is structured like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "requests": [
@@ -107,8 +111,7 @@ The specific piece of JSON we’re going to use is structured like this:
  ]
 
 }
-
-{{< /highlight >}}
+```
 
 Essentially, we’re telling our database to execute a statement that we’re providing in SQL syntax. Then we provide the statement and close the request.
 
@@ -132,8 +135,7 @@ We’ll call our binding ‘query’ and set the default value to ‘SELECT * FR
 
 We can then replace the static query in our JSON body with our binding, using {{ query }}. So, our new JSON object is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "requests": [
@@ -145,8 +147,7 @@ We can then replace the static query in our JSON body with our binding, using {{
  ]
 
 }
-
-{{< /highlight >}}
+```
 
 ![binding](https://res.cloudinary.com/daog6scxm/image/upload/v1715954433/cms/sqlite-gui/SQLite_GUI_11_drzsgj.webp "binding")
 
@@ -154,8 +155,7 @@ We can then replace the static query in our JSON body with our binding, using {{
 
 Currently, our response looks like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "baton": null,
@@ -233,8 +233,7 @@ Currently, our response looks like this:
 ​      ],
 
 ...
-
-{{< /highlight >}}
+```
 
 This is the right data, but it isn’t very readable. The problem is that the columns and rows are displayed as separate objects. 
 
@@ -246,8 +245,7 @@ To do this, we can write a JavaScript transformer based on our request’s respo
 
 We’re going to add the following JavaScript to create separate objects for each of our database entries and then nest these within another object with other relevant information from our response.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 // Extract cols and rows from data
 
 const cols = data.results[0].response.result.cols.map(col => col.name);
@@ -297,15 +295,13 @@ const finalObject = {
 // Return the final object
 
 return finalObject
-
-{{< /highlight >}}
+```
 
 ![Transformer](https://res.cloudinary.com/daog6scxm/image/upload/v1715954430/cms/sqlite-gui/SQLite_GUI_13_k1wvyq.webp "Transformer")
 
 Here’s what our request returns now:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "type": "ok",
@@ -325,8 +321,7 @@ Here’s what our request returns now:
   },
 
 ...
-
- {{< /highlight >}}
+```
 
 Not only is this much more human-readable, but it also means we can map our rows object to a table in our front end later if we want to.
 
@@ -440,8 +435,7 @@ Within this, we’ll select JavaScript, then hit Create Snippet.
 
 We want to remove any line breaks with a snippet that we’ll call cleanQuery. The code we’ll use is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return function cleanQuery(myString){
 
  let str = myString;
@@ -451,18 +445,15 @@ let cleanedStr = str.replace(/\n/g, ' ');
 return cleanedStr;
 
 } 
-
-{{< /highlight >}}
+```
 
 ![Snippet](https://res.cloudinary.com/daog6scxm/image/upload/v1715954405/cms/sqlite-gui/SQLite_GUI_34_huexr0.webp "Snippet")
 
 We’ll then call this in our binding with the form input as our argument, using:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.cleanQuery($("Form.Fields.query"))
-
-{{< /highlight >}}
+```
 
 ![Binding](https://res.cloudinary.com/daog6scxm/image/upload/v1715954405/cms/sqlite-gui/SQLite_GUI_35_lnfu0k.webp "Binding")
 
@@ -506,21 +497,17 @@ We’ll start by adding another Save Row action to our button. This time, we’l
 
 We’ll bind date_time to the following JavaScript expression to get the current date and time.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var date = new Date();
 
 return date
-
-{{< /highlight >}}
+```
 
 Just like before, we’ll set our query to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.cleanQuery($("Form.Fields.query"))
-
-{{< /highlight >}}
+```
 
 And we’ll set our response to {{ State.response }}.
 
@@ -548,8 +535,7 @@ Essentially, we want to apply appropriate spacing and color coding to differenti
 
 The code we’re using is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return function stylizeJson(myString){
 
  let originalString = myString;
@@ -577,18 +563,15 @@ let styledJson = `<pre style="color: white;">${formattedJson}</pre>`;
 return styledJson
 
 }
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1715954399/cms/sqlite-gui/SQLite_GUI_47_tnkzsv.webp "JavaScript")
 
 We’ll then call this as our binding, using our response state as an argument, with:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.stylizeJson($("State.response"))
-
-{{< /highlight >}}
+```
 
 ![Function](https://res.cloudinary.com/daog6scxm/image/upload/v1715954398/cms/sqlite-gui/SQLite_GUI_48_xzcxl3.webp "Function")
 
@@ -676,13 +659,11 @@ We want to bind this to the JSON object that’s stored in the relevant row of o
 
 So, we’ll first use the JSON.stringify() method to convert this. The code we’re using for our binding is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var jsonOutput = JSON.stringify($("Repeater.history.response"))
 
 return snippets.stylizeJson(jsonOutput)
-
-{{< /highlight >}}
+```
 
 ![SQLite GUI](https://res.cloudinary.com/daog6scxm/image/upload/v1715954392/cms/sqlite-gui/SQLite_GUI_64_cswhyq.webp "SQLite GUI")
 
@@ -722,11 +703,9 @@ Specifically, these are our Execute Query and Save Row actions for both buttons.
 
 We’ll simply update these to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.cleanQuery($("Form.Fields.query"))
-
-{{< /highlight >}}
+```
 
 Make sure to do this for all Execute Query and Save Row actions across both buttons.
 
@@ -754,13 +733,11 @@ Lastly, we’re going to place a Headline component and Markdown Viewer beneath 
 
 Like before, we’re going to set our Markdown Viewer to display the output of:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var jsonOutput = JSON.stringify($("Repeater.queries.response"))
 
 return snippets.stylizeJson(jsonOutput);
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1715954386/cms/sqlite-gui/SQLite_GUI_76_zczmgd.webp "Response")
 
@@ -774,11 +751,9 @@ First, head to Conditions on our Markdown Viewer and add a rule to update the Ma
 
 We’ll set this to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return snippets.stylizeJson($("State.response"))
-
-{{< /highlight >}}
+```
 
 If our response state is not empty.
 

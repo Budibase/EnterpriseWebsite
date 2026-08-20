@@ -296,8 +296,7 @@ Now you can output the entire sales data by using a JS function instead of a bin
 
 This is the JS code:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var row = $("Repeater.Row Index");
 row = $("Data Provider.Rows")[row];
 var ret = "";
@@ -307,8 +306,7 @@ ret += JSON.stringify(val, null, "\t");
 ret += "\n\n";
 });
 return ret;
-
-{{< /highlight >}}
+```
 
 This function is running through each of the sales properties, it outputs the property name and a string version of the property value.
 

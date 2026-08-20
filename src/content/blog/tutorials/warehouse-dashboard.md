@@ -15,7 +15,9 @@ Dashboards are the perfect solution for furnishing teams with repeatable reporti
 
 Today, we’re going to see how Budibase can be used to build custom dashboards around existing data sources - saving your team hours of development work at the same time.
 
-{{< youtube pK6j8n_fqD4 >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/pK6j8n_fqD4" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 But first, let’s get a little bit of background.
 
@@ -57,7 +59,10 @@ Let’s start building.
 
 If you haven’t already, go ahead and create a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Create a new Budibase app and configure your data
 
@@ -115,11 +120,9 @@ We can insert formulae using handlebars expressions or custom JavaScript. In bot
 
 We’re using the following JavaScript:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return $("quantity") * $("unit_price");
-
-{{< /highlight >}}
+```
 
 ![Warehouse Dashboard](https://res.cloudinary.com/daog6scxm/image/upload/v1698659024/cms/warehouse-dashboard/Warehouse_Dashboard_13_on22vz.webp "Warehouse Dashboard")
 
@@ -139,13 +142,11 @@ So, add a *headline component*. We can then use the lightning bolt icon beside i
 
 We want to use some JavaScript that will get the current month and year and stylize this into our string:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const currentDate = new Date();
 
 return "Warehouse KPIs: " + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
-
-{{< /highlight >}}
+```
 
 ![Headline](https://res.cloudinary.com/daog6scxm/image/upload/v1698659023/cms/warehouse-dashboard/Warehouse_Dashboard_16_j88z9u.webp "Headline")
 
@@ -183,8 +184,7 @@ We’ll then group and order these by *month* and *year*.
 
 So, our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT EXTRACT(YEAR FROM c.date) AS year,
 
 ​    EXTRACT(MONTH FROM c.date) AS month,
@@ -196,15 +196,13 @@ FROM complaints c
 GROUP BY year, month
 
 ORDER BY year, month;
-
-{{< /highlight >}}
+```
 
 ![Query](https://res.cloudinary.com/daog6scxm/image/upload/v1698659038/cms/warehouse-dashboard/Warehouse_Dashboard_20_lhb2qk.webp "Query")
 
 We get back data objects that look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "year": "2023",
@@ -214,8 +212,7 @@ We get back data objects that look like this:
  "complaint_count": "10"
 
 }
-
-{{< /highlight >}}
+```
 
 Hit save and head back to the *design* section.
 
@@ -233,23 +230,19 @@ Open the *filter* drawer and we’ll add two expressions - one for the month and
 
 Again, we’re going to use JavaScript for both. So, we’ll set the *month* to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const currentDate = new Date();
 
 return currentDate.getMonth() + 1;
-
-{{< /highlight >}}
+```
 
 And the year to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const currentDate = new Date();
 
 return currentDate.getFullYear;
-
-{{< /highlight >}}
+```
 
 Now, we can start populating our card with values. We’ll use *handlebars* to bind the *title* to the *complaint_count* value from our query response:
 
@@ -263,8 +256,7 @@ We’ll repeat a similar process for our remaining two cards.
 
 So, we’ll add another query called *ReturnsByMonth*. This is going to be very similar to our previous - only based around the *returns* table instead of *complaints*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT EXTRACT(YEAR FROM r.request_date) AS year,
 
 ​    EXTRACT(MONTH FROM r.request_date) AS month,
@@ -276,13 +268,11 @@ FROM returns r
 GROUP BY year, month
 
 ORDER BY year, month;
-
-{{< /highlight >}}
+```
 
 The response should look like this:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 {
 
  "year": "2023",
@@ -292,8 +282,7 @@ The response should look like this:
  "returns_count": "6"
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll follow the exact same steps to configure our next card for this query.
 
@@ -305,8 +294,7 @@ We’re also going to use AVG and DATE_PART expressions to calculate the average
 
 The query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  EXTRACT(YEAR FROM request_date) AS year,
@@ -320,13 +308,11 @@ FROM returns
 GROUP BY year, month
 
 ORDER BY year, month;
-
-{{< /highlight >}}
+```
 
 The response should look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "year": "2023",
@@ -336,8 +322,7 @@ The response should look like this:
  "average_time_in_days": 8.666666666666666
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll point our third card at this query and use the exact same filtering expressions as before:
 
@@ -345,11 +330,9 @@ We’ll point our third card at this query and use the exact same filtering expr
 
 We’re going to stylize our data a little bit. So - this time our *title* will be the following handlebars expression:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ round ReturnTime Cards block.ReturnLeadTime.average_time_in_days }} Days
-
-{{< /highlight >}}
+```
 
 And we’ll give it a descriptive *subtitle* too, giving us:
 
@@ -401,20 +384,17 @@ To do this, we’ll create a new query called *ReturnsByReason*. We’ll select 
 
 So, the query will be:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT reason, COUNT(*) as return_count
 
 FROM returns
 
 GROUP BY reason;
-
-{{< /highlight >}}
+```
 
 The response should look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "reason": "Customer Changed Mind",
@@ -422,8 +402,7 @@ The response should look like this:
  "return_count": "2"
 
 }
-
-{{< /highlight >}}
+```
 
 Save that and head back to the *design* section. Inside we’re going to add a *chart block*. We’ll set its *type* to *pie* and its *data* to our new query.
 
@@ -445,20 +424,17 @@ We’ll use a join statement in a custom query to retrieve this alongside the re
 
 So, we’ll add a query called *ReturnsWithItemName*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT r.*, s.item_name
 
 FROM returns r
 
 LEFT JOIN sales s ON r.sale_id = s.id
-
-{{< /highlight >}}
+```
 
 It returns a data object with the following schema:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "id": 5,
@@ -474,8 +450,7 @@ It returns a data object with the following schema:
  "item_name": "Bulldozer"
 
 }
-
-{{< /highlight >}}
+```
 
 Beside our pie chart, we’ll add a *table block*, with its data set to our new query:
 
@@ -541,8 +516,7 @@ So, we need to start with a common table expression to generate a time series - 
 
 Our query will be:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH DateSeries AS (
 
  SELECT generate_series(
@@ -566,13 +540,11 @@ LEFT JOIN returns r ON ds.request_date = r.request_date
 GROUP BY ds.request_date
 
 ORDER BY ds.request_date;
-
-{{< /highlight >}}
+```
 
 The returned objects look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "request_date": "2023-10-01 00:00:00+00",
@@ -580,8 +552,7 @@ The returned objects look like this:
  "return_count": "1"
 
 }
-
-{{< /highlight >}}
+```
 
 Add another chart block, with the *line* type - and bind its data to our new query outputs:
 
@@ -607,20 +578,17 @@ Our new pie chart will be similar to the previous one - except its going to disp
 
 We’ll create a new query called *ComplaintsByCategory*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT category, COUNT(*) as complaint_count
 
 FROM complaints
 
 GROUP BY category;
-
-{{< /highlight >}}
+```
 
 It returns:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 {
 
  "category": "Billing",
@@ -628,8 +596,7 @@ It returns:
  "complaint_count": "1"
 
 }
-
-{{< /highlight >}}
+```
 
 Swap out the data and update the title on the chart:
 
@@ -641,20 +608,17 @@ Our table will also be pretty simple to set up. We need a query that returns the
 
 We’ll call this *ComplaintsWithItemName*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT c.*, s.item_name
 
 FROM complaints c
 
 LEFT JOIN sales s ON c.sale_id = s.id;
-
-{{< /highlight >}}
+```
 
 The response is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "id": 9,
@@ -670,8 +634,7 @@ The response is:
  "item_name": "Scraper"
 
 }
-
-{{< /highlight >}}
+```
 
 Set this as the *data* for the *data provider* containing our table. We’ll also set the *table’s* row limit to *7* and configure our columns like we did before:
 
@@ -687,13 +650,11 @@ Now, within our *details side panel*, we need to do the following:
 
 We’ll also delete the *text field* for our *complaint* attribute - replacing it with a paragraph with the following binding as its *text*:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 Complaint:
 
 {{ Repeater.ComplaintsWithItemName.complaint }}
-
-{{< /highlight >}}
+```
 
 Our new side panel looks like this:
 
@@ -705,8 +666,7 @@ Lastly, we’ll add another line graph below our horizontal container. Just like
 
 We’ll call this query *ComplaintsByDay*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH DateSeries AS (
 
  SELECT generate_series(
@@ -730,13 +690,11 @@ LEFT JOIN complaints c ON ds.date = c.date
 GROUP BY ds.date
 
 ORDER BY ds.date;
-
-{{< /highlight >}}
+```
 
 It returns:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "date": "2023-10-03 00:00:00+00",
@@ -744,8 +702,7 @@ It returns:
  "complaint_count": "1"
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll bind this to our new chart, giving it a descriptive title as well:
 

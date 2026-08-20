@@ -34,7 +34,9 @@ So…
 
 We’re building a simple policy management solution on top of an existing Postgres database, although with Budibase, we could just as easily use another RDBMS or NoSQL tool of our choice.
 
-{{< vimeo id="1065897179" title="Policy Management System" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1065897179?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Policy Management System" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 This will be built around two user roles. `Editors` will be able to submit new versions for existing policies, using the `policy_versions`. `Approvers` can then approve these, as well as performing full CRUD actions on our `policies` table.
 
@@ -52,7 +54,10 @@ Let’s get started.
 
 If you haven’t already, sign up for a Budibase account, which will allow you to build as many apps as you like for free.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Connecting our database
 
@@ -76,8 +81,7 @@ Then, we’re offered a choice of which tables we’d like to `Fetch`, making th
 
 You can use the following query to create our tables:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE policies (
 
   id SERIAL PRIMARY KEY,
@@ -115,13 +119,11 @@ CREATE TABLE policy_versions (
   updated_at TIMESTAMP DEFAULT NOW()
 
 );
-
-{{< /highlight >}}
+```
 
 You can populate these with:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Insert Active Policy
 
 INSERT INTO policies (title, description, category, status)
@@ -173,8 +175,7 @@ INSERT INTO policy_versions (policy_id, title, description, category, status)
 VALUES 
 
   (2, 'Employee Conduct Policy', 'Rejected version of employee conduct policy', 'Human Resources', 'Rejected');
-
-{{< /highlight >}}
+```
 
 Here’s how our `policies` table looks in Budibase’s Data section once we’ve `Fetched` it.
 
@@ -558,7 +559,9 @@ Lastly, we’ll remove the navigation entry for our `/editor-policies` screen si
 
 Here’s a reminder of what our finished app looks like.
 
-{{< vimeo id="1065897179" title="Policy Management System" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1065897179?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Policy Management System" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## Turn data into action with Budibase
 

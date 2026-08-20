@@ -17,7 +17,9 @@ That’s where procurement dashboards come in.
 
 Today, we’re showing how Budibase can be leveraged to turn data into action - including building custom dashboards around all kinds of existing data sets.
 
-{{< youtube Sz8hrRErjFE >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/Sz8hrRErjFE" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## What is a procurement dashboard?
 
@@ -55,7 +57,10 @@ So, now we know what we’re building, let’s dive right in.
 
 If you haven’t already, sign up for a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Create a Budibase app and connect your data
 
@@ -104,13 +109,11 @@ We want this to read *This Month:* followed by the current month in the format *
 
 We’re going to bind this to the following JavaScript expression:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return "This Month: " + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
-
-{{< /highlight >}}
+```
 
 ![Title](https://res.cloudinary.com/daog6scxm/image/upload/v1698942042/cms/procurement-dashboard/Procurement_Dashboard_10_aa8zdf.webp "Title")
 
@@ -145,8 +148,7 @@ We’ll also add statements to GROUP and ORDER BY *month* and *year*.
 
 So, our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  CAST(EXTRACT(YEAR FROM issue_date) AS INTEGER) AS year,
@@ -164,15 +166,13 @@ FROM purchase_orders
 GROUP BY year, month
 
 ORDER BY year, month;
-
-{{< /highlight >}}
+```
 
 ![response](https://res.cloudinary.com/daog6scxm/image/upload/v1698942057/cms/procurement-dashboard/Procurement_Dashboard_14_aanodb.webp "response")
 
 This will return the following data object:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "year": 2023,
@@ -186,8 +186,7 @@ This will return the following data object:
  "average_cost": 2375
 
 }
-
-{{< /highlight >}}
+```
 
 Head back to the design section. We can now point our *cards* block to our new query under its *data* field:
 
@@ -203,23 +202,19 @@ But, we only want to display a single card, so we need to add a couple of filter
 
 Again, we’re going to use JavaScript bindings here. So, we’ll bind *year* to equal:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return currentDate.getFullYear();
-
-{{< /highlight >}}
+```
 
 And *month* to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return currentDate.getMonth() + 1;
-
-{{< /highlight >}}
+```
 
 JavaScript uses zero-based counting - so the index for January is *0*, February is *1* etc. SQL does not. To reflect this, we’ve added one to *currentDate.getMonth()* in our return statement.
 
@@ -231,11 +226,9 @@ To finish this, we just need to populate the relevant data. We’ll start by ren
 
 Then, we’ll bind the following JavaScript expression to bind the *title* field to the *total_cost* attribute from our query response - adding a dollar sign and rounding it to two decimal places:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return "$" + $("Total Cost Card.PurchaseOrderStatsByMonth.total_cost").toFixed(2);
-
-{{< /highlight >}}
+```
 
 ![Total Cost](https://res.cloudinary.com/daog6scxm/image/upload/v1698942046/cms/procurement-dashboard/Procurement_Dashboard_19_d3mcb5.webp "Total Cost")
 
@@ -255,11 +248,9 @@ Two down, one to go.
 
 Duplicate the card again, this time calling the new one *Average Cost Card* and setting its *title* binding to the following JavaScript:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return "$" + $("Average Cost Card.PurchaseOrderStatsByMonth.average_cost").toFixed(2);
-
-{{< /highlight >}}
+```
 
 ![Cards](https://res.cloudinary.com/daog6scxm/image/upload/v1698942033/cms/procurement-dashboard/Procurement_Dashboard_24_pybtaa.webp "cards")
 
@@ -282,8 +273,7 @@ The JOINS will work as follows:
 
 Our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  v.category,
@@ -307,8 +297,7 @@ JOIN vendors v ON s.vendor_id = v.vendor_number
 GROUP BY v.category, year, month
 
 ORDER BY v.category, year, month;
-
-{{< /highlight >}}
+```
 
 We’ll call this one *PurchaseOrderStatsByMonthByCategory*:
 
@@ -316,8 +305,7 @@ We’ll call this one *PurchaseOrderStatsByMonthByCategory*:
 
 The response should look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "category": "Biotechnology",
@@ -333,8 +321,7 @@ The response should look like this:
  "average_cost": 2029
 
 }
-
-{{< /highlight >}}
+```
 
 Now, head back to the *design* section and add a *chart block* inside our new container.
 
@@ -370,8 +357,7 @@ Next, we’ll need a new query to retrieve the data we want. This will follow th
 
 We’ll call this *PurchaseOrderStatsByMonthByCompany*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  v.company_name,
@@ -395,13 +381,11 @@ JOIN vendors v ON s.vendor_id = v.vendor_number
 GROUP BY v.company_name, year, month
 
 ORDER BY v.company_name, year, month;
-
-{{< /highlight >}}
+```
 
 The response schema is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "company_name": "Cassin and Sons",
@@ -417,8 +401,7 @@ The response schema is:
  "average_cost": 3078
 
 }
-
-{{< /highlight >}}
+```
 
 Back in the design section, we can simply swap the *data* field for our two new charts to this query - and update their *label columns* to *company_name*. We’ll also update their names and titles:
 
@@ -462,8 +445,7 @@ We’ll use a LEFT JOIN statement to match up *shipments* rows where the *shipme
 
 Our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  CAST(EXTRACT(YEAR FROM s.purchase_date) AS INTEGER) AS year,
@@ -499,13 +481,11 @@ LEFT JOIN (
 GROUP BY year, month
 
 ORDER BY year, month;
-
-{{< /highlight >}}
+```
 
 And the response:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "year": 2023,
@@ -523,8 +503,7 @@ And the response:
  "avg_items_per_consignment": 26.222222222222225
 
 }
-
-{{< /highlight >}}
+```
 
 Back on the design tab, we’ll use handlebars bindings in the titles to display each of these new response attributes - using the *round* function where necessary. We’ll also update the *subtitle* and *name* attributes to reflect our new data.
 
@@ -550,8 +529,7 @@ This will be quite similar to our previous query, with two additional elements:
 
 So, our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  v.company_name,
@@ -603,13 +581,11 @@ LEFT JOIN (
 GROUP BY v.company_name, year, month
 
 ORDER BY v.company_name, year, month;
-
-{{< /highlight >}}
+```
 
 The response should look like this:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 {
 
  "company_name": "Cassin and Sons",
@@ -629,8 +605,7 @@ The response should look like this:
  "avg_items_per_consignment": 20
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll alter our first two charts to show the number of shipments per company and the number of items per shipment by company, respectively:
 

@@ -12,7 +12,9 @@ There are hundreds of free no-code tools available - as well as paid options. Th
 
 The no-code landscape is attracting a lot of interest and is growing year on year. Check out this trend line:
 
-{{< figure src="/no-code-tools/no-code-trend.png" alt="No-code-trend" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/no-code-trend.png" alt="No-code-trend" loading="lazy" />
+</figure>
 
 This growth is exciting since it means that if you have a development problem, you can probably find a no-code tool to help you solve it. But it’s also overwhelming. How do you know which of the couple hundred tools are worth trying and investing in?
 
@@ -42,7 +44,9 @@ If you studied computer science or ICT in the late 90s / early 00s, you will fon
 
 I built my first website with Frontpage, and it looked terrible, but it was a live website on the internet, which was a success 🎉. Sadly, I don’t have a picture of my website, but thankfully you can catch a glimpse of Frontpage below.
 
-{{< figure src="/no-code-tools/frontpage.jpg" alt="Front-page UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/frontpage.jpg" alt="Front-page UI" loading="lazy" />
+</figure>
 
 ## No-code tool evolution
 
@@ -66,7 +70,9 @@ Thus, your focus shifts from the technology, syntax, and infrastructure to the b
 
 ## The 12 best no-code platforms in 2021
 
-{{< figure src="/no-code-tools/no-code-tools.png" alt="No-code tools" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/no-code-tools.png" alt="No-code tools" loading="lazy" />
+</figure>
 
  1. **Budibase**
  2. **Zapier**
@@ -95,7 +101,9 @@ Check out our round-up of [open-source development tools](https://budibase.com/b
 
 ### 2. Zapier
 
-{{< figure src="/no-code-tools/zapier.png" alt="Zapier UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/zapier.png" alt="Zapier UI" loading="lazy" />
+</figure>
 
 [Zapier](https://zapier.com/home) describe their platform as the glue that connects thousands of web apps. I have used Zapier countless times, and it's always been a great experience. You can chain commands together, which is great for automation. For example, before Zapier, someone would complete a lead generation form on our website, and we would take that information and manually add it to Hubspot. With Zapier, this is automatically done for us - and it only took 2 minutes to set up.
 
@@ -105,7 +113,9 @@ Zapier now has over 2000 integrations, including web apps such as Google Sheets,
 
 ### 3. IFTTT
 
-{{< figure src="/no-code-tools/ifttt.png" alt="IFTTT UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/ifttt.png" alt="IFTTT UI" loading="lazy" />
+</figure>
 
 [IFTTT](https://ifttt.com/) stands for 'If this then that.' IFTTT is similar to Zapier, chaining together simple conditional statements to help users automate tasks. One key difference between both Zapier and IFTTT is Zapier can handle multiple triggers and actions, and it also has more integrations. But, in my opinion, IFTTT's UI is perfect for beginners and simple automations making it great for hobbyists.
 
@@ -113,7 +123,9 @@ IFTTT is free to use. If you would like to publish an integration with IFTTT, yo
 
 ### 4. Airtable
 
-{{< figure src="/no-code-tools/airtable.png" alt="Airtable UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/airtable.png" alt="Airtable UI" loading="lazy" />
+</figure>
 
 [Airtable](https://airtable.com/) is a spreadsheet-database hybrid and is often referred to as a management app due to its productivity features. Airtable gives you the functionality of a database, with the UI of a spreadsheet, which is excellent for beginners. Airtable is online and allows you to collaborate with your colleagues, which makes communication easier. From a database perspective, Airtable is simple to use and offers many integrations with other platforms. All-in-all Airtable is an excellent platform for building database-focused internal tools. It also benefits from a popular template marketplace called Universe, which is incredibly helpful.
 
@@ -121,7 +133,9 @@ Airtable is free to use until you hit 1,200 records. The free tier is also limit
 
 ### 5. Typeform
 
-{{< figure src="/no-code-tools/typeform.png" alt="Typeform UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/typeform.png" alt="Typeform UI" loading="lazy" />
+</figure>
 
 With a beautiful UI and conversational approach to collecting information, [Typeform](https://www.typeform.com/) is the perfect no-code tool for creating forms and surveys. Having used Typeform, it is effortless to get started and simple to use. Typeform integrates with over 500 applications allowing you to send your data to multiple endpoints. The forms produced by Typeform are professional and usable leading to high conversion rates.
 
@@ -131,7 +145,9 @@ Bonus - Typeform recently released a new product - Videoask - which instead of w
 
 ### 6. Shopify
 
-{{< figure src="/no-code-tools/shopify.png" alt="Shopify UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/shopify.png" alt="Shopify UI" loading="lazy" />
+</figure>
 
 [Shopify](https://www.shopify.co.uk/) is the ultimate no-code tool for building e-commerce sites to promote, sell, and ship your products. It's easy to use and offers users templates to choose from to help get started quicker. Shopify is a reliable and proven performer with over 1,000,000 online businesses relying on the platform to power their online commerce.
 
@@ -141,7 +157,9 @@ Shopify does not have a free tier but offers new users a 14-day free trial. Afte
 
 ### 7. Webflow
 
-{{< figure src="/no-code-tools/webflow.png" alt="Webflow UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/webflow.png" alt="Webflow UI" loading="lazy" />
+</figure>
 
 [Webflow](https://webflow.com/) is a website builder that allows designers to build responsive websites without code. Webflow is a SaaS platform and includes hosting.
 
@@ -153,7 +171,9 @@ The lowest tier for building a website is its basic tier at $12 per month. This 
 
 ### 8. Carrd
 
-{{< figure src="/no-code-tools/carrd.jpg" alt="Carrd UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/carrd.jpg" alt="Carrd UI" loading="lazy" />
+</figure>
 
 [Carrd](https://carrd.co/) is also a no-code website builder but differs from Webflow is many ways. Carrd is better suited to people who need to build a simple one-page site/landing page quickly. What sets Carrd apart from other website builders is its price and simplicity. Within minutes you could have a site built and launched using Carrd and for free!
 
@@ -161,7 +181,9 @@ Carrd's free tier includes up to 3 sites per account. All Carrd's core features 
 
 ### 9. Stripe
 
-{{< figure src="/no-code-tools/stripe.png" alt="Stripe UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/stripe.png" alt="Stripe UI" loading="lazy" />
+</figure>
 
 I'm sure you've heard of [Stripe](https://stripe.com/). If you haven't, it's a PSP - payment service provider. Their rapid progress is an inspiration to us all. In the past year, 84% of U.S adults purchased something via Stripe. The likes of Amazon, Uber, Airbnb, Spotify, use Stripe to power their payments.
 
@@ -173,7 +195,9 @@ Stripe does not have a free tier, and its pricing is based on transactions. For 
 
 ### 10. Payhere
 
-{{< figure src="/no-code-tools/payhere.png" alt="Payhere UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/payhere.png" alt="Payhere UI" loading="lazy" />
+</figure>
 
 [Payhere](https://payhere.co/) is another company from Ireland - 3rd on this list! Payhere sits on top of Stripe and GoCardless, and users can start collecting payments without ever writing a line of code. Users simply create a payment form and start accepted card payments in minutes. No code, whatsoever!
 
@@ -186,7 +210,9 @@ Payhere offers a similar pricing setup to Stripe where they charge 2% per transa
 
 ### 11. Memberstack
 
-{{< figure src="/no-code-tools/memberstack.png" alt="Memberstack UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/memberstack.png" alt="Memberstack UI" loading="lazy" />
+</figure>
 
 [Memberstack](https://www.memberstack.io/) works with website builders to allow users to add memberships, user accounts, and payments to their websites without writing code. It pairs excellent with Webflow, and is quickly growing in popularity amongst the design community - and rightly so.
 
@@ -194,7 +220,9 @@ Setup is straight-forward, and the dashboard template provided our of the box is
 
 ### 12. Voiceflow
 
-{{< figure src="/no-code-tools/voiceflow.png" alt="Voiceflow UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/voiceflow.png" alt="Voiceflow UI" loading="lazy" />
+</figure>
 
 I love [Voiceflow](https://www.voiceflow.com/). As a smart speaker fanatic, I love creating games, quizzes, and other voice apps. Voiceflow is my tool of choice and allows me to design, prototype, and build all my voice apps without coding.
 
@@ -213,7 +241,9 @@ No-code tools won't save a bad idea or lack of marketing, but they'll certainly 
 
 ## The no-code caveat
 
-{{< figure src="/no-code-tools/no-code-caveat.jpg" alt="No code caveat" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/no-code-caveat.jpg" alt="No code caveat" loading="lazy" />
+</figure>
 
 I would like to point out, no-code tools can get you far, and in some cases, the entire way. But please do not dispel the importance of code. For now, there are still a lot of areas of building web apps, websites, and databases which require coding, and possibly a developer.
 
@@ -243,7 +273,9 @@ Another option is to use an external no-code database, such as Airtable, Xano, S
 
 ## Bonus: No-code communities
 
-{{< figure src="/no-code-tools/no-code-communities.jpg" alt="No-code communities" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/no-code-communities.jpg" alt="No-code communities" loading="lazy" />
+</figure>
 
 Tools are excellent and imperative to building your no-code product, but behind the platforms are incredible communities. Two no-code communities I would like to shine a light on are Makerpad and NoCodeDevs. Both are active communities with hundreds/thousands of no-coders/visual programmers participating in moving the industry forward - an inspiration to all of us tool developers.
 

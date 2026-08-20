@@ -9,7 +9,9 @@ socialImage: "https://res.cloudinary.com/daog6scxm/image/upload/v1730386001/camp
 draft: false
 ---
 
-{{< youtube id="XCsB0NI3-Ls" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/XCsB0NI3-Ls" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Welcome to day three of the Budibase 3.0 Launch Week! Over the past few days, we announced a [brand new data experience](/blog/updates/v3/launchweek/day1) and [Visual RBAC](/blog/updates/v3/launchweek/day2). Today, we’re thrilled to introduce new functionality that will improve everyone's experience building automations.
 
@@ -19,7 +21,9 @@ We’ve introduced Branching to Budibase automations. Use the Branch icon to add
 
 Budibase Automations are now fully optimized for handling advanced use cases—like multi-step approvals, working with API responses, or categorizing and routing tickets.
 
-{{< alert-positive "Automation branching is available for free.">}}
+<aside class="blog-callout blog-callout--positive" role="note">
+<p>Automation branching is available for free.</p>
+</aside>
 
 ![Two branched in Budibase automations](https://res.cloudinary.com/daog6scxm/image/upload/v1730386001/campaigns/3.0/day%203/branching_djgn0q.webp)
 

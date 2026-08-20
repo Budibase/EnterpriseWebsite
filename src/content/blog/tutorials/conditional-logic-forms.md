@@ -105,7 +105,10 @@ Now that we’ve seen the basics of how we can build conditional logic forms in 
 
 Specifically, we’re going to focus on five of the most illustrative kinds of conditions we can create.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 Here goes!
 
@@ -309,11 +312,9 @@ We’ll add an Update Setting condition to our email field, which updates the He
 
 We’ll use the “status” attribute under State to set our new Help Text to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 Email address is {{ State.status }}
-
-{{< /highlight >}}
+```
 
 ![Help Text](https://res.cloudinary.com/daog6scxm/image/upload/v1707750704/cms/conditional-logic-forms/Conditional_Logic_Forms_43_p0xmi4.webp "Help Text")
 

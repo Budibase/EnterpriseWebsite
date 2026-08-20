@@ -188,8 +188,7 @@ Then, we’d open the bindings drawer, this time opening up the JavaScript edito
 
 We could then use the following JavaScript expression to calculate the date 18 years before today:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 var eighteenYearsAgo = new Date(currentDate);
@@ -197,8 +196,7 @@ var eighteenYearsAgo = new Date(currentDate);
 eighteenYearsAgo.setFullYear(currentDate.getFullYear() - 18);
 
 return eighteenYearsAgo
-
-{{< /highlight >}}
+```
 
 ![JavaScript Validation](https://res.cloudinary.com/daog6scxm/image/upload/v1708008117/cms/validation-rules/Validation_Rules_16_ziqdm9.webp "JavaScript Validation")
 

@@ -235,7 +235,10 @@ We can connect Agents to any data sources, integrated tools, APIs, or automation
 
 There's never been a better way to build AI agents on top of your existing tools and data, and deploy them to real-world workflows.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Turn data into action with Budibase
 

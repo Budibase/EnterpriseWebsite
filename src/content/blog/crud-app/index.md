@@ -12,11 +12,16 @@ We use CRUD apps every day. Most of the time, without noticing. They keep us org
 2. [How to build a CRUD app](#how)
 3. [Why CRUD is important](#why)
 
-{{< youtube DsBudu6Kzls >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/DsBudu6Kzls" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
-{{< custom-cta text="Build CRUD tools on top of any data with Budibase">}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Build CRUD tools on top of any data with Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
-## What is a CRUD App {#what}
+<h2 id="what">What is a CRUD App</h2>
 
 > A CRUD app is a specific type of software application that consists of four basic operations; Create, Read, Update, Delete.
 
@@ -152,11 +157,14 @@ There are many, low code platforms, frameworks, or tech stacks that provide an e
 
 ***
 
-## How to build a simple CRUD app {#how}
+<h2 id="how">How to build a simple CRUD app</h2>
 
 Budibase is a low code platform that is designed for creating CRUD applications. From the frameworks, tech stacks, and platforms listed above, Budibase is the easiest and fastest way to build a CRUD application. For these reasons, we will use Budibase to build our CRUD app.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### Overview
 
@@ -281,11 +289,14 @@ Once we're happy, our CRUD app is ready to push live. Note that for today's exam
 
 Budibase is also the ideal solution for building internal tools in security-first organizations, including free SSO, optional self-hosting, fully customizable RBAC, and more. For more complex workflows, you can also build complex logic in our automation builder, complete with looping, branching, and a host of pre-build AI operations, powered by a choice of LLMs.
 
-{{< custom-cta text="Build CRUD tools on top of any data with Budibase">}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Build CRUD tools on top of any data with Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ***
 
-## Why CRUD is important {#why}
+<h2 id="why">Why CRUD is important</h2>
 
 The CRUD acronym is a great, memorable framework for building applications and constructing usable models. We can examine why CRUD is essential from two fronts; developers and end-users.
 
@@ -322,7 +333,9 @@ You can find over 50 CRUD app templates on the Budibase template page. These tem
 
 [View Budibase templates](https://budibase.com/ops/)
 
-{{< figure src="/img/meta-images/templates.png"  alt="CRUD app templates" >}}
+<figure class="blog-figure">
+<img src="/img/meta-images/templates.png" alt="CRUD app templates" loading="lazy" />
+</figure>
 
 ***
 

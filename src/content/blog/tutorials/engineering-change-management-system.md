@@ -60,7 +60,9 @@ In the background, we’ll also set up an automation rule so that a new row is c
 
 Here’s what our app will look like when we’re finished.
 
-{{< vimeo id="1060855669" title="engineering change management system" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1060855669?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="engineering change management system" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Grab a coffee, and let’s get building.
 
@@ -68,7 +70,10 @@ Grab a coffee, and let’s get building.
 
 If you haven’t already, the first thing to do is sign up for a Budibase account to start building as many apps as you need for free.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Setting up our data layer
 
@@ -98,8 +103,7 @@ We’re fetching our database’s three constituent tables.
 
 If you want to build along with this tutorial, you can use the following query to create our tables in your own Postgres database.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create the projects table
 
 CREATE TABLE projects (
@@ -175,13 +179,11 @@ CREATE TABLE change_status_tracker (
 CREATE INDEX idx_project_id ON change_requests (project_id);
 
 CREATE INDEX idx_change_request_id ON change_status_tracker (change_request_id);
-
-{{< /highlight >}}
+```
 
 This query will populate our tables with dummy data:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Insert dummy projects
 
 INSERT INTO projects (project_name, description, start_date, end_date) VALUES
@@ -219,8 +221,7 @@ INSERT INTO change_status_tracker (change_request_id, old_status, new_status, st
 (4, 'Pending', 'Rejected', '2024-03-15'),
 
 (5, 'Pending', 'Approved', '2024-04-05');
-
-{{< /highlight >}}
+```
 
 Once `fetched`, we can begin to manipulate our tables in Budibase’s Data section. Here’s what these will look like.
 
@@ -668,7 +669,9 @@ When we’re happy, we can hit `Publish` to push our app live.
 
 Here’s a reminder of what our final engineering change management system should look like.
 
-{{< vimeo id="1060855669" title="engineering change management system" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1060855669?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="engineering change management system" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## Turn data into action with Budibase
 

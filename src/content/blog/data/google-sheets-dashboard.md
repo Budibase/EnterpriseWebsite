@@ -71,7 +71,10 @@ Things also get particularly messy if you need to draw on real-time data from mu
 
 We'd have a very hard time doing this - even if we could get all the necessary data to create a dashboard in Google Sheets.
 
-{{< custom-cta text="Build custom workflow apps on top of any data with Budibase" >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Build custom workflow apps on top of any data with Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 Take a look at our guide to choosing the [best database management software](https://budibase.com/blog/best-database-management-software/).
 

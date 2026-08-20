@@ -112,8 +112,7 @@ Our sample data includes some properties that we won’t use. It’s likely that
 
 You can remove these from your query using this transformer:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return data.map( (
 { _id, saleDate, storeLocation, customer }
 ) 
@@ -121,8 +120,7 @@ return data.map( (
 "Date": saleDate, 
 "Location": storeLocation, 
 "Customer": customer.email }) )
-
-{{< /highlight >}}
+```
 
 This removes all properties except the id, date, location, and customer email.
 
@@ -132,8 +130,7 @@ The insert_sale query looks like this:![Insert sale query](https://res.cloudinar
 
 We are using some bindings there. They allow you to fill in forms and send this data to your DB. In the fields option, use this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 "saleDate": "{{Date}}",
 "customer": {
@@ -141,8 +138,7 @@ We are using some bindings there. They allow you to fill in forms and send this 
 },
 "storeLocation": "{{Location}}"
 }
-
-{{< /highlight >}}
+```
 
 These are the settings we need to tell our MongoDB CRUD app how to store the form data.
 
@@ -154,8 +150,7 @@ Notice how this one is similar to the insert query.
 
 The only difference is that we need to get the id, so we know which item to update. And these are the fields to do it:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 "_id": "ObjectID('{{ID}}')"
 },
@@ -166,8 +161,7 @@ The only difference is that we need to get the id, so we know which item to upda
 "storeLocation": "{{Location}}"
 }
 }
-
-{{< /highlight >}}
+```
 
 The first portion is the “search” part. The second part is the _update_ instruction.
 
@@ -187,13 +181,11 @@ You can set up your query like this:
 
 Make sure to include your fields to define which items you want to delete:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 "_id": "ObjectID('{{ID}}')"
 }
-
-{{< /highlight >}}
+```
 
 Now run it, and save the query.
 
@@ -233,11 +225,9 @@ Lastly, add the “edit” button to each of your rows. You can do this by click
 
 Set the “_onclick_” action to _navigate to URL_. The path is this binding:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 /home/{{ Sales.get_sales.ID }}
-
-{{< /highlight >}}
+```
 
 Here you are saying to Budibase “use the ‘Sales’ table and the ‘get_sales.ID’ value”. This means that, if the row id is “abc100”, the target URL is “/home/abc100”.
 
@@ -277,11 +267,9 @@ Then you need an iterator. In the previous screen, you used a table, which is ju
 
 Inside the repeater, we have a title to show users what is happening. In it, you can load the sale ID with this binding:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 Edit Sale {{ Repeater.get_sales.ID }}
-
-{{< /highlight >}}
+```
 
 Next, there is a form, which is required to manipulate the form fields. You can use the “Update’ type and update_sale as the schema.
 
@@ -295,21 +283,17 @@ If you want the date to be a date picker you can delete the default element and 
 
 And while you are at it, use the bindings to load the current value for the date:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ Repeater.get_sales.Date }}
-
-{{< /highlight >}}
+```
 
 You can repeat this process to load default values for the other fields, using these bindings:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ Repeater.get_sales.Customer }}
 
 {{ Repeater.get_sales.Location }}
-
-{{< /highlight >}}
+```
 
 Feel free to delete the ID field. We are loading the ID from the URL directly, so you don’t need it there.
 

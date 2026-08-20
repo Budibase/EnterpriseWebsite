@@ -77,11 +77,9 @@ We’re using the second version of their API.
 
 Our endpoint might be:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 https://api.example.com/v2/lions
-
-{{< /highlight >}}
+```
 
 You’ll need to check specific vendors’ documented API specifications to see what format you need to use and what endpoints are available.
 
@@ -89,11 +87,9 @@ The endpoint can also be used to provide extra information - called *query param
 
 Say we only wanted to pull data about a *particular* lion - whose name is *Franky*. The zoo’s API allows us to do this using the *lionName* parameter. We can add this to our endpoint like so:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 https://api.example.com/v2/lions?lionName=Franky
-
-{{< /highlight >}}
+```
 
 But, this isn’t the only way to pass parameters in an API request. We’ll check this issue out more fully in a couple of minutes.
 
@@ -113,8 +109,7 @@ REST, the most dominant API protocol, uses standard HTTP methods. The most commo
 
 For example, we created an endpoint earlier that targets any lions with the name Franky. If we sent a GET request to this endpoint, we might get back a JSON formatted data object that looks like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
 “lions”:{
@@ -130,8 +125,7 @@ For example, we created an endpoint earlier that targets any lions with the name
 ​	}
 
 }
-
-{{< /highlight >}}
+```
 
 If we didn’t have any kind of filtering, the API request would return the same information for *all* of the zoo’s lions.
 
@@ -179,8 +173,7 @@ Finally, we have the body of our request. This is where we store any data object
 
 PUT requests are intended to replace the *entire* entity. So, we’d need to provide our new values, as well as all of the existing ones. In this case, the body for Franky’s new favorite meal might be:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
 “lions”:{
@@ -196,15 +189,13 @@ PUT requests are intended to replace the *entire* entity. So, we’d need to pro
 ​	}
 
 }
-
-{{< /highlight >}}
+```
 
 PATCH requests can be used to update *only specified fields*. Basically, that means that we don’t need to fill in all of the existing data. If we specify an *existing* attribute, its value is modified.
 
 To update Franky’s favorite meal, we could simply use:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
 “lions”:{
@@ -214,8 +205,7 @@ To update Franky’s favorite meal, we could simply use:
 ​	}
 
 }
-
-{{< /highlight >}}
+```
 
 If we specify an attribute that *doesn’t exist*, then this will be added to the current schema, along with whatever value we give it - assuming we have permissions to edit the schema.
 
@@ -278,7 +268,10 @@ We’d also need to provide the right data in our client to select the appropria
 
 It’s harder to generalize here than it is with basic data management actions. The important thing is to fully understand the vendor’s requirements around how to trigger different actions in the process layer.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## API response
 
@@ -337,7 +330,10 @@ Just like earlier, this comes in the form of a data object - a series of key/val
 
 And that’s it - all of the components of an API that we need to be aware of.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 4 types of APIs
 

@@ -41,7 +41,9 @@ Specifically, our portal will:
 2. Allow maintenance teams to submit reports when they carry out maintenance work.
 3. Provide admin users with a centralized view of all relevant information relating to each vehicle, including its current location and maintenance needs.
 
-{{< vimeo id="926228969" title="Fleet Management Portal" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/926228969?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Fleet Management Portal" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Of course, this is by no means the limits of what’s possible in Budibase.
 
@@ -55,7 +57,10 @@ Let’s jump in.
 
 If you haven’t already, you can sign up for a free Budibase account to start building as many custom applications as you’d like.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Setting up our database
 
@@ -97,8 +102,7 @@ The vehicles table contains attributes called registration, manufacturer, model,
 
 If you want to build along with our tutorial, you can create it with this MySQL query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE IF NOT EXISTS vehicles (
 
   id INT PRIMARY KEY,
@@ -138,15 +142,13 @@ VALUES
 (9, 'enf-8785', 'GMC', '1500', '2023-05-03 11:00:00', 12),
 
 (10, 'pjv-9421', 'Mercury', 'Capri', '2023-02-01 12:00:00', 12);
-
-{{< /highlight >}}
+```
 
 The check_ins table contains attributes called date, mileage, vehicle_registration, comments, latitude, and longitude - along with a unique id.
 
 Here’s the query to create and populate it.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE IF NOT EXISTS check_ins (
 
   id INT PRIMARY KEY,
@@ -184,13 +186,11 @@ VALUES
 (18, '2024-03-13 11:54:01', 88047, 'uhx-3823', 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.', 16.59, 30.36),
 
 (19, '2024-03-13 08:11:37', 83977, 'snn-4127', 'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 35.22, 34.26);
-
-{{< /highlight >}}
+```
 
 Lastly, the maintenance table stores columns called vehicle_registration, date, and comments, plus a unique id.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE IF NOT EXISTS maintenance (
 
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -246,8 +246,7 @@ VALUES
 ('hxx-7141', '2024-03-10 12:00:00', 'Lorem Ipsum'),
 
 ('uhx-3823', '2024-03-10 12:00:00', 'Lorem Ipsum');
-
-{{< /highlight >}}
+```
 
 Now, before we carry on, we’re going to make a few minor changes to our tables in order to make life easier a little later.
 
@@ -327,8 +326,7 @@ Here, we can give our query a name, select a function, and input our SQL stateme
 
 We’re going to call ours GetCurrentLocation and use the following query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT c.vehicle_registration, c.latitude, c.longitude
 
 FROM check_ins c
@@ -344,8 +342,7 @@ JOIN (
 ) AS latest
 
 ON c.vehicle_registration = latest.vehicle_registration AND c.date = latest.max_date;
-
-{{< /highlight >}}
+```
 
 This calculates the highest date for each unique vehicle_registration in our table and then retrieves the latitude and longitudes for the relevant rows.
 
@@ -443,8 +440,7 @@ Our formula will iterate over each of the related check_ins for each row, determ
 
 The code we can use to do this is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var checkInCount = $("check_ins").length;
 
 var lastCheckIn = new Date($("check_ins.0.date"));
@@ -464,8 +460,7 @@ for (i = 0; i < checkInCount; i++){
 }
 
 return mileage
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1711107888/cms/fleet-management-portal/Fleet_Management_Portal_31_ajsz5v.webp "JavaScript")
 
@@ -473,8 +468,7 @@ We can use the same principle to retrieve the most recent maintenance date from 
 
 This time, the code is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var maintenanceCount = $("maintenance").length;
 
 var lastMaintenance = new Date($("maintenance.0.date"));
@@ -492,8 +486,7 @@ for (i = 0; i < maintenanceCount; i++){
 }
 
 return lastMaintenance
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1711107888/cms/fleet-management-portal/Fleet_Management_Portal_32_uziseu.webp "JavaScript")
 
@@ -501,8 +494,7 @@ Our third formula variable will be called next_maintenance. Our vehicles table c
 
 We’ll use a similar piece of code to our previous formula, this time adding on our maintenance interval to the returned date, using JavaScript’s getMonth() and setMonth() methods.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var maintenanceCount = $("maintenance").length;
 
 var lastMaintenance = new Date($("maintenance.0.date"));
@@ -522,8 +514,7 @@ for (i = 0; i < maintenanceCount; i++){
 var nextMaintenance = new Date(lastMaintenance.setMonth(lastMaintenance.getMonth() + $("maintenance_interval_months")))
 
 return nextMaintenance;
-
-{{< /highlight >}}
+```
 
 ![JS](https://res.cloudinary.com/daog6scxm/image/upload/v1711107887/cms/fleet-management-portal/Fleet_Management_Portal_33_wsoucu.webp "JS")
 
@@ -555,13 +546,11 @@ Again, we can use the lightning bolt to access Budibase’s JavaScript editor.
 
 Here, we’ll use the following code for both column’s values.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var d = new Date($("Value"))
 
 return d.toDateString();
-
-{{< /highlight >}}
+```
 
 Here’s what our table will look like when we’re done.
 

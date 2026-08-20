@@ -227,7 +227,10 @@ Here are the specific steps you can follow to streamline your data management ef
 6. **Facilitating user interactions** - Strategizing around how to implement remaining user interactions in the most effective way possible.
 7. **Monitoring and ongoing optimization** - Monitoring the success of our transformation efforts and ideating on new areas for improvement.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Turn data into action
 

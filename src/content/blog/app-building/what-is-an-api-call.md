@@ -173,19 +173,15 @@ The base URL will be made up of three components:
 
 The domain is the slug of the URL, while the latter two parts are appended as subfolders. So, an example API endpoint might look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 http://api.domain.com/version/resource
-
-{{< /highlight >}}
+```
 
 If we had a domain called *example.com* and we wanted to send a request to the first version of their API, targeting a resource called *customers*, the endpoint could be:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 http://api.example.com/v1/customers
-
-{{< /highlight >}}
+```
 
 ### 2. Select the right method
 
@@ -211,19 +207,15 @@ These can be provided in the request body - or by appending them to our endpoint
 
 The syntax for appending parameters to a request URL is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 ?parameter1=value1&parameter2=value2
-
-{{< /highlight >}}
+```
 
 So, if we used our example from earlier but wanted to filter it to return any rows relating to customers named John who are thirty years old, our URL could look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 http://api.example.com/v1/customers?firstName=John&age=30
-
-{{< /highlight >}}
+```
 
 Or, we could add these in our request body as a series of key value pairs, in whichever format we specify with our headers.
 
@@ -289,7 +281,10 @@ Again, the degree of flexibility on offer here will vary from client to client. 
 
 We’ll check out some of the most important categories of tools for managing APIs towards the end of this guide.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Common API protocols
 
@@ -321,7 +316,10 @@ Rather, RPC is used to trigger specific actions.
 
 This offers a performant way to create solutions within a distributed architecture - but is more limited in terms of the kinds of data it can handle. RPC generally only supports XML or JSON payloads.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Tools for making API calls
 

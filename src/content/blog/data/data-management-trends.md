@@ -21,7 +21,9 @@ By the end, you’ll be able to take advantage of these new developments and use
 
 Let's dive in. 
 
-{{< youtube O__rnKqejfo >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/O__rnKqejfo" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## How is data changing?
 
@@ -33,7 +35,10 @@ Specifically, we need secure, performant solutions for storing, accessing, and u
 
 This has led to a boom in new approaches to storing and handling data.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 8 data management trends
 
@@ -279,7 +284,10 @@ So - MindsDB fits several of the trends that we've talked about over the course 
 
 We have multi-model, cloud-first infrastructure and we're adding in these extra AI components to make it an incredibly powerful way to build performant, AI-based applications.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 8. Databases & low-code development
 

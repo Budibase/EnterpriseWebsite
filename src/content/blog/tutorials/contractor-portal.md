@@ -41,7 +41,9 @@ First, contractors will be able to claim jobs, submit timesheets, update their d
 
 Second, our internal users can create jobs, monitor costs, approve timesheets, or view contractors’ details.
 
-{{< vimeo id="927603729" title="Contractor Portal" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/927603729?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Contractor Portal" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Of course, this isn’t the limit of what’s possible. Instead, our goal is to show off just how easily we can craft professional, extensible solutions in Budibase.
 
@@ -53,7 +55,10 @@ Let’s get started.
 
 If you haven’t already, sign up for a free Budibase account to start building as many apps as you’d like on top of your existing data assets.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Creating our data model
 
@@ -95,8 +100,7 @@ Our contractors table contains attributes called email, first_name, last_name, h
 
 We can create this table using the following query:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create the table
 
 CREATE TABLE contractors (
@@ -128,8 +132,7 @@ INSERT INTO contractors (email, first_name, last_name, hourly_rate, skills, id, 
   ('gwillshaw0@craigslist.org', 'Gale', 'Willshaw', 119, 'Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.', 4, '424-506-4048'),
 
   ('john@example.com', 'John', 'Doe', 100, 'Lorem Ipsum', 2, '1234567');
-
-{{< /highlight >}}
+```
 
 Our jobs table stored columns called job_number, status, due_date, and description, along with a unique ID.
 
@@ -137,8 +140,7 @@ Our jobs table stored columns called job_number, status, due_date, and descripti
 
 Here’s the query we can create this with.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE jobs (
 
   job_number VARCHAR(20),
@@ -204,8 +206,7 @@ Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odi
 Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.
 
 Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.');
-
-{{< /highlight >}}
+```
 
 Lastly, our timesheets table stores attributes called date_submitted, comments, hours, job_id, and status, plus a unique ID.
 
@@ -213,8 +214,7 @@ Lastly, our timesheets table stores attributes called date_submitted, comments, 
 
 Here’s the query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE timesheets (
 
   comments TEXT,
@@ -254,8 +254,7 @@ INSERT INTO timesheets (comments, id, hours, job_id, date_submitted, status) VAL
   ('"Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus."', 11, 5, 1, '2024-03-20T00:00:00.000Z', 'Approved'),
 
   ('Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.', 8, 7, 2, '2024-03-12T00:00:00.000Z', 'Approved');
-
-{{< /highlight >}}
+```
 
 ### Adding user columns and other schema changes
 
@@ -626,15 +625,13 @@ Here, we can access data from within our table or related tables as bindable val
 
 The code we’re going to use is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var rate = $("contractors.0.hourly_rate")
 
 var hours = $("hours")
 
 return rate * hours
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1711468189/cms/contractor-portal/Contractor_Portal_70_rjbmak.webp "JavaScript")
 
@@ -660,8 +657,7 @@ We’re also adding statements to simply return zero if either bb_user or timesh
 
 So, our code is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var initialCost = 0
 
 if ($("bb_user") == null){
@@ -693,8 +689,7 @@ var rate = $("contractors.0.hourly_rate");
 }
 
 return initialCost
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1711468191/cms/contractor-portal/Contractor_Portal_73_kgp3ig.webp "JavaScript")
 

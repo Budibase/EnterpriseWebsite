@@ -15,7 +15,9 @@ IT teams are tasked with outputting huge numbers of internal tools for managing 
 
 Today, we’re going to check out how we can use Budibase to produce admin tools for MySQL in a matter of minutes - not days.
 
-{{< youtube IyMmw6jENeo >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/IyMmw6jENeo" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## What are we building?
 
@@ -161,7 +163,10 @@ Of course, this is just a basic example of what you *could* build with Budibase.
 
 Here’s why Budibase is the ideal solution for all sorts of apps - not just MySQL admin tools.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### Our open-source, low-code platform
 

@@ -143,7 +143,10 @@ We’ve chosen five of the most common examples of IT management tasks that can 
 
 For each one, we’ll be giving a short demonstration of how this can be built in Budibase. If you’d like to build along with us, sign up for a Budibase account below to create as many apps as you’d like.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### Ticket categorization
 
@@ -213,8 +216,7 @@ We need to write a prompt that will send our incident form submissions to the AI
 
 We can achieve this with the following prompt.
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 The following is an IT incident report:
 
 {{ Title }}
@@ -238,8 +240,7 @@ Return this information as JSON object in the format:
 "Priority": "High"
 
 }
-
-{{< /highlight >}}
+```
 
 Of course, we’d likely provide more detailed business rules for how to determine values for each of these in a real-world solution.
 
@@ -309,15 +310,13 @@ Since our automation rule will run every Monday at 9 am, we can simply create an
 
 We’ll use the following JavaScript.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const now = new Date();
 
 const sevenDaysAgo = new Date(now.setDate(now.getDate() - 7));
 
 return sevenDaysAgo;
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1751552079/cms/itsm-automation/ITSM_Automation_24_dlxalt.webp "JavaScript")
 
@@ -413,8 +412,7 @@ But, for the purposes of demonstrating how this might work, we’re going with a
 
 Specifically, we’ll use:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an IT service desk colleague. The following is a ticket submission:
 
 {{ Title }}
@@ -426,8 +424,7 @@ You are an IT service desk colleague. The following is a ticket submission:
 Please generate an appropriate response to provide expectations for the user.
 
 Also provide basic troubleshooting steps if relevant.
-
-{{< /highlight >}}
+```
 
 ![img](https://res.cloudinary.com/daog6scxm/image/upload/v1751552072/cms/itsm-automation/ITSM_Automation_42_o1dbdt.webp "Prompt")
 

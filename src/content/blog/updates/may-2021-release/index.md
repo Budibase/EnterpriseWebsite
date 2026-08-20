@@ -7,7 +7,9 @@ socialImage: "/img/img/portal.webp"
 draft: false
 ---
 
-{{< youtube zI8TgTNNg04 >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/zI8TgTNNg04" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 The May release transforms the development experience for every single Budibase user. It is also the beginning of a new and exciting journey that involves Budibase moving to the browser.
 
@@ -49,7 +51,9 @@ The old Budibase will remain as it is today. We will no longer develop and enhan
 
 ## New Admin UI
 
-{{< figure src="/img/ui/admin-wide.webp" alt="New admin UI" >}}
+<figure class="blog-figure">
+<img src="/img/ui/admin-wide.webp" alt="New admin UI" loading="lazy" />
+</figure>
 
 Previous to this release, there was very little administrative functionality. This was not scalable, so we’ve created a new UI dedicated to administrative tasks such as end-user management, developer management, email/SMTP, and authentication. This UI is only available to the admin of your Budibase account.
 More importantly, this admin interface defines our direction - a platform where companies build multiple apps that empower their workforce, automate processes, and accelerate digital transformation. 

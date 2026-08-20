@@ -53,13 +53,18 @@ We’ll provide all of the queries you need to create our database and build alo
 
 Budibase also gives you the power to choose how and where you deploy your internal tools. We offer a cloud platform, as well as optional self-hosting on your own infrastructure.
 
-{{< vimeo id="1053113559" title="Compliance Management System" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1053113559?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Compliance Management System" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## How to build a compliance management system in 6 steps
 
 Let’s get building. If you haven’t already, sign up for a Budibase account to create as many applications as you want for free.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Setting up our data model
 
@@ -89,8 +94,7 @@ We’ll then be asked which of our database tables we’d like to fetch, making 
 
 If you want to create these tables in your own Postgres database, you can use the following query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create the Policy table with auto-incrementing ID
 
 CREATE TABLE Policy (
@@ -170,8 +174,7 @@ VALUES
   ((SELECT id FROM Audit WHERE findings LIKE '%data retention%'), 'Revise data retention policy', '2024-02-15', 'In Progress'),
 
   ((SELECT id FROM Audit WHERE findings LIKE '%Encryption%'), 'Implement full-disk encryption', '2024-03-10', 'Pending');
-
-{{< /highlight >}}
+```
 
 Here’s how these will look within Budibase’s Data section.
 
@@ -260,11 +263,9 @@ Before we get to that, we’re going to add one additional attribute within our 
 
 This will open a modal screen where we can enter either a handlebars or JavaScript expression. We’re using the following handlebars to print the name of the policy the audit relates to, as well as its due date.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ policy.0.name }} Audit {{ date }}
-
-{{< /highlight >}}
+```
 
 ![Formula](https://res.cloudinary.com/daog6scxm/image/upload/v1738604614/cms/Compliance%20Management%20System/Compliance_Management_System_16_rxupxc.webp "Formula")
 
@@ -638,7 +639,9 @@ Once we’re happy, we can hit `Publish` to push our new application live.
 
 Here’s a reminder of what the finished product should look like.
 
-{{< vimeo id="1053113559" title="Compliance Management System" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1053113559?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Compliance Management System" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## Turn data into action with Budibase
 

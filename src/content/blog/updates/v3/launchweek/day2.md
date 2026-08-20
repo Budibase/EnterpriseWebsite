@@ -9,7 +9,9 @@ socialImage: "https://res.cloudinary.com/daog6scxm/image/upload/v1730364261/camp
 draft: false
 ---
 
-{{< youtube id="KkEM5GcMP44" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/KkEM5GcMP44" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 
 Welcome back to day 2 of the Budibase 3.0 launch week. Yesterday, we covered the [brand-new data experience](/blog/updates/v3/launchweek/day1) in Budibase, and today, we’re continuing the excitement with a new and improved **RBAC** (role-based access control) experience. 

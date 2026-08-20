@@ -149,7 +149,10 @@ The idea is to create rules to autofill form fields, based on the values that us
 
 For example, by using users’ stored phone numbers by default in a call-back form, but still allowing them to provide a different number by editing this.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 5. Columns and horizontal layouts
 
@@ -279,7 +282,10 @@ On the flip side, if users assume that mandatory fields are optional and then re
 
 We can use several different techniques to signpost mandatory or optional fields, including asterisks, additional textual elements, or differentiating with color-coding.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 13. Display formatting rules in placeholders
 
@@ -429,7 +435,10 @@ Low-code development bridges this gap. Budibase offers intuitive visual experien
 
 Connect to any data, build bespoke form UIs, automate processes, and deploy your custom to the cloud or your own infrastructure with our open-source, low-code platform.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Low-code form UI design from Budibase
 

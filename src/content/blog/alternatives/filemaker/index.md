@@ -356,7 +356,10 @@ Our Premium tier bills at $50 per month for creators and $5 for end users with c
 
 We also offer custom enterprise pricing with a range of advanced security features.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 2. PowerApps
 PowerApps is one of FileMaker’s most direct competitors. It’s Microsoft’s low-code offering and the flagship of their Power Platform ecosystem.

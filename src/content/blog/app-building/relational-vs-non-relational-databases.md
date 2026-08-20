@@ -135,7 +135,10 @@ One downside, however, is that you’ll need some Lua coding skills in order to 
 
 Amazon’s **DynamoDB** is perhaps the best-known wide-column store, while the most widely used graph database is probably **Neo4j.**
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Relational vs non-relational databases: pros and cons
 

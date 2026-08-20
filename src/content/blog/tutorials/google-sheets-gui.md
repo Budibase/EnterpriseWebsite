@@ -35,7 +35,10 @@ You can use Google Sheets as a dashboard, by using custom styles, charts, and Ap
 
 You can follow the tips from this tutorial to build a dashboard in addition to a Google Sheets GUI.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## **Can Google Sheets be used as a database?**
 
@@ -69,7 +72,10 @@ To learn more about how we can use a form to submit messages, check out our guid
 
 Let’s jump right in. If you haven’t already, sign up for a free Budibase account to start building as many applications as you like.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 The first thing we need to do is create a new Budibase Workspace. This is a collection of data sources, end-user apps, and automation rules, which can all interact with one another. When we create a new Workspace, we’re first prompted to give it a name.
 

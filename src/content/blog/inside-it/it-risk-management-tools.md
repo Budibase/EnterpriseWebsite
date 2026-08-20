@@ -104,7 +104,9 @@ Let’s check each one out in turn.
 
 Budibase is the open-source, low-code platform that empowers IT teams to turn data into action. Thousands of organizations in all industries choose our platform to ship secure, performant web apps for IT workflows with minimal custom code.
 
-{{< vimeo id="1051077752" title="Risk Management Template" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1051077752?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Risk Management Template" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 #### Features
 
@@ -130,7 +132,10 @@ Premium licenses bill at $50 per month for creators and $5 for end-users, provid
 
 We also offer creator-only pricing for enterprises, along with SLAs, air-gapped deployments, and enforceable SSO. Since you only pay for the users that build applications, this can provide considerable savings over traditional ITSM tools with per-agent pricing.
 
-{{< template-cta template = "riskManagement" >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">risk management template</p>
+<a class="blog-inline-cta__button" href="https://budibase.app/builder?template=app/risk-management" target="_blank" rel="noopener noreferrer">Use template</a>
+</aside>
 
 ### 2. ServiceNow GRC
 

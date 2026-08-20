@@ -15,7 +15,9 @@ That way, they can make informed decisions in real-time - without the need for m
 
 Today, we’re checking out why Budibase is the ideal solution for building dashboards around all kinds of existing data and complex queries, with minimal custom code.
 
-{{< youtube 5kqF5M6sxD4 >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/5kqF5M6sxD4" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 But first, let’s think about a little bit of background.
 
@@ -65,7 +67,10 @@ So, now that we have a clear picture of what we want to build, let’s dive in.
 
 If you haven’t already, create a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Creating an app and connecting our data
 
@@ -109,11 +114,9 @@ For the formula itself, we have the option of using *handlebars* or *JavaScript*
 
 We’re using the following JavaScript expression to multiply the *quantity* by the *unit_price* for each item and return the result:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return ($("quantity") * $("unit_price"))
-
-{{< /highlight >}}
+```
 
 Here’s what this looks like in situ:
 
@@ -155,8 +158,7 @@ Our query is made up of three main elements:
 
 Here’s the full query:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH InventorySales AS (
 
  SELECT
@@ -226,13 +228,11 @@ SELECT
 FROM
 
  CumulativeSales;
-
-{{< /highlight >}}
+```
 
 This returns a data object for each item like:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "item_name": "Mixer",
@@ -244,8 +244,7 @@ This returns a data object for each item like:
  "days_until_run_out": "414"
 
 }
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1698412243/cms/inventory-dashboard/Inventory_Dashboard_15_hhgbsa.webp "Response")
 
@@ -259,13 +258,11 @@ On this, we’ll add two horizontal containers:
 
 We’ll add a *headline* component nested inside our first container, with the following JavaScript binding as its *text*:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return "Stock Levels: " + currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
-
-{{< /highlight >}}
+```
 
 Beside this, we’ll place a *cards block*. This is a prebuilt set of components that will iterate over any data source we point it at and display the metrics for each entry that we configure it to. 
 
@@ -305,11 +302,9 @@ Then, we’ll give our remaining columns more readable names:
 
 We’ll also use a handlebars expression to bind the value for our estimated days to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ Value }} days
-
-{{< /highlight >}}
+```
 
 ![Days](https://res.cloudinary.com/daog6scxm/image/upload/v1698412238/cms/inventory-dashboard/Inventory_Dashboard_28_sjs8z8.webp "Days")
 
@@ -337,8 +332,7 @@ Our main query will then return the *item_name*, the *projection_month*, the exp
 
 The query we’ll use is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH MonthlyAverageSales AS (
 
  SELECT
@@ -414,13 +408,11 @@ LEFT JOIN
 ORDER BY
 
  i.item_name, p.projection_month;
-
-{{< /highlight >}}
+```
 
 This will return a data object as shown below for each item for each of the next six months:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "item_name": "Bulldozer",
@@ -432,14 +424,16 @@ This will return a data object as shown below for each item for each of the next
  "projected_value": 203700
 
 }
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1698412248/cms/inventory-dashboard/Inventory_Dashboard_34_sopwhn.webp "Response")
 
 Of course, this is only an example of the kind of query we could use for this projection. The beauty of Budibase is that you can use your own SQL statements in order to create logic that matches your real life procurement, sales, and inventory management processes.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 Now, save that and head back to our new screen.
 
@@ -497,27 +491,23 @@ To do this, we’ll create a new query called *CurrentInventoryValue*. This one 
 
 So, the query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT SUM(quantity * unit_price) AS total_value
 
 FROM inventory;
-
-{{< /highlight >}}
+```
 
 ![Inventory Dashboard](https://res.cloudinary.com/daog6scxm/image/upload/v1698412243/cms/inventory-dashboard/Inventory_Dashboard_42_xvakzb.webp "Inventory Dashboard")
 
 This returns the following data object:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "total_value": 1653140
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll bind the output of this to the *title* of our existing card with a dollar sign in front of it - and set the *subtitle* to *current inventory value*. We’ll also need to remove our filtering expression. This gives us:
 
@@ -535,8 +525,7 @@ We’ll then use this information to SELECT the projection_month and the SUM of 
 
 The specific query we’ll use is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH MonthlyAverageSales AS (
 
  SELECT
@@ -612,15 +601,13 @@ GROUP BY
 ORDER BY
 
  p.projection_month;
-
-{{< /highlight >}}
+```
 
 ![Query](https://res.cloudinary.com/daog6scxm/image/upload/v1698412238/cms/inventory-dashboard/Inventory_Dashboard_44_ma0h1e.webp "Query")
 
 The returned data objects look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "projection_month": "2023-11-01 00:00:00",
@@ -628,8 +615,7 @@ The returned data objects look like this:
  "total_projected_value": 1653140
 
 }
-
-{{< /highlight >}}
+```
 
 Let’s head back to our */value* screen. Inside our container, we’ll add a chart block to display our new information on a line graph. We’ll add a title, and give this a width of 50% and a fixed height of 550px.
 
@@ -656,8 +642,7 @@ We then use a LEFT JOIN to SELECT the appropriate item_name from our *inventory*
 
 So, the query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH MonthlySales AS (
   SELECT
     item_name,
@@ -676,15 +661,13 @@ FROM
 LEFT JOIN MonthlySales s ON i.item_name = s.item_name
 GROUP BY
   i.item_name;
-
-{{< /highlight >}}
+```
 
 ![Query](https://res.cloudinary.com/daog6scxm/image/upload/v1698412241/cms/inventory-dashboard/Inventory_Dashboard_47_a3t95b.webp "Query")
 
 The returned data object should look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "item_name": "Bulldozer",
@@ -692,8 +675,7 @@ The returned data object should look like this:
  "average_monthly_sales": 8
 
 }
-
-{{< /highlight >}}
+```
 
 When we create our bar chart, the finished inventory dashboard screen looks like this:
 

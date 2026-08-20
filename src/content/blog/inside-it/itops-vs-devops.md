@@ -121,7 +121,10 @@ This is because - in dealing with processes - each model can have its own distin
 
 For example, in theory, ITOps can also be concerned with development processes - since this is a part of your IT team’s daily workload. But, that doesn’t mean it will lead to the same conclusions as DevOps - even for the exact same workflows.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## ITOps vs DevOps: key differences
 

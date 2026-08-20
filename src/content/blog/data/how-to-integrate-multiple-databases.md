@@ -206,7 +206,10 @@ For example, you might have separate platforms with internal databases that stor
 
 Let’s take a look at how you could go about building this in Budibase.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Connect your data
 
@@ -362,7 +365,10 @@ One option would be to decide which of our tables takes priority when there’s 
 
 Alternatively, we could use update row triggers to automatically update all relevant entries, when a change is made in any of our databases, in much the same way as we did using a trigger from our _combined_customers_table_.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## How can you ensure data from multiple sources is compatible?
 

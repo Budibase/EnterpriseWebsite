@@ -25,7 +25,9 @@ Of course, this will vary greatly depending on the size and complexity of your f
 
 As with any kind of dashboard, the idea is that we can configure our reports once - and then they’ll populate with the most up-to-date information in real-time.
 
-{{< youtube lJlM5oxyick >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/lJlM5oxyick" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## What are we building?
 
@@ -41,7 +43,10 @@ Let’s dive in.
 
 If you haven’t already, sign up for a free Budibase account so you can follow along with this tutorial.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Create a Budibase app and connect your data
 
@@ -140,8 +145,7 @@ We need to write a SELECT statement that will return three things:
 
 Therefore, our query will be:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT CAST(AVG(
 
   EXTRACT(YEAR FROM AGE(NOW(), registration_date)) +
@@ -155,8 +159,7 @@ AVG(mileage) AS average_mileage,
 (COUNT(CASE WHEN status = 'On Delivery' THEN 1 END)::decimal / COUNT(*)) * 100 AS percentage_on_delivery
 
 FROM vehicles;
-
-{{< /highlight >}}
+```
 
 
 
@@ -164,8 +167,7 @@ FROM vehicles;
 
 This returns a data objec that looks like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "average_age": "2.50000000000000000000",
@@ -175,8 +177,7 @@ This returns a data objec that looks like this:
  "percentage_on_delivery": "50.00000000000000000000"
 
 }
-
-{{< /highlight >}}
+```
 
 Hit save and head back to the *design* section.
 
@@ -196,11 +197,9 @@ But, we want to do a little bit of formatting. We’ll use some custom JavaScrip
 
 So, for the average age, we’ll use the following JavaScript as our title binding:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return Number($("AvgAge Card.AgeMileageUtilization.average_age")).toFixed(2);
-
-{{< /highlight >}}
+```
 
 And we’ll set the *subtitle* to *average vehicle age*. We’ll also do basically the same thing with our next card, using our *average_mileage* output from the query.
 
@@ -210,11 +209,9 @@ So far, we have:
 
 For our utilization rate, we can just display an integer with a percentage sign appended to it. To do this, we’ll use the following handlebars expression as our title binding:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ round Utilization block.AgeMileageUtilization.percentage_on_delivery }}%
-
-{{< /highlight >}}
+```
 
 Now we have:
 
@@ -226,8 +223,7 @@ To get this, we’ll first need a new query to SELECT the numerical month, year,
 
 We’ll follow the same process as above to add a new query called FuelCostByMonth. The specific query we’ll use is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
   CAST(EXTRACT(MONTH FROM departure_date_time) AS INTEGER) AS departure_month,
@@ -241,15 +237,13 @@ FROM deliveries
 GROUP BY departure_year, departure_month
 
 ORDER BY departure_year, departure_month;
-
-{{< /highlight >}}
+```
 
 ![Query](https://res.cloudinary.com/daog6scxm/image/upload/v1697194887/cms/fleet-management-dashboard/Fleet_Management_Dashboard_21_odwdhm.webp "Query")
 
 Here’s the schema that this returns:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "departure_month": 9,
@@ -259,8 +253,7 @@ Here’s the schema that this returns:
  "total_fuel_cost": 396
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll go ahead and bind this *total_fuel_cost* value to our final card:
 
@@ -278,23 +271,19 @@ We need two expressions - one to match the *departure_month* to the current mont
 
 For the month, we’ll use this piece of JavaScript (we need to add one because JavaScript uses zero-based counting - so January has an index of 0:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return currentDate.getMonth() + 1;
-
-{{< /highlight >}}
+```
 
 For the year, we can use:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return currentDate.getFullYear();
-
-{{< /highlight >}}
+```
 
 And that’s our cards done!
 
@@ -316,8 +305,7 @@ So, we basically need a query that finds the row for each vehicle with the most 
 
 Our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
   d.destination AS current_location,
@@ -341,15 +329,13 @@ INNER JOIN (
 ) recent_arrival ON d.vehicle = recent_arrival.vehicle AND d.arrival_date_time = recent_arrival.max_arrival_date
 
 GROUP BY d.destination;
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1697194881/cms/fleet-management-dashboard/Fleet_Management_Dashboard_27_yukajr.webp "Response")
 
 Here’s an example of the kind of data object we’ll get back:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "current_location": "Pittsburgh",
@@ -357,8 +343,7 @@ Here’s an example of the kind of data object we’ll get back:
  "vehicle_count": "1"
 
 }
-
-{{< /highlight >}}
+```
 
 Back to the *design tab*!
 
@@ -384,8 +369,7 @@ We’ll start with a new query called *FuelCostByVehicle*. This one is relativel
 
 Here’s the query:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
   vehicle,
@@ -395,15 +379,13 @@ SELECT
 FROM deliveries
 
 GROUP BY vehicle;
-
-{{< /highlight >}}
+```
 
 ![Return](https://res.cloudinary.com/daog6scxm/image/upload/v1697194878/cms/fleet-management-dashboard/Fleet_Management_Dashboard_31_zr0g9i.webp "Return")
 
 And the output:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "vehicle": "SEV-2710",
@@ -411,8 +393,7 @@ And the output:
  "average_cost_per_mile": 0.2158428505063057
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll add another *chart block* inside our container - this time setting its *type* to *bar* and its *data* to our new query:
 
@@ -432,8 +413,7 @@ We’ll first create a series of all of the days so far this month. We’ll then
 
 So, the final query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH all_dates AS (
 
   SELECT generate_series(
@@ -461,15 +441,13 @@ LEFT JOIN deliveries d ON DATE(d.departure_date_time) = ad.date
 GROUP BY ad.date
 
 ORDER BY ad.date;
-
-{{< /highlight >}}
+```
 
 ![Fuel cost query](https://res.cloudinary.com/daog6scxm/image/upload/v1697194875/cms/fleet-management-dashboard/Fleet_Management_Dashboard_34_vxy5ex.webp "Fuel Cost query")
 
 The data we get back looks like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "departure_date": "2023-10-01",
@@ -477,8 +455,7 @@ The data we get back looks like this:
  "total_fuel_cost": 95
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll use this data as a *line chart* below our existing charts:
 
@@ -486,8 +463,7 @@ We’ll use this data as a *line chart* below our existing charts:
 
 Since this is for the current month only, we’ll use a bit of JavaScript to reflect this fact in the title, using the expression:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const today = new Date();
 
 const month = String(today.getMonth() + 1).padStart(2, '0'); // Adding 1 because January is 0
@@ -495,8 +471,7 @@ const month = String(today.getMonth() + 1).padStart(2, '0'); // Adding 1 because
 const year = today.getFullYear();
 
 return `Daily Fuel Spend This Month: (${month}/${year})`;
-
-{{< /highlight >}}
+```
 
 Our dashboard so far looks like this:
 
@@ -534,8 +509,7 @@ So, we need to select the following:
 
 Our query will be:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
   CAST(EXTRACT(MONTH FROM departure_date_time) AS INTEGER) AS departure_month,
@@ -553,15 +527,13 @@ SELECT
 FROM deliveries
 
 GROUP BY departure_year, departure_month;
-
-{{< /highlight >}}
+```
 
 ![Postgres](https://res.cloudinary.com/daog6scxm/image/upload/v1697194872/cms/fleet-management-dashboard/Fleet_Management_Dashboard_38_toyiae.webp "Postgres")
 
 And the returned data objects look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "departure_month": 10,
@@ -577,8 +549,7 @@ And the returned data objects look like this:
  "average_time_difference": 0.6666666666666666
 
 }
-
-{{< /highlight >}}
+```
 
 Now, we can go back and swap out our values for these without much fuss - we just need to filter for the month and year again - using the same JavaScript binding as we did earlier:
 
@@ -590,27 +561,23 @@ We’ll use the *ternary operator* in JavaScript to achieve both of these.
 
 So, for the title, we check if the time difference is positive or negative. If it’s positive, we return it as is. If it’s negative, we multiply it by -1 before we return it:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var hours = $("TimeDifference card.LateDeliveriesByMonth.average_time_difference");
 
 var hoursDifference = hours >= 0 ? hours: (-1 * hours)
 
 return hoursDifference.toFixed(2);
-
-{{< /highlight >}}
+```
 
 And we use the same principle to decide what string to display below:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var hours = $("AllTimeLate Cards block.LateDeliveriesByMonth.average_time_difference")
 
 var displayString = hours >= 0 ? "Avg Hours Ahead of Schedule": "Avg Hours Behind Schedule"
 
 return displayString;
-
-{{< /highlight >}}
+```
 
 Here are our finished cards:
 
@@ -622,8 +589,7 @@ For our pie chart and bar chart, we’re going to display the number of deliveri
 
 We’ll create a query called *LateDeliveriesByOrigin.* We’re basically going to get the same information as our previous query, but this time we’ll group it by *source* rather than my date:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
   origin,
@@ -637,15 +603,13 @@ SELECT
 FROM deliveries
 
 GROUP BY origin;
-
-{{< /highlight >}}
+```
 
 ![Queries](https://res.cloudinary.com/daog6scxm/image/upload/v1697194867/cms/fleet-management-dashboard/Fleet_Management_Dashboard_41_s8ftlx.webp "Queries")
 
 Here’s the response data:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "origin": "Pittsburgh",
@@ -657,8 +621,7 @@ Here’s the response data:
  "percentage_late": "50.00000000000000000000"
 
 }
-
-{{< /highlight >}}
+```
 
 And we can just straightforwardly swap out the data and display titles for our charts:
 
@@ -674,8 +637,7 @@ Ultimately we’ll select the same count of deliveries and count of late deliver
 
 Here’s the query:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH all_dates AS (
 
   SELECT generate_series(
@@ -713,15 +675,13 @@ LEFT JOIN deliveries d ON DATE(d.departure_date_time) = ad.date
 GROUP BY ad.date
 
 ORDER BY ad.date;
-
-{{< /highlight >}}
+```
 
 ![Queries](https://res.cloudinary.com/daog6scxm/image/upload/v1697194862/cms/fleet-management-dashboard/Fleet_Management_Dashboard_43_rucbdg.webp "Queries")
 
 And the data we get back:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "departure_date": "2023-10-01",
@@ -733,8 +693,7 @@ And the data we get back:
  "percentage_late": "0.00000000000000000000"
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll plug this data into our chart to get:
 

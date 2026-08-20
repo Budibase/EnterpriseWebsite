@@ -180,7 +180,10 @@ So, if someone else tries to tackle a similar problem down the line, they won’
 
 With inter-team communications and stakeholder management, the challenge is how you record, manage and implement feedback. For example, if you spend time creating prototypes but don’t make the effort to document what works and what doesn’t, a lot of value is lost.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## When would you build a throwaway prototype?
 
@@ -229,7 +232,10 @@ These are informal opportunities to try out new ideas, and come up with innovati
 
 The benefit of throwaway prototyping here is providing your team with the opportunity to work on their own initiative to develop ideas for how to improve your business.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Throwaway prototyping tools
 
@@ -314,7 +320,10 @@ The idea behind low-code development is that developers are happier, more produc
 
 Budibase is leading the charge.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Build apps in minutes, not months with Budibase
 

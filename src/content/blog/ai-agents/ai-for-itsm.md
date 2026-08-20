@@ -117,7 +117,10 @@ The specific examples and use cases we’re going to discuss are:
 
 To build along with us, make sure to sign up for a Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Ticket triage
 
@@ -151,18 +154,15 @@ Here, we can enter our prompt, including any variables from our table that we’
 
 The first thing we want to do is pass our `Title` and `Description` variables to our prompt. We’ll do this using the following instructions:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an IT ticket triage assistant. 
 
 {{ Title }} and {{ Description }} are the details of a new ticket.
-
-{{< /highlight >}}
+```
 
 Next, we’ll provide the business rules we want to use to triage our ticket.
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 Use this information to determine a Category for the ticket.
 
 Possible Categories are Hardware, Software, Network, Security, Other
@@ -172,15 +172,13 @@ Then, provide a Priority for the ticket.
 Options are Low, Medium, High, Emergency.
 
 The priority should be based on the number of users affected (one, a few, many, organization-wide) and the likely impact of the issue described.
-
-{{< /highlight >}}
+```
 
 This is only the logic we’ll use for demo purposes, but in the real world, you could use whichever business rules you like.
 
 Lastly, we need to define the format we want the information returned in. We’re going to specify a JSON object and provide an example.
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 Return this information as a JSON object in the following format:
 
 {
@@ -192,8 +190,7 @@ Return this information as a JSON object in the following format:
 }
 
 Do not include any other information.
-
-{{< /highlight >}}
+```
 
 Here’s what our final prompt looks like in situ.
 
@@ -345,13 +342,11 @@ Recall that our `Triage` column is formatted as a JSON object, but it’s actual
 
 To do this, we’ll use:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var triage = JSON.parse($("trigger.row.Triage"))
 
 return triage["Priority"]
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1752670843/cms/ai-agents/ai-itsm/AI_ITSM_33_jlv4mv.webp "JavaScript")
 
@@ -377,8 +372,7 @@ We’ll open the bindings modal to populate this.
 
 The prompt we’re going to use is:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an IT service desk agent. The following is a ticket submission:
 
 {{ trigger.row.Title }} 
@@ -388,8 +382,7 @@ You are an IT service desk agent. The following is a ticket submission:
 {{ trigger.row.Triage }}
 
 Provide an email response advising that one of our team members will look at this shortly, as well as providing any relevant troubleshooting tips.
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1752670841/cms/ai-agents/ai-itsm/AI_ITSM_39_fhibbf.webp "Prompt")
 

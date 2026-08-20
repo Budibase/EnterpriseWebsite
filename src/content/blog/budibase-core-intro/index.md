@@ -44,7 +44,9 @@ Database engine threads should operate without shared memory. This will enable u
 
 ## Budibase Core - The Serverless Database (actually - no db server) . 
 
-{{< figure src="/budibase-core-intro/Budibase Core - ClientServer.png" alt="Client Server Architecture" >}}
+<figure class="blog-figure">
+<img src="/budibase-core-intro/Budibase Core - ClientServer.png" alt="Client Server Architecture" loading="lazy" />
+</figure>
 
 Above, is a simplified version of one mode of working with Budibase core. Key Points are
 
@@ -59,7 +61,9 @@ Not clear from the above picture:
 
 Additionally, these features (or constrains?)  open up a new paradigm for structured data storage. We now have the option of connecting an app directly to file storage - *no web server required*. Of course, in doing so, we will lose some features that an always-on, trusted web server can provide us. That discussion is for another post.
 
-{{< figure src="/budibase-core-intro/Budibase Core - ClientOnly.png" alt="Client Only Architecture" >}}
+<figure class="blog-figure">
+<img src="/budibase-core-intro/Budibase Core - ClientOnly.png" alt="Client Only Architecture" loading="lazy" />
+</figure>
 
 
 ## Trade-Offs

@@ -285,7 +285,9 @@ While the extent to which we customize or configure any of these is up to us, it
 
 ## Powering IT workflows with Budibase
 
-{{< vimeo id="1001639751" title="change request form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1001639751?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="change request form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Budibase is the open-source, low-code platform that empowers IT teams to turn data into action. 
 

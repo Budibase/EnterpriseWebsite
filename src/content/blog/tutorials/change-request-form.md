@@ -14,7 +14,9 @@ See, we need a systematic way to deal with new requirements or amendments to pro
 
 Today, we’re showing how Budibase can be used to build advanced, custom forms - in a fraction of the time it would take with traditional development tools.
 
-{{< youtube hA0esejAg8A >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/hA0esejAg8A" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Even better, you won’t have to write a single line of code.
 
@@ -50,7 +52,9 @@ And all that without a single line of custom code.
 
 Even better, you can sign up to Budibase today and use our [change request form template](https://budibase.app/builder?template=app/change-request-form).
 
-{{< vimeo id="910036061" title="Change Request Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/910036061?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Change Request Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Let’s jump in.
 
@@ -58,7 +62,10 @@ Let’s jump in.
 
 If you haven’t already, start by creating a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Building our data layer
 

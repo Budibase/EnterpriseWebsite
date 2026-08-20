@@ -202,16 +202,14 @@ Thus, you need to manipulate the API data and return something else. You can do 
 
 This is the code we use to return the aggregate download count:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const assets = data.assets;
 var downloads = 0;
 for ( let asset of assets ) {
 downloads += ( parseInt(asset.download_count) || 0 )
 };
 return downloads;
-
-{{< /highlight >}}
+```
 
 Take a look at our guide to [WebHooks vs APIs](https://budibase.com/blog/inside-it/webhook-vs-api/).
 
@@ -354,7 +352,10 @@ Just like the other items, the chart needs a data provider. In this case, you sh
 
 Then, just drag the chart so it is a child of the data provider and adjust its settings. You need to use the label column as “name” and the data columns as “value”.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Create and apply dashboard filters
 
@@ -368,16 +369,14 @@ In this case, the date field has our desired formatting. But you could use JS fu
 
 For example, the number of closed new PRs comes from the combination of the number of new PRs open and the number of new PRs in general. After you add these data providers nested to each other, you can use this JS code:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var closed = parseInt( $("newprs.Rows")[0]['total_count'] ) 
 parseInt( $("newOpenPrs.Rows")[0]['total_count'] )
 var percent = 
 parseInt(100*(1-(parseInt($("newOpenPrs.Rows")[0]['total_count'])
 /parseInt($("newprs.Rows")[0]['total_count']))))
 return closed + " (" + percent + "% ) "
-
-{{< /highlight >}}
+```
 
 ## How to load a data table
 
@@ -385,8 +384,7 @@ The data table just requires a data provider as its parent. In the example, you 
 
 If you want, you can hide some columns using the data transformers, similar to what you did to get the download count. Here is an example to remove most columns in the get_list_open_prs:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return data.items.map(
 ( {title, html_url, user, labels} ) =>
 ( {
@@ -396,8 +394,7 @@ user: user.login,
 labels: labels.map( ({name}) => (name) ).toString()
 } )
 )
-
-{{< /highlight >}}
+```
 
 Check out our round-up of the most common [web app ideas](https://budibase.com/blog/web-app-ideas/).
 
@@ -405,7 +402,10 @@ Check out our round-up of the most common [web app ideas](https://budibase.com/b
 
 Today you’ve learned how to build a GitHub metrics dashboard. In addition, you’ve learned how development teams can load and process data using Budibase. By the end of the day, you should be able to create your own dashboards, loading custom elements with filtering options, styling, charts, and more.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 To find out more about the kinds of tools you can create with Budibase, have a look at our [product page](https://budibase.com/product/agents/).
 

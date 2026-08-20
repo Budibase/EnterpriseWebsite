@@ -14,7 +14,9 @@ However, not all contact forms are equal. Most web forms are either built manual
 
 Today, we’re going to show off how Budibase offers unrivaled flexibility for building secure, advanced forms on top of just about any data source.
 
-{{< youtube SHRE-u2Jzkg >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/SHRE-u2Jzkg" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 But first…
 
@@ -40,7 +42,9 @@ We’ll also show off how we can use this as an embedded UI or as a standalone t
 
 Along the way, we’ll see some of the key ways that Budibase stands above the crowd in terms of developer experiences and the sophistication of the form tools we can output at pace.
 
-{{< vimeo id="910459472" title="Contact Information Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/910459472?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Contact Information Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Let’s jump in.
 
@@ -48,7 +52,10 @@ Let’s jump in.
 
 If you haven’t already, sign up for a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Setting up our form schema
 
@@ -80,8 +87,7 @@ Our database only has one table called contact_information:
 
 If you want to create a database table of your own and build along with us, you can use the following MySQL query:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE contact_information (
 
   contact_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -107,13 +113,11 @@ CREATE TABLE contact_information (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
-
-{{< /highlight >}}
+```
 
 And here’s a second query to populate this with some dummy data:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 INSERT INTO contact_information 
 
   (first_name, last_name, email, phone, street_address, city, state, postal_code, country)
@@ -125,8 +129,7 @@ VALUES
   ('Jane', 'Smith', 'jane.smith@example.com', '555-5678', '456 Oak Ave', 'Somewhere', 'NY', '67890', 'USA'),
 
   ('Alice', 'Johnson', 'alice.johnson@example.com', '555-9876', '789 Pine Blvd', 'Nowhere', 'TX', '54321', 'USA');
-
-{{< /highlight >}}
+```
 
 Here’s how our database table will look once we’ve fetched it:
 

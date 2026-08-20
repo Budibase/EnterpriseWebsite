@@ -338,7 +338,10 @@ With a free license, you can also build as many apps as you want for up to twent
 
 Our Premium tier bills at $50 per month for creators and $5 for end users, complete custom branding, synchronous automations, and application backups.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 2. SmartSheet
 SmartSheet is more of a direct Airtable competitor. It’s another tool that seeks to introduce more advanced functionality on top of a familiar spreadsheet interface. Like Airtable, it also provides functionality around interface design, workflow automation, and data centralization.

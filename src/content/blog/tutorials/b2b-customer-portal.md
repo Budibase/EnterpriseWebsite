@@ -45,7 +45,9 @@ This will be centered around an internal product catalogue where customers can b
 
 Internal users will be able to carry out a range of administrative functions related to product, order, and customer data.
 
-{{< vimeo id="928427483" title="B2B Customer Portal" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/928427483?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="B2B Customer Portal" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 We’re going to build all of this on an existing PostgreSQL database representing our inventory. We’ll provide the necessary queries to create and populate each of our database tables a little later so you can build with us.
 
@@ -57,7 +59,10 @@ Let’s jump in.
 
 If you haven’t already, sign up for a free Budibase account to start building as many apps as you want, using just about any kind of existing data.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 The first thing we’ll need to do is create a new Budibase application. We can choose a pre-built template or import an existing app file, but today, we’re going to start from scratch.
 
@@ -93,8 +98,7 @@ This stores attributes called company_name, contact_person_name, contact_phone, 
 
 We can create and populate this table with the following query:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE Customers (
 
   customer_id SERIAL PRIMARY KEY,
@@ -126,15 +130,13 @@ VALUES
   ('ABC Company', 'John Doe', 'john@example.com', '1234567890', '123 Main St', 'Anytown', 'State', 'Country', '12345'),
 
   ('XYZ Corporation', 'Jane Smith', 'jane@example.com', '9876543210', '456 Oak Ave', 'Othertown', 'State', 'Country', '67890');
-
-{{< /highlight >}}
+```
 
 Next, we have a table called products. This stores attributes called product_name, price, description, category, image, and product_id.
 
 We can create it with this query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE Products (
 
   product_id SERIAL PRIMARY KEY,
@@ -160,8 +162,7 @@ VALUES
   ('Gadget', 'The latest gadget with advanced features', 49.99, 'Gadgets', 'https://source.unsplash.com/600x600/?gadget'),
 
   ('Tool', 'Essential tool for DIY enthusiasts', 39.99, 'Tools', 'https://source.unsplash.com/600x600/?tool');
-
-{{< /highlight >}}
+```
 
 ![Products](https://res.cloudinary.com/daog6scxm/image/upload/v1711637834/cms/b2b-customer-portal/B2B_Customer_Portal_6_mrlisa.webp "Products")
 
@@ -169,8 +170,7 @@ Our orders table contains columns called order_id, customer_id, order_status, to
 
 We can create it using this query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE Orders (
 
   order_id SERIAL PRIMARY KEY,
@@ -196,15 +196,13 @@ VALUES
   (1, '2024-01-15', 99.99, 'Pending'),
 
   (2, '2024-02-20', 149.99, 'Completed');
-
-{{< /highlight >}}
+```
 
 ![Orders](https://res.cloudinary.com/daog6scxm/image/upload/v1711637888/cms/b2b-customer-portal/B2B_Customer_Portal_7_aduy29.webp "Orders")
 
 Lastly, the columns for our order_items table are order_item_id, quantity, price, total_price, order_id, and product_id.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE Order_Items (
 
   order_item_id SERIAL PRIMARY KEY,
@@ -234,8 +232,7 @@ VALUES
   (2, 2, 1, 49.99, 49.99),
 
   (2, 3, 3, 39.99, 119.97);
-
-{{< /highlight >}}
+```
 
 ![Order Items](https://res.cloudinary.com/daog6scxm/image/upload/v1711637944/cms/b2b-customer-portal/B2B_Customer_Portal_8_kpjb8b.webp "Order Items")
 
@@ -461,8 +458,7 @@ If the quantity field is blank, our total cost will be $0. Otherwise, it will be
 
 So, the code we’re using is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var orderTotal = 0;
 
 if ($("order_items - Multistep Form block.Fields.quantity") != null){
@@ -472,8 +468,7 @@ if ($("order_items - Multistep Form block.Fields.quantity") != null){
 }
 
 return "Order Total: $" + orderTotal.toFixed(2);
-
-{{< /highlight >}}
+```
 
 ![JS](https://res.cloudinary.com/daog6scxm/image/upload/v1711637972/cms/b2b-customer-portal/B2B_Customer_Portal_48_yj1cwu.webp "JS")
 
@@ -509,23 +504,19 @@ Then, we’ll hit Add Columns and choose order_date, order_status, customer_id, 
 
 As ever, we can use bindings to set values for these. We’ll set order_date to the following JavaScript expression.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var date = new Date();
 
 return date
-
-{{< /highlight >}}
+```
 
 We’ll set order_status to Pending and bind customer_id to {{ Customers Data Provider.Rows.0.customer_id }}.
 
 Lastly, we’ll use the following JavaScript expression to calculate our total_amount.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return $("Products Data Provider.Rows.0.price") * $("order_items - Multistep Form block.Fields.quantity")
-
-{{< /highlight >}}
+```
 
 ![Columns](https://res.cloudinary.com/daog6scxm/image/upload/v1711638018/cms/b2b-customer-portal/B2B_Customer_Portal_53_ngpui0.webp "Columns")
 

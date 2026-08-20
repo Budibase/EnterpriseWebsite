@@ -43,7 +43,9 @@ Therefore, an effective complaint form must do the following:
 
 We’re building an advanced multi-step employee complaint form on top of BudibaseDB, our internal low-code database - starting by importing an existing spreadsheet table to create our form schema.
 
-{{< vimeo id="915519217" title="Employee Complaint Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/915519217?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Employee Complaint Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 On top of this, we’ll be adding several pieces of functionality that will enhance both user experiences and the quality of the data we’re’ gathering - including auto-populating fields and file uploads for supporting documents.
 
@@ -57,7 +59,10 @@ Let’s jump right in.
 
 If you haven’t already, sign up for a free Budibase account to start building as many forms as you’d like.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Setting up our data schema
 

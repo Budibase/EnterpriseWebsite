@@ -29,7 +29,9 @@ This is a simple application that comes in three parts:
 2. A backend where this data is stored.
 3. Optionally, some defined processes that are applied to the data - such as validation rules or routing.
 
-{{< vimeo id="917827479" title="Data Collection Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/917827479?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Data Collection Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Essentially, the goal is to create a new data entry. Most often, this means that form inputs are used to populate a CREATE query in a database or a POST request to an API.
 
@@ -84,7 +86,10 @@ Budibase also features a dedicated automation builder, optional self-hosting, fl
 
 Even better, you can build as many forms as you want for free.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## How to build a data collection form in 5 steps
 
@@ -132,8 +137,7 @@ We also have two automatically generated timestamps and a unique identifier for 
 
 If you’d like to build along with our guide today, you can use the following MySQL query to create a lookalike table.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE SafetyInspection (
 
   inspection_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -239,8 +243,7 @@ CREATE TABLE SafetyInspection (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
 );
-
-{{< /highlight >}}
+```
 
 Here’s what this looks like in Budibase’s Data section.
 
@@ -488,13 +491,11 @@ For the date field, we’re going to use Budibase’s built-in JavaScript editor
 
 The full expression we’re using is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var date = new Date()
 
 return date;
-
-{{< /highlight >}}
+```
 
 This creates a variable called date, sets it to the current moment in time, and returns it whenever our screen is loaded.
 

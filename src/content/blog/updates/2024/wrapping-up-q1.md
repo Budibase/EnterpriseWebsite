@@ -37,7 +37,7 @@ From a product perspective, [Jamie Birss](https://github.com/jamie-budibase) wor
 
 ![New form template](https://res.cloudinary.com/daog6scxm/video/upload/v1709745251/product-marketing-images/formsScreenTemplate2_exoepi.gif)
 
-*We will also launch a new signature component next week :fountain_pen: .*
+*We will also launch a new signature component next week 🖋️ .*
 
 ### New form tutorials
 
@@ -62,7 +62,9 @@ To top the quarter off and help new users streamline the onboarding process, we 
 2. Information request form
 3. Visitor check-in form (demo below)
 
-{{< iframe "https://budimaster.budibase.app/embed/visitor-management-app" >}}
+<div class="blog-embed blog-embed--app">
+<iframe src="https://budimaster.budibase.app/embed/visitor-management-app" title="Budibase visitor management app demo" loading="lazy"></iframe>
+</div>
 
 These templates offer a great starting point when building forms with Budibase. You can find out more about the templates on the [Budibase Forms landing page](https://budibase.com/product/apps/).
 
@@ -82,7 +84,7 @@ On average, Budibase users spend more time in the design section than in the dat
 
 ### Coding in Budibase
 
-When it comes to user research, being Open Source is a huge advantage. It makes it easy to learn what users feel strongly about. And, by a long margin, users wanted a better coding experience within Budibase. Everyone within the Budibase team knew this was an area of limitation, and we were delighted to tackle the problem :fist_oncoming: with 2 amazing features.
+When it comes to user research, being Open Source is a huge advantage. It makes it easy to learn what users feel strongly about. And, by a long margin, users wanted a better coding experience within Budibase. Everyone within the Budibase team knew this was an area of limitation, and we were delighted to tackle the problem 👊 with 2 amazing features.
 
 ![Budibase live evaluation](https://res.cloudinary.com/daog6scxm/image/upload/v1710841909/product-marketing-images/Live%20Evaluation%20and%20Reusable%20Code%20Snippets/liveEval_working_xgb3kg.png)
 
@@ -108,7 +110,10 @@ We plan to write a detailed post about our Cloud performance efforts in the upco
 
 
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## And then some…
 
@@ -127,7 +132,7 @@ We plan to write a detailed post about our Cloud performance efforts in the upco
 
 In Q2, we will focus on another popular use case: Portals. For those of you building a portal with Budibase, we’d love your feedback on the current experience - [please book some time in my calendar](https://meetings-eu1.hubspot.com/joe-johnston/discovery).
 
-### Budibase DB improvements (and more :eye: )
+### Budibase DB improvements (and more 👁️ )
 
 We’re also planning a major update to Budibase DB - filtering by relationship.
 

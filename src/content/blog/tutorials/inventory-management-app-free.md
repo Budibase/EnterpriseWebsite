@@ -35,7 +35,9 @@ But don’t worry if you’re not a SQL whizz - we’ll provide all of the code 
 
 Without further ado, here's how to build some powerful free inventory software.
 
-{{< youtube 5p4Vwv1xQl0 >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/5p4Vwv1xQl0" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## How to build a free inventory management app in 7 steps
 
@@ -101,11 +103,9 @@ All of our queries use the *read* function. Other than that, all we need to worr
 
 So first, we want to return a list of our product categories. We’ll use a SELECT statement, with a GROUP BY clause to achieve this. Specifically:
 
-{{< highlight SQL "linenos=inline" >}}
-
+```sql
 SELECT category FROM Products GROUP BY category;
-
-{{< /highlight >}}
+```
 
 This returns all of the *category* values from our *Products* table, but groups all the duplicates together, returning:
 
@@ -115,8 +115,7 @@ Next, we have a query that returns the details of each row from the *products ta
 
 We’ll use the following query:
 
-{{< highlight SQL "linenos=inline" >}}
-
+```sql
 SELECT SUM(Quantity) as TotalQuantity, 
 
  Inventory.ProductID as ProductID,
@@ -134,8 +133,7 @@ FROM Inventory
 JOIN Products ON Inventory.ProductID = Products.ProductID
 
 GROUP BY Inventory.ProductID
-
-{{< /highlight >}}
+```
 
 This looks a little bit more complex, but really our query does two things:
 
@@ -150,8 +148,7 @@ Finally, we want to query our *reorders* table, aggregating all of the quantitie
 
 We’ll use this query:
 
-{{< highlight SQL "linenos=inline" >}}
-
+```sql
 SELECT ProductID, SUM(Quantity) as TotalQuantity
 
 FROM Reorders
@@ -159,8 +156,7 @@ FROM Reorders
 WHERE Status = 'Requested'
 
 GROUP BY ProductID
-
-{{< /highlight >}}
+```
 
 This returns:
 
@@ -283,11 +279,9 @@ The finished product will look like this:
 
 Most of our cards’ fields are set to the basic product details, but the title is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ LowStockRepeater.LowStockQuery.ProductName }} ({{ LowStockRepeater.LowStockQuery.TotalQuantity }} left) {{ #if Reorder Provider.Rows.0.TotalQuantity }}[ {{ Reorder Provider.Rows.0.TotalQuantity }} on order]{{ /if }}
-
-{{< /highlight >}}
+```
 
 This looks a bit more complex, so it’s worth breaking down. The first two handlebar expressions display the product name, followed by the remaining stock levels in parenthesis. 
 
@@ -303,7 +297,10 @@ And that’s our free inventory management app completed. We could tweak the des
 
 You can also check out our guide to building a [SQL GUI](https://budibase.com/blog/tutorials/sql-gui/).
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Turn data into action with Budibase
 

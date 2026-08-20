@@ -225,7 +225,10 @@ For example, something as simple as automated form validation can hugely reduce 
 
 Automations can also make certain data management tasks almost entirely redundant. For example, effective pipelines and simple dashboard tools can more or less eliminate the need for manual analysis and reporting in regular processes.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 5. Implementation
 

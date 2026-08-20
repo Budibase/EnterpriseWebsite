@@ -9,7 +9,9 @@ socialImage: "https://res.cloudinary.com/daog6scxm/image/upload/v1730364657/camp
 draft: false
 ---
 
-{{< youtube id="WR1cCHWVLtw" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/WR1cCHWVLtw" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 
 Today, we’re excited to release several new AI features. These latest enhancements will enable you to power your workflows securely with AI.
@@ -56,7 +58,10 @@ Our second feature is Budibase AI, the perfect alternative for users without acc
 Today, this feature is only available to Budibase Cloud customers on the Premium and Enterprise plans. We plan to make Budibase AI available to self-hosted users soon.
 
 #### Getting started
-{{< alert-info "Budibase AI is switched off by default. No data is sent to OpenAI without your opt-in.">}}
+
+<aside class="blog-callout blog-callout--info" role="note">
+<p>Budibase AI is switched off by default. No data is sent to OpenAI without your opt-in.</p>
+</aside>
 
 To activate it, you will need to go to your Budibase home screen and click `Settings` (top navigation). The AI Config page is the first option in the sub-nav. Click `Budibase AI`, then `Activate`. This feature is only available to Premium Cloud and Enterprise users.
 

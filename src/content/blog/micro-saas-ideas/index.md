@@ -8,7 +8,7 @@ socialImage: "/micro-saas-ideas/freelancercrm.jpg"
 
 I'm often thinking of Micro SaaS ideas for my next project but most of the time they are either rubbish or I don't have the capacity to pursue them. 
 
-Instead of throwing all the good ideas away, I've decided to share them with you - how thoughtful, right :smile:.
+Instead of throwing all the good ideas away, I've decided to share them with you - how thoughtful, right 😄.
 
 This post is not a simple static list; created, posted, and forgotten about. I will revisit and update this list on a monthly basis, delivering you super-fresh ideas to feed your entrepreneurial hunger.
 
@@ -102,7 +102,10 @@ Blood, sweat and tears were poured whilst creating and documenting these ideas. 
 
 ### 1. CRM For Freelancers
 
-{{< figure src="/micro-saas-ideas/freelancercrm.jpg" attr="Picture by [Rob Bye](https://unsplash.com/@robertbye)" alt="Freelance CRM" >}}
+<figure class="blog-figure">
+<img src="/micro-saas-ideas/freelancercrm.jpg" alt="Freelance CRM" loading="lazy" />
+<figcaption>Picture by <a href="https://unsplash.com/@robertbye" rel="noopener noreferrer" target="_blank">Rob Bye</a></figcaption>
+</figure>
 
 > The freelance market is growing rapidly, with Forbes reporting half of the US workforce will be freelance by 2020.  [Forbes](https://www.forbes.com/sites/elainepofeldt/2017/10/17/are-we-ready-for-a-workforce-that-is-50-freelance/)
 
@@ -144,13 +147,16 @@ We can confirm the term 'freelance crm' receives around 390 searches per month o
 
 ### 2. Content Planner
 
-{{< figure src="/micro-saas-ideas/contentmarketing.jpg" attr="Picture by [Jason Rosewell](https://unsplash.com/photos/ASKeuOZqhYU)" alt="Podcast" >}}
+<figure class="blog-figure">
+<img src="/micro-saas-ideas/contentmarketing.jpg" alt="Podcast" loading="lazy" />
+<figcaption>Picture by <a href="https://unsplash.com/photos/ASKeuOZqhYU" rel="noopener noreferrer" target="_blank">Jason Rosewell</a></figcaption>
+</figure>
 
 > Half of the respondents to a SearchEngineWatch survey expect their content marketing budget to increase over the next 12 months. [SearchEngineWatch](https://searchenginewatch.com/2018/11/21/7-content-marketing-stats-2019/)
 
 We are absorbing more digital content than ever before and there's a reason for that. 
 
-We are always online; when we're in bed, at work, in the shower :shower: - I have a Google Home in my bathroom and "shower quizzes" are an important element of my morning wake-up.
+We are always online; when we're in bed, at work, in the shower 🚿 - I have a Google Home in my bathroom and "shower quizzes" are an important element of my morning wake-up.
 
 Please, read on! 
 
@@ -193,7 +199,9 @@ After scanning the internet, there does not seem to be many content planners whi
 We can confirm the term 'content planner' receives around 3600 searches per month on Google.
 Just look at that fine Google Trend:
 
-{{< figure src="/micro-saas-ideas/contentplanner.PNG" alt="Content Planner Google Trend" >}}
+<figure class="blog-figure">
+<img src="/micro-saas-ideas/contentplanner.PNG" alt="Content Planner Google Trend" loading="lazy" />
+</figure>
 
 
 
@@ -201,7 +209,10 @@ Just look at that fine Google Trend:
 
 ### 3. Instagram Post Automator
 
-{{< figure src="/micro-saas-ideas/instagram.jpg" attr="Photo by [Ialo Hernadez](https://unsplash.com/photos/r34cKhbEDCU)" alt="Instagram Automater" >}}
+<figure class="blog-figure">
+<img src="/micro-saas-ideas/instagram.jpg" alt="Instagram Automater" loading="lazy" />
+<figcaption>Photo by <a href="https://unsplash.com/photos/r34cKhbEDCU" rel="noopener noreferrer" target="_blank">Ialo Hernadez</a></figcaption>
+</figure>
 
 Instagram needs little introduction. It's extremely powerful and its reach is... scary, with over 1 billion users. 
 
@@ -237,7 +248,9 @@ From what I can see online there's nothing that is offering this exact setup.
 
 With over 2600 searches per month for 'Instagram Scheduler', and a lot of wishful marketers out there, I think this idea is a wonderful project and money maker. Just look at that mountain range:
 
-{{< figure src="/micro-saas-ideas/instagram.PNG" alt="Content Planner Google Trend" >}}
+<figure class="blog-figure">
+<img src="/micro-saas-ideas/instagram.PNG" alt="Content Planner Google Trend" loading="lazy" />
+</figure>
 
 
 
@@ -245,7 +258,10 @@ With over 2600 searches per month for 'Instagram Scheduler', and a lot of wishfu
 
 ### 4. OKR Tracker
 
-{{< figure src="/micro-saas-ideas/okr.jpg" attr="Photo by [Rawpixel](https://unsplash.com/)" alt="OKR Tracker" >}}
+<figure class="blog-figure">
+<img src="/micro-saas-ideas/okr.jpg" alt="OKR Tracker" loading="lazy" />
+<figcaption>Photo by <a href="https://unsplash.com/" rel="noopener noreferrer" target="_blank">Rawpixel</a></figcaption>
+</figure>
 
 OKRs was the corporate craze of 2018 - I myself, have been smothered by the new framework. 
 
@@ -281,13 +297,18 @@ The term 'OKR software' is averaging 1300 searches per month.
 
 And just look at that trend. A beautiful illustration of corporate craze.
 
-{{< figure src="/micro-saas-ideas/okr.PNG" alt="OKR Google Trend" >}}
+<figure class="blog-figure">
+<img src="/micro-saas-ideas/okr.PNG" alt="OKR Google Trend" loading="lazy" />
+</figure>
 
 ---
 
 ### 5. Tea/Coffee Round App ☕️ 
 
-{{< figure src="/micro-saas-ideas/tearound.jpg" attr="Photo by [Nate Dumalo](https://unsplash.com/@nate_dumlao)" alt="Tea Round App" >}}
+<figure class="blog-figure">
+<img src="/micro-saas-ideas/tearound.jpg" alt="Tea Round App" loading="lazy" />
+<figcaption>Photo by <a href="https://unsplash.com/@nate_dumlao" rel="noopener noreferrer" target="_blank">Nate Dumalo</a></figcaption>
+</figure>
 
 You might think this a novelty idea, and you'd be completely right, but novelty ideas can sometimes pay £$£$. Just look at the [Fu*** Weather app](https://play.google.com/store/apps/details?id=pl.lawiusz.funnyweather.release&hl=en). It wakes you up in the morning by shouting the weather report mixed with vulgarities. For some it's a little silly; for others it's cool, but more importantly it has over 1 million downloads just on Android. I think that's a success!
 
@@ -319,7 +340,9 @@ Over 20 people per month search for the term 'tea round app'. Winner, winner; ch
 
 There's not much data around tea round apps. Instead, here's a trend comparison between the terms 'tea' and 'coffee'. Coffee looks to be pulling away - hipsters!
 
-{{< figure src="/micro-saas-ideas/teacoffee.PNG" alt="OKR Google Trend" >}}
+<figure class="blog-figure">
+<img src="/micro-saas-ideas/teacoffee.PNG" alt="OKR Google Trend" loading="lazy" />
+</figure>
 
 
 
@@ -327,7 +350,10 @@ There's not much data around tea round apps. Instead, here's a trend comparison 
 
 ### 6. Bookmarks For Designers
 
-{{< figure src="/micro-saas-ideas/designer.jpg" attr="Picture by [Headway](https://unsplash.com/photos/jfR5wu2hMI0)" alt="Designer Bookmark App" >}}
+<figure class="blog-figure">
+<img src="/micro-saas-ideas/designer.jpg" alt="Designer Bookmark App" loading="lazy" />
+<figcaption>Picture by <a href="https://unsplash.com/photos/jfR5wu2hMI0" rel="noopener noreferrer" target="_blank">Headway</a></figcaption>
+</figure>
 
 Design is a continually changing environment. 
 

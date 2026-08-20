@@ -54,7 +54,9 @@ Build fully deployment-ready web apps in as little as five minutes.
 
 There’s never been a faster, better way to build custom applications. Check out our [product page](https://budibase.com/product/agents/) for more information.
 
-{{< vimeo id="930591556" title="Budibase Mini Demo" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/930591556?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Budibase Mini Demo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ### 2. Zapier
 

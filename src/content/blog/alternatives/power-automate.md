@@ -84,7 +84,10 @@ Budibase also offers RAG for Agents and custom knowledge bases. Once we’ve def
 
 Our leading low-code App-builder is also the perfect solution for adding custom human-in-the-loop approvals within agentic workflows, including building forms, admin panels, CRUD apps, and more.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Use cases
 

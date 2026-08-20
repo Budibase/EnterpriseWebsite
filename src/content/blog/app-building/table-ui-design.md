@@ -29,9 +29,14 @@ Therefore, optimizing table UIs is one of the first things you should look to do
 
 With Budibase, we can autogenerate fully functioning, customizable table UIs based on connected database tables in under a minute.
 
-{{< vimeo id="922830128" title="Table UI Design" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/922830128?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Table UI Design" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### What makes an effective table UI?
 
@@ -180,7 +185,10 @@ An alternative to traditional search boxes is Budibase’s dynamic filtering com
 
 Quickly add complex searchability and filtering functionality, without creating overly busy and distracting interfaces.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 8. Using modal screens
 
@@ -293,7 +301,10 @@ This includes several design decisions. We can dedicate more space to tables whe
 
 By contrast, when tables are a lower priority within the wider interface, we can dedicate less space to them. We’d therefore need to limit the number of elements we include, at far as we can while still allowing users to carry out their core tasks.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 3 real-world examples of great table UI designs
 To put some of what we've learned into practice, we can think about some real-world examples of table UIs with great designs. We've chosen three tools from the field that provide sleak, attractive, and functional UXs.
@@ -444,8 +455,7 @@ Instead, we could use a series of JavaScript if/else statements to return enumer
 
 For example, something like:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 if (employeeCount < 100) {
  return ‘Small’;
 }
@@ -453,8 +463,7 @@ if (employeeCount >= 100 && employeeCount < 5000){
  return ‘Medium’;
 }
 else return ‘Enterprise’;
-
-{{< /highlight >}}
+```
 
 
 ## Start using Budibase today

@@ -15,7 +15,9 @@ Budibase Agents enable you to securely connect LLMs to data and tools to create 
 
 Select any model, define agent behavior, and integrate AI into real-world workflows within a flexible, instruction-led interface.
 
-{{< youtube id="WwIJp8y2ltY" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/WwIJp8y2ltY" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Agents are available today. We’re excited for you to try them out. You can also provide feedback via [our GitHub](https://github.com/Budibase/budibase).
 

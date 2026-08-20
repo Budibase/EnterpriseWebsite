@@ -6,11 +6,13 @@ author: "Joe Johnston"
 socialImage: "/web-application-development/guide-to-web-application-development.jpg"
 ---
 
-{{< figure src="/web-application-development/guide-to-web-application-development.jpg" alt="Guide to web application development" >}}
+<figure class="blog-figure">
+<img src="/web-application-development/guide-to-web-application-development.jpg" alt="Guide to web application development" loading="lazy" />
+</figure>
 
 It was the year 2010, I had an idea for a web application which would allow my family and I to share images, organise shopping, populate a shared calendar, and store bills. My family was terribly disorganised. We needed this!
 
-This idea was going to make me :moneybag::moneybag::moneybag:.
+This idea was going to make me 💰💰💰.
 
 There was a small complication with my vision - I didn't know how to build a web application. But thankfully, I could build a static site with HTML and CSS so it couldn't be that hard, right?
 
@@ -44,9 +46,11 @@ The sections within this guide, include:
 
 [6. Courses for additional learning](#courses)
 
-## What is web application development {#what}
+<h2 id="what">What is web application development</h2>
 
-{{< figure src="/web-app-ideas/dashboard-web-app.jpg" alt="The CEO Dashboard Web App" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/dashboard-web-app.jpg" alt="The CEO Dashboard Web App" loading="lazy" />
+</figure>
 
 Web application development is the process involved with building a web application. It is more focused on interacting with the browser than standard engineering processes. Most cases of web application development will involve defining the problem, mocking-up the solution, engaging with users, adopting a framework/choosing a tool, and finally, building and testing the web application - in most cases, iteratively with users.
 
@@ -66,43 +70,55 @@ The key difference is how we interact with each. Web applications are defined by
 
 Progressive web applications are a newer type of web application which behaves like and often outperforms native applications. They are web applications which follow a slightly different methodology, and involve an additional set of technologies such as service workers, manifests, push notifications. Progressive web applications can be downloaded to your device, and stored on your homescreen which makes them accessible, and 'native-like', and unlike web applications they can be accessed and used offline.
 
-## 6 examples of web applications {#examples}
+<h2 id="examples">6 examples of web applications</h2>
 
 ### 1. Mailchimp
 
 Mailchimp is a marketing automation platform specialising in email marketing. They have been around since 2001 and their platform is a highly complex web application with a beautiful UI making the platform feel simple to use.
 
-{{< figure src="/web-app-design/mailchimp.PNG" alt="Mailchimp UI" >}}
+<figure class="blog-figure">
+<img src="/web-app-design/mailchimp.PNG" alt="Mailchimp UI" loading="lazy" />
+</figure>
 
 ### 2. Google Docs
 
 Google Docs, believe it or not, is a web application. It is also available as a mobile application. Created in 2012, Google Docs was born from the acquisition of a number of other web applications, and is great for **creating, reading, updated,** and **deleting** documents 😉
 
-{{< figure src="/web-application-development/google-docs.png" alt="Google Docs UI -web application development example " >}}
+<figure class="blog-figure">
+<img src="/web-application-development/google-docs.png" alt="Google Docs UI -web application development example " loading="lazy" />
+</figure>
 
 ### 3. Notion
 
 Notion is an all-in-one, note-taking and collaboration web application with markdown support. The product was released in 2016 and is fast becoming a staple in many small businesses.
 
-{{< figure src="/web-app-design/notion.png" alt="Notion UI - web application development example" >}}
+<figure class="blog-figure">
+<img src="/web-app-design/notion.png" alt="Notion UI - web application development example" loading="lazy" />
+</figure>
 
 ### 4. Airtable
 
 Many refer to Airtable as the 'Online Excel'. It is similar to Excel in UI but adds additional layers of functionality making it a powerful database solution for businesses. Airtable is a complex web application with thousands of users.
 
-{{< figure src="/web-application-development/airtable.png" alt="Airtable" >}}
+<figure class="blog-figure">
+<img src="/web-application-development/airtable.png" alt="Airtable" loading="lazy" />
+</figure>
 
 ### 5. Xero
 
 Xero is an accountancy web application. With a focus on data, Xero highlights how a web application can deal with difficult computations and present it to users in a simple interface.
 
-{{< figure src="/web-application-development/xero.png" alt="Xero">}}
+<figure class="blog-figure">
+<img src="/web-application-development/xero.png" alt="Xero" loading="lazy" />
+</figure>
 
 ### 6. Salesforce
 
 Salesforce is the number 1 SaaS product in the world from a revenue perspective. As a CRM, it is complex in nature making it a great example of a web application with multiple facets including dashboards, reports, tables, etc.
 
-{{< figure src="/web-application-development/salesforce.png" alt="Salesforce" >}}
+<figure class="blog-figure">
+<img src="/web-application-development/salesforce.png" alt="Salesforce" loading="lazy" />
+</figure>
 
 ## Why would you develop a web application?
 
@@ -201,9 +217,11 @@ However, the water is a bit murkier here than you might think.
 
 At least, there are plenty of other factors that determine your retention and churn. As such, it’s vital not to get complacent, no matter what type of app you opt for.
 
-## Web application development process {#process}
+<h2 id="process">Web application development process</h2>
 
-{{< figure src="/web-app-ideas/orientation.jpg" alt="Employee Orientation Software" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/orientation.jpg" alt="Employee Orientation Software" loading="lazy" />
+</figure>
 
 There are many different processes involved with building a web application. Below, I have summarised the different steps involved with the web application development process.
 
@@ -357,9 +375,11 @@ Microservices are also typically technology agnostic, since the various elements
 
 However, this also introduces a comparatively large amount of complexity. For instance, when it comes to monitoring, testing, or lifecycle management. As such, a microservices architecture is best kept for advanced development projects, where their additional modularity is really needed.
 
-## Web application development frameworks {#frameworks}
+<h2 id="frameworks">Web application development frameworks</h2>
 
-{{< figure src="/web-application-development/framework.jpg" alt="React framework" >}}
+<figure class="blog-figure">
+<img src="/web-application-development/framework.jpg" alt="React framework" loading="lazy" />
+</figure>
 
 The purpose of frameworks is to make web application development easier and faster than coding a web app from scratch. Now that we understand some web application basics, it's important to look at the concrete techniques we can use for developing our own solutions.
 
@@ -477,9 +497,11 @@ That is, Budibase lets you deploy to your own infrastructure, using Kubernetes, 
 
 Host your apps on local infrastructure, private networks, or even on your own device, for maximum control, security, and configurability.
 
-## Web application development courses {#courses}
+<h2 id="courses">Web application development courses</h2>
 
-{{< figure src="/web-application-development/udemy.jpg" alt="Udemy courses" >}}
+<figure class="blog-figure">
+<img src="/web-application-development/udemy.jpg" alt="Udemy courses" loading="lazy" />
+</figure>
 
 If you would like to learn how to build a web application, courses are a great option. Everyone learns differently. I learn best by doing; simply jumping in at the deep end and learn as I progress. I have listed the courses I feel will provide you with further context and learning when it comes to web application development. The courses I have listed below are for beginners.
 

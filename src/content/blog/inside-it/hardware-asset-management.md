@@ -182,7 +182,9 @@ So, we’ll either need to conditionally display certain fields, implement branc
 
 Check out our [forms page](https://budibase.com/product/apps/) here to learn more about what Budibase brings to the table.
 
-{{< vimeo id="956383530" title="Hardware Asset Management" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/956383530?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Hardware Asset Management" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ### Asset inventories
 
@@ -206,7 +208,9 @@ From a technical point of view, ticketing systems are pretty simple. The challen
 
 For instance, automated routing, categorization, and escalation can be used based on submitted information.
 
-{{< vimeo id="954806288" title="Ticketing System" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/954806288?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Ticketing System" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Check out our guide to building a [trouble ticketing system](https://budibase.com/blog/tutorials/trouble-ticketing-system/) to learn how to create the tool you can see above.
 
@@ -230,7 +234,9 @@ As we saw earlier, there are a range of different metrics that we might want to 
 
 So, we might rely on several tools, including dashboards, admin panels, automated issue detection, regular reports, or searchable inventory UIs.
 
-{{< vimeo id="926228969" title="Ticketing System" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/926228969?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Ticketing System" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## Budibase for ITSM
 

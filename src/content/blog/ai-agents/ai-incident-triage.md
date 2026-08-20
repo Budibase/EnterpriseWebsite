@@ -121,8 +121,7 @@ Next, we’ll hit the lightning bolt icon to open the bindings menu for our prom
 
 The specific prompt we’re going to use is:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an incident classification assistant. Your task is to read an IT incident report and return the most appropriate category as a single string.
 
 Allowed categories (use exactly one of these):
@@ -169,8 +168,7 @@ Reported By: {{ Reported By }}
 Impacted Devices: {{ Impacted Devices }}
 
 Location: {{ Location }}
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1764778681/cms/ai-incident-triage/AI_Incident_Triage_10_gudfvs.webp "Prompt")
 
@@ -194,8 +192,7 @@ Again, we’ll hit the lightning bolt icon to open the bindings menu.
 
 This time, our prompt for creating a severity score is:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an incident severity assessment assistant. Your task is to analyse an IT incident report and return a single severity score from 1 to 5.
 
 Severity scale:
@@ -239,8 +236,7 @@ Reported By: {{ Reported By }}
 Impacted Devices: {{ Impacted Devices }}
 
 Location: {{ Location }}
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1764778681/cms/ai-incident-triage/AI_Incident_Triage_14_ohnq8j.webp "Prompt")
 

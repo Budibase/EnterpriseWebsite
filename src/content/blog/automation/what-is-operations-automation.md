@@ -185,7 +185,10 @@ Therefore, improving accuracy and consistency is all about reducing the likeliho
 
 As such, operations automation offers a simple, easily implemented way to cut out hidden costs across your business, like security breaches, error correction time, and other associated processes.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Which operations functions can be automated?
 
@@ -444,7 +447,10 @@ We also offer a library of built-in automations that can be triggered with user 
 
 Budibase also connects seamlessly to your existing software stack, so you can use external tools as automation triggers and actions alike.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### Design tools
 

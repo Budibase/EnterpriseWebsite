@@ -55,7 +55,10 @@ Let’s jump in.
 
 If you haven’t already, sign up for a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Configuring our data model
 
@@ -81,8 +84,7 @@ We’re then presented with a list of tables that we can fetch, pulling them int
 
 Of course, you may not have a suitable database already. So, here’s a query that you can use to create our submissions table so you can build along with us:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE submissions (
 
   submission_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -108,8 +110,7 @@ CREATE TABLE submissions (
   comments VARCHAR(255)
 
 );
-
-{{< /highlight >}}
+```
 
 Our data model is quite simple. It contains:
 
@@ -121,8 +122,7 @@ Our data model is quite simple. It contains:
 
 Here’s another query you can use to populate your table with sample data:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 INSERT INTO submissions (last_name, first_name, email, week_beginning, day_of_week, in_hours, in_mins, out_hours, out_mins, comments)
 
 VALUES
@@ -146,8 +146,7 @@ VALUES
   ('Doe', 'John', 'john.doe@example.com', '2024-01-29', 'Wednesday', 9, 0, 16, 0, 'Database design'),
 
   ('Doe', 'John', 'john.doe@example.com', '2024-01-29', 'Friday', 8, 30, 15, 30, 'Code review');
-
-{{< /highlight >}}
+```
 
 Here’s what our table will look like in Budibase once we’ve fetched it:
 
@@ -161,8 +160,7 @@ We’ll use the plus icon to add a formula variable and call it hours_worked:
 
 Hit the lightning bolt icon beside the formula field and enter the following JavaScript:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var hoursWorked = 0;
 
 var inTimeMins = ($("in_hours") * 60) + $("in_mins");
@@ -172,8 +170,7 @@ var outTimeMins = ($("out_hours") * 60) + $("out_mins");
 hoursWorked = (outTimeMins - inTimeMins) / 60;
 
 return hoursWorked
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1706804627/cms/secure-timesheet/Secure_Timesheet_7_pz0bp0.webp "JavaScript")
 
@@ -304,8 +301,7 @@ The week_beginning attribute is a little trickier. We want this to be a date rep
 
 This will require a few lines of custom JavaScript, so we’re using the lightning bolt to set the value for this to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const today = new Date();
 
 const dayOfWeek = today.getDay();
@@ -317,8 +313,7 @@ const mondayOfCurrentWeek = new Date(today.setDate(difference));
 mondayOfCurrentWeek.setHours(0, 0, 0, 0); // Set time to midnight
 
 return mondayOfCurrentWeek;
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1706804621/cms/secure-timesheet/Secure_Timesheet_30_npbfay.webp "JavaScript")
 

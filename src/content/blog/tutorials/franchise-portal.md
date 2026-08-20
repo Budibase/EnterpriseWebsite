@@ -42,7 +42,9 @@ We’re building a franchise portal for two distinct types of users.
 
 We’ll achieve this by providing dedicated app screens for each class of user, tailoring their experiences to their specific needs.
 
-{{< vimeo id="930288510" title="Franchise Portal" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/930288510?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Franchise Portal" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 With Budibase, we have the option of building custom portals on top of just about any business data. 
 
@@ -58,7 +60,10 @@ Let’s jump in.
 
 If you haven’t already, sign up to Budibase to start building as many custom portals as you want with our low-code platform - for free.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 We’ll start by creating a new application. We have the option of using a pre-built template or importing an existing app dump, but today, we’re starting from scratch.
 
@@ -100,8 +105,7 @@ This table contains attributes called title, message, announcement_date, and ann
 
 We can create and populate it with the following query.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE announcements (
 
   announcement_id SERIAL PRIMARY KEY,
@@ -121,13 +125,11 @@ INSERT INTO announcements (title, message, announcement_date) VALUES
 ('New Feature Announcement', 'Nulla facilisi. Ut accumsan tortor vel libero placerat, nec malesuada nisl ullamcorper.', '2024-03-26'),
 
 ('Upcoming Maintenance', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.', '2024-03-27');
-
-{{< /highlight >}}
+```
 
 Next, we have the managers table. It contains columns called manager_id, manager_name, email, phone, and location_id.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE managers (
 
   manager_id SERIAL PRIMARY KEY,
@@ -151,8 +153,7 @@ VALUES
   ('Jane Doe', 'jane@example.com', '987-654-3210', 2),
 
   ('Bob Johnson', 'bob@example.com', '111-222-3333', 3);
-
-{{< /highlight >}}
+```
 
 ![Managers](https://res.cloudinary.com/daog6scxm/image/upload/v1712157007/cms/franchise-portal/Franchise_Portal_6_nsvl7l.webp "Managers")
 
@@ -160,8 +161,7 @@ The locations table stores attributes called location_name, location_id, address
 
 We can create it with this query:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create the table
 
 CREATE TABLE locations (
@@ -193,15 +193,13 @@ VALUES
   ('NY', 'Downtown Outlet', 'USA', '456 Elm St', 'Downtown', '54321'),
 
   ('TX', 'Suburban Mall', 'USA', '789 Oak St', 'Suburbia', '67890');
-
-{{< /highlight >}}
+```
 
 ![Table](https://res.cloudinary.com/daog6scxm/image/upload/v1712157006/cms/franchise-portal/Franchise_Portal_7_fcxu3d.webp "Table")
 
 Lastly, the columns in our sales_reports table are report_id, items_sold, report_date, week_of_year, num_transactions, location_id, total_sales, and manager_id.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Create the table
 
 CREATE TABLE sales_reports (
@@ -275,8 +273,7 @@ VALUES
   (21, 220, '2024-03-04', 10, 110, 2, 3000.00, 2),
 
   (22, 240, '2024-03-04', 10, 120, 3, 3500.00, 3);
-
-{{< /highlight >}}
+```
 
 ![Franchise Portal](https://res.cloudinary.com/daog6scxm/image/upload/v1712157005/cms/franchise-portal/Franchise_Portal_8_dkixeq.webp "Franchise Portal")
 
@@ -663,8 +660,7 @@ The returned data is grouped and ordered by the numerical week.
 
 So, our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH Weeks AS (
 
   SELECT generate_series(
@@ -704,15 +700,13 @@ GROUP BY
 ORDER BY
 
   week_of_year;
-
-{{< /highlight >}}
+```
 
 ![Query](https://res.cloudinary.com/daog6scxm/image/upload/v1712156954/cms/franchise-portal/Franchise_Portal_77_zucoml.webp "Query")
 
 Then, we’ll create a second query called SalesReportsByWeekByLocation. This will work the same way, but it will also group the returned data by the location_name attribute from the sales_reports table.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH Weeks AS (
 
   SELECT generate_series(
@@ -764,8 +758,7 @@ GROUP BY
 ORDER BY
 
   Locations.location_name, week_of_year;
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1712156941/cms/franchise-portal/Franchise_Portal_78_o6i2ol.webp "Response")
 

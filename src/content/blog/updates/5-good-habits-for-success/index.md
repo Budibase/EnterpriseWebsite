@@ -14,7 +14,10 @@ I've poured my thoughts on to this page to help others in a similar position, de
 
 I hope you enjoy it.
 
-{{< figure src="/5-good-habits-for-success/good-habits.jpg" attr="Photo by[ Drew Beamer](https://unsplash.com/@drew_beamer)" alt="Good Habits" >}}
+<figure class="blog-figure">
+<img src="/5-good-habits-for-success/good-habits.jpg" alt="Good Habits" loading="lazy" />
+<figcaption>Photo by<a href="https://unsplash.com/@drew_beamer" rel="noopener noreferrer" target="_blank"> Drew Beamer</a></figcaption>
+</figure>
 
 Success is personal. It takes hard work and discipline, but most of all, it takes hunger. The hunger to go further and push harder.
 
@@ -49,7 +52,11 @@ If you have little time, here is the TL;DR version:
 
 
 ## 1. Create A Structure
-{{< figure src="/5-good-habits-for-success/structure.jpg" attr="Photo by[Daniele Riggi](https://unsplash.com/@danieleriggifotovideo)" alt="structure" >}}
+
+<figure class="blog-figure">
+<img src="/5-good-habits-for-success/structure.jpg" alt="structure" loading="lazy" />
+<figcaption>Photo by<a href="https://unsplash.com/@danieleriggifotovideo" rel="noopener noreferrer" target="_blank">Daniele Riggi</a></figcaption>
+</figure>
 
 Structure is important. It provides order and organisation. 
 
@@ -64,7 +71,11 @@ Having a structure in place makes life easier for those around us. Which brings 
 
 
 ## 2. Build Relationships
-{{< figure src="/5-good-habits-for-success/relationship.jpg" attr="Photo by[Kaleidico](https://unsplash.com/@kaleidico)" alt="relationships" >}}
+
+<figure class="blog-figure">
+<img src="/5-good-habits-for-success/relationship.jpg" alt="relationships" loading="lazy" />
+<figcaption>Photo by<a href="https://unsplash.com/@kaleidico" rel="noopener noreferrer" target="_blank">Kaleidico</a></figcaption>
+</figure>
 
 Your success is important but it most not negatively affect others. 
 
@@ -78,7 +89,11 @@ It's very important to build on the relationships you have, and just as importan
 It's important to remove the negative relationships in your life. If people are bringing you down, drop them.
 
 ## 3. Focus On Your Health
-{{< figure src="/5-good-habits-for-success/health.jpg" attr="Photo by [Marion Michele](https://unsplash.com/)" alt="health" >}}
+
+<figure class="blog-figure">
+<img src="/5-good-habits-for-success/health.jpg" alt="health" loading="lazy" />
+<figcaption>Photo by <a href="https://unsplash.com/" rel="noopener noreferrer" target="_blank">Marion Michele</a></figcaption>
+</figure>
 
 Eating healthy/healthier.
 
@@ -91,7 +106,11 @@ I'll be the first to admit,  for me this was the hardest habit to practice. I co
 
 
 ## 4. Celebrate The Smallest Wins
-{{< figure src="/5-good-habits-for-success/celebrate.jpg" attr="Photo by [Ambreen Hasan](https://unsplash.com/@ambreenhasan)" alt="celebrate" >}}
+
+<figure class="blog-figure">
+<img src="/5-good-habits-for-success/celebrate.jpg" alt="celebrate" loading="lazy" />
+<figcaption>Photo by <a href="https://unsplash.com/@ambreenhasan" rel="noopener noreferrer" target="_blank">Ambreen Hasan</a></figcaption>
+</figure>
 
 Your journey to success may be long. It's important to pat yourself on the back. Breaking your success down into milestones, encourages you to taste success over time. This makes the journey easier.
 
@@ -103,7 +122,11 @@ Habit 5 has the answer.
 
 
 ## 5. Learn From Failure
-{{< figure src="/5-good-habits-for-success/learn.jpg" attr="Photo by [Jan Vasek](https://unsplash.com/@jeshoots)" alt="learn" >}}
+
+<figure class="blog-figure">
+<img src="/5-good-habits-for-success/learn.jpg" alt="learn" loading="lazy" />
+<figcaption>Photo by <a href="https://unsplash.com/@jeshoots" rel="noopener noreferrer" target="_blank">Jan Vasek</a></figcaption>
+</figure>
 
 > _*"Would you like me to give you a formula for success? It's quite simple, really: Double your rate of failure. You are thinking of failure as the enemy of success. But it isn't at all. You can be discouraged by failure or you can learn from it, so go ahead and make mistakes. Make all you can. Because remember that's where you will find success."* - Thomas J. Watson
 
@@ -125,7 +148,10 @@ I reflect on these habits often as they allow me to measure my progress and unde
  
  As Makers, hackers, developers, startups in this wild barbaric environment filled with VCs and cash cows, we need the momentum to outsmart and outrun our competition. If you are yet to source your next adventure, now is the perfect time to master the habits above.
 
-{{< figure src="/5-good-habits-for-success/great.jpg" attr="Photo by [Clark Tibbs](https://unsplash.com/@clarktibbs)" alt="GREAT" >}}
+<figure class="blog-figure">
+<img src="/5-good-habits-for-success/great.jpg" alt="GREAT" loading="lazy" />
+<figcaption>Photo by <a href="https://unsplash.com/@clarktibbs" rel="noopener noreferrer" target="_blank">Clark Tibbs</a></figcaption>
+</figure>
 
 If you have any queries, please feel free to reach out. At [Budibase](https://budibase.com), we're always happy to listen.
 

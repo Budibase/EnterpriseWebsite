@@ -202,7 +202,10 @@ More specifically, we need to prioritize solutions that enable us to centralize 
 
 Low-code tools like Budibase are particularly useful here, enabling us to create custom portals, admin panels, and approval apps on top of any data, as well as leveraging custom RBAC, AI-powered automations, free SSO, and much more.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Software tools and systems design for employee onboarding
 

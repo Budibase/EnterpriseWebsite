@@ -368,7 +368,9 @@ Let's check out of our free asset management tools in more detail.
 
 First up, we have Budibase, the open-source, low-code platform that empowers IT teams to turn data into action.
 
-{{< vimeo id="956383530" title="Free Asset Management Software" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/956383530?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Free Asset Management Software" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ITSM teams in all industries rely on Budibase to ship secure, professional workflow apps on any data layer and host them anywhere.
 
@@ -380,7 +382,10 @@ Our visual design tools provide a best-in-class experience for creating end-user
 
 Security-focused teams choose Budibase to keep their data secure, with optional self-hosting, free SSO, SCIM support, PWAs, visual role-based access control, air-gapped deployments, and much more.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Use cases
 

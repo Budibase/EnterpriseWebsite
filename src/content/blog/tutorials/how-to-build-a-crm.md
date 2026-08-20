@@ -23,7 +23,9 @@ Today, we’re looking at an alternative approach, as we explore how to build a 
 
 Let’s jump right in.
 
-{{< youtube PtUU6bk5xkI >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/PtUU6bk5xkI" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## How to build a CRM in 6 steps
 
@@ -181,8 +183,7 @@ First, we’ll create a query called *AvgAndTotalValue*. As the name suggests, t
 
 Here’s the code we’ll use in our query:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  SUM(EstimatedValue) AS TotalEstimatedValue,
@@ -196,8 +197,7 @@ FROM
 WHERE
 
 Status = ‘In Progress’
-
-{{< /highlight >}}
+```
 
 We’re using the built-in SUM() and AVG() functions in Postgres - along with a WHERE clause so the query only returns row with the *In Progress* status
 
@@ -215,8 +215,7 @@ This time, we want to use the COUNT() function to return the number of rows wher
 
 Here’s the query we’ll use:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT COUNT(*) AS RecentContactCount
 
 FROM Contacts
@@ -226,8 +225,7 @@ WHERE LastContact >= CURRENT_DATE - INTERVAL '7 days'
 AND LastContact < CURRENT_DATE + INTERVAL '1 day'
 
 AND Status = 'In Progress';
-
-{{< /highlight >}}
+```
 
 And here’s what it looks like in Budibase:
 
@@ -255,11 +253,9 @@ We’ll edit that slightly by adding a £ symbol to the front of the handlebars 
 
 The new title binding is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 £{{ toFixed New Cards block.AvgAndTotalValue.totalestimatedvalue 2}}
-
-{{< /highlight >}}
+```
 
 We’ll set the card’s *subtitle* field to *Total Estimated Value* while we’re here and rename the Cards Block to *TotalValueBlock* in order to avoid confusion.
 
@@ -275,11 +271,9 @@ Now, we can swap out the appropriate data. So, set the *name* to *AvgValueBlock*
 
 Then, we can use the following handlebars binding for the *title*:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 £{{ toFixed New Cards block.AvgAndTotalValue.totalestimatedvalue 2}}
-
-{{< /highlight >}}
+```
 
 And here’s what we’ve got now:
 
@@ -289,11 +283,9 @@ Finally, we’ll add one more card block with our *Last7DaysContact* query as it
 
 We’ll use this binding for its title:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ Last7DaysBlock.Last7DaysContact.recentcontactcount }}
-
-{{< /highlight >}}
+```
 
 Here’s our screen so far:
 
@@ -307,11 +299,9 @@ Next, we need a way to capture new lead’s data in our CRM. On the surface, thi
 
 We’re going to start by creating another blank screen, with the URL slug:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 /contact-form/:channel
-
-{{< /highlight >}}
+```
 
 ![New Screen](https://res.cloudinary.com/daog6scxm/image/upload/v1693840201/cms/how-to-build-a-crm/CRM28_fopws4.webp "New Screen")
 
@@ -416,37 +406,29 @@ Each time we do this, we’ll replace the :channel string with whatever we want 
 
 So, if we put this on our website, the URL slug might be:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 /contact-form/website
-
-{{< /highlight >}}
+```
 
 In an email we might call it:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 /contact-form/email
-
-{{< /highlight >}}
+```
 
 Or even:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 /contact-form/sales-email-23-08-2023
-
-{{< /highlight >}}
+```
 
 You get the picture.
 
 If we want to embed the form in an iFrame on our website, the full HTML might be:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 "<iframe width="800" height="800" frameborder="0" allow="clipboard-write;camera;geolocation" src="https://your-budibase-host/embed/crm/#/contact-form/website"> </iframe>"
-
-{{< /highlight >}}
+```
 
 You can use your own custom HTML to define the size of your embedded iFrame - or any permissions you want to provide it.
 
@@ -470,11 +452,9 @@ At this point, we need to head over to a Discord server where we have admin perm
 
 For the sake of demonstration here, we’ll use the following URL as a dummy webhook:
 
-{{< highlight html "linenos=inline" >}}
-
+```html
 http://our-example-webhook
-
-{{< /highlight >}}
+```
 
 We can paste this into the Discord URL field of our automation action, as well as giving our new bot a name:
 
@@ -486,11 +466,9 @@ Then, we can open up the bindings drawer of the *message* field and input whatev
 
 We’ve used three bindable values from the trigger row to populate the lead’s channel, first name, and email address. So, the full message is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 You have a new contact from {{ trigger.row.channel }}. {{ trigger.row.firstname }} is waiting to chat. Their email is {{ trigger.row.email }}.
-
-{{< /highlight >}}
+```
 
 Once you’ve tested your automation and you’re satisfied that it works, you need to publish your app for it to go live.
 
@@ -528,8 +506,7 @@ And, we’ll simply edit the existing WHERE clause to filter for *status=’New�
 
 The full query is now:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  SUM(EstimatedValue) AS TotalEstimatedValue,
@@ -543,15 +520,13 @@ FROM
 ​	WHERE
 
 ​	status = 'New'
-
-{{< /highlight >}}
+```
 
 Then we’ll do the same thing on our Last7DaysContact query - creating a new version called *Last7DaysContactNewLeads*.
 
 Again, we’ll simply change the WHERE clause, so that the new query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT COUNT(*) AS RecentContactCount
 
 FROM Contacts
@@ -561,8 +536,7 @@ WHERE LastContact >= CURRENT_DATE - INTERVAL '7 days'
 AND LastContact < CURRENT_DATE + INTERVAL '1 day'
 
 AND Status = 'New';
-
-{{< /highlight >}}
+```
 
 Once both of those new queries are saved, we’ll head back to the *Design* section. Then, we need to swap out the *Data* field for each of the card block components to the relevant new queries - giving us:
 
@@ -592,8 +566,7 @@ So, we need to:
 
 We have two new queries to achieve this. The first is called *AvgAndTotalValueOfCustomers*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  SUM(EstimatedValue) AS TotalEstimatedValue,
@@ -607,13 +580,11 @@ FROM
 ​	WHERE
 
 ​	status = 'Won'
-
-{{< /highlight >}}
+```
 
 And the other is called *Last7DaysCustomers*:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT COUNT(*) AS RecentContactCount
 
 FROM Contacts
@@ -623,8 +594,7 @@ WHERE LastContact >= CURRENT_DATE - INTERVAL '7 days'
 AND LastContact < CURRENT_DATE + INTERVAL '1 day'
 
 AND Status = 'New';
-
-{{< /highlight >}}
+```
 
 ## 6. Add a dashboard for our home screen
 
@@ -638,8 +608,7 @@ The first part of our dashboard will be a bar graph displaying the different cha
 
 We’ll create another custom query called *ChannelsForLeads*. The SQL command we’ll use is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT 
 
   channel,
@@ -661,8 +630,7 @@ GROUP BY
 ORDER BY 
 
   ChannelCount DESC;
-
-{{< /highlight >}}
+```
 
 This returns all of the channels that are assigned to different rows, alongside the number of rows that have each one.
 
@@ -674,8 +642,7 @@ Below this, we want a pie chart that will display a breakdown of all of our curr
 
 Again, we’re going to need a custom query. We’ll call this one *StatusOfAll*. The query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT 
 
   status,
@@ -697,8 +664,7 @@ GROUP BY
 ORDER BY 
 
   StatusCount DESC;
-
-{{< /highlight >}}
+```
 
 Basically, we’re doing the same thing as before, but this time with the *status* attribute, rather than *channel*.
 

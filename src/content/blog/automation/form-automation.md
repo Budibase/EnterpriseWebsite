@@ -121,7 +121,10 @@ Specifically, we’re going to build an automation rule that handles incoming ex
 
 This will automatically mark any new expenses under $100 as approved. If the expense is over $100, we’ll mark it as pending, so it can be picked up by a human reviewer.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 We’re starting with the `Expenses` table from Budibase’s sample data.
 
@@ -201,8 +204,7 @@ To do this, we’ll hit the lightning bolt icon to open our bindings menu, and t
 
 The specific code we’ll use to achieve this is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var triggerCost = $("trigger.row.Cost")
 
 if (triggerCost < 100) {
@@ -212,18 +214,15 @@ if (triggerCost < 100) {
 }
 
 else return false
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1762872599/cms/form-automations/Form_Automation_15_bqxtbw.webp "JavaScript")
 
 We’ll then use JavaScript to set our comparison value to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return true
-
-{{< /highlight >}}
+```
 
 ![True](https://res.cloudinary.com/daog6scxm/image/upload/v1762872598/cms/form-automations/Form_Automation_16_uxy9at.webp "True")
 

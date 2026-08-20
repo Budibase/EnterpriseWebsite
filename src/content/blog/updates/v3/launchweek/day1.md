@@ -9,7 +9,9 @@ socialImage: "https://res.cloudinary.com/daog6scxm/image/upload/v1730364165/camp
 draft: false
 ---
 
-{{< youtube id="zhKWphiOsPE" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/zhKWphiOsPE" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 
 Welcome to day one of the Budibase 3.0 launch week! Over the next few days, we’ll be diving into a variety of exciting new developments, each designed to enhance the way you build and manage your apps. Each day, we’ll explore a different theme, offering insights and guidance to help you get the most out of Budibase 3.0.
@@ -29,7 +31,7 @@ With this in mind, we’ve reimagined the data experience from the ground up, in
 5. [Dynamic Screen Generation](#screen-generation)
 
 
-## Control access with Enhanced Views {#enhanced-views}
+<h2 id="enhanced-views">Control access with Enhanced Views</h2>
 
 Controlling who can view, access, and manipulate data is crucial to building secure applications in Budibase. 
 
@@ -72,7 +74,7 @@ You can create as many Views as you want, which you can easily toggle between us
 
 ---
 
-## Set Default Values {#default-values}
+<h2 id="default-values">Set Default Values</h2>
 
 ![Default values](https://res.cloudinary.com/daog6scxm/image/upload/v1730382869/campaigns/3.0/day%201/Default_valuesportrait_pr8o6r.webp)
 
@@ -83,7 +85,7 @@ Default values offer a streamlined experience for gathering data. You can set co
 
 ---
 
-## Streamline data workflows with Row Actions {#row-actions}
+<h2 id="row-actions">Streamline data workflows with Row Actions</h2>
 
 ![Row Actions](https://res.cloudinary.com/daog6scxm/image/upload/v1730407457/campaigns/3.0/day%201/Row_actions_zhc8le.webp)
 
@@ -93,13 +95,15 @@ For example, in an approval workflow, an approver can `Approve` or `Reject` a re
 
 Let’s see how to set up the Approve action:
 
-{{< vimeo id="1025386963" title="Row Actions" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1025386963?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Row Actions" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 This targeted approach lets users take specific actions on a table, such as approving a request without full access to make unrestricted changes. By controlling user actions, Budibase 3.0 enhances the usability and security of your applications, simplifying automation creation and role management.
 
 ---
 
-## Connect data with View Joins {#view-joins}
+<h2 id="view-joins">Connect data with View Joins</h2>
 
 ![View Joins](https://res.cloudinary.com/daog6scxm/image/upload/v1730409505/campaigns/3.0/day%201/view_relationships_mjtaun.webp)
 
@@ -111,7 +115,7 @@ Related data, such as the employee's name, is always view-only, preserving secur
 
 ---
 
-## Dynamic Screen Generation {#screen-generation}
+<h2 id="screen-generation">Dynamic Screen Generation</h2>
 
 For our fifth and final feature today, we’re covering Dynamic Screen Generation.
 
@@ -119,7 +123,9 @@ You’ll now notice a new Generate button in your data section—this is where t
 
 *With just a click, generate screens from your Views and watch them come to life in seconds!*
 
-{{< vimeo id="1025386944" title="Generate Screen" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1025386944?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Generate Screen" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 
 

@@ -60,7 +60,9 @@ First of all, we have tasks that are directly linked to our inventory, for examp
 
 Our inventory management efforts are also a crucial part of all kinds of sales, aftersales, customer service, supply chain, logistics, franchise management, and other commercial processes.
 
-{{< vimeo id="930288510" title="Enterprise Inventory Management" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/930288510?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Enterprise Inventory Management" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 As a very basic example, if we don’t have an accurate real-time picture of our inventory levels, handling sales will become very difficult.
 
@@ -146,7 +148,9 @@ The first are [data collection forms](https://budibase.com/blog/data/data-collec
 
 The second are request forms. These are used to initiate a request for a particular resource, such as an item or data asset, or to kickstart a process or workflow. This is then subject to an approval flow, as we’ll see in a second.
 
-{{< vimeo id="917827479" title="Data Collection Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/917827479?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Data Collection Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ### CRUD apps
 
@@ -164,7 +168,9 @@ Typically, this means carrying out administrative actions similar to those of ou
 
 Field service tools also enable colleagues at head office to schedule and oversee work in the field. 
 
-{{< vimeo id="927603729" title="Field Service Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/927603729?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Field Service Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Check out our guide to [free field management software](https://budibase.com/blog/inside-it/free-field-service-managemet-software/) platforms to learn more.
 
@@ -184,7 +190,9 @@ This might enable stakeholders to manage their account details, create orders, s
 
 The priorities here are to boost efficiency by providing stakeholders with an accessible, user-friendly platform for accessing services and resources without compromising security or process adherence.
 
-{{< vimeo id="928427483" title="Inventory Portal" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/928427483?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Inventory Portal" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ### Admin panels
 
@@ -202,7 +210,9 @@ This will typically involve some combination of visual elements, like forms, tab
 
 In the context of enterprise inventory management, this is vital for a range of purposes. For instance, pulling out specific insights using data aggregation or searching for particular records based on complex criteria.
 
-{{< vimeo id="946635436" title="GUI" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/946635436?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="GUI" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ### ERP tools
 

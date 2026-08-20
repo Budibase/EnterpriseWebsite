@@ -354,7 +354,9 @@ At Budibase, we’re on a mission to empower IT teams to build custom solutions 
 
 Sign up today to start building as many applications as you need for free, and be the first to hear about our planned new features for building dynamic forms to interact with AI workflows.
 
-{{< form-builder-cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Turn data into action with Budibase
 

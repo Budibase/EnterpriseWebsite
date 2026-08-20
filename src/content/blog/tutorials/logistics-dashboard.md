@@ -25,7 +25,9 @@ The key word here is *real-time*.
 
 So, unlike a typical report, we connect our dashboard UI to some external data source - and then the latest figures for our KPIs and metrics auto-populate in our data visualizations. This means that whoever needs to has a simple, easy way to find the insights they require, without having to go and run the numbers each time.
 
-{{< youtube ISD5AWOQqzw >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/ISD5AWOQqzw" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ### What should a logistics dashboard include?
 
@@ -59,7 +61,10 @@ Let’s get started.
 
 If you haven’t already, go ahead and create a free Budibase app so you can build along with us.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Create a new app and connect your data
 
@@ -156,8 +161,7 @@ We’re going to *group* these by the month and year - and sort them by the year
 
 Our SQL query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
   CAST(EXTRACT(MONTH FROM departure_date) AS INTEGER) AS month,
@@ -187,8 +191,7 @@ ORDER BY
 ​	EXTRACT(YEAR FROM departure_date) ASC,
 
 ​	EXTRACT(MONTH FROM departure_date) ASC;
-
-{{< /highlight >}}
+```
 
 
 
@@ -198,8 +201,7 @@ And here’s what it looks like when we run it in Budibase:
 
 For each month, the query will return a data object like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "month": 10,
@@ -213,8 +215,7 @@ For each month, the query will return a data object like this:
  "percentage_late": 66.66666666666666
 
 }
-
-{{< /highlight >}}
+```
 
 Save this and head back to the *design* section.
 
@@ -234,25 +235,21 @@ For the reference value, we can use either handlebars or JavaScript to get the c
 
 We’re going to use JavaScript, so for the month, the *value* binding is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return currentDate.getMonth() + 1;
-
-{{< /highlight >}}
+```
 
 Note that we need to add one here because JavaScript uses zero-based counting - so the *index* for January is 0.
 
 We want to set the reference value for the *year* to:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return currentDate.getFullYear();
-
-{{< /highlight >}}
+```
 
 Now - as you can see - we only have one card in our block:
 
@@ -272,21 +269,17 @@ And we’ll change the subtitle to *departures* - as well as removing the *descr
 
 For the second card, the *title* binding we’ll use is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ Days Behind Cards block.lateness_stats_by_month.average_difference }} Days
-
-{{< /highlight >}}
+```
 
 And the *subtitle* is *avg. days behind schedule*.
 
 For the third, we’ll use the following JavaScript as the *title*:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return $("Late Percent Cards block.lateness_stats_by_month.percentage_late").toFixed(2) + "%";
-
-{{< /highlight >}}
+```
 
 And set the *subtitle* to *of departures late*.
 
@@ -296,13 +289,11 @@ Now we have this:
 
 Lastly, we’ll add a *headline* component above our container, with its *text* attribute set to the following JavaScript expression:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var currentDate = new Date();
 
 return "This Month (" + (currentDate.getMonth()+1) + "-" + currentDate.getFullYear() + "):"
-
-{{< /highlight >}}
+```
 
 ![Headline](https://res.cloudinary.com/daog6scxm/image/upload/v1697194844/cms/logistics-dashboard/Logistics_Dashboard_23_xzcez4.webp "Headline")
 
@@ -320,8 +311,7 @@ We’re basically going to use the exact same query - with a couple of modificat
 
 So, our new query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
 source,
@@ -347,8 +337,7 @@ ORDER BY
 EXTRACT(YEAR FROM departure_date),
 
  source;
-
-{{< /highlight >}}
+```
 
 When we run that:
 
@@ -356,8 +345,7 @@ When we run that:
 
 This is the schema of the data objects that are returned:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "source": "Anaheim",
@@ -369,8 +357,7 @@ This is the schema of the data objects that are returned:
  "percentage_late": 0
 
 }
-
-{{< /highlight >}}
+```
 
 So, we’re getting the same information back as before - but we’re also breaking it down by *source*.
 
@@ -445,8 +432,7 @@ We’ll group these by the numerical month and year.
 
 So, our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  CAST(EXTRACT(MONTH FROM departure_date)AS INTEGER) AS month,
@@ -470,15 +456,13 @@ GROUP BY
   CAST (EXTRACT(MONTH FROM departure_date) AS INTEGER),
 
   CAST(EXTRACT(YEAR FROM departure_date)AS INTEGER);
-
-{{< /highlight >}}
+```
 
 ![Query](https://res.cloudinary.com/daog6scxm/image/upload/v1697194845/cms/logistics-dashboard/Logistics_Dashboard_33_xwopcs.webp "Query")
 
 And here’s what this returns:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "month": 10,
@@ -494,8 +478,7 @@ And here’s what this returns:
  "percentage_budget_used": 94.81481313705444
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll then go back to the design tab and reconfigure our cards to show these metrics.
 
@@ -519,8 +502,7 @@ It needs to be grouped and ordered by the source and the numerical year.
 
 Our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
   source,
@@ -548,15 +530,13 @@ ORDER BY
 ​	EXTRACT(YEAR FROM departure_date),
 
   source;
-
-{{< /highlight >}}
+```
 
 ![Query](https://res.cloudinary.com/daog6scxm/image/upload/v1697194840/cms/logistics-dashboard/Logistics_Dashboard_35_g8tcrr.webp "Query")
 
 This returns:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "source": "Anaheim",
@@ -570,8 +550,7 @@ This returns:
  "total_estimated_cost": 842
 
 }
-
-{{< /highlight >}}
+```
 
 Then, we can go back to the design section and swap out our attributes so we have:
 
@@ -583,8 +562,7 @@ We’ll need one last query to achieve this. We’ll call it *utilization_by_mon
 
 The query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
   CAST(EXTRACT(MONTH FROM departure_date)AS INTEGER) AS month,
@@ -604,15 +582,13 @@ GROUP BY
   CAST (EXTRACT(MONTH FROM departure_date) AS INTEGER),
 
   CAST(EXTRACT(YEAR FROM departure_date)AS INTEGER);
-
-{{< /highlight >}}
+```
 
 ![Query](https://res.cloudinary.com/daog6scxm/image/upload/v1697194847/cms/logistics-dashboard/Logistics_Dashboard_37_yrtjs7.webp "Query")
 
 The objects that are returned look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
  "month": 10,
@@ -624,8 +600,7 @@ The objects that are returned look like this:
  "percentage_budget_used": 94.81481313705444
 
 }
-
-{{< /highlight >}}
+```
 
 And - when we swap out these values on our line chart - our finished report looks like this:
 

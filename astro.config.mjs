@@ -17,14 +17,6 @@ const cloudflareServerOptimizer = {
         include: [
           "@astrojs/cloudflare/entrypoints/server",
           "astro/assets/services/noop",
-          "unified",
-          "remark-parse",
-          "remark-gfm",
-          "remark-rehype",
-          "remark-gemoji",
-          "rehype-raw",
-          "rehype-slug",
-          "rehype-stringify",
         ],
       },
     };

@@ -72,7 +72,10 @@ One is that we’re increasing the number of attack vectors our data is exposed 
 
 Really, this approach would only be suitable for a much smaller set of use cases - such as if we wanted to copy our data from Google Sheets to Postgres in order to connect to an existing platform that supports the latter but not the former.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Methods for moving data from Google Sheets to Postgres
 
@@ -173,15 +176,13 @@ Then, we can add our query into the *Fields* box. If you’re not a SQL whizz, d
 
 These should match the columns in our Google Sheets sheet - in terms of name and format. The syntax is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE table_name (
 
 column1_name DATATYPE CONSTRAINTS
 
 )
-
-{{< /highlight >}}
+```
 
 
 
@@ -193,8 +194,7 @@ Our *id* field will be of the type *int* because it’s a number. All of the oth
 
 So, our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE customers (
 
 ​	id int PRIMARY KEY,
@@ -214,8 +214,7 @@ CREATE TABLE customers (
 ​	email VARCHAR
 
 );
-
-{{< /highlight >}}
+```
 
 And the full thing should look like this:
 
@@ -225,11 +224,9 @@ Next, we’ll create a *DROP* query and call it *DROP TABLE,* setting the *Funct
 
 The query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 DROP TABLE customers;
-
-{{< /highlight >}}
+```
 
 The configuration should look like this:
 
@@ -247,8 +244,7 @@ Note, we’ve given *gs_id* a default value of *1* because it’s the primary ke
 
 The syntax for an INSERT query is: 
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 INSERT INTO 
 
 table_name (field1, field2 …)
@@ -256,13 +252,11 @@ table_name (field1, field2 …)
 VALUES
 
 value1, value2 …)
-
-{{< /highlight >}}
+```
 
 We use the following INSERT statement to populate our data:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 INSERT INTO 
 
 customers (id, first_name, last_name, gender, state, country, phone, email)
@@ -270,8 +264,7 @@ customers (id, first_name, last_name, gender, state, country, phone, email)
 VALUES
 
 ({{ gs_id }}, {{ gs_first_name }}, {{ gs_last_name }}, {{ gs_gender }}, {{ gs_state }}, {{ gs_country }}, {{ gs_phone }}, {{ gs_email }})
-
-{{< /highlight >}}
+```
 
 And it looks like this:
 

@@ -23,7 +23,9 @@ Our old Github Readme consisted of a title and an outdated way to run Budibase -
 
 So, we went about changing it. We decided from the outset, we wanted the Readme to be clean, inviting, and informative. It's not the finished article, but it's a step in the right direction and we've received great feedback from our users. Here's a quick glimpse.
 
-{{< figure src="https://dev-to-uploads.s3.amazonaws.com/i/5ytmkrihb1dd5ze12gbw.png" alt="Budibase Github Readme" >}}
+<figure class="blog-figure">
+<img src="https://dev-to-uploads.s3.amazonaws.com/i/5ytmkrihb1dd5ze12gbw.png" alt="Budibase Github Readme" loading="lazy" />
+</figure>
 
 You can [access the Readme here](https://github.com/Budibase/budibase/blob/master/README.md).
 
@@ -33,7 +35,9 @@ When a user signs up for Budibase, we send an automated email. We previously sen
 
 We immediately changed the blurb to focus on community/building an ecosystem. And we now signpost sign-ups to Github, informing them this is where our roadmap, community, and code reside. We are also very direct in our ask.
 
-{{< figure src="https://dev-to-uploads.s3.amazonaws.com/i/zg3w29qr0bkggxgpwpje.png" alt="Welcome to Budibase email" >}}
+<figure class="blog-figure">
+<img src="https://dev-to-uploads.s3.amazonaws.com/i/zg3w29qr0bkggxgpwpje.png" alt="Welcome to Budibase email" loading="lazy" />
+</figure>
 
 ## 3. Add a Github CTA to your website
 
@@ -41,7 +45,9 @@ We get around 25,000 website visits per month. This presented us with a great op
 
 Today, our website is our primary external referrer to our Github page.
 
-{{< figure src="https://dev-to-uploads.s3.amazonaws.com/i/d90b7cx5loaj23kwtbod.png" alt="Github button on the website" >}}
+<figure class="blog-figure">
+<img src="https://dev-to-uploads.s3.amazonaws.com/i/d90b7cx5loaj23kwtbod.png" alt="Github button on the website" loading="lazy" />
+</figure>
 
 You can [see the button on the website here](https://budibase.com/).
 
@@ -49,19 +55,25 @@ You can [see the button on the website here](https://budibase.com/).
 
 We communicate a lot on Twitter and we would often point people to our website. We decided, going forward, we will also point users to our Github repository. Twitter is a popular referrer to our Github page.
 
-{{< figure src="https://dev-to-uploads.s3.amazonaws.com/i/ojjirvjtwuvscxzbpyrm.png" alt="Budibase Twitter" >}}
+<figure class="blog-figure">
+<img src="https://dev-to-uploads.s3.amazonaws.com/i/ojjirvjtwuvscxzbpyrm.png" alt="Budibase Twitter" loading="lazy" />
+</figure>
 
 ## 5. Github Discussions
 
 We previously managed our community on Discourse. We decided to make the move to [Github Discussions](https://github.com/Budibase/budibase/discussions) and it's been a great experience to date. They are continually releasing new features, and for an open-source product, it's nice to have your community beside your code. It's also nice to have your community beside the Github Star button too!
 
-{{< figure src="https://dev-to-uploads.s3.amazonaws.com/i/w03obla34w07dkjidwj0.png" alt="Budibase Github Discussions" >}}
+<figure class="blog-figure">
+<img src="https://dev-to-uploads.s3.amazonaws.com/i/w03obla34w07dkjidwj0.png" alt="Budibase Github Discussions" loading="lazy" />
+</figure>
 
 ## 6. Public roadmap (on Github)
 
 Budibase is open source, so it's important our roadmap is public so users understand what's coming down the line, and provide feedback. We use Github Projects to manage [our roadmap](https://github.com/Budibase/budibase/projects/10), and like Discussions, it's great having our users on Github where they can star us, contribute, and collaborate with others.
 
-{{< figure src="https://dev-to-uploads.s3.amazonaws.com/i/w9ey4tqu32ia9r46lu8u.png" alt="Budibase roadmap" >}}
+<figure class="blog-figure">
+<img src="https://dev-to-uploads.s3.amazonaws.com/i/w9ey4tqu32ia9r46lu8u.png" alt="Budibase roadmap" loading="lazy" />
+</figure>
 
 ***
 

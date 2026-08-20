@@ -411,7 +411,10 @@ Budibase also offers flexible branching automations, RBAC, free SSO, multi-user 
 
 On top of this, we offer powerful AI capabilities across the Budibase builder, including within the data section, as automation actions, or for generating table schemas and custom JavaScript, all powered by OpenAI, Azure, or Budibase AI.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### Use cases
 As a Retool alternative, Budibase is ideally suited to building internal tools and workflow apps. For instance, CRUD tools, approval apps, forms, portals, admin panels, and other simple tools that form the backbone of your internal processes.
@@ -732,7 +735,10 @@ We offer free SSO across the board, custom branding for non-enterprise customers
 
 Budibase also offers huge flexibility for how you deploy your app - with a wide range of supported methods, including Ansible, Azure, Digital Ocean, Kubernetes, Podman, Linode, Portainer, and more.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## How to choose a Retool alternative
 To wrap up, we want to outline a few key decision points. After all, we have a horse in the race, but it’s not realistic to think any single platform would be right for every buyer.

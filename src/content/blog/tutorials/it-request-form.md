@@ -14,7 +14,9 @@ This can then be used for categorizing, prioritizing, delegating, and ultimately
 
 Today, we’re exploring how Budibase empowers teams to build secure, advanced forms for all sorts of request workflows. By the end, you’ll have a fully functional, customizable IT request form.
 
-{{< youtube 1k8RFSmsohk >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/1k8RFSmsohk" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 But first …
 
@@ -42,7 +44,9 @@ We’ll also use front-end logic to populate some other data about the request, 
 
 We’re going to create our form schema from scratch, using Budibase’s built-in database - although we also have the option of connecting to a huge range of existing DBMSs and other data sources.
 
-{{< vimeo id="910872989" title="IT Request Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/910872989?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="IT Request Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Let’s jump in.
 
@@ -50,7 +54,10 @@ Let’s jump in.
 
 If you haven’t already, sign up for a Budibase account, to start building as many forms as you want - for free.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Creating our form schema
 
@@ -214,11 +221,9 @@ We’ve used handlebars to set the date_time attribute to the current date and t
 
 The full expression we’ve used is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ date now "DD-MM-YYYY HH:mm:ss" }}
-
-{{< /highlight >}}
+```
 
 We can hit preview and fill in our form to confirm that this works as expected:
 

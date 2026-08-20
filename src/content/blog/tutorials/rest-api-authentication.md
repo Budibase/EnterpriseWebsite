@@ -26,9 +26,14 @@ By the end of this guide, you’ll be fully familiar with how to access data and
 
 Here goes.
 
-{{< youtube zeMVcx59IsE >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/zeMVcx59IsE" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## What is REST API authentication?
 
@@ -102,15 +107,13 @@ Naming conventions can vary here, so make sure you’re using whatever attribute
 
 So, if our API key was *super-secret-key*, for example, our hard-coded headers might look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
 “x-api-key”: “super-secret-key”
 
 }
-
-{{< /highlight >}}
+```
 
 But, we aren’t necessarily going to want to hard code solutions, so let’s look at how we can use API headers for authentication in Budibase.
 
@@ -138,27 +141,23 @@ Alternatively, some vendors will ask us to provide authentication details as *AP
 
 If we were using a URL parameter, our GET Users request would look something like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
 https://example-api-url.com/v1/users**?apiKey=super-secret-key**
 
 }
-
-{{< /highlight >}}
+```
 
 In other words, to add a URL parameter to a query we append the provided endpoint with:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
 ?attributeName=value
 
 }
-
-{{< /highlight >}}
+```
 
 Again, we’ve got a couple of different options for how we want to do this in Budibase.
 
@@ -206,17 +205,18 @@ Under the global authentication tab, we can also provide a bearer token, if this
 
 We have the option of simply adding our access token in manually as a string. Or, if we’re using the same SSO system as the API we’re trying to access, we can use the following binding to provide this dynamically, based on the current users:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ Current User.OAuthToken }}
-
-{{< /highlight >}}
+```
 
 And we can use this in queries in exactly the same way as we did a second ago with basic auth.
 
 That’s it! Those are the four most common REST API authentication methods, along with how you can leverage them to connect to data sources in Budibase.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Other security practices for API authentication
 

@@ -140,8 +140,7 @@ The logic we’re using is as follows:
 
 Our prompt is:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 **Agent role** 
 
 Assess employee vacation requests, evaluate staff availability, and either approve automatically or provide a recommendation based on predefined rules.
@@ -197,8 +196,7 @@ Return a structured decision object:
 **Rules** 
 
 Never assume booking data, never modify unrelated records, never bypass availability checks, never add conversational filler, always produce a deterministic decision consistent with the rules.
-
-{{< /highlight >}}
+```
 
 ![Agent](https://res.cloudinary.com/daog6scxm/image/upload/v1771946279/cms/integrating-ai-into-human-workflows/AI_Human_Workflow_4_fsgecw.webp "Agent")
 
@@ -250,8 +248,7 @@ The agent also logs all outcomes on the `Decisions` table.
 
 The prompt we’re using to enforce this logic is:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 \## Agent role
 
 You are a scheduled background agent that analyzes support tickets. Your job is to interpret the intent of the most recent human comment using natural language and decide the next system action. You can ONLY close stale tickets or nudge relevant users to review these for themselves, based on the rules provided below.
@@ -349,8 +346,7 @@ All actions must be recorded on the `Decisions` table using {{ budibase.Decision
 \- Do not invent additional rules or stipulations.
 
 \- When comparing dates to determine which comment was most recent, consider the full timestamp, including the time of day.
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1771946278/cms/integrating-ai-into-human-workflows/Human_AI_Workflow_8_fwmidg.webp "Prompt")
 

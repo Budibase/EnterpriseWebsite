@@ -85,7 +85,10 @@ Most often, data transformation tools fall into one of four categories:
 
 So you can see, the kind of data transformation tools you’re going to need for integrating two SaaS tools is going to be very different from the solution you’ll need to centralize and warehouse *all* of your organizational data as part of an ETL process.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Top 10 data transformation tools
 
@@ -229,7 +232,10 @@ We offer dedicated data connectors for Postgres, SQL, S3, Airtable, Google Sheet
 
 Budibase’s built-in automation editor makes it easy to craft complex transformations leveraging all kinds of connected data sources, without writing a single line of code. Take a look at our [features overview](https://budibase.com/product/agents/) to learn more.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Supporting data transformation efforts
 

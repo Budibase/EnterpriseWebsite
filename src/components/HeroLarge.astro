@@ -10,6 +10,7 @@ interface Props {
   demoProps?: Record<string, unknown>;
   backgroundImage?: string;
   theme?: "default" | "brand-dark";
+  mediaWithinBackground?: boolean;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   demoProps,
   backgroundImage,
   theme = "default",
+  mediaWithinBackground = false,
 } = Astro.props as Props;
 const isBrandDark = theme === "brand-dark";
 
@@ -36,7 +38,13 @@ if (image && demo) {
 const Demo = demo;
 ---
 
-<section class:list={["hero-large", isBrandDark && "hero-large--brand-dark"]}>
+<section
+  class:list={[
+    "hero-large",
+    isBrandDark && "hero-large--brand-dark",
+    mediaWithinBackground && "hero-large--media-within-background",
+  ]}
+>
   <div class="hero-large__copy-surface">
     <div class="hero-large__container">
       <div class="hero-large__copy">
@@ -110,6 +118,11 @@ const Demo = demo;
 
   .hero-large--brand-dark {
     margin-top: 0;
+  }
+
+  .hero-large--brand-dark.hero-large--media-within-background {
+    padding-bottom: clamp(1rem, 2.5vw, 2rem);
+    background: var(--bb-celery-1300);
   }
 
   .hero-large--brand-dark .hero-large__copy-surface {
@@ -189,6 +202,10 @@ const Demo = demo;
     margin-top: clamp(3rem, 6vw, 6rem);
     overflow: hidden;
     border-radius: var(--radius-small);
+  }
+
+  .hero-large--media-within-background .hero-large__media {
+    margin-top: 0;
   }
 
   .hero-large__background-image,

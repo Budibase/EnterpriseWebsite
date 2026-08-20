@@ -24,7 +24,9 @@ A service request is an interaction between an on-the-ground colleague, customer
 
 In other words, this is a formalized way for service users to request something from IT, usually in the form of access to equipment, information, or some other resource.
 
-{{< vimeo id="953485337" title="Service request management" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/953485337?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Service request management" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 To learn how to build the form you can see above, check out our tutorial on creating [IT request forms](https://budibase.com/blog/tutorials/it-request-form/).
 
@@ -72,7 +74,9 @@ More often, though, we’ll handle this using more specialist ITSM tools, like i
 
 The goal is to ensure that service users can provide the required information in the appropriate format with as little effort as possible. This also gives IT teams a secure, accessible record of service requests, facilitating the remainder of the management process.
 
-{{< vimeo id="925338777" title="Service request management" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/925338777?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Service request management" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ### 2. Assessment
 

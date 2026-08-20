@@ -84,7 +84,10 @@ Our users choose Budibase for managing processes that require human users to wor
 
 Check out our [AI agents](https://budibase.com/product/agents/) to learn more about putting AI to work with Budibase.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 2. Zapier
 

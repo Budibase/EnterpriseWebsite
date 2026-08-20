@@ -38,11 +38,15 @@ Our employee management app will be based around two distinct types of users, ea
 
 One group of users, with a role called **Manager**, will be able to create new **jobs** and assign them to **employees**. 
 
-{{< vimeo id="1027314753" title="Employee Management App" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1027314753?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Employee Management App" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 A separate group of users, whose role is called **Colleague**, will be able to view jobs that are assigned to them and edit a subset of their attributes. They’ll also be able to view and edit their own personal details.
 
-{{< vimeo id="1027314718" title="Employee Management App" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1027314718?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Employee Management App" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 We’re building this on top of two tables in Budibase’s internal DB, but we could just as easily use an external data source, such as an existing relational database, NoSQL tool, API, or spreadsheet.
 
@@ -56,7 +60,10 @@ Let’s jump right in.
 
 If you haven’t already, sign up for a free Budibase account to start building as many apps as you want.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 The first thing we’ll do is create a new app project and give it a name. We’re simply calling our Employee Management App.
 
@@ -319,6 +326,8 @@ When we’re happy, we can hit **Publish** to push our app live for users.
 
 Here’s a reminder of what the finished app looks like.
 
-{{< vimeo id="1027314753" title="Employee Management App" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1027314753?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Employee Management App" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Budibase is the fast, easy way to build secure workflows on top of any data. To learn more, check out our [product page](https://budibase.com/product/agents/).

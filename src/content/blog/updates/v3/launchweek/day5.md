@@ -9,7 +9,9 @@ socialImage: "https://res.cloudinary.com/daog6scxm/image/upload/v1730463909/camp
 draft: false
 ---
 
-{{< youtube id="ts2uFSwmCyM" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/ts2uFSwmCyM" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 
 It’s the final day of our first launch week, and today, we’re going to look into the future of Budibase.

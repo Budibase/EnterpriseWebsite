@@ -14,7 +14,9 @@ Today, we’re checking out how you can use Budibase to digitalize your vendor r
 
 By the end of this tutorial, you’ll have a fully customizable multi-step form - that you can even host on your website.
 
-{{< youtube qDXfm4ZUa5Y >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/qDXfm4ZUa5Y" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 But first, let’s think about a little bit of background.
 
@@ -49,7 +51,10 @@ And here’s what it would look like if we embedded it on the Budibase website:
 
 So, let’s dive right in. If you haven’t already - sign up for a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Create a new app and configure your data
 

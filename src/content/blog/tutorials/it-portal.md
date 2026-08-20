@@ -41,11 +41,15 @@ Instead, we want to show off the speed and ease with which we can build out func
 
 So, here’s a quick demo of our portal’s knowledge base:
 
-{{< vimeo id="925338789" title="IT Portal Knowledge Base" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/925338789?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="IT Portal Knowledge Base" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 And our ticketing tools:
 
-{{< vimeo id="925338777" title="IT Portal Ticketing" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/925338777?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="IT Portal Ticketing" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 So, let’s see how this works in Budibase.
 
@@ -55,7 +59,10 @@ You might also like our guide to [open-source low-code platforms](https://budiba
 
 If you haven’t already, the first thing you’ll want to do is sign up for a free Budibase account to start building as many custom applications as you need.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 Then, we need to create a new Budibase application. We have the option of starting with a template or importing an existing app dump, but today, we’re going to start from scratch.
 
@@ -312,8 +319,7 @@ To achieve this, we’re going to need a bit of custom JavaScript, so we’ll op
 
 The specific code we’re going to use is:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var date = $("Repeater Block.Knowledge Base.Date Added");
 
 var text = "Created: "
@@ -329,8 +335,7 @@ if ($("Repeater Block.Knowledge Base.Date Updated") != null){
 var formattedDate = new Date(date).toDateString();
 
 return text + formattedDate;
-
-{{< /highlight >}}
+```
 
 This uses an if statement to check if the Date Updated attribute is null and then displays the appropriate text and formatted date based on this.
 
@@ -519,13 +524,11 @@ We’ll set Submitted By to {{ Current User._id }}.
 
 Lastly, we’ll set the Submitted Date to the following JavaScript expression.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var date = new Date();
 
 return date;
-
-{{< /highlight >}}
+```
 
 Then, we can preview our app and submit a row of test data to confirm that this works correctly.
 

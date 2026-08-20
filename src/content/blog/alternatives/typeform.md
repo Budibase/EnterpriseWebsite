@@ -94,7 +94,9 @@ Once we’ve connected our data, we can autogenerate highly customizable forms a
 
 Budibase also offers a visual workflow automation editor, complete with branching and looping logic, alongside a range of configurable triggers, actions, and LLM operations, making it perfect for handling complex processes involving form inputs.
 
-{{< form-builder-cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Use cases
 

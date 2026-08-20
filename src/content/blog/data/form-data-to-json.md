@@ -41,7 +41,10 @@ Budibase is the fast, easy way to build advanced forms on top of just about any 
 
 If you haven’t already, sign up for a free Budibase account to start building unlimited forms.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. JSON fields in BudibaseDB
 
@@ -145,8 +148,7 @@ We want this to display a subheading followed by some appropriately stylized tex
 
 The specific Markdown expression we’ll use for this is:
 
-{{< highlight markdown "linenos=inline" >}}
-
+````markdown
 \### JSON:
 
 \```json
@@ -162,8 +164,7 @@ The specific Markdown expression we’ll use for this is:
 }
 
 \```
-
-{{< /highlight >}}
+````
 
 ![Markdown](https://res.cloudinary.com/daog6scxm/image/upload/v1707903904/cms/json-forms/JSON_Forms_19_jlz5lc.webp "Markdown")
 
@@ -302,8 +303,7 @@ For our demonstration, we’d like users to be able to add three custom key/valu
 
 Now, to write our query, we simply have to arrange our bindable values into a JSON object - such as:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
 ​	"{{key1}}": "{{value1}}",
@@ -313,8 +313,7 @@ Now, to write our query, we simply have to arrange our bindable values into a JS
 ​	"{{key3}}": "{{value3}}"
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll then run our query:
 

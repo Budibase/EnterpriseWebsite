@@ -105,7 +105,10 @@ Specifically, we’re going to build an automation flow for approving invoice su
 
 Sign up for a free Budibase account to build along with our demo.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 We’re starting with a simple BudibaseDB table to store details of our expense claims.
 
@@ -169,8 +172,7 @@ This accepts a single argument called `Prompt`. We’ll hit the lightning bolt i
 
 The specific prompt we’re going to use will use the `Amount`, `Category`, and `Justification` to decide if the request should be approved automatically, if it requires human review, or if it will likely be rejected.
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an assistant for an internal expense-approval workflow. 
 
 Your task is to analyse an expense request using the amount, category, and the employee’s written justification. 
@@ -207,8 +209,7 @@ Return the state only, with no explanation.
 Category: {{ trigger.row.Category }}
 
 Justification: {{ trigger.row.Justification }}
-
-{{< /highlight >}}
+```
 
 ![Automate Internal Approvals AI](https://res.cloudinary.com/daog6scxm/image/upload/v1763050211/cms/ai-internal-approvals/AI_Approvals_11_itxv3s.webp "Automate Internal Approvals AI")
 

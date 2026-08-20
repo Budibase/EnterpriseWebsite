@@ -133,7 +133,10 @@ Premium licenses cost $50 per creator per month and $5 for end users - giving a 
 
 We also offer custom pricing for enterprises, with enhanced security controls, audit logging, air-gapped deployments, and more.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 2. Retool
 Retool is one of the biggest names in the low-code space. Like Budibase, it’s aimed at improving the way teams output custom internal tools. However, the difference is that Retool is optimized for professional developers, rather than other IT colleagues.

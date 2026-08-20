@@ -7,13 +7,17 @@ socialImage: "/small-business-apps/budibase.png"
 draft: false
 ---
 
-{{< figure src="/small-business-apps/small-business-apps.jpg" alt="Small business apps" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/small-business-apps.jpg" alt="Small business apps" loading="lazy" />
+</figure>
 
 Are you looking for a list of the top, most useful small business apps? Are you interested in automating business processes, and unearthing new ways to gain control and save your business money and time?  Then look no further.
 
 Along with team members from other departments, we have come together to finally get to the bottom of which business apps are best for small businesses. We’ve drafted in the help of Twitter and our 1200 followers to suggest and vote for their favorites.
 
-{{< figure src="/small-business-apps/twitter-poll.png" alt="Twitter poll" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/twitter-poll.png" alt="Twitter poll" loading="lazy" />
+</figure>
 
 We then tried and tested each suggestion, picked the best ones, and grouped them by category.
 
@@ -34,11 +38,13 @@ Here are the categories:
 
 
 
-## IT / Operations {#IT}
+<h2 id="IT">IT / Operations</h2>
 
 ### [Github](https://github.com/)
 
-{{< figure src="/web-development-tools/github.png" alt="Github UI" >}}
+<figure class="blog-figure">
+<img src="/web-development-tools/github.png" alt="Github UI" loading="lazy" />
+</figure>
 
 
 **Description**: Github is an integral part of IT departments across the globe. Now owned by Microsoft, Github offers version control,  source code management, project planning, community management, issue tracking, task management, bug tracking, and wikis. To some of you, this may mean very little, but to others, these are incredibly important processes within the development lifecycle. And they're free!
@@ -53,7 +59,9 @@ Here are the categories:
 
 ### [Budibase](https://budibase.com/)
 
-{{< figure src="/small-business-apps/budibase.png" alt="Budibase UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/budibase.png" alt="Budibase UI" loading="lazy" />
+</figure>
 
 
 **Description**: Budibase is a low-code platform for building custom software. When spreadsheets are too limited, and off-the-shelf software is too generic and expensive, Budibase is the answer. With Budibase, software users become software makers. For example, with Budibase you could build a customised CRM for your organization in minutes, without coding, and for free!
@@ -76,11 +84,13 @@ Here are the categories:
 
 ---
 
-## Accounting and finance {#accounting}
+<h2 id="accounting">Accounting and finance</h2>
 
 ### Xero
 
-{{< figure src="/small-business-apps/xero-ui.jpg" alt="Xero UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/xero-ui.jpg" alt="Xero UI" loading="lazy" />
+</figure>
 
 **Description**: Xero is online accounting software and is used by over 2 million small businesses. From importing bank transactions to sending invoice reminders, Xero automatically handles your accounting tasks. 
 
@@ -94,7 +104,9 @@ Here are the categories:
 
 ### [Float](https://floatapp.com/)
 
-{{< figure src="/small-business-apps/float-ui.png" alt="Float UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/float-ui.png" alt="Float UI" loading="lazy" />
+</figure>
 
 **Description**: With Float, you get a real-time view of your cash flow which helps you make better business decisions. A common reason businesses die is because they run out of money. Float keeps you updated on your bottom line and tells you in a simple way when you are going to run out of money or when you are going to hit a certain financial target.
 
@@ -110,11 +122,13 @@ Here are the categories:
 
 ---
 
-## Sales and Marketing {#sales}
+<h2 id="sales">Sales and Marketing</h2>
 
 ### [Hubspot](https://www.hubspot.com/)
 
-{{< figure src="/small-business-apps/hubspot-ui.png" alt="Hubspot UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/hubspot-ui.png" alt="Hubspot UI" loading="lazy" />
+</figure>
 
 
 **Description**: Hubspot is the ultimate marketing and sales platform. HubSpot offers a complete CRM platform with all the tools and integrations you need to grow your business — whether you want to increase leads, accelerate sales, streamline customer service, or build a powerful website. 
@@ -130,7 +144,9 @@ Here are the categories:
 
 ### [Mailchimp](https://mailchimp.com/)
 
-{{< figure src="/web-app-design/mailchimp.PNG" alt="Mailchimp UI" >}}
+<figure class="blog-figure">
+<img src="/web-app-design/mailchimp.PNG" alt="Mailchimp UI" loading="lazy" />
+</figure>
 
 **Description**: Mailchimp claims to be an all-in-one integrated marketing platform for small businesses to grow. In our opinion, it is an email marketing platform; and a very good one.
 
@@ -146,11 +162,13 @@ Here are the categories:
 
 ---
 
-## Communication {#communications}
+<h2 id="communications">Communication</h2>
 
 ### [Discord](https://discord.com/)
 
-{{< figure src="/web-development-tools/discord.png" alt="Discord UI" >}}
+<figure class="blog-figure">
+<img src="/web-development-tools/discord.png" alt="Discord UI" loading="lazy" />
+</figure>
 
 **Description**: Discord is our favourite instant messaging / VOIP application. 
 
@@ -164,7 +182,9 @@ Here are the categories:
 
 ### [Whereby](https://whereby.com/)
 
-{{< figure src="/small-business-apps/whereby-ui.jpg" alt="Whereby UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/whereby-ui.jpg" alt="Whereby UI" loading="lazy" />
+</figure>
 
 
 **Description**: Whereby is a video meeting tool for SMEs who want to host easy and reliable video meetings. All meetings happen on your browser. There are no apps or installs required, and no login for guests. You can also create your own personal (sort-of) domain - whereby.com/budibase for example. 
@@ -181,11 +201,13 @@ Here are the categories:
 
 ---
 
-## Analytics and Reporting {#analytics}
+<h2 id="analytics">Analytics and Reporting</h2>
 
 ### [Google Analytics](https://marketingplatform.google.com/about/analytics/)
 
-{{< figure src="/web-development-tools/analytics.png" alt="Analytics UI" >}}
+<figure class="blog-figure">
+<img src="/web-development-tools/analytics.png" alt="Analytics UI" loading="lazy" />
+</figure>
 
 **Description**: Millions of small businesses rely on Google Analytics to understand who is visiting their website. Google just released their new version of Analytics and it builds on top of their App + Web property they released last year. The new version has machine learning at its core and provides deeper insights into user behavior.
 
@@ -199,7 +221,9 @@ Here are the categories:
 
 ### [Posthog](https://posthog.com/)
 
-{{< figure src="/small-business-apps/posthog.png" alt="Posthog UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/posthog.png" alt="Posthog UI" loading="lazy" />
+</figure>
 
 **Description**: PostHog provides open source product analytics. They are an open source alternative to products like Mixpanel, Amplitude, and Heap. The key difference is that you can self-host the platform, and it's open source. Digging deeper, Posthog provides event capture for your applications and identifies who is doing what, when.
 
@@ -215,11 +239,13 @@ Take a look at tour guide to [application transformation](https://budibase.com/b
 
 ---
 
-## Customer / Community Support {#customer}
+<h2 id="customer">Customer / Community Support</h2>
 
 ### [Intercom](https://www.intercom.com/)
 
-{{< figure src="/small-business-apps/intercom.png" alt="Intercom UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/intercom.png" alt="Intercom UI" loading="lazy" />
+</figure>
 
 **Description**: Intercom is an incredible support tool which has grown over the years from being just an app chat tool to an entire customer relationship platform. It helps you build customer relationships through conversational, messenger-based experiences across the customer journey.
 
@@ -233,7 +259,9 @@ Take a look at tour guide to [application transformation](https://budibase.com/b
 
 ### [Github Discussions](https://github.com/Budibase/budibase/discussions)
 
-{{< figure src="/small-business-apps/discussions.png" alt="Discord UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/discussions.png" alt="Discord UI" loading="lazy" />
+</figure>
 
 **Description**: Github Discussions is a new way for software communities to collaborate outside the codebase. It's currently still in beta and is similar to Discourse, but lives within Github.
 
@@ -249,11 +277,13 @@ Take a look at tour guide to [application transformation](https://budibase.com/b
 
 ---
 
-## Project management {#project}
+<h2 id="project">Project management</h2>
 
 ### [Asana](https://asana.com/)
 
-{{< figure src="/web-development-tools/asana.png" alt="Asana UI" >}}
+<figure class="blog-figure">
+<img src="/web-development-tools/asana.png" alt="Asana UI" loading="lazy" />
+</figure>
 
 
 **Description**: Asana helps teams organize, track and manage their work. With over 70,000 customers and millions of users, Asana is used in 195 countries across the world and is proving incredibly popular as more companies go remote.
@@ -268,7 +298,9 @@ Take a look at tour guide to [application transformation](https://budibase.com/b
 
 ### Trello
 
-{{< figure src="/web-development-tools/trello.png" alt="Trello UI" >}}
+<figure class="blog-figure">
+<img src="/web-development-tools/trello.png" alt="Trello UI" loading="lazy" />
+</figure>
 
 **Description**: Trello was the first PM tool which took a drastically different approach to the work process, and revolutionalised the Kanban board. 
 
@@ -284,11 +316,13 @@ Take a look at our uide to [workflow management tools](https://budibase.com/blog
 
 ---
 
-## Business organization {#business}
+<h2 id="business">Business organization</h2>
 
 ### [Gsuite - Google Workspace](https://workspace.google.co.uk)
 
-{{< figure src="/small-business-apps/Google-Workspace.png" alt="Google Workspace" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/Google-Workspace.png" alt="Google Workspace" loading="lazy" />
+</figure>
 
 
 **Description**: Gsuite is an integrated suite of secure, cloud-native collaboration and productivity apps, including Gmail, Docs, Drive, Calendar, Meet and more. At the heart of Gsuite is Gmail - the incredibly popular email service. 
@@ -304,7 +338,9 @@ Take a look at our uide to [workflow management tools](https://budibase.com/blog
 
 ### [Dropbox](https://www.dropbox.com/)
 
-{{< figure src="/small-business-apps/dropbox.jpg" alt="Dropbox UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/dropbox.jpg" alt="Dropbox UI" loading="lazy" />
+</figure>
 
 **Description**: Dropbox is primarily a cloud storage service that lets you save files online and sync them between your devices. Recently, Dropbox has grown it's product line, and introduced productivity and content collaboration tools, such as Paper. 
 
@@ -320,11 +356,13 @@ Take a look at our uide to [workflow management tools](https://budibase.com/blog
 
 ---
 
-## HR {#hr}
+<h2 id="hr">HR</h2>
 
 ### [Bob](https://www.hibob.com/)
 
-{{< figure src="/small-business-apps/bob.png" alt="Bob UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/bob.png" alt="Bob UI" loading="lazy" />
+</figure>
 
 
 **Description**: Bob is a people management platform that helps dynamic companies bring out the best in their employees. 
@@ -339,7 +377,9 @@ Take a look at our uide to [workflow management tools](https://budibase.com/blog
 
 ### [Deel](https://www.letsdeel.com/)
 
-{{< figure src="/small-business-apps/deel.jpg" alt="Deel UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/deel.jpg" alt="Deel UI" loading="lazy" />
+</figure>
 
 
 **Description**: Deel is the first payroll platform for remote teams that connects localized compliance and payments in one system and automates everything.
@@ -358,11 +398,13 @@ Take a look at our uide to [workflow management tools](https://budibase.com/blog
 
 
 
-## Payments / Eccomerce {#payments}
+<h2 id="payments">Payments / Eccomerce</h2>
 
 ### [Shopify](https://www.shopify.com/)
 
-{{< figure src="/no-code-tools/shopify.png" alt="Shopify UI" >}}
+<figure class="blog-figure">
+<img src="/no-code-tools/shopify.png" alt="Shopify UI" loading="lazy" />
+</figure>
 
 **Description**: Shopify empowers independent business owners to digitise their commerce. Over 1,000,000 businesses in 175 countries around the world have made over $200 billion USD in sales using Shopify. 
 
@@ -376,7 +418,9 @@ Take a look at our uide to [workflow management tools](https://budibase.com/blog
 
 ### [Stripe](https://stripe.com/)
 
-{{< figure src="/small-business-apps/stripe-ui.jpg" alt="Stripe UI" >}}
+<figure class="blog-figure">
+<img src="/small-business-apps/stripe-ui.jpg" alt="Stripe UI" loading="lazy" />
+</figure>
 
 **Description**: Millions of businesses of all sizes—from startups to large enterprises—use Stripe’s software and APIs to accept payments, send payouts, and manage their businesses online.
 

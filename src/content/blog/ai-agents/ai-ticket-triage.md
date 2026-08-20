@@ -92,7 +92,10 @@ Specifically, we’re going to show off the process of building a ticketing form
 
 Sign up for a free Budibase account to build along with us.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 We’re starting with a simple BudibaseDB table called `Tickets`. This contains columns called `Title`, `Description`, `Reproduction Steps`, `Status`, and `Created At`. `Status` and `Created At` will be auto-populated, while the others require user-submitted values.
 
@@ -172,8 +175,7 @@ We can hit the lightning bolt icon to open up the bindings modal, where we can w
 
 We’ll pass our `Title`, `Description`, and `Reproduction Steps` fields to our AI model for analysis with the following prompt:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 You are an IT service management assistant. Your task is to assign a numerical priority (1–5) to an IT support ticket based on its Title, Description, and Reproduction Steps.
 
 Priority scale and logic:
@@ -201,8 +203,7 @@ Title: {{ Title }}
 Description: {{ Description }}
 
 Reproduction Steps: {{ Reproduction Steps }}
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1762960261/cms/ai-ticket-triage/AI_Ticket_Triage_15_a7cl5a.webp "Prompt")
 

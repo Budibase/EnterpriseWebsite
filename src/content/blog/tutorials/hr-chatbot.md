@@ -51,7 +51,10 @@ We’ll be using Budibase’s native Chat UI to invoke our Agent so that end-use
 
 We’re starting with a fresh Budibase Workspace, which we’ve called `HR Chatbot`. To build along with this guide, you can sign up for your own Budibase account using the link below.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Data tables
 

@@ -121,7 +121,10 @@ Similarly, a huge proportion - if not the majority - of software development pro
 
 For instance - coordinating modules built by different colleagues or connecting to external tools, libraries, or web services rather than building *everything* from scratch.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 But our focus today is guiding you through the process of weighing up system integration vs software development in situations where you’re trying to create a solution to solve a particular business problem.
 

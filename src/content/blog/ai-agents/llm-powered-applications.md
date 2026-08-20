@@ -135,7 +135,9 @@ One huge part of this is autogenerating database schemas based on natural langua
 
 Budibase will then output an appropriate database schema, complete with rows of dummy data.
 
-{{< vimeo id="1104079365" title="LLM Powered Applications" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1104079365?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="LLM Powered Applications" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 As well as this, Budibase offers AI-powered code generation within JavaScript bindings across the builder.
 
@@ -143,7 +145,9 @@ This opens up a range of capabilities for advanced data transformations for user
 
 Here’s an example of how this might work, returning a date variable for next Monday at 9am.
 
-{{< vimeo id="1104079343" title="LLM Powered Applications" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1104079343?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="LLM Powered Applications" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ### AI columns
 
@@ -215,13 +219,11 @@ We’ll then hit the lightning bolt icon to open the bindings drawer.
 
 We’re going to use the following prompt:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an IT service desk assistant. {{ trigger.row.Title }} {{ trigger.row.Description }} is a new ticket.
 
 Please draft an email, suggesting troubleshooting steps and advising relevant timelines.
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1753353179/cms/ai-agents/llm-powered-applications/LLM_Powered_Applications_13_cskrnc.webp "Prompt")
 

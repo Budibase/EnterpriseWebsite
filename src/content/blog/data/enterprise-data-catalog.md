@@ -24,7 +24,9 @@ An enterprise data catalog is a centralized resource for documenting our interna
 
 A data asset could be a database, filtered view, document store, API endpoint, data lake/warehouse, spreadsheet, file, spreadsheet, or even an individual record.
 
-{{< vimeo id="961320496" title="Enterprise Data Catalog" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/961320496?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Enterprise Data Catalog" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 In the first instance, the goal is to provide colleagues with a unified source of information about our data assets so that they can easily locate the appropriate data for their immediate needs without necessarily needing to go through IT.
 
@@ -86,7 +88,9 @@ Other times, an administrator might need to manually provide them with database 
 
 Importantly, certain data sets will enable users to self-serve when it comes to access, subject to their role. Others will require request/approval workflows to ensure that more sensitive or mission-critical data can only be accessed by certain colleagues.
 
-{{< vimeo id="961320461" title="Enterprise Data Catalog" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/961320461?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Enterprise Data Catalog" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## 6 benefits of data cataloging
 

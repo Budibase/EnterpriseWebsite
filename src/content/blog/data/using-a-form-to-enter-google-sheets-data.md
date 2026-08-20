@@ -67,7 +67,9 @@ We’ll return to some of the more specific features of Budibase that make it th
 
 For now, though, let’s jump into the practical stuff.
 
-{{< form-builder-cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Building Google Sheets forms: step-by-step
 
@@ -149,7 +151,10 @@ Now, for really simple use cases, we could use what we have so far as a deployab
 
 But, part of the beauty of Budibase is that we don’t need too much more effort to transform this simple app into something really impressive.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 Let’s think about how we could spend a couple of extra minutes really supercharging our forms to enter data into Google Sheets.
 
@@ -277,7 +282,10 @@ Here’s what our finished app looks like:
 
 We can use it as a standalone web app or use an iframe to embed it in an existing webpage or application.
 
-{{< custom-cta text="Build custom workflow apps on top of any data with Budibase" >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Build custom workflow apps on top of any data with Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## The smart option for using a form to enter data to Google Sheets
 

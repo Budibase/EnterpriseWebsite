@@ -42,7 +42,9 @@ Budibase makes it easy to generate working form UIs from your data schema and ex
 
 So, you can output advanced forms in a fraction of the time.
 
-{{< vimeo id="910099856" title="Audit Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/910099856?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Audit Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Let’s jump in.
 
@@ -50,7 +52,10 @@ Let’s jump in.
 
 If you haven’t already, create a free Budibase account.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Building our form schema
 
@@ -208,8 +213,7 @@ The final score is returned at the end.
 
 Here’s our code.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var score = 0;
 
 $("proper_illumination") == true ? score +=1 : score = score;
@@ -223,8 +227,7 @@ $("sanitary_bathrooms") == true ? score +=1 : score = score;
 $("clean_uncluttered") == true ? score +=1 : score = score;
 
 return score
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1707150335/cms/audit-form/Audit_Form_21_juqfne.webp "JavaScript")
 
@@ -234,8 +237,7 @@ We’ve also added a row of dummy data to confirm that this works:
 
 We’ll add two more formula variables using the same processes. First, one called health_and_safety_score with the following code:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var score = 0;
 
 $("policy_written") == true ? score +=1 : score = score;
@@ -249,13 +251,11 @@ $("fire_extinguishers") == true ? score +=1 : score = score;
 $("electrical_equipment") == true ? score +=1 : score = score;
 
 return score
-
-{{< /highlight >}}
+```
 
 And another called final_score that combines our two existing expressions:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var score = 0;
 
 $("proper_illumination") == true ? score +=1 : score = score;
@@ -279,8 +279,7 @@ $("fire_extinguishers") == true ? score +=1 : score = score;
 $("electrical_equipment") == true ? score +=1 : score = score;
 
 return score
-
-{{< /highlight >}}
+```
 
 And again, we’ll confirm that these return the expected values:
 

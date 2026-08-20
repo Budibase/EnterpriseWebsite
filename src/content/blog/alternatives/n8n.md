@@ -75,7 +75,10 @@ Our app builder offers extensive flexibility and customization within an intuiti
 
 We've recently launched Budibase Agents, enabling privacy-first teams to create intelligent assistants using their own data, tools, and models, including support for local and open-source LLMs. 
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Use cases
 

@@ -7,7 +7,9 @@ socialImage: "/releases/2021/june/layout.png"
 draft: false
 ---
 
-{{< youtube LJHA2K8loaw >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/LJHA2K8loaw" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 The July release delivers on a number of popular requests from our community and contains four major updates, including;
 

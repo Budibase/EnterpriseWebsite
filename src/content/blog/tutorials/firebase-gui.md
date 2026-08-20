@@ -196,13 +196,11 @@ Click on the “theme” icon and there you can pick your app theme, and change 
 
 In the navigation section, you can define the menu items and the header background color, including CSS gradients. For example, the demo app uses this color:
 
-{{< highlight css "linenos=inline" >}}
-
+```css
 radial-gradient( circle farthest-corner at 10% 20%, 
 rgba(252, 123, 3,1) 0%, 
 rgba(250, 245, 92,1) 90% )
-
-{{< /highlight >}}
+```
 
 You can interact with your app using screens.
 
@@ -241,11 +239,9 @@ The query data requires a JSON object containing all the fields for that item. Y
 
 You can do it by using this JS function instead of the bindings:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return $("New Form.Fields.data").replace(/[\r\n]/gm, '');
-
-{{< /highlight >}}
+```
 
 Well done! Now, you can add data to your Firebase GUI. Feel free to preview and test this screen.
 
@@ -279,11 +275,9 @@ Lastly, you need to adjust the onclick actions for the “update” button.
 
 This time, you need to execute the “Update” query. Again, to avoid any issues with your JSON code, send the form field “data” with no line breaks or spaces using this JS code:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 return $("New Form.Fields.data").replace(/[\r\n]/gm, '');
-
-{{< /highlight >}}
+```
 
 Then, can show a notification to inform users that the update worked, and navigate to the panel screen.
 
@@ -384,8 +378,7 @@ Here is how it looks:
 
 In terms of contents, the embed component outputs the collection name with dashes to display the hierarchy. You can use this JS function:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var path = $("collection.collections.path");
 var slashes = ( path.match(/\//g) || []).length;
 var selected = $("[state].[path]");
@@ -407,8 +400,7 @@ path = " — " + path;
 
 return "<pre style='opacity: " 
 + selected + "'>" + path + "</pre>";
-
-{{< /highlight >}}
+```
 
 This function gets the current path and counts how many slashes there are in it. For each slash there’s a hyphen, making the hierarchy clearer.
 
@@ -420,16 +412,14 @@ Moving to the next big column, the documents container in the elements tree is t
 
 This is the JS code there:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var collection = $("State.collection");
 if ( ! collection ) {
 collection = "messages";
 }
 
 return collection;
-
-{{< /highlight >}}
+```
 
 This code simply gets the collection app state. If it’s empty, it sets a default collection (messages).
 
@@ -445,8 +435,7 @@ This button updates the row index appstate to {{ Document.Row Index }}, and save
 
 You can display the document ID using an embed component with this JS code:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var id = $("Document.getCollection.id");
 var row = $("State.rowindex");
 if ( ! id ) {
@@ -465,8 +454,7 @@ row = 0.7;
 }
 
 return "<pre style='opacity: " row + "'>" + id + "</pre>";
-
-{{< /highlight >}}
+```
 
 This code gets the title of the collection and displays either the title or “(no ID provided)”. In addition, this code checks if the current row is active and changes its opacity to 1. Otherwise, it’s at 70% opacity.
 
@@ -474,8 +462,7 @@ Moving on, you can create the next column with the “details” container.
 
 You can use this JS function for the title:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var collection = $("State.collection");
 var id = $("State.rowindex");
 
@@ -493,8 +480,7 @@ id = "";
 }
 
 return "/" + collection + "/" + id;
-
-{{< /highlight >}}
+```
 
 This function shows the complete path of the document.
 
@@ -506,8 +492,7 @@ Remember how the update screen pre-populates data from an appstate? Therefore, y
 
 This is the JS function for the doc appstate:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var rowindex = $("State.rowindex");
 
 if ( ! rowindex ) {
@@ -516,8 +501,7 @@ rowindex = 1
 
 return JSON.stringify( 
 $("Documents.Rows")[rowindex] , null, "\t");
-
-{{< /highlight >}}
+```
 
 This function stores the current document data as a stringified JSON notation, using tabs to make it prettier.
 
@@ -535,8 +519,7 @@ The action buttons component is visible only when there is an ID. You can do it 
 
 This condition hides the action buttons when this code is equal to zero:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var id = $("State.rowindex");
 
 if ( ! id ) {
@@ -549,8 +532,7 @@ id = "0";
 }
 
 return id;
-
-{{< /highlight >}}
+```
 
 Likewise, you can display a “no actions” row only when this condition is zero (so there’s no valid ID).
 
@@ -558,8 +540,7 @@ When it comes to displaying the document data, you can use an embed.
 
 In it, you use some REGEX to beautify the JSON. This is the JS code of your embed component:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 function replaceKey( str ) {
 return "<span style='color: #fcba03'>" 
 + str + "</span>";
@@ -628,8 +609,7 @@ data = JSON.stringify(data, null, "\t");
 data = data.replaceAll(/[:]\s(.*)/g, replaceValue);
 data = data.replaceAll(/("[^"]+":)/g, replaceKey);
 return "<pre>" + data + "</pre>";
-
-{{< /highlight >}}
+```
 
 It seems daunting, but this code is quite simple.
 

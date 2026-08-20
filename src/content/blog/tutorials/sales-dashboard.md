@@ -39,7 +39,9 @@ Since this can take up internal development time, many businesses are seeking ou
 
 Let’s check out what we’re building in our tutorial in order to get a feel for what this looks like in the real world.
 
-{{< youtube RCeoYL9xVfc >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/RCeoYL9xVfc" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## What are we building?
 
@@ -126,15 +128,13 @@ So first, the monthly revenue growth rate. Basically, we want to select this mon
 
 We’ll call this *revenue_growth_rate*. So, the first part of our SQL statement is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
 ​	(this_month_revenue - last_month_revenue) / last_month_revenue * 100 
 
 AS revenue_growth_rate
-
-{{< /highlight >}}
+```
 
 But, *this_month_revenue* and *last_month_revenue* don’t actually exist in our database. We need to create those by summing the revenues that match a defined month and year.
 
@@ -152,8 +152,7 @@ We’ll call the outputs *this_month_revenue* and *last_month_revenue* using *AS
 
 When we add these lines on, our query will be:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
 ​	(this_month_revenue - last_month_revenue) / last_month_revenue * 100 
@@ -165,8 +164,7 @@ FROM
  (SELECT SUM(revenue) AS this_month_revenue FROM sales_kpi WHERE month = {{ this_month}} AND year = {{ this_year}}) AS this_month_revenue,
 
 ​	(SELECT SUM(revenue) AS last_month_revenue FROM sales_kpi WHERE month = {{ last_month }} AND year = {{ last_month_year }}) AS last_month_revenue
-
-{{< /highlight >}}
+```
 
 This returns our monthly growth rate, but we haven’t specified any rounding, so we get quite a few decimal places - depending on the real figures being processed:
 
@@ -174,8 +172,7 @@ This returns our monthly growth rate, but we haven’t specified any rounding, s
 
 So, we’ll use the ROUND function to reduced our data down to two decimal places:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
 ​	ROUND((this_month_revenue - last_month_revenue) / last_month_revenue * 100, 2) 
@@ -187,8 +184,7 @@ FROM
  (SELECT SUM(revenue) AS this_month_revenue FROM sales_kpi WHERE month = {{ this_month}} AND year = {{ this_year}}) AS this_month_revenue,
 
 ​	(SELECT SUM(revenue) AS last_month_revenue FROM sales_kpi WHERE month = {{ last_month }} AND year = {{ last_month_year }}) AS last_month_revenue
-
-{{< /highlight >}}
+```
 
 We’re going to use rounding every time we divide or multiply in our custom queries from now on - but we’re not going to draw attention to it every time.
 
@@ -200,8 +196,7 @@ While we’re here, we also want to return *this_month_revenue* and *last_month_
 
 We can simply add these to our existing select statement, making our final query:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
 ​	ROUND((this_month_revenue - last_month_revenue) / last_month_revenue * 100, 2) AS revenue_growth_rate,
@@ -217,8 +212,7 @@ FROM
  (SELECT SUM(revenue) AS this_month_revenue FROM sales_kpi WHERE month = {{ this_month}} AND year = {{ this_year}}) AS this_month_revenue,
 
 ​	(SELECT SUM(revenue) AS last_month_revenue FROM sales_kpi WHERE month = {{ last_month }} AND year = {{ last_month_year }}) AS last_month_revenue
-
-{{< /highlight >}}
+```
 
 ![Custom Query](https://res.cloudinary.com/daog6scxm/image/upload/v1695117606/cms/sales-dashboard/Sales_Dashboard_10_wnw7rx.webp "Custom Query")
 
@@ -252,26 +246,21 @@ We’re going to use a mixture of handlebar expressions and custom JavaScript as
 
 For *this_month* we can use handlebars to get the current month in a numerical format with the expression:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ date now "M" }}
-
-{{< /highlight >}}
+```
 
 And do the same thing for the year using:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ date now "YYYY" }}
-
-{{< /highlight >}}
+```
 
 That’s easy enough. But, if we just did this using handlebars for last month’s values, we’d encounter issues around the start and end of the year, so we’re going to use custom JavaScript.
 
 So, for *last_month*, our binding will be:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 let today = new Date()
 
 today.setMonth(today.getMonth() - 1)
@@ -279,13 +268,11 @@ today.setMonth(today.getMonth() - 1)
 let previousMonth = today.getMonth() + 1
 
 return previousMonth
-
-{{< /highlight >}}
+```
 
 For *last_month_year*, we can use:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 let today = new Date()
 
 today.setMonth(today.getMonth() - 1)
@@ -299,8 +286,7 @@ if(today.getMonth() === 11) {
 let previousMonthYear = today.getFullYear()
 
 return previousMonthYear
-
-{{< /highlight >}}
+```
 
 This if statement is checking if last month was December. If so, we’re subtracting one from the year.
 
@@ -312,7 +298,10 @@ To save us configuring everything over again for our next two cards, we’ll jus
 
 ![Cards row](https://res.cloudinary.com/daog6scxm/image/upload/v1695117600/cms/sales-dashboard/Sales_Dashboard_17_oausvu.webp "Cards row")
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 2. Conversions cards
 
@@ -334,8 +323,7 @@ We’ll start by getting our overall conversion rate - since this is the easy pa
 
 To get just this, the Postgres query would be:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  ROUND(SUM(num_sales)*1.0/SUM(num_leads) * 100 ,2) as sales_conversion_overall
@@ -343,8 +331,7 @@ SELECT
 FROM
 
  sales_kpi
-
-{{< /highlight >}}
+```
 
 ![Query](https://res.cloudinary.com/daog6scxm/image/upload/v1695117600/cms/sales-dashboard/Sales_Dashboard_18_s8ppkq.webp "Query")
 
@@ -358,8 +345,7 @@ We’ll then perform the same calculation on these as before to reach our monthl
 
 So, for last month, we’re selecting the following data from our *sales_KPI* table:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 ROUND( 
 
 ​		SUM(CASE WHEN month = {{ last_month}} AND year = {{ last_month_year}} THEN num_sales ELSE 0 END) * 1.0 / 
@@ -369,13 +355,11 @@ ROUND(
 ​		
 
 ​		, 2) AS sales_conversion_last_month
-
-{{< /highlight >}}
+```
 
 And for *sales_conversion_this_month*, it’s:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 ​		ROUND( 
 
 ​		SUM(CASE WHEN month = {{ this_month}} AND year = {{ this_year}} THEN num_sales ELSE 0 END) * 1.0 / 
@@ -385,13 +369,11 @@ And for *sales_conversion_this_month*, it’s:
 ​		
 
 ​		, 2) AS sales_conversion_this_month
-
-{{< /highlight >}}
+```
 
 That means that our full query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
  ROUND(SUM(num_sales)*1.0/SUM(num_leads) * 100 ,2) as sales_conversion_overall,
@@ -421,8 +403,7 @@ SELECT
 FROM
 
  sales_kpi
-
-{{< /highlight >}}
+```
 
 Again, we’ll specify that each of these are numbers, and we’re ready to go.
 
@@ -456,8 +437,7 @@ This time, we’re operationalizing our cost of acquisition as the SUM of the to
 
 The actual query this time is pretty similar to the last one, so we’ll just give you the whole thing:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
   ROUND(SUM(total_marketing_costs)*1.0 / SUM(num_new_customers), 2) AS cost_of_customer_over_time,
@@ -479,8 +459,7 @@ SELECT
 FROM 
 
 ​	sales_kpi
-
-{{< /highlight >}}
+```
 
 ![Sales Dashboard](https://res.cloudinary.com/daog6scxm/image/upload/v1695117597/cms/sales-dashboard/Sales_Dashboard_22_waaqbs.webp "Sales Dashboard")
 
@@ -504,8 +483,7 @@ We’ll also ORDER by year ascending followed by month ascending.
 
 So, our query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
   ROUND(SUM(total_marketing_costs)*1.0 / SUM(num_new_customers), 2) AS cost_of_customer_over_time,
@@ -527,8 +505,7 @@ SELECT
 FROM 
 
 ​	sales_kpi
-
-{{< /highlight >}}
+```
 
 We’ll also tell Budibase that these are numbers again.
 
@@ -552,8 +529,7 @@ So, we can start with a similar query, except this time we’ll also need to SEL
 
 This looks like this:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
 
 ​	month,
@@ -575,8 +551,7 @@ GROUP BY
 ORDER BY
 
  year ASC, month ASC, region ASC
-
-{{< /highlight >}}
+```
 
 We’ll call this query *RevenueByRegion*. But, look at the table that it returns:
 
@@ -586,18 +561,15 @@ We have multiple rows for the same months, so this isn’t going to look right o
 
 In other words, our query should return a series of arrays in the format:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 month: “mm/yyyy”, region: value, region: value, etc
-
-{{< /highlight >}}
+```
 
 To do this, we’re going to write a little bit of custom JavaScript in our transformer box. Specifically, we’re going to use the *data.reduce()* and *Object.values()* methods to create an accumulator and populate the relevant data into objects for each unique month.
 
 Here’s our code, with comments explaining what each part does:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 const transformedResults = data.reduce((acc, curr) => {
 
  // Create a unique key for each month-year combination
@@ -629,8 +601,7 @@ const transformedResults = data.reduce((acc, curr) => {
 const transformedResultsArray = Object.values(transformedResults);
 
 return transformedResultsArray
-
-{{< /highlight >}}
+```
 
 Now when we run our query, the returned data looks like this:
 

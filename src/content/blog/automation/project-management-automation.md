@@ -188,7 +188,10 @@ These are the main issue that you’re likely to encounter:
 
 Again, it’s not that any of these issues make automation unviable. Rather, we need to be realistic about the tools we choose and the resources we dedicate to automating specific tasks in order to ensure the optimal return on investment.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## How to automate project management in 5 steps
 

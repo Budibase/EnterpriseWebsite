@@ -230,7 +230,10 @@ This is centered around a visual interface for defining the flow of resources wi
 
 Zapier also offers a huge range of direct integrations with different SaaS and COTS platforms, making it an easy way to chain connections between individual tools - and manage more complex integrations in a centralized manner.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### Low-code development with Budibase
 

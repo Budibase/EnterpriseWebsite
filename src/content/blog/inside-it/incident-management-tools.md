@@ -71,7 +71,10 @@ Let’s check out what makes each one tick.
 ### 1. Budibase
 
 First up, we have Budibase, the open-source, low-code platform that empowers IT teams to turn data into action. Large enterprises in all industries choose Budibase to power a range of ITSM workflows, including handling service requests, ticketing, incident reports, and more.
-{{< vimeo id="963211946" title="Incident Management Tools" >}}
+
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/963211946?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Incident Management Tools" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 #### Features
 
@@ -80,7 +83,12 @@ Budibase offers exceptional support for external data. Connect to all kinds of R
 Once you’ve connected your data, you can define user roles and permissions before autogenerating highly customizable UIs. With fully optional custom code, Budibase is the perfect solution for all kinds of IT colleagues to ship professional, secure tools.
 
 We also offer powerful, low-code automations using an intuitive flowchart interface. Build complex logic for incident management using our library of automation actions, including looping and branching logic.
-{{< template-cta template = "incidentReport" >}}
+
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">incident report template</p>
+<a class="blog-inline-cta__button" href="https://budibase.app/builder?template=app/it-incident-report-form" target="_blank" rel="noopener noreferrer">Use template</a>
+</aside>
+
 #### Use cases
 
 Budibase is fully optimized for all kinds of ITSM use cases. With our intuitive design tools and flexible data modeling, you can easily craft all kinds of custom forms, ticketing solutions, and admin panels to closely match existing workflows and business rules.

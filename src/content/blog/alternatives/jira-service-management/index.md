@@ -356,7 +356,9 @@ Budibase is the open-source, low-code platform that empowers IT teams to turn da
 
 Thousands of IT teams in all industries choose Budibase to power their internal service delivery processes.
 
-{{< vimeo id="1001639751" title="Change Request Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1001639751?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Change Request Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 #### Features
 
@@ -382,7 +384,10 @@ Premium licenses bill at $50 per month for creators and $5 for end users, provid
 
 Our Enterprise plan offers creator-only pricing, making it ideal for large-scale ITSM processes. Unlike most tools in this space, you only pay for app-builders - not service agents. Enterprise customers also get enforceable SSO, air-gapped deployments, and custom LLM configs.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 2. ServiceNow
 

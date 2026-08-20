@@ -161,8 +161,7 @@ We’ll start by adding an AI Column, calling it `Description Data` and choosing
 
 We’ll then use the following prompt to define logic for popultating `Category` and `Priority` variables, formatting them as a JSON object.
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an IT service desk assistant. 
 
 {{ [Asset Link] }} and {{ [Description] }} are a maintenance request for an IT asset.
@@ -210,8 +209,7 @@ Return this information as a JSON object, in the format
 "Justification": "Lorem Ipsum"
 
 }
-
-{{< /highlight >}}
+```
 
 The correctly formatted data will then be returned each time a new row is added to our table.
 
@@ -245,8 +243,7 @@ Next, under the AI subheading, we’ll add an `LLM Prompt` action.
 
 We’ll use the following prompt to define which requests can be automatically approved.
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an AI assistant for IT Operations. Your task is to evaluate IT asset rental requests and return a structured decision in JSON format.
 
 The following is an asset rental request
@@ -286,8 +283,7 @@ If all of the above criteria are met, return the following raw JSON string, with
 "status": "approved"
 
 }
-
-{{< /highlight >}}
+```
 
 We can then test this using a row that we know satisfies our approval criteria.
 
@@ -297,13 +293,11 @@ Next, we’ll add a `Condition` action, so that the automation only continues if
 
 The `Condition` action accepts a reference value, a condition, and a comparison value. For our reference value, we’re using the following JavaScript function.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var response = JSON.parse($("steps.LLM Prompt.response"))
 
 return response["status"]
-
-{{< /highlight >}}
+```
 
 We’ll continue if the output of this is equal to `approved`.
 

@@ -127,9 +127,14 @@ We’ll use the following form to collect submissions.
 
 Here’s how our ticket categorization app looks in action.
 
-{{< vimeo id="1082797266" title="NLP Applications Ticket Categorizations" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1082797266?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="NLP Applications Ticket Categorizations" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
-{{< template-cta template: "ticketingSystem" >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">ticketing system template</p>
+<a class="blog-inline-cta__button" href="https://budibase.app/builder?template=app/it-help-desk" target="_blank" rel="noopener noreferrer">Use template</a>
+</aside>
 
 ### 2. Summarizing long-form text
 
@@ -151,7 +156,9 @@ This time, we’re adding an AI Column called `Summary`, choosing the `Summarize
 
 To display this, we’ve created a streamlined UI where end users can flick between the raw transcript and the AI-generated summary.
 
-{{< vimeo id="1082797249" title="NLP Applications Text Summarization" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1082797249?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="NLP Applications Text Summarization" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ### 3. Translation
 
@@ -177,7 +184,9 @@ Once again, we’ll add our AI Column, this time choosing the `Translate` option
 
 Here’s what our embedded form looks like as someone enters a query in a foreign language.
 
-{{< vimeo id="1082797230" title="NLP Applications Translation" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1082797230?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="NLP Applications Translation" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Back in our data section, we can see that this has been successfully translated from German to English.
 
@@ -217,8 +226,7 @@ Here, we’ll enter the following text to tell our LLM to use the content of the
 
 
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 Take the information provided in {{ Description}} 
 
 and use it to create a JSON object with the following format. 
@@ -251,8 +259,7 @@ Return only the requested JSON object, no additional text or rationale.
  }
 
 }
-
-{{< /highlight >}}
+```
 
 
 

@@ -76,7 +76,10 @@ Low-code offers just as much, if not more, for less technical personas. For exam
 
 We’ll take a look at exactly how this works towards the end of this guide.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Creating web apps with AI tools
 In recent years, AI has made huge leaps forward in just about all aspects of life. But, one of the most prominent examples of this are AI tools that help us to develop software.
@@ -146,9 +149,11 @@ Are you ready? Let’s do this!
 
 [12. Deploy your web app](#deloyment)
 
-## Step 1 – Source an idea {#source}
+<h2 id="source">Step 1 – Source an idea</h2>
 
-{{< figure src="/how-to-make-a-web-app/idea.png" alt="Choose an idea" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/idea.png" alt="Choose an idea" loading="lazy" />
+</figure>
 
 Before making a web app, you must first understand what you intend on building, and more importantly why?
 
@@ -169,9 +174,11 @@ Ask yourself:
 
 If you are having a hard time finding ideas, here’s [6 micro saas ideas](/blog/micro-saas-ideas/).
 
-## Step 2 – Market Research {#research}
+<h2 id="research">Step 2 – Market Research</h2>
 
-{{< figure src="/how-to-make-a-web-app/market-research.png" alt="Conduct market research" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/market-research.png" alt="Conduct market research" loading="lazy" />
+</figure>
 
 Once you’ve chosen your idea(s), it’s important to research the market to see:
 
@@ -209,9 +216,11 @@ After completing the above steps, you should have enough information to understa
 
 If there is a market for your product, and there’s also established competition, it’s important to research them.
 
-## Step 3 - Define your web apps functionality {#functionality}
+<h2 id="functionality">Step 3 - Define your web apps functionality</h2>
 
-{{< figure src="/how-to-make-a-web-app/functionality.png" alt="How to make a web app - Define functionality" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/functionality.png" alt="How to make a web app - Define functionality" loading="lazy" />
+</figure>
 
 You’ve got your idea, you’ve validated the market, it’s now time to list everything you want your app to do.
 
@@ -248,9 +257,11 @@ It’s time to get creative!
 
 **Moving from the Ideation stage, to design stage.**
 
-## Step 4 - Sketch your web app {#sketch}
+<h2 id="sketch">Step 4 - Sketch your web app</h2>
 
-{{< figure src="/how-to-make-a-web-app/sketch.png" alt="Sketch web application" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/sketch.png" alt="Sketch web application" loading="lazy" />
+</figure>
 
 There are multiple stages of designing a web app.
 
@@ -280,9 +291,11 @@ Once again, don’t get carried here. Your sketch is for communicating and exper
 
 After sketching your app, it’s time to move on to step 5.
 
-## Step 5 – Plan your web apps workflow {#workflow}
+<h2 id="workflow">Step 5 – Plan your web apps workflow</h2>
 
-{{< figure src="/how-to-make-a-web-app/workflow.png" alt="Plan workflow" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/workflow.png" alt="Plan workflow" loading="lazy" />
+</figure>
 
 It’s time to put yourself in the shoes of your user. In step 5 we’re going to plan your web apps workflow.
 
@@ -307,9 +320,11 @@ Write a list of all the different pages your web application will have.
 
 Consider the different states of pages. For example, the homepage will have two states; logged in and logged out. Logged in users will see a different page than logged out users.
 
-## Step 6 – Wireframing / Prototyping Your Web Application {#wireframe}
+<h2 id="wireframe">Step 6 – Wireframing / Prototyping Your Web Application</h2>
 
-{{< figure src="/how-to-make-a-web-app/wireframe-ui.png" alt="Wireframe/prototype the web application" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/wireframe-ui.png" alt="Wireframe/prototype the web application" loading="lazy" />
+</figure>
 
 Ok, it’s time to turn those sketches and that new-found understanding of your web application into a wireframe/prototype.
 
@@ -329,9 +344,11 @@ You can prototype/wireframe using the following tools:
 
 I recommend you create a design system / style guide first. You can find inspiration at [UXPin](https://adele.uxpin.com/). Design systems improve design consistency. But it’s not required.
 
-## Step 7 – Seek early validation {#validation}
+<h2 id="validation">Step 7 – Seek early validation</h2>
 
-{{< figure src="/how-to-make-a-web-app/validation.png" alt="Seek early validation" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/validation.png" alt="Seek early validation" loading="lazy" />
+</figure>
 
 You’ve now got a beautiful wireframe/prototype which visually describes your web app.
 
@@ -373,9 +390,11 @@ It’s time to consider your database.
 
 Exciting times!
 
-## Step 8 – Architect and build your database {#database}
+<h2 id="database">Step 8 – Architect and build your database</h2>
 
-{{< figure src="/how-to-make-a-web-app/database.png" alt="Create a web app database" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/database.png" alt="Create a web app database" loading="lazy" />
+</figure>
 
 So, we know roughly our web application’s functionality, what it looks like, and the pages required. Now it’s time to determine what information we will store in our database.
 
@@ -483,9 +502,11 @@ You should look into best practices for securing your particular database. Some 
 
 From the start, you should create a  login with “Just Enough” access. If your app only reads and writes data, then it should authenticate to your database using a login with only data reading and writing access.
 
-## Step 9 - Build the frontend {#frontend}
+<h2 id="frontend">Step 9 - Build the frontend</h2>
 
-{{< figure src="/how-to-make-a-web-app/frontend.png" alt="Build the frontend" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/frontend.png" alt="Build the frontend" loading="lazy" />
+</figure>
 
 Note: In reality, you will build your backend and frontend at the same time. But for this post, we’ll keep it simple.
 
@@ -531,9 +552,11 @@ You should now have a better idea of how to setup your frontend and define the l
 
 Moving on to the backend.
 
-## Step 10 - Build your backend {#backend}
+<h2 id="backend">Step 10 - Build your backend</h2>
 
-{{< figure src="/how-to-make-a-web-app/backend.png" alt="Build the backend" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/backend.png" alt="Build the backend" loading="lazy" />
+</figure>
 
 ### What do we mean by the backend?
 
@@ -584,9 +607,11 @@ Environments. You will usually need to create multiple environments. For example
 * Beta - to give early releases to clients.
 * Production - Your live system.
 
-## Step 11 - Host your web application {#hosting}
+<h2 id="hosting">Step 11 - Host your web application</h2>
 
-{{< figure src="/how-to-make-a-web-app/hosting.png" alt="Host your web application" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/hosting.png" alt="Host your web application" loading="lazy" />
+</figure>
 
 ### What is hosting
 
@@ -607,9 +632,11 @@ If you are not using Budibase to host your web application, follow these quick s
 
 Choosing one of these hosting options will almost certainly provide you with everything you need. They have ample documentation and community support, and are generally reliable options.
 
-## Step 12 - Deploy your web app {#deployment}
+<h2 id="deployment">Step 12 - Deploy your web app</h2>
 
-{{< figure src="/how-to-make-a-web-app/deployment.png" alt="Deploy your web application" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/deployment.png" alt="Deploy your web application" loading="lazy" />
+</figure>
 
 You’ve sourced your idea, validated it, designed and developed your web app, and chosen your hosting provider.
 
@@ -631,7 +658,9 @@ To start with, you can just deploy directly from your machine of course.
 
 And that’s it. You have made a web application. Well done. You should take some time to celebrate this achievement. You're the proud owner of a new web app.
 
-{{< figure src="/how-to-make-a-web-app/well-done.png" alt="Well done on building a web application" >}}
+<figure class="blog-figure">
+<img src="/how-to-make-a-web-app/well-done.png" alt="Well done on building a web application" loading="lazy" />
+</figure>
 
 ***
 
@@ -720,7 +749,10 @@ Or, you might opt to self-host.
 
 That is, deploying to your own infrastructure using Kubernetes, Docker, Docker Compose, and Digital Ocean.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Start creating web apps today
 

@@ -55,7 +55,10 @@ API headers also give us more control over how data is returned to us. For examp
 
 Finally, we might need to use headers simply because the server requires it - and we won’t get a response if we don’t meet the documented requirements.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## What are API headers used for?
 
@@ -145,8 +148,7 @@ Each key and value is formatted as a string.
 
 So, this would look something like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
 “key1”: “value1”,
@@ -156,8 +158,7 @@ So, this would look something like this:
 “key3”: “value3”
 
 }
-
-{{< /highlight >}}
+```
 
 
 
@@ -184,8 +185,7 @@ In our example, we have a few requirements.
 
 So, our headers might look like this.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
 “authorization”: “AGjdgdagd843qjfagdkadgkjdg93tadjdkgsgda9dgasfgdkagahfsas”,
@@ -197,15 +197,13 @@ So, our headers might look like this.
 “cache-control”: “no-store”
 
 }
-
-{{< /highlight >}}
+```
 
 In our response, we want to include the status, date, and content-type.
 
 If the request was successful, our response headers would look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
 
 “status”: “200”,
@@ -215,8 +213,7 @@ If the request was successful, our response headers would look like this:
 “date”: “Wed, 01 Oct 2023 00:00:01 GMT”
 
 }
-
-{{< /highlight >}}
+```
 
 Note that the *200* status code indicates that the request was successful. If there was a problem, we’d likely see a 3XX or 4XX status code. For example, *404* - indicating that the requested resource couldn’t be found.
 
@@ -237,7 +234,9 @@ Budibase can also be used as a client for connecting to APIs as a data source or
 
 We offer an intuitive, form-based interface for adding headers to API requests - including bindable values using handlebars and JavaScript formulas:
 
-{{< vimeo id="922821851" title="API Headers" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/922821851?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="API Headers" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 We can also use Budibase's intuitive, low-code builder to create professional interfaces and populate API requests with user inputs.
 
@@ -251,9 +250,14 @@ And then by assigning values to these within our front-end builder:
 
 For instance, we might want to build a form to [send data to an API request](https://budibase.com/blog/data/send-form-data-to-api/):
 
-{{< vimeo id="914423121" title="API Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/914423121?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="API Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Turn data into action
 

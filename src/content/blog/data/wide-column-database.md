@@ -49,8 +49,7 @@ In terms of actual storage, we can distinguish between *row-orientated* and *col
 
 So, in a row-orientated database, each entry is stored as a separate object, containing all of the relevant attributes. This might look like:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 rowId1, firstName1, lastName1, phone1;
 
 rowId2, firstName2, lastName2, phone2;
@@ -58,8 +57,7 @@ rowId2, firstName2, lastName2, phone2;
 rowId3, firstName3, lastName3, phone3;
 
 etc
-
-{{< /highlight >}}
+```
 
 This is an efficient way of storing data that’s going to be used for performing operations on a comparatively small number of rows - but if we want to perform operations on single attributes from a large number of rows, it‘s not optimal.
 
@@ -69,8 +67,7 @@ Column-orientated databases work differently. As you might have guessed, the dat
 
 So, stored objects contain all of the values for a given column, like so:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 rowId1, rowId2, rowId3;
 
 firstName1, firstName2, firstName3;
@@ -80,8 +77,7 @@ lastName2, lastName2, lastName3;
 phone1, phone2, phone3;
 
 etc
-
-{{< /highlight >}}
+```
 
 Since all of the attributes for a given entity - like a customer - are stored across multiple objects *whole-row* *operations* are relatively inefficient. 
 

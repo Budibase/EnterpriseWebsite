@@ -40,7 +40,9 @@ As we said at the outset, AI forms can refer to a few distinct things in differe
 
 Broadly, though, what these have in common is that they involve utilizing LLM capabilities, either within the tooling we use to output forms or in the actual form solutions themselves. For example, using AI to provide feedback on users' form inputs in real time.
 
-{{< vimeo id="1122868305" title="AI Forms" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1122868305?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="AI Forms" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 To make things easier throughout the course of this guide, we’re going to be more careful with our terminology. 
 
@@ -114,7 +116,9 @@ Similarly, an agent might determine that it needs to poll other users for inform
 
 Or, in just about any kind of agentic workflow, the system might need to seek clarification or additional information before it can proceed, which AI-generated forms are a helpful way of facilitating.
 
-{{< form-builder-cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## What is behind the growth of AI forms?
 
@@ -244,7 +248,9 @@ For a fuller discussion of both of these topics, as well as an exploration of th
 
 We’ve already hinted at a different approach to AI form generation without considering it in great detail. That is utilizing AI to generate individual elements of our form rather than a wholesale solution, as we would with an AI form builder.
 
-{{< vimeo id="1122878171" title="AI Forms" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1122878171?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="AI Forms" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 There are essentially two configurations of this, each with its own distinct goals, use cases, and required tooling.
 

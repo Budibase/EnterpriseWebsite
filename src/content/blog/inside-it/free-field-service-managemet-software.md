@@ -77,7 +77,9 @@ Here are our picks.
 
 ### 1. Budibase
 
-{{< vimeo id="926228969" title="Fleet Management Portal" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/926228969?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Fleet Management Portal" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 First up, we have Budibase - the open-source, low-code platform that turns data into action. Our platform is the perfect solution for busy IT teams that need to build professional custom solutions on top of just about any data source.
 
@@ -91,7 +93,10 @@ Use our visual development tools and library of built-in components to craft pro
 
 Budibase is the ideal solution for busy, security-focused teams. With optional self-hosting, low-code automations, custom plug-ins, LLM support, digital signatures, and free SSO, there’s never been an easier way to ship effective tools for field agents.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Use cases
 
@@ -277,7 +282,9 @@ We can access unlimited users, as well as live location tracking and job-starts 
 
 ## Build free field service management tools with Budibase
 
-{{< vimeo id="917827479" title="Data Collection Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/917827479?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Data Collection Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Budibase is the [open-source, low-code platform](https://budibase.com/blog/open-source-low-code-platforms/) that empowers IT teams to output professional solutions at pace.
 

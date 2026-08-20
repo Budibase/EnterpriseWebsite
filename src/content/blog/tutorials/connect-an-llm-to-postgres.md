@@ -79,7 +79,10 @@ As we said already, our example will use Postgres and OpenAI to triage incoming 
 
 If you haven’t already, sign up for a free Budibase account to start building as many applications as you like.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 Note, in this tutorial, we’re using a self-hosted instance of Budibase in order to access the OpenAI automation action, but you can also access a range of AI features in our cloud platform using BudibaseDB as your data source.
 
@@ -113,8 +116,7 @@ We can then choose which of our database’s tables we’d like to `fetch`, maki
 
 If you’d like to build along with our tutorial, you can use the following query to create our database:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE tickets (
 
  id SERIAL PRIMARY KEY,
@@ -132,13 +134,11 @@ CREATE TABLE tickets (
  updated_at TIMESTAMPTZ
 
 );
-
-{{< /highlight >}}
+```
 
 You can use this one to populate it with dummy data:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 INSERT INTO tickets (description, status, created_at, updated_at) VALUES
 
 ('User cannot access VPN', 'Open', '2025-05-20 09:15:00+00', '2025-05-20 09:15:00+00'),
@@ -150,8 +150,7 @@ INSERT INTO tickets (description, status, created_at, updated_at) VALUES
 ('Unable to login to CRM system', 'Open', '2025-05-23 07:45:00+00', '2025-05-23 07:45:00+00'),
 
 ('Request for software installation', 'Closed', '2025-05-18 16:20:00+00', '2025-05-22 15:00:00+00');
-
-{{< /highlight >}}
+```
 
 Here’s what our table looks like within the Data section of the Budibase builder.
 
@@ -264,8 +263,7 @@ We’re going to construct our prompts in three parts, in order to:
 
 The first part of our prompt will be:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an IT service desk assistant. Given the following ticket description, identify the most appropriate category and priority level.
 
 Categories: Network Issue, Software Bug, Hardware Problem, Access Request, General Inquiry, Other 
@@ -281,8 +279,7 @@ Use the following rules to determine priority:
 \- If the issue causes minor inconvenience or affects a single user, priority is "Medium".
 
 \- For requests like access or general inquiries without urgency, priority is "Low".
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1748357127/cms/ai-agents/connect-llm-to-postgres/Connect_LLM_to_Postgres_22_qbalss.webp "Prompt")
 
@@ -292,8 +289,7 @@ Next, we can access the `description` from our trigger row under `Trigger Output
 
 We’ll wrap this in text using the following beneath our existing prompt:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 Ticket description:
 
 """
@@ -301,15 +297,13 @@ Ticket description:
 {{ trigger.row.description }}
 
 """
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1748357126/cms/ai-agents/connect-llm-to-postgres/Connect_LLM_to_Postgres_24_dlmlvn.webp "Prompt")
 
 Lastly, we’ll specify the response format that we need, using:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 Provide your answer in JSON format with the keys "category" and "priority". For example:
 
 {
@@ -319,15 +313,13 @@ Provide your answer in JSON format with the keys "category" and "priority". For 
  "priority": "High"
 
 }
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1748357126/cms/ai-agents/connect-llm-to-postgres/Connect_LLM_to_Postgres_25_wiokae.webp "Prompt")
 
 This means our completed prompt is:
 
-{{< highlight plaintext "linenos=inline" >}}
-
+```plaintext
 You are an IT service desk assistant. Given the following ticket description, identify the most appropriate category and priority level.
 
 Categories: Network Issue, Software Bug, Hardware Problem, Access Request, General Inquiry, Other 
@@ -361,8 +353,7 @@ Provide your answer in JSON format with the keys "category" and "priority". For 
  "priority": "High"
 
 }
-
-{{< /highlight >}}
+```
 
 We’ll hit save, and that’s our prompt ready to go.
 
@@ -400,25 +391,21 @@ To do this, we’ll declare a variable and set its value by applying the JSON.pa
 
 We can do this with the following two lines of JavaScript.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var response = JSON.parse($("steps.OpenAI.response"))
 
 return response["category"]
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1748357122/cms/ai-agents/connect-llm-to-postgres/Connect_LLM_to_Postgres_32_iif0vg.webp "JavaScript")
 
 We can repeat this same process with the `priority` field, using:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var response = JSON.parse($("steps.OpenAI.response"))
 
 return response["priority"]
-
-{{< /highlight >}}
+```
 
 ![JavaScript](https://res.cloudinary.com/daog6scxm/image/upload/v1748357122/cms/ai-agents/connect-llm-to-postgres/Connect_LLM_to_Postgres_33_y4gy8f.webp "JavaScript")
 

@@ -17,7 +17,9 @@ Today, we’re going to see how Budibase can be used to create professional inte
 
 By the end, you’ll have a clear working understanding of how to use our open-source, low-code platform to output custom solutions based on your own internal workflows.
 
-{{< youtube 9-DJ4l5LCnQ >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/9-DJ4l5LCnQ" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 But first, let’s think about a bit of background.
 
@@ -59,7 +61,10 @@ The logic for our calculations is contained in two custom queries. These accept 
 
 So, let’s get started. If you haven’t already - sign up for a free Budibase account to start turning data into action.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Create a new Budibase application and connect your data
 
@@ -127,21 +132,18 @@ Now, we’re ready to start writing the query itself. This will be relatively co
 
 The first thing we need to do is create a `common table expression` which will SELECT our two date inputs:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH date_range AS (
 
   SELECT 
 ​    {{ startDate }}::DATE AS start_date, 
 ​    {{ endDate }}::DATE AS end_date
 ),
-
-{{< /highlight >}}
+```
 
 Then, we use a second CTE called `AllStockChanges` to gather the relevant details from our `sales, returns`, `shipments`, and `consignments` tables, and calculate the net stock changes for all sales, returns, and consignments, grouped by `item_name`:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 AllStockChanges AS (
   SELECT
 ​    c.item_name,
@@ -169,8 +171,7 @@ AllStockChanges AS (
   GROUP BY s.item_name, month_year
 
 )
-
-{{< /highlight >}}
+```
 
 Our main query then SELECTs the:
 
@@ -185,8 +186,7 @@ We’ll also use two JOIN statements:
 
 And finally, we’ll GROUP and ORDER BY `item_name`.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
   a.item_name,
   SUM(a.stock_change) AS total_stock_change,
@@ -197,13 +197,11 @@ JOIN date_range d ON DATE_TRUNC('month', a.month_year) BETWEEN d.start_date AND 
 JOIN inventory i ON a.item_name = i.item_name
 GROUP BY a.item_name
 ORDER BY a.item_name;
-
-{{< /highlight >}}
+```
 
 When we put all of this together, our full query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH date_range AS (
   SELECT 
 ​    {{ startDate }}::DATE AS start_date, 
@@ -246,22 +244,19 @@ JOIN date_range d ON DATE_TRUNC('month', a.month_year) BETWEEN d.start_date AND 
 JOIN inventory i ON a.item_name = i.item_name
 GROUP BY a.item_name
 ORDER BY a.item_name;
-
-{{< /highlight >}}
+```
 
 ![Response](https://res.cloudinary.com/daog6scxm/image/upload/v1699625525/cms/inventory-calculator/Inventory_Calculator_11_wi877s.webp "Response")
 
 The data objects that are returned look like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
  "item_name": "Bulldozer",
  "total_stock_change": 100,
  "total_stock_value_change": 21000
 }
-
-{{< /highlight >}}
+```
 
 We’ll save that and then duplicate it, so we don’t have to reconfigure our bindings for our second query.
 
@@ -277,8 +272,7 @@ So, we’ll add a string called `totals` and set it equal to `‘Total’`.
 
 Our new main query is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 SELECT
   'Total' AS totals,
   SUM(a.stock_change) AS total_stock_change,
@@ -286,13 +280,11 @@ SELECT
 FROM AllStockChanges a
 JOIN date_range d ON DATE_TRUNC('month', a.month_year) BETWEEN d.start_date AND d.end_date
 JOIN inventory i ON a.item_name = i.item_name;
-
-{{< /highlight >}}
+```
 
 And the full thing is:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 WITH date_range AS (
 
   SELECT 
@@ -335,22 +327,19 @@ SELECT
 FROM AllStockChanges a
 JOIN date_range d ON DATE_TRUNC('month', a.month_year) BETWEEN d.start_date AND d.end_date
 JOIN inventory i ON a.item_name = i.item_name;
-
-{{< /highlight >}}
+```
 
 ![Duplication](https://res.cloudinary.com/daog6scxm/image/upload/v1699625531/cms/inventory-calculator/Inventory_Calculator_12_nxsubk.webp "Duplicate")
 
 The response looks like this:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {
  "totals": "Total",
  "total_stock_change": 368,
  "total_stock_value_change": 193977
 }
-
-{{< /highlight >}}
+```
 
 Now, we’ve got all of the data we need.
 

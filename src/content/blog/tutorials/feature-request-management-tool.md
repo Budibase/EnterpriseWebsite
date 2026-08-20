@@ -41,7 +41,9 @@ When a feature request is accepted, it’s automatically added to the planned fe
 
 Here’s what our app will look like when we’re finished.
 
-{{< vimeo id="1057817619" title="Feature request management tool" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1057817619?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Feature request management tool" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 We’re using Budibase Cloud, although you could also self-host your feature request tool.
 
@@ -53,7 +55,10 @@ Check out our other tutorial on building a [SQL GUI](https://budibase.com/blog/t
 
 If you haven’t already, sign up for a free Budibase account to start building as many internal tools as you need for free.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Setting up our data model
 
@@ -81,8 +86,7 @@ We’re selecting both.
 
 If you want to create a lookalike database, you can use the following queries to create and populate these tables. First, `feature_requests`:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Table: feature_requests
 
 CREATE TABLE feature_requests (
@@ -116,13 +120,11 @@ VALUES
   ('Custom Webhooks', 'Allow users to create custom event-based webhooks.', 'Accepted', NOW(), NOW()),
 
   ('AI-Powered Search', 'Enhance search with AI for better results.', 'completed', NOW(), NOW());
-
-{{< /highlight >}}
+```
 
 Then, `feature_tracking`:
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 -- Table: feature_tracking
 
 CREATE TABLE feature_tracking (
@@ -152,8 +154,7 @@ VALUES
   (4, 'In Progress', 'Critical', '2024-03-20', NOW()),
 
   (5, 'Released', 'High', NULL, NOW());
-
-{{< /highlight >}}
+```
 
 Here’s how our tables look once we’ve fetched them.
 
@@ -657,7 +658,9 @@ When we’re happy, we can hit `Publish` to push our app live.
 
 Here’s a reminder of what our feature request management tool looks like.
 
-{{< vimeo id="1057817619" title="Feature request management tool" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/1057817619?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Feature request management tool" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## Turn data into action with Budibase
 

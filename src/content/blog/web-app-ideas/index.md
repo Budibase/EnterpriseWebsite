@@ -6,7 +6,9 @@ author: "Joe Johnston"
 socialImage: "/web-app-ideas/web-app-ideas.png"
 ---
 
-{{< figure src="/web-app-ideas/web-app-ideas.png" alt="10 web app ideas" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/web-app-ideas.png" alt="10 web app ideas" loading="lazy" />
+</figure>
 
 Do you ever feel like the hardest part of building a web application is thinking of the idea?
 
@@ -56,13 +58,17 @@ Ok, let's dive in.
 
 ## Web app ideas to make money
 
-### 1. The CEO dashboard 📈 {#ceo}
+<h3 id="ceo">1. The CEO dashboard 📈</h3>
 
-{{< figure src="/web-app-ideas/dashboard-web-app.jpg" alt="The CEO Dashboard Web App" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/dashboard-web-app.jpg" alt="The CEO Dashboard Web App" loading="lazy" />
+</figure>
 
 A dashboard web app is the most popular request we receive from signups to [Budibase](https://budibase.com). Dashboards are in-demand - check out the trend line below:
 
-{{< figure src="/web-app-ideas/dashboard-trend.PNG" alt="Dashboard Trend" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/dashboard-trend.PNG" alt="Dashboard Trend" loading="lazy" />
+</figure>
 
 We have access to more data than ever. But the problem is not accessibility, it's interpretation.
 
@@ -78,7 +84,9 @@ A CEO dashboard would provide CEOs with a simple view of all their chosen metric
 
 The term 'Dashboards' is a popular one from a search volume perspective, and not very competitive.
 
-{{< figure src="/web-app-ideas/dashboard-keyword.PNG" alt="Dashboard design" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/dashboard-keyword.PNG" alt="Dashboard design" loading="lazy" />
+</figure>
 
 Building a CEO dashboard would allow you room to differentiate and solve a major (personal) problem. It will be tricky, but the potential is worth it.
 
@@ -94,9 +102,11 @@ You might also like our guide to [enterprise software development](https://budib
 
 ***
 
-### 2. CRM for startups / small businesses 📅 {#crm}
+<h3 id="crm">2. CRM for startups / small businesses 📅</h3>
 
-{{< figure src="/web-app-ideas/crm.jpg" alt="CRM for startups / small businesses" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/crm.jpg" alt="CRM for startups / small businesses" loading="lazy" />
+</figure>
 
 A CRM is a platform which helps you manage relationships with customers.
 
@@ -108,7 +118,9 @@ Your new CRM web app will target freelancers / startups / small businesses. I've
 
 I'm pretty confident people are searching for startup CRMs. Just look at the amount of people following this Quora post:
 
-{{< figure src="/web-app-ideas/quora.PNG" alt="Startup CRM results Quora" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/quora.PNG" alt="Startup CRM results Quora" loading="lazy" />
+</figure>
 
 Building a CRM for startups isn't a great deal of work, and you could have an MVP up and running in a week.
 
@@ -118,7 +130,9 @@ Startups are busy. They need quick access to their customers and a few features,
 
 Check out the search volume (United States only) for 'simple crm'.
 
-{{< figure src="/web-app-ideas/simple-crm-keyword.PNG" alt="Moz results for 'simple crm'" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/simple-crm-keyword.PNG" alt="Moz results for 'simple crm'" loading="lazy" />
+</figure>
 
 Business Potential - ⭐️⭐️⭐️⭐️⭐️
 
@@ -130,19 +144,25 @@ Time to MVP - ⏰⏰
 
 ***
 
-### 3. Retreat management platform 🌄 {#retreat}
+<h3 id="retreat">3. Retreat management platform 🌄</h3>
 
-{{< figure src="/web-app-ideas/retreat.jpg" alt="Retreat management platform" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/retreat.jpg" alt="Retreat management platform" loading="lazy" />
+</figure>
 
 Life is stressful! We work long hours, we spend less time outdoors and more time on our phones. We find it hard to switch off.
 
 Thankfully, in recent years, a lot of focus has been applied to wellness. We are beginning to understand our physical and mental health better. The wellness movement is rapidly growing in popularity which has grown a demand for wellness retreats.
 
-{{< figure src="/web-app-ideas/wellness-retreats-trend.PNG" alt="Retreat Google trend stats" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/wellness-retreats-trend.PNG" alt="Retreat Google trend stats" loading="lazy" />
+</figure>
 
 Wellness retreats sit under a sub-sector called wellness tourism. The [Global Wellness Institute](https://globalwellnessinstitute.org/press-room/press-releases/new-study-reveals-wellness-tourism-now-a-639-billion-market/) report the wellness tourism industry is currently valued at $639 billion and is expected to reach $919 billion by 2022.
 
-{{< figure src="/web-app-ideas/wellness.jpg" alt="Wellness Industry Size" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/wellness.jpg" alt="Wellness Industry Size" loading="lazy" />
+</figure>
 
 After speaking with three health retreats, they informed us they currently use Property Management Software (PMS) which is designed for hotels. And all three have problems with their systems, especially around mobility. Health retreats are activities first, accommodation second. Most activities are outside. Confirming resident attendance at sessions is important and currently completed on paper.
 
@@ -152,7 +172,9 @@ Building the web app will involve a lot of work but the business potential is at
 
 Competition for retreat management software is very low, but so is the search volume:
 
-{{< figure src="/web-app-ideas/retreat-booking-software.PNG" alt="Retreat Google search stats" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/retreat-booking-software.PNG" alt="Retreat Google search stats" loading="lazy" />
+</figure>
 
 Another keyword which attracts a low volume (20 per month) of searches is 'retreat booking software'. This tells me the market are either searching for PMS software (500 searches per month) because they know a retreat management platform doesn't exist or there isn't a need for this type of platform. From my previous conversations, I choose to the believe the former.
 
@@ -166,9 +188,11 @@ Time to MVP - ⏰⏰⏰⏰⏰
 
 ***
 
-### 4. Employee Orientation Software 🏢 {#orientation}
+<h3 id="orientation">4. Employee Orientation Software 🏢</h3>
 
-{{< figure src="/web-app-ideas/orientation.jpg" alt="Employee Orientation Software" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/orientation.jpg" alt="Employee Orientation Software" loading="lazy" />
+</figure>
 
 Employee orientation / induction is a crucial process in any organisation. It's the new employee's first experience of the new company. But more often that not, I've seen and experienced terrible orientation programs.
 
@@ -198,9 +222,11 @@ Time to MVP - ⏰⏰
 
 ## Web app ideas for portfolio
 
-### 5. Crime Alert Web App 🚔 {#alert}
+<h3 id="alert">5. Crime Alert Web App 🚔</h3>
 
-{{< figure src="/web-app-ideas/alert.jpg" alt="Crime Alert Web App" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/alert.jpg" alt="Crime Alert Web App" loading="lazy" />
+</figure>
 
 Crime, sadly, will never go away. But, with the use of a crime alert web app, we could at least try to stop it in its tracks.
 
@@ -210,13 +236,17 @@ The crime alert web app would mimic a social network app. Instead of posting soc
 
 Look at the amazing trend line for crime alerts:
 
-{{< figure src="/web-app-ideas/crime-alert-google-trend.PNG" alt="Crime Alert Google Trend" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/crime-alert-google-trend.PNG" alt="Crime Alert Google Trend" loading="lazy" />
+</figure>
 
 Because of the extent of the problem, it should be easy to attract users. You can then monetise your web app using advertising. Due to the localisation of your web app, local services could advertise on your platform to local users.
 
 There are two clear competitors in this market. One is an app called Citizen with 500,000 downloads. Citizen is a mobile app, and not a web app. Another close competitor is Nextdoor - a social network for neighborhoods. The market is definately there!
 
-{{< figure src="/web-app-ideas/crime-alert-search-volume.PNG" alt="Crime Alert Search Volume" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/crime-alert-search-volume.PNG" alt="Crime Alert Search Volume" loading="lazy" />
+</figure>
 
 With the structure and focus on crime alerts, our web app has a very good chance of making a large impact, and potentially saving lives. The nature of this web app would sit well with a portfolio as anyone could use and relate to it.
 
@@ -230,9 +260,11 @@ Time to MVP - ⏰⏰
 
 ***
 
-### 6. Family web app 👪 {#family}
+<h3 id="family">6. Family web app 👪</h3>
 
-{{< figure src="/web-app-ideas/family.jpg" alt="Family web application" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/family.jpg" alt="Family web application" loading="lazy" />
+</figure>
 
 Families comes in all shapes and sizes, but one thing is for sure, they are hard to manage. Whether it's cooking dinners, doing the school run, or going grocery shopping, family life never stops and it's super-hard to remain organised.
 
@@ -240,13 +272,17 @@ This is where a family app comes in. A family app will include a family calendar
 
 The family app market is a large and moderately competitive. There are some leading players such as Cozy (20 million users), but there's still room to enter, and potential to reach the top of the market.
 
-{{< figure src="/web-app-ideas/family-app-google-trend.PNG" alt="Family App Google Trend" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/family-app-google-trend.PNG" alt="Family App Google Trend" loading="lazy" />
+</figure>
 
 The fact your app will be a web application, will be a key differentiator when competing against competition. Most of the current family apps on offer are mobile apps. With your family web app, users will be able to access your app from their laptops and desktops. This brings with it many advantages - dad can organise the shopping list at his computer in work if he pleases 🍕🍕🍕.
 
 If you are still not convinced about the demand for family apps, check out the following graph detailing the search volume for the term 'family app'.
 
-{{< figure src="/web-app-ideas/family-app-search-volume.PNG" alt="Family App Search Trend" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/family-app-search-volume.PNG" alt="Family App Search Trend" loading="lazy" />
+</figure>
 
 With the size of the market, your new family web app could be a great revenue generator. It is also a great web app for your portfolio as it will present to users a wide range of development skills due to the multiple features involved.
 
@@ -262,9 +298,11 @@ Time to MVP - ⏰⏰⏰⏰
 
 ## Web app ideas for beginners
 
-### 7. A daily highlight web app 📋 {#highlight}
+<h3 id="highlight">7. A daily highlight web app 📋</h3>
 
-{{< figure src="/web-app-ideas/highlight.jpg" alt="A daily highlight web app" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/highlight.jpg" alt="A daily highlight web app" loading="lazy" />
+</figure>
 
 A to-do app focused on one daily, simple to-do/highlight. To-do apps are very popular with thousands produced every year.
 
@@ -290,15 +328,19 @@ Time to MVP - ⏰
 
 ***
 
-### 8. IMDB for Books / Book database 📚 {#books}
+<h3 id="books">8. IMDB for Books / Book database 📚</h3>
 
-{{< figure src="/web-app-ideas/book.jpg" alt="IMDB for Books / Book database" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/book.jpg" alt="IMDB for Books / Book database" loading="lazy" />
+</figure>
 
 As a book lover, I'm always looking for decent book reviews. Goodreads is great but I think it could be better, focusing less on selling and more on reviews!
 
 With a nice UI, and a better review system, you could potentially have a great alternative to Goodreads and the book version of IMDB.
 
-{{< figure src="/web-app-ideas/imdb-books.PNG" alt="IMDB for Books Search Volume" >}}
+<figure class="blog-figure">
+<img src="/web-app-ideas/imdb-books.PNG" alt="IMDB for Books Search Volume" loading="lazy" />
+</figure>
 
 If tackling the world's book review problems is not your goal, then a simple book database might be more sufficient - it's also a lot easier to build.
 

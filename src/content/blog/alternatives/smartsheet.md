@@ -97,7 +97,9 @@ Budibase is the open-source, low-code platform that empowers IT teams to turn da
 
 Our platform is the ideal solution for building custom internal tools and workflow applications on top of just about any business data.
 
-{{< vimeo id="930591556" title="Budibase Mini Demo" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/930591556?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Budibase Mini Demo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Here’s what makes Budibase tick.
 
@@ -323,7 +325,10 @@ On top of this, Smartsheet places many key user management features, including S
 
 SSO is free for all Budibase users.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## How to choose a Smartsheet alternative
 

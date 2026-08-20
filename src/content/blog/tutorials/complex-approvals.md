@@ -33,7 +33,9 @@ So, on both levels, different approvals can present us with varying levels of co
 
 Take a look at our guide to [approval workflows](https://budibase.com/blog/automation/approval-workflows/) to learn more.
 
-{{< youtube uyh8QMjG-bk >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://www.youtube.com/embed/uyh8QMjG-bk" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 ## How to build a tool for complex approvals in 6 steps
 
@@ -64,7 +66,10 @@ Along the way, we’ll be flagging some of the key areas where you might want to
 
 Let’s jump straight in.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Create a new Budibase project
 
@@ -301,11 +306,9 @@ Hit the lightning bolt to access the bindings drawer, and we’ll be able to use
 
 Our full text will be:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 {{ trigger.row.approver }}, you have a new record to check and approve. Check it out here yourbudibaseaccount.budibase.app/your-app
-
-{{< /highlight >}}
+```
 
 That last part can be swapped out for whatever the URL of your complex approval app will be - including the specific screen you want to direct users to.
 
@@ -313,7 +316,10 @@ We can test that to make sure it’s working. When we’re satisfied, we need to
 
 That’s our first automation finished. We’ll come back and complete the second a little later.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 5. Build an approvals screen
 

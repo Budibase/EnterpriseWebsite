@@ -91,7 +91,10 @@ You might do this across entire datasets, or at the level of individual entries,
 
 In any case, the goal is to limit the number of entities that can make changes to your data, reserving these permissions to users and processes that strictly need to add or update values. This also helps to facilitate real-time processing.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Access control methods
 
@@ -241,7 +244,10 @@ Alternatively, we could limit this permission to users with a particular IP addr
 
 Or, we could create a dedicated tool for users to take specific actions on our data. For example, we could add an extra layer of security by creating a framework where certain actions can only be taken using a dedicated, locally hosted application.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## How to create a data access control model
 

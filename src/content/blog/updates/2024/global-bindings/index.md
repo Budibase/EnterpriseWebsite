@@ -11,7 +11,9 @@ draft: false
 
 At Budibase, we are continually evolving to make application development more intuitive, accessible, and powerful. With our latest update, we are thrilled to announce a significant enhancement that aligns perfectly with this vision - Global Bindings. Before diving into the exciting details, we assure you that your existing data structures are safe. This update is designed to integrate seamlessly with your existing setup, ensuring that everything you've built so far continues to function flawlessly with the new version of Budibase.
 
-{{< vimeo id="908298966" title="Global Bindings demo" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/908298966?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Global Bindings demo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 Now we’ve got that out of the way - let’s jump into it. Data is at the heart of Budibase. It’s the foundation of every application and is the first thing you focus on when getting started. Global Bindings make accessing data within your application easier than ever by eliminating the need for complex nested component trees, allowing you to access any data source or static binding from any component within the same screen. This removes unnecessary friction from the development experience, offering new-found flexibility that simplifies the development process, making app building more efficient, intuitive, and user-friendly.
 

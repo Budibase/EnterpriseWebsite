@@ -100,7 +100,9 @@ Once we’ve set up our data layer, Budibase empowers us to automatically genera
 
 Budibase is ideal for complex data collection workflows, offering an intuitive visual automation builder, including a range of configurable triggers, actions, and LLM operations, alongside branching and looping logic.
 
-{{< form-builder-cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Use cases
 

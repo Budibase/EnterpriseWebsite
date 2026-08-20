@@ -71,7 +71,10 @@ You might also like our guide to [AI agentic workflows](https://budibase.com/blo
 
 Let’s check out some of the most common types of AI forms, along with how we can build them in Budibase.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### 1. Autocategorization
 
@@ -209,24 +212,19 @@ Then, we’ll hit the lightning bolt icon to open the modal to create our prompt
 
 The first thing we need to do is expose our AI column to the ticket data. We can access the relevant variables under `Ticket Fields` on the right-hand side of the screen. Our prompt will start with.
 
-{{< highlight html "linenos=inline" >}}
-
+```html
 {{ Title }} and {{ Description }} are the title and description from an IT ticket.
-
-{{< /highlight >}}
+```
 
 Next, we want to define the variables that we need in our response. We’ll do this with the following.
 
-{{< highlight html "linenos=inline" >}}
-
+```html
 To triage this ticket, use the provided information to determine a Priority (High, Medium, Low), and a Category (Hardware, Software, Network, Security, Other).
-
-{{< /highlight >}}
+```
 
 Finally, we want to specify the exact format we need our response returned in. We want a JSON object with no other text. So, we’ll add.
 
-{{< highlight html "linenos=inline" >}}
-
+```html
 Return the requested values in the format:
 
 {
@@ -238,8 +236,7 @@ Return the requested values in the format:
 }
 
 Do not include any other text or information.
-
-{{< /highlight >}}
+```
 
 Here’s our completed prompt.
 
@@ -291,13 +288,11 @@ We want to do two things. First, we’ll convert our `Triage` value to a JSON ob
 
 We can achieve this with the following code.
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 var triage = JSON.parse($("trigger.row.Triage"))
 
 return triage["Priority"]
-
-{{< /highlight >}}
+```
 
 We can see that this has worked in the preview window.
 
@@ -319,8 +314,7 @@ We’ll use the lightning bolt icon to open our prompt window again.
 
 The specific prompt we’ll use is.
 
-{{< highlight html "linenos=inline" >}}
-
+```html
 The following is a high-priority IT ticket.
 
 {{ trigger.row.Title }}
@@ -330,8 +324,7 @@ The following is a high-priority IT ticket.
 {{ trigger.row.Created Date }}
 
 Please recommend an action plan to diagnose and resolve this issue.
-
-{{< /highlight >}}
+```
 
 ![Prompt](https://res.cloudinary.com/daog6scxm/image/upload/v1750950473/cms/ai-agents/ai-forms/AI_Forms_34_jl3ap8.webp "Prompt")
 

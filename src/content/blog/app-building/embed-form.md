@@ -27,7 +27,9 @@ Today, we’re checking out how Budibase empowers teams to build advanced, secur
 
 Specifically, we’re going to build and embed a multi-step, responsive form on top of an existing MySQL database without writing a single line of code.
 
-{{< vimeo id="917105618" title="Embed Form" >}}
+<div class="blog-embed blog-embed--video">
+<iframe src="https://player.vimeo.com/video/917105618?autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0" title="Embed Form" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
 
 But before we get to that…
 
@@ -85,7 +87,10 @@ Here’s what this will look like when we’re finished.
 
 If you haven’t already, sign up for a free Budibase account to start building advanced forms the fast, easy way.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## 1. Setting up our data schema
 
@@ -115,8 +120,7 @@ Then, we can choose which of our database tables we’d like to fetch - making t
 
 If you’d like to build along with the rest of this tutorial, you can use the following query to recreate our table in your own MySQL database.
 
-{{< highlight sql "linenos=inline" >}}
-
+```sql
 CREATE TABLE contact_form (
 
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -134,8 +138,7 @@ CREATE TABLE contact_form (
   submission_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
-
-{{< /highlight >}}
+```
 
 Here’s what our form table looks like in Budibase’s Data section.
 

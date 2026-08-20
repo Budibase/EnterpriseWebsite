@@ -108,7 +108,10 @@ Budibase is also fully model-agnostic, supporting any LLM with an OpenAI-compati
 
 Agents are invokable via Budibase Automations, our built-in chat UI, or existing tools like Slack and Discord. They also work seamlessly alongside our low-code app builder, so you can build human-in-the-loop controls that closely match your real-world operational workflows.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 #### Ues cases
 

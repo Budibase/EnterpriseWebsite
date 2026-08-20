@@ -64,11 +64,9 @@ The opcode is a four-bit attribute that determines how the receiver should use t
 
 The data to be transferred is defined by the connection URL in the format:
 
-{{< highlight javascript "linenos=inline" >}}
-
+```javascript
 "ws:" "//" host [ ":" port ] path [ "?" query ]
-
-{{< /highlight >}}
+```
 
 
 
@@ -199,7 +197,10 @@ The second set is situations where bidirectional communication is essential. For
 
 WebSockets are also the basis of collaborative working - for example in solutions like Google Cloud or Microsft teams where multiple colleagues can work on one document at the same time.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ## Choosing a data transfer method
 
@@ -255,7 +256,10 @@ Use Budibase’s built-in RBAC to craft secure applications that don’t comprom
 
 We also offer free SSO using OAuth, Microsoft, and OpenID, alongside secure environment variables.
 
-{{< cta >}}
+<aside class="blog-inline-cta" aria-label="Budibase call to action">
+<p class="blog-inline-cta__message">Join 300,000 teams running operations on Budibase</p>
+<a class="blog-inline-cta__button" href="https://account.budibase.app/register?utm_source=website&amp;utm_medium=blog&amp;utm_campaign=cta" target="_blank" rel="noopener noreferrer">Get started for free</a>
+</aside>
 
 ### Extensibility and plug-ins
 
