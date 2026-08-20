@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/MainLayout.astro";
 import ProductPageLayout from "@components/ProductPageLayout.astro";
 import ProductPageFooter from "@components/ProductPageFooter.astro";
+import TitleBlock from "@components/TitleBlock.astro";
 import { getProductPageMeta } from "../_pageMeta";
 import Sparkle from "phosphor-astro/Sparkle.astro";
 
@@ -133,11 +134,11 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
   <ProductPageLayout title={pageTitle} description={pageDescription}>
     <Fragment slot="header">
       <div class="mx-auto w-full max-w-3xl">
-        <h1
-          class="hero-title mb-2 leading-[0.9]! tracking-[-0.02em]! text-[var(--text-primary)]"
-        >
-          {pageTitle}
-        </h1>
+        <TitleBlock
+          variant="hero-large"
+          title={pageTitle}
+          titleClass="mb-2 text-[var(--text-primary)]"
+        />
         <p class="mx-auto max-w-xl !mb-4 !text-xl text-secondary">
           {pageDescription}
         </p>

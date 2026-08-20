@@ -16,8 +16,6 @@ export interface ProductFeatureLandingContent {
   title: string;
   metaDescription: string;
   hero: {
-    badgeLabel: string;
-    badgeIcon: string;
     headline: string;
     subtitle: string;
     imageAlt: string;
@@ -40,8 +38,6 @@ export const productFeatureLandingPages = {
     metaDescription:
       "Add reusable server-side logic to Budibase workflows, transform data, and connect operational systems.",
     hero: {
-      badgeLabel: "Functions",
-      badgeIcon: "Lightning",
       headline: "Bring custom logic to every workflow",
       subtitle:
         "Create reusable server-side functions that validate data, connect services, and handle the logic behind your most important operations.",
@@ -113,8 +109,6 @@ export const productFeatureLandingPages = {
     metaDescription:
       "Manage structured operational data that powers AI agents, workflows, and internal apps.",
     hero: {
-      badgeLabel: "Tables",
-      badgeIcon: "Table",
       headline: "Structure data for every operation",
       subtitle:
         "Store new data or connect PostgreSQL, MySQL, Google Sheets, and more. Work with data in a spreadsheet-style interface, create views, and run AI on rows.",
@@ -186,8 +180,6 @@ export const productFeatureLandingPages = {
     metaDescription:
       "Connect the tools you rely on so agents and workflows can securely take action across your stack.",
     hero: {
-      badgeLabel: "API Explorer",
-      badgeIcon: "Code",
       headline: "Connect every operational system",
       subtitle:
         "Explore, test, and reuse API calls so apps, agents, and automations can securely take action across your stack.",
@@ -259,8 +251,6 @@ export const productFeatureLandingPages = {
     metaDescription:
       "Ground Budibase agents in trusted knowledge so they can answer questions and support operational work with useful context.",
     hero: {
-      badgeLabel: "Knowledge",
-      badgeIcon: "Sparkle",
       headline: "Give every agent the right context",
       subtitle:
         "Connect trusted knowledge to your agents so they can answer questions, understand requests, and support operational work with relevant context.",
@@ -332,8 +322,6 @@ export const productFeatureLandingPages = {
     metaDescription:
       "Collect, route, approve, and resolve operational requests with connected Budibase apps, agents, and automations.",
     hero: {
-      badgeLabel: "Requests and approvals",
-      badgeIcon: "EnvelopeOpen",
       headline: "Make every request easier to resolve",
       subtitle:
         "Give employees a clear way to ask for help, then route, approve, and resolve each request through one connected operational workflow.",
@@ -405,8 +393,6 @@ export const productFeatureLandingPages = {
     metaDescription:
       "Track operational activity across Budibase workflows, agents, apps, and automations with clear, actionable visibility.",
     hero: {
-      badgeLabel: "Activity and insights",
-      badgeIcon: "Gauge",
       headline: "See the work behind every operation",
       subtitle:
         "Track requests, decisions, agent actions, and automated steps so teams know what happened, what is moving, and what needs attention.",
@@ -478,8 +464,6 @@ export const productFeatureLandingPages = {
     metaDescription:
       "Deploy Budibase on your own infrastructure with flexible self-hosting options for controlled and regulated environments.",
     hero: {
-      badgeLabel: "Self-hosting",
-      badgeIcon: "CloudCheck",
       headline: "Deploy Budibase on your terms",
       subtitle:
         "Run Budibase in the environment you control, close to your systems and data, with deployment options designed for secure enterprise operations.",
@@ -551,8 +535,6 @@ export const productFeatureLandingPages = {
     metaDescription:
       "Manage access, governance, identity, and audit controls for secure enterprise operations with Budibase.",
     hero: {
-      badgeLabel: "Admin and security",
-      badgeIcon: "ShieldCheck",
       headline: "Control operations with confidence",
       subtitle:
         "Give administrators the identity, access, and governance controls to protect operational work without slowing teams down.",

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Budibase Brand"
+  short_description: "Apply Budibase brand and GTM strategy"
+  default_prompt: "Use $budibase-brand to review this customer-facing work against Budibase's brand and GTM strategy."

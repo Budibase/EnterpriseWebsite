@@ -222,9 +222,9 @@ const CardTitle = cardTitleTag;
     margin: 0;
     color: var(--bb-text-base);
     font-family: var(--bb-text-display-medium-font-family);
-    font-size: var(--bb-text-display-medium-font-size);
+    font-size: var(--bb-text-heading-section-font-size);
     font-weight: var(--bb-text-display-medium-font-weight);
-    line-height: var(--bb-text-display-medium-line-height);
+    line-height: var(--bb-text-heading-section-line-height);
     letter-spacing: var(--bb-text-display-medium-letter-spacing);
     text-transform: var(--bb-text-display-medium-text-transform);
     overflow-wrap: anywhere;
@@ -234,8 +234,9 @@ const CardTitle = cardTitleTag;
   .card-cluster__header p {
     margin: 0.5rem 0 0;
     color: var(--bb-text-subtle);
-    font-size: 1rem;
-    line-height: 1.35;
+    font-size: var(--bb-text-copy-body-font-size);
+    font-weight: var(--bb-text-copy-body-font-weight);
+    line-height: var(--bb-text-copy-body-line-height);
   }
 
   .card-cluster__scroller {
@@ -333,18 +334,18 @@ const CardTitle = cardTitleTag;
   .card-cluster__card-title {
     margin: 0;
     color: var(--card-cluster-card-text);
-    font-size: 1.125rem;
+    font-size: var(--bb-text-heading-card-font-size);
     font-weight: 600;
-    line-height: 1.15;
+    line-height: var(--bb-text-heading-card-line-height);
     letter-spacing: 0;
   }
 
   .card-cluster__content p {
     margin: 0;
     color: var(--card-cluster-card-description);
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.35;
+    font-size: var(--bb-text-copy-compact-font-size);
+    font-weight: var(--bb-text-copy-compact-font-weight);
+    line-height: var(--bb-text-copy-compact-line-height);
   }
 
   @media (min-width: 768px) {

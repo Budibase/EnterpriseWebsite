@@ -386,8 +386,8 @@
     --bb-color__text__subtle: var(--bb-text-subtle);
 
     --font-sans:
-      var(--font-geist), var(--font-inter), "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+      var(--font-inter), "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
     --font-mono:
       var(--font-geist-mono), "iA Writer Mono", ui-monospace, SFMono-Regular,
       SF Mono, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
@@ -414,6 +414,30 @@
     --bb-text-display-small-line-height: 0.85;
     --bb-text-display-small-letter-spacing: -0.01em;
     --bb-text-display-small-text-transform: uppercase;
+
+    /* Semantic heading scale. Components retain their role-appropriate face,
+       weight, letter spacing, and casing. */
+    --bb-text-heading-hero-font-size: 64px;
+    --bb-text-heading-hero-line-height: 0.921875;
+    --bb-text-heading-section-font-size: 48px;
+    --bb-text-heading-section-line-height: 1;
+    --bb-text-heading-subsection-font-size: 30px;
+    --bb-text-heading-subsection-line-height: 1.2;
+    --bb-text-heading-card-font-size: 18px;
+    --bb-text-heading-card-line-height: 1.2222;
+
+    --bb-text-copy-lead-font-size: 1.25rem;
+    --bb-text-copy-lead-font-weight: 400;
+    --bb-text-copy-lead-line-height: 1.5;
+    --bb-text-copy-body-font-size: 1.125rem;
+    --bb-text-copy-body-font-weight: 400;
+    --bb-text-copy-body-line-height: 1.5556;
+    --bb-text-copy-compact-font-size: 1rem;
+    --bb-text-copy-compact-font-weight: 400;
+    --bb-text-copy-compact-line-height: 1.5;
+    --bb-text-copy-caption-font-size: 0.875rem;
+    --bb-text-copy-caption-font-weight: 400;
+    --bb-text-copy-caption-line-height: 1.4286;
 
     /* Core semantic RGB tokens (Tailwind-friendly) */
     --bg: 255 255 255;
@@ -483,6 +507,17 @@
     scrollbar-gutter: stable;
   }
 
+  @media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+      --bb-text-heading-hero-font-size: 52px;
+      --bb-text-heading-hero-line-height: 0.9615;
+      --bb-text-heading-section-font-size: 42px;
+      --bb-text-heading-section-line-height: 1.0476;
+      --bb-text-heading-subsection-font-size: 28px;
+      --bb-text-heading-subsection-line-height: 1.2143;
+    }
+  }
+
   @media (max-width: 767px) {
     :root {
       --radius-small: 10px;
@@ -493,6 +528,12 @@
       --bb-text-display-large-font-size: 48px;
       --bb-text-display-medium-font-size: 40px;
       --bb-text-display-small-font-size: 32px;
+      --bb-text-heading-hero-font-size: 40px;
+      --bb-text-heading-hero-line-height: 0.95;
+      --bb-text-heading-section-font-size: 36px;
+      --bb-text-heading-section-line-height: 1.0556;
+      --bb-text-heading-subsection-font-size: 26px;
+      --bb-text-heading-subsection-line-height: 1.2308;
     }
   }
 }
@@ -528,7 +569,6 @@ html {
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
-  -webkit-font-smoothing: antialiased;
   font-family: var(--font-sans);
   color: var(--text-primary);
   background-color: var(--bg-1);
@@ -610,7 +650,7 @@ ol {
   color: var(--text-secondary) !important;
   font-weight: 400;
   line-height: 1.35;
-  letter-spacing: -0.15px !important;
+  letter-spacing: 0 !important;
   margin: 0 !important;
   list-style: none !important;
 }
@@ -667,7 +707,7 @@ p {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.35;
-  letter-spacing: -0.15px !important;
+  letter-spacing: 0 !important;
 }
 article h1,
 article h2,
@@ -723,7 +763,7 @@ article p {
   margin-bottom: calc(1rem * 1.4);
   font-size: 1rem;
   line-height: 1.5;
-  letter-spacing: -0.15px !important;
+  letter-spacing: 0 !important;
 }
 article ul,
 article li,
@@ -734,7 +774,7 @@ article ol {
   margin-bottom: calc(1rem * 1.4);
   font-size: 1rem;
   line-height: 1.5;
-  letter-spacing: -0.15px !important;
+  letter-spacing: 0 !important;
   margin: 0.2rem 0.4rem !important;
   list-style: disc !important;
 }
@@ -777,7 +817,7 @@ article blockquote p {
 .nav-shell .nav-link {
   color: var(--text-primary);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.25rem;
 }
 
@@ -787,7 +827,7 @@ article blockquote p {
 
 .nav-shell .header-dropdown [data-header-dropdown-trigger] {
   color: var(--text-primary) !important;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .nav-shell .desktop-nav-link {

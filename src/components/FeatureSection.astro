@@ -217,9 +217,9 @@ const linkVariant = isForest ? "secondary" : "primary";
 
   .feature-section__content h2 {
     font-family: var(--font-inter), var(--font-sans);
-    font-size: clamp(2.5rem, 4vw, 3.125rem);
+    font-size: var(--bb-text-heading-section-font-size);
     font-weight: 600;
-    line-height: 1.08;
+    line-height: var(--bb-text-heading-section-line-height);
     letter-spacing: -0.03em;
     text-wrap: balance;
   }
@@ -227,8 +227,9 @@ const linkVariant = isForest ? "secondary" : "primary";
   .feature-section__body {
     max-width: 38rem;
     color: var(--feature-section-body) !important;
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: var(--bb-text-copy-body-font-size);
+    font-weight: var(--bb-text-copy-body-font-weight);
+    line-height: var(--bb-text-copy-body-line-height);
   }
 
   .feature-section__bullets {
@@ -259,9 +260,9 @@ const linkVariant = isForest ? "secondary" : "primary";
   }
 
   .feature-section__bullet h3 {
-    font-size: 1.125rem;
+    font-size: var(--bb-text-heading-card-font-size);
     font-weight: 600;
-    line-height: 1.35;
+    line-height: var(--bb-text-heading-card-line-height);
   }
 
   .feature-section__actions {

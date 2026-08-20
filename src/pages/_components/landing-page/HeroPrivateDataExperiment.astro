@@ -9,18 +9,24 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
   <div
     class="container max-w-[var(--site-container-max)] mx-auto px-[var(--site-content-inset)] flex w-full flex-col"
   >
-    <div class="mx-auto flex w-full max-w-6xl flex-col items-center">
+    <div
+      class="mx-auto flex w-full max-w-[var(--site-container-max)] flex-col items-center"
+    >
       <div
         class="hero-copy-experiment flex min-w-0 flex-1 flex-col items-center text-center"
       >
+        <p class="hero-eyebrow text-balance">
+          The open-source platform for enterprise operations
+        </p>
         <h1
           class="hero-title-experiment mx-auto mb-5 block w-full text-balance"
         >
-          The open-source platform for enterprise operations
+          Build secure agents, apps and automations over private data.
         </h1>
         <p class="hero-subheading mx-auto max-w-3xl text-balance">
-          Build intelligent enterprise operations with AI agents, automations,
-          apps, and human oversight.
+          Run operational workflows that connect people, systems and data.
+          Manage requests and approvals, execute controlled actions and deploy
+          on your terms.
         </p>
         <div class="hero-actions flex flex-row flex-wrap justify-center gap-4">
           <Button
@@ -64,6 +70,17 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
 <style>
   .hero-copy-experiment {
     padding-top: calc(clamp(3rem, 5vw, 5rem) - 16px);
+  }
+
+  .hero-eyebrow {
+    margin: 0 0 1.25rem !important;
+    color: var(--bb-text-subtle) !important;
+    font-family: var(--font-sans);
+    font-size: var(--bb-text-copy-caption-font-size);
+    font-weight: 600;
+    line-height: var(--bb-text-copy-caption-line-height);
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase;
   }
 
   .hero-title-experiment {

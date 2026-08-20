@@ -42,8 +42,6 @@ const titleBaseClass =
         : variant === "homepage-section"
           ? "homepage-section-header__title"
           : "section-title";
-const mobileHeroTitleClass =
-  variant === "hero" ? "max-md:text-[44px]!" : undefined;
 const HeadingTag =
   variant === "section" ||
   variant === "display-small" ||
@@ -64,10 +62,7 @@ function getLineColorClass(index: number) {
 ---
 
 <div class={containerClass}>
-  <HeadingTag
-    id={titleId}
-    class:list={[titleBaseClass, mobileHeroTitleClass, titleClass]}
-  >
+  <HeadingTag id={titleId} class:list={[titleBaseClass, titleClass]}>
     {
       hasTitleLines
         ? titleLines.map((line, index) => (
@@ -100,11 +95,17 @@ function getLineColorClass(index: number) {
     margin: 0;
     color: var(--bb-text-base);
     font-family: var(--bb-text-display-medium-font-family);
-    font-size: var(--bb-text-display-medium-font-size);
+    font-size: var(--bb-text-heading-hero-font-size);
     font-weight: var(--bb-text-display-medium-font-weight);
-    line-height: var(--bb-text-display-medium-line-height);
+    line-height: var(--bb-text-heading-hero-line-height);
     letter-spacing: var(--bb-text-display-medium-letter-spacing);
     text-transform: var(--bb-text-display-medium-text-transform);
+    text-wrap: balance;
+  }
+
+  .hero-title-small {
+    font-size: var(--bb-text-heading-hero-font-size);
+    line-height: var(--bb-text-heading-hero-line-height);
     text-wrap: balance;
   }
 
@@ -113,9 +114,9 @@ function getLineColorClass(index: number) {
     margin: 1.25rem 0 0;
     color: var(--bb-text-subtle);
     font-family: var(--font-sans);
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.4;
+    font-size: var(--bb-text-copy-lead-font-size);
+    font-weight: var(--bb-text-copy-lead-font-weight);
+    line-height: var(--bb-text-copy-lead-line-height);
     text-transform: none;
     text-wrap: balance;
   }
@@ -125,17 +126,18 @@ function getLineColorClass(index: number) {
   }
 
   .section-title {
-    font-size: 32px;
-    line-height: 1.1;
+    font-size: var(--bb-text-heading-section-font-size);
+    line-height: var(--bb-text-heading-section-line-height);
+    text-wrap: balance;
   }
 
   .display-small-title {
     margin: 0;
     color: var(--bb-text-base);
     font-family: var(--bb-text-display-small-font-family);
-    font-size: var(--bb-text-display-small-font-size);
+    font-size: var(--bb-text-heading-section-font-size);
     font-weight: var(--bb-text-display-small-font-weight);
-    line-height: var(--bb-text-display-small-line-height);
+    line-height: var(--bb-text-heading-section-line-height);
     letter-spacing: var(--bb-text-display-small-letter-spacing);
     text-transform: var(--bb-text-display-small-text-transform);
     text-wrap: balance;
@@ -144,9 +146,9 @@ function getLineColorClass(index: number) {
   .homepage-section-header__title {
     margin: 0;
     color: var(--bb-text-base);
-    font-size: 1.625rem;
+    font-size: var(--bb-text-heading-subsection-font-size);
     font-weight: 500;
-    line-height: 1.12;
+    line-height: var(--bb-text-heading-subsection-line-height);
     letter-spacing: 0;
   }
 </style>

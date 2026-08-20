@@ -58,6 +58,10 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         label={solutionsNavMenu.label}
         menu={solutionsNavMenu.menu}
       />
+      <HeaderDropDown
+        label={resourcesNavMenu.label}
+        menu={resourcesNavMenu.menu}
+      />
       <a
         target="_self"
         href="/pricing/"
@@ -66,10 +70,6 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       >
         Pricing
       </a>
-      <HeaderDropDown
-        label={resourcesNavMenu.label}
-        menu={resourcesNavMenu.menu}
-      />
     </div>
 
     <div
@@ -206,11 +206,9 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     <nav class="mobile-nav-scroll">
       <ul class="mobile-nav-list">
         {
-          mobileNavMenus
-            .slice(0, 2)
-            .map(({ label, menu }) => (
-              <MobileNavAccordion label={label} menu={menu} />
-            ))
+          mobileNavMenus.map(({ label, menu }) => (
+            <MobileNavAccordion label={label} menu={menu} />
+          ))
         }
         <li class="mobile-nav-item">
           <a
@@ -221,13 +219,6 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
             Pricing
           </a>
         </li>
-        {
-          mobileNavMenus
-            .slice(2)
-            .map(({ label, menu }) => (
-              <MobileNavAccordion label={label} menu={menu} />
-            ))
-        }
       </ul>
     </nav>
 

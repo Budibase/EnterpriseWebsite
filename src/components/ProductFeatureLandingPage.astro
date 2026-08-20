@@ -88,11 +88,6 @@ const images = pageImages[slug];
     <HeroSmall
       image={images.hero}
       imageAlt={content.hero.imageAlt}
-      badge={{
-        icon: content.hero.badgeIcon,
-        label: content.hero.badgeLabel,
-        variant: theme === "brand-dark" ? "celery" : "light",
-      }}
       title={content.hero.headline}
       subtitle={content.hero.subtitle}
       action={{ label: "Book a demo", href: "/contact/" }}

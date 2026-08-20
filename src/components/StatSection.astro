@@ -118,17 +118,18 @@ const cards: readonly StatCard[] = [
 
   .stat-section__intro h2 {
     font-family: var(--font-inter), var(--font-sans);
-    font-size: clamp(2.5rem, 4vw, 3.125rem);
+    font-size: var(--bb-text-heading-section-font-size);
     font-weight: 600;
-    line-height: 1.08;
+    line-height: var(--bb-text-heading-section-line-height);
     letter-spacing: -0.03em;
     text-wrap: balance;
   }
 
   .stat-section__intro p {
     max-width: 38rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: var(--bb-text-copy-body-font-size);
+    font-weight: var(--bb-text-copy-body-font-weight);
+    line-height: var(--bb-text-copy-body-line-height);
   }
 
   .stat-section__grid {
@@ -155,9 +156,9 @@ const cards: readonly StatCard[] = [
   }
 
   .stat-section__card h3 {
-    font-size: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+    font-size: var(--bb-text-heading-subsection-font-size);
     font-weight: 600;
-    line-height: 1.2;
+    line-height: var(--bb-text-heading-subsection-line-height);
     letter-spacing: -0.02em;
   }
 

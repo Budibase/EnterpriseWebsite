@@ -16,9 +16,9 @@ const variantClasses = {
 };
 
 const sizeClasses = {
-  small: "px-2.5 py-[4.5px] text-base",
-  medium: "px-3 py-1.5 text-base",
-  large: "px-4 py-2 text-base",
+  small: "px-3 py-1.5 text-base",
+  medium: "px-4 py-[7px] text-base",
+  large: "px-[18px] py-2.5 text-lg",
   "extra-large": "px-7 py-2.5 text-xl",
 };
 

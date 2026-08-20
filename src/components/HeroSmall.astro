@@ -189,18 +189,18 @@ const isBrandDark = theme === "brand-dark";
 
   .hero-small__content h1 {
     font-family: var(--bb-text-display-medium-font-family);
-    font-size: var(--bb-text-display-medium-font-size);
+    font-size: var(--bb-text-heading-hero-font-size);
     font-weight: var(--bb-text-display-medium-font-weight);
-    line-height: var(--bb-text-display-medium-line-height);
+    line-height: var(--bb-text-heading-hero-line-height);
     letter-spacing: var(--bb-text-display-medium-letter-spacing);
     text-transform: var(--bb-text-display-medium-text-transform);
   }
 
   .hero-small__content p {
     max-width: 38rem;
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.4;
+    font-size: var(--bb-text-copy-lead-font-size);
+    font-weight: var(--bb-text-copy-lead-font-weight);
+    line-height: var(--bb-text-copy-lead-line-height);
   }
 
   .hero-small__actions {
@@ -242,9 +242,9 @@ const isBrandDark = theme === "brand-dark";
 
   .hero-small__logos h2 {
     font-family: var(--font-inter), var(--font-sans);
-    font-size: clamp(2rem, 3.2vw, 3rem);
+    font-size: var(--bb-text-heading-subsection-font-size);
     font-weight: 600;
-    line-height: 1.1;
+    line-height: var(--bb-text-heading-subsection-line-height);
     letter-spacing: -0.03em;
     text-align: center;
     text-wrap: balance;

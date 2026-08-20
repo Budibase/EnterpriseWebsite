@@ -49,6 +49,21 @@ styles, and the footer. Do not create page-specific copies of the site shell.
 Prefer extending one of these components with a small, reusable variant over
 copying its typography into a page.
 
+Shared landing-page headings use semantic size roles rather than component-
+specific values:
+
+- `heading-hero` for page and product heroes: 40px mobile, 52px tablet, and
+  64px desktop.
+- `heading-section` for major content sections and CTAs: 36px mobile, 42px
+  tablet, and 48px desktop.
+- `heading-subsection` for supporting groups and stat headings: 26px mobile,
+  28px tablet, and 30px desktop.
+- `heading-card` for card and compact feature titles: 18px at every breakpoint.
+
+The tokens control hierarchy through size and line height. Components retain
+their role-appropriate typeface, weight, letter spacing, and casing so the
+condensed display face remains reserved for decisive brand moments.
+
 ### Cards
 
 - Use `src/components/cards/Card.astro` for a single general-purpose card.

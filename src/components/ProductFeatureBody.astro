@@ -27,6 +27,7 @@ const { content, featureImages } = Astro.props as Props;
       <FeatureSection
         image={featureImages[index]}
         imageAlt={`${feature.headline} product interface`}
+        imagePosition={index % 2 === 0 ? "left" : "right"}
         headline={feature.headline}
         body={feature.body}
         bullets={feature.bullets}
