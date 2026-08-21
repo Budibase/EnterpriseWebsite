@@ -1,0 +1,68 @@
+---
+import FeatureSection from "@components/FeatureSection.astro";
+import ProductPageFooter from "@components/ProductPageFooter.astro";
+import StatSection from "@components/StatSection.astro";
+import CardCluster from "@components/cards/CardCluster.astro";
+import type { ProductDetailContent } from "../data/landingPageTypes";
+
+interface Props {
+  content: ProductDetailContent;
+  featureImages: readonly [string, string];
+}
+
+const { content, featureImages } = Astro.props as Props;
+---
+
+<div class="product-detail-body">
+  <div class="site-grid-section">
+    <CardCluster
+      SectionTitle={content.cardCluster.title}
+      SectionDescription={content.cardCluster.description}
+      cards={content.cardCluster.cards}
+    />
+  </div>
+
+  {
+    content.features.map((feature, index) => (
+      <div class="site-grid-section site-grid-section--no-top">
+        <FeatureSection
+          image={featureImages[index]}
+          imageAlt={`${feature.headline} product interface`}
+          imagePosition={index % 2 === 0 ? "left" : "right"}
+          headline={feature.headline}
+          body={feature.body}
+          bullets={feature.bullets}
+        />
+      </div>
+    ))
+  }
+
+  <div class="site-grid-section site-grid-section--no-top">
+    <StatSection />
+  </div>
+
+  <ProductPageFooter />
+</div>
+
+<style>
+  .product-detail-body {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) and (max-width: 959px) {
+    :global(.product-detail-body .feature-section__container),
+    :global(.product-detail-body .stat-section__container) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    :global(.product-detail-body .feature-section__image-panel),
+    :global(.product-detail-body .feature-section__content) {
+      order: initial;
+    }
+
+    :global(.product-detail-body .feature-section__image-panel) {
+      height: auto;
+      min-height: 0;
+    }
+  }
+</style>

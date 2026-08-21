@@ -6,6 +6,7 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  imageAlt?: string;
   demo?: AstroComponentFactory;
   demoProps?: Record<string, unknown>;
   backgroundImage?: string;
@@ -17,6 +18,7 @@ const {
   title,
   description,
   image,
+  imageAlt = "",
   demo,
   demoProps,
   backgroundImage,
@@ -98,7 +100,7 @@ const Demo = demo;
           image && (
             <img
               src={image}
-              alt=""
+              alt={imageAlt}
               class="hero-large__image"
               loading="eager"
               decoding="async"

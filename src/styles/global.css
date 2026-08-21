@@ -843,6 +843,11 @@ article blockquote p {
   font-weight: 500;
 }
 
+.nav-shell .header-dropdown .header-dropdown-panel {
+  border-bottom: 0;
+  background: var(--bg-2);
+}
+
 .nav-shell .desktop-nav-link {
   display: inline-flex;
   align-items: center;

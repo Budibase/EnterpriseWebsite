@@ -1,0 +1,752 @@
+---
+import type { TechnicalSystemEvidenceBlock } from "../data/technicalLandingPages";
+
+interface Props {
+  visual: TechnicalSystemEvidenceBlock["visual"];
+  label: string;
+}
+
+const { visual, label } = Astro.props as Props;
+---
+
+<div
+  class="technical-evidence"
+  data-evidence-visual={visual}
+  role="group"
+  aria-label={label}
+>
+  <div class="technical-evidence__topbar" aria-hidden="true">
+    <span></span><span></span><span></span>
+    <strong>
+      {
+        visual === "api-request"
+          ? "API Explorer"
+          : visual === "workflow"
+            ? "Action flow"
+            : visual === "deployment"
+              ? "Deployment topology"
+              : visual === "controls"
+                ? "Access controls · example"
+                : "Operational activity · example"
+      }
+    </strong>
+  </div>
+
+  {
+    visual === "api-request" && (
+      <div class="technical-evidence__api-layout">
+        <aside
+          class="technical-evidence__request-list"
+          aria-label="Saved requests"
+        >
+          <p>Customer operations</p>
+          <div class="technical-evidence__request active">
+            <span class="method method--get">GET</span>
+            <code>/customers/{`{id}`}</code>
+          </div>
+          <div class="technical-evidence__request">
+            <span class="method method--post">POST</span>
+            <code>/approvals</code>
+          </div>
+          <div class="technical-evidence__request">
+            <span class="method method--patch">PATCH</span>
+            <code>/tickets/{`{id}`}</code>
+          </div>
+        </aside>
+
+        <div class="technical-evidence__request-workspace">
+          <div class="technical-evidence__urlbar">
+            <span class="method method--get">GET</span>
+            <code>https://api.example.com/customers/{`{{ customer_id }}`}</code>
+            <span class="technical-evidence__run">Run request</span>
+          </div>
+          <div class="technical-evidence__code-grid">
+            <div>
+              <p>Headers</p>
+              <pre tabindex="0">
+                <code>{`Authorization: Bearer ••••••••
+Accept: application/json
+X-Request-Source: budibase`}</code>
+              </pre>
+            </div>
+            <div>
+              <p>200 · Response</p>
+              <pre tabindex="0">
+                <code>{`{
+  "id": "cus_4821",
+  "status": "active",
+  "owner": "operations"
+}`}</code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    visual === "workflow" && (
+      <div class="technical-evidence__workflow">
+        <div class="technical-evidence__sources">
+          <div class="system-node">
+            <>
+              <span>App</span>
+              <strong>Request form</strong>
+            </>
+          </div>
+          <div class="system-node">
+            <>
+              <span>Agent</span>
+              <strong>Case assistant</strong>
+            </>
+          </div>
+          <div class="system-node">
+            <>
+              <span>Automation</span>
+              <strong>Approval flow</strong>
+            </>
+          </div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true">
+          →
+        </div>
+        <div class="system-node system-node--accent">
+          <span>Approved action</span>
+          <strong>Update customer</strong>
+          <code>PATCH /customers/{`{id}`}</code>
+        </div>
+        <div class="flow-arrow" aria-hidden="true">
+          →
+        </div>
+        <div class="system-node system-node--dark">
+          <span>Connected system</span>
+          <strong>Customer API</strong>
+          <small>Response recorded</small>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    visual === "deployment" && (
+      <div class="technical-evidence__deployment">
+        <div class="deployment-boundary">
+          <p>Your environment</p>
+          <div class="deployment-row">
+            <div class="system-node">
+              <>
+                <span>Access</span>
+                <strong>Identity provider</strong>
+              </>
+            </div>
+            <div class="flow-arrow" aria-hidden="true">
+              →
+            </div>
+            <div class="system-node system-node--accent">
+              <>
+                <span>Runtime</span>
+                <strong>Budibase services</strong>
+              </>
+            </div>
+            <div class="flow-arrow" aria-hidden="true">
+              →
+            </div>
+            <div class="system-node">
+              <>
+                <span>Data</span>
+                <strong>Operational systems</strong>
+              </>
+            </div>
+          </div>
+          <div class="deployment-footer">
+            <span>Container orchestration</span>
+            <span>Network controls</span>
+            <span>Managed credentials</span>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    visual === "controls" && (
+      <div class="technical-evidence__table-wrap" tabindex="0">
+        <table>
+          <caption>Workspace access policy</caption>
+          <thead>
+            <tr>
+              <>
+                <th>Group</th>
+                <th>Apps</th>
+                <th>Data</th>
+                <th>Automations</th>
+                <th>Audit</th>
+              </>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <>
+                <td>
+                  <>
+                    <strong>Operations</strong>
+                    <small>Managed group</small>
+                  </>
+                </td>
+                <td>
+                  <span class="permission">Use</span>
+                </td>
+                <td>
+                  <span class="permission">Read</span>
+                </td>
+                <td>
+                  <span class="permission">Run</span>
+                </td>
+                <td>
+                  <span class="permission">View</span>
+                </td>
+              </>
+            </tr>
+            <tr>
+              <>
+                <td>
+                  <>
+                    <strong>Builders</strong>
+                    <small>Managed group</small>
+                  </>
+                </td>
+                <td>
+                  <span class="permission permission--strong">Build</span>
+                </td>
+                <td>
+                  <span class="permission permission--strong">Write</span>
+                </td>
+                <td>
+                  <span class="permission permission--strong">Edit</span>
+                </td>
+                <td>
+                  <span class="permission">View</span>
+                </td>
+              </>
+            </tr>
+            <tr>
+              <>
+                <td>
+                  <>
+                    <strong>Reviewers</strong>
+                    <small>Managed group</small>
+                  </>
+                </td>
+                <td>
+                  <span class="permission">View</span>
+                </td>
+                <td>
+                  <span class="permission">Read</span>
+                </td>
+                <td>
+                  <span class="permission">Review</span>
+                </td>
+                <td>
+                  <span class="permission permission--strong">Export</span>
+                </td>
+              </>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+
+  {
+    visual === "observability" && (
+      <div class="technical-evidence__activity">
+        <div class="activity-summary">
+          <div>
+            <>
+              <span>Environment</span>
+              <strong>Production</strong>
+            </>
+          </div>
+          <div>
+            <>
+              <span>Latest run</span>
+              <strong>Completed</strong>
+            </>
+          </div>
+          <div>
+            <>
+              <span>Review state</span>
+              <strong>Required</strong>
+            </>
+          </div>
+        </div>
+        <div class="activity-list">
+          <div class="activity-row">
+            <>
+              <span class="status-dot status-dot--success" />
+              <strong>Update customer record</strong>
+              <code>automation.customer-sync</code>
+              <span>Completed</span>
+            </>
+          </div>
+          <div class="activity-row">
+            <>
+              <span class="status-dot status-dot--success" />
+              <strong>Approve access request</strong>
+              <code>app.access-review</code>
+              <span>Completed</span>
+            </>
+          </div>
+          <div class="activity-row">
+            <>
+              <span class="status-dot status-dot--review" />
+              <strong>Escalate policy exception</strong>
+              <code>agent.security-review</code>
+              <span>Review</span>
+            </>
+          </div>
+        </div>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .technical-evidence {
+    width: min(100%, 72rem);
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-subtle);
+    border-radius: 0.75rem;
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+    box-shadow: 0 1.5rem 4rem rgb(22 51 0 / 0.08);
+  }
+
+  .technical-evidence__topbar {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: 0.4rem;
+    padding-inline: 1rem;
+    border-bottom: 1px solid var(--bb-border-subtle);
+    background: var(--bb-background-surface);
+  }
+
+  .technical-evidence__topbar > span {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--bb-border-bold);
+  }
+
+  .technical-evidence__topbar strong {
+    margin-left: 0.5rem;
+    font-size: var(--bb-text-copy-caption-font-size);
+  }
+
+  .technical-evidence p,
+  .technical-evidence code,
+  .technical-evidence pre,
+  .technical-evidence span,
+  .technical-evidence small,
+  .technical-evidence strong,
+  .technical-evidence th,
+  .technical-evidence td,
+  .technical-evidence caption {
+    font-family: var(--font-inter), var(--font-sans);
+  }
+
+  .technical-evidence p {
+    margin: 0;
+    color: inherit !important;
+  }
+
+  .technical-evidence code,
+  .technical-evidence pre {
+    font-family: var(--font-mono);
+  }
+
+  .technical-evidence__api-layout {
+    display: grid;
+    min-width: 0;
+  }
+
+  .technical-evidence__request-list {
+    min-width: 0;
+    padding: 1rem;
+    border-bottom: 1px solid var(--bb-border-subtle);
+    background: var(--bb-background-surface);
+  }
+
+  .technical-evidence__request-list > p,
+  .technical-evidence__code-grid p {
+    margin-bottom: 0.75rem;
+    color: var(--bb-text-subtle) !important;
+    font-size: var(--bb-text-copy-caption-font-size);
+    font-weight: 600;
+  }
+
+  .technical-evidence__request {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.35rem;
+    padding: 0.8rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+  }
+
+  .technical-evidence__request.active {
+    border-color: var(--bb-border-subtle);
+    background: var(--bb-background-base);
+  }
+
+  .technical-evidence__request code,
+  .technical-evidence__urlbar code {
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.8rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .method {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.4rem;
+    color: var(--bb-brand-forest-green);
+    background: var(--bb-celery-200);
+    font-size: 0.65rem;
+    font-weight: 800;
+  }
+
+  .method--post {
+    background: var(--bb-seafoam-300);
+  }
+
+  .method--patch {
+    background: var(--bb-orange-300);
+  }
+
+  .technical-evidence__request-workspace {
+    min-width: 0;
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+
+  .technical-evidence__urlbar {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0.5rem;
+    padding: 0.6rem;
+  }
+
+  .technical-evidence__run {
+    flex: 0 0 auto;
+    margin-left: auto;
+    border-radius: 999px;
+    padding: 0.55rem 0.8rem;
+    color: var(--bb-text-on-base);
+    background: var(--bb-brand-forest-green);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .technical-evidence__code-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .technical-evidence__code-grid > div {
+    min-width: 0;
+    border: 1px solid var(--bb-border-subtle);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background: var(--bb-celery-1500);
+  }
+
+  .technical-evidence__code-grid pre {
+    max-width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    border: 0;
+    padding: 0;
+    color: var(--bb-gray-100) !important;
+    background: transparent !important;
+    font-size: clamp(0.68rem, 1.5vw, 0.82rem);
+    line-height: 1.7;
+  }
+
+  .technical-evidence__code-grid code {
+    color: inherit;
+    background: transparent;
+  }
+
+  .technical-evidence__code-grid pre:focus-visible,
+  .technical-evidence__table-wrap:focus-visible {
+    outline: 2px solid var(--bb-brand-bright-green);
+    outline-offset: 2px;
+  }
+
+  .technical-evidence__workflow,
+  .deployment-row {
+    display: grid;
+    align-items: center;
+    gap: 1rem;
+    padding: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  .technical-evidence__sources {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .system-node {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.35rem;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0.65rem;
+    padding: 1rem;
+    background: var(--bb-background-base);
+  }
+
+  .system-node span,
+  .system-node small {
+    color: var(--bb-text-subtle);
+    font-size: var(--bb-text-copy-caption-font-size);
+  }
+
+  .system-node code {
+    overflow-wrap: anywhere;
+    color: inherit;
+    font-size: 0.75rem;
+  }
+
+  .system-node--accent {
+    border-color: var(--bb-celery-400);
+    background: var(--bb-celery-200);
+  }
+
+  .system-node--dark {
+    border-color: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+    background: var(--bb-brand-forest-green);
+  }
+
+  .system-node--dark span,
+  .system-node--dark small {
+    color: var(--bb-text-on-base-subtle);
+  }
+
+  .flow-arrow {
+    color: var(--bb-brand-forest-green);
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-align: center;
+    transform: rotate(90deg);
+  }
+
+  .technical-evidence__deployment {
+    padding: clamp(1rem, 3vw, 2rem);
+    background: var(--bb-background-surface);
+  }
+
+  .deployment-boundary {
+    border: 1px dashed var(--bb-border-bold);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    background: var(--bb-background-base);
+  }
+
+  .deployment-boundary > p {
+    color: var(--bb-text-subtle) !important;
+    font-size: var(--bb-text-copy-caption-font-size);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .deployment-row {
+    padding-inline: 0;
+  }
+
+  .deployment-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-top: 1px solid var(--bb-border-subtle);
+    padding-top: 1rem;
+  }
+
+  .deployment-footer span,
+  .permission {
+    border-radius: 999px;
+    padding: 0.35rem 0.6rem;
+    background: var(--bb-background-surface);
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  .technical-evidence__table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  .technical-evidence table {
+    width: 100%;
+    min-width: 42rem;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  .technical-evidence caption {
+    padding: 0.5rem 0 1rem;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .technical-evidence th,
+  .technical-evidence td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--bb-border-subtle);
+    font-size: 0.8rem;
+  }
+
+  .technical-evidence th {
+    color: var(--bb-text-subtle);
+  }
+
+  .technical-evidence td:first-child strong,
+  .technical-evidence td:first-child small {
+    display: block;
+  }
+
+  .technical-evidence td:first-child small {
+    margin-top: 0.25rem;
+    color: var(--bb-text-subtle);
+  }
+
+  .permission--strong {
+    color: var(--bb-brand-forest-green);
+    background: var(--bb-celery-200);
+  }
+
+  .technical-evidence__activity {
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+
+  .activity-summary {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .activity-summary > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border: 1px solid var(--bb-border-subtle);
+    border-radius: 0.6rem;
+    padding: 1rem;
+    background: var(--bb-background-surface);
+  }
+
+  .activity-summary span {
+    color: var(--bb-text-subtle);
+    font-size: var(--bb-text-copy-caption-font-size);
+  }
+
+  .activity-summary strong {
+    font-size: var(--bb-text-heading-card-font-size);
+  }
+
+  .activity-list {
+    margin-top: 1rem;
+    border-top: 1px solid var(--bb-border-subtle);
+  }
+
+  .activity-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.45rem 0.75rem;
+    align-items: center;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--bb-border-subtle);
+  }
+
+  .activity-row code,
+  .activity-row > span:last-child {
+    grid-column: 2;
+    color: var(--bb-text-subtle);
+    font-size: 0.75rem;
+  }
+
+  .status-dot {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+  }
+
+  .status-dot--success {
+    background: var(--bb-green-800);
+  }
+
+  .status-dot--review {
+    background: var(--bb-orange-600);
+  }
+
+  @media (min-width: 768px) {
+    .technical-evidence__api-layout {
+      grid-template-columns: 16rem minmax(0, 1fr);
+    }
+
+    .technical-evidence__request-list {
+      border-right: 1px solid var(--bb-border-subtle);
+      border-bottom: 0;
+    }
+
+    .technical-evidence__code-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .technical-evidence__workflow {
+      grid-template-columns:
+        minmax(10rem, 0.8fr) auto minmax(12rem, 1fr)
+        auto minmax(10rem, 0.8fr);
+    }
+
+    .deployment-row {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(
+          0,
+          1fr
+        );
+    }
+
+    .flow-arrow {
+      transform: none;
+    }
+
+    .activity-summary {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .activity-row {
+      grid-template-columns: auto minmax(12rem, 1.5fr) minmax(10rem, 1fr) auto;
+    }
+
+    .activity-row code,
+    .activity-row > span:last-child {
+      grid-column: auto;
+    }
+  }
+</style>

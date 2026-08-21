@@ -1,7 +1,7 @@
 # Budibase brand and GTM direction
 
 **Status:** Working source of truth  
-**Last updated:** 20 August 2026
+**Last updated:** 21 August 2026
 
 Use this document to guide Budibase website design, customer-facing copy,
 campaigns, presentations, customer stories, sales enablement, product launches,
@@ -392,6 +392,24 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 - What quantitative outcomes can Budibase substantiate consistently?
 
 ## Decision log
+
+### 21 August 2026
+
+- Defined four reusable landing-page families: Product, Platform, Technical,
+  and Solution.
+- Assigned Apps, Agents, Automations, and Functions to a demonstration-led
+  Product composition.
+- Assigned Tables, Requests and Approvals, and Activity and Insights to a
+  split-hero Platform composition.
+- Assigned Knowledge, Admin and Security, Self-hosting, and API Explorer to a
+  proof-led Technical composition that explains operational stakes, system
+  behaviour, architecture, controls, and evaluator detail.
+- Kept Connections as a bespoke Platform page because its searchable directory
+  is the primary product experience; it remains in the Platform navigation and
+  is not duplicated under Resources.
+- Adopted Postmark's editorial pacing as a reference for technical-page flow
+  while retaining Budibase's forest-green identity, typography, and operational
+  infrastructure positioning.
 
 ### 20 August 2026
 

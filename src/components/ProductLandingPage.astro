@@ -1,0 +1,50 @@
+---
+import HeroLarge from "@components/HeroLarge.astro";
+import ProductDetailBody from "@components/ProductDetailBody.astro";
+import type { AstroComponentFactory } from "astro/runtime/server";
+import type { ProductDetailContent } from "../data/landingPageTypes";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  demo?: AstroComponentFactory;
+  demoProps?: Record<string, unknown>;
+  backgroundImage?: string;
+  theme?: "default" | "brand-dark";
+  mediaWithinBackground?: boolean;
+  bodyContent: ProductDetailContent;
+  featureImages: readonly [string, string];
+}
+
+const {
+  title,
+  description,
+  image,
+  imageAlt,
+  demo,
+  demoProps,
+  backgroundImage,
+  theme = "default",
+  mediaWithinBackground = false,
+  bodyContent,
+  featureImages,
+} = Astro.props as Props;
+---
+
+<div class="product-landing-page">
+  <HeroLarge
+    {title}
+    {description}
+    {image}
+    {imageAlt}
+    {demo}
+    {demoProps}
+    {backgroundImage}
+    {theme}
+    {mediaWithinBackground}
+  />
+
+  <ProductDetailBody content={bodyContent} {featureImages} />
+</div>

@@ -3,12 +3,11 @@ export const prerender = false;
 
 import Layout from "../../../layouts/MainLayout.astro";
 import AppDemoBackground from "@assets/images/backgrounds/app-demo-bg.jpg?url";
-import HeroLarge from "@components/HeroLarge.astro";
 import AppDemo from "@components/AppDemo.astro";
-import ProductFeatureBody from "@components/ProductFeatureBody.astro";
+import ProductLandingPage from "@components/ProductLandingPage.astro";
 import AppFeatureOneImage from "@assets/images/apps/cards/1.png?url";
 import AppFeatureTwoImage from "@assets/images/apps/cards/2.png?url";
-import type { ProductFeatureLandingContent } from "../../../data/productFeatureLandingPages";
+import type { ProductDetailContent } from "../../../data/landingPageTypes";
 
 const pageTitle = "Build internal tools\nin minutes";
 const pageDescription =
@@ -73,7 +72,7 @@ const bodyContent = {
       },
     ],
   },
-} satisfies Pick<ProductFeatureLandingContent, "features" | "cardCluster">;
+} satisfies ProductDetailContent;
 
 const accept = Astro.request.headers.get("accept") ?? "";
 Astro.response.headers.set("Vary", "Accept");
@@ -162,16 +161,13 @@ Budibase Apps offer custom JavaScript and CSS for advanced use cases.
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <HeroLarge
+  <ProductLandingPage
     title="Build internal tools in minutes"
     description={pageDescription}
     demo={AppDemo}
     demoProps={{ breakout: false }}
     backgroundImage={AppDemoBackground}
-  />
-
-  <ProductFeatureBody
-    content={bodyContent}
+    {bodyContent}
     featureImages={[AppFeatureOneImage, AppFeatureTwoImage]}
   />
 </Layout>

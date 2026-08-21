@@ -97,10 +97,15 @@ the same pattern.
 
 - Use `src/components/ProductPageLayout.astro` for product pages with bespoke
   body content and the standard compact product header.
-- Use `ProductFeatureLandingPage.astro` for data-driven product feature pages
-  that combine `HeroSmall` with the canonical `ProductFeatureBody` composition.
-- Use `ProductFeatureBody.astro` after a bespoke product hero when the page needs
-  the standard three-card overview, two feature sections, stats, and canonical
+- Use `ProductLandingPage.astro` for Apps, Agents, Automations, and Functions.
+  It combines `HeroLarge` with the canonical `ProductDetailBody` composition.
+- Use `PlatformLandingPage.astro` for Tables, Requests and Approvals, and
+  Activity and Insights. It combines `HeroSmall` with `ProductDetailBody`.
+- Use `TechnicalLandingPage.astro` for Knowledge, Admin and Security,
+  Self-hosting, and API Explorer. It renders the constrained, proof-led
+  `TechnicalStoryBlock` sequence.
+- Use `ProductDetailBody.astro` when a Product or Platform page needs the
+  standard three-card overview, two feature sections, stats, and canonical
   product footer.
 - Use `ProductPageFooter.astro` as the canonical ending for the 12 platform
   pages. It renders the homepage CTA followed by `ProductFeatureNav.astro`,
@@ -112,16 +117,18 @@ layout behavior from the current URL.
 
 ### Page composition
 
-- `ProductFeatureBody.astro` is the canonical product-page body composition. It
+- `ProductDetailBody.astro` is the shared Product and Platform body composition. It
   owns the card overview, feature sections, stats, site-grid wrappers, and
-  `ProductPageFooter` shared by the standard platform landing pages, including
-  Functions, Tables, API Explorer, Agents, Apps, and Automations. Its sequence
-  is overview, detail, proof, and next action.
+  `ProductPageFooter`. Its sequence is overview, detail, proof, and next action.
 - `ProductFeatureNav.astro` reads labels, destinations, grouping, prefetch
   behavior, and icons from the platform dropdown data so both navigation
   surfaces stay in sync.
-- `ProductFeatureLandingPage.astro` composes `HeroSmall` with
-  `ProductFeatureBody.astro` for data-driven product feature pages.
+- `ProductLandingPage.astro` composes `HeroLarge` with `ProductDetailBody.astro`
+  for the four primary product surfaces.
+- `PlatformLandingPage.astro` composes `HeroSmall` with
+  `ProductDetailBody.astro` for data-driven platform capability pages.
+- `TechnicalLandingPage.astro` owns the technical hero, editorial story, and
+  canonical product footer for technical platform pages.
 - `SolutionLandingPage.astro` provides the corresponding solution-page
   composition.
 - `FeatureSection.astro`, `StatSection.astro`, and the page-scoped

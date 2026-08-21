@@ -1,0 +1,127 @@
+---
+export const prerender = false;
+
+import Layout from "../../../layouts/MainLayout.astro";
+import ProductLandingPage from "@components/ProductLandingPage.astro";
+import FunctionsHeroImage from "@assets/images/platform/AgentInAutomations.png?url";
+import FunctionsHeroBackground from "@assets/images/backgrounds/automation-demo-bg.jpg?url";
+import FunctionsFeatureOneImage from "@assets/images/platform/AgentTools.png?url";
+import FunctionsFeatureTwoImage from "@assets/images/automations/BackgroundAutomationSquare.png?url";
+import type { ProductDetailContent } from "../../../data/landingPageTypes";
+
+const pageTitle = "Functions";
+const pageDescription =
+  "Add reusable server-side logic to Budibase workflows, transform data, and connect operational systems.";
+
+const heroDescription =
+  "Create reusable server-side functions that validate data, connect services, and handle the logic behind your most important operations.";
+
+const bodyContent = {
+  features: [
+    {
+      headline: "Build the logic your operation needs",
+      body: "Go beyond fixed workflow steps with functions designed around your systems, rules, and processes.",
+      bullets: [
+        {
+          icon: "Wrench",
+          text: "Create reusable logic for specialised operational requirements.",
+        },
+        {
+          icon: "GitFork",
+          text: "Validate, transform, and route data before the next step runs.",
+        },
+        {
+          icon: "Lightning",
+          text: "Trigger functions from the workflows and automations that need them.",
+        },
+      ],
+    },
+    {
+      headline: "Connect logic across your stack",
+      body: "Keep business rules close to the workflows they support while integrating securely with external services.",
+      bullets: [
+        {
+          icon: "Path",
+          text: "Call connected systems and APIs from one controlled workflow.",
+        },
+        {
+          icon: "Keyhole",
+          text: "Use protected configuration without exposing sensitive credentials.",
+        },
+        {
+          icon: "CheckCircle",
+          text: "Return consistent outputs that downstream steps can rely on.",
+        },
+      ],
+    },
+  ],
+  cardCluster: {
+    title: "Extend every operational workflow",
+    description:
+      "Use functions wherever a process needs more control, context, or connectivity.",
+    cards: [
+      {
+        title: "Custom workflow logic",
+        description:
+          "Handle the decisions and calculations that make each process unique.",
+      },
+      {
+        title: "Data transformation",
+        description:
+          "Shape incoming and outgoing data for every connected system.",
+      },
+      {
+        title: "External services",
+        description:
+          "Connect APIs and services without breaking the flow of work.",
+      },
+    ],
+  },
+} satisfies ProductDetailContent;
+
+const accept = Astro.request.headers.get("accept") ?? "";
+Astro.response.headers.set("Vary", "Accept");
+
+if (accept.includes("text/markdown")) {
+  return new Response(
+    `# Bring custom logic to every workflow
+
+${heroDescription}
+
+## Build the logic your operation needs
+
+Go beyond fixed workflow steps with functions designed around your systems, rules, and processes.
+
+- Create reusable logic for specialised operational requirements.
+- Validate, transform, and route data before the next step runs.
+- Trigger functions from the workflows and automations that need them.
+
+## Connect logic across your stack
+
+Keep business rules close to the workflows they support while integrating securely with external services.
+
+- Call connected systems and APIs from one controlled workflow.
+- Use protected configuration without exposing sensitive credentials.
+- Return consistent outputs that downstream steps can rely on.
+`,
+    {
+      headers: {
+        "Content-Type": "text/markdown; charset=utf-8",
+        Vary: "Accept",
+      },
+    },
+  );
+}
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <ProductLandingPage
+    title="Bring custom logic to every workflow"
+    description={heroDescription}
+    image={FunctionsHeroImage}
+    imageAlt="Reusable function connected to an operational workflow"
+    backgroundImage={FunctionsHeroBackground}
+    {bodyContent}
+    featureImages={[FunctionsFeatureOneImage, FunctionsFeatureTwoImage]}
+  />
+</Layout>

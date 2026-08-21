@@ -2,14 +2,13 @@
 export const prerender = false;
 
 import Layout from "../../../layouts/MainLayout.astro";
-import HeroLarge from "@components/HeroLarge.astro";
 import { getProductPageMeta } from "../_pageMeta";
 import AutomationDemo from "@components/AutomationDemo.astro";
 import AutomationDemoBackground from "@assets/images/backgrounds/automation-demo-bg.jpg?url";
-import ProductFeatureBody from "@components/ProductFeatureBody.astro";
+import ProductLandingPage from "@components/ProductLandingPage.astro";
 import AutomationFeatureOneImage from "@assets/images/automations/BackgroundAutomation.png?url";
 import AutomationFeatureTwoImage from "@assets/images/automations/BackgroundAutomationSquare.png?url";
-import type { ProductFeatureLandingContent } from "../../../data/productFeatureLandingPages";
+import type { ProductDetailContent } from "../../../data/landingPageTypes";
 
 const { description: pageMetaDescription } = getProductPageMeta(
   Astro.url.pathname,
@@ -76,7 +75,7 @@ const bodyContent = {
       },
     ],
   },
-} satisfies Pick<ProductFeatureLandingContent, "features" | "cardCluster">;
+} satisfies ProductDetailContent;
 
 const accept = Astro.request.headers.get("accept") ?? "";
 Astro.response.headers.set("Vary", "Accept");
@@ -153,7 +152,7 @@ Add looping, branching, and conditional logic to craft intelligent rules for rea
   description={pageMetaDescription}
   navTheme="brand-dark"
 >
-  <HeroLarge
+  <ProductLandingPage
     title="Automations you can control and rely on"
     description={pageDescription}
     demo={AutomationDemo}
@@ -161,10 +160,7 @@ Add looping, branching, and conditional logic to craft intelligent rules for rea
     backgroundImage={AutomationDemoBackground}
     theme="brand-dark"
     mediaWithinBackground
-  />
-
-  <ProductFeatureBody
-    content={bodyContent}
+    {bodyContent}
     featureImages={[AutomationFeatureOneImage, AutomationFeatureTwoImage]}
   />
 </Layout>

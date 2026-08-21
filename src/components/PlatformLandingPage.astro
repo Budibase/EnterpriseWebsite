@@ -1,0 +1,69 @@
+---
+import HeroSmall from "@components/HeroSmall.astro";
+import ProductDetailBody from "@components/ProductDetailBody.astro";
+import type { PlatformLandingContent } from "../data/landingPageTypes";
+import type { PlatformLandingSlug } from "../data/platformLandingPages";
+
+import RequestsHeroImage from "@assets/images/apps/apps hero.png?url";
+import RequestsFeatureOneImage from "@assets/images/homepage/Website_Hero_Activity_Screen.png?url";
+import RequestsFeatureTwoImage from "@assets/images/apps/cards/2.png?url";
+import ActivityHeroImage from "@assets/images/homepage/Website_Hero_Activity_Screen.png?url";
+import ActivityFeatureOneImage from "@assets/images/platform/AgentLogs.png?url";
+import ActivityFeatureTwoImage from "@assets/images/DataTables/hero.png?url";
+import TablesHeroImage from "@assets/images/DataTables/hero.png?url";
+import TablesFeatureOneImage from "@assets/images/DataTables/cards/2.png?url";
+import TablesFeatureTwoImage from "@assets/images/DataTables/cards/3.png?url";
+
+interface Props {
+  slug: PlatformLandingSlug;
+  content: PlatformLandingContent;
+  theme?: "default" | "brand-dark";
+}
+
+const { slug, content, theme = "default" } = Astro.props as Props;
+
+const pageImages: Record<
+  PlatformLandingSlug,
+  {
+    hero: string;
+    features: readonly [string, string];
+  }
+> = {
+  data: {
+    hero: TablesHeroImage,
+    features: [TablesFeatureOneImage, TablesFeatureTwoImage],
+  },
+  requests: {
+    hero: RequestsHeroImage,
+    features: [RequestsFeatureOneImage, RequestsFeatureTwoImage],
+  },
+  activity: {
+    hero: ActivityHeroImage,
+    features: [ActivityFeatureOneImage, ActivityFeatureTwoImage],
+  },
+};
+
+const images = pageImages[slug];
+---
+
+<div class="platform-landing-page">
+  <div class="site-grid-section site-grid-section--hero">
+    <HeroSmall
+      image={images.hero}
+      imageAlt={content.hero.imageAlt}
+      title={content.hero.headline}
+      subtitle={content.hero.subtitle}
+      action={{ label: "Book a demo", href: "/contact/" }}
+      secondaryAction={theme === "brand-dark"
+        ? {
+            label: "Get started",
+            href: "https://account.budibase.app/register",
+            target: "_blank",
+          }
+        : undefined}
+      {theme}
+    />
+  </div>
+
+  <ProductDetailBody content={content} featureImages={images.features} />
+</div>

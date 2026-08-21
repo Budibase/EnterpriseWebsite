@@ -2,13 +2,12 @@
 export const prerender = false;
 
 import Layout from "../../../layouts/MainLayout.astro";
-import HeroLarge from "@components/HeroLarge.astro";
 import AgentDemo from "@components/AgentDemo.astro";
-import ProductFeatureBody from "@components/ProductFeatureBody.astro";
+import ProductLandingPage from "@components/ProductLandingPage.astro";
 import AgentHeroBackground from "@assets/images/backgrounds/AgentDemo/resources-agent-demo-bg.jpg?url";
 import AgentInstructionsImage from "@assets/images/platform/AgentInstructions.png?url";
 import AgentToolsImage from "@assets/images/platform/AgentTools.png?url";
-import type { ProductFeatureLandingContent } from "../../../data/productFeatureLandingPages";
+import type { ProductDetailContent } from "../../../data/landingPageTypes";
 
 const pageTitle = "AI agents that\nrun your operations";
 const pageDescription =
@@ -75,7 +74,7 @@ const bodyContent = {
       },
     ],
   },
-} satisfies Pick<ProductFeatureLandingContent, "features" | "cardCluster">;
+} satisfies ProductDetailContent;
 
 const accept = Astro.request.headers.get("accept") ?? "";
 Astro.response.headers.set("Vary", "Accept");
@@ -137,15 +136,12 @@ Access internal data tables and external APIs to execute operational tasks.
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <HeroLarge
+  <ProductLandingPage
     title="AI agents that run your operations"
     description={pageDescription}
     demo={AgentDemo}
     backgroundImage={AgentHeroBackground}
-  />
-
-  <ProductFeatureBody
-    content={bodyContent}
+    {bodyContent}
     featureImages={[AgentInstructionsImage, AgentToolsImage]}
   />
 </Layout>

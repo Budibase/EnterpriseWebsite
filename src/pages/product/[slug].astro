@@ -1,35 +1,72 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
-import ProductFeatureLandingPage from "@components/ProductFeatureLandingPage.astro";
+import PlatformLandingPage from "@components/PlatformLandingPage.astro";
+import TechnicalLandingPage from "@components/TechnicalLandingPage.astro";
 import {
-  productFeatureLandingPages,
-  productFeatureSlugs,
-  type ProductFeatureLandingContent,
-  type ProductFeatureSlug,
-} from "../../data/productFeatureLandingPages";
+  platformLandingPages,
+  platformLandingSlugs,
+  type PlatformLandingSlug,
+} from "../../data/platformLandingPages";
+import type { PlatformLandingContent } from "../../data/landingPageTypes";
+import {
+  technicalLandingPages,
+  technicalLandingSlugs,
+  type TechnicalLandingContent,
+  type TechnicalLandingSlug,
+} from "../../data/technicalLandingPages";
+
+type LandingPageProps =
+  | {
+      template: "platform";
+      slug: PlatformLandingSlug;
+      content: PlatformLandingContent;
+    }
+  | {
+      template: "technical";
+      slug: TechnicalLandingSlug;
+      content: TechnicalLandingContent;
+    };
 
 export function getStaticPaths() {
-  return productFeatureSlugs.map((slug) => ({
-    params: { slug },
-    props: { slug, content: productFeatureLandingPages[slug] },
-  }));
+  return [
+    ...platformLandingSlugs.map((slug) => ({
+      params: { slug },
+      props: {
+        template: "platform" as const,
+        slug,
+        content: platformLandingPages[slug],
+      },
+    })),
+    ...technicalLandingSlugs.map((slug) => ({
+      params: { slug },
+      props: {
+        template: "technical" as const,
+        slug,
+        content: technicalLandingPages[slug],
+      },
+    })),
+  ];
 }
 
-const { slug, content } = Astro.props as {
-  slug: ProductFeatureSlug;
-  content: ProductFeatureLandingContent;
-};
-const usesBrandDarkTheme = slug === "apis" || slug === "data";
+const page = Astro.props as LandingPageProps;
+const usesBrandDarkTheme =
+  page.template === "technical" || page.slug === "data";
 ---
 
 <Layout
-  title={content.title}
-  description={content.metaDescription}
+  title={page.content.title}
+  description={page.content.metaDescription}
   navTheme={usesBrandDarkTheme ? "brand-dark" : "default"}
 >
-  <ProductFeatureLandingPage
-    {slug}
-    {content}
-    theme={usesBrandDarkTheme ? "brand-dark" : "default"}
-  />
+  {
+    page.template === "platform" ? (
+      <PlatformLandingPage
+        slug={page.slug}
+        content={page.content}
+        theme={usesBrandDarkTheme ? "brand-dark" : "default"}
+      />
+    ) : (
+      <TechnicalLandingPage slug={page.slug} content={page.content} />
+    )
+  }
 </Layout>

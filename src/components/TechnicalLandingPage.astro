@@ -1,0 +1,165 @@
+---
+import Button from "@components/Button.astro";
+import Icon from "@components/Icon.astro";
+import ProductPageFooter from "@components/ProductPageFooter.astro";
+import TechnicalStoryBlock from "@components/TechnicalStoryBlock.astro";
+import type {
+  TechnicalLandingContent,
+  TechnicalLandingSlug,
+  TechnicalMediaKey,
+} from "../data/technicalLandingPages";
+
+import KnowledgePrimaryImage from "@assets/images/platform/AgentPreview.png?url";
+import KnowledgeSecondaryImage from "@assets/images/platform/AgentInstructions2.png?url";
+
+interface Props {
+  slug: TechnicalLandingSlug;
+  content: TechnicalLandingContent;
+}
+
+const { slug, content } = Astro.props as Props;
+
+const pageMedia: Partial<
+  Record<TechnicalLandingSlug, Partial<Record<TechnicalMediaKey, string>>>
+> = {
+  knowledge: {
+    primary: KnowledgePrimaryImage,
+    secondary: KnowledgeSecondaryImage,
+  },
+};
+
+const media = pageMedia[slug] ?? {};
+---
+
+<div class="technical-landing-page">
+  <header class="technical-hero">
+    <div class="technical-hero__container">
+      <div class="technical-hero__icon" aria-hidden="true">
+        <Icon name={content.hero.icon} size="32" weight="bold" />
+      </div>
+      <p class="technical-hero__eyebrow">{content.hero.eyebrow}</p>
+      <h1>{content.hero.headline}</h1>
+      <p class="technical-hero__subtitle">{content.hero.subtitle}</p>
+      <div class="technical-hero__actions">
+        <Button
+          label="Book a demo"
+          url="/contact/"
+          variant="bright-on-dark"
+          size="large"
+        />
+        <Button
+          label="Get started"
+          url="https://account.budibase.app/register"
+          variant="outline-on-dark"
+          size="large"
+          target="_blank"
+        />
+      </div>
+    </div>
+  </header>
+
+  <div class="technical-landing-page__story">
+    {
+      content.blocks.map((block) => (
+        <TechnicalStoryBlock
+          {block}
+          media={
+            block.type === "evidence" && block.visual === "image"
+              ? media[block.media]
+              : undefined
+          }
+        />
+      ))
+    }
+  </div>
+
+  <ProductPageFooter />
+</div>
+
+<style>
+  .technical-landing-page {
+    width: 100%;
+    background: var(--bb-background-base);
+  }
+
+  .technical-hero {
+    width: 100%;
+    background: var(--bb-celery-1300);
+    color: var(--bb-text-on-base);
+  }
+
+  .technical-hero__container {
+    display: flex;
+    width: min(100%, 64rem);
+    flex-direction: column;
+    align-items: center;
+    margin-inline: auto;
+    padding: clamp(4rem, 9vw, 8rem) var(--site-content-inset);
+    text-align: center;
+  }
+
+  .technical-hero__icon {
+    display: inline-flex;
+    width: 4rem;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--bb-brand-forest-green);
+    background: var(--bb-brand-bright-green);
+  }
+
+  .technical-hero__eyebrow,
+  .technical-hero h1,
+  .technical-hero__subtitle {
+    margin: 0;
+    color: inherit !important;
+  }
+
+  .technical-hero__eyebrow {
+    margin-top: 1.5rem;
+    font-size: var(--bb-text-copy-compact-font-size);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .technical-hero h1 {
+    max-width: 58rem;
+    margin-top: 1rem;
+    font-family: var(--bb-text-display-large-font-family);
+    font-size: var(--bb-text-heading-hero-font-size);
+    font-weight: var(--bb-text-display-large-font-weight);
+    line-height: var(--bb-text-heading-hero-line-height);
+    letter-spacing: var(--bb-text-display-large-letter-spacing);
+    text-transform: var(--bb-text-display-large-text-transform);
+    text-wrap: balance;
+  }
+
+  .technical-hero__subtitle {
+    max-width: 48rem;
+    margin-top: 1.5rem;
+    color: var(--bb-text-on-base-subtle) !important;
+    font-size: var(--bb-text-copy-lead-font-size);
+    line-height: var(--bb-text-copy-lead-line-height);
+    text-wrap: balance;
+  }
+
+  .technical-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .technical-landing-page__story {
+    width: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .technical-hero__container {
+      padding-block: 4rem;
+    }
+  }
+</style>

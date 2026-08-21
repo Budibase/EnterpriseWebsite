@@ -1,0 +1,273 @@
+---
+import Icon from "@components/Icon.astro";
+import Link from "@components/Link.astro";
+import TechnicalEvidenceVisual from "@components/TechnicalEvidenceVisual.astro";
+import type { TechnicalStoryBlock } from "../data/technicalLandingPages";
+
+interface Props {
+  block: TechnicalStoryBlock;
+  media?: string;
+}
+
+const { block, media } = Astro.props as Props;
+---
+
+{
+  block.type === "narrative" && (
+    <section class="technical-block technical-block--narrative">
+      <div class="technical-block__reading-column">
+        <h2>{block.headline}</h2>
+        <div class="technical-block__paragraphs">
+          {block.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+{
+  block.type === "evidence" && (
+    <section class="technical-block technical-block--evidence">
+      <figure class="technical-block__figure">
+        <div class="technical-block__media">
+          {block.visual === "image" && media ? (
+            <img src={media} alt={block.alt} loading="lazy" decoding="async" />
+          ) : block.visual !== "image" ? (
+            <TechnicalEvidenceVisual visual={block.visual} label={block.alt} />
+          ) : null}
+        </div>
+        <figcaption>{block.caption}</figcaption>
+      </figure>
+    </section>
+  )
+}
+
+{
+  block.type === "detail" && (
+    <section
+      class:list={[
+        "technical-block",
+        "technical-block--detail",
+        block.tone === "surface" && "technical-block--surface",
+      ]}
+    >
+      <div class="technical-block__reading-column">
+        <h2>{block.headline}</h2>
+        <p>{block.body}</p>
+
+        {block.bullets && block.bullets.length > 0 && (
+          <ul class="technical-block__bullets">
+            {block.bullets.map((bullet) => (
+              <li>
+                <span class="technical-block__bullet-icon" aria-hidden="true">
+                  <Icon name={bullet.icon} size="22" weight="bold" />
+                </span>
+                <span>{bullet.text}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {block.action && (
+          <Link
+            label={block.action.label}
+            url={block.action.href}
+            appearance="quiet"
+            class="technical-block__action"
+          >
+            <Icon name="ArrowRight" size="18" aria-hidden="true" />
+          </Link>
+        )}
+      </div>
+    </section>
+  )
+}
+
+{
+  block.type === "proof" && (
+    <section class="technical-block technical-block--proof">
+      <blockquote>
+        <p>{block.statement}</p>
+        <footer>
+          <strong>{block.attribution}</strong>
+          {block.role && <span>{block.role}</span>}
+        </footer>
+        {block.action && (
+          <Link
+            label={block.action.label}
+            url={block.action.href}
+            appearance="quiet"
+            class="technical-block__action"
+          >
+            <Icon name="ArrowRight" size="18" aria-hidden="true" />
+          </Link>
+        )}
+      </blockquote>
+    </section>
+  )
+}
+
+<style>
+  .technical-block {
+    width: 100%;
+    color: var(--bb-text-base);
+  }
+
+  .technical-block__reading-column {
+    width: min(100%, 48rem);
+    margin-inline: auto;
+    padding: clamp(3rem, 7vw, 6rem) var(--site-content-inset);
+  }
+
+  .technical-block__reading-column h2,
+  .technical-block__reading-column p {
+    margin: 0;
+  }
+
+  .technical-block__reading-column h2 {
+    font-family: var(--font-inter), var(--font-sans);
+    font-size: var(--bb-text-heading-subsection-font-size);
+    font-weight: 700;
+    line-height: var(--bb-text-heading-subsection-line-height);
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .technical-block__reading-column p,
+  .technical-block__bullets li {
+    font-size: var(--bb-text-copy-body-font-size);
+    line-height: var(--bb-text-copy-body-line-height);
+  }
+
+  .technical-block__paragraphs,
+  .technical-block--detail .technical-block__reading-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .technical-block__paragraphs {
+    margin-top: 1.5rem;
+  }
+
+  .technical-block--surface {
+    background: var(--bb-background-surface);
+  }
+
+  .technical-block__bullets {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    border-top: 1px solid var(--bb-border-subtle);
+    list-style: none;
+  }
+
+  .technical-block__bullets li {
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--bb-border-subtle);
+  }
+
+  .technical-block__bullet-icon {
+    display: inline-flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--bb-brand-forest-green);
+    background: var(--bb-celery-200);
+  }
+
+  .technical-block--evidence {
+    padding: 0 var(--site-content-inset) clamp(3rem, 7vw, 6rem);
+  }
+
+  .technical-block__figure {
+    width: min(100%, var(--site-container-max));
+    margin: 0 auto;
+  }
+
+  .technical-block__media {
+    display: flex;
+    min-height: clamp(16rem, 48vw, 42rem);
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-subtle);
+    border-radius: var(--radius-small);
+    padding: clamp(1rem, 4vw, 4rem);
+    background: var(--bb-background-surface);
+  }
+
+  .technical-block__media img {
+    display: block;
+    width: 100%;
+    max-height: 38rem;
+    object-fit: contain;
+  }
+
+  .technical-block__figure figcaption {
+    max-width: 48rem;
+    margin: 1rem auto 0;
+    color: var(--bb-text-subtle);
+    font-size: var(--bb-text-copy-caption-font-size);
+    line-height: var(--bb-text-copy-caption-line-height);
+    text-align: center;
+  }
+
+  .technical-block--proof {
+    padding: 0 var(--site-content-inset) clamp(3rem, 7vw, 6rem);
+  }
+
+  .technical-block--proof blockquote {
+    width: min(100%, 66rem);
+    margin: 0 auto;
+    border: 0;
+    border-radius: var(--radius-small);
+    padding: clamp(2rem, 5vw, 4rem);
+    background: var(--bb-celery-200);
+  }
+
+  .technical-block--proof blockquote p {
+    margin: 0;
+    color: var(--bb-brand-forest-green);
+    font-size: var(--bb-text-heading-subsection-font-size);
+    font-weight: 600;
+    line-height: var(--bb-text-heading-subsection-line-height);
+  }
+
+  .technical-block--proof blockquote footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  :global(.technical-block__action) {
+    width: fit-content;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 767px) {
+    .technical-block__reading-column {
+      padding-block: 3rem;
+    }
+
+    .technical-block--evidence,
+    .technical-block--proof {
+      padding-bottom: 3rem;
+    }
+
+    .technical-block__media {
+      min-height: 14rem;
+      padding: 1rem;
+    }
+  }
+</style>
