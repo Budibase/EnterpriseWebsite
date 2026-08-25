@@ -87,7 +87,10 @@ const hasBeforeTitle = Astro.slots.has("before-title");
             )}
           </h3>
           {description && (
-            <p class="w-full min-w-0 text-stone-500! " style={descriptionStyle}>
+            <p
+              class="w-full min-w-0 text-[var(--bb-text-body)]!"
+              style={descriptionStyle}
+            >
               {description}
             </p>
           )}
@@ -141,7 +144,7 @@ const hasBeforeTitle = Astro.slots.has("before-title");
         <h3 class={`text-lg! card-title ${cardTitleClass}`}>{label}</h3>
         {description && (
           <p
-            class="w-full min-w-0 text-stone-500!  text-sm!"
+            class="w-full min-w-0 text-[var(--bb-text-body)]! text-sm!"
             style={descriptionStyle}
           >
             {description}

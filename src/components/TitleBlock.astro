@@ -112,7 +112,7 @@ function getLineColorClass(index: number) {
   .title-block__description {
     max-width: 38rem;
     margin: 1.25rem 0 0;
-    color: var(--bb-text-subtle);
+    color: var(--bb-text-body);
     font-family: var(--font-sans);
     font-size: var(--bb-text-copy-lead-font-size);
     font-weight: var(--bb-text-copy-lead-font-weight);
@@ -126,8 +126,9 @@ function getLineColorClass(index: number) {
   }
 
   .section-title {
-    font-size: var(--bb-text-heading-section-font-size);
-    line-height: var(--bb-text-heading-section-line-height);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 0.98;
     text-wrap: balance;
   }
 
@@ -150,5 +151,17 @@ function getLineColorClass(index: number) {
     font-weight: 500;
     line-height: var(--bb-text-heading-subsection-line-height);
     letter-spacing: 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .section-title {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .section-title {
+      font-size: 2.5rem;
+    }
   }
 </style>

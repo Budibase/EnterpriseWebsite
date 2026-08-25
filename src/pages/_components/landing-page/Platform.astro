@@ -1,35 +1,89 @@
 ---
-import CardCluster from "@components/cards/CardCluster.astro";
+import MultiFeatureSection from "@components/MultiFeatureSection.astro";
+import PlaceholderMedia from "@assets/images/homepage/multi-feature/agents.webp?url";
+
+const placeholderMedia = {
+  src: PlaceholderMedia,
+  alt: "Budibase product interface placeholder.",
+  width: 1800,
+  height: 1074,
+  position: "center",
+} as const;
 
 const platformFeatures = [
   {
-    title: "Handle requests automatically with agents",
+    id: "agents",
+    title: "Agents",
     description:
-      "Deploy AI agents that understand requests, take action across your systems, and resolve work without manual intervention.",
+      "Deploy controlled agents to investigate questions, gather context, and take permitted actions across your systems—with people involved wherever oversight matters.",
+    action: {
+      label: "Explore agents",
+      href: "/product/agents/",
+    },
+    media: placeholderMedia,
   },
   {
-    title: "Build secure apps and forms",
+    id: "apps",
+    title: "Apps",
     description:
-      "Create internal tools and workflows in minutes with a visual platform designed for the teams that keep your business running.",
+      "Turn existing data into secure apps and forms for requesting, reviewing, and completing operational work—without exposing the systems underneath.",
+    action: {
+      label: "Explore apps",
+      href: "/product/apps/",
+    },
+    media: placeholderMedia,
   },
   {
-    title: "Automate operational processes",
+    id: "automations",
+    title: "Automations",
     description:
-      "Connect people, systems, and AI to eliminate repetitive work and keep critical processes moving automatically.",
+      "Automate approvals, routing, notifications, and system updates, with testing and run history that make every step visible.",
+    action: {
+      label: "Explore automations",
+      href: "/product/automations/",
+    },
+    media: placeholderMedia,
   },
   {
-    title: "Connect business data",
+    id: "functions",
+    title: "Functions",
     description:
-      "Bring together data from your existing systems so apps, automations, and AI agents always have the context they need.",
+      "Write reusable server-side functions to validate and transform data, connect services, and handle rules that standard workflow steps cannot.",
+    action: {
+      label: "Explore functions",
+      href: "/product/functions/",
+    },
+    media: placeholderMedia,
+  },
+  {
+    id: "documents",
+    title: "Documents",
+    description:
+      "Connect trusted runbooks, policies, and reference material to agents so answers and actions stay grounded in the operational context each process requires.",
+    action: {
+      label: "Explore documents",
+      href: "/product/knowledge/",
+    },
+    media: placeholderMedia,
+  },
+  {
+    id: "tables",
+    title: "Tables",
+    description:
+      "Manage structured operational data in Budibase so apps, automations, agents, and functions can work from a consistent source of context.",
+    action: {
+      label: "Explore tables",
+      href: "/product/data/",
+    },
+    media: placeholderMedia,
   },
 ] as const;
 ---
 
-<CardCluster
-  columns={2}
-  CardBackgroundColor="raised"
-  SectionTitle={`Every operation.
-One platform.`}
-  SectionDescription="AI agents, automations, and apps designed to work together to level-up any operation."
-  cards={platformFeatures}
+<MultiFeatureSection
+  id="homepage-products"
+  title="One platform. More ways to deliver."
+  description="Build apps, automate predictable work, deploy agents for context-dependent tasks, extend workflows with reusable functions, and connect trusted documents—all around the systems and data you already own."
+  features={platformFeatures}
+  initialFeatureId="agents"
 />

@@ -1,12 +1,12 @@
 ---
 import Layout from "../layouts/MainLayout.astro";
 import Hero from "./_components/landing-page/HeroPrivateDataExperiment.astro";
+import HomepageProofSection from "./_components/landing-page/HomepageProofSection.astro";
 import Platform from "./_components/landing-page/Platform.astro";
 import CustomerStoriesFeature from "./_components/landing-page/CustomerStoriesFeature.astro";
 import PlatformCapabilities from "./_components/landing-page/PlatformCapabilities.astro";
 import EnterpriseSection from "./_components/landing-page/EnterpriseSection.astro";
 import FeatureSection from "@components/FeatureSection.astro";
-import StatSection from "@components/StatSection.astro";
 import CTA from "@components/CTA.astro";
 import criticalOperationsImage from "@assets/images/feature-sections/critical-operations.png?url";
 
@@ -34,14 +34,17 @@ const enterpriseFeatureBullets = [
     <div class="site-grid-section site-grid-section--hero">
       <Hero />
     </div>
-    <div class="site-grid-section">
+    <div class="site-grid-section homepage-proof-grid-section">
+      <HomepageProofSection />
+    </div>
+    <div class="site-grid-section homepage-multi-feature-section">
       <Platform />
     </div>
     <div class="site-grid-section">
       <PlatformCapabilities />
     </div>
     <div
-      class="site-grid-section site-grid-section--no-top site-grid-section--no-bottom site-grid-section--forest-green"
+      class="site-grid-section site-grid-section--no-top site-grid-section--forest-green"
     >
       <FeatureSection
         variant="forest-green"
@@ -58,11 +61,6 @@ const enterpriseFeatureBullets = [
         bullets={enterpriseFeatureBullets}
       />
     </div>
-    <div
-      class="site-grid-section site-grid-section--no-top site-grid-section--spacious-bottom"
-    >
-      <StatSection class="stat-section--adjacent" variant="forest-green" />
-    </div>
     <div class="site-grid-section site-grid-section--no-top">
       <CustomerStoriesFeature />
     </div>
@@ -74,3 +72,13 @@ const enterpriseFeatureBullets = [
     </div>
   </div>
 </Layout>
+
+<style>
+  .homepage-proof-grid-section {
+    background: var(--bb-background-base);
+  }
+
+  .homepage-multi-feature-section {
+    background: var(--bb-gray-900);
+  }
+</style>

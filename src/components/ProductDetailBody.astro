@@ -3,14 +3,20 @@ import FeatureSection from "@components/FeatureSection.astro";
 import ProductPageFooter from "@components/ProductPageFooter.astro";
 import StatSection from "@components/StatSection.astro";
 import CardCluster from "@components/cards/CardCluster.astro";
-import type { ProductDetailContent } from "../data/landingPageTypes";
+import type {
+  ProductDetailContent,
+  ProductDetailMedia,
+} from "../data/landingPageTypes";
 
 interface Props {
   content: ProductDetailContent;
-  featureImages: readonly [string, string];
+  featureImages?: readonly [string, string];
+  featureMedia?: readonly [ProductDetailMedia, ProductDetailMedia];
 }
 
-const { content, featureImages } = Astro.props as Props;
+const { content, featureImages, featureMedia } = Astro.props as Props;
+const resolvedFeatureMedia =
+  featureMedia ?? featureImages?.map((image) => ({ image })) ?? [];
 ---
 
 <div class="product-detail-body">
@@ -26,8 +32,14 @@ const { content, featureImages } = Astro.props as Props;
     content.features.map((feature, index) => (
       <div class="site-grid-section site-grid-section--no-top">
         <FeatureSection
-          image={featureImages[index]}
-          imageAlt={`${feature.headline} product interface`}
+          image={resolvedFeatureMedia[index].image}
+          imageAlt={
+            resolvedFeatureMedia[index].imageAlt ??
+            `${feature.headline} product interface`
+          }
+          video={resolvedFeatureMedia[index].video}
+          videoType={resolvedFeatureMedia[index].videoType}
+          mediaFit={resolvedFeatureMedia[index].fit}
           imagePosition={index % 2 === 0 ? "left" : "right"}
           headline={feature.headline}
           body={feature.body}

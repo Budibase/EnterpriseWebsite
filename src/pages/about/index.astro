@@ -461,6 +461,7 @@ const leaders = [
 
   .about-leadership__card p {
     margin-top: 0.4rem;
+    color: var(--bb-text-body) !important;
     font-size: 0.9rem;
     opacity: 0.72;
   }
@@ -468,16 +469,15 @@ const leaders = [
   .about-principles :global(.card-cluster) {
     --card-cluster-card-background: var(--bb-background-surface);
     --card-cluster-card-text: var(--bb-text-base);
-    --card-cluster-card-description: color-mix(
-      in srgb,
-      var(--bb-text-base) 76%,
-      transparent
-    );
+    --card-cluster-card-description: var(--bb-text-body);
   }
 
-  .about-principles :global(.card-cluster__header h2),
-  .about-principles :global(.card-cluster__header p) {
+  .about-principles :global(.card-cluster__header h2) {
     color: var(--bb-text-base) !important;
+  }
+
+  .about-principles :global(.card-cluster__header p) {
+    color: var(--bb-text-body) !important;
   }
 
   .about-principles :global(.card-cluster__image-wrap) {

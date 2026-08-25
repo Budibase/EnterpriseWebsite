@@ -36,154 +36,156 @@ const isCompact = menu.columns.length === 1;
     data-header-dropdown-menu
     aria-label={`${label} navigation`}
   >
-    <div class="header-dropdown-panel__inner">
-      {
-        !isCompact && (
-          <a
-            href={menu.featuredCard.href}
-            class="header-dropdown-feature-card"
-            data-astro-prefetch={
-              menu.featuredCard.href.startsWith("/") ? "" : undefined
-            }
-          >
-            <span
-              class:list={[
-                "header-dropdown-feature-card__media",
-                menu.featuredCard.imageTint &&
-                  "header-dropdown-feature-card__media--tinted",
-              ]}
-            >
-              <img
-                src={menu.featuredCard.image}
-                alt=""
-                class="header-dropdown-feature-card__image"
-                loading="eager"
-              />
-            </span>
-            <span class="header-dropdown-feature-card__body">
-              <span class="header-dropdown-feature-card__title">
-                {menu.featuredCard.title}
-              </span>
-              <span class="header-dropdown-feature-card__description">
-                {menu.featuredCard.description}
-              </span>
-              <span class="header-dropdown-feature-card__cta">
-                {menu.featuredCard.ctaLabel}
-                <svg
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  aria-hidden="true"
-                  class="header-dropdown-feature-card__cta-icon"
-                >
-                  <path
-                    d="M3.25 8H12.5M8.75 4.25L12.5 8L8.75 11.75"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span>
-            </span>
-          </a>
-        )
-      }
-
-      <div class="header-dropdown-columns">
+    <div class="header-dropdown-panel__shell">
+      <div class="header-dropdown-panel__inner">
         {
-          menu.columns.map((column) => (
-            <section
-              class:list={[
-                "header-dropdown-column",
-                column.columnSpan === 2 && "header-dropdown-column--span-2",
-              ]}
-              aria-label={column.heading}
+          !isCompact && (
+            <a
+              href={menu.featuredCard.href}
+              class="header-dropdown-feature-card"
+              data-astro-prefetch={
+                menu.featuredCard.href.startsWith("/") ? "" : undefined
+              }
             >
-              {!isCompact && (
-                <h2 class="header-dropdown-column__heading">
-                  {column.heading}
-                </h2>
-              )}
-              <ul class="header-dropdown-column__list">
-                {column.items.map(
-                  ({
-                    href,
-                    label,
-                    description,
-                    prefetch,
-                    badge,
-                    target,
-                    rel,
-                    disabled,
-                  }) => (
-                    <li class="header-dropdown-column__item">
-                      {disabled ? (
-                        <span
-                          aria-disabled="true"
-                          class="header-dropdown-link header-dropdown-link--disabled"
-                        >
-                          <span class="header-dropdown-link__label">
-                            {label}
-                            {badge && (
-                              <span class="header-dropdown-link__badge">
-                                {badge}
-                              </span>
-                            )}
-                          </span>
-                          {description && (
-                            <span class="header-dropdown-link__description">
-                              {description}
-                            </span>
-                          )}
-                        </span>
-                      ) : (
-                        <a
-                          href={href}
-                          target={target}
-                          rel={
-                            rel ??
-                            (target === "_blank"
-                              ? "noopener noreferrer"
-                              : undefined)
-                          }
-                          data-astro-prefetch={prefetch ? "" : undefined}
-                          class="header-dropdown-link"
-                        >
-                          <span class="header-dropdown-link__label">
-                            {label}
-                            {badge && (
-                              <span class="header-dropdown-link__badge">
-                                {badge}
-                              </span>
-                            )}
-                            <span
-                              class="header-dropdown-link__arrow"
-                              aria-hidden="true"
-                            >
-                              <Icon
-                                name={
-                                  target === "_blank"
-                                    ? "ArrowUpRightBold"
-                                    : "ArrowRightBold"
-                                }
-                                size="14"
-                              />
-                            </span>
-                          </span>
-                          {description && (
-                            <span class="header-dropdown-link__description">
-                              {description}
-                            </span>
-                          )}
-                        </a>
-                      )}
-                    </li>
-                  ),
-                )}
-              </ul>
-            </section>
-          ))
+              <span
+                class:list={[
+                  "header-dropdown-feature-card__media",
+                  menu.featuredCard.imageTint &&
+                    "header-dropdown-feature-card__media--tinted",
+                ]}
+              >
+                <img
+                  src={menu.featuredCard.image}
+                  alt=""
+                  class="header-dropdown-feature-card__image"
+                  loading="eager"
+                />
+              </span>
+              <span class="header-dropdown-feature-card__body">
+                <span class="header-dropdown-feature-card__title">
+                  {menu.featuredCard.title}
+                </span>
+                <span class="header-dropdown-feature-card__description">
+                  {menu.featuredCard.description}
+                </span>
+                <span class="header-dropdown-feature-card__cta">
+                  {menu.featuredCard.ctaLabel}
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                    class="header-dropdown-feature-card__cta-icon"
+                  >
+                    <path
+                      d="M3.25 8H12.5M8.75 4.25L12.5 8L8.75 11.75"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </a>
+          )
         }
+
+        <div class="header-dropdown-columns">
+          {
+            menu.columns.map((column) => (
+              <section
+                class:list={[
+                  "header-dropdown-column",
+                  column.columnSpan === 2 && "header-dropdown-column--span-2",
+                ]}
+                aria-label={column.heading}
+              >
+                {!isCompact && (
+                  <h2 class="header-dropdown-column__heading">
+                    {column.heading}
+                  </h2>
+                )}
+                <ul class="header-dropdown-column__list">
+                  {column.items.map(
+                    ({
+                      href,
+                      label,
+                      description,
+                      prefetch,
+                      badge,
+                      target,
+                      rel,
+                      disabled,
+                    }) => (
+                      <li class="header-dropdown-column__item">
+                        {disabled ? (
+                          <span
+                            aria-disabled="true"
+                            class="header-dropdown-link header-dropdown-link--disabled"
+                          >
+                            <span class="header-dropdown-link__label">
+                              {label}
+                              {badge && (
+                                <span class="header-dropdown-link__badge">
+                                  {badge}
+                                </span>
+                              )}
+                            </span>
+                            {description && (
+                              <span class="header-dropdown-link__description">
+                                {description}
+                              </span>
+                            )}
+                          </span>
+                        ) : (
+                          <a
+                            href={href}
+                            target={target}
+                            rel={
+                              rel ??
+                              (target === "_blank"
+                                ? "noopener noreferrer"
+                                : undefined)
+                            }
+                            data-astro-prefetch={prefetch ? "" : undefined}
+                            class="header-dropdown-link"
+                          >
+                            <span class="header-dropdown-link__label">
+                              {label}
+                              {badge && (
+                                <span class="header-dropdown-link__badge">
+                                  {badge}
+                                </span>
+                              )}
+                              <span
+                                class="header-dropdown-link__arrow"
+                                aria-hidden="true"
+                              >
+                                <Icon
+                                  name={
+                                    target === "_blank"
+                                      ? "ArrowUpRightBold"
+                                      : "ArrowRightBold"
+                                  }
+                                  size="14"
+                                />
+                              </span>
+                            </span>
+                            {description && (
+                              <span class="header-dropdown-link__description">
+                                {description}
+                              </span>
+                            )}
+                          </a>
+                        )}
+                      </li>
+                    ),
+                  )}
+                </ul>
+              </section>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
@@ -257,9 +259,8 @@ const isCompact = menu.columns.length === 1;
     right: 0;
     z-index: 90;
     visibility: hidden;
-    padding: clamp(1.5rem, 2.6vw, 2.5rem) 0 clamp(1.75rem, 3vw, 2.75rem);
-    border-bottom: 1px solid var(--border-color);
-    background: var(--bg-1);
+    padding: 0.25rem clamp(1rem, 2.5vw, 2rem) 0.75rem;
+    background: transparent;
     opacity: 0;
     pointer-events: none;
     transform: translateY(-0.75rem);
@@ -280,11 +281,19 @@ const isCompact = menu.columns.length === 1;
       visibility 0ms linear;
   }
 
-  .header-dropdown-panel__inner {
-    display: grid;
+  .header-dropdown-panel__shell {
     width: min(100%, var(--site-container-max));
     margin: 0 auto;
-    padding-inline: clamp(1rem, 2.5vw, 2rem);
+    padding: clamp(1.5rem, 2.6vw, 2.5rem) clamp(1rem, 2.5vw, 2rem)
+      clamp(1.75rem, 3vw, 2.75rem);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    background: var(--bg-1);
+  }
+
+  .header-dropdown-panel__inner {
+    display: grid;
+    width: 100%;
     grid-template-columns: minmax(17rem, 24rem) minmax(0, 1fr);
     gap: clamp(2rem, 4vw, 4rem);
     align-items: start;
@@ -296,15 +305,18 @@ const isCompact = menu.columns.length === 1;
     left: 0;
     right: auto;
     width: min(18rem, calc(100vw - 2rem));
+    padding: 0;
+  }
+
+  .header-dropdown--compact .header-dropdown-panel__shell {
+    width: 100%;
     padding: 1rem;
-    border: 1px solid var(--border-color);
     border-radius: 0.5rem;
   }
 
   .header-dropdown--compact .header-dropdown-panel__inner {
     display: block;
     width: 100%;
-    padding-inline: 0;
   }
 
   .header-dropdown-feature-card {

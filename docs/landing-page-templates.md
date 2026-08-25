@@ -14,32 +14,12 @@ feature detail, proof, and the next action.
 
 ## Platform landing pages
 
-Use `PlatformLandingPage.astro` for Tables, Requests and Approvals, and Activity
-and Insights.
+Use `PlatformLandingPage.astro` for Tables, Requests and Approvals, Activity and
+Insights, Knowledge, Admin and Security, Self-hosting, and API Explorer.
 
 Platform pages use a split copy-and-media hero followed by the shared
 `ProductDetailBody.astro` composition. They explain an enabling capability
 through outcomes, feature detail, and product evidence.
-
-## Technical landing pages
-
-Use `TechnicalLandingPage.astro` for Knowledge, Admin and Security,
-Self-hosting, and API Explorer.
-
-Technical pages use an editorial, proof-led sequence:
-
-1. State the technical outcome.
-2. Explain the operational stakes.
-3. Show product, workflow, code, or architecture evidence.
-4. Explain observable system behaviour.
-5. Make governance, deployment, permissions, or human control visible.
-6. Add approved proof when available.
-7. Address evaluator questions and tradeoffs.
-8. End with the canonical CTA and platform navigation.
-
-Technical content is expressed through the constrained `TechnicalStoryBlock`
-union: `narrative`, `evidence`, `proof`, and `detail`. Do not add an
-unrestricted page-builder schema.
 
 ## Solution landing pages
 

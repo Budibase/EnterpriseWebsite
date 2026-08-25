@@ -1,0 +1,471 @@
+---
+import Button from "@components/Button.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+
+export interface MultiFeatureMedia {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  fit?: "cover" | "contain";
+  position?: string;
+}
+
+export interface MultiFeatureItem {
+  id: string;
+  title: string;
+  description: string;
+  action: {
+    label: string;
+    href: string;
+  };
+  media: MultiFeatureMedia;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  features: readonly MultiFeatureItem[];
+  initialFeatureId?: string;
+  id?: string;
+}
+
+const {
+  title,
+  description,
+  features,
+  initialFeatureId = features[0]?.id,
+  id = `multi-feature-${Math.random().toString(36).slice(2, 9)}`,
+} = Astro.props as Props;
+
+const activeFeatureId = features.some(
+  (feature) => feature.id === initialFeatureId,
+)
+  ? initialFeatureId
+  : features[0]?.id;
+const titleId = `${id}-title`;
+---
+
+<section
+  class="multi-feature-section"
+  aria-labelledby={titleId}
+  data-multi-feature
+  data-active-feature={activeFeatureId}
+>
+  <div class="multi-feature-section__container">
+    <TitleBlock
+      variant="section"
+      title={title}
+      description={description}
+      titleId={titleId}
+      containerClass="multi-feature-section__header"
+      titleClass="multi-feature-section__title"
+      descriptionClass="multi-feature-section__intro"
+    />
+
+    <div class="multi-feature-section__shell">
+      <div class="multi-feature-section__accordion" data-feature-accordion>
+        {
+          features.map((feature) => {
+            const isActive = feature.id === activeFeatureId;
+            const triggerId = `${id}-${feature.id}-trigger`;
+            const panelId = `${id}-${feature.id}-panel`;
+
+            return (
+              <article
+                class:list={[
+                  "multi-feature-section__item",
+                  isActive && "is-active",
+                ]}
+                data-feature-item={feature.id}
+              >
+                <h3 class="multi-feature-section__item-heading">
+                  <button
+                    id={triggerId}
+                    class="multi-feature-section__trigger"
+                    type="button"
+                    aria-expanded={isActive ? "true" : "false"}
+                    aria-controls={panelId}
+                    data-feature-trigger={feature.id}
+                  >
+                    <span>{feature.title}</span>
+                    <span
+                      class="multi-feature-section__indicator"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </h3>
+
+                <div
+                  id={panelId}
+                  class="multi-feature-section__panel"
+                  role="region"
+                  aria-labelledby={triggerId}
+                  data-feature-panel={feature.id}
+                  hidden={!isActive}
+                >
+                  <p class="multi-feature-section__feature-description">
+                    {feature.description}
+                  </p>
+                  <div class="multi-feature-section__action">
+                    <Button
+                      label={feature.action.label}
+                      url={feature.action.href}
+                      variant="primary"
+                      size="medium"
+                    />
+                  </div>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+
+      <div class="multi-feature-section__media-stage">
+        {
+          features.map((feature) => {
+            const isActive = feature.id === activeFeatureId;
+
+            return (
+              <figure
+                class:list={[
+                  "multi-feature-section__media",
+                  feature.media.fit === "contain" &&
+                    "multi-feature-section__media--contain",
+                  isActive && "is-active",
+                ]}
+                data-feature-media={feature.id}
+                aria-hidden={isActive ? "false" : "true"}
+              >
+                <img
+                  src={feature.media.src}
+                  alt={feature.media.alt}
+                  width={feature.media.width}
+                  height={feature.media.height}
+                  loading="lazy"
+                  decoding="async"
+                  style={`object-position: ${feature.media.position ?? "center"};`}
+                />
+              </figure>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .multi-feature-section {
+    width: 100%;
+    background: var(--bb-gray-900);
+  }
+
+  .multi-feature-section__container {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+
+  :global(.multi-feature-section__header) {
+    max-width: 54rem;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  :global(.multi-feature-section__header .title-block__description) {
+    max-width: 50rem;
+  }
+
+  :global(.multi-feature-section__title) {
+    color: var(--bb-text-on-base);
+  }
+
+  :global(.multi-feature-section__intro) {
+    color: var(--bb-text-on-base-subtle) !important;
+  }
+
+  .multi-feature-section__shell {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    overflow: hidden;
+    border: 1px solid var(--bb-transparent-white-300);
+    border-radius: 4px;
+    background: var(--bb-background-component-base);
+  }
+
+  .multi-feature-section__accordion {
+    min-width: 0;
+    padding: clamp(0.75rem, 2vw, 1.5rem) clamp(1.25rem, 3vw, 2.75rem);
+    color: var(--bb-text-on-base);
+  }
+
+  .multi-feature-section__item {
+    border-bottom: 1px solid var(--bb-transparent-white-300);
+    transition: background-color 180ms ease;
+  }
+
+  .multi-feature-section__item.is-active {
+    background: transparent;
+  }
+
+  .multi-feature-section__item:last-child {
+    border-bottom: 0;
+  }
+
+  .multi-feature-section__item-heading {
+    margin: 0;
+  }
+
+  .multi-feature-section__trigger {
+    display: flex;
+    width: 100%;
+    min-height: 5.25rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    border: 0;
+    padding: 1rem 0;
+    background: transparent;
+    color: var(--bb-text-on-base);
+    font-family: var(--font-sans);
+    font-size: var(--bb-text-heading-subsection-font-size);
+    font-weight: 600;
+    line-height: var(--bb-text-heading-subsection-line-height);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .multi-feature-section__trigger:hover {
+    color: var(--bb-brand-bright-green);
+  }
+
+  .multi-feature-section__trigger:focus-visible {
+    outline: 2px solid var(--bb-brand-bright-green);
+    outline-offset: 6px;
+  }
+
+  .multi-feature-section__indicator {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    flex: 0 0 2rem;
+    border-inline: 2px solid currentColor;
+  }
+
+  .multi-feature-section__indicator::before,
+  .multi-feature-section__indicator::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.75rem;
+    height: 2px;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+    transition: opacity 180ms ease;
+  }
+
+  .multi-feature-section__indicator::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .multi-feature-section__item.is-active
+    .multi-feature-section__indicator::after {
+    opacity: 0;
+  }
+
+  .multi-feature-section__panel {
+    padding: 0 3.5rem 2rem 0;
+  }
+
+  .multi-feature-section__feature-description {
+    color: var(--bb-text-on-base) !important;
+    font-family: var(--font-sans);
+  }
+
+  .multi-feature-section__feature-description {
+    max-width: 34rem;
+    margin: 0;
+    font-size: var(--bb-text-copy-body-font-size);
+    line-height: 1.55;
+  }
+
+  .multi-feature-section__action {
+    margin-top: 1.5rem;
+  }
+
+  .multi-feature-section__media-stage {
+    position: relative;
+    min-width: 0;
+    min-height: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-left: 1px solid var(--bb-transparent-white-300);
+    background: transparent;
+  }
+
+  .multi-feature-section__media {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 260ms ease,
+      visibility 0s linear 260ms;
+  }
+
+  .multi-feature-section__media.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  .multi-feature-section__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .multi-feature-section__media--contain {
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  .multi-feature-section__media--contain img {
+    object-fit: contain;
+  }
+
+  @media (max-width: 1023px) {
+    .multi-feature-section__shell {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .multi-feature-section__accordion {
+      padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+    }
+
+    .multi-feature-section__panel {
+      padding-right: min(12vw, 6rem);
+    }
+
+    .multi-feature-section__media-stage {
+      min-height: 0;
+      border-top: 1px solid var(--bb-transparent-white-300);
+      border-left: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    :global(.multi-feature-section__header) {
+      margin-bottom: 2rem;
+    }
+
+    .multi-feature-section__accordion {
+      padding: 0.5rem 1.25rem;
+    }
+
+    .multi-feature-section__trigger {
+      min-height: 4.75rem;
+      gap: 1rem;
+    }
+
+    .multi-feature-section__panel {
+      padding: 0 0 1.75rem;
+    }
+
+    .multi-feature-section__feature-description {
+      line-height: 1.5;
+    }
+
+    .multi-feature-section__media-stage {
+      aspect-ratio: 4 / 3;
+    }
+
+    .multi-feature-section__media--contain {
+      padding: 0.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .multi-feature-section__indicator::before,
+    .multi-feature-section__indicator::after,
+    .multi-feature-section__media {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  function setupMultiFeatureSections() {
+    document
+      .querySelectorAll<HTMLElement>("[data-multi-feature]")
+      .forEach((section) => {
+        if (section.dataset.multiFeatureInitialized === "true") return;
+
+        const triggers = Array.from(
+          section.querySelectorAll<HTMLButtonElement>("[data-feature-trigger]"),
+        );
+        const panels = Array.from(
+          section.querySelectorAll<HTMLElement>("[data-feature-panel]"),
+        );
+        const mediaItems = Array.from(
+          section.querySelectorAll<HTMLElement>("[data-feature-media]"),
+        );
+
+        const setActiveFeature = (featureId: string) => {
+          section.dataset.activeFeature = featureId;
+
+          triggers.forEach((trigger) => {
+            const isActive = trigger.dataset.featureTrigger === featureId;
+            trigger.setAttribute("aria-expanded", String(isActive));
+            trigger
+              .closest<HTMLElement>("[data-feature-item]")
+              ?.classList.toggle("is-active", isActive);
+          });
+
+          panels.forEach((panel) => {
+            panel.hidden = panel.dataset.featurePanel !== featureId;
+          });
+
+          mediaItems.forEach((media) => {
+            const isActive = media.dataset.featureMedia === featureId;
+            media.classList.toggle("is-active", isActive);
+            media.setAttribute("aria-hidden", String(!isActive));
+          });
+        };
+
+        triggers.forEach((trigger, index) => {
+          trigger.addEventListener("click", () => {
+            const featureId = trigger.dataset.featureTrigger;
+            if (featureId) setActiveFeature(featureId);
+          });
+
+          trigger.addEventListener("keydown", (event) => {
+            if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
+              return;
+            }
+
+            event.preventDefault();
+            const lastIndex = triggers.length - 1;
+            const nextIndex =
+              event.key === "Home"
+                ? 0
+                : event.key === "End"
+                  ? lastIndex
+                  : event.key === "ArrowDown"
+                    ? (index + 1) % triggers.length
+                    : (index - 1 + triggers.length) % triggers.length;
+
+            triggers[nextIndex]?.focus();
+          });
+        });
+
+        section.dataset.multiFeatureInitialized = "true";
+      });
+  }
+
+  setupMultiFeatureSections();
+  document.addEventListener("astro:page-load", setupMultiFeatureSections);
+</script>

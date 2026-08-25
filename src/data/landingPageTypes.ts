@@ -21,6 +21,14 @@ export interface ProductDetailContent {
   };
 }
 
+export interface ProductDetailMedia {
+  image: string;
+  imageAlt?: string;
+  video?: string;
+  videoType?: string;
+  fit?: "cover" | "contain";
+}
+
 export interface PlatformLandingContent extends ProductDetailContent {
   title: string;
   metaDescription: string;

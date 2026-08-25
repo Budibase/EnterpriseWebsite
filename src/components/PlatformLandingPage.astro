@@ -1,9 +1,18 @@
 ---
 import HeroSmall from "@components/HeroSmall.astro";
 import ProductDetailBody from "@components/ProductDetailBody.astro";
-import type { PlatformLandingContent } from "../data/landingPageTypes";
+import type {
+  PlatformLandingContent,
+  ProductDetailMedia,
+} from "../data/landingPageTypes";
 import type { PlatformLandingSlug } from "../data/platformLandingPages";
 
+import AdminHeroImage from "@assets/images/feature-sections/regulated-enterprises.png?url";
+import AdminFeatureOneImage from "@assets/images/feature-sections/critical-operations.png?url";
+import AdminFeatureTwoImage from "@assets/images/homepage/connectionsBGImage.png?url";
+import ApiHeroImage from "@assets/images/backgrounds/light/api-explorer-sunset.png?url";
+import ApiFeatureOneImage from "@assets/images/backgrounds/light/api.png?url";
+import ApiFeatureTwoImage from "@assets/images/backgrounds/dark/apis.png?url";
 import RequestsHeroImage from "@assets/images/apps/apps hero.png?url";
 import RequestsFeatureOneImage from "@assets/images/homepage/Website_Hero_Activity_Screen.png?url";
 import RequestsFeatureTwoImage from "@assets/images/apps/cards/2.png?url";
@@ -13,6 +22,13 @@ import ActivityFeatureTwoImage from "@assets/images/DataTables/hero.png?url";
 import TablesHeroImage from "@assets/images/DataTables/hero.png?url";
 import TablesFeatureOneImage from "@assets/images/DataTables/cards/2.png?url";
 import TablesFeatureTwoImage from "@assets/images/DataTables/cards/3.png?url";
+import KnowledgeHeroImage from "@assets/images/platform/AgentInstructions.png?url";
+import KnowledgeFeatureOneImage from "@assets/images/platform/AgentPreview.png?url";
+import KnowledgeFeatureTwoImage from "@assets/images/platform/AgentInstructions2.png?url";
+import SelfHostHeroImage from "@assets/images/feature-sections/critical-operations.png?url";
+import SelfHostFeatureOneImage from "@assets/images/feature-sections/regulated-enterprises.png?url";
+import SelfHostFeatureTwoImage from "@assets/images/platform/PlatformCockapoo.png?url";
+import ApiExplorerVideo from "@assets/videos/api-explorer.webm?url";
 
 interface Props {
   slug: PlatformLandingSlug;
@@ -26,20 +42,63 @@ const pageImages: Record<
   PlatformLandingSlug,
   {
     hero: string;
-    features: readonly [string, string];
+    features: readonly [ProductDetailMedia, ProductDetailMedia];
   }
 > = {
   data: {
     hero: TablesHeroImage,
-    features: [TablesFeatureOneImage, TablesFeatureTwoImage],
+    features: [
+      { image: TablesFeatureOneImage },
+      { image: TablesFeatureTwoImage },
+    ],
   },
   requests: {
     hero: RequestsHeroImage,
-    features: [RequestsFeatureOneImage, RequestsFeatureTwoImage],
+    features: [
+      { image: RequestsFeatureOneImage },
+      { image: RequestsFeatureTwoImage },
+    ],
   },
   activity: {
     hero: ActivityHeroImage,
-    features: [ActivityFeatureOneImage, ActivityFeatureTwoImage],
+    features: [
+      { image: ActivityFeatureOneImage },
+      { image: ActivityFeatureTwoImage },
+    ],
+  },
+  apis: {
+    hero: ApiHeroImage,
+    features: [
+      {
+        image: ApiFeatureOneImage,
+        imageAlt:
+          "Budibase API Explorer configuring and sending a ServiceNow priority incident request, then displaying the successful response",
+        video: ApiExplorerVideo,
+        fit: "contain",
+      },
+      { image: ApiFeatureTwoImage, fit: "contain" },
+    ],
+  },
+  knowledge: {
+    hero: KnowledgeHeroImage,
+    features: [
+      { image: KnowledgeFeatureOneImage },
+      { image: KnowledgeFeatureTwoImage },
+    ],
+  },
+  "self-host": {
+    hero: SelfHostHeroImage,
+    features: [
+      { image: SelfHostFeatureOneImage },
+      { image: SelfHostFeatureTwoImage },
+    ],
+  },
+  "admin-security": {
+    hero: AdminHeroImage,
+    features: [
+      { image: AdminFeatureOneImage },
+      { image: AdminFeatureTwoImage },
+    ],
   },
 };
 
@@ -65,5 +124,5 @@ const images = pageImages[slug];
     />
   </div>
 
-  <ProductDetailBody content={content} featureImages={images.features} />
+  <ProductDetailBody content={content} featureMedia={images.features} />
 </div>

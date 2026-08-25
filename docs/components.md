@@ -64,6 +64,14 @@ The tokens control hierarchy through size and line height. Components retain
 their role-appropriate typeface, weight, letter spacing, and casing so the
 condensed display face remains reserved for decisive brand moments.
 
+`TitleBlock` uses an emphasized section-title scale of 40px mobile, 48px
+tablet, and 56px desktop at weight 700.
+
+Use `--bb-text-body` for paragraphs and descriptive copy on light surfaces. It
+maps to Spectrum gray 900. Keep headings on their role-specific heading or
+brand token, and use the appropriate `--bb-text-on-base*` token on dark
+surfaces.
+
 ### Cards
 
 - Use `src/components/cards/Card.astro` for a single general-purpose card.
@@ -99,11 +107,9 @@ the same pattern.
   body content and the standard compact product header.
 - Use `ProductLandingPage.astro` for Apps, Agents, Automations, and Functions.
   It combines `HeroLarge` with the canonical `ProductDetailBody` composition.
-- Use `PlatformLandingPage.astro` for Tables, Requests and Approvals, and
-  Activity and Insights. It combines `HeroSmall` with `ProductDetailBody`.
-- Use `TechnicalLandingPage.astro` for Knowledge, Admin and Security,
-  Self-hosting, and API Explorer. It renders the constrained, proof-led
-  `TechnicalStoryBlock` sequence.
+- Use `PlatformLandingPage.astro` for Tables, Requests and Approvals, Activity
+  and Insights, Knowledge, Admin and Security, Self-hosting, and API Explorer.
+  It combines `HeroSmall` with `ProductDetailBody`.
 - Use `ProductDetailBody.astro` when a Product or Platform page needs the
   standard three-card overview, two feature sections, stats, and canonical
   product footer.
@@ -127,8 +133,11 @@ layout behavior from the current URL.
   for the four primary product surfaces.
 - `PlatformLandingPage.astro` composes `HeroSmall` with
   `ProductDetailBody.astro` for data-driven platform capability pages.
-- `TechnicalLandingPage.astro` owns the technical hero, editorial story, and
-  canonical product footer for technical platform pages.
+- `FeatureSection.astro` supports intentionally authored WebM product
+  demonstrations alongside its standard image media. Videos load only near the
+  viewport and must retain a static fallback for reduced-motion and
+  no-JavaScript users. Use contained media sizing when cropping would obscure
+  product UI.
 - `SolutionLandingPage.astro` provides the corresponding solution-page
   composition.
 - `FeatureSection.astro`, `StatSection.astro`, and the page-scoped

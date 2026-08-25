@@ -12,46 +12,63 @@ Score each relevant criterion:
 
 ## Strategic fit
 
-1. **Audience:** Is it recognizably for operations, IT, or an appropriate
-   regulated-enterprise stakeholder?
-2. **Operational relevance:** Does it name a real operational job, constraint,
+1. **Primary customer:** Is enterprise IT recognizably the accountable customer
+   or platform owner, rather than an obstacle to be bypassed?
+2. **Audience roles:** Are IT, functional use-case owners, builders, assurance
+   stakeholders, and end users distinguished accurately where relevant?
+3. **IT leverage:** Does the work show how IT can deliver more business value or
+   increase its capacity to meet software demand?
+4. **Operational relevance:** Does it name a real operational job, constraint,
    process, or outcome?
-3. **Freedom and control:** Does it balance the ability to build and adapt with
-   IT governance, security, reliability, or ownership?
-4. **Category:** Does Budibase feel like a platform for building and running
-   critical operations rather than a generic no-code or productivity tool?
+5. **Freedom and control:** Does it balance the ability to build and adapt with
+   IT governance, security, reliability, ownership, and oversight?
+6. **Existing estate:** Does Budibase work around the organization's systems,
+   data, architecture, and delivery practices rather than imply wholesale
+   replacement?
+7. **Category:** Does Budibase feel like the platform for building and running
+   the software behind enterprise operations rather than a generic no-code,
+   citizen-development, or productivity tool?
 
 ## Messaging quality
 
-5. **Clarity:** Is the main point understandable without internal context?
-6. **Specificity:** Are generic enterprise, no-code, and AI claims replaced by
+8. **Clarity:** Is the main point understandable without internal context?
+9. **Specificity:** Are generic enterprise, no-code, and AI claims replaced by
    concrete capabilities, controls, workflows, or outcomes?
-7. **Evidence:** Does each important claim have a credible reason to believe?
-8. **Voice:** Is the language direct, capable, composed, technical, practical,
-   bold, and open without becoming inflated or bureaucratic?
-9. **Action:** Is the next step clear and appropriate for the buying stage?
+10. **System coherence:** Are apps, automations, agents, data, and APIs shown as
+    one operational system when the platform story is relevant?
+11. **Evidence:** Does each important claim have a credible reason to believe?
+12. **Voice:** Is the language capable, direct, approachable, controlled,
+    modern, practical, bold, and open without becoming inflated or
+    bureaucratic?
+13. **Action:** Is the next step clear and appropriate for the buying stage?
 
 ## Visual quality
 
-10. **Distinctiveness:** Does the work retain recognizably Budibase typography,
+14. **Distinctiveness:** Does the work retain recognizably Budibase typography,
     color, and operational character rather than copying a reference brand?
-11. **Precision:** Are hierarchy, grid, spacing, typography, and technical
+15. **Precision:** Are hierarchy, grid, spacing, typography, and technical
     information deliberate and legible?
-12. **Product truth:** Do visuals show the product, workflow, architecture,
-    controls, or customer environment rather than relying on decoration?
-13. **Semantic design:** Do color, icons, diagrams, and motion convey meaning or
+16. **Product truth:** Do visuals show work moving through the product,
+    workflow, architecture, controls, existing systems, or customer environment
+    rather than relying on decoration?
+17. **Control visibility:** Are identity, permissions, policies, approvals,
+    deployment, activity, ownership, or human oversight visible when relevant?
+18. **Semantic design:** Do color, icons, diagrams, and motion convey meaning or
     system behavior?
-14. **Enterprise confidence:** Does the design feel dependable and controlled
+19. **Enterprise confidence:** Does the design feel dependable and controlled
     without becoming generic legacy-enterprise software?
 
 ## Claims and trust
 
-15. **Accuracy:** Are product, customer, compliance, security, and performance
+20. **Accuracy:** Are product, customer, compliance, security, and performance
     claims supported and current?
-16. **Approval:** Is public use of customer names, logos, quotations, stories,
+21. **Approval:** Is public use of customer names, logos, quotations, stories,
     and metrics confirmed?
-17. **Current versus future:** Are present capabilities clearly distinguished
-    from roadmap direction?
+22. **Current versus future:** Are present capabilities clearly distinguished
+    from roadmap direction, especially for Operate, Prove, Projects, Git,
+    agents, and lifecycle control?
+23. **Outcome metrics:** Are operational figures supported and clearly
+    distinguished from illustrative examples?
 
 ## Review output
 

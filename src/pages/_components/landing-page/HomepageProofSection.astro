@@ -1,0 +1,209 @@
+---
+import TitleBlock from "@components/TitleBlock.astro";
+import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
+
+const stats = [
+  {
+    value: "900M",
+    description: "Actions automated",
+  },
+  {
+    value: "400K+",
+    description: "Users",
+  },
+  {
+    value: "100+",
+    description: "Enterprises transformed",
+  },
+  {
+    value: "600K",
+    description: "Operations transformed",
+  },
+] as const;
+---
+
+<section class="homepage-proof" aria-labelledby="homepage-proof-title">
+  <div class="homepage-proof__intro">
+    <TitleBlock
+      variant="section"
+      titleId="homepage-proof-title"
+      titleLines={[
+        { text: "Built to deliver." },
+        {
+          text: "Proven at scale.",
+          className: "homepage-proof__title-accent",
+        },
+      ]}
+      description="Across enterprise operations, Budibase helps IT deliver more software, support more users, and transform critical work without giving up control."
+      containerClass="homepage-proof__title-block"
+      titleClass="homepage-proof__title"
+      descriptionClass="homepage-proof__description"
+    />
+
+    <div class="homepage-proof__logos">
+      <EnterpriseLogoGrid placement="hero" />
+    </div>
+  </div>
+
+  <div class="homepage-proof__stats">
+    {
+      stats.map((stat) => (
+        <div class="homepage-proof__stat">
+          <p class="homepage-proof__stat-value">{stat.value}</p>
+          <p class="homepage-proof__stat-description">{stat.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .homepage-proof {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+
+  .homepage-proof__intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(3rem, 7vw, 7.5rem);
+  }
+
+  :global(.homepage-proof__title-block) {
+    flex: 0 1 40rem;
+    max-width: 40rem;
+  }
+
+  :global(.homepage-proof__title) {
+    margin: 0;
+    color: var(--bb-text-base);
+  }
+
+  :global(.homepage-proof__title-accent) {
+    position: relative;
+    z-index: 0;
+    width: fit-content;
+  }
+
+  :global(.homepage-proof__title-accent)::after {
+    position: absolute;
+    z-index: -1;
+    right: -0.08em;
+    bottom: 0.04em;
+    left: 0.44em;
+    height: 0.1em;
+    border-radius: 999px 45% 999px 55%;
+    background: var(--bb-bright-orange);
+    content: "";
+    transform: rotate(-0.35deg);
+    transform-origin: left center;
+  }
+
+  :global(.homepage-proof__title-block .homepage-proof__description) {
+    max-width: 38rem;
+    color: var(--bb-text-body);
+  }
+
+  .homepage-proof__logos {
+    flex: 0 1 42rem;
+    width: min(48vw, 42rem);
+    min-width: 0;
+  }
+
+  .homepage-proof__logos :global(.enterprise-logo-grid--hero) {
+    --logo-grid-cell-width: clamp(4rem, 7vw, 5.75rem);
+    --logo-grid-cell-height: clamp(3.5rem, 5vw, 4.75rem);
+    --logo-grid-column-gap: clamp(0.375rem, 1vw, 0.75rem);
+  }
+
+  .homepage-proof__logos :global(.enterprise-logo-grid__inner) {
+    margin-inline: 0;
+  }
+
+  .homepage-proof__stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 4.5rem);
+    margin-top: clamp(4rem, 7vw, 7rem);
+  }
+
+  .homepage-proof__stat {
+    min-width: 0;
+    padding-top: clamp(1.5rem, 2.5vw, 2.25rem);
+    border-top: 1px solid var(--bb-border-bold);
+  }
+
+  .homepage-proof__stat p {
+    margin: 0;
+  }
+
+  .homepage-proof__stat-value {
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    font-size: clamp(
+      calc(3.5rem - 10px),
+      calc(6.4vw - 10px),
+      calc(5.75rem - 10px)
+    );
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.055em;
+    white-space: nowrap;
+  }
+
+  .homepage-proof__stat-description {
+    margin-top: 1.25rem !important;
+    color: var(--bb-text-body);
+    font-size: var(--bb-text-copy-compact-font-size);
+    font-weight: 500;
+    line-height: var(--bb-text-copy-compact-line-height);
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .homepage-proof__intro {
+      gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .homepage-proof__logos :global(.enterprise-logo-grid--hero) {
+      --logo-grid-cell-width: 3rem;
+      --logo-grid-cell-height: 3.25rem;
+      --logo-grid-column-gap: 0.5rem;
+    }
+
+    .homepage-proof__stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .homepage-proof__intro {
+      display: grid;
+      gap: 3rem;
+    }
+
+    :global(.homepage-proof__title-block) {
+      max-width: 43rem;
+    }
+
+    .homepage-proof__logos {
+      width: 100%;
+    }
+
+    .homepage-proof__stats {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+    }
+
+    :global(.homepage-proof__title-accent)::after {
+      left: 0.2em;
+    }
+
+    .homepage-proof__logos :global(.enterprise-logo-grid__inner) {
+      padding-inline: 0;
+    }
+  }
+</style>

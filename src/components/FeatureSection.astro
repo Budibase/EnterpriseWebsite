@@ -39,6 +39,9 @@ interface Action {
 interface Props {
   image: string;
   imageAlt: string;
+  video?: string;
+  videoType?: string;
+  mediaFit?: "cover" | "contain";
   imagePosition?: ImagePosition;
   variant?: Variant;
   badge?: Badge;
@@ -53,6 +56,9 @@ interface Props {
 const {
   image,
   imageAlt,
+  video,
+  videoType = "video/webm",
+  mediaFit = "cover",
   imagePosition = "left",
   variant = "white",
   badge,
@@ -79,8 +85,39 @@ const linkVariant = isForest ? "secondary" : "primary";
   ]}
 >
   <div class="feature-section__container">
-    <figure class="feature-section__image-panel">
-      <img src={image} alt={imageAlt} loading="lazy" />
+    <figure
+      class:list={[
+        "feature-section__image-panel",
+        video && "feature-section__image-panel--video",
+        `feature-section__image-panel--fit-${mediaFit}`,
+      ]}
+    >
+      {
+        video ? (
+          <div class="feature-section__video-shell">
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="none"
+              aria-hidden="true"
+              data-feature-section-video
+            >
+              <source data-src={video} type={videoType} />
+            </video>
+            <img
+              class="feature-section__video-fallback"
+              src={image}
+              alt={imageAlt}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ) : (
+          <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+        )
+      }
     </figure>
 
     <div class="feature-section__content">
@@ -141,7 +178,7 @@ const linkVariant = isForest ? "secondary" : "primary";
   .feature-section {
     --feature-section-background: var(--bb-background-base);
     --feature-section-text: var(--bb-text-base);
-    --feature-section-body: var(--bb-text-muted);
+    --feature-section-body: var(--bb-text-body);
     --feature-section-divider: var(--bb-border-subtle);
     --feature-section-icon-background: var(--bb-background-surface);
     width: 100%;
@@ -189,7 +226,7 @@ const linkVariant = isForest ? "secondary" : "primary";
     aspect-ratio: 3 / 4;
     margin: 0;
     overflow: hidden;
-    border-radius: var(--radius-small);
+    border-radius: 4px;
   }
 
   .feature-section__image-panel img {
@@ -198,6 +235,56 @@ const linkVariant = isForest ? "secondary" : "primary";
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+
+  .feature-section__image-panel--fit-contain img,
+  .feature-section__image-panel--fit-contain video {
+    object-fit: contain;
+  }
+
+  .feature-section__image-panel--video {
+    border: 1px solid var(--bb-border-subtle);
+    padding: 12px;
+    background: var(--bb-celery-100);
+  }
+
+  .feature-section__video-shell {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--bb-background-surface);
+  }
+
+  .feature-section__video-shell video,
+  .feature-section__video-fallback {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .feature-section__video-shell video {
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 180ms ease-out;
+  }
+
+  .feature-section__video-shell video.is-ready {
+    opacity: 1;
+  }
+
+  .feature-section__video-fallback {
+    transition: opacity 180ms ease-out;
+  }
+
+  .feature-section__video-shell
+    video.is-ready
+    + .feature-section__video-fallback {
+    visibility: hidden;
+    opacity: 0;
   }
 
   .feature-section__content {
@@ -216,7 +303,7 @@ const linkVariant = isForest ? "secondary" : "primary";
   }
 
   .feature-section__content h2 {
-    font-family: var(--font-inter), var(--font-sans);
+    font-family: var(--font-sans);
     font-size: var(--bb-text-heading-section-font-size);
     font-weight: 600;
     line-height: var(--bb-text-heading-section-line-height);
@@ -296,4 +383,66 @@ const linkVariant = isForest ? "secondary" : "primary";
       order: 1;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .feature-section__video-shell video {
+      display: none;
+    }
+  }
 </style>
+
+<script>
+  const setupFeatureSectionVideos = () => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    document
+      .querySelectorAll<HTMLVideoElement>("[data-feature-section-video]")
+      .forEach((video) => {
+        if (video.dataset.initialized === "true" || reducedMotion.matches)
+          return;
+
+        video.dataset.initialized = "true";
+        const source =
+          video.querySelector<HTMLSourceElement>("source[data-src]");
+        if (!source) return;
+
+        let loaded = false;
+        const loadVideo = () => {
+          if (loaded) return;
+          loaded = true;
+          source.src = source.dataset.src ?? "";
+          video.load();
+        };
+
+        video.addEventListener(
+          "canplay",
+          () => {
+            video.classList.add("is-ready");
+          },
+          { once: true },
+        );
+
+        if (!("IntersectionObserver" in window)) {
+          loadVideo();
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              loadVideo();
+              void video.play().catch(() => undefined);
+            } else if (loaded) {
+              video.pause();
+            }
+          },
+          { rootMargin: "400px 0px", threshold: 0.05 },
+        );
+
+        observer.observe(video);
+      });
+  };
+
+  setupFeatureSectionVideos();
+  document.addEventListener("astro:page-load", setupFeatureSectionVideos);
+</script>

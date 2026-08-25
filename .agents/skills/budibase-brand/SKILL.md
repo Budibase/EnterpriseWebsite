@@ -27,9 +27,9 @@ work, also read `references/review-checklist.md`.
    or product capabilities.
 3. Choose the relevant parts of the canonical strategy. Do not force every
    differentiator into every deliverable.
-4. Create or revise the work with operational freedom and IT control held
-   together. Make the operational job concrete and make enterprise control
-   visible.
+4. Create or revise the work with IT delivery freedom and enterprise control
+   held together. Make the operational job concrete, treat enterprise IT as the
+   accountable owner, and make control visible.
 5. Preserve the requested format, existing design system, and channel norms
    unless they conflict with the strategy or the user asks for a new direction.
 6. Run the review checklist before delivery. Resolve material weaknesses or
@@ -72,8 +72,9 @@ work, also read `references/review-checklist.md`.
 
 ## Non-negotiables
 
-- Position Budibase as operational infrastructure for operations and IT teams,
-  not as a generic no-code builder or lightweight productivity tool.
+- Position Budibase as the platform enterprise IT uses to build and run the
+  software behind business operations, not as a generic no-code builder,
+  citizen-development platform, or lightweight productivity tool.
 - Maintain technical credibility and regulated-enterprise confidence without
   turning Budibase into an interchangeable legacy enterprise brand.
 - Retain the open-source, extensible, and deploy-on-your-terms identity.

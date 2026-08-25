@@ -35,15 +35,34 @@
     --bb-white: #ffffff;
     --bb-black: #000000;
     --bb-text-base: var(--bb-celery-1400);
+    --bb-text-body: var(--bb-gray-900);
     --font-primary: var(--bb-celery-1400);
     --bb-text-subtle: #717171;
     --bb-text-muted: rgb(0 0 0 / 0.69);
     --bb-text-on-base: #f8f8f8;
     --bb-text-on-base-subtle: #e1e1e1;
     --bb-text-on-base-muted: rgb(255 255 255 / 0.39);
-    --bb-background-base: #ffffff;
-    --bb-background-surface: #f8f8f8;
-    --bb-background-raised: #16330014;
+    --bb-background-surface-base: #ffffff;
+    --bb-background-surface-subtle: #f8f8f8;
+    --bb-background-surface-raised: #f3f3f3;
+    --bb-background-component-base: color-mix(
+      in srgb,
+      var(--bb-celery-1300) 8%,
+      transparent
+    );
+    --bb-background-component-subtle: color-mix(
+      in srgb,
+      var(--bb-celery-1300) 13%,
+      transparent
+    );
+    --bb-background-component-raised: color-mix(
+      in srgb,
+      var(--bb-celery-1300) 18%,
+      transparent
+    );
+    --bb-background-base: var(--bb-background-surface-base);
+    --bb-background-surface: var(--bb-background-surface-subtle);
+    --bb-background-raised: var(--bb-background-component-base);
     --bb-background-dark-base: var(--bb-brand-forest-green);
     --bb-background-dark-raised: var(--bb-celery-1500);
     --bb-border-base: #dadada;
@@ -386,7 +405,7 @@
     --bb-color__text__subtle: var(--bb-text-subtle);
 
     --font-sans:
-      var(--font-inter), "Apple Color Emoji", "Segoe UI Emoji",
+      var(--font-geist), "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
     --font-mono:
       var(--font-geist-mono), "iA Writer Mono", ui-monospace, SFMono-Regular,
@@ -452,8 +471,8 @@
     /* bb border/bold */
 
     --text: 19 19 19;
-    --text-article: 80 80 80;
-    /* bb gray-700 */
+    --text-article: 19 19 19;
+    /* bb gray-900 */
     --text-muted: 113 113 113;
     /* bb text/subtle */
     --text-subtle: 143 143 143;
@@ -484,7 +503,7 @@
     --bg-3: rgb(var(--surface-2));
     --text-primary: var(--font-primary);
     --text-secondary: rgb(var(--text-muted));
-    --text-body: rgb(var(--text-article));
+    --text-body: var(--bb-text-body);
     --accent-grey: var(--bb-gray-500);
     --accent-blue: var(--bb-brand);
     --accent-orange: var(--bb-orange-600);
@@ -716,7 +735,7 @@ h5 {
 
 p {
   font-family: var(--font-sans);
-  color: var(--text-primary) !important;
+  color: var(--bb-text-body) !important;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.35;
@@ -770,7 +789,7 @@ article h6 {
 }
 article p {
   font-family: var(--font-sans);
-  color: rgb(var(--text-article)) !important;
+  color: var(--bb-text-body) !important;
   font-weight: 400;
   text-wrap: pretty;
   margin-bottom: calc(1rem * 1.4);
@@ -782,7 +801,7 @@ article ul,
 article li,
 article ol {
   font-family: var(--font-sans);
-  color: rgb(var(--text-article)) !important;
+  color: var(--bb-text-body) !important;
   text-wrap: pretty;
   margin-bottom: calc(1rem * 1.4);
   font-size: 1rem;
@@ -844,8 +863,7 @@ article blockquote p {
 }
 
 .nav-shell .header-dropdown .header-dropdown-panel {
-  border-bottom: 0;
-  background: var(--bg-2);
+  background: transparent;
 }
 
 .nav-shell .desktop-nav-link {

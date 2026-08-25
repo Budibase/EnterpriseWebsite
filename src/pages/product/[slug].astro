@@ -1,56 +1,37 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
 import PlatformLandingPage from "@components/PlatformLandingPage.astro";
-import TechnicalLandingPage from "@components/TechnicalLandingPage.astro";
 import {
   platformLandingPages,
   platformLandingSlugs,
   type PlatformLandingSlug,
 } from "../../data/platformLandingPages";
 import type { PlatformLandingContent } from "../../data/landingPageTypes";
-import {
-  technicalLandingPages,
-  technicalLandingSlugs,
-  type TechnicalLandingContent,
-  type TechnicalLandingSlug,
-} from "../../data/technicalLandingPages";
 
-type LandingPageProps =
-  | {
-      template: "platform";
-      slug: PlatformLandingSlug;
-      content: PlatformLandingContent;
-    }
-  | {
-      template: "technical";
-      slug: TechnicalLandingSlug;
-      content: TechnicalLandingContent;
-    };
+interface LandingPageProps {
+  slug: PlatformLandingSlug;
+  content: PlatformLandingContent;
+}
 
 export function getStaticPaths() {
-  return [
-    ...platformLandingSlugs.map((slug) => ({
-      params: { slug },
-      props: {
-        template: "platform" as const,
-        slug,
-        content: platformLandingPages[slug],
-      },
-    })),
-    ...technicalLandingSlugs.map((slug) => ({
-      params: { slug },
-      props: {
-        template: "technical" as const,
-        slug,
-        content: technicalLandingPages[slug],
-      },
-    })),
-  ];
+  return platformLandingSlugs.map((slug) => ({
+    params: { slug },
+    props: {
+      slug,
+      content: platformLandingPages[slug],
+    },
+  }));
 }
 
 const page = Astro.props as LandingPageProps;
-const usesBrandDarkTheme =
-  page.template === "technical" || page.slug === "data";
+const brandDarkSlugs: readonly PlatformLandingSlug[] = [
+  "data",
+  "apis",
+  "knowledge",
+  "self-host",
+  "admin-security",
+];
+const usesBrandDarkTheme = brandDarkSlugs.includes(page.slug);
 ---
 
 <Layout
@@ -58,15 +39,9 @@ const usesBrandDarkTheme =
   description={page.content.metaDescription}
   navTheme={usesBrandDarkTheme ? "brand-dark" : "default"}
 >
-  {
-    page.template === "platform" ? (
-      <PlatformLandingPage
-        slug={page.slug}
-        content={page.content}
-        theme={usesBrandDarkTheme ? "brand-dark" : "default"}
-      />
-    ) : (
-      <TechnicalLandingPage slug={page.slug} content={page.content} />
-    )
-  }
+  <PlatformLandingPage
+    slug={page.slug}
+    content={page.content}
+    theme={usesBrandDarkTheme ? "brand-dark" : "default"}
+  />
 </Layout>
