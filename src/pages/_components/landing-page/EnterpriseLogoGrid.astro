@@ -32,7 +32,20 @@ type TextLogo = {
 
 type Logo = ImageLogo | TextLogo;
 
-const { placement = "section" } = Astro.props as { placement?: Placement };
+type Props = {
+  placement?: Placement;
+  replaceSpaceForceWithPierreFabre?: boolean;
+};
+
+const { placement = "section", replaceSpaceForceWithPierreFabre = false } =
+  Astro.props as Props;
+
+const pierreFabreLogo: ImageLogo = {
+  type: "image",
+  src: PierreFabreLogo,
+  alt: "Laboratoires Pierre Fabre",
+  className: "is-pierre-fabre",
+};
 
 const columns: Logo[][] = [
   [
@@ -111,6 +124,12 @@ const columns: Logo[][] = [
   ],
 ];
 
+const displayColumns = replaceSpaceForceWithPierreFabre
+  ? columns.map((column, index) =>
+      index === 1 ? [pierreFabreLogo, ...column.slice(1)] : column,
+    )
+  : columns;
+
 const compactLogos: (Logo | null)[] = [
   columns[0][0],
   columns[1][0],
@@ -119,12 +138,7 @@ const compactLogos: (Logo | null)[] = [
   columns[4][0],
   columns[0][1],
   columns[1][1],
-  {
-    type: "image",
-    src: PierreFabreLogo,
-    alt: "Laboratoires Pierre Fabre",
-    className: "is-pierre-fabre",
-  },
+  pierreFabreLogo,
   columns[3][1],
   columns[4][1],
   columns[0][2],
@@ -163,7 +177,7 @@ const isCompact = placement === "hero-compact";
               ) : null}
             </div>
           ))
-        : columns.map((column) => (
+        : displayColumns.map((column) => (
             <div class="enterprise-logo-grid__column">
               {column.map((logo) => (
                 <div class="enterprise-logo-grid__cell">
@@ -195,7 +209,7 @@ const isCompact = placement === "hero-compact";
     --logo-grid-cell-width: 8.75rem;
     --logo-grid-cell-height: 6.25rem;
     --logo-grid-row-gap: 0.25rem;
-    --logo-grid-column-gap: clamp(1rem, 3vw, 2.5rem);
+    --logo-grid-column-gap: clamp(0.25rem, 1vw, 0.5rem);
     --logo-grid-opacity: 1;
     width: 100%;
     min-width: 0;
@@ -205,7 +219,7 @@ const isCompact = placement === "hero-compact";
   .enterprise-logo-grid--hero {
     --logo-grid-cell-width: clamp(5.8rem, 13vw, 7.5rem);
     --logo-grid-cell-height: clamp(4.25rem, 8vw, 5.5rem);
-    --logo-grid-column-gap: clamp(0.5rem, 1.5vw, 1rem);
+    --logo-grid-column-gap: clamp(0.125rem, 0.35vw, 0.25rem);
     --logo-grid-opacity: 1;
   }
 
@@ -213,7 +227,7 @@ const isCompact = placement === "hero-compact";
     --logo-grid-cell-width: 100%;
     --logo-grid-cell-height: clamp(3.25rem, 5vw, 4.25rem);
     --logo-grid-row-gap: clamp(0.125rem, 0.5vw, 0.25rem);
-    --logo-grid-column-gap: clamp(0.25rem, 1vw, 0.75rem);
+    --logo-grid-column-gap: clamp(0.125rem, 0.35vw, 0.25rem);
   }
 
   .enterprise-logo-grid__inner {
@@ -299,6 +313,11 @@ const isCompact = placement === "hero-compact";
     width: min(7.5rem, 88%);
   }
 
+  .enterprise-logo-grid__image.is-northern-territory,
+  .enterprise-logo-grid__image.is-pierre-fabre {
+    mix-blend-mode: multiply;
+  }
+
   .enterprise-logo-grid__image.is-saab {
     width: min(7.5rem, 92%);
     height: auto;
@@ -356,6 +375,11 @@ const isCompact = placement === "hero-compact";
     .enterprise-logo-grid__image.is-pierre-fabre {
     width: min(6.25rem, 92%);
     max-height: 3rem;
+  }
+
+  .enterprise-logo-grid__image.is-pierre-fabre {
+    width: min(7.5rem, 92%);
+    max-height: 4.25rem;
   }
 
   .enterprise-logo-grid__northrop {
@@ -424,7 +448,7 @@ const isCompact = placement === "hero-compact";
     .enterprise-logo-grid--hero-compact {
       --logo-grid-cell-width: 5.5rem;
       --logo-grid-cell-height: 4rem;
-      --logo-grid-column-gap: 0.25rem;
+      --logo-grid-column-gap: 0.125rem;
     }
 
     .enterprise-logo-grid--hero-compact .enterprise-logo-grid__inner {

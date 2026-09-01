@@ -73,6 +73,10 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
   }
 
   .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
     margin: 0 0 1.25rem !important;
     color: var(--bb-text-subtle) !important;
     font-family: var(--font-sans);
@@ -81,6 +85,14 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
     line-height: var(--bb-text-copy-caption-line-height);
     letter-spacing: 0.08em !important;
     text-transform: uppercase;
+  }
+
+  .hero-eyebrow::before {
+    content: "";
+    width: 1.5rem;
+    height: 0.1875rem;
+    flex: 0 0 1.5rem;
+    background: var(--bb-brand-yellow);
   }
 
   .hero-title-experiment {

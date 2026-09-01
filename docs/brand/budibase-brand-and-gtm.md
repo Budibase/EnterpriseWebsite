@@ -1,7 +1,7 @@
 # Budibase brand and GTM direction
 
 **Status:** Working source of truth  
-**Last updated:** 25 August 2026
+**Last updated:** 1 September 2026
 
 Use this document to guide Budibase website design, customer-facing copy,
 campaigns, presentations, customer stories, sales enablement, product launches,
@@ -541,12 +541,16 @@ capabilities. Conservative styling alone is not evidence of maturity.
 
 ### Color
 
-- Keep forest green as the primary brand anchor.
+- Keep forest green, bright green, and yellow (`#FFBC0D`) as the core brand
+  palette, with forest green as the primary brand anchor.
 - Use Spectrum gray 900 for paragraphs and descriptive copy on light surfaces;
   reserve forest green for headings and brand emphasis. Use the appropriate
   light text token on dark surfaces.
 - Use bright celery to signal action, progress, connection, and successful
   states.
+- Use yellow to call attention to proof, selected or current states, and human
+  review or approval checkpoints. Pair it with forest-green or similarly dark
+  text; do not use it as a generic warning color.
 - Give supporting colors semantic roles such as apps, agents, automations,
   data, alerts, approvals, people, or systems.
 - Avoid rainbow palettes without meaning, novelty gradients, and excessive
@@ -774,6 +778,14 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 - What quantitative outcomes can Budibase substantiate consistently?
 
 ## Decision log
+
+### 1 September 2026
+
+- Added yellow (`#FFBC0D`) as a core brand color alongside forest green and
+  bright green, while retaining forest green as the primary brand anchor.
+  Assigned yellow to proof, selected or current states, focused attention, and
+  human review or approval checkpoints; retained bright green for action,
+  progress, connection, and success.
 
 ### 25 August 2026
 

@@ -10,7 +10,9 @@ import TitleBlock from "@components/TitleBlock.astro";
 
 const customerStories = [
   {
-    title: "Bulgarian government rehomes 300k refugees",
+    title: "Bulgarian government rehomes",
+    metric: "300k",
+    titleSuffix: "refugees",
     url: "/customers/bulgarian-government/",
     logo: BulgariaLogo,
     logoAlt: "Bulgarian Government",
@@ -18,6 +20,8 @@ const customerStories = [
   },
   {
     title: "Minitab centralized campaign operations",
+    metric: undefined,
+    titleSuffix: undefined,
     url: "/customers/minitab/",
     logo: MinitabLogo,
     logoAlt: "Minitab",
@@ -25,6 +29,8 @@ const customerStories = [
   },
   {
     title: "Basque Country powers their water network operations",
+    metric: undefined,
+    titleSuffix: undefined,
     url: "/customers/pays-basque/",
     logo: BasqueLogo,
     logoAlt: "Basque Country Water Network",
@@ -53,7 +59,11 @@ const customerStories = [
           <span class="customer-stories-feature__logo is-reworld">
             <img src={ReworldLogo} alt="Reworld" loading="lazy" />
           </span>
-          <h3>Reworld saves $3m</h3>
+          <h3>
+            Reworld saves <span class="customer-stories-feature__metric"
+              >$3m</span
+            >
+          </h3>
         </div>
 
         <Button
@@ -94,7 +104,18 @@ const customerStories = [
               <span class={`customer-stories-feature__logo ${story.logoClass}`}>
                 <img src={story.logo} alt={story.logoAlt} loading="lazy" />
               </span>
-              <h3>{story.title}</h3>
+              <h3>
+                {story.title}
+                {story.metric && (
+                  <>
+                    {" "}
+                    <span class="customer-stories-feature__metric">
+                      {story.metric}
+                    </span>
+                  </>
+                )}
+                {story.titleSuffix && <> {story.titleSuffix}</>}
+              </h3>
             </a>
 
             <a
@@ -159,6 +180,12 @@ const customerStories = [
     font-weight: 500;
     line-height: 1.2;
     letter-spacing: 0;
+  }
+
+  .customer-stories-feature__metric {
+    box-shadow: inset 0 -0.18em 0 var(--bb-brand-yellow);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   .customer-stories-feature__logo {

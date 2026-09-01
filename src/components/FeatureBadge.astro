@@ -6,6 +6,7 @@ type Variant =
   | "light"
   | "bright-blue"
   | "bright-pink"
+  | "yellow"
   | "bright-yellow"
   | "bright-orange";
 
@@ -102,8 +103,10 @@ const className = `feature-badge feature-badge--${variant}`;
   .feature-badge--bright-pink {
     background: var(--bb-bright-pink);
   }
+  .feature-badge--yellow,
   .feature-badge--bright-yellow {
-    background: var(--bb-bright-yellow);
+    color: var(--bb-brand-forest-green);
+    background: var(--bb-brand-yellow);
   }
   .feature-badge--bright-orange {
     background: var(--bb-bright-orange);

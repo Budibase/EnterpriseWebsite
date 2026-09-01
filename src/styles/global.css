@@ -22,8 +22,9 @@
     );
     --bb-brand-forest-green: var(--bb-celery-1400);
     --bb-brand-bright-green: var(--bb-celery-300);
+    --bb-brand-yellow: #ffbc0d;
     --bb-bright-orange: var(--bb-orange-300);
-    --bb-bright-yellow: var(--bb-orange-400);
+    --bb-bright-yellow: var(--bb-brand-yellow);
     --bb-bright-blue: var(--bb-seafoam-300);
     --bb-bright-pink: var(--bb-pink-300);
     --bb-dark-purple: var(--bb-fuchsia-1600);

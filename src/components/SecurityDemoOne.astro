@@ -7,7 +7,11 @@ import SparkleFill from "phosphor-astro/SparkleFill.astro";
 const id = `form-demo-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
-<div id={id} class="form-demo rounded-xl bg-[var(--bg-2)] px-4 py-5 sm:px-5 sm:py-6" data-stage="form">
+<div
+  id={id}
+  class="form-demo rounded-xl bg-[var(--bg-2)] px-4 py-5 sm:px-5 sm:py-6"
+  data-stage="form"
+>
   <div class="form-demo-flow">
     <section class="form-demo-form-card" aria-label="Access request form">
       <h3 class="form-demo-title">Access request</h3>
@@ -16,14 +20,25 @@ const id = `form-demo-${Math.random().toString(36).slice(2, 8)}`;
         <p class="form-demo-field-label">What would you like access to?</p>
         <div class="form-demo-select" aria-hidden="true">
           <span class="form-demo-select-value">CRM Data</span>
-          <Image src={CaretDownIcon} alt="" class="form-demo-caret" aria-hidden="true" />
+          <Image
+            src={CaretDownIcon}
+            alt=""
+            class="form-demo-caret"
+            aria-hidden="true"
+          />
         </div>
       </div>
 
-      <button type="button" class="form-demo-submit" data-form-demo-submit>Submit</button>
+      <button type="button" class="form-demo-submit" data-form-demo-submit
+        >Submit</button
+      >
     </section>
 
-    <div class="form-demo-reveal-group" data-form-demo-group="agent" aria-hidden="true">
+    <div
+      class="form-demo-reveal-group"
+      data-form-demo-group="agent"
+      aria-hidden="true"
+    >
       <div class="form-demo-connector" aria-hidden="true"></div>
       <article class="form-demo-agent-card">
         <span class="form-demo-agent-icon" aria-hidden="true">
@@ -38,11 +53,20 @@ const id = `form-demo-${Math.random().toString(36).slice(2, 8)}`;
       </article>
     </div>
 
-    <div class="form-demo-reveal-group" data-form-demo-group="notification" aria-hidden="true">
+    <div
+      class="form-demo-reveal-group"
+      data-form-demo-group="notification"
+      aria-hidden="true"
+    >
       <div class="form-demo-connector" aria-hidden="true"></div>
       <article class="form-demo-notification-card">
         <span class="form-demo-notification-icon" aria-hidden="true">
-          <Image src={BbSymbol} alt="" class="form-demo-notification-logo" aria-hidden="true" />
+          <Image
+            src={BbSymbol}
+            alt=""
+            class="form-demo-notification-logo"
+            aria-hidden="true"
+          />
         </span>
         <div class="form-demo-card-copy">
           <div class="form-demo-notification-title">Human Approval</div>
@@ -69,11 +93,16 @@ const id = `form-demo-${Math.random().toString(36).slice(2, 8)}`;
     --form-demo-notification-border: rgb(var(--border) / 0.72);
     --form-demo-agent-icon-bg: var(--bb-blue-1000);
     --form-demo-agent-icon-fg: var(--bg-1);
-    --form-demo-notification-icon-bg: var(--bg-2);
+    --form-demo-notification-icon-bg: var(--bb-brand-yellow);
     width: 100%;
     border: 1px solid rgb(var(--border) / 0.45);
     background:
-      radial-gradient(circle at center, var(--form-demo-grid-dot) 1.3px, transparent 1.3px) 0 0 / 20px 20px,
+      radial-gradient(
+          circle at center,
+          var(--form-demo-grid-dot) 1.3px,
+          transparent 1.3px
+        )
+        0 0 / 20px 20px,
       var(--bg-2);
     animation: form-demo-dot-drift 14s linear infinite;
   }
@@ -213,7 +242,11 @@ const id = `form-demo-${Math.random().toString(36).slice(2, 8)}`;
     width: 1px;
     height: 40px;
     margin: 0 auto;
-    background-image: linear-gradient(to bottom, var(--form-demo-connector) 50%, transparent 50%);
+    background-image: linear-gradient(
+      to bottom,
+      var(--form-demo-connector) 50%,
+      transparent 50%
+    );
     background-position: center;
     background-repeat: repeat-y;
     background-size: 1px 6px;
@@ -304,10 +337,14 @@ const id = `form-demo-${Math.random().toString(36).slice(2, 8)}`;
 
   @keyframes form-demo-dot-drift {
     from {
-      background-position: 0 0, 0 0;
+      background-position:
+        0 0,
+        0 0;
     }
     to {
-      background-position: 20px 20px, 0 0;
+      background-position:
+        20px 20px,
+        0 0;
     }
   }
 
@@ -362,7 +399,9 @@ const id = `form-demo-${Math.random().toString(36).slice(2, 8)}`;
       agent: root.querySelector('[data-form-demo-group="agent"]'),
       notification: root.querySelector('[data-form-demo-group="notification"]'),
     };
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
 
     let agentTimer = null;
     let notificationTimer = null;
@@ -384,8 +423,14 @@ const id = `form-demo-${Math.random().toString(36).slice(2, 8)}`;
       const isAgentVisible = stage === "agent" || stage === "notification";
       const isNotificationVisible = stage === "notification";
 
-      revealGroups.agent?.setAttribute("aria-hidden", isAgentVisible ? "false" : "true");
-      revealGroups.notification?.setAttribute("aria-hidden", isNotificationVisible ? "false" : "true");
+      revealGroups.agent?.setAttribute(
+        "aria-hidden",
+        isAgentVisible ? "false" : "true",
+      );
+      revealGroups.notification?.setAttribute(
+        "aria-hidden",
+        isNotificationVisible ? "false" : "true",
+      );
     }
 
     function playSequence() {

@@ -41,7 +41,10 @@ const stats = [
     />
 
     <div class="homepage-proof__logos">
-      <EnterpriseLogoGrid placement="hero" />
+      <EnterpriseLogoGrid
+        placement="hero"
+        replaceSpaceForceWithPierreFabre={true}
+      />
     </div>
   </div>
 
@@ -95,7 +98,7 @@ const stats = [
     left: 0.44em;
     height: 0.1em;
     border-radius: 999px 45% 999px 55%;
-    background: var(--bb-bright-orange);
+    background: var(--bb-brand-yellow);
     content: "";
     transform: rotate(-0.35deg);
     transform-origin: left center;
@@ -113,13 +116,19 @@ const stats = [
   }
 
   .homepage-proof__logos :global(.enterprise-logo-grid--hero) {
-    --logo-grid-cell-width: clamp(4rem, 7vw, 5.75rem);
+    --logo-grid-cell-width: clamp(4.75rem, 8vw, 7rem);
     --logo-grid-cell-height: clamp(3.5rem, 5vw, 4.75rem);
-    --logo-grid-column-gap: clamp(0.375rem, 1vw, 0.75rem);
+    --logo-grid-column-gap: 0.125rem;
   }
 
   .homepage-proof__logos :global(.enterprise-logo-grid__inner) {
     margin-inline: 0;
+  }
+
+  .homepage-proof__logos :global(.enterprise-logo-grid__image),
+  .homepage-proof__logos :global(.enterprise-logo-grid__northrop) {
+    transform: scale(0.78);
+    transform-origin: center;
   }
 
   .homepage-proof__stats {
@@ -168,9 +177,9 @@ const stats = [
     }
 
     .homepage-proof__logos :global(.enterprise-logo-grid--hero) {
-      --logo-grid-cell-width: 3rem;
+      --logo-grid-cell-width: 4rem;
       --logo-grid-cell-height: 3.25rem;
-      --logo-grid-column-gap: 0.5rem;
+      --logo-grid-column-gap: 0.125rem;
     }
 
     .homepage-proof__stats {
