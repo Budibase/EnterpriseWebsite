@@ -1,0 +1,282 @@
+---
+import Button from "@components/Button.astro";
+import HeroVideo from "@assets/videos/homepage-windfarm-test.mp4?url";
+import HeroPoster from "@assets/videos/homepage-windfarm-test-poster.jpg?url";
+---
+
+<!-- Samsara-inspired video hero experiment. -->
+<section class="video-hero" aria-labelledby="video-hero-title">
+  <video
+    class="video-hero__media"
+    data-video-hero-media
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster={HeroPoster}
+    aria-hidden="true"
+    disablepictureinpicture
+  >
+    <source src={HeroVideo} type="video/mp4" />
+  </video>
+
+  <div class="video-hero__overlay" aria-hidden="true"></div>
+
+  <div class="video-hero__content">
+    <h1 id="video-hero-title" class="video-hero__title text-balance">
+      Build secure agents, apps and automations over private data.
+    </h1>
+    <p class="video-hero__description text-balance">
+      Run operational workflows that connect people, systems and data. Manage
+      requests and approvals, execute controlled actions and deploy on your
+      terms.
+    </p>
+    <div class="video-hero__actions">
+      <Button
+        label="Book a demo"
+        url="/contact/"
+        variant="cta-on-base"
+        size="large"
+      />
+      <Button
+        label="Get started"
+        url="https://account.budibase.app/register"
+        variant="secondary"
+        size="large"
+        target="_blank"
+      />
+    </div>
+  </div>
+
+  <button
+    class="video-hero__motion-control"
+    type="button"
+    data-video-hero-toggle
+    aria-label="Pause background video"
+  >
+    <svg
+      data-video-hero-pause-icon
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path d="M8 6v12M16 6v12" stroke="currentColor" stroke-width="2"></path>
+    </svg>
+    <svg
+      data-video-hero-play-icon
+      class="hidden"
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path d="m9 6 9 6-9 6V6Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</section>
+
+<script>
+  const setupVideoHero = () => {
+    const hero = document.querySelector(".video-hero");
+    const video = hero?.querySelector("[data-video-hero-media]");
+    const toggle = hero?.querySelector("[data-video-hero-toggle]");
+    const pauseIcon = toggle?.querySelector("[data-video-hero-pause-icon]");
+    const playIcon = toggle?.querySelector("[data-video-hero-play-icon]");
+
+    if (
+      !(video instanceof HTMLVideoElement) ||
+      !(toggle instanceof HTMLButtonElement)
+    ) {
+      return;
+    }
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const syncControl = () => {
+      const isPaused = video.paused;
+      toggle.setAttribute(
+        "aria-label",
+        isPaused ? "Play background video" : "Pause background video",
+      );
+      pauseIcon?.classList.toggle("hidden", isPaused);
+      playIcon?.classList.toggle("hidden", !isPaused);
+    };
+
+    const respectMotionPreference = () => {
+      if (reducedMotion.matches) {
+        video.pause();
+      } else {
+        void video.play().catch(() => undefined);
+      }
+      syncControl();
+    };
+
+    toggle.addEventListener("click", () => {
+      if (video.paused) {
+        void video
+          .play()
+          .then(syncControl)
+          .catch(() => undefined);
+      } else {
+        video.pause();
+        syncControl();
+      }
+    });
+
+    video.addEventListener("play", syncControl);
+    video.addEventListener("pause", syncControl);
+    reducedMotion.addEventListener("change", respectMotionPreference);
+    respectMotionPreference();
+  };
+
+  setupVideoHero();
+</script>
+
+<style>
+  .video-hero {
+    position: relative;
+    display: grid;
+    min-height: clamp(34rem, 64svh, 40rem);
+    overflow: hidden;
+    background: var(--bb-celery-1400);
+    isolation: isolate;
+  }
+
+  .video-hero__media,
+  .video-hero__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-hero__media {
+    z-index: -2;
+    object-fit: cover;
+    object-position: center 48%;
+    filter: saturate(0.82) contrast(1.04);
+  }
+
+  .video-hero__overlay {
+    z-index: -1;
+    background:
+      linear-gradient(180deg, rgb(5 41 37 / 0.38), rgb(5 41 37 / 0.66)),
+      radial-gradient(circle at 50% 42%, transparent 8%, rgb(5 41 37 / 0.28));
+  }
+
+  .video-hero__content {
+    align-self: center;
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding: calc(var(--site-nav-height) + clamp(1.5rem, 3vh, 2rem))
+      var(--site-content-inset) clamp(3.5rem, 6vh, 4.5rem);
+    color: var(--bb-white);
+    text-align: center;
+  }
+
+  .video-hero__title {
+    max-width: 82rem;
+    margin: 0 auto;
+    color: var(--bb-white);
+    font-family: var(--bb-text-display-large-font-family);
+    font-size: var(--bb-text-display-large-font-size);
+    font-weight: var(--bb-text-display-large-font-weight);
+    line-height: var(--bb-text-display-large-line-height);
+    letter-spacing: var(--bb-text-display-large-letter-spacing);
+    text-transform: var(--bb-text-display-large-text-transform);
+    text-shadow: 0 0.125rem 1rem rgb(5 41 37 / 0.2);
+    transform: scaleX(0.86);
+    transform-origin: center;
+  }
+
+  .video-hero__description {
+    max-width: 50rem;
+    margin: 1.75rem auto 0 !important;
+    color: var(--bb-white) !important;
+    font-family: var(--font-sans);
+    font-size: var(--bb-text-copy-lead-font-size);
+    font-weight: var(--bb-text-copy-lead-font-weight);
+    line-height: var(--bb-text-copy-lead-line-height);
+    letter-spacing: 0 !important;
+    text-shadow: 0 0.0625rem 0.5rem rgb(5 41 37 / 0.32);
+  }
+
+  .video-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .video-hero__motion-control {
+    position: absolute;
+    right: max(var(--site-content-inset), 1rem);
+    bottom: 1rem;
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 1px solid rgb(255 255 255 / 0.6);
+    border-radius: 999px;
+    background: rgb(5 41 37 / 0.58);
+    color: var(--bb-white);
+    cursor: pointer;
+    backdrop-filter: blur(0.5rem);
+  }
+
+  .video-hero__motion-control:hover {
+    background: rgb(5 41 37 / 0.78);
+  }
+
+  .video-hero__motion-control:focus-visible {
+    outline: 2px solid var(--bb-brand-bright-green);
+    outline-offset: 3px;
+  }
+
+  .video-hero__motion-control svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .video-hero__motion-control .hidden {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .video-hero {
+      min-height: min(38rem, 78svh);
+    }
+
+    .video-hero__media {
+      object-position: 58% center;
+    }
+
+    .video-hero__content {
+      padding-top: calc(var(--site-nav-height) + 1.5rem);
+      padding-bottom: 5rem;
+    }
+
+    .video-hero__description {
+      margin-top: 1.5rem !important;
+      font-size: 1.125rem;
+      line-height: 1.45;
+    }
+
+    .video-hero__actions {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1.75rem;
+    }
+
+    .video-hero__actions :global(a) {
+      width: min(100%, 16rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-hero__media {
+      filter: saturate(0.75) contrast(1.02);
+    }
+  }
+</style>

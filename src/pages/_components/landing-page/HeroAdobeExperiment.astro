@@ -1,7 +1,6 @@
 ---
 import Button from "@components/Button.astro";
 import Icon from "@components/Icon.astro";
-import AppsWorkplaceVideo from "@assets/videos/homepage-apps-workplace.mp4?url";
 import GenStudioVideo from "@assets/videos/adobe-hero-genstudio.mp4?url";
 import PhotoshopVideo from "@assets/videos/adobe-hero-photoshop.mp4?url";
 import AppsPoster from "@assets/images/apps/apps hero.png?url";
@@ -16,9 +15,10 @@ const productMedia = [
     label: "Build secure apps",
     icon: "AppWindow",
     href: "/product/apps/",
-    video: AppsWorkplaceVideo,
+    video: PhotoshopVideo,
     videoType: "video/mp4",
     poster: AppsPoster,
+    objectPosition: "center",
   },
   {
     id: "agents",
@@ -28,6 +28,7 @@ const productMedia = [
     video: GenStudioVideo,
     videoType: "video/mp4",
     poster: AgentsPoster,
+    objectPosition: "center",
   },
   {
     id: "automations",
@@ -37,15 +38,17 @@ const productMedia = [
     video: PhotoshopVideo,
     videoType: "video/mp4",
     poster: AutomationsPoster,
+    objectPosition: "center",
   },
   {
     id: "functions",
-    label: "Powerful functions",
+    label: "Code-first orchestration",
     icon: "Function",
     href: "/product/functions/",
     video: GenStudioVideo,
     videoType: "video/mp4",
     poster: FunctionsPoster,
+    objectPosition: "center",
   },
   {
     id: "control",
@@ -55,73 +58,98 @@ const productMedia = [
     video: PhotoshopVideo,
     videoType: "video/mp4",
     poster: ControlPoster,
+    objectPosition: "center",
   },
 ] as const;
 ---
 
-<section class="flex w-full flex-col mt-6 md:mt-6" data-default-hero>
-  <div
-    class="container max-w-[var(--site-container-max)] mx-auto px-[var(--site-content-inset)] flex w-full flex-col"
-  >
-    <div
-      class="mx-auto flex w-full max-w-[var(--site-container-max)] flex-col items-center"
-    >
-      <div
-        class="hero-copy-experiment flex min-w-0 flex-1 flex-col items-center text-center"
-      >
-        <p class="hero-eyebrow text-balance">
-          The open-source platform for enterprise operations
-        </p>
-        <h1
-          class="hero-title-experiment mx-auto mb-5 block w-full text-balance"
+<section class="adobe-hero" data-adobe-hero aria-labelledby="adobe-hero-title">
+  <div class="adobe-hero__media" aria-hidden="true">
+    {
+      productMedia.map((product, index) => (
+        <div
+          class:list={["adobe-hero__media-layer", index === 0 && "is-active"]}
+          data-adobe-media-layer
+          data-product-id={product.id}
+          aria-hidden={index === 0 ? "false" : "true"}
         >
-          Build secure agents, apps and automations over private data.
-        </h1>
-        <p class="hero-subheading mx-auto max-w-3xl text-balance">
-          Run operational workflows that connect people, systems and data.
-          Manage requests and approvals, execute controlled actions and deploy
-          on your terms.
-        </p>
-        <div class="hero-actions flex flex-row flex-wrap justify-center gap-4">
-          <Button
-            label="Book a demo"
-            url="https://account.budibase.app/register"
-            variant="primary"
-            size="large"
-            target="_blank"
+          <img
+            class="adobe-hero__poster"
+            src={product.poster}
+            alt=""
+            loading="eager"
+            decoding="async"
+            style={`object-position: ${product.objectPosition}`}
           />
-          <Button
-            label="Get started"
-            url="https://account.budibase.app/register"
-            variant="secondary"
-            size="large"
-            target="_blank"
-          />
+          <video
+            class="adobe-hero__video"
+            data-adobe-video
+            muted
+            loop
+            playsinline
+            preload={index === 0 ? "metadata" : "none"}
+            poster={product.poster}
+            disablepictureinpicture
+            style={`object-position: ${product.objectPosition}`}
+          >
+            <source src={product.video} type={product.videoType} />
+          </video>
         </div>
-      </div>
-    </div>
+      ))
+    }
   </div>
 
-  <div
-    class="container mx-auto mt-8 max-w-[var(--site-container-max)] px-[var(--site-content-inset)] md:mt-10"
-  >
-    <nav class="hero-product-rail" aria-label="Explore Budibase products">
+  <div class="adobe-hero__overlay" aria-hidden="true"></div>
+
+  <div class="adobe-hero__shell">
+    <div class="adobe-hero__content">
+      <h1 id="adobe-hero-title" class="adobe-hero__title text-balance">
+        Build secure agents, apps and automations over private data.
+      </h1>
+      <p class="adobe-hero__description text-balance">
+        Run operational workflows that connect people, systems and data. Manage
+        requests and approvals, execute controlled actions and deploy on your
+        terms.
+      </p>
+      <div class="adobe-hero__actions">
+        <Button
+          label="Book a demo"
+          url="/contact/"
+          variant="bright-on-dark"
+          size="large"
+        />
+        <Button
+          label="Get started"
+          url="https://account.budibase.app/register"
+          variant="outline-on-dark"
+          size="large"
+          target="_blank"
+        />
+      </div>
+    </div>
+
+    <nav
+      class="adobe-hero__product-rail"
+      aria-label="Explore Budibase products"
+    >
       {
         productMedia.map((product, index) => (
           <a
-            class="hero-product-card"
+            class="adobe-hero__product-card"
             href={product.href}
-            data-hero-product-card
+            data-product-card
             data-product-id={product.id}
-            data-astro-prefetch="tap"
+            data-astro-prefetch
             aria-current={index === 0 ? "true" : undefined}
           >
-            <span class="hero-product-card__icon" aria-hidden="true">
+            <span class="adobe-hero__product-icon" aria-hidden="true">
               <Icon name={product.icon} size="20" weight="fill" />
             </span>
-            <strong>{product.label}</strong>
+            <span class="adobe-hero__product-copy">
+              <strong>{product.label}</strong>
+            </span>
             <svg
-              class="hero-product-card__arrow"
+              class="adobe-hero__product-arrow"
               viewBox="0 0 20 20"
               fill="none"
               aria-hidden="true"
@@ -138,95 +166,56 @@ const productMedia = [
         ))
       }
     </nav>
-
-    <div class="hero-demo-media">
-      <div class="hero-demo-media__layers" aria-hidden="true">
-        {
-          productMedia.map((product, index) => (
-            <div
-              class:list={[
-                "hero-demo-media__layer",
-                index === 0 && "is-active",
-              ]}
-              data-hero-media-layer
-              data-product-id={product.id}
-              aria-hidden={index === 0 ? "false" : "true"}
-            >
-              <img
-                class="hero-demo-media__poster"
-                src={product.poster}
-                alt=""
-                loading={index === 0 ? "eager" : "lazy"}
-                decoding="async"
-              />
-              <video
-                class="hero-demo-media__video"
-                data-hero-product-video
-                muted
-                loop
-                playsinline
-                preload={index === 0 ? "metadata" : "none"}
-                poster={product.poster}
-                disablepictureinpicture
-              >
-                <source src={product.video} type={product.videoType} />
-              </video>
-            </div>
-          ))
-        }
-      </div>
-
-      <button
-        class="hero-demo-media__motion-control"
-        type="button"
-        data-hero-demo-toggle
-        aria-label="Pause background video"
-      >
-        <svg
-          data-hero-demo-pause-icon
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path d="M8 6v12M16 6v12" stroke="currentColor" stroke-width="2"
-          ></path>
-        </svg>
-        <svg
-          data-hero-demo-play-icon
-          class="hidden"
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path d="m9 6 9 6-9 6V6Z" fill="currentColor"></path>
-        </svg>
-      </button>
-    </div>
   </div>
+
+  <button
+    class="adobe-hero__motion-control"
+    type="button"
+    data-adobe-motion-toggle
+    aria-label="Pause background video"
+  >
+    <svg
+      data-adobe-pause-icon
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path d="M8 6v12M16 6v12" stroke="currentColor" stroke-width="2"></path>
+    </svg>
+    <svg
+      data-adobe-play-icon
+      class="hidden"
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path d="m9 6 9 6-9 6V6Z" fill="currentColor"></path>
+    </svg>
+  </button>
 </section>
 
 <script>
-  const setupHeroDemoVideo = () => {
-    const hero = document.querySelector<HTMLElement>("[data-default-hero]");
+  const setupAdobeHero = () => {
+    const hero = document.querySelector<HTMLElement>("[data-adobe-hero]");
 
     if (!hero || hero.dataset.initialized === "true") {
       return;
     }
 
     const cards = Array.from(
-      hero.querySelectorAll<HTMLAnchorElement>("[data-hero-product-card]"),
+      hero.querySelectorAll<HTMLAnchorElement>("[data-product-card]"),
     );
     const layers = Array.from(
-      hero.querySelectorAll<HTMLElement>("[data-hero-media-layer]"),
+      hero.querySelectorAll<HTMLElement>("[data-adobe-media-layer]"),
     );
     const videos = Array.from(
-      hero.querySelectorAll<HTMLVideoElement>("[data-hero-product-video]"),
+      hero.querySelectorAll<HTMLVideoElement>("[data-adobe-video]"),
     );
     const toggle = hero.querySelector<HTMLButtonElement>(
-      "[data-hero-demo-toggle]",
+      "[data-adobe-motion-toggle]",
     );
-    const pauseIcon = toggle?.querySelector("[data-hero-demo-pause-icon]");
-    const playIcon = toggle?.querySelector("[data-hero-demo-play-icon]");
+    const pauseIcon = toggle?.querySelector("[data-adobe-pause-icon]");
+    const playIcon = toggle?.querySelector("[data-adobe-play-icon]");
 
     if (!cards.length || !layers.length || !toggle) {
       return;
@@ -247,7 +236,7 @@ const productMedia = [
       layers.find((layer) => layer.dataset.productId === activeId);
 
     const getLayerVideo = (layer: HTMLElement | undefined) =>
-      layer?.querySelector<HTMLVideoElement>("[data-hero-product-video]");
+      layer?.querySelector<HTMLVideoElement>("[data-adobe-video]");
 
     const syncCards = () => {
       cards.forEach((card) => {
@@ -444,7 +433,7 @@ const productMedia = [
     });
 
     videos.forEach((video) => {
-      const layer = video.closest<HTMLElement>("[data-hero-media-layer]");
+      const layer = video.closest<HTMLElement>("[data-adobe-media-layer]");
 
       video.muted = true;
       video.addEventListener("canplay", () => layer?.classList.add("is-ready"));
@@ -504,78 +493,150 @@ const productMedia = [
     respectMotionPreference();
   };
 
-  setupHeroDemoVideo();
+  setupAdobeHero();
 </script>
 
 <style>
-  .hero-copy-experiment {
-    padding-top: calc(clamp(3rem, 5vw, 5rem) - 16px);
+  .adobe-hero {
+    position: relative;
+    min-height: max(100svh, 44rem);
+    overflow: hidden;
+    background: var(--bb-brand-forest-green);
+    isolation: isolate;
   }
 
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.625rem;
-    margin: 0 0 1.25rem !important;
-    color: var(--bb-text-subtle) !important;
-    font-family: var(--font-sans);
-    font-size: var(--bb-text-copy-caption-font-size);
-    font-weight: 600;
-    line-height: var(--bb-text-copy-caption-line-height);
-    letter-spacing: 0.08em !important;
-    text-transform: uppercase;
+  .adobe-hero__media,
+  .adobe-hero__media-layer,
+  .adobe-hero__poster,
+  .adobe-hero__video,
+  .adobe-hero__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
 
-  .hero-eyebrow::before {
-    content: "";
-    width: 1.5rem;
-    height: 0.1875rem;
-    flex: 0 0 1.5rem;
-    background: var(--bb-brand-yellow);
+  .adobe-hero__media {
+    z-index: 0;
   }
 
-  .hero-title-experiment {
-    color: var(--bb-text-base);
+  .adobe-hero__media-layer {
+    opacity: 0;
+    transition: opacity 320ms ease;
+  }
+
+  .adobe-hero__media-layer.is-active {
+    opacity: 1;
+  }
+
+  .adobe-hero__poster,
+  .adobe-hero__video {
+    object-fit: cover;
+  }
+
+  .adobe-hero__poster {
+    z-index: 0;
+    filter: saturate(0.78) contrast(1.04);
+  }
+
+  .adobe-hero__video {
+    z-index: 1;
+    opacity: 0;
+    filter: saturate(0.82) contrast(1.04);
+    transition: opacity 220ms ease;
+  }
+
+  .adobe-hero__media-layer.is-ready:not(.is-failed) .adobe-hero__video {
+    opacity: 1;
+  }
+
+  .adobe-hero__overlay {
+    z-index: 1;
+    background:
+      linear-gradient(
+        90deg,
+        var(--bb-transparent-black-800) 0%,
+        var(--bb-transparent-black-600) 42%,
+        var(--bb-transparent-black-300) 72%,
+        var(--bb-transparent-black-400) 100%
+      ),
+      linear-gradient(
+        180deg,
+        var(--bb-transparent-black-400) 0%,
+        var(--bb-transparent-black-25) 40%,
+        var(--bb-transparent-black-800) 100%
+      );
+  }
+
+  .adobe-hero__shell {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    width: min(100%, var(--site-container-max));
+    min-height: max(100svh, 44rem);
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: clamp(1.5rem, 4vh, 3rem);
+    margin-inline: auto;
+    padding: calc(var(--site-nav-height) + clamp(2rem, 5vh, 4rem))
+      var(--site-content-inset) clamp(1rem, 2.5vh, 1.75rem);
+  }
+
+  .adobe-hero__content {
+    align-self: center;
+    max-width: 59rem;
+    padding-bottom: clamp(1rem, 3vh, 2.5rem);
+    color: var(--bb-white);
+  }
+
+  .adobe-hero__title {
+    width: 116%;
+    max-width: 68rem;
+    margin: 0;
+    color: var(--bb-white);
     font-family: var(--bb-text-display-large-font-family);
     font-size: var(--bb-text-display-large-font-size);
     font-weight: var(--bb-text-display-large-font-weight);
     line-height: var(--bb-text-display-large-line-height);
     letter-spacing: var(--bb-text-display-large-letter-spacing);
+    text-shadow: 0 0.125rem 1rem var(--bb-transparent-black-500);
     text-transform: var(--bb-text-display-large-text-transform);
     transform: scaleX(0.86);
-    transform-origin: center;
+    transform-origin: left center;
   }
 
-  .hero-subheading {
-    margin-bottom: 0 !important;
-    color: var(--bb-text-base) !important;
+  .adobe-hero__description {
+    max-width: 47rem;
+    margin: 1.5rem 0 0 !important;
+    color: var(--bb-white) !important;
     font-family: var(--font-sans);
     font-size: var(--bb-text-copy-lead-font-size);
     font-weight: var(--bb-text-copy-lead-font-weight);
     line-height: var(--bb-text-copy-lead-line-height);
     letter-spacing: 0 !important;
+    text-shadow: 0 0.0625rem 0.5rem var(--bb-transparent-black-600);
   }
 
-  .hero-actions {
-    margin-top: calc(2rem - 8px);
+  .adobe-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.75rem;
   }
 
-  .hero-product-rail {
+  .adobe-hero__product-rail {
     display: grid;
     width: 100%;
     min-width: 0;
-    margin-bottom: 0.75rem;
     overflow-x: auto;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0.5rem;
-    padding: 0.25rem 0.125rem 0.5rem;
-    scroll-padding-inline: 0.125rem;
+    grid-auto-columns: 16.25rem;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    gap: 0.75rem;
     scroll-snap-type: x mandatory;
-    scrollbar-color: var(--bb-border-color) transparent;
+    scrollbar-color: var(--bb-transparent-white-400) transparent;
   }
 
-  .hero-product-card {
+  .adobe-hero__product-card {
     position: relative;
     display: grid;
     min-width: 0;
@@ -590,17 +651,22 @@ const productMedia = [
     padding: 1rem;
     overflow: hidden;
     border: 0;
-    border-radius: 0;
-    background: var(--bb-background-surface-subtle);
-    color: rgb(var(--text));
+    border-radius: 0.5rem;
+    background: color-mix(
+      in srgb,
+      var(--bb-brand-forest-green) 44%,
+      transparent
+    );
+    color: var(--bb-white);
     text-decoration: none;
+    backdrop-filter: blur(0.75rem);
     transition:
       background-color 180ms ease,
       transform 180ms ease;
     scroll-snap-align: start;
   }
 
-  .hero-product-card::after {
+  .adobe-hero__product-card::after {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -613,63 +679,48 @@ const productMedia = [
     transform-origin: left center;
   }
 
-  .hero-product-card:hover,
-  .hero-product-card:focus-visible {
-    background: var(--bb-background-surface-raised);
-    color: rgb(var(--text));
-    transform: translateY(-0.125rem);
-  }
-
-  .hero-product-card[aria-current="true"] {
-    background: var(--bb-background-surface-raised);
-  }
-
-  .hero-product-card[aria-current="true"]::after {
+  .adobe-hero__product-card[aria-current="true"]::after {
     opacity: 1;
   }
 
-  .hero-product-card.is-progressing::after {
-    animation: hero-product-progress 5s linear forwards;
+  .adobe-hero__product-card.is-progressing::after {
+    animation: adobe-product-progress 5s linear forwards;
   }
 
-  [data-default-hero].is-progress-paused
-    .hero-product-card.is-progressing::after {
+  .adobe-hero.is-progress-paused
+    .adobe-hero__product-card.is-progressing::after {
     animation-play-state: paused;
   }
 
-  .hero-product-card:focus-visible {
-    outline: 2px solid var(--bb-brand-bright-green);
-    outline-offset: 3px;
+  .adobe-hero__product-card:hover,
+  .adobe-hero__product-card:focus-visible {
+    background: color-mix(
+      in srgb,
+      var(--bb-brand-forest-green) 56%,
+      transparent
+    );
+    color: var(--bb-white);
+    transform: translateY(-0.125rem);
   }
 
-  .hero-product-card__icon {
-    grid-area: icon;
-    display: grid;
-    width: 1.875rem;
-    height: 1.875rem;
-    place-items: center;
-    border-radius: 0.375rem;
-    background: var(--bb-background-component-subtle);
-    color: rgb(var(--text));
+  .adobe-hero__product-card[aria-current="true"] {
+    background: var(--bb-white);
+    color: var(--bb-brand-forest-green);
   }
 
-  .hero-product-card strong {
-    grid-area: title;
-    min-width: 0;
-    color: rgb(var(--text));
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.25;
+  .adobe-hero__product-card[aria-current="true"] .adobe-hero__product-icon {
+    background: var(--bb-celery-200);
+    color: var(--bb-brand-forest-green);
   }
 
-  .hero-product-card__arrow {
-    grid-area: arrow;
-    width: 1.125rem;
-    height: 1.125rem;
-    color: rgb(var(--text));
+  .adobe-hero__product-card[aria-current="true"]
+    .adobe-hero__product-copy
+    strong,
+  .adobe-hero__product-card[aria-current="true"] .adobe-hero__product-arrow {
+    color: var(--bb-brand-forest-green);
   }
 
-  @keyframes hero-product-progress {
+  @keyframes adobe-product-progress {
     from {
       transform: scaleX(0);
     }
@@ -679,67 +730,46 @@ const productMedia = [
     }
   }
 
-  .hero-demo-media {
-    position: relative;
+  .adobe-hero__product-card:focus-visible {
+    outline: 2px solid var(--bb-brand-bright-green);
+    outline-offset: 3px;
+  }
+
+  .adobe-hero__product-icon {
+    grid-area: icon;
     display: grid;
-    width: 100%;
-    aspect-ratio: 16 / 9;
+    width: 1.875rem;
+    height: 1.875rem;
     place-items: center;
-    overflow: hidden;
-    background: var(--bb-brand-forest-green);
-    isolation: isolate;
+    border-radius: 0.375rem;
+    background: var(--bb-transparent-white-100);
+    color: var(--bb-celery-200);
   }
 
-  .hero-demo-media__layers,
-  .hero-demo-media__layer,
-  .hero-demo-media__poster,
-  .hero-demo-media__video {
+  .adobe-hero__product-copy {
+    grid-area: title;
+    min-width: 0;
+  }
+
+  .adobe-hero__product-copy strong {
+    color: var(--bb-white);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .adobe-hero__product-arrow {
+    grid-area: arrow;
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--bb-celery-200);
+  }
+
+  .adobe-hero__motion-control {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .hero-demo-media__layers {
-    z-index: 0;
-  }
-
-  .hero-demo-media__layer {
-    opacity: 0;
-    transition: opacity 320ms ease;
-  }
-
-  .hero-demo-media__layer.is-active {
-    opacity: 1;
-  }
-
-  .hero-demo-media__poster,
-  .hero-demo-media__video {
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .hero-demo-media__poster {
-    z-index: 0;
-    filter: saturate(0.78) contrast(1.04);
-  }
-
-  .hero-demo-media__video {
-    z-index: 1;
-    opacity: 0;
-    filter: saturate(0.82) contrast(1.04);
-    transition: opacity 220ms ease;
-  }
-
-  .hero-demo-media__layer.is-ready:not(.is-failed) .hero-demo-media__video {
-    opacity: 1;
-  }
-
-  .hero-demo-media__motion-control {
-    position: absolute;
-    right: 1rem;
-    bottom: 1rem;
-    z-index: 2;
+    top: calc(var(--site-nav-height) + 1.25rem);
+    right: clamp(1.25rem, 3vw, 3.5rem);
+    z-index: 3;
     display: grid;
     width: 2.75rem;
     height: 2.75rem;
@@ -748,7 +778,7 @@ const productMedia = [
     border-radius: 999px;
     background: color-mix(
       in srgb,
-      var(--bb-brand-forest-green) 70%,
+      var(--bb-brand-forest-green) 72%,
       transparent
     );
     color: var(--bb-white);
@@ -756,69 +786,101 @@ const productMedia = [
     backdrop-filter: blur(0.5rem);
   }
 
-  .hero-demo-media__motion-control:hover {
+  .adobe-hero__motion-control:hover {
     background: color-mix(
       in srgb,
-      var(--bb-brand-forest-green) 88%,
+      var(--bb-brand-forest-green) 90%,
       transparent
     );
   }
 
-  .hero-demo-media__motion-control:focus-visible {
+  .adobe-hero__motion-control:focus-visible {
     outline: 2px solid var(--bb-brand-bright-green);
     outline-offset: 3px;
   }
 
-  .hero-demo-media__motion-control svg {
+  .adobe-hero__motion-control svg {
     width: 1.25rem;
     height: 1.25rem;
   }
 
-  .hero-demo-media__motion-control .hidden {
+  .adobe-hero__motion-control .hidden {
     display: none;
   }
 
-  @media (max-width: 767px) {
-    .hero-product-rail {
-      grid-auto-columns: 10.5rem;
-      grid-template-columns: none;
-      grid-auto-flow: column;
+  @media (max-width: 1023px) {
+    .adobe-hero,
+    .adobe-hero__shell {
+      min-height: max(100svh, 46rem);
     }
 
-    .hero-product-card {
-      padding: 0.875rem;
-    }
-
-    .hero-demo-media {
-      aspect-ratio: 4 / 3;
-    }
-
-    .hero-demo-media__poster,
-    .hero-demo-media__video {
-      object-position: center;
+    .adobe-hero__product-rail {
+      grid-auto-columns: minmax(14.25rem, calc(46vw - 1.25rem));
+      padding: 0.25rem 0.125rem 0.5rem;
+      scroll-padding-inline: 0.125rem;
     }
   }
 
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .hero-product-rail {
-      grid-auto-columns: minmax(13rem, calc(46vw - 2.5rem));
-      grid-template-columns: none;
-      grid-auto-flow: column;
+  @media (max-width: 767px) {
+    .adobe-hero,
+    .adobe-hero__shell {
+      min-height: max(100svh, 47rem);
+    }
+
+    .adobe-hero__shell {
+      gap: 1.25rem;
+      padding: calc(var(--site-nav-height) + 1.75rem) var(--site-content-inset)
+        0.75rem;
+    }
+
+    .adobe-hero__content {
+      padding-bottom: 1rem;
+    }
+
+    .adobe-hero__title {
+      width: 116%;
+    }
+
+    .adobe-hero__description {
+      max-width: 34rem;
+      margin-top: 1.25rem !important;
+      font-size: 1.0625rem;
+      line-height: 1.45;
+    }
+
+    .adobe-hero__actions {
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .adobe-hero__product-rail {
+      grid-auto-columns: 11.75rem;
+    }
+
+    .adobe-hero__product-card {
+      align-items: center;
+      padding: 0.875rem;
+    }
+
+    .adobe-hero__motion-control {
+      top: auto;
+      right: 1rem;
+      bottom: 7rem;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-demo-media__layer,
-    .hero-demo-media__video,
-    .hero-product-card {
+    .adobe-hero__media-layer,
+    .adobe-hero__product-card,
+    .adobe-hero__video {
       transition: none;
     }
 
-    .hero-demo-media__video {
+    .adobe-hero__video {
       display: none;
     }
 
-    .hero-product-card[aria-current="true"]::after {
+    .adobe-hero__product-card[aria-current="true"]::after {
       animation: none;
       transform: scaleX(1);
     }

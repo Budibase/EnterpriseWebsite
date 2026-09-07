@@ -7,21 +7,11 @@ import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 
-const cloudflareServerOptimizer = {
-  name: "cloudflare-server-optimizer",
-  configEnvironment(environment) {
-    if (environment === "client") return;
-
-    return {
-      optimizeDeps: {
-        include: [
-          "@astrojs/cloudflare/entrypoints/server",
-          "astro/assets/services/noop",
-        ],
-      },
-    };
-  },
-};
+// Cloudflare optimizes server dependencies during both development and builds.
+// Keep those processes from invalidating each other's generated dependency files.
+const viteCacheDir = process.argv.includes("build")
+  ? "node_modules/.vite-build"
+  : "node_modules/.vite";
 
 // https://astro.build/config
 export default defineConfig({
@@ -34,9 +24,9 @@ export default defineConfig({
   redirects: {
     "/agent-space": "/product/agents",
     "/agents/integrations": "/product/connections",
+    "/herovideo": "/samsara",
     "/product": "/product/agents",
     "/product/integrations": "/product/connections",
-    "/platform": "/product/agents",
     "/platform/integrations": "/product/connections",
     "/platform/agents": "/product/agents",
     "/platform/automations": "/product/automations",
@@ -52,7 +42,8 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [tailwindcss(), cloudflareServerOptimizer],
+    cacheDir: viteCacheDir,
+    plugins: [tailwindcss()],
     resolve: {
       alias: {
         "@components": fileURLToPath(

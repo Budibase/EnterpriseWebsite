@@ -1,0 +1,32 @@
+---
+import Icon from "@components/Icon.astro";
+
+interface Props {
+  name: string;
+  size?: string;
+}
+
+const { name, size = "20" } = Astro.props as Props;
+---
+
+<span class="architecture-icon" aria-hidden="true">
+  <Icon name={name} size={size} weight="fill" />
+</span>
+
+<style>
+  .architecture-icon {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: 0 0 2.5rem;
+    place-items: center;
+    border: 1px solid var(--bb-border-subtle);
+    border-radius: 0;
+    background: var(--bb-background-component-base);
+    color: var(--bb-text-base);
+  }
+
+  .architecture-icon :global(svg) {
+    color: currentColor;
+  }
+</style>

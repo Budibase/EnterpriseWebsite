@@ -1,0 +1,62 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props as Props;
+---
+
+<div
+  class:list={[
+    "architecture-connector",
+    compact && "architecture-connector--compact",
+  ]}
+  aria-hidden="true"
+>
+  <svg viewBox="0 0 80 24" focusable="false">
+    <g class="architecture-connector__flow">
+      <path class="architecture-connector__lane" d="M30 19V5"></path>
+      <path class="architecture-connector__head" d="M27 8L30 5L33 8"></path>
+    </g>
+    <g class="architecture-connector__flow">
+      <path class="architecture-connector__lane" d="M50 5V19"></path>
+      <path class="architecture-connector__head" d="M47 16L50 19L53 16"></path>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .architecture-connector {
+    display: grid;
+    height: 2.5rem;
+    place-items: center;
+  }
+
+  .architecture-connector svg {
+    width: 5rem;
+    height: 1.5rem;
+    overflow: visible;
+  }
+
+  .architecture-connector--compact {
+    height: 0.75rem;
+  }
+
+  .architecture-connector--compact svg {
+    width: 2.5rem;
+    height: 0.75rem;
+  }
+
+  .architecture-connector__flow {
+    color: var(--bb-brand-yellow);
+  }
+
+  .architecture-connector__flow path {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+</style>

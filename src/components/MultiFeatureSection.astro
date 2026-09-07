@@ -1,8 +1,9 @@
 ---
 import Button from "@components/Button.astro";
 import TitleBlock from "@components/TitleBlock.astro";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
-export interface MultiFeatureMedia {
+export interface MultiFeatureImageMedia {
   src: string;
   alt: string;
   width: number;
@@ -10,6 +11,13 @@ export interface MultiFeatureMedia {
   fit?: "cover" | "contain";
   position?: string;
 }
+
+export interface MultiFeatureDemoMedia {
+  demo: AstroComponentFactory;
+  demoProps?: Record<string, unknown>;
+}
+
+export type MultiFeatureMedia = MultiFeatureImageMedia | MultiFeatureDemoMedia;
 
 export interface MultiFeatureItem {
   id: string;
@@ -22,12 +30,15 @@ export interface MultiFeatureItem {
   media: MultiFeatureMedia;
 }
 
+type Variant = "dark" | "light";
+
 interface Props {
   title: string;
   description: string;
   features: readonly MultiFeatureItem[];
   initialFeatureId?: string;
   id?: string;
+  variant?: Variant;
 }
 
 const {
@@ -36,21 +47,26 @@ const {
   features,
   initialFeatureId = features[0]?.id,
   id = `multi-feature-${Math.random().toString(36).slice(2, 9)}`,
+  variant = "dark",
 } = Astro.props as Props;
 
-const activeFeatureId = features.some(
-  (feature) => feature.id === initialFeatureId,
-)
-  ? initialFeatureId
-  : features[0]?.id;
+const isDemoMedia = (
+  media: MultiFeatureMedia,
+): media is MultiFeatureDemoMedia => "demo" in media;
+const activeFeature =
+  features.find((feature) => feature.id === initialFeatureId) ?? features[0];
+const activeFeatureId = activeFeature?.id;
+const activeMediaKind =
+  activeFeature && isDemoMedia(activeFeature.media) ? "demo" : "image";
 const titleId = `${id}-title`;
 ---
 
 <section
-  class="multi-feature-section"
+  class:list={["multi-feature-section", `multi-feature-section--${variant}`]}
   aria-labelledby={titleId}
   data-multi-feature
   data-active-feature={activeFeatureId}
+  data-active-media-kind={activeMediaKind}
 >
   <div class="multi-feature-section__container">
     <TitleBlock
@@ -126,27 +142,47 @@ const titleId = `${id}-title`;
         {
           features.map((feature) => {
             const isActive = feature.id === activeFeatureId;
+            const media = feature.media;
+            const isDemo = isDemoMedia(media);
+            const Demo = isDemo ? media.demo : undefined;
+            const imageMedia = isDemo ? undefined : media;
 
-            return (
+            return Demo ? (
+              <div
+                class:list={[
+                  "multi-feature-section__media",
+                  "multi-feature-section__media--demo",
+                  isActive && "is-active",
+                ]}
+                data-feature-media={feature.id}
+                data-feature-media-kind="demo"
+                aria-hidden={isActive ? "false" : "true"}
+              >
+                <Demo {...media.demoProps} />
+              </div>
+            ) : (
               <figure
                 class:list={[
                   "multi-feature-section__media",
-                  feature.media.fit === "contain" &&
+                  imageMedia?.fit === "contain" &&
                     "multi-feature-section__media--contain",
                   isActive && "is-active",
                 ]}
                 data-feature-media={feature.id}
+                data-feature-media-kind="image"
                 aria-hidden={isActive ? "false" : "true"}
               >
-                <img
-                  src={feature.media.src}
-                  alt={feature.media.alt}
-                  width={feature.media.width}
-                  height={feature.media.height}
-                  loading="lazy"
-                  decoding="async"
-                  style={`object-position: ${feature.media.position ?? "center"};`}
-                />
+                {imageMedia && (
+                  <img
+                    src={imageMedia.src}
+                    alt={imageMedia.alt}
+                    width={imageMedia.width}
+                    height={imageMedia.height}
+                    loading="lazy"
+                    decoding="async"
+                    style={`object-position: ${imageMedia.position ?? "center"};`}
+                  />
+                )}
               </figure>
             );
           })
@@ -158,8 +194,27 @@ const titleId = `${id}-title`;
 
 <style>
   .multi-feature-section {
+    --multi-feature-background: var(--bb-gray-900);
+    --multi-feature-shell-background: var(--bb-background-component-base);
+    --multi-feature-border: var(--bb-transparent-white-300);
+    --multi-feature-text: var(--bb-text-on-base);
+    --multi-feature-text-subtle: var(--bb-text-on-base-subtle);
+    --multi-feature-hover: var(--bb-brand-bright-green);
+    --multi-feature-active: var(--bb-brand-yellow);
+    --multi-feature-focus: var(--bb-brand-bright-green);
     width: 100%;
-    background: var(--bb-gray-900);
+    background: var(--multi-feature-background);
+  }
+
+  .multi-feature-section--light {
+    --multi-feature-background: var(--bb-background-surface);
+    --multi-feature-shell-background: var(--bb-background-base);
+    --multi-feature-border: var(--bb-border-base);
+    --multi-feature-text: var(--bb-text-base);
+    --multi-feature-text-subtle: var(--bb-text-body);
+    --multi-feature-hover: var(--bb-celery-900);
+    --multi-feature-active: var(--bb-brand-forest-green);
+    --multi-feature-focus: var(--bb-brand-forest-green);
   }
 
   .multi-feature-section__container {
@@ -178,35 +233,47 @@ const titleId = `${id}-title`;
   }
 
   :global(.multi-feature-section__title) {
-    color: var(--bb-text-on-base);
+    color: var(--multi-feature-text);
   }
 
   :global(.multi-feature-section__intro) {
-    color: var(--bb-text-on-base-subtle) !important;
+    color: var(--multi-feature-text-subtle) !important;
   }
 
   .multi-feature-section__shell {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     overflow: hidden;
-    border: 1px solid var(--bb-transparent-white-300);
+    border: 1px solid var(--multi-feature-border);
     border-radius: 4px;
-    background: var(--bb-background-component-base);
+    background: var(--multi-feature-shell-background);
   }
 
   .multi-feature-section__accordion {
     min-width: 0;
     padding: clamp(0.75rem, 2vw, 1.5rem) clamp(1.25rem, 3vw, 2.75rem);
-    color: var(--bb-text-on-base);
+    color: var(--multi-feature-text);
+  }
+
+  .multi-feature-section--light .multi-feature-section__accordion {
+    background: var(--bb-background-raised);
   }
 
   .multi-feature-section__item {
-    border-bottom: 1px solid var(--bb-transparent-white-300);
+    border-bottom: 1px solid var(--multi-feature-border);
     transition: background-color 180ms ease;
   }
 
   .multi-feature-section__item.is-active {
     background: transparent;
+  }
+
+  .multi-feature-section--light
+    .multi-feature-section__item:not(.is-active)
+    .multi-feature-section__trigger {
+    color: var(--multi-feature-text-subtle);
+    font-weight: 550;
+    opacity: 0.72;
   }
 
   .multi-feature-section__item:last-child {
@@ -227,34 +294,56 @@ const titleId = `${id}-title`;
     border: 0;
     padding: 1rem 0;
     background: transparent;
-    color: var(--bb-text-on-base);
+    color: var(--multi-feature-text);
     font-family: var(--font-sans);
     font-size: var(--bb-text-heading-subsection-font-size);
     font-weight: 600;
     line-height: var(--bb-text-heading-subsection-line-height);
     text-align: left;
     cursor: pointer;
+    transition:
+      color 180ms ease,
+      opacity 180ms ease;
   }
 
   .multi-feature-section__trigger:hover {
-    color: var(--bb-brand-bright-green);
+    color: var(--multi-feature-hover);
+    opacity: 1;
+  }
+
+  .multi-feature-section--light
+    .multi-feature-section__item:not(.is-active)
+    .multi-feature-section__trigger:hover,
+  .multi-feature-section--light
+    .multi-feature-section__item:not(.is-active)
+    .multi-feature-section__trigger:focus-visible {
+    color: var(--multi-feature-hover);
+    opacity: 1;
   }
 
   .multi-feature-section__item.is-active .multi-feature-section__trigger {
-    color: var(--bb-brand-yellow);
+    color: var(--multi-feature-active);
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  .multi-feature-section--light
+    .multi-feature-section__item.is-active
+    .multi-feature-section__trigger {
+    font-weight: 550;
   }
 
   .multi-feature-section__trigger:focus-visible {
-    outline: 2px solid var(--bb-brand-bright-green);
+    outline: 2px solid var(--multi-feature-focus);
     outline-offset: 6px;
   }
 
   .multi-feature-section__indicator {
     position: relative;
-    width: 2rem;
-    height: 2rem;
-    flex: 0 0 2rem;
-    border-inline: 2px solid currentColor;
+    width: 1.75rem;
+    height: 1.75rem;
+    flex: 0 0 1.75rem;
+    border: 1px solid currentColor;
   }
 
   .multi-feature-section__indicator::before,
@@ -263,8 +352,8 @@ const titleId = `${id}-title`;
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 0.75rem;
-    height: 2px;
+    width: 0.625rem;
+    height: 1px;
     background: currentColor;
     transform: translate(-50%, -50%);
     transition: opacity 180ms ease;
@@ -284,7 +373,7 @@ const titleId = `${id}-title`;
   }
 
   .multi-feature-section__feature-description {
-    color: var(--bb-text-on-base) !important;
+    color: var(--multi-feature-text-subtle) !important;
     font-family: var(--font-sans);
   }
 
@@ -303,9 +392,8 @@ const titleId = `${id}-title`;
     position: relative;
     min-width: 0;
     min-height: 100%;
-    aspect-ratio: 16 / 10;
     overflow: hidden;
-    border-left: 1px solid var(--bb-transparent-white-300);
+    border-left: 1px solid var(--multi-feature-border);
     background: transparent;
   }
 
@@ -341,6 +429,26 @@ const titleId = `${id}-title`;
     object-fit: contain;
   }
 
+  .multi-feature-section__media--demo {
+    background: var(--bb-background-base);
+  }
+
+  .multi-feature-section__media--demo :global(.diagram-frame) {
+    height: 100%;
+    border: 0;
+  }
+
+  .multi-feature-section__media--demo :global(.diagram-frame__canvas) {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .multi-feature-section__media:not(.is-active) :global(*) {
+    animation-play-state: paused !important;
+  }
+
   @media (max-width: 1023px) {
     .multi-feature-section__shell {
       grid-template-columns: minmax(0, 1fr);
@@ -356,8 +464,26 @@ const titleId = `${id}-title`;
 
     .multi-feature-section__media-stage {
       min-height: 0;
-      border-top: 1px solid var(--bb-transparent-white-300);
+      aspect-ratio: 16 / 10;
+      border-top: 1px solid var(--multi-feature-border);
       border-left: 0;
+    }
+
+    .multi-feature-section[data-active-media-kind="demo"]
+      .multi-feature-section__media-stage {
+      aspect-ratio: auto;
+    }
+
+    .multi-feature-section[data-active-media-kind="demo"]
+      .multi-feature-section__media--demo.is-active {
+      position: relative;
+      inset: auto;
+    }
+
+    .multi-feature-section[data-active-media-kind="demo"]
+      .multi-feature-section__media--demo.is-active
+      :global(.diagram-frame) {
+      height: auto;
     }
   }
 
@@ -395,6 +521,7 @@ const titleId = `${id}-title`;
   @media (prefers-reduced-motion: reduce) {
     .multi-feature-section__indicator::before,
     .multi-feature-section__indicator::after,
+    .multi-feature-section__trigger,
     .multi-feature-section__media {
       transition: none;
     }
@@ -437,6 +564,11 @@ const titleId = `${id}-title`;
             const isActive = media.dataset.featureMedia === featureId;
             media.classList.toggle("is-active", isActive);
             media.setAttribute("aria-hidden", String(!isActive));
+
+            if (isActive) {
+              section.dataset.activeMediaKind =
+                media.dataset.featureMediaKind ?? "image";
+            }
           });
         };
 

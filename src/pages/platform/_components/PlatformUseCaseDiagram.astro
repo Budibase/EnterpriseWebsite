@@ -1,0 +1,492 @@
+---
+import ArchitectureConnector from "./diagram/ArchitectureConnector.astro";
+import ArchitectureItem from "./diagram/ArchitectureItem.astro";
+import ArchitectureLayer from "./diagram/ArchitectureLayer.astro";
+import DiagramFrame from "./diagram/DiagramFrame.astro";
+import AmazonS3Logo from "@assets/logos/amazon-s3.svg?url";
+import BambooHRLogo from "@assets/logos/bamboohr.svg?url";
+import ConfluenceLogo from "@assets/logos/confluence.svg?url";
+import JiraLogo from "@assets/logos/Jira.svg?url";
+import MSSQLLogo from "@assets/logos/MSSQL.svg?url";
+import OktaLogo from "@assets/logos/Okta.svg?url";
+import PostgresLogo from "@assets/logos/Postgres.svg?url";
+import SAPLogo from "@assets/logos/SAP.svg?url";
+import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
+import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+
+type Scenario =
+  | "purchase-requests"
+  | "employee-onboarding"
+  | "it-service-requests"
+  | "asset-maintenance"
+  | "compliance-reviews";
+
+type ItemTone = "neutral" | "app" | "automation" | "agent" | "function";
+type GovernanceCapability = "Access" | "Identity" | "Approvals" | "Activity";
+
+interface DiagramItem {
+  title: string;
+  description?: string;
+  icon?: string;
+  logo?: string;
+  tone?: ItemTone;
+}
+
+interface ScenarioConfig {
+  title: string;
+  summary: string;
+  connect: readonly DiagramItem[];
+  build: readonly DiagramItem[];
+  engage: readonly DiagramItem[];
+  governance: readonly GovernanceCapability[];
+}
+
+interface Props {
+  scenario: Scenario;
+}
+
+const scenarios: Record<Scenario, ScenarioConfig> = {
+  "purchase-requests": {
+    title: "Purchase requests",
+    summary:
+      "A purchasing agent and budget check function connect enterprise data to a request inbox and Microsoft Teams.",
+    connect: [
+      { title: "SAP", logo: SAPLogo },
+      { title: "SQL Server", logo: MSSQLLogo },
+    ],
+    build: [
+      {
+        title: "Purchasing agent",
+        description: "Resolves requests",
+        icon: "Sparkle",
+        tone: "agent",
+      },
+      {
+        title: "Budget function",
+        description: "Checks available funds",
+        icon: "Function",
+        tone: "function",
+      },
+    ],
+    engage: [
+      { title: "Web app", description: "Request inbox", icon: "Browser" },
+      {
+        title: "Teams",
+        description: "Purchasing agent",
+        icon: "MicrosoftTeamsLogo",
+      },
+    ],
+    governance: ["Approvals", "Activity"],
+  },
+  "employee-onboarding": {
+    title: "Employee onboarding",
+    summary:
+      "An onboarding agent and automation coordinate account setup across HR, identity, and service systems.",
+    connect: [
+      { title: "BambooHR", logo: BambooHRLogo },
+      { title: "Okta", logo: OktaLogo },
+      { title: "Jira", logo: JiraLogo },
+    ],
+    build: [
+      {
+        title: "Starter agent",
+        description: "Resolves needs",
+        icon: "Sparkle",
+        tone: "agent",
+      },
+      {
+        title: "Onboarding app",
+        description: "Hosts workspace",
+        icon: "AppWindow",
+        tone: "app",
+      },
+      {
+        title: "Account setup",
+        description: "Creates access",
+        icon: "Lightning",
+        tone: "automation",
+      },
+    ],
+    engage: [
+      {
+        title: "Web app",
+        description: "Onboarding hub",
+        icon: "Browser",
+      },
+      {
+        title: "Teams",
+        description: "Onboarding updates",
+        icon: "MicrosoftTeamsLogo",
+      },
+    ],
+    governance: ["Access", "Identity", "Activity"],
+  },
+  "it-service-requests": {
+    title: "IT service requests",
+    summary:
+      "An IT service agent resolves requests using identity, service-management, and knowledge systems.",
+    connect: [
+      { title: "ServiceNow", logo: ServiceNowLogo },
+      { title: "Okta", logo: OktaLogo },
+      { title: "Confluence", logo: ConfluenceLogo },
+    ],
+    build: [
+      {
+        title: "Service agent",
+        description: "Reads requests",
+        icon: "Sparkle",
+        tone: "agent",
+      },
+      {
+        title: "Request routing",
+        description: "Applies triage",
+        icon: "Lightning",
+        tone: "automation",
+      },
+    ],
+    engage: [
+      { title: "Web app", description: "Request inbox", icon: "Browser" },
+      {
+        title: "Teams",
+        description: "Service agent",
+        icon: "MicrosoftTeamsLogo",
+      },
+    ],
+    governance: ["Access", "Identity", "Activity"],
+  },
+  "asset-maintenance": {
+    title: "Asset maintenance",
+    summary:
+      "A maintenance app and automation connect asset records, files, and work-order systems.",
+    connect: [
+      { title: "SAP", logo: SAPLogo },
+      { title: "PostgreSQL", logo: PostgresLogo },
+      { title: "Amazon S3", logo: AmazonS3Logo },
+    ],
+    build: [
+      {
+        title: "Maintenance app",
+        description: "Captures work",
+        icon: "AppWindow",
+        tone: "app",
+      },
+      {
+        title: "Work order routing",
+        description: "Routes tasks",
+        icon: "Lightning",
+        tone: "automation",
+      },
+    ],
+    engage: [
+      {
+        title: "Web app",
+        description: "Maintenance hub",
+        icon: "Browser",
+      },
+      {
+        title: "Email",
+        description: "Technician alerts",
+        icon: "EnvelopeOpen",
+      },
+    ],
+    governance: ["Access", "Activity"],
+  },
+  "compliance-reviews": {
+    title: "Compliance reviews",
+    summary:
+      "A compliance agent assembles evidence and routes accountable reviews across existing systems.",
+    connect: [
+      { title: "SharePoint", logo: SharePointLogo },
+      { title: "ServiceNow", logo: ServiceNowLogo },
+      { title: "SQL Server", logo: MSSQLLogo },
+    ],
+    build: [
+      {
+        title: "Review agent",
+        description: "Finds evidence",
+        icon: "Sparkle",
+        tone: "agent",
+      },
+      {
+        title: "Review app",
+        description: "Hosts workspace",
+        icon: "AppWindow",
+        tone: "app",
+      },
+      {
+        title: "Policy checks",
+        description: "Runs policies",
+        icon: "Lightning",
+        tone: "automation",
+      },
+    ],
+    engage: [
+      {
+        title: "Web app",
+        description: "Review workspace",
+        icon: "Browser",
+      },
+      {
+        title: "Teams",
+        description: "Reviewer handoff",
+        icon: "MicrosoftTeamsLogo",
+      },
+    ],
+    governance: ["Access", "Approvals", "Activity"],
+  },
+};
+
+const governanceCapabilities: Record<GovernanceCapability, DiagramItem> = {
+  Access: {
+    title: "Access",
+    description: "Permissions applied",
+    icon: "Keyhole",
+  },
+  Identity: {
+    title: "Identity",
+    description: "Execution context",
+    icon: "UserSwitch",
+  },
+  Approvals: {
+    title: "Approvals",
+    description: "Human review",
+    icon: "CheckCircle",
+  },
+  Activity: {
+    title: "Activity",
+    description: "Run history",
+    icon: "Gauge",
+  },
+};
+
+const { scenario } = Astro.props as Props;
+const config = scenarios[scenario];
+
+if (!config) {
+  throw new Error(`Unknown platform use-case diagram: ${scenario}`);
+}
+
+const layers = [
+  {
+    key: "connect",
+    title: "Connect",
+    description: "Systems and data this operation uses.",
+    items: config.connect,
+    tone: "quiet" as const,
+  },
+  {
+    key: "build",
+    title: "Build",
+    description: "How the operation runs.",
+    items: config.build,
+    tone: "execution" as const,
+  },
+  {
+    key: "engage",
+    title: "Engage",
+    description: "Where people interact with the operation.",
+    items: config.engage,
+    tone: "quiet" as const,
+  },
+] as const;
+---
+
+<DiagramFrame
+  class="architecture-diagram platform-use-case-diagram"
+  title={`${config.title} platform architecture`}
+  description={`${config.summary} ${config.governance.join(", ")} govern this operation.`}
+  gridSize={2.5}
+>
+  <div class="platform-use-case-diagram__stack">
+    {
+      layers.map((layer, index) => (
+        <>
+          <ArchitectureLayer
+            title={layer.title}
+            description={layer.description}
+            tone={layer.tone}
+            class="platform-use-case-diagram__layer"
+          >
+            <div
+              class="platform-use-case-diagram__items"
+              data-item-count={layer.items.length}
+              style={`--use-case-item-count: ${layer.items.length};`}
+            >
+              {layer.items.map((item) => (
+                <ArchitectureItem
+                  title={item.title}
+                  description={item.description}
+                  icon={item.icon}
+                  logo={item.logo}
+                  tone={item.tone}
+                />
+              ))}
+            </div>
+          </ArchitectureLayer>
+          {index < layers.length - 1 && <ArchitectureConnector compact />}
+        </>
+      ))
+    }
+  </div>
+
+  <ArchitectureConnector compact />
+
+  <ArchitectureLayer
+    title="Governed by Budibase"
+    description="Controls applied to this operation."
+    tone="quiet"
+    class="platform-use-case-diagram__layer platform-use-case-diagram__governance"
+  >
+    <div
+      class="platform-use-case-diagram__items"
+      data-item-count={config.governance.length}
+      style={`--use-case-item-count: ${config.governance.length};`}
+    >
+      {
+        config.governance.map((capability) => {
+          const item = governanceCapabilities[capability];
+
+          return (
+            <ArchitectureItem
+              title={item.title}
+              description={item.description}
+              icon={item.icon}
+            />
+          );
+        })
+      }
+    </div>
+  </ArchitectureLayer>
+</DiagramFrame>
+
+<style>
+  :global(.diagram-frame.platform-use-case-diagram) {
+    --platform-use-case-panel-gap: 0.75rem;
+    background: var(--bb-white);
+  }
+
+  .platform-use-case-diagram__stack {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+  }
+
+  :global(
+    .diagram-frame.platform-use-case-diagram
+      .platform-use-case-diagram__governance
+  ) {
+    border-style: dashed;
+  }
+
+  .platform-use-case-diagram__items {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: repeat(var(--use-case-item-count), minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  :global(.platform-use-case-diagram .platform-use-case-diagram__layer) {
+    --platform-use-case-layer-padding-x: 1rem;
+    --platform-use-case-layer-padding-y: 0.75rem;
+    padding: var(--platform-use-case-layer-padding-y)
+      var(--platform-use-case-layer-padding-x);
+  }
+
+  :global(
+    .platform-use-case-diagram
+      .platform-use-case-diagram__layer.architecture-layer--execution
+  ) {
+    padding: calc(var(--platform-use-case-layer-padding-y) - 1px)
+      calc(var(--platform-use-case-layer-padding-x) - 1px);
+  }
+
+  :global(.platform-use-case-diagram .architecture-connector--compact) {
+    height: var(--platform-use-case-panel-gap);
+  }
+
+  :global(.platform-use-case-diagram .architecture-layer--quiet) {
+    border-color: var(--bb-border-subtle);
+    background: var(--bb-background-surface);
+  }
+
+  :global(
+    .platform-use-case-diagram .architecture-layer--quiet .architecture-item
+  ) {
+    border-top-color: var(--bb-border-subtle);
+  }
+
+  :global(
+    .platform-use-case-diagram
+      .platform-use-case-diagram__layer
+      .architecture-layer__header
+  ) {
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom-color: var(--bb-border-subtle);
+  }
+
+  :global(
+    .platform-use-case-diagram
+      .platform-use-case-diagram__layer
+      .architecture-layer__content
+  ) {
+    padding-top: 0.5rem;
+  }
+
+  :global(.platform-use-case-diagram__layer .architecture-item) {
+    min-height: 3.75rem;
+    padding-block: 0.45rem;
+    border-right-color: var(--bb-border-subtle);
+    border-bottom-color: var(--bb-border-subtle);
+    border-left-color: var(--bb-border-subtle);
+  }
+
+  @media (min-width: 768px) {
+    :global(.platform-use-case-diagram .diagram-frame__canvas) {
+      padding-block: 1rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    :global(.platform-use-case-diagram .platform-use-case-diagram__layer) {
+      --platform-use-case-layer-padding-x: 0.65rem;
+      --platform-use-case-layer-padding-y: 0.65rem;
+    }
+
+    :global(
+      .platform-use-case-diagram
+        .platform-use-case-diagram__layer
+        .architecture-layer__header
+    ) {
+      gap: 0.2rem;
+      padding-bottom: 0.5rem;
+    }
+
+    :global(
+      .platform-use-case-diagram
+        .platform-use-case-diagram__layer
+        .architecture-layer__content
+    ) {
+      padding-top: 0.5rem;
+    }
+
+    :global(.platform-use-case-diagram__layer .architecture-item) {
+      min-height: 5.25rem;
+      padding-block: 0.5rem;
+    }
+
+    .platform-use-case-diagram__items {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+
+    .platform-use-case-diagram__items[data-item-count="1"] {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .platform-use-case-diagram__items[data-item-count="3"]
+      :global(.architecture-item:last-child) {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

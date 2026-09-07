@@ -1,0 +1,233 @@
+---
+import ArchitectureIcon from "./ArchitectureIcon.astro";
+import Icon from "@components/Icon.astro";
+
+type Tone =
+  "neutral" | "app" | "automation" | "agent" | "function" | "governance";
+
+interface Props {
+  title: string;
+  description?: string;
+  icon?: string;
+  logo?: string;
+  href?: string;
+  tone?: Tone;
+  layout?: "inline" | "stacked";
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  icon,
+  logo,
+  href,
+  tone = "neutral",
+  layout = "inline",
+  class: className = "",
+} = Astro.props as Props;
+
+if ((!icon && !logo) || (icon && logo)) {
+  throw new Error(
+    "ArchitectureItem requires exactly one visual source: icon or logo.",
+  );
+}
+
+const Tag = href ? "a" : "article";
+---
+
+<Tag
+  class:list={[
+    "architecture-item",
+    `architecture-item--${tone}`,
+    `architecture-item--${layout}`,
+    href && "architecture-item--link",
+    className,
+  ]}
+  href={href}
+>
+  {
+    logo ? (
+      <span class="architecture-item__logo" aria-hidden="true">
+        <img src={logo} alt="" loading="lazy" decoding="async" />
+      </span>
+    ) : (
+      icon && <ArchitectureIcon name={icon} />
+    )
+  }
+  <span class="architecture-item__copy">
+    <strong>{title}</strong>
+    {description && <small>{description}</small>}
+  </span>
+  {
+    href && (
+      <span class="architecture-item__arrow" aria-hidden="true">
+        <Icon name="ArrowUpRight" size="15" />
+      </span>
+    )
+  }
+</Tag>
+
+<style>
+  .architecture-item {
+    --architecture-item-accent: var(--bb-border-base);
+    position: relative;
+    display: flex;
+    min-width: 0;
+    min-height: 4.25rem;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0;
+    background: var(--bb-white);
+    color: var(--bb-text-base);
+    text-decoration: none;
+  }
+
+  .architecture-item--app,
+  .architecture-item--automation,
+  .architecture-item--agent,
+  .architecture-item--function {
+    border-top: 3px solid var(--architecture-item-accent);
+  }
+
+  .architecture-item--app {
+    --architecture-item-accent: var(--bb-bright-blue);
+  }
+
+  .architecture-item--automation {
+    --architecture-item-accent: var(--bb-brand-bright-green);
+  }
+
+  .architecture-item--agent {
+    --architecture-item-accent: var(--bb-bright-pink);
+  }
+
+  .architecture-item--function {
+    --architecture-item-accent: var(--accent-purple);
+  }
+
+  .architecture-item--stacked {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .architecture-item--stacked .architecture-item__copy {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .architecture-item--stacked .architecture-item__arrow {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+  }
+
+  .architecture-item__copy {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .architecture-item__logo {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: 0 0 2.5rem;
+    place-items: center;
+    border: 1px solid var(--bb-border-subtle);
+    border-radius: 0;
+    background: var(--bb-background-component-base);
+  }
+
+  .architecture-item__logo img {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+  }
+
+  .architecture-item strong {
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .architecture-item small {
+    color: var(--bb-text-body);
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    line-height: 1.35;
+  }
+
+  .architecture-item__arrow {
+    display: grid;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    place-items: center;
+    color: var(--bb-text-base);
+    opacity: 0.42;
+    transition: opacity 160ms ease;
+  }
+
+  .architecture-item__arrow :global(svg) {
+    color: currentColor;
+  }
+
+  .architecture-item--link {
+    cursor: pointer;
+    transition:
+      border-color 160ms ease,
+      background-color 160ms ease;
+  }
+
+  .architecture-item--link:hover {
+    border-color: var(--bb-brand-forest-green);
+    background: var(--bb-background-component-base);
+  }
+
+  .architecture-item--link:hover .architecture-item__arrow,
+  .architecture-item--link:focus-visible .architecture-item__arrow {
+    opacity: 1;
+  }
+
+  .architecture-item--link:focus-visible {
+    outline: 2px solid var(--bb-brand-forest-green);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 767px) {
+    .architecture-item {
+      min-height: 6rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.6rem 0.75rem;
+    }
+
+    .architecture-item__arrow {
+      position: absolute;
+      top: 0.45rem;
+      right: 0.45rem;
+    }
+
+    .architecture-item__copy {
+      width: 100%;
+      align-self: stretch;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .architecture-item,
+    .architecture-item__arrow {
+      transition: none;
+    }
+  }
+</style>

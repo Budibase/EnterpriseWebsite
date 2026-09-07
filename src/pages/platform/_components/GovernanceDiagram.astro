@@ -1,0 +1,340 @@
+---
+import DiagramFrame from "./diagram/DiagramFrame.astro";
+import DiagramNode from "./diagram/DiagramNode.astro";
+
+const controls = [
+  { label: "Access", icon: "Keyhole", tone: "foundation" },
+  { label: "Approvals", icon: "UserSwitch", tone: "approval" },
+  { label: "Identity", icon: "Users", tone: "foundation" },
+  { label: "Policies", icon: "ShieldCheck", tone: "foundation" },
+] as const;
+
+const execution = [
+  {
+    title: "Apps",
+    description: "Human interaction",
+    icon: "AppWindow",
+    tone: "app",
+  },
+  {
+    title: "Automations",
+    description: "Predictable work",
+    icon: "Lightning",
+    tone: "automation",
+  },
+  {
+    title: "Agents",
+    description: "Context-dependent work",
+    icon: "Sparkle",
+    tone: "agent",
+  },
+] as const;
+---
+
+<DiagramFrame
+  class="governance-diagram"
+  title="Governance conditions every execution mode"
+  description="Access, approval, identity, and policy controls apply across apps, automations, and agents. Permitted actions reach enterprise systems and activity records what happened."
+>
+  <section
+    class="governance-diagram__controls"
+    aria-labelledby="control-plane-title"
+  >
+    <header>
+      <span>Control plane</span>
+      <strong id="control-plane-title">Conditions execution</strong>
+    </header>
+    <ul>
+      {
+        controls.map((control) => (
+          <li>
+            <DiagramNode
+              title={control.label}
+              icon={control.icon}
+              tone={control.tone}
+              compact
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <div class="governance-diagram__control-lines" aria-hidden="true">
+    <svg viewBox="0 0 900 72" preserveAspectRatio="none">
+      <path pathLength="1" d="M112 0 V24 H150 V72"></path>
+      <path pathLength="1" d="M337 0 V34 H450 V72"></path>
+      <path pathLength="1" d="M562 0 V34 H450"></path>
+      <path pathLength="1" d="M787 0 V24 H750 V72"></path>
+    </svg>
+    <span>Control relationships</span>
+  </div>
+
+  <section
+    class="governance-diagram__execution"
+    aria-labelledby="execution-title"
+  >
+    <header>
+      <span>Execution plane</span>
+      <strong id="execution-title">Work runs within those controls</strong>
+    </header>
+    <div>
+      {
+        execution.map((item) => (
+          <DiagramNode
+            title={item.title}
+            description={item.description}
+            icon={item.icon}
+            tone={item.tone}
+            compact
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <div class="governance-diagram__action-lines" aria-hidden="true">
+    <svg viewBox="0 0 900 54" preserveAspectRatio="none">
+      <path pathLength="1" d="M150 0 V27 H450 V54"></path>
+      <path pathLength="1" d="M450 0 V54"></path>
+      <path pathLength="1" d="M750 0 V27 H450"></path>
+    </svg>
+  </div>
+
+  <section class="governance-diagram__outcome" aria-label="Governed outcome">
+    <DiagramNode
+      title="Permitted enterprise actions"
+      description="Databases, APIs, and business systems"
+      icon="PlugsConnected"
+      tone="external"
+      compact
+    />
+    <DiagramNode
+      title="Activity"
+      description="Runs and actions remain visible"
+      icon="Gauge"
+      tone="success"
+      compact
+    />
+  </section>
+</DiagramFrame>
+
+<style>
+  .governance-diagram__controls,
+  .governance-diagram__execution,
+  .governance-diagram__outcome {
+    position: relative;
+  }
+
+  .governance-diagram__controls {
+    padding: 1rem;
+    border: 1px solid var(--bb-brand-forest-green);
+    border-radius: 0;
+    background: var(--bb-background-surface);
+  }
+
+  .governance-diagram__controls header,
+  .governance-diagram__execution header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .governance-diagram__controls header span,
+  .governance-diagram__execution header span {
+    color: var(--bb-text-base);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .governance-diagram__controls header strong,
+  .governance-diagram__execution header strong {
+    color: var(--bb-text-base);
+    font-size: 0.75rem;
+  }
+
+  .governance-diagram__controls ul,
+  .governance-diagram__execution > div {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .governance-diagram__execution > div {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .governance-diagram__control-lines,
+  .governance-diagram__action-lines {
+    position: relative;
+    height: 3.25rem;
+  }
+
+  .governance-diagram__control-lines svg,
+  .governance-diagram__action-lines svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .governance-diagram__control-lines path,
+  .governance-diagram__action-lines path {
+    fill: none;
+    stroke: var(--bb-brand-forest-green);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .governance-diagram__control-lines path {
+    stroke-dasharray: 4 5;
+  }
+
+  .governance-diagram__control-lines span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 0.2rem 0.45rem;
+    background: var(--bb-white);
+    color: var(--bb-text-body);
+    font-size: 0.625rem;
+    font-weight: 600;
+    transform: translate(-50%, -50%);
+  }
+
+  .governance-diagram__execution {
+    padding: 1rem;
+    border: 1px solid var(--bb-brand-forest-green);
+    border-radius: 0;
+    background: var(--bb-white);
+  }
+
+  .governance-diagram__outcome {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  :global(
+    .governance-diagram[data-motion-ready]
+      .governance-diagram__control-lines
+      path
+  ) {
+    opacity: 0;
+    animation: governance-control 600ms ease-out forwards paused;
+  }
+
+  :global(
+    .governance-diagram[data-motion-ready]
+      .governance-diagram__action-lines
+      path
+  ) {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: governance-line 800ms ease-out forwards paused;
+  }
+
+  :global(
+    .governance-diagram[data-motion-ready]
+      .governance-diagram__action-lines
+      path
+  ) {
+    animation-delay: 500ms;
+  }
+
+  :global(
+    .governance-diagram[data-motion-ready].is-visible
+      .governance-diagram__control-lines
+      path
+  ),
+  :global(
+    .governance-diagram[data-motion-ready].is-visible
+      .governance-diagram__action-lines
+      path
+  ) {
+    animation-play-state: running;
+  }
+
+  @keyframes governance-line {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes governance-control {
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .governance-diagram__controls header,
+    .governance-diagram__execution header {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .governance-diagram__controls ul,
+    .governance-diagram__outcome {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .governance-diagram__execution > div {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .governance-diagram__control-lines,
+    .governance-diagram__action-lines {
+      display: grid;
+      height: 2.5rem;
+      place-items: center;
+    }
+
+    .governance-diagram__control-lines svg,
+    .governance-diagram__action-lines svg {
+      display: none;
+    }
+
+    .governance-diagram__control-lines::before,
+    .governance-diagram__action-lines::before {
+      width: 1px;
+      height: 100%;
+      background: var(--bb-brand-forest-green);
+      content: "";
+    }
+
+    .governance-diagram__control-lines::before {
+      background: none;
+      border-left: 1px dashed var(--bb-brand-forest-green);
+    }
+
+    .governance-diagram__control-lines span {
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .governance-diagram__controls ul,
+    .governance-diagram__outcome {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .governance-diagram path {
+      animation: none !important;
+      opacity: 1 !important;
+      stroke-dashoffset: 0 !important;
+    }
+  }
+</style>

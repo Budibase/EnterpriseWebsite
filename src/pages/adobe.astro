@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/MainLayout.astro";
-import Hero from "./_components/landing-page/HeroPrivateDataExperiment.astro";
+import Hero from "./_components/landing-page/HeroAdobeExperiment.astro";
 import HomepageProofSection from "./_components/landing-page/HomepageProofSection.astro";
 import Platform from "./_components/landing-page/Platform.astro";
 import CustomerStoriesFeature from "./_components/landing-page/CustomerStoriesFeature.astro";
@@ -29,7 +29,11 @@ const enterpriseFeatureBullets = [
 ] as const;
 ---
 
-<Layout rawTitle="Budibase | Agents, Workflows & Internal Tools Made Easy">
+<Layout
+  rawTitle="Adobe-inspired homepage hero preview | Budibase"
+  robots="noindex,nofollow"
+  navTheme="immersive-overlay"
+>
   <div class="homepage-grid">
     <div class="site-grid-section site-grid-section--hero">
       <Hero />
@@ -37,7 +41,7 @@ const enterpriseFeatureBullets = [
     <div class="site-grid-section homepage-proof-grid-section">
       <HomepageProofSection />
     </div>
-    <div class="site-grid-section site-grid-section--multi-feature">
+    <div class="site-grid-section homepage-multi-feature-section">
       <Platform />
     </div>
     <div class="site-grid-section">
@@ -74,7 +78,20 @@ const enterpriseFeatureBullets = [
 </Layout>
 
 <style>
+  :global(html) {
+    overflow-x: clip;
+  }
+
+  .homepage-grid {
+    --site-container-max: 93rem;
+    overflow-x: clip;
+  }
+
   .homepage-proof-grid-section {
     background: var(--bb-background-base);
+  }
+
+  .homepage-multi-feature-section {
+    background: var(--bb-gray-900);
   }
 </style>

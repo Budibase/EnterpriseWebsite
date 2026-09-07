@@ -1,0 +1,290 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import CTA from "@components/CTA.astro";
+import FeatureSection from "@components/FeatureSection.astro";
+import HeroLarge from "@components/HeroLarge.astro";
+import MultiFeatureSection from "@components/MultiFeatureSection.astro";
+import CardCluster from "@components/cards/CardCluster.astro";
+import ConnectionsDiagram from "./_components/ConnectionsDiagram.astro";
+import DeploymentDiagram from "./_components/DeploymentDiagram.astro";
+import PlatformArchitectureDiagram from "./_components/PlatformArchitectureDiagram.astro";
+import PlatformUseCaseDiagram from "./_components/PlatformUseCaseDiagram.astro";
+
+const pageTitle = "Platform | Build and Run Enterprise Operations | Budibase";
+const pageDescription =
+  "Budibase brings apps, automations, agents, data, and APIs together so enterprise IT can build and run more operational software without giving up control.";
+
+const products = [
+  {
+    number: "01",
+    title: "Apps",
+    description:
+      "Give people a secure interface to request, review, and complete operational work.",
+    link: "/product/apps/",
+  },
+  {
+    number: "02",
+    title: "Automations",
+    description:
+      "Route repeatable work, approvals, notifications, and system updates through visible workflows.",
+    link: "/product/automations/",
+  },
+  {
+    number: "03",
+    title: "Agents",
+    description:
+      "Handle context-dependent work with defined instructions, tools, and human oversight.",
+    link: "/product/agents/",
+  },
+  {
+    number: "04",
+    title: "Functions",
+    description:
+      "Add reusable server-side logic for validation, transformation, and integrations.",
+    link: "/product/functions/",
+  },
+] as const;
+
+const operationalScenarios = [
+  {
+    id: "purchase-requests",
+    title: "Purchase requests",
+    description:
+      "Capture purchase needs through an app or chat, check supplier and budget data, route exceptions for approval, and create purchase orders in the system of record.",
+    action: {
+      label: "Explore purchase request flow",
+      href: "/ops/purchase-order-request/",
+    },
+    media: {
+      demo: PlatformUseCaseDiagram,
+      demoProps: { scenario: "purchase-requests" },
+    },
+  },
+  {
+    id: "employee-onboarding",
+    title: "Employee onboarding",
+    description:
+      "Coordinate account setup, equipment, access, notifications, and hand-offs as one visible onboarding operation spanning HR, IT, workplace teams, and core systems.",
+    action: {
+      label: "Explore onboarding workflows",
+      href: "/ops/new-starter-account-setup/",
+    },
+    media: {
+      demo: PlatformUseCaseDiagram,
+      demoProps: { scenario: "employee-onboarding" },
+    },
+  },
+  {
+    id: "it-service-requests",
+    title: "IT service requests",
+    description:
+      "Understand employee requests conversationally, gather the right context, complete permitted tasks, and involve IT when a decision or hands-on response is required.",
+    action: {
+      label: "Explore service requests",
+      href: "/ops/password-reset-request/",
+    },
+    media: {
+      demo: PlatformUseCaseDiagram,
+      demoProps: { scenario: "it-service-requests" },
+    },
+  },
+  {
+    id: "asset-maintenance",
+    title: "Asset maintenance",
+    description:
+      "Capture frontline issues, schedule maintenance, route work orders, update asset records, and keep essential physical operations moving across teams and sites.",
+    action: {
+      label: "Explore operational apps",
+      href: "/product/apps/",
+    },
+    media: {
+      demo: PlatformUseCaseDiagram,
+      demoProps: { scenario: "asset-maintenance" },
+    },
+  },
+  {
+    id: "compliance-reviews",
+    title: "Compliance reviews",
+    description:
+      "Capture review evidence through an app or agent, check policies and connected data, route exceptions for approval, and record decisions in the system of record.",
+    action: {
+      label: "Explore activity and insights",
+      href: "/product/activity/",
+    },
+    media: {
+      demo: PlatformUseCaseDiagram,
+      demoProps: { scenario: "compliance-reviews" },
+    },
+  },
+] as const;
+
+const platformFoundation = [
+  {
+    number: "01",
+    title: "Tables",
+    description:
+      "Keep structured operational data available to apps, automations, agents, and functions.",
+    link: "/product/data/",
+  },
+  {
+    number: "02",
+    title: "Connections",
+    description:
+      "Connect the databases, business systems, services, and models your organization already uses.",
+    link: "/product/connections/",
+  },
+  {
+    number: "03",
+    title: "API Explorer",
+    description:
+      "Configure and test the API actions that operational workflows can use.",
+    link: "/product/apis/",
+  },
+  {
+    number: "04",
+    title: "Knowledge",
+    description:
+      "Ground agents in the documents and operational context relevant to their work.",
+    link: "/product/knowledge/",
+  },
+  {
+    number: "05",
+    title: "Requests & Approvals",
+    description:
+      "Bring intake, accountable decisions, and human oversight into the workflow.",
+    link: "/product/requests/",
+  },
+  {
+    number: "06",
+    title: "Activity & Insights",
+    description:
+      "Review workflow activity, execution status, and the actions taken across operations.",
+    link: "/product/activity/",
+  },
+  {
+    number: "07",
+    title: "Admin & Security",
+    description:
+      "Manage access, permissions, users, credentials, and platform administration.",
+    link: "/product/admin-security/",
+  },
+  {
+    number: "08",
+    title: "Self-hosting",
+    description:
+      "Run Budibase in the environment that fits your architecture, policy, and data requirements.",
+    link: "/product/self-host/",
+  },
+] as const;
+---
+
+<Layout title={pageTitle} description={pageDescription} navTheme="surface">
+  <div class="platform-overview">
+    <HeroLarge
+      demo={PlatformArchitectureDiagram}
+      theme="surface"
+      title="Processes, securely modernised"
+      description="Run operations with solutions as dynamic and unique as your organization. Deploy fast and scale globally with a secure, governed, composable platform."
+      action={{ label: "Book a demo", href: "/contact/" }}
+      secondaryAction={{
+        label: "Get started",
+        href: "https://account.budibase.app/register",
+        target: "_blank",
+        rel: "noopener noreferrer",
+      }}
+    />
+
+    <div class="site-grid-section platform-overview__scenario-section">
+      <MultiFeatureSection
+        id="platform-operational-scenarios"
+        variant="light"
+        title="See how the platform works in practice"
+        description="Bring apps, agents, automations, approvals, data, and system actions together around the way each operation needs to run."
+        features={operationalScenarios}
+        initialFeatureId="purchase-requests"
+      />
+    </div>
+
+    <div class="site-grid-section site-grid-section--no-top">
+      <FeatureSection
+        variant="light"
+        demo={ConnectionsDiagram}
+        imagePosition="left"
+        headline="Keep your systems. Keep your data."
+        body="Budibase works around the enterprise systems IT already owns. Connect databases, APIs, business applications, internal services, and AI models, then expose only the data and permitted actions each operational workflow needs."
+        linkAction={{
+          label: "Explore connections",
+          href: "/product/connections/",
+        }}
+      />
+    </div>
+
+    <div class="site-grid-section site-grid-section--no-top">
+      <FeatureSection
+        variant="light"
+        demo={DeploymentDiagram}
+        imagePosition="right"
+        headline="Deploy on your terms"
+        body="Run Budibase in the environment that fits your architecture. Choose Budibase Cloud or self-host, then connect the platform to the infrastructure, identity, data, APIs, and AI models your organization controls."
+        linkAction={{
+          label: "Explore self-hosting",
+          href: "/product/self-host/",
+        }}
+      />
+    </div>
+
+    <div class="site-grid-section site-grid-section--no-top">
+      <CardCluster
+        columns={4}
+        Variant="white"
+        CardBackgroundColor="bright-green"
+        SectionTitle="One platform. More ways to deliver."
+        SectionDescription="Choose the right way to handle each part of an operation, then connect every part through shared data, actions, and controls."
+        cards={products}
+        responsiveLayout="stack"
+      />
+    </div>
+
+    <div class="site-grid-section">
+      <CardCluster
+        columns={4}
+        Variant="white"
+        CardBackgroundColor="celery-200"
+        SectionTitle="A shared foundation for every solution"
+        SectionDescription="Bring the data, integrations, knowledge, oversight, visibility, and deployment controls each operation needs into one platform."
+        cards={platformFoundation}
+        responsiveLayout="stack"
+      />
+    </div>
+
+    <div class="site-grid-section site-grid-section--no-top">
+      <CTA theme="light" />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  :global(.platform-overview) {
+    background: var(--bb-background-surface);
+  }
+
+  :global(.platform-overview__scenario-section) {
+    background: var(--bb-background-surface);
+  }
+
+  :global(.platform-overview .hero-large .hero-large__media),
+  :global(.platform-overview .feature-section__image-panel--demo) {
+    border-radius: 0 !important;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    :global(.platform-overview .feature-section__container) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    :global(.platform-overview .feature-section__image-panel),
+    :global(.platform-overview .feature-section__content) {
+      order: initial;
+    }
+  }
+</style>

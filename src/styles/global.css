@@ -1057,9 +1057,8 @@ article blockquote p {
 
 .mobile-nav-action-button {
   width: 100%;
-  min-height: 3.75rem;
+  align-self: center;
   justify-content: center;
-  font-size: 1.125rem;
 }
 
 main ul article > a {
@@ -1249,6 +1248,10 @@ main ul article > a {
 
 .site-grid-section--forest-green {
   background: var(--bb-brand-forest-green);
+}
+
+.site-grid-section--multi-feature {
+  background: var(--bb-gray-900);
 }
 
 .site-grid-section--no-top::before {

@@ -1,0 +1,318 @@
+---
+import DiagramFrame from "./diagram/DiagramFrame.astro";
+import DiagramNode from "./diagram/DiagramNode.astro";
+
+const topSystems = [
+  {
+    title: "Databases",
+    description: "SQL and operational data",
+    icon: "Table",
+  },
+  {
+    title: "SAP / ERP",
+    description: "Core business systems",
+    icon: "BuildingOffice",
+  },
+  {
+    title: "APIs & services",
+    description: "REST and internal APIs",
+    icon: "Code",
+  },
+] as const;
+
+const modes = [
+  { title: "Apps", icon: "AppWindow", tone: "app" },
+  { title: "Automations", icon: "Lightning", tone: "automation" },
+  { title: "Agents", icon: "Sparkle", tone: "agent" },
+] as const;
+
+const bottomSystems = [
+  { title: "SaaS", description: "Existing tools", icon: "CloudCheck" },
+  {
+    title: "Files & knowledge",
+    description: "Trusted context",
+    icon: "BookOpen",
+  },
+  { title: "AI models", description: "Your chosen models", icon: "Sparkle" },
+] as const;
+---
+
+<DiagramFrame
+  class="connections-diagram"
+  title="Budibase connects to the existing enterprise estate"
+  description="Apps, automations, and agents share a connections and APIs layer that works with databases, business systems, services, files, SaaS tools, and AI models without requiring those systems to be replaced."
+>
+  <div class="connections-diagram__annotation">
+    <span>Connect in place</span>
+    <strong>Keep the systems and data you already own</strong>
+  </div>
+
+  <section
+    class="connections-diagram__systems"
+    aria-label="Existing systems and data"
+  >
+    {
+      topSystems.map((system) => (
+        <DiagramNode
+          title={system.title}
+          description={system.description}
+          icon={system.icon}
+          tone="external"
+          compact
+        />
+      ))
+    }
+  </section>
+
+  <div
+    class="connections-diagram__links connections-diagram__links--top"
+    aria-hidden="true"
+  >
+    <svg viewBox="0 0 900 64" preserveAspectRatio="none">
+      <path pathLength="1" d="M150 0 V30 H450 V64"></path>
+      <path pathLength="1" d="M450 0 V64"></path>
+      <path pathLength="1" d="M750 0 V30 H450"></path>
+    </svg>
+  </div>
+
+  <section
+    class="connections-diagram__platform"
+    aria-labelledby="connections-platform-title"
+  >
+    <header>
+      <span>Budibase</span>
+      <strong id="connections-platform-title">One operational layer</strong>
+    </header>
+    <div class="connections-diagram__modes">
+      {
+        modes.map((mode) => (
+          <DiagramNode
+            title={mode.title}
+            icon={mode.icon}
+            tone={mode.tone}
+            compact
+          />
+        ))
+      }
+    </div>
+    <div class="connections-diagram__gateway">
+      <span aria-hidden="true">↕</span>
+      <strong>Connections & APIs</strong>
+      <small>Read data and perform permitted actions</small>
+    </div>
+  </section>
+
+  <div
+    class="connections-diagram__links connections-diagram__links--bottom"
+    aria-hidden="true"
+  >
+    <svg viewBox="0 0 900 64" preserveAspectRatio="none">
+      <path pathLength="1" d="M450 0 V34 H150 V64"></path>
+      <path pathLength="1" d="M450 0 V64"></path>
+      <path pathLength="1" d="M450 34 H750 V64"></path>
+    </svg>
+  </div>
+
+  <section
+    class="connections-diagram__systems"
+    aria-label="Connected tools and models"
+  >
+    {
+      bottomSystems.map((system) => (
+        <DiagramNode
+          title={system.title}
+          description={system.description}
+          icon={system.icon}
+          tone="external"
+          compact
+        />
+      ))
+    }
+  </section>
+</DiagramFrame>
+
+<style>
+  .connections-diagram__annotation {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+
+  .connections-diagram__annotation span,
+  .connections-diagram__platform header span {
+    color: var(--bb-text-base);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .connections-diagram__annotation strong {
+    color: var(--bb-text-base);
+    font-size: 0.75rem;
+    text-align: right;
+  }
+
+  .connections-diagram__systems,
+  .connections-diagram__modes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .connections-diagram__systems:first-of-type {
+    margin-top: 1.25rem;
+  }
+
+  .connections-diagram__links {
+    height: 2.75rem;
+  }
+
+  .connections-diagram__links svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .connections-diagram__links path {
+    fill: none;
+    stroke: var(--bb-brand-forest-green);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .connections-diagram__platform {
+    padding: 1rem;
+    border: 1px solid var(--bb-brand-forest-green);
+    border-radius: 0;
+    background: var(--bb-white);
+  }
+
+  .connections-diagram__platform header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .connections-diagram__platform header strong {
+    color: var(--bb-text-base);
+    font-size: 0.75rem;
+  }
+
+  .connections-diagram__gateway {
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.7rem;
+    margin-top: 0.75rem;
+    border: 1px solid var(--bb-brand-forest-green);
+    border-radius: 0;
+    background: var(--bb-bright-blue);
+  }
+
+  .connections-diagram__gateway span {
+    color: var(--bb-text-base);
+    font-family: var(--font-mono);
+    font-weight: 700;
+  }
+
+  .connections-diagram__gateway strong {
+    color: var(--bb-text-base);
+    font-size: 0.75rem;
+  }
+
+  .connections-diagram__gateway small {
+    color: var(--bb-text-body);
+    font-size: 0.6875rem;
+    text-align: right;
+  }
+
+  :global(
+    .connections-diagram[data-motion-ready] .connections-diagram__links path
+  ) {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: connections-line 750ms ease-out forwards paused;
+  }
+
+  :global(
+    .connections-diagram[data-motion-ready]
+      .connections-diagram__links--bottom
+      path
+  ) {
+    animation-delay: 450ms;
+  }
+
+  :global(
+    .connections-diagram[data-motion-ready].is-visible
+      .connections-diagram__links
+      path
+  ) {
+    animation-play-state: running;
+  }
+
+  @keyframes connections-line {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .connections-diagram__annotation,
+    .connections-diagram__platform header {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .connections-diagram__annotation strong {
+      text-align: left;
+    }
+
+    .connections-diagram__systems,
+    .connections-diagram__modes {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .connections-diagram__links {
+      display: grid;
+      height: 2.25rem;
+      place-items: center;
+    }
+
+    .connections-diagram__links svg {
+      display: none;
+    }
+
+    .connections-diagram__links::before {
+      width: 1px;
+      height: 100%;
+      background: var(--bb-brand-forest-green);
+      content: "";
+    }
+
+    .connections-diagram__gateway {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .connections-diagram__gateway small {
+      grid-column: 1 / -1;
+      text-align: left;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .connections-diagram__links path {
+      animation: none !important;
+      stroke-dashoffset: 0 !important;
+    }
+  }
+</style>

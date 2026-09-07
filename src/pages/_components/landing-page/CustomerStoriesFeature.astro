@@ -42,15 +42,10 @@ const customerStories = [
 <section class="customer-stories-feature">
   <div class="customer-stories-feature__container">
     <TitleBlock
-      variant="homepage-section"
-      titleColorMode="split-primary-secondary"
-      titleLines={[
-        { text: "Powering regulated enterprises." },
-        {
-          text: "Run your operations on a reliable platform that adapts to your needs.",
-        },
-      ]}
-      containerClass="homepage-section-header"
+      variant="section"
+      title="Powering regulated enterprises."
+      description="Run your operations on a reliable platform that adapts to your needs."
+      containerClass="customer-stories-feature__header"
     />
 
     <div class="customer-stories-feature__featured">
@@ -140,14 +135,19 @@ const customerStories = [
   }
 
   .customer-stories-feature__container {
-    width: min(100%, 64rem);
+    width: min(100%, var(--site-container-max));
     margin-inline: auto;
-    padding-inline: 0.5rem;
+    padding-inline: var(--site-content-inset);
   }
 
-  :global(.homepage-section-header) {
-    max-width: 44.3125rem;
-    margin-bottom: 2rem;
+  :global(.customer-stories-feature__header) {
+    max-width: 54rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  :global(.customer-stories-feature__header .title-block__description) {
+    max-width: 100%;
+    text-wrap: wrap;
   }
 
   .customer-stories-feature__featured {
@@ -227,7 +227,7 @@ const customerStories = [
   .customer-stories-feature__image-link {
     display: block;
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     color: inherit;
     text-decoration: none;
   }
@@ -282,12 +282,6 @@ const customerStories = [
   .customer-stories-feature__icon-link:hover {
     color: var(--bb-brand-state);
     background: var(--bb-green-100);
-  }
-
-  @media (min-width: 768px) {
-    .customer-stories-feature__container {
-      padding-inline: 0;
-    }
   }
 
   @media (max-width: 767px) {

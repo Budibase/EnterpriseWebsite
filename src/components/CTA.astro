@@ -1,10 +1,20 @@
 ---
 import Button from "@components/Button.astro";
 import CtaRiverBackground from "@assets/images/homepage/cta-river-background.png?url";
+
+interface Props {
+  theme?: "default" | "light";
+}
+
+const { theme = "default" } = Astro.props as Props;
+const isLight = theme === "light";
 ---
 
 <div
-  class="cta-section gap-4 lg:gap-5 mx-auto w-full max-w-[var(--site-container-max)] px-4 md:px-6 lg:px-8 grid-cols-1 lg:grid-cols-6 box-border flex items-center my-0! py-12 md:py-25 lg:py-35 text-[var(--bb-text-base)]"
+  class:list={[
+    "cta-section gap-4 lg:gap-5 mx-auto w-full max-w-[var(--site-container-max)] px-4 md:px-6 lg:px-8 grid-cols-1 lg:grid-cols-6 box-border flex items-center my-0! py-12 md:py-25 lg:py-35 text-[var(--bb-text-base)]",
+    isLight && "cta-section--light",
+  ]}
   style={`--cta-background-image: url("${CtaRiverBackground}")`}
 >
   <div
@@ -14,7 +24,10 @@ import CtaRiverBackground from "@assets/images/homepage/cta-river-background.png
       Build the future of enterprise operations
     </h2>
     <p
-      class="cta-subtitle mx-auto max-w-3xl text-balance px-2 !text-[var(--bb-text-on-base)]"
+      class:list={[
+        "cta-subtitle mx-auto max-w-3xl text-balance px-2",
+        !isLight && "!text-[var(--bb-text-on-base)]",
+      ]}
     >
       Everything you need to build, automate, and govern operational work with
       apps, automations, and AI agents.
@@ -62,6 +75,19 @@ import CtaRiverBackground from "@assets/images/homepage/cta-river-background.png
     line-height: var(--bb-text-heading-section-line-height);
     letter-spacing: var(--bb-text-display-medium-letter-spacing);
     text-transform: var(--bb-text-display-medium-text-transform);
+  }
+
+  .cta-section--light {
+    background: var(--bb-background-surface);
+    background-image: none;
+  }
+
+  .cta-section--light .cta-title {
+    color: var(--bb-text-base);
+  }
+
+  .cta-section--light .cta-subtitle {
+    color: var(--bb-text-body) !important;
   }
 
   .cta-subtitle {

@@ -1,0 +1,292 @@
+---
+import ArchitectureConnector from "./diagram/ArchitectureConnector.astro";
+import ArchitectureItem from "./diagram/ArchitectureItem.astro";
+import ArchitectureLayer from "./diagram/ArchitectureLayer.astro";
+import DiagramFrame from "./diagram/DiagramFrame.astro";
+
+const engagementChannels = [
+  { title: "Web apps", icon: "Browser" },
+  { title: "Slack", icon: "SlackLogo" },
+  { title: "Teams", icon: "MicrosoftTeamsLogo" },
+  { title: "Email", icon: "EnvelopeOpen" },
+] as const;
+
+const executionModels = [
+  {
+    title: "Agents",
+    description: "Reasoning-led",
+    icon: "Sparkle",
+    href: "/product/agents/",
+    tone: "agent",
+  },
+  {
+    title: "Apps",
+    description: "Human-led",
+    icon: "AppWindow",
+    href: "/product/apps/",
+    tone: "app",
+  },
+  {
+    title: "Automations",
+    description: "Deterministic",
+    icon: "Lightning",
+    href: "/product/automations/",
+    tone: "automation",
+  },
+  {
+    title: "Functions",
+    description: "Code-led",
+    icon: "Function",
+    href: "/product/functions/",
+    tone: "function",
+  },
+] as const;
+
+const governanceCapabilities = [
+  {
+    title: "Access",
+    description: "Who can use what",
+    icon: "Keyhole",
+    href: "/product/admin-security/",
+  },
+  {
+    title: "Identity",
+    description: "How execution is authenticated",
+    icon: "UserSwitch",
+    href: "/product/admin-security/",
+  },
+  {
+    title: "Approvals",
+    description: "Human control",
+    icon: "CheckCircle",
+    href: "/product/requests/",
+  },
+  {
+    title: "Activity",
+    description: "See what happened",
+    icon: "Gauge",
+    href: "/product/activity/",
+  },
+] as const;
+
+const systemCategories = [
+  {
+    title: "Databases",
+    description: "Postgres · MySQL",
+    icon: "Table",
+  },
+  {
+    title: "Files",
+    description: "S3 · SharePoint",
+    icon: "BookOpen",
+  },
+  {
+    title: "APIs",
+    description: "REST · ServiceNow",
+    icon: "Code",
+  },
+  {
+    title: "AI models",
+    description: "Hosted · BYO",
+    icon: "Sparkle",
+  },
+] as const;
+---
+
+<DiagramFrame
+  class="architecture-diagram"
+  title="How the Budibase platform works"
+  description="Budibase connects to the systems the organization already uses. Apps, automations, agents, and functions execute the work within shared governance, while people engage through web, mobile, chat, and email."
+  gridSize={2.5}
+>
+  <div class="architecture-diagram__layout">
+    <div class="architecture-diagram__stack">
+      <ArchitectureLayer
+        title="Connect"
+        description="Connect the technology you already use."
+      >
+        <div
+          class="architecture-diagram__items architecture-diagram__items--four"
+        >
+          {
+            systemCategories.map((system) => (
+              <ArchitectureItem
+                title={system.title}
+                description={system.description}
+                icon={system.icon}
+              />
+            ))
+          }
+        </div>
+      </ArchitectureLayer>
+
+      <ArchitectureConnector />
+
+      <ArchitectureLayer
+        title="Build"
+        description="How work gets done."
+        tone="execution"
+      >
+        <div
+          class="architecture-diagram__items architecture-diagram__items--execution"
+        >
+          {
+            executionModels.map((model) => (
+              <ArchitectureItem
+                title={model.title}
+                description={model.description}
+                icon={model.icon}
+                href={model.href}
+                tone={model.tone}
+              />
+            ))
+          }
+        </div>
+      </ArchitectureLayer>
+
+      <ArchitectureConnector />
+
+      <ArchitectureLayer
+        title="Engage"
+        description="Where people interact with your operations."
+      >
+        <div
+          class="architecture-diagram__items architecture-diagram__items--four"
+        >
+          {
+            engagementChannels.map((channel) => (
+              <ArchitectureItem title={channel.title} icon={channel.icon} />
+            ))
+          }
+        </div>
+      </ArchitectureLayer>
+    </div>
+
+    <section
+      class="architecture-diagram__governance"
+      aria-labelledby="architecture-governance-title"
+    >
+      <header class="architecture-diagram__governance-header">
+        <h3 id="architecture-governance-title">Govern</h3>
+        <p>Control how work runs.</p>
+      </header>
+      <div
+        class="architecture-diagram__items architecture-diagram__items--governance"
+      >
+        {
+          governanceCapabilities.map((capability) => (
+            <ArchitectureItem
+              title={capability.title}
+              description={capability.description}
+              icon={capability.icon}
+              href={capability.href}
+              tone="governance"
+              layout="stacked"
+            />
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</DiagramFrame>
+
+<style>
+  .architecture-diagram__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.28fr);
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .architecture-diagram__stack {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .architecture-diagram__items {
+    display: grid;
+    min-width: 0;
+    gap: 0.75rem;
+  }
+
+  .architecture-diagram__items--four {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .architecture-diagram__items--execution {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+  }
+
+  .architecture-diagram__governance {
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px dashed var(--bb-brand-forest-green);
+    border-radius: 0;
+    background: var(--bb-background-surface);
+  }
+
+  .architecture-diagram__items--governance {
+    flex: 1;
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: 1fr;
+  }
+
+  .architecture-diagram__governance-header h3,
+  .architecture-diagram__governance-header p {
+    margin: 0;
+  }
+
+  .architecture-diagram__governance-header h3 {
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 750;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .architecture-diagram__governance-header p {
+    margin-top: 0.25rem;
+    color: var(--bb-text-body);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .architecture-diagram__items--four {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .architecture-diagram__items--execution {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .architecture-diagram__layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.75rem;
+    }
+
+    .architecture-diagram__items--four,
+    .architecture-diagram__items--execution {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+
+    .architecture-diagram__governance {
+      padding: 0.75rem;
+    }
+
+    .architecture-diagram__items--governance {
+      gap: 0.5rem;
+    }
+  }
+</style>

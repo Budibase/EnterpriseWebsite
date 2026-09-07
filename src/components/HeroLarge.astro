@@ -1,6 +1,13 @@
 ---
 import Button from "@components/Button.astro";
-import type { AstroComponentFactory } from "astro/runtime/server";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
+interface Action {
+  label: string;
+  href: string;
+  target?: string;
+  rel?: string;
+}
 
 interface Props {
   title: string;
@@ -10,8 +17,10 @@ interface Props {
   demo?: AstroComponentFactory;
   demoProps?: Record<string, unknown>;
   backgroundImage?: string;
-  theme?: "default" | "brand-dark";
+  theme?: "default" | "surface" | "brand-dark";
   mediaWithinBackground?: boolean;
+  action?: Action;
+  secondaryAction?: Action;
 }
 
 const {
@@ -24,7 +33,18 @@ const {
   backgroundImage,
   theme = "default",
   mediaWithinBackground = false,
+  action = {
+    label: "Book a demo",
+    href: "https://account.budibase.app/register",
+    target: "_blank",
+  },
+  secondaryAction = {
+    label: "Get started",
+    href: "https://account.budibase.app/register",
+    target: "_blank",
+  },
 } = Astro.props as Props;
+const isSurface = theme === "surface";
 const isBrandDark = theme === "brand-dark";
 
 if (!image && !demo) {
@@ -43,6 +63,7 @@ const Demo = demo;
 <section
   class:list={[
     "hero-large",
+    isSurface && "hero-large--surface",
     isBrandDark && "hero-large--brand-dark",
     mediaWithinBackground && "hero-large--media-within-background",
   ]}
@@ -54,18 +75,20 @@ const Demo = demo;
         <p>{description}</p>
         <div class="hero-large__actions">
           <Button
-            label="Book a demo"
-            url="https://account.budibase.app/register"
+            label={action.label}
+            url={action.href}
             variant={isBrandDark ? "bright-on-dark" : "cta"}
             size="large"
-            target="_blank"
+            target={action.target}
+            rel={action.rel}
           />
           <Button
-            label="Get started"
-            url="https://account.budibase.app/register"
+            label={secondaryAction.label}
+            url={secondaryAction.href}
             variant={isBrandDark ? "outline-on-dark" : "secondary"}
             size="large"
-            target="_blank"
+            target={secondaryAction.target}
+            rel={secondaryAction.rel}
           />
         </div>
       </div>
@@ -120,6 +143,12 @@ const Demo = demo;
 
   .hero-large--brand-dark {
     margin-top: 0;
+  }
+
+  .hero-large--surface {
+    margin-top: 0;
+    padding-top: clamp(2rem, 4vw, 2.5rem);
+    background: var(--bb-background-surface);
   }
 
   .hero-large--brand-dark.hero-large--media-within-background {

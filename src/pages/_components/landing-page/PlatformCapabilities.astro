@@ -1,5 +1,6 @@
 ---
 import CardCluster from "@components/cards/CardCluster.astro";
+import TitleBlock from "@components/TitleBlock.astro";
 
 const cards = [
   {
@@ -33,10 +34,37 @@ const cards = [
 ] as const;
 ---
 
-<CardCluster
-  SectionTitle="The modern operations platform."
-  SectionDescription="Connect your systems, extend the platform, and deploy AI on your terms."
-  CardBackgroundColor="forest-green"
-  Variant="white"
-  {cards}
-/>
+<div class="platform-capabilities">
+  <div class="platform-capabilities__container">
+    <TitleBlock
+      variant="section"
+      title="The modern operations platform."
+      description="Connect your systems, extend the platform, and deploy AI on your terms."
+      containerClass="platform-capabilities__header"
+    />
+  </div>
+
+  <CardCluster CardBackgroundColor="forest-green" Variant="white" {cards} />
+</div>
+
+<style>
+  .platform-capabilities {
+    width: 100%;
+  }
+
+  .platform-capabilities__container {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+
+  :global(.platform-capabilities__header) {
+    max-width: 54rem;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  :global(.platform-capabilities__header .title-block__description) {
+    max-width: 100%;
+    text-wrap: wrap;
+  }
+</style>

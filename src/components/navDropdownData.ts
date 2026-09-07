@@ -37,7 +37,7 @@ export interface NavDropdownMenu {
 
 export const platformDropdownMenu: NavDropdownMenu = {
   featuredCard: {
-    href: "/",
+    href: "/platform/",
     title: "Overview",
     description:
       "See how Budibase brings agents, apps, and automations together.",
@@ -74,6 +74,7 @@ export const platformDropdownMenu: NavDropdownMenu = {
           label: "Functions",
           description: "Server-side functions for your workflows.",
           prefetch: true,
+          badge: "Alpha",
           icon: "Function",
         },
       ],

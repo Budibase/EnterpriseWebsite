@@ -548,6 +548,8 @@ capabilities. Conservative styling alone is not evidence of maturity.
   light text token on dark surfaces.
 - Use bright celery to signal action, progress, connection, and successful
   states.
+- Do not use bright green as a full FeatureSection background. Use neutral
+  light surfaces or forest green for section-level contrast.
 - Use yellow to call attention to proof, selected or current states, and human
   review or approval checkpoints. Pair it with forest-green or similarly dark
   text; do not use it as a generic warning color.
@@ -778,6 +780,12 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 - What quantitative outcomes can Budibase substantiate consistently?
 
 ## Decision log
+
+### 2 September 2026
+
+- Removed bright green as a FeatureSection background option. Bright green
+  remains a semantic accent for action, progress, connection, and success,
+  while full feature sections use neutral light surfaces or forest green.
 
 ### 1 September 2026
 

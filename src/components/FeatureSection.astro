@@ -3,8 +3,9 @@ import Button from "@components/Button.astro";
 import FeatureBadge from "@components/FeatureBadge.astro";
 import Icon from "@components/Icon.astro";
 import Link from "@components/Link.astro";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
-type Variant = "white" | "light" | "bright-green" | "forest-green";
+type Variant = "white" | "light" | "forest-green";
 type ImagePosition = "left" | "right";
 
 interface Badge {
@@ -38,8 +39,10 @@ interface Action {
 }
 
 interface Props {
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
+  demo?: AstroComponentFactory;
+  demoProps?: Record<string, unknown>;
   video?: string;
   videoType?: string;
   mediaFit?: "cover" | "contain";
@@ -56,7 +59,9 @@ interface Props {
 
 const {
   image,
-  imageAlt,
+  imageAlt = "",
+  demo,
+  demoProps,
   video,
   videoType = "video/webm",
   mediaFit = "cover",
@@ -71,10 +76,24 @@ const {
   class: className = "",
 } = Astro.props as Props;
 
+if (!image && !demo) {
+  throw new Error("FeatureSection requires either an image or demo component.");
+}
+
+if (image && demo) {
+  throw new Error(
+    "FeatureSection accepts either an image or demo component, not both.",
+  );
+}
+
+if (video && !image) {
+  throw new Error("FeatureSection videos require an image fallback.");
+}
+
 const visibleBullets = bullets.slice(0, 3);
 const isForest = variant === "forest-green";
-const buttonVariant = variant === "bright-green" ? "cta" : "primary";
 const linkVariant = isForest ? "secondary" : "primary";
+const Demo = demo;
 ---
 
 <section
@@ -86,40 +105,46 @@ const linkVariant = isForest ? "secondary" : "primary";
   ]}
 >
   <div class="feature-section__container">
-    <figure
-      class:list={[
-        "feature-section__image-panel",
-        video && "feature-section__image-panel--video",
-        `feature-section__image-panel--fit-${mediaFit}`,
-      ]}
-    >
-      {
-        video ? (
-          <div class="feature-section__video-shell">
-            <video
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="none"
-              aria-hidden="true"
-              data-feature-section-video
-            >
-              <source data-src={video} type={videoType} />
-            </video>
-            <img
-              class="feature-section__video-fallback"
-              src={image}
-              alt={imageAlt}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        ) : (
-          <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
-        )
-      }
-    </figure>
+    {
+      Demo ? (
+        <div class="feature-section__image-panel feature-section__image-panel--demo">
+          <Demo {...demoProps} />
+        </div>
+      ) : (
+        <figure
+          class:list={[
+            "feature-section__image-panel",
+            video && "feature-section__image-panel--video",
+            `feature-section__image-panel--fit-${mediaFit}`,
+          ]}
+        >
+          {video ? (
+            <div class="feature-section__video-shell">
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="none"
+                aria-hidden="true"
+                data-feature-section-video
+              >
+                <source data-src={video} type={videoType} />
+              </video>
+              <img
+                class="feature-section__video-fallback"
+                src={image}
+                alt={imageAlt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          ) : (
+            <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+          )}
+        </figure>
+      )
+    }
 
     <div class="feature-section__content">
       {badge && <FeatureBadge {...badge} />}
@@ -152,7 +177,7 @@ const linkVariant = isForest ? "secondary" : "primary";
                 url={primaryAction.href}
                 target={primaryAction.target}
                 rel={primaryAction.rel}
-                variant={primaryAction.variant ?? buttonVariant}
+                variant={primaryAction.variant ?? "primary"}
               />
             )}
             {linkAction && (
@@ -189,15 +214,6 @@ const linkVariant = isForest ? "secondary" : "primary";
 
   .feature-section--light {
     --feature-section-background: var(--bb-background-surface);
-  }
-
-  .feature-section--bright-green {
-    --feature-section-background: var(--bb-celery-200);
-    --feature-section-icon-background: color-mix(
-      in srgb,
-      var(--bb-text-base) 8%,
-      transparent
-    );
   }
 
   .feature-section--forest-green {
@@ -247,6 +263,14 @@ const linkVariant = isForest ? "secondary" : "primary";
     border: 1px solid var(--bb-border-subtle);
     padding: 12px;
     background: var(--bb-celery-100);
+  }
+
+  .feature-section__image-panel--demo {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: auto;
+    overflow: visible;
+    border-radius: 0;
   }
 
   .feature-section__video-shell {
@@ -374,6 +398,12 @@ const linkVariant = isForest ? "secondary" : "primary";
     .feature-section__image-panel {
       height: 100%;
       min-height: 100%;
+    }
+
+    .feature-section__image-panel--demo {
+      height: auto;
+      min-height: 0;
+      align-self: center;
     }
 
     .feature-section--image-right .feature-section__image-panel {

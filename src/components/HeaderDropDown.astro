@@ -1,19 +1,25 @@
 ---
+import FeatureBadge from "@components/FeatureBadge.astro";
 import Icon from "@components/Icon.astro";
 import type { NavDropdownMenu } from "@components/navDropdownData";
 
 interface Props {
   label: string;
   menu: NavDropdownMenu;
+  fullWidth?: boolean;
 }
 
-const { label, menu } = Astro.props;
+const { label, menu, fullWidth = false } = Astro.props;
 const dropdownId = `header-dropdown-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 const isCompact = menu.columns.length === 1;
 ---
 
 <div
-  class:list={["header-dropdown", isCompact && "header-dropdown--compact"]}
+  class:list={[
+    "header-dropdown",
+    isCompact && "header-dropdown--compact",
+    fullWidth && "header-dropdown--full-width",
+  ]}
   data-header-dropdown-root
 >
   <button
@@ -125,11 +131,7 @@ const isCompact = menu.columns.length === 1;
                           >
                             <span class="header-dropdown-link__label">
                               {label}
-                              {badge && (
-                                <span class="header-dropdown-link__badge">
-                                  {badge}
-                                </span>
-                              )}
+                              {badge && <FeatureBadge label={badge} />}
                             </span>
                             {description && (
                               <span class="header-dropdown-link__description">
@@ -152,11 +154,7 @@ const isCompact = menu.columns.length === 1;
                           >
                             <span class="header-dropdown-link__label">
                               {label}
-                              {badge && (
-                                <span class="header-dropdown-link__badge">
-                                  {badge}
-                                </span>
-                              )}
+                              {badge && <FeatureBadge label={badge} />}
                               <span
                                 class="header-dropdown-link__arrow"
                                 aria-hidden="true"
@@ -287,8 +285,8 @@ const isCompact = menu.columns.length === 1;
     padding: clamp(1.5rem, 2.6vw, 2.5rem) clamp(1rem, 2.5vw, 2rem)
       clamp(1.75rem, 3vw, 2.75rem);
     border: 1px solid var(--border-color);
-    border-radius: 0.75rem;
-    background: var(--bg-1);
+    border-radius: 0.25rem;
+    background: var(--bb-background-surface);
   }
 
   .header-dropdown-panel__inner {
@@ -311,12 +309,34 @@ const isCompact = menu.columns.length === 1;
   .header-dropdown--compact .header-dropdown-panel__shell {
     width: 100%;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
   }
 
   .header-dropdown--compact .header-dropdown-panel__inner {
     display: block;
     width: 100%;
+  }
+
+  .header-dropdown--compact.header-dropdown--full-width {
+    position: static;
+  }
+
+  .header-dropdown--full-width .header-dropdown-panel {
+    top: var(--site-nav-height);
+    left: -1px;
+    right: -1px;
+    width: auto;
+    padding: 0.25rem 0 0.75rem;
+  }
+
+  .header-dropdown--full-width .header-dropdown-panel__shell {
+    width: 100%;
+    max-width: none;
+  }
+
+  .header-dropdown--compact.header-dropdown--full-width
+    .header-dropdown-panel__inner {
+    max-width: 18rem;
   }
 
   .header-dropdown-feature-card {
@@ -552,16 +572,12 @@ const isCompact = menu.columns.length === 1;
     transform: translateX(0);
   }
 
-  .header-dropdown-link__badge {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 9999px;
-    background: var(--bg-2);
+  .header-dropdown-link__label :global(.feature-badge) {
+    min-height: 1.25rem;
+    padding: 0.1875rem 0.4375rem;
     color: var(--text-secondary);
-    font-size: 0.68rem;
-    font-weight: 600;
+    font-size: 0.6875rem;
     line-height: 1;
-    padding: 0.2rem 0.38rem;
   }
 
   @media (max-width: 1120px) {

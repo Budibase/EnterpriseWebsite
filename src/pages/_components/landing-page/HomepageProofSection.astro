@@ -28,9 +28,9 @@ const stats = [
       variant="section"
       titleId="homepage-proof-title"
       titleLines={[
-        { text: "Built to deliver." },
+        { text: "Open platform." },
         {
-          text: "Proven at scale.",
+          text: "Enterprise proven.",
           className: "homepage-proof__title-accent",
         },
       ]}
@@ -105,20 +105,20 @@ const stats = [
   }
 
   :global(.homepage-proof__title-block .homepage-proof__description) {
-    max-width: 38rem;
+    max-width: 40rem;
     color: var(--bb-text-body);
   }
 
   .homepage-proof__logos {
-    flex: 0 1 42rem;
-    width: min(48vw, 42rem);
+    flex: 0 1 45rem;
+    width: min(50vw, 45rem);
     min-width: 0;
   }
 
   .homepage-proof__logos :global(.enterprise-logo-grid--hero) {
-    --logo-grid-cell-width: clamp(4.75rem, 8vw, 7rem);
-    --logo-grid-cell-height: clamp(3.5rem, 5vw, 4.75rem);
-    --logo-grid-column-gap: 0.125rem;
+    --logo-grid-cell-width: clamp(5.25rem, 9vw, 7.75rem);
+    --logo-grid-cell-height: clamp(3.875rem, 6vw, 5.5rem);
+    --logo-grid-column-gap: 0.1875rem;
   }
 
   .homepage-proof__logos :global(.enterprise-logo-grid__inner) {
@@ -127,7 +127,7 @@ const stats = [
 
   .homepage-proof__logos :global(.enterprise-logo-grid__image),
   .homepage-proof__logos :global(.enterprise-logo-grid__northrop) {
-    transform: scale(0.78);
+    transform: scale(0.82);
     transform-origin: center;
   }
 
@@ -135,7 +135,7 @@ const stats = [
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: clamp(2rem, 4vw, 4.5rem);
-    margin-top: clamp(4rem, 7vw, 7rem);
+    margin-top: clamp(3.5rem, 6vw, 6rem);
   }
 
   .homepage-proof__stat {
@@ -149,7 +149,7 @@ const stats = [
   }
 
   .homepage-proof__stat-value {
-    color: var(--bb-text-base);
+    color: var(--bb-brand-forest-green) !important;
     font-family: var(--font-sans);
     font-size: clamp(
       calc(3.5rem - 10px),
@@ -177,8 +177,8 @@ const stats = [
     }
 
     .homepage-proof__logos :global(.enterprise-logo-grid--hero) {
-      --logo-grid-cell-width: 4rem;
-      --logo-grid-cell-height: 3.25rem;
+      --logo-grid-cell-width: 4.4rem;
+      --logo-grid-cell-height: 3.5rem;
       --logo-grid-column-gap: 0.125rem;
     }
 
@@ -197,6 +197,10 @@ const stats = [
       max-width: 43rem;
     }
 
+    :global(.homepage-proof__title-accent)::after {
+      left: 0.2em;
+    }
+
     .homepage-proof__logos {
       width: 100%;
     }
@@ -204,11 +208,7 @@ const stats = [
     .homepage-proof__stats {
       grid-template-columns: minmax(0, 1fr);
       gap: 2.5rem;
-      margin-top: 3.5rem;
-    }
-
-    :global(.homepage-proof__title-accent)::after {
-      left: 0.2em;
+      margin-top: 3rem;
     }
 
     .homepage-proof__logos :global(.enterprise-logo-grid__inner) {

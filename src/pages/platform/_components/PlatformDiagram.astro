@@ -1,0 +1,335 @@
+---
+import DiagramFrame from "./diagram/DiagramFrame.astro";
+import DiagramNode from "./diagram/DiagramNode.astro";
+
+const modes = [
+  {
+    title: "Apps",
+    description: "Human-led work",
+    icon: "AppWindow",
+    tone: "app",
+  },
+  {
+    title: "Automations",
+    description: "Rules-led work",
+    icon: "Lightning",
+    tone: "automation",
+  },
+  {
+    title: "Agents",
+    description: "AI-led work",
+    icon: "Sparkle",
+    tone: "agent",
+  },
+] as const;
+
+const foundation = [
+  { title: "Data", description: "Tables and queries", icon: "Table" },
+  {
+    title: "APIs & integrations",
+    description: "Connections and actions",
+    icon: "PlugsConnected",
+  },
+  { title: "Functions", description: "Reusable logic", icon: "Function" },
+] as const;
+
+const systems = [
+  { title: "SQL databases", icon: "Table" },
+  { title: "SAP / ERP", icon: "BuildingOffice" },
+  { title: "REST APIs", icon: "Code" },
+  { title: "SaaS", icon: "CloudCheck" },
+  { title: "Files & storage", icon: "BookOpen" },
+] as const;
+---
+
+<DiagramFrame
+  class="platform-model"
+  title="The Budibase platform model"
+  description="Apps, automations, and agents are equal ways to deliver operational software. They share data, integrations, functions, and governance while working with the enterprise systems already in place."
+>
+  <div class="platform-model__shell">
+    <header class="platform-model__header">
+      <strong>Budibase platform</strong>
+      <span>Build and run operational software</span>
+    </header>
+
+    <section
+      class="platform-model__governance"
+      aria-label="Platform governance"
+    >
+      <div class="platform-model__rail-label">
+        <span aria-hidden="true">Control</span>
+        <strong>Governance across the platform</strong>
+      </div>
+      <ul>
+        <li>Access</li>
+        <li>Approvals</li>
+        <li>Identity</li>
+        <li>Activity</li>
+      </ul>
+    </section>
+
+    <section class="platform-model__group" aria-labelledby="execution-modes">
+      <div class="platform-model__group-label">
+        <span>01</span>
+        <h2 id="execution-modes">Every way work gets done</h2>
+      </div>
+      <div class="platform-model__nodes">
+        {
+          modes.map((mode) => (
+            <DiagramNode
+              title={mode.title}
+              description={mode.description}
+              icon={mode.icon}
+              tone={mode.tone}
+            />
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="platform-model__group" aria-labelledby="shared-foundation">
+      <div class="platform-model__group-label">
+        <span>02</span>
+        <h2 id="shared-foundation">Shared foundation</h2>
+      </div>
+      <div class="platform-model__nodes">
+        {
+          foundation.map((item) => (
+            <DiagramNode
+              title={item.title}
+              description={item.description}
+              icon={item.icon}
+              tone="foundation"
+              compact
+            />
+          ))
+        }
+      </div>
+    </section>
+  </div>
+
+  <div class="platform-model__estate-connector" aria-hidden="true">
+    <span></span>
+  </div>
+
+  <section class="platform-model__estate" aria-labelledby="existing-estate">
+    <div class="platform-model__estate-label">
+      <span>Existing estate</span>
+      <h2 id="existing-estate">Your systems stay in place</h2>
+    </div>
+    <div class="platform-model__systems">
+      {
+        systems.map((system) => (
+          <DiagramNode
+            title={system.title}
+            icon={system.icon}
+            tone="external"
+            compact
+          />
+        ))
+      }
+    </div>
+  </section>
+</DiagramFrame>
+
+<style>
+  .platform-model__shell,
+  .platform-model__estate {
+    position: relative;
+    border: 1px solid var(--bb-brand-forest-green);
+    border-radius: 0;
+    background: var(--bb-white);
+  }
+
+  .platform-model__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--bb-brand-forest-green);
+    color: var(--bb-text-base);
+  }
+
+  .platform-model__header strong {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .platform-model__header span {
+    color: var(--bb-text-body);
+    font-size: 0.75rem;
+  }
+
+  .platform-model__governance {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1.2fr) minmax(0, 2fr);
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--bb-brand-forest-green);
+    background: var(--bb-background-surface);
+  }
+
+  .platform-model__rail-label {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .platform-model__rail-label > span,
+  .platform-model__group-label > span,
+  .platform-model__estate-label > span {
+    color: var(--bb-text-base);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .platform-model__rail-label strong {
+    color: var(--bb-text-base);
+    font-size: 0.75rem;
+  }
+
+  .platform-model__governance ul {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.4rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .platform-model__governance li {
+    padding: 0.4rem;
+    border-left: 1px solid var(--bb-brand-forest-green);
+    background: var(--bb-white);
+    color: var(--bb-text-base);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .platform-model__group {
+    padding: 1rem;
+  }
+
+  .platform-model__group + .platform-model__group {
+    border-top: 1px solid var(--bb-border-base);
+  }
+
+  .platform-model__group-label,
+  .platform-model__estate-label {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .platform-model__group-label h2,
+  .platform-model__estate-label h2 {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 650;
+    line-height: 1.2;
+  }
+
+  .platform-model__nodes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .platform-model__estate-connector {
+    display: grid;
+    height: 2.5rem;
+    place-items: center;
+  }
+
+  .platform-model__estate-connector span {
+    display: block;
+    width: 1px;
+    height: 100%;
+    background: var(--bb-brand-forest-green);
+  }
+
+  .platform-model__estate {
+    padding: 1rem;
+    border-color: var(--bb-border-base);
+  }
+
+  .platform-model__systems {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  :global(
+    .platform-model[data-motion-ready] .platform-model__estate-connector span
+  ) {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    animation: platform-model-estate 500ms ease-out 700ms forwards paused;
+  }
+
+  :global(
+    .platform-model[data-motion-ready].is-visible
+      .platform-model__estate-connector
+      span
+  ) {
+    animation-play-state: running;
+  }
+
+  @keyframes platform-model-estate {
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .platform-model__header,
+    .platform-model__governance {
+      align-items: flex-start;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .platform-model__header {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .platform-model__governance ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+    }
+
+    .platform-model__nodes {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .platform-model__systems {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .platform-model__systems > :global(:last-child) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .platform-model__estate-connector span {
+      animation: none !important;
+      opacity: 1 !important;
+      stroke-dashoffset: 0 !important;
+      transform: none !important;
+    }
+  }
+</style>

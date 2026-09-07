@@ -6,15 +6,20 @@ import { navDropdownMenus } from "@components/navDropdownData";
 import navLogoOnDark from "@assets/budibase_celery200.svg?url";
 
 const navLogoSrc = "/budibase-nav.svg";
-type NavTheme = "default" | "brand-dark";
+type NavTheme =
+  "default" | "surface" | "brand-dark" | "video-overlay" | "immersive-overlay";
 
 interface Props {
   theme?: NavTheme;
 }
 
 const { theme = "default" } = Astro.props as Props;
+const isSurface = theme === "surface";
 const isBrandDark = theme === "brand-dark";
-const desktopNavLogoSrc = isBrandDark ? navLogoOnDark : navLogoSrc;
+const isVideoOverlay = theme === "video-overlay";
+const isImmersiveOverlay = theme === "immersive-overlay";
+const usesDarkControls = isBrandDark || isImmersiveOverlay;
+const desktopNavLogoSrc = usesDarkControls ? navLogoOnDark : navLogoSrc;
 const [platformNavMenu, solutionsNavMenu, resourcesNavMenu] = navDropdownMenus;
 const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 ---
@@ -23,11 +28,14 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
   id="site-nav"
   class:list={[
     "nav-shell relative z-50 w-full bg-1 transition-colors duration-150",
+    isSurface && "nav-shell--surface",
     isBrandDark && "nav-shell--brand-dark",
+    isVideoOverlay && "nav-shell--video-overlay",
+    isImmersiveOverlay && "nav-shell--immersive-overlay",
   ]}
 >
   <div
-    class="relative z-10 mx-auto grid h-[var(--site-nav-bar-height)] w-full max-w-[var(--site-container-max)] grid-cols-[1fr_auto_auto] items-center px-2 md:px-3 lg:grid-cols-[auto_1fr_auto] lg:gap-6 lg:px-0"
+    class="nav-shell__inner relative z-10 mx-auto grid h-[var(--site-nav-bar-height)] w-full max-w-[var(--site-container-max)] grid-cols-[1fr_auto_auto] items-center px-2 md:px-3 lg:grid-cols-[auto_1fr_auto] lg:gap-6 lg:px-0"
   >
     <a
       href="/"
@@ -53,14 +61,17 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       <HeaderDropDown
         label={platformNavMenu.label}
         menu={platformNavMenu.menu}
+        fullWidth={isVideoOverlay || isImmersiveOverlay}
       />
       <HeaderDropDown
         label={solutionsNavMenu.label}
         menu={solutionsNavMenu.menu}
+        fullWidth={isVideoOverlay || isImmersiveOverlay}
       />
       <HeaderDropDown
         label={resourcesNavMenu.label}
         menu={resourcesNavMenu.menu}
+        fullWidth={isVideoOverlay || isImmersiveOverlay}
       />
       <a
         target="_self"
@@ -108,14 +119,14 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         <Button
           label="Get started"
           url="https://account.budibase.app/register"
-          variant={isBrandDark ? "outline-on-dark" : "secondary"}
+          variant={usesDarkControls ? "outline-on-dark" : "secondary"}
           size="medium"
           target="_blank"
         />
         <Button
           label="Book a demo"
           url="/contact/"
-          variant={isBrandDark ? "bright-on-dark" : "cta"}
+          variant={usesDarkControls ? "bright-on-dark" : "cta"}
           size="medium"
         />
       </div>
@@ -234,7 +245,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         label="Book a demo"
         url="/contact/"
         variant="cta"
-        size="large"
+        size="medium"
         class="mobile-nav-action-button"
       />
     </div>
@@ -435,6 +446,91 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 </script>
 
 <style>
+  .nav-shell.nav-shell--surface {
+    background-color: var(--bb-background-surface) !important;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay {
+    position: absolute !important;
+    inset: 0 0 auto;
+    background: transparent !important;
+    color: var(--bb-white);
+  }
+
+  .nav-shell.nav-shell--immersive-overlay .nav-shell__inner {
+    max-width: none;
+    height: 4.75rem;
+    padding-inline: clamp(1.25rem, 3vw, 3.5rem) !important;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay
+    .nav-shell__inner
+    > div:last-child
+    > a,
+  .nav-shell.nav-shell--immersive-overlay
+    .nav-shell__inner
+    > div:last-child
+    :global(a),
+  .nav-shell.nav-shell--immersive-overlay
+    .nav-shell__inner
+    :global(a[role="button"]) {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay :global(.nav-link) {
+    color: var(--bb-white) !important;
+    text-shadow: 0 0.0625rem 0.5rem var(--bb-transparent-black-500);
+  }
+
+  .nav-shell.nav-shell--immersive-overlay .desktop-nav-link:hover,
+  .nav-shell.nav-shell--immersive-overlay .desktop-nav-link:focus-visible,
+  .nav-shell.nav-shell--immersive-overlay
+    :global(.header-dropdown [data-header-dropdown-trigger]:hover),
+  .nav-shell.nav-shell--immersive-overlay
+    :global(.header-dropdown [data-header-dropdown-trigger]:focus-visible) {
+    background: var(--bb-transparent-white-200);
+    color: var(--bb-white) !important;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay
+    :global(.header-dropdown[data-open="true"] [data-header-dropdown-trigger]) {
+    background: var(--bb-celery-200);
+    color: var(--bb-celery-1200) !important;
+    text-shadow: none;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay .nav-github-link:hover,
+  .nav-shell.nav-shell--immersive-overlay .mobile-menu-trigger:hover {
+    background: var(--bb-transparent-white-200);
+  }
+
+  .nav-shell.nav-shell--immersive-overlay .nav-github-link:focus-visible,
+  .nav-shell.nav-shell--immersive-overlay .mobile-menu-trigger:focus-visible {
+    outline: 2px solid var(--bb-celery-200);
+    outline-offset: 2px;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay .mobile-menu-trigger {
+    color: var(--bb-white);
+  }
+
+  .nav-shell.nav-shell--video-overlay {
+    position: absolute !important;
+    inset: 0 0 auto;
+    padding: 0.75rem 0.75rem 0;
+    background: transparent !important;
+  }
+
+  .nav-shell.nav-shell--video-overlay .nav-shell__inner {
+    height: 3.75rem;
+    padding-inline: 1.5rem !important;
+    border: 1px solid var(--bb-transparent-black-100);
+    border-radius: 0.375rem;
+    background: var(--bb-background-base);
+    box-shadow: 0 0.5rem 1.5rem rgb(5 41 37 / 0.16);
+  }
+
   .nav-shell.nav-shell--brand-dark {
     background-color: var(--bb-celery-1300) !important;
     color: var(--bb-white);
@@ -481,5 +577,21 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 
   .nav-shell.nav-shell--brand-dark .mobile-menu-trigger:hover {
     background: var(--bb-transparent-white-100);
+  }
+
+  @media (max-width: 767px) {
+    .nav-shell.nav-shell--immersive-overlay .nav-shell__inner {
+      height: 4rem;
+      padding-inline: 1rem !important;
+    }
+
+    .nav-shell.nav-shell--video-overlay {
+      padding: 0.5rem 0.5rem 0;
+    }
+
+    .nav-shell.nav-shell--video-overlay .nav-shell__inner {
+      height: 3.5rem;
+      padding-inline: 0.875rem !important;
+    }
   }
 </style>

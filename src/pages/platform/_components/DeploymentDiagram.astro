@@ -1,0 +1,296 @@
+---
+import DiagramFrame from "./diagram/DiagramFrame.astro";
+import DiagramNode from "./diagram/DiagramNode.astro";
+
+const estate = [
+  { title: "Infra\u00adstructure", icon: "BuildingOffice" },
+  { title: "Databases", icon: "Table" },
+  { title: "APIs", icon: "Code" },
+  { title: "Identity provider", icon: "Users" },
+  { title: "AI models", icon: "Sparkle" },
+] as const;
+---
+
+<DiagramFrame
+  class="deployment-diagram"
+  title="Choose where Budibase runs"
+  description="The same Budibase platform can run in Budibase Cloud or in a self-hosted environment while connecting to the infrastructure, databases, APIs, identity provider, and AI models selected by IT."
+>
+  <header class="deployment-diagram__platform">
+    <span>Open-source platform</span>
+    <strong>Budibase</strong>
+    <small>One platform. Two deployment paths.</small>
+  </header>
+
+  <div class="deployment-diagram__branch" aria-hidden="true">
+    <svg viewBox="0 0 900 72" preserveAspectRatio="none">
+      <path pathLength="1" d="M450 0 V28 H225 V72"></path>
+      <path pathLength="1" d="M450 28 H675 V72"></path>
+    </svg>
+    <span>Choose where it runs</span>
+  </div>
+
+  <section class="deployment-diagram__choices" aria-label="Deployment choices">
+    <DiagramNode
+      title="Budibase Cloud"
+      description="Managed by Budibase"
+      icon="CloudCheck"
+      tone="app"
+    />
+    <DiagramNode
+      title="Self-hosted"
+      description="Run in your environment"
+      icon="BuildingOffice"
+      tone="automation"
+    />
+  </section>
+
+  <div class="deployment-diagram__estate-link" aria-hidden="true">
+    <span></span>
+  </div>
+
+  <section
+    class="deployment-diagram__estate"
+    aria-labelledby="deployment-estate-title"
+  >
+    <div>
+      <span>Your environment</span>
+      <strong id="deployment-estate-title"
+        >Use the estate IT already controls</strong
+      >
+    </div>
+    <ul>
+      {
+        estate.map((item) => (
+          <li>
+            <DiagramNode
+              title={item.title}
+              icon={item.icon}
+              tone="external"
+              compact
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</DiagramFrame>
+
+<style>
+  .deployment-diagram__platform {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.2rem 1rem;
+    padding: 1rem;
+    border: 1px solid var(--bb-brand-forest-green);
+    border-top: 4px solid var(--bb-brand-forest-green);
+    border-radius: 0;
+    background: var(--bb-white);
+  }
+
+  .deployment-diagram__platform > span,
+  .deployment-diagram__estate > div span {
+    color: var(--bb-text-base);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .deployment-diagram__platform strong {
+    grid-row: 1 / 3;
+    grid-column: 2;
+    align-self: center;
+    color: var(--bb-text-base);
+    font-size: 1.1rem;
+  }
+
+  .deployment-diagram__platform small {
+    color: var(--bb-text-body);
+    font-size: 0.75rem;
+  }
+
+  .deployment-diagram__branch {
+    position: relative;
+    height: 3.5rem;
+  }
+
+  .deployment-diagram__branch svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .deployment-diagram__branch path {
+    fill: none;
+    stroke: var(--bb-brand-forest-green);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .deployment-diagram__branch > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 0.2rem 0.45rem;
+    background: var(--bb-white);
+    color: var(--bb-text-body);
+    font-size: 0.625rem;
+    font-weight: 600;
+    transform: translate(-50%, -50%);
+  }
+
+  .deployment-diagram__choices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .deployment-diagram__estate-link {
+    display: grid;
+    height: 2.5rem;
+    place-items: center;
+  }
+
+  .deployment-diagram__estate-link span {
+    width: 1px;
+    height: 100%;
+    background: var(--bb-brand-forest-green);
+  }
+
+  .deployment-diagram__estate {
+    padding: 1rem;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0;
+    background: var(--bb-background-surface);
+  }
+
+  .deployment-diagram__estate > div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .deployment-diagram__estate > div strong {
+    color: var(--bb-text-base);
+    font-size: 0.75rem;
+    text-align: right;
+  }
+
+  .deployment-diagram__estate ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  :global(
+    .deployment-diagram[data-motion-ready] .deployment-diagram__branch path
+  ) {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: deployment-line 850ms ease-out forwards paused;
+  }
+
+  :global(
+    .deployment-diagram[data-motion-ready] .deployment-diagram__estate-link span
+  ) {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    animation: deployment-estate 450ms ease-out 600ms forwards paused;
+  }
+
+  :global(
+    .deployment-diagram[data-motion-ready].is-visible
+      .deployment-diagram__branch
+      path
+  ),
+  :global(
+    .deployment-diagram[data-motion-ready].is-visible
+      .deployment-diagram__estate-link
+      span
+  ) {
+    animation-play-state: running;
+  }
+
+  @keyframes deployment-line {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes deployment-estate {
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .deployment-diagram__platform {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .deployment-diagram__platform strong {
+      grid-row: auto;
+      grid-column: 1;
+    }
+
+    .deployment-diagram__branch {
+      display: grid;
+      height: 2.75rem;
+      place-items: center;
+    }
+
+    .deployment-diagram__branch svg {
+      display: none;
+    }
+
+    .deployment-diagram__branch::before {
+      width: 1px;
+      height: 100%;
+      background: var(--bb-brand-forest-green);
+      content: "";
+    }
+
+    .deployment-diagram__choices {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .deployment-diagram__estate > div {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .deployment-diagram__estate > div strong {
+      text-align: left;
+    }
+
+    .deployment-diagram__estate ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .deployment-diagram__estate li:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .deployment-diagram__branch path,
+    .deployment-diagram__estate-link span {
+      animation: none !important;
+      opacity: 1 !important;
+      stroke-dashoffset: 0 !important;
+      transform: none !important;
+    }
+  }
+</style>
