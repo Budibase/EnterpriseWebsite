@@ -16,6 +16,7 @@ const viteCacheDir = process.argv.includes("build")
 // https://astro.build/config
 export default defineConfig({
   site: "https://budibase.com",
+  session: false,
 
   prefetch: {
     prefetchAll: false,
