@@ -43,6 +43,12 @@ export default defineConfig({
 
   vite: {
     cacheDir: viteCacheDir,
+    // Prevent Cloudflare's worker from reloading against stale SSR chunks when
+    // these Astro entrypoints are first discovered on a cold dev-server start.
+    // https://github.com/withastro/astro/issues/17788
+    optimizeDeps: {
+      include: ["astro/assets/services/noop", "astro/logger/json"],
+    },
     plugins: [tailwindcss()],
     resolve: {
       alias: {

@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@astrojs/language-server": "^2.16.14",
+    "@astrojs/language-server": "^2.16.16",
     "@modelcontextprotocol/server-filesystem": "^2025.8.21",
     "docs-mcp": "github:withastro/docs-mcp",
     "prettier": "^3.3.3",
@@ -24,11 +24,11 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^14.2.1",
-    "@astrojs/mdx": "^7.0.5",
-    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/cloudflare": "^14.3.0",
+    "@astrojs/mdx": "^8.0.0",
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.1",
-    "astro": "^7.2.1",
+    "astro": "^7.3.1",
     "date-fns": "^4.1.0",
     "phosphor-astro": "^2.1.0",
     "tailwindcss": "^4.1.11"
