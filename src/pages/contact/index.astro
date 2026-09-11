@@ -122,7 +122,12 @@ const requestedOp = Astro.url.searchParams.get("op") ?? "";
               </label>
             </p>
 
-            <input type="hidden" name="op" value={requestedOp} />
+            <input
+              type="hidden"
+              name="op"
+              value={requestedOp}
+              data-contact-operation
+            />
 
             <label class="contact-field">
               <span>First Name</span>
@@ -159,6 +164,14 @@ const requestedOp = Astro.url.searchParams.get("op") ?? "";
       </div>
     </div>
   </section>
+
+  <script is:inline data-astro-rerun>
+    const operation = document.querySelector("[data-contact-operation]");
+    if (operation instanceof HTMLInputElement) {
+      operation.value =
+        new URLSearchParams(window.location.search).get("op") ?? "";
+    }
+  </script>
 </Layout>
 
 <style>

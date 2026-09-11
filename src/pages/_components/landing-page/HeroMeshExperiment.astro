@@ -1,0 +1,172 @@
+---
+import Button from "@components/Button.astro";
+import HeroImage from "@assets/images/homepage/hero-image.png?url";
+---
+
+<!-- Product-led split composition on a solid Budibase brand field. -->
+<section class="mesh-hero" aria-labelledby="mesh-hero-title">
+  <div class="mesh-hero__shell">
+    <div class="mesh-hero__copy">
+      <h1 id="mesh-hero-title" class="mesh-hero__title text-balance">
+        Modernise your processes.<br />
+        Keep control of your data.
+      </h1>
+      <p class="mesh-hero__description text-balance">
+        Build agents, apps and automations across your people, data and systems.
+        Self-host or deploy in our cloud, with enterprise security and
+        governance built in.
+      </p>
+      <div class="mesh-hero__actions">
+        <Button
+          label="Book a demo"
+          url="/contact/"
+          variant="cta-on-base"
+          size="large"
+        />
+        <Button
+          label="Get started"
+          url="https://account.budibase.app/register"
+          variant="secondary"
+          size="large"
+          target="_blank"
+        />
+      </div>
+    </div>
+
+    <figure class="mesh-hero__media">
+      <div class="mesh-hero__screenshot">
+        <img
+          src={HeroImage}
+          alt="Budibase live operations dashboard showing active, waiting, completed and failed work"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .mesh-hero {
+    position: relative;
+    min-height: clamp(36rem, 67svh, 43rem);
+    overflow: hidden;
+    background: var(--bb-brand-forest-green);
+    isolation: isolate;
+  }
+
+  .mesh-hero__shell {
+    display: grid;
+    width: min(100%, var(--site-container-max));
+    min-height: inherit;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: center;
+    gap: clamp(2rem, 3vw, 3.5rem);
+    margin-inline: auto;
+    padding: calc(var(--site-nav-height) + clamp(2rem, 3vw, 3rem))
+      var(--site-content-inset) 0;
+  }
+
+  .mesh-hero__copy {
+    position: relative;
+    z-index: 2;
+    max-width: 46rem;
+    color: var(--bb-text-on-base);
+  }
+
+  .mesh-hero__title {
+    max-width: 46rem;
+    margin: 0;
+    color: var(--bb-white);
+    font-family: var(--bb-text-display-medium-font-family);
+    font-size: calc(var(--bb-text-heading-hero-font-size) - 0.5rem);
+    font-weight: var(--bb-text-display-medium-font-weight);
+    line-height: var(--bb-text-heading-hero-line-height);
+    letter-spacing: var(--bb-text-display-medium-letter-spacing);
+    text-transform: var(--bb-text-display-medium-text-transform);
+    transform: scaleX(0.9);
+    transform-origin: left center;
+  }
+
+  .mesh-hero__description {
+    max-width: 46rem;
+    margin: 1.75rem 0 0 !important;
+    color: var(--bb-text-on-base-subtle) !important;
+    font-family: var(--font-sans);
+    font-size: var(--bb-text-copy-lead-font-size);
+    font-weight: var(--bb-text-copy-lead-font-weight);
+    line-height: var(--bb-text-copy-lead-line-height);
+    letter-spacing: 0 !important;
+  }
+
+  .mesh-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .mesh-hero__media {
+    position: relative;
+    z-index: 2;
+    width: min(62rem, 66vw);
+    margin: 0 clamp(-14rem, -12vw, -6rem) 0 0;
+  }
+
+  .mesh-hero__screenshot {
+    aspect-ratio: 1.6;
+    overflow: hidden;
+  }
+
+  .mesh-hero__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+    transform: scale(1.105);
+  }
+
+  @media (max-width: 1023px) {
+    .mesh-hero__shell {
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(3rem, 7vw, 4.5rem);
+      padding-top: calc(var(--site-nav-height) + clamp(1.75rem, 4vw, 3rem));
+      padding-bottom: 0;
+    }
+
+    .mesh-hero__copy {
+      max-width: 43rem;
+    }
+
+    .mesh-hero__media {
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .mesh-hero__shell {
+      gap: 2.75rem;
+      padding-top: calc(var(--site-nav-height) + 1.25rem);
+      padding-bottom: 0;
+    }
+
+    .mesh-hero__description {
+      margin-top: 1.5rem !important;
+      font-size: 1.125rem;
+      line-height: 1.45;
+    }
+
+    .mesh-hero__actions {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 1.75rem;
+    }
+
+    .mesh-hero__actions :global(a) {
+      width: min(100%, 16rem);
+    }
+  }
+</style>

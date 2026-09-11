@@ -406,12 +406,11 @@
     --bb-color__text__subtle: var(--bb-text-subtle);
 
     --font-sans:
-      var(--font-geist), "Apple Color Emoji", "Segoe UI Emoji",
+      var(--font-tiktok-sans), "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
     --font-mono:
-      var(--font-geist-mono), "iA Writer Mono", ui-monospace, SFMono-Regular,
-      SF Mono, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
-      monospace;
+      ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
 
     --bb-text-display-large-font-family:
       var(--font-tiktok-sans-condensed), var(--font-sans);
@@ -434,7 +433,6 @@
     --bb-text-display-small-line-height: 0.85;
     --bb-text-display-small-letter-spacing: -0.01em;
     --bb-text-display-small-text-transform: uppercase;
-
     /* Semantic heading scale. Components retain their role-appropriate face,
        weight, letter spacing, and casing. */
     --bb-text-heading-hero-font-size: 64px;

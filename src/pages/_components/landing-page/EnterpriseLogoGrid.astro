@@ -15,7 +15,7 @@ import ThalesLogo from "@assets/logos/enterprise-grid/thales.png?url";
 import PierreFabreLogo from "@assets/logos/enterprise-grid/pierre-fabre.png?url";
 import EricssonLogo from "@assets/logos/ERI_horizontal_RGB.svg?url";
 
-type Placement = "hero" | "hero-compact" | "section";
+type Placement = "hero" | "hero-compact" | "hero-row" | "section";
 
 type ImageLogo = {
   type: "image";
@@ -55,7 +55,12 @@ const columns: Logo[][] = [
       alt: "Stadt Luzern",
       className: "is-stadt-luzern",
     },
-    { type: "image", src: ArmLogo, alt: "Arm", className: "is-square" },
+    {
+      type: "image",
+      src: ArmLogo,
+      alt: "Arm",
+      className: "is-square is-arm",
+    },
     { type: "image", src: SaabLogo, alt: "Saab", className: "is-saab" },
   ],
   [
@@ -149,7 +154,21 @@ const compactLogos: (Logo | null)[] = [
   columns[2][1],
 ];
 
+const rowLogos: Logo[] = [
+  columns[0][1],
+  columns[2][0],
+  columns[2][1],
+  columns[0][0],
+  columns[3][0],
+  columns[3][2],
+  columns[0][2],
+  columns[4][2],
+  columns[4][0],
+  columns[1][1],
+];
+
 const isCompact = placement === "hero-compact";
+const isRow = placement === "hero-row";
 ---
 
 <div
@@ -158,8 +177,8 @@ const isCompact = placement === "hero-compact";
 >
   <div class="enterprise-logo-grid__inner">
     {
-      isCompact
-        ? compactLogos.map((logo) => (
+      isCompact || isRow
+        ? (isCompact ? compactLogos : rowLogos).map((logo) => (
             <div
               class={`enterprise-logo-grid__cell${logo ? "" : " enterprise-logo-grid__cell--empty"}`}
               aria-hidden={logo ? undefined : "true"}
@@ -230,6 +249,13 @@ const isCompact = placement === "hero-compact";
     --logo-grid-column-gap: clamp(0.125rem, 0.35vw, 0.25rem);
   }
 
+  .enterprise-logo-grid--hero-row {
+    --logo-grid-cell-width: 100%;
+    --logo-grid-cell-height: clamp(4rem, 5vw, 4.75rem);
+    --logo-grid-column-gap: clamp(0.125rem, 0.3vw, 0.25rem);
+    --logo-grid-row-gap: 0;
+  }
+
   .enterprise-logo-grid__inner {
     display: flex;
     align-items: flex-start;
@@ -245,6 +271,37 @@ const isCompact = placement === "hero-compact";
     align-items: center;
     gap: var(--logo-grid-row-gap) var(--logo-grid-column-gap);
     width: min(100%, 72rem);
+  }
+
+  .enterprise-logo-grid--hero-row .enterprise-logo-grid__inner {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    align-items: center;
+    width: 100%;
+  }
+
+  .enterprise-logo-grid--hero-row .enterprise-logo-grid__cell {
+    box-sizing: border-box;
+    width: 100%;
+    padding: clamp(0.55rem, 0.75vw, 0.8rem);
+    border: 0;
+    background: transparent;
+  }
+
+  .enterprise-logo-grid--hero-row .enterprise-logo-grid__image,
+  .enterprise-logo-grid--hero-row .enterprise-logo-grid__northrop {
+    transform: scale(0.8);
+    transform-origin: center;
+  }
+
+  .enterprise-logo-grid--hero-row .enterprise-logo-grid__image.is-arm {
+    transform: scale(0.88);
+  }
+
+  .enterprise-logo-grid--hero-row
+    .enterprise-logo-grid__image.is-northern-territory,
+  .enterprise-logo-grid--hero-row .enterprise-logo-grid__image.is-pierre-fabre {
+    mix-blend-mode: normal;
   }
 
   .enterprise-logo-grid__column {
@@ -425,6 +482,27 @@ const isCompact = placement === "hero-compact";
     content: "";
   }
 
+  @media (max-width: 1023px) {
+    .enterprise-logo-grid--hero-row {
+      --logo-grid-cell-height: 4.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+      scrollbar-width: none;
+    }
+
+    .enterprise-logo-grid--hero-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .enterprise-logo-grid--hero-row .enterprise-logo-grid__inner {
+      grid-template-columns: repeat(10, 7rem);
+      width: max-content;
+      min-width: 100%;
+      justify-content: flex-start;
+      padding-inline: 0;
+    }
+  }
+
   @media (max-width: 767px) {
     .enterprise-logo-grid {
       --logo-grid-cell-width: 6.5rem;
@@ -453,6 +531,17 @@ const isCompact = placement === "hero-compact";
 
     .enterprise-logo-grid--hero-compact .enterprise-logo-grid__inner {
       grid-template-columns: repeat(8, var(--logo-grid-cell-width));
+    }
+
+    .enterprise-logo-grid--hero-row {
+      --logo-grid-cell-height: 4.25rem;
+      --logo-grid-column-gap: 0.125rem;
+    }
+
+    .enterprise-logo-grid--hero-row .enterprise-logo-grid__inner {
+      grid-template-columns: repeat(10, 6.5rem);
+      width: max-content;
+      padding-inline: 0;
     }
 
     .enterprise-logo-grid__northrop {

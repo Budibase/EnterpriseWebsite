@@ -1,0 +1,25 @@
+---
+import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
+---
+
+<section
+  class="homepage-customer-logo-row"
+  aria-label="Budibase customer logos"
+>
+  <div class="homepage-customer-logo-row__inner">
+    <EnterpriseLogoGrid placement="hero-row" />
+  </div>
+</section>
+
+<style>
+  .homepage-customer-logo-row {
+    width: 100%;
+  }
+
+  .homepage-customer-logo-row__inner {
+    box-sizing: border-box;
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+</style>

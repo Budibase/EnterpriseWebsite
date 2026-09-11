@@ -1,7 +1,7 @@
 # Budibase brand and GTM direction
 
 **Status:** Working source of truth  
-**Last updated:** 1 September 2026
+**Last updated:** 10 September 2026
 
 Use this document to guide Budibase website design, customer-facing copy,
 campaigns, presentations, customer stories, sales enablement, product launches,
@@ -91,6 +91,30 @@ infrastructure.
 
 This is a market wedge, not a claim that only regulated organizations can use
 Budibase.
+
+## Partner GTM
+
+Delivery partnerships are a core route to market for Budibase Enterprise.
+Consultancies, systems integrators, agencies, and service providers extend the
+delivery capacity, specialist expertise, and regional reach available to
+customers. They help enterprise IT discover, design, build, integrate, deploy,
+and support operational software with Budibase.
+
+The partner model must preserve the customer-accountability model: enterprise
+IT remains the platform owner and retains responsibility for architecture,
+security, governance, data, deployment, and operations. Partners add delivery
+leverage around that ownership rather than displacing it.
+
+The public proposition is the **Budibase partner network**. Its website
+experience serves two connected jobs:
+
+- Help enterprise buyers find delivery partners by region and service.
+- Help qualified delivery organizations explore and join the network.
+
+While the network is early, emphasize product resources, technical guidance,
+joint delivery planning, and selective co-marketing. Do not imply formal tiers,
+certification, guaranteed leads, revenue sharing, exclusive access, or fixed
+commercial benefits unless those programs are approved and operational.
 
 ## Customer problem
 
@@ -560,10 +584,11 @@ capabilities. Conservative styling alone is not evidence of maturity.
 
 ### Typography
 
-- Use the condensed display face for major statements, category claims, and
-  moments that should feel unmistakably Budibase.
-- Use the primary sans-serif for explanation, evidence, technical detail, and
-  interface content.
+- Use TikTok Sans Condensed Black at its native `900` weight for major
+  statements, category claims, titles, and headings that should feel
+  unmistakably Budibase.
+- Use variable TikTok Sans for body copy, explanation, evidence, technical
+  detail, and interface content.
 - Do not turn every heading into an oversized all-caps statement. Contrast is
   what gives the display typography authority.
 
@@ -780,6 +805,36 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 - What quantitative outcomes can Budibase substantiate consistently?
 
 ## Decision log
+
+### 10 September 2026
+
+- Finalized TikTok Sans Condensed Black at its native `900` weight as the
+  display face for titles and headings after testing Hubot Sans Condensed, the
+  other shortlisted alternatives, and variable TikTok Sans at `80%` width. The
+  variable face was less distinctive in display use, but replaced Inter for
+  body copy, interface content, and supporting typography. The website now
+  self-hosts the dedicated condensed and variable cuts of TikTok Sans.
+
+### 9 September 2026
+
+- Moved the active display face to the dedicated Hubot Sans Condensed Black cut
+  at its native `900` weight after testing TikTok Sans, Archivo Black, Barlow
+  Condensed, Barlow Semi Condensed, and New Amsterdam. A follow-up variable-font
+  test was rejected because it lost the static Condensed cut's distinctive
+  character. Explicitly enabled `ss01`, `ss03`, and `ss04`. Removed the rejected
+  experimental font assets; retained only Geist for body, interface, and
+  monospace typography, Hubot for the active display treatment, and TikTok Sans
+  as the rollback candidate.
+
+### 8 September 2026
+
+- Established delivery partnerships as a core enterprise route to market.
+- Named the public proposition the Budibase partner network, with an initial
+  focus on consultancies, systems integrators, agencies, and service providers.
+- Defined the partner website journey around customer discovery first and
+  partner recruitment second, with filtering by region and delivery service.
+- Kept enterprise IT as the accountable platform owner and limited early
+  partner-program claims to approved enablement and joint-delivery support.
 
 ### 2 September 2026
 

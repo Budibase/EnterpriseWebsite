@@ -1,0 +1,775 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import Icon from "@components/Icon.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+
+const pageTitle = "Brand assets | Budibase";
+const pageDescription =
+  "Download Budibase logos and explore the colors and typefaces used across the Budibase brand.";
+
+const logos = [
+  {
+    name: "Full logo",
+    description: "The complete Budibase mark and wordmark.",
+    tone: "forest",
+    previewLabel: "Forest green logo on a light background",
+    svg: "/brand/budibase-logo-forest.svg",
+    png: "/brand/budibase-logo-forest.png",
+  },
+  {
+    name: "Full logo",
+    description: "The complete Budibase mark and wordmark.",
+    tone: "bright",
+    previewLabel: "Bright green logo on a dark background",
+    svg: "/brand/budibase-logo-bright.svg",
+    png: "/brand/budibase-logo-bright.png",
+  },
+  {
+    name: "Symbol",
+    description: "The standalone Budibase symbol for compact spaces.",
+    tone: "forest",
+    previewLabel: "Forest green symbol on a light background",
+    svg: "/brand/budibase-symbol-forest.svg",
+    png: "/brand/budibase-symbol-forest.png",
+  },
+  {
+    name: "Symbol",
+    description: "The standalone Budibase symbol for compact spaces.",
+    tone: "bright",
+    previewLabel: "Bright green symbol on a dark background",
+    svg: "/brand/budibase-symbol-bright.svg",
+    png: "/brand/budibase-symbol-bright.png",
+  },
+] as const;
+
+const colors = [
+  {
+    name: "Forest green",
+    value: "#163300",
+    role: "Primary brand anchor",
+    tone: "dark",
+  },
+  {
+    name: "Bright green",
+    value: "#9DF75C",
+    role: "Action, progress, connection, success",
+    tone: "light",
+  },
+  {
+    name: "Yellow",
+    value: "#FFBC0D",
+    role: "Proof, selection, attention, human review",
+    tone: "light",
+  },
+  {
+    name: "Ink",
+    value: "#131313",
+    role: "Body copy",
+    tone: "dark",
+  },
+  {
+    name: "White",
+    value: "#FFFFFF",
+    role: "Base surface",
+    tone: "light",
+  },
+  {
+    name: "Subtle surface",
+    value: "#F8F8F8",
+    role: "Quiet surface",
+    tone: "light",
+  },
+  {
+    name: "Raised surface",
+    value: "#F3F3F3",
+    role: "Elevated surface",
+    tone: "light",
+  },
+  {
+    name: "Border",
+    value: "#DADADA",
+    role: "Default border",
+    tone: "light",
+  },
+] as const;
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <div class="brand-page">
+    <section class="brand-hero site-grid-section" aria-labelledby="brand-title">
+      <div class="brand-shell brand-hero__inner">
+        <p class="brand-eyebrow">Budibase identity</p>
+        <TitleBlock
+          variant="hero-large"
+          title="Brand assets"
+          titleId="brand-title"
+          titleClass="brand-hero__title"
+        />
+        <p class="brand-hero__lede">
+          Download the Budibase logo and find the colors and typefaces used
+          across our brand.
+        </p>
+        <nav class="brand-jump-links" aria-label="Brand asset sections">
+          <a href="#logos">Logos</a>
+          <a href="#colors">Colors</a>
+          <a href="#typography">Typography</a>
+        </nav>
+      </div>
+    </section>
+
+    <section
+      id="logos"
+      class="brand-section site-grid-section"
+      aria-labelledby="logos-title"
+    >
+      <div class="brand-shell">
+        <div class="brand-section__heading">
+          <p class="brand-eyebrow">01 / Logos</p>
+          <TitleBlock
+            variant="display-small"
+            title="Logos"
+            titleId="logos-title"
+            description="Use the forest-green treatment on light backgrounds and the bright-green treatment on dark backgrounds."
+          />
+        </div>
+
+        <div class="brand-logo-grid">
+          {
+            logos.map((logo) => (
+              <article
+                class:list={[
+                  "brand-logo-card",
+                  `brand-logo-card--${logo.tone}`,
+                ]}
+              >
+                <div class="brand-logo-preview">
+                  <img src={logo.svg} alt={logo.previewLabel} loading="lazy" />
+                </div>
+                <div class="brand-card-content">
+                  <div>
+                    <h3>{logo.name}</h3>
+                    <p>{logo.description}</p>
+                  </div>
+                  <div
+                    class="brand-download-links"
+                    aria-label={`Download ${logo.name} assets`}
+                  >
+                    <a
+                      href={logo.svg}
+                      download={`budibase-${logo.name.toLowerCase().replace(" ", "-")}-${logo.tone}.svg`}
+                    >
+                      SVG <span aria-hidden="true">↓</span>
+                    </a>
+                    <a
+                      href={logo.png}
+                      download={`budibase-${logo.name.toLowerCase().replace(" ", "-")}-${logo.tone}.png`}
+                    >
+                      PNG <span aria-hidden="true">↓</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="colors"
+      class="brand-section brand-section--tinted site-grid-section"
+      aria-labelledby="colors-title"
+    >
+      <div class="brand-shell">
+        <div class="brand-section__heading">
+          <p class="brand-eyebrow">02 / Colors</p>
+          <TitleBlock
+            variant="display-small"
+            title="Colors"
+            titleId="colors-title"
+            description="Select a swatch to copy its hex value. Each color has a clear role in the system."
+          />
+        </div>
+
+        <div class="brand-color-grid">
+          {
+            colors.map((color) => (
+              <button
+                type="button"
+                class="brand-color-card"
+                style={`--brand-swatch: ${color.value}`}
+                data-copy-color={color.value}
+                aria-label={`Copy ${color.name} ${color.value}`}
+              >
+                <span
+                  class:list={[
+                    "brand-color-swatch",
+                    `brand-color-swatch--${color.tone}`,
+                  ]}
+                  aria-hidden="true"
+                />
+                <span class="brand-card-content brand-color-content">
+                  <span class="brand-color-heading">
+                    <span class="brand-color-name">{color.name}</span>
+                    <span class="brand-color-value">{color.value}</span>
+                  </span>
+                  <span class="brand-color-role">{color.role}</span>
+                  <span class="brand-copy-action">
+                    <Icon name="Copy" size="16" />
+                    <span data-copy-label>Copy hex</span>
+                  </span>
+                </span>
+              </button>
+            ))
+          }
+        </div>
+        <p class="brand-copy-status" data-copy-status aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section
+      id="typography"
+      class="brand-section site-grid-section"
+      aria-labelledby="typography-title"
+    >
+      <div class="brand-shell">
+        <div class="brand-section__heading">
+          <p class="brand-eyebrow">03 / Typography</p>
+          <TitleBlock
+            variant="display-small"
+            title="Typography"
+            titleId="typography-title"
+            description="Use contrast to give the display face authority. Keep explanation, evidence, and interface content easy to read."
+          />
+        </div>
+
+        <div class="brand-type-grid">
+          <article class="brand-type-card brand-type-card--display">
+            <div class="brand-type-meta">
+              <span>Display</span>
+              <strong>TikTok Sans Condensed Black</strong>
+            </div>
+            <p class="brand-type-specimen">Build and run more.</p>
+            <div class="brand-type-details">
+              <span>Weight</span>
+              <strong>900</strong>
+              <span>Use for</span>
+              <strong>Decisive headings</strong>
+            </div>
+          </article>
+
+          <article class="brand-type-card brand-type-card--body">
+            <div class="brand-type-meta">
+              <span>Body and interface</span>
+              <strong>TikTok Sans</strong>
+            </div>
+            <p class="brand-type-body-sample">
+              Budibase gives enterprise IT the leverage to deliver more, without
+              giving up control.
+            </p>
+            <div
+              class="brand-type-weight-samples"
+              aria-label="TikTok Sans weight range"
+            >
+              <span style="font-weight: 300">300 Light</span>
+              <span style="font-weight: 400">400 Regular</span>
+              <span style="font-weight: 600">600 Semibold</span>
+              <span style="font-weight: 900">900 Black</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script>
+  (() => {
+    const initColorCopy = () => {
+      document.querySelectorAll("[data-copy-color]").forEach((element) => {
+        if (!(element instanceof HTMLButtonElement)) return;
+        if (element.dataset.copyReady === "true") return;
+        element.dataset.copyReady = "true";
+
+        const value = element.dataset.copyColor;
+        const label = element.querySelector("[data-copy-label]");
+        const status = document.querySelector("[data-copy-status]");
+        if (!value || !(label instanceof HTMLElement)) return;
+
+        const setStatus = (message: string) => {
+          if (status instanceof HTMLElement) status.textContent = message;
+        };
+
+        const copyWithFallback = async () => {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(value);
+            return;
+          }
+
+          const textarea = document.createElement("textarea");
+          textarea.value = value;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          const copied = document.execCommand("copy");
+          textarea.remove();
+          if (!copied) throw new Error("Copy command failed");
+        };
+
+        element.addEventListener("click", async () => {
+          try {
+            await copyWithFallback();
+            element.classList.add("is-copied");
+            label.textContent = "Copied";
+            setStatus(`${value} copied to clipboard.`);
+          } catch {
+            element.classList.remove("is-copied");
+            label.textContent = "Copy failed";
+            setStatus(`Could not copy ${value}.`);
+          }
+
+          window.setTimeout(() => {
+            element.classList.remove("is-copied");
+            label.textContent = "Copy hex";
+            setStatus("");
+          }, 1800);
+        });
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initColorCopy, {
+        once: true,
+      });
+    } else {
+      initColorCopy();
+    }
+    document.addEventListener("astro:after-swap", initColorCopy);
+  })();
+</script>
+
+<style>
+  .brand-page {
+    --brand-page-max: 88rem;
+    color: var(--bb-text-base);
+  }
+
+  .brand-shell {
+    width: min(100%, var(--brand-page-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+
+  .brand-hero {
+    background: var(--bb-celery-100);
+  }
+
+  .brand-hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-block: clamp(4.5rem, 10vw, 8rem);
+  }
+
+  .brand-eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--bb-celery-1000);
+    font-size: 0.8125rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .brand-hero__title {
+    max-width: 30rem;
+  }
+
+  .brand-hero__lede {
+    max-width: 38rem;
+    margin: 0.5rem 0 0;
+    color: var(--bb-text-body) !important;
+    font-size: var(--bb-text-copy-lead-font-size);
+    line-height: var(--bb-text-copy-lead-line-height);
+  }
+
+  .brand-jump-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin-top: 1.5rem;
+  }
+
+  .brand-jump-links a,
+  .brand-download-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--bb-border-bold);
+    color: var(--bb-text-base);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .brand-jump-links a:hover,
+  .brand-jump-links a:focus-visible,
+  .brand-download-links a:hover,
+  .brand-download-links a:focus-visible {
+    border-color: var(--bb-brand-forest-green);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+  }
+
+  .brand-jump-links a:focus-visible,
+  .brand-download-links a:focus-visible {
+    outline: 2px solid var(--bb-brand-forest-green);
+    outline-offset: 3px;
+  }
+
+  .brand-section {
+    border-top: 1px solid var(--bb-border-base);
+  }
+
+  .brand-section--tinted {
+    background: var(--bb-background-surface-subtle);
+  }
+
+  .brand-section__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .brand-section__heading .brand-eyebrow {
+    margin-bottom: 0.85rem;
+  }
+
+  .brand-section__heading :global(.title-block__description) {
+    max-width: 42rem;
+  }
+
+  .brand-logo-grid,
+  .brand-type-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2.4vw, 2rem);
+  }
+
+  .brand-logo-card,
+  .brand-type-card {
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-base);
+  }
+
+  .brand-logo-card--bright .brand-logo-preview {
+    background: var(--bb-brand-forest-green);
+  }
+
+  .brand-logo-preview {
+    display: flex;
+    min-height: clamp(12rem, 23vw, 17rem);
+    align-items: center;
+    justify-content: center;
+    padding: clamp(2rem, 6vw, 4rem);
+    background: var(--bb-background-surface-base);
+  }
+
+  .brand-logo-preview img {
+    display: block;
+    width: min(100%, 31rem);
+    max-height: 7rem;
+    object-fit: contain;
+  }
+
+  .brand-logo-card:nth-child(n + 3) .brand-logo-preview img {
+    width: min(100%, 9rem);
+    max-height: 9rem;
+  }
+
+  .brand-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  .brand-card-content h3 {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-size: 1.25rem;
+    font-weight: 650;
+    line-height: 1.2;
+  }
+
+  .brand-card-content p {
+    margin: 0.5rem 0 0;
+    color: var(--bb-text-body) !important;
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .brand-download-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+  }
+
+  .brand-download-links a {
+    min-height: 2.5rem;
+    padding-inline: 0.8rem;
+    border-color: var(--bb-border-base);
+    font-size: 0.875rem;
+  }
+
+  .brand-download-links a span {
+    margin-left: 0.35rem;
+    font-size: 1rem;
+  }
+
+  .brand-color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .brand-color-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: 0;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-base);
+    color: var(--bb-text-base);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease,
+      transform 150ms ease;
+  }
+
+  .brand-color-card:hover {
+    border-color: var(--bb-brand-forest-green);
+    box-shadow: 0 0.5rem 1.25rem rgb(var(--text) / 0.08);
+    transform: translateY(-2px);
+  }
+
+  .brand-color-card:focus-visible {
+    outline: 2px solid var(--bb-brand-forest-green);
+    outline-offset: 3px;
+  }
+
+  .brand-color-card.is-copied {
+    border-color: var(--bb-brand-forest-green);
+    box-shadow: 0 0 0 2px var(--bb-brand-bright-green);
+  }
+
+  .brand-color-swatch {
+    display: block;
+    min-height: 7rem;
+    background: var(--brand-swatch);
+  }
+
+  .brand-color-swatch--light {
+    box-shadow: inset 0 0 0 1px var(--bb-border-base);
+  }
+
+  .brand-color-content {
+    min-height: 8.75rem;
+    gap: 0.75rem;
+  }
+
+  .brand-color-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .brand-color-name {
+    font-size: 1rem;
+    font-weight: 650;
+  }
+
+  .brand-color-value {
+    color: var(--bb-text-body);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+  }
+
+  .brand-color-role {
+    min-height: 2.5rem;
+    color: var(--bb-text-body);
+    font-size: 0.875rem;
+    line-height: 1.35;
+  }
+
+  .brand-copy-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: auto;
+    color: var(--bb-brand-forest-green);
+    font-size: 0.875rem;
+    font-weight: 650;
+  }
+
+  .brand-copy-status {
+    min-height: 1.35rem;
+    margin: 1rem 0 0;
+    color: var(--bb-brand-forest-green) !important;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .brand-type-card {
+    display: flex;
+    min-height: 22rem;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .brand-type-card--display {
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+  }
+
+  .brand-type-card--body {
+    background: var(--bb-background-surface-raised);
+  }
+
+  .brand-type-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .brand-type-meta > span {
+    font-size: 0.8125rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .brand-type-meta > strong {
+    font-size: 1.125rem;
+    font-weight: 650;
+  }
+
+  .brand-type-card--display .brand-type-meta > span,
+  .brand-type-card--display .brand-type-meta > strong {
+    color: var(--bb-text-on-base);
+  }
+
+  .brand-type-specimen {
+    margin: 0;
+    color: var(--bb-brand-bright-green) !important;
+    font-family: var(--font-tiktok-sans-condensed), var(--font-sans);
+    font-size: clamp(3rem, 7vw, 6.25rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.88;
+    text-transform: uppercase;
+  }
+
+  .brand-type-details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35rem 1rem;
+    color: var(--bb-text-on-base-subtle);
+    font-size: 0.875rem;
+  }
+
+  .brand-type-details strong {
+    color: var(--bb-text-on-base);
+    font-weight: 600;
+  }
+
+  .brand-type-body-sample {
+    max-width: 30rem;
+    margin: 0;
+    color: var(--bb-text-body) !important;
+    font-size: clamp(1.35rem, 2.6vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .brand-type-weight-samples {
+    display: grid;
+    gap: 0.5rem;
+    color: var(--bb-text-body);
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .brand-color-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .brand-hero__inner {
+      padding-block: 4rem;
+    }
+
+    .brand-logo-grid,
+    .brand-type-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-color-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .brand-logo-preview {
+      min-height: 11rem;
+    }
+
+    .brand-color-swatch {
+      min-height: 5.5rem;
+    }
+
+    .brand-color-content {
+      min-height: 9.5rem;
+      padding: 1rem;
+    }
+
+    .brand-color-role {
+      min-height: 3.75rem;
+      font-size: 0.8125rem;
+    }
+
+    .brand-type-card {
+      min-height: 19rem;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .brand-color-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-jump-links a,
+    .brand-download-links a,
+    .brand-color-card {
+      transition: none;
+    }
+  }
+</style>

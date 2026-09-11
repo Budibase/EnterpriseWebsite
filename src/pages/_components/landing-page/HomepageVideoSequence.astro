@@ -1,0 +1,374 @@
+---
+import HeroVideo from "@assets/videos/homepage-windfarm-test.mp4?url";
+import GenStudioVideo from "@assets/videos/adobe-hero-genstudio.mp4?url";
+import HeroPoster from "@assets/videos/homepage-windfarm-test-poster.jpg?url";
+---
+
+<div
+  class="homepage-video-sequence"
+  data-homepage-video-sequence
+  aria-hidden="true"
+>
+  <img
+    class="homepage-video-sequence__poster"
+    src={HeroPoster}
+    alt=""
+    loading="eager"
+    decoding="async"
+    fetchpriority="high"
+  />
+  <video
+    class="homepage-video-sequence__video is-active"
+    data-homepage-video
+    data-video-id="wind-farm"
+    autoplay
+    muted
+    playsinline
+    preload="metadata"
+    poster={HeroPoster}
+    disablepictureinpicture
+  >
+    <source src={HeroVideo} type="video/mp4" />
+  </video>
+  <video
+    class="homepage-video-sequence__video"
+    data-homepage-video
+    data-video-id="genstudio"
+    muted
+    playsinline
+    preload="none"
+    disablepictureinpicture
+  >
+    <source src={GenStudioVideo} type="video/mp4" />
+  </video>
+</div>
+
+<script>
+  const setupHomepageVideoSequence = (sequence: HTMLElement) => {
+    if (sequence.dataset.initialized === "true") {
+      return;
+    }
+
+    const videos = Array.from(
+      sequence.querySelectorAll<HTMLVideoElement>("[data-homepage-video]"),
+    );
+
+    if (!videos.length) {
+      return;
+    }
+
+    sequence.dataset.initialized = "true";
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const segmentDuration = 3000;
+    const transitionDuration = 400;
+    const failedVideos = new Set<HTMLVideoElement>();
+    let activeIndex = 0;
+    let transitionToken = 0;
+    let sequenceTimer: number | undefined;
+    let transitionTimer: number | undefined;
+
+    const clearSequenceTimer = () => {
+      if (sequenceTimer !== undefined) {
+        window.clearTimeout(sequenceTimer);
+        sequenceTimer = undefined;
+      }
+    };
+
+    const clearTransitionTimer = () => {
+      if (transitionTimer !== undefined) {
+        window.clearTimeout(transitionTimer);
+        transitionTimer = undefined;
+      }
+    };
+
+    const pauseAndRewind = (video: HTMLVideoElement) => {
+      video.pause();
+      if (video.readyState > HTMLMediaElement.HAVE_NOTHING) {
+        video.currentTime = 0;
+      }
+    };
+
+    const clearVideoState = (video: HTMLVideoElement) => {
+      video.classList.remove("is-active", "is-incoming", "is-outgoing");
+    };
+
+    const showPoster = () => {
+      clearSequenceTimer();
+      clearTransitionTimer();
+      videos.forEach((video) => {
+        pauseAndRewind(video);
+        clearVideoState(video);
+      });
+    };
+
+    const prepareVideo = (video: HTMLVideoElement) => {
+      video.muted = true;
+      if (video.preload === "none") {
+        video.preload = "auto";
+        video.load();
+      }
+    };
+
+    const playFromStart = async (video: HTMLVideoElement) => {
+      prepareVideo(video);
+      if (video.readyState > HTMLMediaElement.HAVE_NOTHING) {
+        video.currentTime = 0;
+      }
+      await video.play();
+    };
+
+    const findNextAvailableIndex = (fromIndex: number) => {
+      for (let offset = 1; offset <= videos.length; offset += 1) {
+        const candidateIndex = (fromIndex + offset) % videos.length;
+        const candidate = videos[candidateIndex];
+        if (candidate && !failedVideos.has(candidate)) {
+          return candidateIndex;
+        }
+      }
+
+      return -1;
+    };
+
+    const warmNextVideo = () => {
+      const nextIndex = findNextAvailableIndex(activeIndex);
+      const nextVideo = videos[nextIndex];
+      if (nextIndex !== activeIndex && nextVideo) {
+        prepareVideo(nextVideo);
+      }
+    };
+
+    const scheduleNextVideo = () => {
+      clearSequenceTimer();
+
+      if (reducedMotion.matches || activeIndex < 0) {
+        return;
+      }
+
+      sequenceTimer = window.setTimeout(() => {
+        sequenceTimer = undefined;
+        void advanceSequence();
+      }, segmentDuration);
+    };
+
+    const startSequence = async () => {
+      const firstVideo = videos[0];
+      if (!firstVideo || reducedMotion.matches) {
+        showPoster();
+        return;
+      }
+
+      const currentToken = ++transitionToken;
+      clearSequenceTimer();
+      clearTransitionTimer();
+      videos.forEach((video, index) => {
+        if (index !== 0) {
+          pauseAndRewind(video);
+        }
+        clearVideoState(video);
+      });
+
+      activeIndex = 0;
+      firstVideo.classList.add("is-active");
+      firstVideo.muted = true;
+
+      try {
+        if (firstVideo.readyState > HTMLMediaElement.HAVE_NOTHING) {
+          firstVideo.currentTime = 0;
+        }
+        await firstVideo.play();
+      } catch {
+        if (currentToken === transitionToken) {
+          showPoster();
+        }
+        return;
+      }
+
+      if (currentToken !== transitionToken) {
+        firstVideo.pause();
+        return;
+      }
+
+      warmNextVideo();
+      scheduleNextVideo();
+    };
+
+    const advanceSequence = async () => {
+      clearSequenceTimer();
+
+      if (reducedMotion.matches) {
+        showPoster();
+        return;
+      }
+
+      const outgoingVideo = videos[activeIndex];
+      const nextIndex = findNextAvailableIndex(activeIndex);
+      const incomingVideo = videos[nextIndex];
+
+      if (!outgoingVideo || !incomingVideo || nextIndex < 0) {
+        showPoster();
+        return;
+      }
+
+      if (incomingVideo === outgoingVideo) {
+        try {
+          await playFromStart(outgoingVideo);
+          scheduleNextVideo();
+        } catch {
+          showPoster();
+        }
+        return;
+      }
+
+      const currentToken = ++transitionToken;
+      clearTransitionTimer();
+      clearVideoState(incomingVideo);
+      incomingVideo.classList.add("is-incoming");
+
+      try {
+        await playFromStart(incomingVideo);
+      } catch {
+        failedVideos.add(incomingVideo);
+        clearVideoState(incomingVideo);
+
+        if (!failedVideos.has(outgoingVideo)) {
+          try {
+            await playFromStart(outgoingVideo);
+            outgoingVideo.classList.add("is-active");
+            scheduleNextVideo();
+          } catch {
+            failedVideos.add(outgoingVideo);
+            showPoster();
+          }
+        } else {
+          showPoster();
+        }
+        return;
+      }
+
+      if (currentToken !== transitionToken || reducedMotion.matches) {
+        pauseAndRewind(incomingVideo);
+        clearVideoState(incomingVideo);
+        return;
+      }
+
+      void incomingVideo.offsetWidth;
+      outgoingVideo.classList.remove("is-active");
+      outgoingVideo.classList.add("is-outgoing");
+      incomingVideo.classList.remove("is-incoming");
+      incomingVideo.classList.add("is-active");
+      activeIndex = nextIndex;
+
+      transitionTimer = window.setTimeout(() => {
+        clearVideoState(outgoingVideo);
+        pauseAndRewind(outgoingVideo);
+        transitionTimer = undefined;
+      }, transitionDuration);
+
+      warmNextVideo();
+      scheduleNextVideo();
+    };
+
+    videos.forEach((video, index) => {
+      video.muted = true;
+
+      video.addEventListener("ended", () => {
+        if (videos[activeIndex] === video) {
+          void advanceSequence();
+        }
+      });
+
+      video.addEventListener("error", () => {
+        failedVideos.add(video);
+        if (videos[activeIndex] === video && index === activeIndex) {
+          void advanceSequence();
+        }
+      });
+    });
+
+    const respectMotionPreference = () => {
+      transitionToken += 1;
+      if (reducedMotion.matches) {
+        showPoster();
+      } else {
+        void startSequence();
+      }
+    };
+
+    reducedMotion.addEventListener("change", respectMotionPreference);
+    respectMotionPreference();
+  };
+
+  document
+    .querySelectorAll<HTMLElement>("[data-homepage-video-sequence]")
+    .forEach(setupHomepageVideoSequence);
+</script>
+
+<style>
+  .homepage-video-sequence {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .homepage-video-sequence__poster,
+  .homepage-video-sequence__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.82) contrast(1.04);
+  }
+
+  .homepage-video-sequence__poster,
+  .homepage-video-sequence__video[data-video-id="wind-farm"] {
+    object-position: center 48%;
+  }
+
+  .homepage-video-sequence__poster {
+    z-index: 0;
+  }
+
+  .homepage-video-sequence__video {
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 400ms ease;
+    will-change: opacity;
+  }
+
+  .homepage-video-sequence__video.is-active {
+    z-index: 3;
+    opacity: 1;
+  }
+
+  .homepage-video-sequence__video.is-incoming {
+    z-index: 4;
+    opacity: 0;
+  }
+
+  .homepage-video-sequence__video.is-outgoing {
+    z-index: 3;
+    opacity: 0;
+  }
+
+  @media (max-width: 767px) {
+    .homepage-video-sequence__poster,
+    .homepage-video-sequence__video[data-video-id="wind-farm"] {
+      object-position: 58% center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .homepage-video-sequence__video {
+      display: none;
+      transition: none;
+    }
+
+    .homepage-video-sequence__poster {
+      filter: saturate(0.75) contrast(1.02);
+    }
+  }
+</style>

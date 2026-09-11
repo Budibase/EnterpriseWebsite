@@ -334,6 +334,13 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
       heading: "Company",
       items: [
         {
+          href: "/partners/",
+          label: "Partners",
+          description:
+            "Find a delivery partner or join the Budibase partner network.",
+          prefetch: true,
+        },
+        {
           href: "https://github.com/orgs/Budibase/projects/15/views/7",
           label: "Roadmap",
           description: "See what the Budibase team is building.",
@@ -391,7 +398,8 @@ export const companyDropdownMenu: NavDropdownMenu = {
         {
           href: "/partners/",
           label: "Partners",
-          description: "Work with the Budibase partner team.",
+          description:
+            "Find a delivery partner or join the Budibase partner network.",
           prefetch: true,
         },
         {

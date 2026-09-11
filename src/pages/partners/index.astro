@@ -1,396 +1,1055 @@
 ---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import MagnifyingGlass from "phosphor-astro/MagnifyingGlass.astro";
+import Button from "@components/Button.astro";
+import Icon from "@components/Icon.astro";
 import Layout from "../../layouts/MainLayout.astro";
+import { partnerRegions, partnerServices } from "../../data/partnerDirectory";
+import PartnerNetworkDiagram from "./_components/PartnerNetworkDiagram.astro";
 
-const pageTitle = "Become a Partner";
+const pageTitle = "Budibase Partner Network";
 const pageDescription =
-  "Join our growing ecosystem of developers and agencies.";
+  "Find a Budibase delivery partner or join the partner network helping enterprise IT build and run operational software.";
+
+const partners = (await getCollection("partners")).sort((a, b) => {
+  const featuredDifference = Number(b.data.featured) - Number(a.data.featured);
+  if (featuredDifference !== 0) return featuredDifference;
+
+  const orderDifference = a.data.order - b.data.order;
+  if (orderDifference !== 0) return orderDifference;
+
+  return a.data.name.localeCompare(b.data.name, "en");
+});
+
+const reasons = [
+  {
+    icon: "PlugsConnected",
+    title: "Build around the existing estate",
+    description:
+      "Connect operational software to the databases, APIs, services, and systems your customers already depend on.",
+  },
+  {
+    icon: "CloudCheck",
+    title: "Meet deployment requirements",
+    description:
+      "Support cloud and self-hosted delivery models shaped by each customer's architecture, policy, and data requirements.",
+  },
+  {
+    icon: "ShieldCheck",
+    title: "Deliver faster without losing control",
+    description:
+      "Give IT a faster way to ship while retaining permissions, publishing control, ownership, and human oversight.",
+  },
+];
+
+const deliveryServices = [
+  {
+    icon: "Path",
+    title: "Discovery and solution design",
+    description:
+      "Turn operational requirements into a practical delivery plan around the customer's environment.",
+  },
+  {
+    icon: "AppWindow",
+    title: "Apps, automations and agents",
+    description:
+      "Build the interfaces and workflows teams need to complete consequential operational work.",
+  },
+  {
+    icon: "PlugsConnected",
+    title: "Data and API integration",
+    description:
+      "Connect private data and existing services without creating another disconnected system of record.",
+  },
+  {
+    icon: "CloudCheck",
+    title: "Deployment and self-hosting",
+    description:
+      "Fit Budibase into the infrastructure, security boundaries, and operating model the customer requires.",
+  },
+  {
+    icon: "Headset",
+    title: "Managed services and support",
+    description:
+      "Help customers maintain, improve, and operate the software their teams depend on.",
+  },
+  {
+    icon: "Users",
+    title: "Training and enablement",
+    description:
+      "Equip customer teams to own the platform and keep delivering safely after the first release.",
+  },
+];
+
+const enablementItems = [
+  "Product resources that support credible customer delivery",
+  "Technical guidance from people who understand the platform",
+  "Joint planning for suitable customer opportunities",
+  "Selective co-marketing around approved work and evidence",
+];
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <section class="contact-page">
-    <div class="contact-shell">
-      <div class="contact-grid">
-        <div class="contact-copy">
-          <h1 class="contact-title">Become a partner</h1>
-          <p class="contact-lede">
-            Join our growing ecosystem of developers and agencies.
-          </p>
-          <p class="contact-lede">
-            As a Budibase partner, you'll connect with clients who need your
-            expertise to build their workflows in Budibase.
-          </p>
-
-          <div class="contact-topics" aria-label="Reasons to speak to sales">
-            <article class="contact-topic">
-              <div class="contact-topic__icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="26"
-                  height="26"
-                  fill="none"
-                  focusable="false"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    fill="currentColor"
-                    d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"
-                  ></path>
-                </svg>
-              </div>
-              <div class="contact-topic__body">
-                <h2>Insider Track</h2>
-                <p>
-                  Get priority access to new platform features and exclusive
-                  resources.
-                </p>
-              </div>
-            </article>
-
-            <article class="contact-topic">
-              <div class="contact-topic__icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="26"
-                  height="26"
-                  fill="none"
-                  focusable="false"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    fill="currentColor"
-                    d="M240,56v64a8,8,0,0,1-16,0V75.31l-82.34,82.35a8,8,0,0,1-11.32,0L96,123.31,29.66,189.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0L136,140.69,212.69,64H168a8,8,0,0,1,0-16h64A8,8,0,0,1,240,56Z"
-                  ></path>
-                </svg>
-              </div>
-              <div class="contact-topic__body">
-                <h2>Grow with us</h2>
-                <p>
-                  Grow your business with co-marketing opportunities and revenue
-                  sharing.
-                </p>
-              </div>
-            </article>
-
-            <article class="contact-topic">
-              <div class="contact-topic__icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="26"
-                  height="26"
-                  fill="none"
-                  focusable="false"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    fill="currentColor"
-                    d="M201.89,54.66A103.43,103.43,0,0,0,128.79,24H128A104,104,0,0,0,24,128v56a24,24,0,0,0,24,24H64a24,24,0,0,0,24-24V144a24,24,0,0,0-24-24H40.36A88.12,88.12,0,0,1,190.54,65.93,87.39,87.39,0,0,1,215.65,120H192a24,24,0,0,0-24,24v40a24,24,0,0,0,24,24h24a24,24,0,0,1-24,24H136a8,8,0,0,0,0,16h56a40,40,0,0,0,40-40V128A103.41,103.41,0,0,0,201.89,54.66ZM64,136a8,8,0,0,1,8,8v40a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V136Zm128,56a8,8,0,0,1-8-8V144a8,8,0,0,1,8-8h24v56Z"
-                  ></path>
-                </svg>
-              </div>
-              <div class="contact-topic__body">
-                <h2>Priority Support</h2>
-                <p>
-                  We treat you like one of our own, with access to our support
-                  and product team.
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <p class="contact-support">
-            Looking for support?
-            <a href="/support">Visit our support policy</a>
-            or
-            <a href="https://docs.budibase.com">open the docs</a>
-          </p>
-        </div>
-
-        <div class="contact-form-column">
-          <form
-            class="contact-form"
-            name="partners"
-            method="post"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-          >
-            <p class="contact-form__honeypot">
-              <label>
-                Don't fill this out if you're human:
-                <input name="bot-field" type="text" tabindex="-1" />
-              </label>
-            </p>
-
-            <label class="contact-field">
-              <span>Name</span>
-              <input type="text" name="name" autocomplete="name" />
-            </label>
-
-            <label class="contact-field">
-              <span>Email Address</span>
-              <input type="email" name="email" autocomplete="email" />
-            </label>
-
-            <label class="contact-field">
-              <span>Company Name</span>
-              <input
-                type="text"
-                name="company_name"
-                autocomplete="organization"
-              />
-            </label>
-
-            <label class="contact-field">
-              <span>Additional Information</span>
-              <textarea name="message"></textarea>
-            </label>
-
-            <button type="submit" class="contact-submit">Submit</button>
-          </form>
+<Layout title={pageTitle} description={pageDescription} navTheme="brand-dark">
+  <section class="partners-hero">
+    <div class="partners-shell partners-hero__grid">
+      <div class="partners-hero__copy">
+        <p class="partners-eyebrow">Budibase partner network</p>
+        <h1>Find the right partner to deliver with Budibase</h1>
+        <p class="partners-hero__lede">
+          Work with experienced delivery partners to plan, build, integrate,
+          deploy, and support the software behind your operations.
+        </p>
+        <div class="partners-actions">
+          <Button
+            label="Find a partner"
+            url="#find-a-partner"
+            variant="bright-on-dark"
+            size="large"
+          />
+          <Button
+            label="Become a partner"
+            url="#become-a-partner"
+            variant="outline-on-dark"
+            size="large"
+          />
         </div>
       </div>
+
+      <PartnerNetworkDiagram />
+    </div>
+  </section>
+
+  <section id="find-a-partner" class="partners-directory" data-partner-root>
+    <div class="partners-shell">
+      <header class="partners-section-heading">
+        <p class="partners-eyebrow partners-eyebrow--light">
+          Partner directory
+        </p>
+        <h2>Find a Budibase partner</h2>
+        <p>
+          Explore the Budibase partner network by region and delivery expertise.
+        </p>
+      </header>
+
+      {
+        partners.length > 0 ? (
+          <>
+            <div class="partner-filters" aria-label="Partner directory filters">
+              <label class="partner-filter partner-filter--search">
+                <span>Search partners</span>
+                <span class="partner-search-control">
+                  <MagnifyingGlass width={18} height={18} aria-hidden="true" />
+                  <input
+                    type="search"
+                    placeholder="Search by name"
+                    autocomplete="off"
+                    data-partner-search
+                  />
+                </span>
+              </label>
+
+              <label class="partner-filter">
+                <span>Region</span>
+                <select data-partner-region>
+                  <option value="all">All regions</option>
+                  {partnerRegions.map((region) => (
+                    <option value={region}>{region}</option>
+                  ))}
+                </select>
+              </label>
+
+              <label class="partner-filter">
+                <span>Service</span>
+                <select data-partner-service>
+                  <option value="all">All services</option>
+                  {partnerServices.map((service) => (
+                    <option value={service}>{service}</option>
+                  ))}
+                </select>
+              </label>
+
+              <button
+                type="button"
+                class="partner-filter-reset"
+                data-partner-reset
+              >
+                Clear filters
+              </button>
+            </div>
+
+            <p
+              class="partner-result-count"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <span data-partner-count>{partners.length}</span>{" "}
+              <span data-partner-count-label>
+                {partners.length === 1 ? "partner" : "partners"}
+              </span>
+            </p>
+
+            <div class="partner-grid" data-partner-grid>
+              {partners.map((partner) => (
+                <article
+                  class="partner-card"
+                  data-partner-card
+                  data-partner-name={partner.data.name.toLowerCase()}
+                  data-partner-regions={partner.data.regions.join("|")}
+                  data-partner-services={partner.data.services.join("|")}
+                >
+                  <div class="partner-card__logo">
+                    <Image
+                      src={partner.data.logo}
+                      alt={`${partner.data.name} logo`}
+                      width={180}
+                      height={72}
+                      fit="contain"
+                    />
+                  </div>
+                  <div class="partner-card__body">
+                    <h3>{partner.data.name}</h3>
+                    <p>{partner.data.summary}</p>
+                  </div>
+                  <div class="partner-card__metadata">
+                    <div>
+                      <span class="partner-card__meta-label">Regions</span>
+                      <ul aria-label={`${partner.data.name} regions`}>
+                        {partner.data.regions.map((region) => (
+                          <li>{region}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <span class="partner-card__meta-label">Services</span>
+                      <ul aria-label={`${partner.data.name} services`}>
+                        {partner.data.services.map((service) => (
+                          <li>{service}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <a
+                    class="partner-card__link"
+                    href={partner.data.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit partner website
+                    <Icon name="ArrowUpRight" size="18" />
+                  </a>
+                </article>
+              ))}
+            </div>
+
+            <div class="partner-empty" data-partner-empty hidden>
+              <h3>No partners match those filters</h3>
+              <p>Clear the filters or tell us what you need and we can help.</p>
+              <Button
+                label="Talk to Budibase"
+                url="/contact/?op=find-a-partner#book-a-call"
+                variant="cta"
+              />
+            </div>
+          </>
+        ) : (
+          <div class="partner-empty partner-empty--initial">
+            <h3>Partner profiles are being prepared</h3>
+            <p>
+              Tell us what you need and our team will help you identify a
+              suitable delivery partner.
+            </p>
+            <Button
+              label="Talk to Budibase"
+              url="/contact/?op=find-a-partner#book-a-call"
+              variant="cta"
+            />
+          </div>
+        )
+      }
+
+      <aside class="partner-match">
+        <div>
+          <p class="partners-eyebrow partners-eyebrow--light">
+            Partner matching
+          </p>
+          <h3>Not sure where to start?</h3>
+          <p>
+            Tell us about your environment, delivery needs, and location. We’ll
+            help you identify a suitable route forward.
+          </p>
+        </div>
+        <Button
+          label="Talk to Budibase"
+          url="/contact/?op=find-a-partner#book-a-call"
+          variant="cta"
+          size="large"
+        />
+      </aside>
+    </div>
+  </section>
+
+  <section id="become-a-partner" class="partners-proposition">
+    <div class="partners-shell">
+      <div class="partners-proposition__intro">
+        <p class="partners-eyebrow partners-eyebrow--light">
+          For delivery teams
+        </p>
+        <h2>Help enterprise IT deliver more</h2>
+        <p>
+          Use Budibase to build and run secure operational apps, automations,
+          and agents around your customers’ existing systems—without taking
+          ownership or control away from their IT teams.
+        </p>
+      </div>
+
+      <div class="partner-reason-grid">
+        {
+          reasons.map((reason) => (
+            <article class="partner-reason-card">
+              <span aria-hidden="true">
+                <Icon name={reason.icon} size="25" />
+              </span>
+              <h3>{reason.title}</h3>
+              <p>{reason.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="partners-services">
+    <div class="partners-shell partners-services__grid">
+      <header class="partners-section-heading partners-services__heading">
+        <p class="partners-eyebrow partners-eyebrow--light">
+          Delivery services
+        </p>
+        <h2>Own more of the customer outcome</h2>
+        <p>
+          Budibase gives delivery teams a flexible foundation for work that
+          spans discovery, implementation, integration, and ongoing operation.
+        </p>
+      </header>
+
+      <div class="partner-service-list">
+        {
+          deliveryServices.map((service, index) => (
+            <article class="partner-service-item">
+              <span class="partner-service-item__number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span class="partner-service-item__icon" aria-hidden="true">
+                <Icon name={service.icon} size="22" />
+              </span>
+              <div>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="partners-enablement">
+    <div class="partners-shell partners-enablement__grid">
+      <div>
+        <p class="partners-eyebrow">Partner enablement</p>
+        <h2>Work closely with the people behind Budibase</h2>
+        <p>
+          The partner network is designed to support credible customer delivery
+          while giving each partner room to bring its own expertise and service
+          model.
+        </p>
+      </div>
+      <ul>
+        {
+          enablementItems.map((item) => (
+            <li>
+              <Icon name="CheckCircle" size="22" />
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="partners-final-cta">
+    <div class="partners-shell partners-final-cta__inner">
+      <div>
+        <p class="partners-eyebrow partners-eyebrow--light">Become a partner</p>
+        <h2>Build the partner network with us</h2>
+        <p>
+          If you help enterprise IT design, deliver, integrate, deploy, or
+          operate business software, we’d like to understand how we can work
+          together.
+        </p>
+      </div>
+      <Button
+        label="Talk to the partner team"
+        url="/contact/?op=become-a-partner#book-a-call"
+        variant="cta"
+        size="large"
+      />
     </div>
   </section>
 </Layout>
 
+<script is:inline>
+  (() => {
+    const initPartnerDirectory = () => {
+      const root = document.querySelector("[data-partner-root]");
+      if (!(root instanceof HTMLElement)) return;
+      if (root.dataset.partnerDirectoryReady === "true") return;
+
+      const search = root.querySelector("[data-partner-search]");
+      const region = root.querySelector("[data-partner-region]");
+      const service = root.querySelector("[data-partner-service]");
+      const reset = root.querySelector("[data-partner-reset]");
+      const count = root.querySelector("[data-partner-count]");
+      const countLabel = root.querySelector("[data-partner-count-label]");
+      const empty = root.querySelector("[data-partner-empty]");
+      const cards = Array.from(root.querySelectorAll("[data-partner-card]"));
+
+      if (
+        !(search instanceof HTMLInputElement) ||
+        !(region instanceof HTMLSelectElement) ||
+        !(service instanceof HTMLSelectElement) ||
+        !(reset instanceof HTMLButtonElement) ||
+        !(count instanceof HTMLElement) ||
+        !(countLabel instanceof HTMLElement) ||
+        !(empty instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      root.dataset.partnerDirectoryReady = "true";
+
+      const applyFilters = () => {
+        const query = search.value.trim().toLowerCase();
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          if (!(card instanceof HTMLElement)) return;
+
+          const regions = (card.dataset.partnerRegions ?? "").split("|");
+          const services = (card.dataset.partnerServices ?? "").split("|");
+          const matchesName = (card.dataset.partnerName ?? "").includes(query);
+          const matchesRegion =
+            region.value === "all" || regions.includes(region.value);
+          const matchesService =
+            service.value === "all" || services.includes(service.value);
+          const isVisible = matchesName && matchesRegion && matchesService;
+
+          card.hidden = !isVisible;
+          if (isVisible) visibleCount += 1;
+        });
+
+        count.textContent = String(visibleCount);
+        countLabel.textContent = visibleCount === 1 ? "partner" : "partners";
+        empty.hidden = visibleCount > 0;
+      };
+
+      search.addEventListener("input", applyFilters);
+      region.addEventListener("change", applyFilters);
+      service.addEventListener("change", applyFilters);
+      reset.addEventListener("click", () => {
+        search.value = "";
+        region.value = "all";
+        service.value = "all";
+        search.focus();
+        applyFilters();
+      });
+
+      applyFilters();
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initPartnerDirectory, {
+        once: true,
+      });
+    } else {
+      initPartnerDirectory();
+    }
+
+    document.addEventListener("astro:after-swap", initPartnerDirectory);
+  })();
+</script>
+
 <style>
-  .contact-page {
-    background: rgb(var(--bg));
-    color: rgb(var(--text));
+  .partners-shell {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
   }
 
-  .contact-shell {
-    width: min(100%, 1240px);
-    margin: 0 auto;
-    padding: clamp(2rem, 3vw, 2.75rem) 1rem clamp(3.5rem, 6vw, 5rem);
-  }
-
-  .contact-grid {
-    display: grid;
-    gap: clamp(2.75rem, 5vw, 6rem);
-    align-items: start;
-  }
-
-  .contact-title {
+  .partners-eyebrow {
     margin: 0;
-    color: rgb(var(--text));
-    font-size: clamp(3.5rem, 7vw, 4.6rem);
-    line-height: 0.96;
-    letter-spacing: -0.05em;
+    color: var(--bb-brand-bright-green) !important;
+    font-size: 0.78rem;
     font-weight: 700;
-  }
-
-  .contact-lede {
-    margin: 1.75rem 0 0;
-    max-width: 28rem;
-    color: rgb(var(--text));
-    font-size: clamp(1.25rem, 2vw, 1.45rem);
-    line-height: 1.35;
-  }
-
-  .contact-topics {
-    margin-top: 2.25rem;
-    border: 1px solid rgb(var(--border) / 0.4);
-    border-radius: 1rem;
-    background: rgb(var(--surface) / 0.52);
-    overflow: hidden;
-  }
-
-  .contact-topic {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    padding: 1.7rem 1.65rem;
-  }
-
-  .contact-topic + .contact-topic {
-    border-top: 1px solid rgb(var(--border) / 0.22);
-  }
-
-  .contact-topic__icon {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    color: rgb(var(--text));
-  }
-
-  .contact-topic__icon svg {
-    width: 1.95rem;
-    height: 1.95rem;
-  }
-
-  .contact-topic__body h2 {
-    margin: 0;
-    color: rgb(var(--text));
-    font-size: clamp(1.05rem, 1.5vw, 1.15rem);
+    letter-spacing: 0.11em;
     line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .partners-eyebrow--light {
+    color: var(--bb-celery-900) !important;
+  }
+
+  .partners-hero {
+    margin-top: calc(-1 * var(--site-nav-bar-height));
+    padding-top: var(--site-nav-bar-height);
+    background: var(--bb-celery-1300);
+    color: var(--bb-celery-100);
+  }
+
+  .partners-hero__grid {
+    display: grid;
+    min-height: min(49rem, 86vh);
+    align-items: center;
+    gap: clamp(3rem, 7vw, 6.75rem);
+    padding-block: clamp(4rem, 8vw, 7.5rem);
+  }
+
+  .partners-hero__copy h1 {
+    max-width: 12ch;
+    margin: 1rem 0 0;
+    color: var(--bb-celery-100);
+    font-size: clamp(3.4rem, 7vw, 5.9rem);
     font-weight: 700;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
   }
 
-  .contact-topic__body p {
-    margin: 0.6rem 0 0;
-    max-width: 31rem;
-    color: rgb(var(--text));
-    font-size: 1rem;
-    line-height: 1.45;
-  }
-
-  .contact-support {
-    margin: 1.5rem 0 0;
-    color: rgb(var(--text));
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
+  .partners-hero__lede {
+    max-width: 37rem;
+    margin: 1.7rem 0 0;
+    color: var(--bb-celery-200) !important;
+    font-size: clamp(1.15rem, 2vw, 1.38rem);
     line-height: 1.5;
   }
 
-  .contact-support a {
-    color: inherit;
-    font-weight: 700;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.12em;
+  .partners-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2rem;
   }
 
-  .contact-support a:hover,
-  .contact-support a:focus-visible {
-    text-decoration-thickness: 2px;
+  .partners-directory,
+  .partners-proposition,
+  .partners-services,
+  .partners-final-cta {
+    background: var(--bg-1);
+    color: var(--text-primary);
   }
 
-  .contact-form-column {
-    padding-top: 0.35rem;
+  .partners-directory,
+  .partners-proposition,
+  .partners-services,
+  .partners-enablement,
+  .partners-final-cta {
+    padding-block: clamp(4.75rem, 9vw, 8rem);
   }
 
-  .contact-field input:focus-visible,
-  .contact-field textarea:focus-visible,
-  .contact-submit:focus-visible {
-    outline: 2px solid rgb(var(--ring));
-    outline-offset: 3px;
+  .partners-section-heading h2,
+  .partners-proposition__intro h2,
+  .partners-services__heading h2,
+  .partners-enablement h2,
+  .partners-final-cta h2 {
+    margin: 0.85rem 0 0;
+    font-size: clamp(2.5rem, 5vw, 4.15rem);
+    letter-spacing: -0.045em;
+    line-height: 0.98;
   }
 
-  .contact-form {
-    margin-top: 0;
+  .partners-section-heading > p:last-child,
+  .partners-proposition__intro > p:last-child,
+  .partners-services__heading > p:last-child,
+  .partners-final-cta__inner > div > p:last-child {
+    max-width: 45rem;
+    margin: 1.2rem 0 0;
+    color: var(--bb-text-body);
+    font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+    line-height: 1.55;
   }
 
-  .contact-form__honeypot {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  .contact-field {
+  .partner-filters {
     display: grid;
-    gap: 0.65rem;
-    margin: 0;
+    grid-template-columns:
+      minmax(14rem, 1.45fr) repeat(2, minmax(11rem, 1fr))
+      auto;
+    align-items: end;
+    gap: 0.9rem;
+    margin-top: 2.5rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.9rem;
+    background: var(--bg-2);
   }
 
-  .contact-field + .contact-field {
-    margin-top: 1.55rem;
+  .partner-filter {
+    display: grid;
+    min-width: 0;
+    gap: 0.45rem;
   }
 
-  .contact-field span {
-    color: rgb(var(--text));
-    font-size: 0.98rem;
+  .partner-filter > span:first-child {
+    color: var(--text-primary);
+    font-size: 0.82rem;
     font-weight: 700;
-    line-height: 1.2;
   }
 
-  .contact-field input,
-  .contact-field textarea {
+  .partner-search-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .partner-search-control :global(svg) {
+    position: absolute;
+    left: 0.85rem;
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+    color: var(--text-secondary);
+    pointer-events: none;
+  }
+
+  .partner-filter input,
+  .partner-filter select {
     width: 100%;
-    border: 1px solid rgb(var(--border) / 0.92);
+    min-height: 2.85rem;
+    border: 1px solid var(--border-color);
     border-radius: 0.55rem;
-    background: transparent;
-    color: rgb(var(--text));
+    background: var(--bg-1);
+    color: var(--text-primary);
     font: inherit;
-    transition:
-      border-color 150ms ease,
-      box-shadow 150ms ease,
-      background-color 150ms ease;
   }
 
-  .contact-field input {
-    min-height: 3.1rem;
-    padding: 0 0.95rem;
+  .partner-filter input {
+    padding: 0 0.85rem 0 2.65rem;
   }
 
-  .contact-field textarea {
-    min-height: 10.6rem;
-    resize: vertical;
-    padding: 0.9rem 0.95rem;
+  .partner-filter select {
+    padding: 0 2.4rem 0 0.85rem;
   }
 
-  .contact-field input:hover,
-  .contact-field textarea:hover {
-    border-color: rgb(var(--border-strong) / 0.9);
+  .partner-filter input:focus-visible,
+  .partner-filter select:focus-visible,
+  .partner-filter-reset:focus-visible,
+  .partner-card__link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--bb-brand-bright-green) 55%, transparent);
   }
 
-  .contact-field input::placeholder,
-  .contact-field textarea::placeholder {
-    color: rgb(var(--text-subtle));
-  }
-
-  .contact-submit {
-    margin-top: 2.2rem;
-    border: 0;
+  .partner-filter-reset {
+    min-height: 2.85rem;
+    padding: 0 1rem;
+    border: 1px solid var(--border-color);
     border-radius: 999px;
-    background: rgb(var(--text));
-    color: rgb(var(--bg));
-    min-height: 3.35rem;
-    padding: 0 1.45rem;
+    background: var(--bg-1);
+    color: var(--text-primary);
     font: inherit;
-    font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition:
-      transform 150ms ease,
-      opacity 150ms ease;
   }
 
-  .contact-submit:hover {
-    transform: translateY(-1px);
-    opacity: 0.94;
+  .partner-filter-reset:hover {
+    background: color-mix(in srgb, var(--bg-1) 65%, var(--bg-2));
   }
 
-  @media (min-width: 1024px) {
-    .contact-grid {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  .partner-result-count {
+    margin: 1rem 0 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .partner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .partner-card {
+    display: flex;
+    min-width: 0;
+    min-height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 0.9rem;
+    background: var(--bg-1);
+  }
+
+  .partner-card[hidden] {
+    display: none;
+  }
+
+  .partner-card__logo {
+    display: flex;
+    min-height: 8rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background: color-mix(in srgb, var(--bg-1) 75%, var(--bg-2));
+  }
+
+  .partner-card__logo :global(img) {
+    max-width: 11.25rem;
+    max-height: 4.5rem;
+    object-fit: contain;
+  }
+
+  .partner-card__body,
+  .partner-card__metadata {
+    padding-inline: 1.25rem;
+  }
+
+  .partner-card__body {
+    padding-top: 1.3rem;
+  }
+
+  .partner-card__body h3,
+  .partner-match h3,
+  .partner-empty h3,
+  .partner-reason-card h3,
+  .partner-service-item h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.15rem;
+    letter-spacing: -0.018em;
+    line-height: 1.25;
+  }
+
+  .partner-card__body p,
+  .partner-match p,
+  .partner-empty p,
+  .partner-reason-card p,
+  .partner-service-item p {
+    margin: 0.7rem 0 0;
+    color: var(--bb-text-body);
+    line-height: 1.55;
+  }
+
+  .partner-card__metadata {
+    display: grid;
+    gap: 1rem;
+    margin-top: auto;
+    padding-block: 1.4rem;
+  }
+
+  .partner-card__meta-label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .partner-card__metadata ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .partner-card__metadata li {
+    padding: 0.34rem 0.55rem;
+    border-radius: 999px;
+    background: var(--bg-2);
+    color: var(--text-primary);
+    font-size: 0.76rem;
+    line-height: 1.25;
+  }
+
+  .partner-card__link {
+    display: flex;
+    min-height: 3.4rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .partner-card__link:hover {
+    background: var(--bg-2);
+  }
+
+  .partner-empty {
+    margin-top: 1.25rem;
+    padding: 2rem;
+    border: 1px dashed var(--border-color);
+    border-radius: 0.9rem;
+    background: var(--bg-2);
+    text-align: center;
+  }
+
+  .partner-empty p {
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+
+  .partner-empty :global(a) {
+    margin-top: 1.25rem;
+  }
+
+  .partner-empty--initial {
+    margin-top: 2.5rem;
+  }
+
+  .partner-match {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: 1rem;
+    background: var(--bb-celery-100);
+  }
+
+  .partner-match > div {
+    max-width: 44rem;
+  }
+
+  .partner-match h3 {
+    margin-top: 0.6rem;
+    font-size: clamp(1.55rem, 3vw, 2.2rem);
+  }
+
+  .partners-proposition {
+    border-top: 1px solid var(--border-color);
+  }
+
+  .partners-proposition__intro {
+    max-width: 54rem;
+  }
+
+  .partner-reason-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .partner-reason-card {
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border: 1px solid var(--border-color);
+    border-radius: 0.9rem;
+    background: var(--bg-2);
+  }
+
+  .partner-reason-card > span {
+    display: inline-flex;
+    margin-bottom: 2.5rem;
+    color: var(--bb-celery-900);
+  }
+
+  .partners-services {
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-2);
+  }
+
+  .partners-services__grid {
+    display: grid;
+    gap: clamp(3rem, 8vw, 7rem);
+  }
+
+  .partners-services__heading {
+    align-self: start;
+  }
+
+  .partner-service-list {
+    border-top: 1px solid var(--border-color);
+  }
+
+  .partner-service-item {
+    display: grid;
+    grid-template-columns: 2.4rem 2.4rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: 1.4rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .partner-service-item__number {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .partner-service-item__icon {
+    display: inline-flex;
+    color: var(--bb-celery-900);
+  }
+
+  .partner-service-item p {
+    max-width: 39rem;
+  }
+
+  .partners-enablement {
+    background: var(--bb-celery-1300);
+    color: var(--bb-celery-100);
+  }
+
+  .partners-enablement__grid {
+    display: grid;
+    gap: clamp(3rem, 8vw, 7rem);
+  }
+
+  .partners-enablement h2 {
+    max-width: 13ch;
+    color: var(--bb-celery-100);
+  }
+
+  .partners-enablement p:not(.partners-eyebrow) {
+    max-width: 38rem;
+    margin: 1.2rem 0 0;
+    color: var(--bb-celery-200) !important;
+    font-size: 1.1rem;
+    line-height: 1.55;
+  }
+
+  .partners-enablement ul {
+    display: grid;
+    align-content: center;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .partners-enablement li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--bb-celery-200) 18%, transparent);
+    color: var(--bb-celery-100) !important;
+    line-height: 1.45;
+  }
+
+  .partners-enablement li > span {
+    color: inherit !important;
+  }
+
+  .partners-enablement li:first-child {
+    border-top: 1px solid
+      color-mix(in srgb, var(--bb-celery-200) 18%, transparent);
+  }
+
+  .partners-enablement li :global(svg) {
+    flex: 0 0 auto;
+    color: var(--bb-brand-bright-green);
+  }
+
+  .partners-final-cta__inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .partners-final-cta__inner > div {
+    max-width: 50rem;
+  }
+
+  @media (min-width: 900px) {
+    .partners-hero__grid,
+    .partners-services__grid,
+    .partners-enablement__grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(28rem, 1.1fr);
     }
 
-    .contact-form-column {
-      padding-top: 0.9rem;
+    .partners-services__heading {
+      position: sticky;
+      top: calc(var(--site-nav-height) + 2rem);
     }
   }
 
-  @media (max-width: 767px) {
-    .contact-shell {
-      padding-left: 0.9rem;
-      padding-right: 0.9rem;
+  @media (max-width: 1023px) {
+    .partner-filters {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .contact-title {
-      letter-spacing: -0.04em;
+    .partner-filter--search,
+    .partner-filter-reset {
+      grid-column: 1 / -1;
     }
 
-    .contact-topic {
-      padding: 1.35rem 1.2rem;
+    .partner-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+  }
 
-    .contact-form {
+  @media (max-width: 720px) {
+    .partners-hero {
       margin-top: 0;
+      padding-top: 0;
+    }
+
+    .partners-hero__grid {
+      min-height: 0;
+    }
+
+    .partners-hero__copy h1 {
+      font-size: clamp(3.1rem, 15vw, 4.4rem);
+    }
+
+    .partner-filters,
+    .partner-grid,
+    .partner-reason-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .partner-filter--search,
+    .partner-filter-reset {
+      grid-column: auto;
+    }
+
+    .partner-match,
+    .partners-final-cta__inner {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .partner-match :global(a),
+    .partners-final-cta__inner :global(a) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 440px) {
+    .partners-actions {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .partners-actions :global(a) {
+      width: 100%;
+    }
+
+    .partner-service-item {
+      grid-template-columns: 2rem minmax(0, 1fr);
+    }
+
+    .partner-service-item__icon {
+      display: none;
     }
   }
 </style>

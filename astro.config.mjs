@@ -25,7 +25,6 @@ export default defineConfig({
   redirects: {
     "/agent-space": "/product/agents",
     "/agents/integrations": "/product/connections",
-    "/herovideo": "/samsara",
     "/product": "/product/agents",
     "/product/integrations": "/product/connections",
     "/platform/integrations": "/product/connections",
@@ -67,13 +66,14 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.local(),
-      name: "Geist",
-      cssVariable: "--font-geist",
+      name: "TikTok Sans",
+      cssVariable: "--font-tiktok-sans",
       options: {
         variants: [
           {
-            src: ["./src/assets/fonts/Geist-Variable.woff2"],
-            weight: "100 900",
+            src: ["./src/assets/fonts/TikTokSans-Variable.ttf"],
+            weight: "300 900",
+            stretch: "75% 150%",
             style: "normal",
           },
         ],
@@ -88,39 +88,6 @@ export default defineConfig({
           {
             src: ["./src/assets/fonts/TikTokSans-CondensedBlack.ttf"],
             weight: 900,
-            style: "normal",
-          },
-        ],
-      },
-    },
-    {
-      provider: fontProviders.local(),
-      name: "iA Writer Mono",
-      cssVariable: "--font-ia-writer-mono",
-      options: {
-        variants: [
-          {
-            src: ["./src/assets/fonts/iAWriter-Regular.woff2"],
-            weight: 400,
-            style: "normal",
-          },
-        ],
-      },
-    },
-    {
-      provider: fontProviders.local(),
-      name: "Geist Mono",
-      cssVariable: "--font-geist-mono",
-      options: {
-        variants: [
-          {
-            src: ["./src/assets/fonts/GeistMono-Regular.woff2"],
-            weight: 400,
-            style: "normal",
-          },
-          {
-            src: ["./src/assets/fonts/GeistMono-Medium.woff2"],
-            weight: 500,
             style: "normal",
           },
         ],
