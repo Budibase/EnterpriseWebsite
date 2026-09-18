@@ -1,0 +1,691 @@
+---
+import TitleBlock from "@components/TitleBlock.astro";
+import Icon from "@components/Icon.astro";
+import Button from "@components/Button.astro";
+import PostgresLogo from "@assets/logos/Postgres.svg?url";
+import SAPLogo from "@assets/logos/SAP.svg?url";
+import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
+import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+
+type IconName = "Sparkle" | "Table" | "AppWindow" | "Lightning";
+
+interface SolutionAsset {
+  name: string;
+  type: "Agent" | "App" | "Automation" | "Table" | "API" | "Database";
+  icon?: IconName;
+  iconSrc?: string;
+  iconAlt?: string;
+  iconColor?: string;
+}
+
+interface Solution {
+  id: string;
+  label: string;
+  color: string;
+  overview: string;
+  assets: readonly SolutionAsset[];
+}
+
+const solutions: readonly Solution[] = [
+  {
+    id: "purchase-approvals",
+    label: "Purchase approvals",
+    color: "var(--bb-celery-600)",
+    overview:
+      "Employees submit purchase requests with the items, supplier and cost. Requests are automatically routed to the right approvers based on your approval rules, with employees notified when more information is needed or a decision is made. Approved requests can then be passed to your purchasing system to create the PO.",
+    assets: [
+      {
+        name: "Purchase request portal",
+        type: "App",
+        icon: "AppWindow",
+        iconColor: "var(--bb-orange-700)",
+      },
+      {
+        name: "Approval agent",
+        type: "Agent",
+        icon: "Sparkle",
+        iconColor: "var(--bb-purple-700)",
+      },
+      {
+        name: "Purchase requests",
+        type: "Table",
+        icon: "Table",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "Route purchase approvals",
+        type: "Automation",
+        icon: "Lightning",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "SAP supplier lookup",
+        type: "API",
+        iconSrc: SAPLogo,
+        iconAlt: "SAP",
+      },
+    ],
+  },
+  {
+    id: "factory-inspections",
+    label: "Factory inspections",
+    color: "var(--bb-yellow-600)",
+    overview:
+      "Operators complete scheduled inspections with readings, photos and notes at the point of work. Failed checks create follow-up actions automatically, notify the right owner and remain visible until corrective work is complete.",
+    assets: [
+      {
+        name: "Factory inspection form",
+        type: "App",
+        icon: "AppWindow",
+        iconColor: "var(--bb-orange-700)",
+      },
+      {
+        name: "Inspection records",
+        type: "Table",
+        icon: "Table",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "Escalate failed inspections",
+        type: "Automation",
+        icon: "Lightning",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "ServiceNow work orders",
+        type: "API",
+        iconSrc: ServiceNowLogo,
+        iconAlt: "ServiceNow",
+      },
+    ],
+  },
+  {
+    id: "incident-management",
+    label: "Incident management",
+    color: "var(--bb-cyan-600)",
+    overview:
+      "Teams report operational incidents in one place. Budibase captures severity and impact, routes each incident to the right responder and keeps investigation, remediation and closure visible to everyone involved.",
+    assets: [
+      {
+        name: "Incident intake",
+        type: "App",
+        icon: "AppWindow",
+        iconColor: "var(--bb-orange-700)",
+      },
+      {
+        name: "Incident triage agent",
+        type: "Agent",
+        icon: "Sparkle",
+        iconColor: "var(--bb-purple-700)",
+      },
+      {
+        name: "Incident records",
+        type: "Table",
+        icon: "Table",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "ServiceNow incidents",
+        type: "API",
+        iconSrc: ServiceNowLogo,
+        iconAlt: "ServiceNow",
+      },
+    ],
+  },
+  {
+    id: "asset-tracking",
+    label: "Asset tracking",
+    color: "var(--bb-purple-600)",
+    overview:
+      "Teams maintain a governed record of equipment, ownership, location and lifecycle state. Updates stay connected to existing data sources, while reminders and review steps keep records accurate.",
+    assets: [
+      {
+        name: "Asset register",
+        type: "Table",
+        icon: "Table",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "Asset management app",
+        type: "App",
+        icon: "AppWindow",
+        iconColor: "var(--bb-orange-700)",
+      },
+      {
+        name: "Lifecycle reminders",
+        type: "Automation",
+        icon: "Lightning",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "PostgreSQL asset database",
+        type: "Database",
+        iconSrc: PostgresLogo,
+        iconAlt: "PostgreSQL",
+      },
+    ],
+  },
+  {
+    id: "knowledge-assistant",
+    label: "Knowledge assistant",
+    color: "var(--bb-orange-600)",
+    overview:
+      "Employees ask operational questions in plain language. The assistant searches approved company sources, returns grounded answers and routes uncertain or sensitive requests to a person for review.",
+    assets: [
+      {
+        name: "Knowledge assistant",
+        type: "Agent",
+        icon: "Sparkle",
+        iconColor: "var(--bb-purple-700)",
+      },
+      {
+        name: "Approved answers",
+        type: "Table",
+        icon: "Table",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "Escalate unanswered questions",
+        type: "Automation",
+        icon: "Lightning",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "SharePoint knowledge",
+        type: "API",
+        iconSrc: SharePointLogo,
+        iconAlt: "Microsoft SharePoint",
+      },
+    ],
+  },
+] as const;
+
+const sectionId = "homepage-operations-solutions-split";
+---
+
+<section
+  class="operations-solutions-split"
+  aria-labelledby={`${sectionId}-title`}
+  data-operations-solutions-split
+>
+  <div class="operations-solutions-split__container">
+    <TitleBlock
+      variant="section"
+      title="Solutions for better operations"
+      description="Manage requests, conduct inspections, streamline procurement, track assets, and resolve incidents with tools built around the way your teams work."
+      titleId={`${sectionId}-title`}
+      containerClass="operations-solutions-split__header"
+      titleClass="operations-solutions-split__title"
+      descriptionClass="operations-solutions-split__intro"
+    />
+
+    <div class="operations-solutions-split__stage">
+      <div
+        class="operations-solutions-split__tabs"
+        role="tablist"
+        aria-label="Operational solutions"
+        data-split-solution-tabs
+      >
+        {
+          solutions.map((solution, index) => {
+            const selected = index === 0;
+            const tabId = `${sectionId}-${solution.id}-tab`;
+            const panelId = `${sectionId}-${solution.id}-panel`;
+            return (
+              <button
+                id={tabId}
+                class:list={[
+                  "operations-solutions-split__tab",
+                  selected && "is-active",
+                ]}
+                type="button"
+                role="tab"
+                aria-selected={selected ? "true" : "false"}
+                aria-controls={panelId}
+                tabindex={selected ? 0 : -1}
+                data-split-solution-tab={solution.id}
+                style={`--tab-color: ${solution.color};`}
+              >
+                <span
+                  class="operations-solutions-split__tab-dot"
+                  aria-hidden="true"
+                />
+                <span>{solution.label}</span>
+              </button>
+            );
+          })
+        }
+      </div>
+
+      <div class="operations-solutions-split__workspace">
+        {
+          solutions.map((solution, index) => {
+            const selected = index === 0;
+            const tabId = `${sectionId}-${solution.id}-tab`;
+            const panelId = `${sectionId}-${solution.id}-panel`;
+            return (
+              <section
+                id={panelId}
+                class="operations-solutions-split__panel"
+                role="tabpanel"
+                aria-labelledby={tabId}
+                data-split-solution-panel={solution.id}
+                hidden={!selected}
+              >
+                <div class="operations-solutions-split__grid">
+                  <div class="operations-solutions-split__details">
+                    <div class="operations-solutions-split__module operations-solutions-split__module--overview">
+                      <h3 class="operations-solutions-split__module-title">
+                        Overview
+                      </h3>
+                      <p class="operations-solutions-split__overview">
+                        {solution.overview}
+                      </p>
+                    </div>
+
+                    <div class="operations-solutions-split__module operations-solutions-split__module--assets">
+                      <h3 class="operations-solutions-split__module-title">
+                        Assets
+                      </h3>
+                      <div class="operations-solutions-split__table-wrap">
+                        <table class="operations-solutions-split__assets-table">
+                          <caption class="sr-only">
+                            Illustrative assets for {solution.label}
+                          </caption>
+                          <thead>
+                            <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col">Type</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {solution.assets.map((asset) => (
+                              <tr>
+                                <th scope="row">
+                                  <span
+                                    class="operations-solutions-split__asset-icon"
+                                    style={
+                                      asset.iconColor
+                                        ? `--asset-color: ${asset.iconColor};`
+                                        : undefined
+                                    }
+                                  >
+                                    {asset.iconSrc ? (
+                                      <img
+                                        src={asset.iconSrc}
+                                        alt={asset.iconAlt ?? ""}
+                                        loading="lazy"
+                                        decoding="async"
+                                      />
+                                    ) : (
+                                      <Icon
+                                        name={asset.icon ?? "Table"}
+                                        size="15"
+                                        weight="fill"
+                                      />
+                                    )}
+                                  </span>
+                                  <span>{asset.name}</span>
+                                </th>
+                                <td>{asset.type}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div class="operations-solutions-split__action-module">
+                      <Button
+                        label="Try this operation"
+                        ariaLabel={`Try ${solution.label}`}
+                        url="https://account.budibase.app/register"
+                        variant="primary"
+                        size="medium"
+                        icon="ArrowRight"
+                        iconPosition="end"
+                        class="operations-solutions-split__action"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="operations-solutions-split__demo"
+                    aria-hidden="true"
+                  >
+                    <div class="operations-solutions-split__demo-filler" />
+                  </div>
+                </div>
+              </section>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .operations-solutions-split {
+    width: 100%;
+    background: transparent;
+  }
+  .operations-solutions-split__container {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+  :global(.operations-solutions-split__header) {
+    max-width: 54rem;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+  :global(.operations-solutions-split__header .title-block__description) {
+    max-width: 50rem;
+  }
+  :global(.operations-solutions-split__title) {
+    color: var(--bb-text-base);
+  }
+  :global(.operations-solutions-split__intro) {
+    color: var(--bb-text-body) !important;
+  }
+
+  .operations-solutions-split__stage {
+    width: 100%;
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+  }
+  .operations-solutions-split__tabs {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .operations-solutions-split__tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .operations-solutions-split__tab {
+    display: inline-flex;
+    min-height: 2.3125rem;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 0.25rem 0.25rem 0 0;
+    background: var(--bb-background-surface-raised);
+    padding: 0.625rem 0.75rem;
+    color: var(--bb-text-subtle);
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.0625;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .operations-solutions-split__tab:hover {
+    background: var(--bb-gray-100);
+  }
+  .operations-solutions-split__tab:focus-visible {
+    position: relative;
+    z-index: 3;
+    outline: 2px solid var(--bb-brand-forest-green);
+    outline-offset: 2px;
+  }
+  .operations-solutions-split__tab.is-active {
+    z-index: 2;
+    border-color: var(--bb-border-base);
+    background: var(--bb-background-surface-base);
+    color: var(--bb-text-base);
+    font-weight: 500;
+  }
+  .operations-solutions-split__tab-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    flex: 0 0 0.625rem;
+    border-radius: 50%;
+    background: var(--tab-color);
+  }
+
+  .operations-solutions-split__workspace {
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-base);
+    padding: 1.25rem;
+  }
+  .operations-solutions-split__panel[hidden] {
+    display: none;
+  }
+  .operations-solutions-split__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 35%) minmax(0, 65%);
+    gap: 0;
+    align-items: stretch;
+  }
+  .operations-solutions-split__details {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+  }
+  .operations-solutions-split__module {
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-subtle);
+  }
+  .operations-solutions-split__module + .operations-solutions-split__module {
+    border-top: 0;
+  }
+  .operations-solutions-split__module--overview {
+    flex: 1 1 auto;
+  }
+  .operations-solutions-split__action-module {
+    border-inline: 1px solid var(--bb-border-base);
+    border-bottom: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-subtle);
+    padding: 0.875rem 0.75rem;
+  }
+  :global(.operations-solutions-split__action) {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 3rem;
+    justify-content: flex-start !important;
+  }
+  :global(.operations-solutions-split__action svg) {
+    margin-left: auto;
+  }
+  .operations-solutions-split__module-title {
+    margin: 0;
+    border-bottom: 1px solid var(--bb-border-base);
+    padding: 0.5rem 0.75rem;
+    color: var(--bb-text-base);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.0625;
+  }
+  .operations-solutions-split__overview {
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    color: var(--bb-text-subtle) !important;
+    font-size: 1rem;
+    line-height: 1.375;
+  }
+
+  .operations-solutions-split__table-wrap {
+    min-width: 0;
+    overflow: hidden;
+  }
+  .operations-solutions-split__assets-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  .operations-solutions-split__assets-table th,
+  .operations-solutions-split__assets-table td {
+    height: 2.5rem;
+    overflow: hidden;
+    border-bottom: 1px solid var(--bb-border-subtle);
+    padding: 0.5rem 0.75rem;
+    color: var(--bb-text-subtle);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.0625;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .operations-solutions-split__assets-table tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+  .operations-solutions-split__assets-table th:first-child {
+    width: auto;
+  }
+  .operations-solutions-split__assets-table th:last-child,
+  .operations-solutions-split__assets-table td:last-child {
+    width: 8.75rem;
+  }
+  .operations-solutions-split__assets-table tbody th {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .operations-solutions-split__asset-icon {
+    display: inline-flex;
+    width: 0.9375rem;
+    height: 0.9375rem;
+    flex: 0 0 0.9375rem;
+    align-items: center;
+    justify-content: center;
+    color: var(--asset-color, var(--bb-gray-600));
+  }
+  .operations-solutions-split__asset-icon :global(svg) {
+    width: 0.9375rem;
+    height: 0.9375rem;
+  }
+  .operations-solutions-split__asset-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .operations-solutions-split__demo {
+    width: 100%;
+    min-width: 0;
+    align-self: start;
+    box-sizing: border-box;
+    border: 1px solid var(--bb-border-base);
+    border-left: 0;
+    background: var(--bb-background-surface-subtle);
+    padding: 0.75rem;
+  }
+  .operations-solutions-split__demo-filler {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--bb-brand-forest-green);
+  }
+
+  @media (max-width: 63.999rem) {
+    .operations-solutions-split__workspace {
+      padding: 0.75rem;
+    }
+    .operations-solutions-split__grid {
+      display: flex;
+      flex-direction: column;
+    }
+    .operations-solutions-split__module--overview {
+      flex: none;
+    }
+    .operations-solutions-split__demo {
+      align-self: stretch;
+      border-top: 0;
+      border-left: 1px solid var(--bb-border-base);
+    }
+  }
+
+  @media (max-width: 47.999rem) {
+    .operations-solutions-split__tabs {
+      margin-inline: calc(var(--site-content-inset) * -1);
+      padding-inline: var(--site-content-inset);
+      scroll-padding-inline: var(--site-content-inset);
+    }
+    .operations-solutions-split__tab {
+      padding-inline: 0.625rem;
+    }
+    .operations-solutions-split__overview {
+      font-size: 0.9375rem;
+    }
+    .operations-solutions-split__assets-table th,
+    .operations-solutions-split__assets-table td {
+      height: auto;
+      min-height: 2.25rem;
+      padding: 0.5rem;
+    }
+    .operations-solutions-split__assets-table th:last-child,
+    .operations-solutions-split__assets-table td:last-child {
+      width: 6.75rem;
+    }
+    .operations-solutions-split__assets-table tbody th {
+      gap: 0.5rem;
+      white-space: normal;
+    }
+  }
+</style>
+
+<script>
+  function setupSplitOperationsSolutions() {
+    document
+      .querySelectorAll<HTMLElement>("[data-operations-solutions-split]")
+      .forEach((section) => {
+        if (section.dataset.initialized === "true") return;
+
+        const tabs = Array.from(
+          section.querySelectorAll<HTMLButtonElement>(
+            "[data-split-solution-tab]",
+          ),
+        );
+        const panels = Array.from(
+          section.querySelectorAll<HTMLElement>("[data-split-solution-panel]"),
+        );
+
+        const activate = (nextTab: HTMLButtonElement, focus = false) => {
+          const nextId = nextTab.dataset.splitSolutionTab;
+          tabs.forEach((tab) => {
+            const selected = tab === nextTab;
+            tab.classList.toggle("is-active", selected);
+            tab.setAttribute("aria-selected", String(selected));
+            tab.tabIndex = selected ? 0 : -1;
+          });
+          panels.forEach((panel) => {
+            panel.hidden = panel.dataset.splitSolutionPanel !== nextId;
+          });
+          nextTab.scrollIntoView({ block: "nearest", inline: "nearest" });
+          if (focus) nextTab.focus();
+        };
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener("click", () => activate(tab));
+          tab.addEventListener("keydown", (event) => {
+            let nextIndex = index;
+            if (event.key === "ArrowRight")
+              nextIndex = (index + 1) % tabs.length;
+            else if (event.key === "ArrowLeft")
+              nextIndex = (index - 1 + tabs.length) % tabs.length;
+            else if (event.key === "Home") nextIndex = 0;
+            else if (event.key === "End") nextIndex = tabs.length - 1;
+            else return;
+
+            event.preventDefault();
+            activate(tabs[nextIndex], true);
+          });
+        });
+
+        section.dataset.initialized = "true";
+      });
+  }
+
+  setupSplitOperationsSolutions();
+  document.addEventListener("astro:page-load", setupSplitOperationsSolutions);
+</script>
