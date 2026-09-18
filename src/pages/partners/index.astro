@@ -4,9 +4,10 @@ import { getCollection } from "astro:content";
 import MagnifyingGlass from "phosphor-astro/MagnifyingGlass.astro";
 import Button from "@components/Button.astro";
 import Icon from "@components/Icon.astro";
+import HeroSmall from "@components/HeroSmall.astro";
 import Layout from "../../layouts/MainLayout.astro";
+import PartnerHeroImage from "@assets/images/homepage/connectionsBGImage.png?url";
 import { partnerRegions, partnerServices } from "../../data/partnerDirectory";
-import PartnerNetworkDiagram from "./_components/PartnerNetworkDiagram.astro";
 
 const pageTitle = "Budibase Partner Network";
 const pageDescription =
@@ -90,35 +91,16 @@ const enablementItems = [
 ];
 ---
 
-<Layout title={pageTitle} description={pageDescription} navTheme="brand-dark">
-  <section class="partners-hero">
-    <div class="partners-shell partners-hero__grid">
-      <div class="partners-hero__copy">
-        <p class="partners-eyebrow">Budibase partner network</p>
-        <h1>Find the right partner to deliver with Budibase</h1>
-        <p class="partners-hero__lede">
-          Work with experienced delivery partners to plan, build, integrate,
-          deploy, and support the software behind your operations.
-        </p>
-        <div class="partners-actions">
-          <Button
-            label="Find a partner"
-            url="#find-a-partner"
-            variant="bright-on-dark"
-            size="large"
-          />
-          <Button
-            label="Become a partner"
-            url="#become-a-partner"
-            variant="outline-on-dark"
-            size="large"
-          />
-        </div>
-      </div>
-
-      <PartnerNetworkDiagram />
-    </div>
-  </section>
+<Layout title={pageTitle} description={pageDescription}>
+  <HeroSmall
+    title="Find the right partner to deliver with Budibase"
+    subtitle="Work with experienced delivery partners to plan, build, integrate, deploy, and support the software behind your operations."
+    image={PartnerHeroImage}
+    imageAlt="Budibase operational software connected to enterprise systems"
+    badge={{ label: "Budibase partner network" }}
+    action={{ label: "Find a partner", href: "#find-a-partner" }}
+    secondaryAction={{ label: "Become a partner", href: "#become-a-partner" }}
+  />
 
   <section id="find-a-partner" class="partners-directory" data-partner-root>
     <div class="partners-shell">
@@ -500,46 +482,6 @@ const enablementItems = [
     color: var(--bb-celery-900) !important;
   }
 
-  .partners-hero {
-    margin-top: calc(-1 * var(--site-nav-bar-height));
-    padding-top: var(--site-nav-bar-height);
-    background: var(--bb-celery-1300);
-    color: var(--bb-celery-100);
-  }
-
-  .partners-hero__grid {
-    display: grid;
-    min-height: min(49rem, 86vh);
-    align-items: center;
-    gap: clamp(3rem, 7vw, 6.75rem);
-    padding-block: clamp(4rem, 8vw, 7.5rem);
-  }
-
-  .partners-hero__copy h1 {
-    max-width: 12ch;
-    margin: 1rem 0 0;
-    color: var(--bb-celery-100);
-    font-size: clamp(3.4rem, 7vw, 5.9rem);
-    font-weight: 700;
-    letter-spacing: -0.055em;
-    line-height: 0.92;
-  }
-
-  .partners-hero__lede {
-    max-width: 37rem;
-    margin: 1.7rem 0 0;
-    color: var(--bb-celery-200) !important;
-    font-size: clamp(1.15rem, 2vw, 1.38rem);
-    line-height: 1.5;
-  }
-
-  .partners-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 2rem;
-  }
-
   .partners-directory,
   .partners-proposition,
   .partners-services,
@@ -588,7 +530,7 @@ const enablementItems = [
     margin-top: 2.5rem;
     padding: 1rem;
     border: 1px solid var(--border-color);
-    border-radius: 0.9rem;
+    border-radius: 0;
     background: var(--bg-2);
   }
 
@@ -683,7 +625,7 @@ const enablementItems = [
     flex-direction: column;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    border-radius: 0.9rem;
+    border-radius: 0;
     background: var(--bg-1);
   }
 
@@ -794,7 +736,7 @@ const enablementItems = [
     margin-top: 1.25rem;
     padding: 2rem;
     border: 1px dashed var(--border-color);
-    border-radius: 0.9rem;
+    border-radius: 0;
     background: var(--bg-2);
     text-align: center;
   }
@@ -819,7 +761,7 @@ const enablementItems = [
     gap: 2rem;
     margin-top: 2rem;
     padding: clamp(1.5rem, 4vw, 2.5rem);
-    border-radius: 1rem;
+    border-radius: 0;
     background: var(--bb-celery-100);
   }
 
@@ -850,7 +792,7 @@ const enablementItems = [
   .partner-reason-card {
     padding: clamp(1.4rem, 3vw, 2rem);
     border: 1px solid var(--border-color);
-    border-radius: 0.9rem;
+    border-radius: 0;
     background: var(--bg-2);
   }
 
@@ -998,19 +940,6 @@ const enablementItems = [
   }
 
   @media (max-width: 720px) {
-    .partners-hero {
-      margin-top: 0;
-      padding-top: 0;
-    }
-
-    .partners-hero__grid {
-      min-height: 0;
-    }
-
-    .partners-hero__copy h1 {
-      font-size: clamp(3.1rem, 15vw, 4.4rem);
-    }
-
     .partner-filters,
     .partner-grid,
     .partner-reason-grid {
@@ -1035,15 +964,6 @@ const enablementItems = [
   }
 
   @media (max-width: 440px) {
-    .partners-actions {
-      align-items: stretch;
-      flex-direction: column;
-    }
-
-    .partners-actions :global(a) {
-      width: 100%;
-    }
-
     .partner-service-item {
       grid-template-columns: 2rem minmax(0, 1fr);
     }

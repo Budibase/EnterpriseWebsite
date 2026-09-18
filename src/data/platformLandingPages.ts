@@ -2,7 +2,7 @@ import type { PlatformLandingContent } from "./landingPageTypes";
 
 export const platformLandingPages = {
   data: {
-    title: "Tables",
+    title: "Data tables",
     metaDescription:
       "Manage structured operational data that powers AI agents, workflows, and internal apps.",
     hero: {

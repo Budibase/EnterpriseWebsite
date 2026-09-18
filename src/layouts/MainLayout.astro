@@ -27,14 +27,9 @@ const { enableTransitions = false, navTheme = "default" } = Astro.props as {
       <main>
         <div id="hero" class="opacity: 1; transform: none;">
           <div class="text-base">
-            <div class="site-grid-shell relative flex flex-col min-h-screen">
-              <div class="site-grid-rails" aria-hidden="true">
-                <div class="site-grid-rails__inner"></div>
-              </div>
+            <div class="relative flex min-h-screen flex-col">
               <Nav theme={navTheme} />
-              <div class="site-grid-main">
-                <slot />
-              </div>
+              <div><slot /></div>
               <Footer />
             </div>
           </div>

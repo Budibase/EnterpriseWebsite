@@ -1,0 +1,170 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  canvas: string;
+  diamonds: string;
+  position?: string;
+}
+
+const {
+  src,
+  alt,
+  canvas,
+  diamonds,
+  position = "center",
+} = Astro.props as Props;
+const diamondItems = Array.from({ length: 9 });
+---
+
+<div
+  class="homepage-solution-media"
+  style={`--solution-canvas: ${canvas}; --solution-diamonds: ${diamonds}; --solution-position: ${position};`}
+  role="img"
+  aria-label={alt}
+>
+  <div class="homepage-solution-media__diamonds" aria-hidden="true">
+    {diamondItems.map(() => <span />)}
+  </div>
+
+  <div class="homepage-solution-media__surface" aria-hidden="true">
+    <img src={src} alt="" loading="lazy" decoding="async" />
+  </div>
+</div>
+
+<style>
+  .homepage-solution-media {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 31rem;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--solution-canvas);
+    isolation: isolate;
+  }
+
+  .homepage-solution-media__diamonds {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .homepage-solution-media__diamonds span {
+    position: absolute;
+    display: block;
+    width: 4.5rem;
+    height: 4.5rem;
+    border: 1px solid
+      color-mix(in srgb, var(--solution-diamonds) 48%, transparent);
+    transform: rotate(45deg);
+  }
+
+  .homepage-solution-media__diamonds span:nth-child(1) {
+    top: -2rem;
+    left: 7%;
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .homepage-solution-media__diamonds span:nth-child(2) {
+    top: 17%;
+    left: -2rem;
+  }
+
+  .homepage-solution-media__diamonds span:nth-child(3) {
+    top: 8%;
+    right: 10%;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .homepage-solution-media__diamonds span:nth-child(4) {
+    top: 42%;
+    right: -2.5rem;
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .homepage-solution-media__diamonds span:nth-child(5) {
+    bottom: 8%;
+    left: 10%;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .homepage-solution-media__diamonds span:nth-child(6) {
+    right: 26%;
+    bottom: -3rem;
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .homepage-solution-media__diamonds span:nth-child(7) {
+    top: 48%;
+    left: 21%;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .homepage-solution-media__diamonds span:nth-child(8) {
+    top: 28%;
+    right: 25%;
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .homepage-solution-media__diamonds span:nth-child(9) {
+    right: 5%;
+    bottom: 10%;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .homepage-solution-media__surface {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: min(84%, 43rem);
+    aspect-ratio: 16 / 10;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--bb-transparent-white-500);
+    background: var(--bb-background-base);
+    box-shadow: 0 1.5rem 4rem var(--bb-transparent-black-400);
+  }
+
+  .homepage-solution-media__surface img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: var(--solution-position);
+  }
+
+  @media (max-width: 1023px) {
+    .homepage-solution-media {
+      aspect-ratio: 16 / 10;
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .homepage-solution-media {
+      aspect-ratio: 4 / 3;
+    }
+
+    .homepage-solution-media__surface {
+      width: 88%;
+    }
+
+    .homepage-solution-media__diamonds span:nth-child(n + 7) {
+      display: none;
+    }
+  }
+</style>

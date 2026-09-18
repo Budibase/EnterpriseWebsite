@@ -1,89 +1,50 @@
 ---
-import MultiFeatureSection from "@components/MultiFeatureSection.astro";
-import PlaceholderMedia from "@assets/images/homepage/multi-feature/agents.webp?url";
-
-const placeholderMedia = {
-  src: PlaceholderMedia,
-  alt: "Budibase product interface placeholder.",
-  width: 1800,
-  height: 1074,
-  position: "center",
-} as const;
-
-const platformFeatures = [
-  {
-    id: "agents",
-    title: "Agents",
-    description:
-      "Deploy controlled agents to investigate questions, gather context, and take permitted actions across your systems—with people involved wherever oversight matters.",
-    action: {
-      label: "Explore agents",
-      href: "/product/agents/",
-    },
-    media: placeholderMedia,
-  },
-  {
-    id: "apps",
-    title: "Apps",
-    description:
-      "Turn existing data into secure apps and forms for requesting, reviewing, and completing operational work—without exposing the systems underneath.",
-    action: {
-      label: "Explore apps",
-      href: "/product/apps/",
-    },
-    media: placeholderMedia,
-  },
-  {
-    id: "automations",
-    title: "Automations",
-    description:
-      "Automate approvals, routing, notifications, and system updates, with testing and run history that make every step visible.",
-    action: {
-      label: "Explore automations",
-      href: "/product/automations/",
-    },
-    media: placeholderMedia,
-  },
-  {
-    id: "functions",
-    title: "Functions",
-    description:
-      "Write reusable server-side functions to validate and transform data, connect services, and handle rules that standard workflow steps cannot.",
-    action: {
-      label: "Explore functions",
-      href: "/product/functions/",
-    },
-    media: placeholderMedia,
-  },
-  {
-    id: "documents",
-    title: "Documents",
-    description:
-      "Connect trusted runbooks, policies, and reference material to agents so answers and actions stay grounded in the operational context each process requires.",
-    action: {
-      label: "Explore documents",
-      href: "/product/knowledge/",
-    },
-    media: placeholderMedia,
-  },
-  {
-    id: "tables",
-    title: "Tables",
-    description:
-      "Manage structured operational data in Budibase so apps, automations, agents, and functions can work from a consistent source of context.",
-    action: {
-      label: "Explore tables",
-      href: "/product/data/",
-    },
-    media: placeholderMedia,
-  },
-] as const;
+import TitleBlock from "@components/TitleBlock.astro";
+import HomepagePlatformDemo from "./HomepagePlatformDemo.astro";
 ---
 
-<MultiFeatureSection
-  id="homepage-products"
-  title="One platform. More ways to deliver."
-  description="Build apps, automate predictable work, deploy agents for context-dependent tasks, extend workflows with reusable functions, and connect trusted documents—all around the systems and data you already own."
-  features={platformFeatures}
-  initialFeatureId="agents"
-/>
+<section class="homepage-platform" aria-labelledby="homepage-platform-title">
+  <div class="homepage-platform__container">
+    <TitleBlock
+      variant="section"
+      title="From request to review."
+      description="See how a request arriving through Slack is checked against policy, recorded in Budibase, and submitted for human review."
+      titleId="homepage-platform-title"
+      containerClass="homepage-platform__header"
+      titleClass="homepage-platform__title"
+      descriptionClass="homepage-platform__intro"
+    />
+
+    <HomepagePlatformDemo />
+  </div>
+</section>
+
+<style>
+  .homepage-platform {
+    width: 100%;
+    background: var(--bb-background-base);
+  }
+
+  .homepage-platform__container {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+
+  :global(.homepage-platform__header) {
+    max-width: 54rem;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  :global(.homepage-platform__header .title-block__description) {
+    max-width: 50rem;
+  }
+
+  :global(.homepage-platform__title) {
+    color: var(--bb-text-base);
+  }
+
+  :global(.homepage-platform__intro) {
+    color: var(--bb-text-body) !important;
+  }
+</style>

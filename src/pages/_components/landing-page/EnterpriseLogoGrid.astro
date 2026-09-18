@@ -2,10 +2,14 @@
 import StadtLuzernLogo from "@assets/logos/enterprise-grid/stadt-luzern.png?url";
 import SpaceForceLogo from "@assets/logos/enterprise-grid/space-force.png?url";
 import NorthernTerritoryLogo from "@assets/logos/enterprise-grid/northern-territory.png?url";
+import NorthernTerritoryOutlineLogo from "@assets/logos/enterprise-grid/northern-territory-outline.png?url";
 import AustrianPatentLogo from "@assets/logos/enterprise-grid/austrian-patent.png?url";
+import AustrianPatentBlackLogo from "@assets/logos/enterprise-grid/austrian-patent-office.svg?url";
 import LpaLogo from "@assets/logos/enterprise-grid/lpa.png?url";
 import ArmLogo from "@assets/logos/enterprise-grid/arm.png?url";
+import ArmInkLogo from "@assets/logos/enterprise-grid/arm-2025-ink.svg?url";
 import AmexLogo from "@assets/logos/enterprise-grid/amex.svg?url";
+import AmexBlackLogo from "@assets/logos/enterprise-grid/amex-black.svg?url";
 import BulgariaLogo from "@assets/logos/enterprise-grid/bulgaria.png?url";
 import SwissGovLogo from "@assets/logos/enterprise-grid/swiss-gov.png?url";
 import NokiaLogo from "@assets/logos/enterprise-grid/nokia.png?url";
@@ -13,9 +17,13 @@ import SaabLogo from "@assets/logos/enterprise-grid/saab.svg?url";
 import LockheedMartinLogo from "@assets/logos/enterprise-grid/lockheed-martin.png?url";
 import ThalesLogo from "@assets/logos/enterprise-grid/thales.png?url";
 import PierreFabreLogo from "@assets/logos/enterprise-grid/pierre-fabre.png?url";
+import SaabBlackLogo from "@assets/logos/enterprise-grid/saab-black.svg?url";
 import EricssonLogo from "@assets/logos/ERI_horizontal_RGB.svg?url";
+import EricssonBlackLogo from "@assets/logos/enterprise-grid/ericsson-black.svg?url";
+import BulgariaCrestLogo from "@assets/images/homepage/customer-stories/bulgaria-logo.png?url";
 
-type Placement = "hero" | "hero-compact" | "hero-row" | "section";
+type Placement =
+  "hero" | "hero-compact" | "hero-row" | "section" | "showcase" | "card-row";
 
 type ImageLogo = {
   type: "image";
@@ -167,18 +175,95 @@ const rowLogos: Logo[] = [
   columns[1][1],
 ];
 
+const showcaseLogos: Logo[] = [
+  columns[0][1],
+  columns[1][1],
+  columns[0][2],
+  columns[1][2],
+  columns[2][2],
+  columns[4][2],
+  {
+    type: "image",
+    src: NorthernTerritoryOutlineLogo,
+    alt: "Northern Territory Government",
+    className: "is-northern-territory-card",
+  },
+  {
+    type: "image",
+    src: BulgariaCrestLogo,
+    alt: "Republic of Bulgaria coat of arms",
+    className: "is-bulgaria-crest",
+  },
+  columns[0][0],
+  columns[3][0],
+  columns[3][2],
+  columns[4][0],
+];
+
+const cardRowLogos: Logo[] = [
+  {
+    type: "image",
+    src: ArmInkLogo,
+    alt: "Arm",
+    className: "is-arm-card",
+  },
+  {
+    type: "image",
+    src: AmexBlackLogo,
+    alt: "American Express",
+    className: "is-amex",
+  },
+  {
+    type: "image",
+    src: SaabBlackLogo,
+    alt: "Saab",
+    className: "is-saab-card",
+  },
+  {
+    type: "image",
+    src: AustrianPatentBlackLogo,
+    alt: "Austrian Patent Office",
+    className: "is-austrian-patent-card",
+  },
+  columns[2][2],
+  columns[4][2],
+  {
+    type: "image",
+    src: NorthernTerritoryOutlineLogo,
+    alt: "Northern Territory Government",
+    className: "is-northern-territory-card",
+  },
+  {
+    type: "image",
+    src: EricssonBlackLogo,
+    alt: "Ericsson",
+    className: "is-ericsson-card",
+  },
+];
+
 const isCompact = placement === "hero-compact";
 const isRow = placement === "hero-row";
+const isShowcase = placement === "showcase";
+const isCardRow = placement === "card-row";
 ---
 
 <div
   class={`enterprise-logo-grid enterprise-logo-grid--${placement}`}
   aria-label="Trusted by enterprise and government teams"
+  role={isCardRow ? "region" : undefined}
+  tabindex={isCardRow ? "0" : undefined}
 >
   <div class="enterprise-logo-grid__inner">
     {
-      isCompact || isRow
-        ? (isCompact ? compactLogos : rowLogos).map((logo) => (
+      isCompact || isRow || isShowcase || isCardRow
+        ? (isCompact
+            ? compactLogos
+            : isRow
+              ? rowLogos
+              : isShowcase
+                ? showcaseLogos
+                : cardRowLogos
+          ).map((logo) => (
             <div
               class={`enterprise-logo-grid__cell${logo ? "" : " enterprise-logo-grid__cell--empty"}`}
               aria-hidden={logo ? undefined : "true"}
@@ -256,6 +341,18 @@ const isRow = placement === "hero-row";
     --logo-grid-row-gap: 0;
   }
 
+  .enterprise-logo-grid--showcase {
+    --logo-grid-cell-height: clamp(7.25rem, 9vw, 9rem);
+    --logo-grid-row-gap: 0;
+    --logo-grid-column-gap: 0;
+    overflow: visible;
+  }
+
+  .enterprise-logo-grid--card-row {
+    --logo-grid-column-gap: clamp(0.625rem, 1vw, 0.875rem);
+    overflow: visible;
+  }
+
   .enterprise-logo-grid__inner {
     display: flex;
     align-items: flex-start;
@@ -278,6 +375,119 @@ const isRow = placement === "hero-row";
     grid-template-columns: repeat(10, minmax(0, 1fr));
     align-items: center;
     width: 100%;
+  }
+
+  .enterprise-logo-grid--showcase .enterprise-logo-grid__inner {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--logo-grid-row-gap) var(--logo-grid-column-gap);
+    width: 100%;
+    border-top: 1px solid var(--bb-border-subtle);
+    border-left: 1px solid var(--bb-border-subtle);
+  }
+
+  .enterprise-logo-grid--card-row .enterprise-logo-grid__inner {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: var(--logo-grid-column-gap);
+    width: 100%;
+  }
+
+  .enterprise-logo-grid--card-row .enterprise-logo-grid__cell {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3.4 / 2;
+    padding: clamp(0.75rem, 1.2vw, 1.25rem);
+    border: 1px solid var(--bb-border-subtle);
+    border-radius: 2px;
+    background: var(--bb-background-sand);
+    scroll-snap-align: start;
+  }
+
+  .enterprise-logo-grid--card-row .enterprise-logo-grid__image {
+    opacity: 0.88;
+    filter: grayscale(1) brightness(0.9) contrast(1.08);
+  }
+
+  .enterprise-logo-grid--card-row .enterprise-logo-grid__image.is-arm-card {
+    width: calc(min(8.5rem, 92%) - 20px);
+    height: auto;
+    max-height: none;
+  }
+
+  .enterprise-logo-grid--card-row .enterprise-logo-grid__image.is-amex {
+    width: auto;
+    height: 2.5rem;
+    max-width: min(6.25rem, 88%);
+  }
+
+  .enterprise-logo-grid--card-row .enterprise-logo-grid__image.is-saab-card {
+    width: min(8.5rem, 92%);
+    height: auto;
+    max-height: 2.5rem;
+  }
+
+  .enterprise-logo-grid--card-row
+    .enterprise-logo-grid__image.is-austrian-patent-card {
+    width: min(8.5rem, 92%);
+    height: auto;
+    max-height: 2.5rem;
+  }
+
+  .enterprise-logo-grid--card-row
+    .enterprise-logo-grid__image.is-ericsson-card {
+    width: min(8.5rem, 92%);
+    height: auto;
+    max-height: 2.25rem;
+  }
+
+  .enterprise-logo-grid--card-row
+    .enterprise-logo-grid__image.is-northern-territory-card {
+    width: min(8.5rem, 92%);
+    height: auto;
+    max-height: 2.5rem;
+    mix-blend-mode: normal;
+  }
+
+  .enterprise-logo-grid--card-row .enterprise-logo-grid__northrop {
+    color: var(--bb-text-body);
+    opacity: 0.88;
+  }
+
+  .enterprise-logo-grid--card-row:focus-visible {
+    outline: 2px solid var(--bb-brand-forest-green);
+    outline-offset: 0.25rem;
+  }
+
+  .enterprise-logo-grid--showcase .enterprise-logo-grid__cell {
+    box-sizing: border-box;
+    width: 100%;
+    height: var(--logo-grid-cell-height);
+    border: 0;
+    border-right: 1px solid var(--bb-border-subtle);
+    border-bottom: 1px solid var(--bb-border-subtle);
+    padding: clamp(0.75rem, 1.3vw, 1.25rem);
+    background: var(--bb-background-sand);
+  }
+
+  .enterprise-logo-grid--showcase .enterprise-logo-grid__image,
+  .enterprise-logo-grid--showcase .enterprise-logo-grid__northrop {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+
+  .enterprise-logo-grid--showcase .enterprise-logo-grid__image.is-ericsson {
+    filter: brightness(0) saturate(100%) invert(18%) sepia(43%) saturate(1487%)
+      hue-rotate(173deg) brightness(91%) contrast(104%);
+  }
+
+  .enterprise-logo-grid--showcase
+    .enterprise-logo-grid__image.is-bulgaria-crest {
+    width: min(7rem, 82%);
+    height: min(7rem, 82%);
+    max-height: none;
+    transform: none;
   }
 
   .enterprise-logo-grid--hero-row .enterprise-logo-grid__cell {
@@ -339,9 +549,19 @@ const isRow = placement === "hero-row";
     height: min(5rem, 72%);
   }
 
+  .enterprise-logo-grid__image.is-amex {
+    width: min(6.25rem, 88%);
+    height: auto;
+  }
+
   .enterprise-logo-grid--hero-compact .enterprise-logo-grid__image.is-square {
     width: min(3.5rem, 72%);
     height: min(3.5rem, 72%);
+  }
+
+  .enterprise-logo-grid--hero-compact .enterprise-logo-grid__image.is-amex {
+    width: min(4.25rem, 86%);
+    height: auto;
   }
 
   .enterprise-logo-grid--hero-compact
@@ -482,6 +702,41 @@ const isRow = placement === "hero-row";
     content: "";
   }
 
+  @media (max-width: 1199px) {
+    .enterprise-logo-grid--card-row {
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      padding-bottom: 0.25rem;
+      scroll-snap-type: inline proximity;
+      scrollbar-width: none;
+    }
+
+    .enterprise-logo-grid--card-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .enterprise-logo-grid--card-row .enterprise-logo-grid__inner {
+      grid-template-columns: repeat(8, clamp(10rem, 22vw, 12rem));
+      justify-content: flex-start;
+      width: max-content;
+      min-width: 100%;
+      padding-inline: 0;
+    }
+
+    .enterprise-logo-grid--showcase {
+      --logo-grid-cell-height: 7.5rem;
+      overflow: visible;
+      padding-bottom: 0;
+    }
+
+    .enterprise-logo-grid--showcase .enterprise-logo-grid__inner {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      width: 100%;
+      min-width: 0;
+      padding-inline: 0;
+    }
+  }
+
   @media (max-width: 1023px) {
     .enterprise-logo-grid--hero-row {
       --logo-grid-cell-height: 4.5rem;
@@ -523,6 +778,11 @@ const isRow = placement === "hero-row";
       padding-inline: 1rem;
     }
 
+    .enterprise-logo-grid--card-row .enterprise-logo-grid__inner {
+      grid-template-columns: repeat(8, clamp(9.5rem, 55vw, 11.5rem));
+      padding-inline: 0;
+    }
+
     .enterprise-logo-grid--hero-compact {
       --logo-grid-cell-width: 5.5rem;
       --logo-grid-cell-height: 4rem;
@@ -541,6 +801,19 @@ const isRow = placement === "hero-row";
     .enterprise-logo-grid--hero-row .enterprise-logo-grid__inner {
       grid-template-columns: repeat(10, 6.5rem);
       width: max-content;
+      padding-inline: 0;
+    }
+
+    .enterprise-logo-grid--showcase {
+      --logo-grid-cell-height: clamp(6rem, 31vw, 7rem);
+      overflow: visible;
+      padding-bottom: 0;
+    }
+
+    .enterprise-logo-grid--showcase .enterprise-logo-grid__inner {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+      min-width: 0;
       padding-inline: 0;
     }
 

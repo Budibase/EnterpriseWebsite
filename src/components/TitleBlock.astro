@@ -5,8 +5,7 @@ interface TitleLine {
 }
 
 interface Props {
-  variant:
-    "hero-large" | "hero" | "section" | "display-small" | "homepage-section";
+  variant: "hero" | "section";
   title?: string;
   titleLines?: TitleLine[];
   titleColorMode?:
@@ -32,22 +31,8 @@ const {
   descriptionClass,
 } = Astro.props as Props;
 
-const titleBaseClass =
-  variant === "hero-large"
-    ? "hero-title"
-    : variant === "hero"
-      ? "hero-title-small"
-      : variant === "display-small"
-        ? "display-small-title"
-        : variant === "homepage-section"
-          ? "homepage-section-header__title"
-          : "section-title";
-const HeadingTag =
-  variant === "section" ||
-  variant === "display-small" ||
-  variant === "homepage-section"
-    ? "h2"
-    : "h1";
+const titleBaseClass = variant === "hero" ? "hero-title" : "section-title";
+const HeadingTag = variant === "section" ? "h2" : "h1";
 const hasTitleLines = titleLines.length > 0;
 
 function getLineColorClass(index: number) {
@@ -99,17 +84,13 @@ function getLineColorClass(index: number) {
     margin: 0;
     color: var(--bb-text-base);
     font-family: var(--bb-text-display-medium-font-family);
-    font-size: var(--bb-text-heading-hero-font-size);
+    font-size: calc(var(--bb-text-heading-hero-font-size) - 1rem + 2px);
     font-weight: var(--bb-text-display-medium-font-weight);
-    line-height: var(--bb-text-heading-hero-line-height);
+    line-height: calc(1em + 0.125rem);
     letter-spacing: var(--bb-text-display-medium-letter-spacing);
     text-transform: var(--bb-text-display-medium-text-transform);
-    text-wrap: balance;
-  }
-
-  .hero-title-small {
-    font-size: var(--bb-text-heading-hero-font-size);
-    line-height: var(--bb-text-heading-hero-line-height);
+    transform: scaleX(0.9);
+    transform-origin: left center;
     text-wrap: balance;
   }
 
@@ -130,42 +111,13 @@ function getLineColorClass(index: number) {
   }
 
   .section-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 0.98;
-    text-wrap: balance;
-  }
-
-  .display-small-title {
     margin: 0;
-    color: var(--bb-text-base);
-    font-family: var(--bb-text-display-small-font-family);
+    font-family: var(--font-heading-sans);
     font-size: var(--bb-text-heading-section-font-size);
-    font-weight: var(--bb-text-display-small-font-weight);
-    line-height: var(--bb-text-heading-section-line-height);
-    letter-spacing: var(--bb-text-display-small-letter-spacing);
-    text-transform: var(--bb-text-display-small-text-transform);
-    text-wrap: balance;
-  }
-
-  .homepage-section-header__title {
-    margin: 0;
-    color: var(--bb-text-base);
-    font-size: var(--bb-text-heading-subsection-font-size);
     font-weight: 500;
-    line-height: var(--bb-text-heading-subsection-line-height);
-    letter-spacing: 0;
-  }
-
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .section-title {
-      font-size: 3rem;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .section-title {
-      font-size: 2.5rem;
-    }
+    line-height: var(--bb-text-heading-section-line-height);
+    letter-spacing: normal !important;
+    text-transform: none;
+    text-wrap: balance;
   }
 </style>

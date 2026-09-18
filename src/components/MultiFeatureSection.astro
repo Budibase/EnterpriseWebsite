@@ -31,6 +31,7 @@ export interface MultiFeatureItem {
 }
 
 type Variant = "dark" | "light";
+type ShellSurface = "default" | "sand";
 
 interface Props {
   title: string;
@@ -39,6 +40,7 @@ interface Props {
   initialFeatureId?: string;
   id?: string;
   variant?: Variant;
+  shellSurface?: ShellSurface;
 }
 
 const {
@@ -48,6 +50,7 @@ const {
   initialFeatureId = features[0]?.id,
   id = `multi-feature-${Math.random().toString(36).slice(2, 9)}`,
   variant = "dark",
+  shellSurface = "default",
 } = Astro.props as Props;
 
 const isDemoMedia = (
@@ -62,7 +65,11 @@ const titleId = `${id}-title`;
 ---
 
 <section
-  class:list={["multi-feature-section", `multi-feature-section--${variant}`]}
+  class:list={[
+    "multi-feature-section",
+    `multi-feature-section--${variant}`,
+    shellSurface === "sand" && "multi-feature-section--sand",
+  ]}
   aria-labelledby={titleId}
   data-multi-feature
   data-active-feature={activeFeatureId}
@@ -145,6 +152,7 @@ const titleId = `${id}-title`;
             const media = feature.media;
             const isDemo = isDemoMedia(media);
             const Demo = isDemo ? media.demo : undefined;
+            const demoProps = isDemo ? media.demoProps : undefined;
             const imageMedia = isDemo ? undefined : media;
 
             return Demo ? (
@@ -158,7 +166,7 @@ const titleId = `${id}-title`;
                 data-feature-media-kind="demo"
                 aria-hidden={isActive ? "false" : "true"}
               >
-                <Demo {...media.demoProps} />
+                <Demo {...demoProps} />
               </div>
             ) : (
               <figure
@@ -194,14 +202,15 @@ const titleId = `${id}-title`;
 
 <style>
   .multi-feature-section {
-    --multi-feature-background: var(--bb-gray-900);
-    --multi-feature-shell-background: var(--bb-background-component-base);
+    --multi-feature-background: var(--bb-celery-1500);
+    --multi-feature-shell-background: var(--bb-background-component-raised);
     --multi-feature-border: var(--bb-transparent-white-300);
     --multi-feature-text: var(--bb-text-on-base);
     --multi-feature-text-subtle: var(--bb-text-on-base-subtle);
     --multi-feature-hover: var(--bb-brand-bright-green);
     --multi-feature-active: var(--bb-brand-yellow);
     --multi-feature-focus: var(--bb-brand-bright-green);
+    --multi-feature-indicator-background: currentColor;
     width: 100%;
     background: var(--multi-feature-background);
   }
@@ -215,6 +224,11 @@ const titleId = `${id}-title`;
     --multi-feature-hover: var(--bb-celery-900);
     --multi-feature-active: var(--bb-brand-forest-green);
     --multi-feature-focus: var(--bb-brand-forest-green);
+  }
+
+  .multi-feature-section--sand {
+    --multi-feature-shell-background: var(--bb-background-sand);
+    --multi-feature-indicator-background: var(--bb-brand-forest-green);
   }
 
   .multi-feature-section__container {
@@ -245,7 +259,7 @@ const titleId = `${id}-title`;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     overflow: hidden;
     border: 1px solid var(--multi-feature-border);
-    border-radius: 4px;
+    border-radius: 0;
     background: var(--multi-feature-shell-background);
   }
 
@@ -257,6 +271,11 @@ const titleId = `${id}-title`;
 
   .multi-feature-section--light .multi-feature-section__accordion {
     background: var(--bb-background-raised);
+  }
+
+  .multi-feature-section--light.multi-feature-section--sand
+    .multi-feature-section__accordion {
+    background: var(--bb-background-sand);
   }
 
   .multi-feature-section__item {
@@ -271,9 +290,13 @@ const titleId = `${id}-title`;
   .multi-feature-section--light
     .multi-feature-section__item:not(.is-active)
     .multi-feature-section__trigger {
-    color: var(--multi-feature-text-subtle);
+    color: color-mix(
+      in srgb,
+      var(--multi-feature-text-subtle) 72%,
+      transparent
+    );
     font-weight: 550;
-    opacity: 0.72;
+    opacity: 1;
   }
 
   .multi-feature-section__item:last-child {
@@ -343,7 +366,7 @@ const titleId = `${id}-title`;
     width: 1.75rem;
     height: 1.75rem;
     flex: 0 0 1.75rem;
-    border: 1px solid currentColor;
+    background: var(--multi-feature-indicator-background);
   }
 
   .multi-feature-section__indicator::before,
@@ -354,7 +377,7 @@ const titleId = `${id}-title`;
     left: 50%;
     width: 0.625rem;
     height: 1px;
-    background: currentColor;
+    background: var(--multi-feature-shell-background);
     transform: translate(-50%, -50%);
     transition: opacity 180ms ease;
   }

@@ -84,8 +84,7 @@ function getRouteSeoFallback(pathname: string) {
   }
 
   return routeSeoFallbacks[pathname as keyof typeof routeSeoFallbacks] as
-    | RouteSeoFallback
-    | undefined;
+    RouteSeoFallback | undefined;
 }
 
 function resolvePageTitle(

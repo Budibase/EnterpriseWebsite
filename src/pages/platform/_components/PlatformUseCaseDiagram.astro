@@ -319,6 +319,9 @@ const layers = [
                   icon={item.icon}
                   logo={item.logo}
                   tone={item.tone}
+                  class={
+                    layer.key === "build" && "architecture-item--monochrome"
+                  }
                 />
               ))}
             </div>
@@ -361,7 +364,7 @@ const layers = [
 
 <style>
   :global(.diagram-frame.platform-use-case-diagram) {
-    --platform-use-case-panel-gap: 0.75rem;
+    --platform-use-case-panel-gap: 1.5rem;
     background: var(--bb-white);
   }
 

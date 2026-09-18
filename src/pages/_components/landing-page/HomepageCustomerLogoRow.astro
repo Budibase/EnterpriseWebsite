@@ -1,13 +1,24 @@
 ---
 import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
+
+type Props = {
+  variant?: "plain" | "cards";
+};
+
+const { variant = "plain" } = Astro.props as Props;
 ---
 
 <section
-  class="homepage-customer-logo-row"
+  class:list={[
+    "homepage-customer-logo-row",
+    `homepage-customer-logo-row--${variant}`,
+  ]}
   aria-label="Budibase customer logos"
 >
   <div class="homepage-customer-logo-row__inner">
-    <EnterpriseLogoGrid placement="hero-row" />
+    <EnterpriseLogoGrid
+      placement={variant === "cards" ? "card-row" : "hero-row"}
+    />
   </div>
 </section>
 

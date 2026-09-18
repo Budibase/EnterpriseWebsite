@@ -35,27 +35,25 @@ const enterpriseFeatureBullets = [
   robots="noindex,nofollow"
   navTheme="immersive-overlay"
 >
-  <div class="homepage-grid">
-    <div class="site-grid-section site-grid-section--hero">
+  <div class="homepage-layout">
+    <div class="page-section page-section--hero">
       <Hero />
     </div>
     <div
-      class="site-grid-section site-grid-section--logos homepage-customer-logo-row-section"
+      class="page-section page-section--logos homepage-customer-logo-row-section"
     >
       <HomepageCustomerLogoRow />
     </div>
-    <div class="site-grid-section homepage-proof-grid-section">
+    <div class="page-section homepage-proof-section">
       <HomepageProofSection />
     </div>
-    <div class="site-grid-section homepage-multi-feature-section">
+    <div class="page-section homepage-multi-feature-section">
       <Platform />
     </div>
-    <div class="site-grid-section">
+    <div class="page-section">
       <PlatformCapabilities />
     </div>
-    <div
-      class="site-grid-section site-grid-section--no-top site-grid-section--forest-green"
-    >
+    <div class="page-section page-section--no-top page-section--forest-green">
       <FeatureSection
         variant="forest-green"
         image={criticalOperationsImage}
@@ -71,13 +69,13 @@ const enterpriseFeatureBullets = [
         bullets={enterpriseFeatureBullets}
       />
     </div>
-    <div class="site-grid-section">
+    <div class="page-section">
       <CustomerStoriesFeature />
     </div>
-    <div class="site-grid-section site-grid-section--no-top">
+    <div class="page-section page-section--no-top">
       <EnterpriseSection variant="security" />
     </div>
-    <div class="site-grid-section site-grid-section--no-top">
+    <div class="page-section page-section--no-top">
       <CTA />
     </div>
   </div>
@@ -92,7 +90,7 @@ const enterpriseFeatureBullets = [
     max-width: var(--site-container-max) !important;
   }
 
-  .homepage-grid {
+  .homepage-layout {
     overflow-x: clip;
   }
 
@@ -100,7 +98,7 @@ const enterpriseFeatureBullets = [
     background: var(--bg-2);
   }
 
-  .homepage-proof-grid-section {
+  .homepage-proof-section {
     background: var(--bb-background-base);
   }
 

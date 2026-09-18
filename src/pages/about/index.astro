@@ -65,7 +65,7 @@ const leaders = [
     <section class="about-hero" aria-labelledby="about-title">
       <div class="about-shell about-hero__inner">
         <TitleBlock
-          variant="hero-large"
+          variant="hero"
           title="About Budibase"
           titleId="about-title"
           titleClass="about-hero__title"
@@ -235,19 +235,6 @@ const leaders = [
 <style>
   :global(#site-nav.nav-shell) {
     background: var(--bb-celery-200) !important;
-  }
-
-  :global(.site-grid-shell) {
-    --site-grid-line: color-mix(
-      in srgb,
-      var(--bb-celery-1400) 18%,
-      transparent
-    );
-    --site-grid-dot-line: color-mix(
-      in srgb,
-      var(--bb-celery-1400) 25%,
-      transparent
-    );
   }
 
   .about-page {
@@ -455,7 +442,7 @@ const leaders = [
   .about-leadership__card h3 {
     overflow-wrap: anywhere;
     font-size: clamp(1.25rem, 2vw, 1.65rem);
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.2;
   }
 
@@ -522,7 +509,7 @@ const leaders = [
     font-size: clamp(3rem, 6vw, 6rem);
     font-weight: 600;
     line-height: 0.95;
-    letter-spacing: -0.055em !important;
+    letter-spacing: normal !important;
     text-wrap: balance;
   }
 

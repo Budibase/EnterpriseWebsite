@@ -43,8 +43,11 @@ styles, and the footer. Do not create page-specific copies of the site shell.
 - Use `src/components/SectionBlock.astro` when a `TitleBlock` introduces a larger
   section of slotted content. `SectionBlock` owns layout, width, alignment, and
   spacing; it delegates the title and description markup to `TitleBlock`.
-- Use `src/components/SectionGrid.astro` for the standard site-width section
-  grid.
+- Use `src/components/ui/Divider.astro` for an inset horizontal rule between
+  adjacent page sections.
+- Use the shared `page-section` spacing utilities for standard page sections.
+  Apply the smallest matching modifier for hero, logo-row, flush-top, or
+  section-surface treatments.
 
 Prefer extending one of these components with a small, reusable variant over
 copying its typography into a page.
@@ -64,13 +67,21 @@ The tokens control hierarchy through size and line height. Components retain
 their role-appropriate typeface, weight, letter spacing, and casing so the
 condensed display face remains reserved for decisive brand moments.
 
-`TitleBlock` uses an emphasized section-title scale of 40px mobile, 48px
-tablet, and 56px desktop at weight 700.
+`TitleBlock` has two variants: `hero` uses TikTok Sans Condensed Black in
+uppercase for page-level statements, while `section` uses variable TikTok Sans
+in sentence case for content sections. The `section` variant uses the semantic
+`heading-section` scale at weight 500 with natural letter spacing. Use weight
+500 and natural letter spacing for all `h2`, `h3`, and `h4` headings.
 
 Use `--bb-text-body` for paragraphs and descriptive copy on light surfaces. It
 maps to Spectrum gray 900. Keep headings on their role-specific heading or
 brand token, and use the appropriate `--bb-text-on-base*` token on dark
 surfaces.
+
+Use the `technical-identifier` class for identifiers that benefit from clearly
+distinguished `I`, `l`, and `0` glyphs. It enables TikTok Sans stylistic set
+`ss06` alongside tabular numerals and a slashed zero. Do not enable stylistic
+sets globally for ordinary marketing copy.
 
 ### Cards
 
@@ -107,7 +118,7 @@ the same pattern.
   body content and the standard compact product header.
 - Use `ProductLandingPage.astro` for Apps, Agents, Automations, and Functions.
   It combines `HeroLarge` with the canonical `ProductDetailBody` composition.
-- Use `PlatformLandingPage.astro` for Tables, Requests and Approvals, Activity
+- Use `PlatformLandingPage.astro` for Data tables, Requests and Approvals, Activity
   and Insights, Knowledge, Admin and Security, Self-hosting, and API Explorer.
   It combines `HeroSmall` with `ProductDetailBody`.
 - Use `ProductDetailBody.astro` when a Product or Platform page needs the
@@ -124,7 +135,7 @@ layout behavior from the current URL.
 ### Page composition
 
 - `ProductDetailBody.astro` is the shared Product and Platform body composition. It
-  owns the card overview, feature sections, stats, site-grid wrappers, and
+  owns the card overview, feature sections, stats, page-section wrappers, and
   `ProductPageFooter`. Its sequence is overview, detail, proof, and next action.
 - `ProductFeatureNav.astro` reads labels, destinations, grouping, prefetch
   behavior, and icons from the platform dropdown data so both navigation

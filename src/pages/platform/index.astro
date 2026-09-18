@@ -1,12 +1,9 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
 import CTA from "@components/CTA.astro";
-import FeatureSection from "@components/FeatureSection.astro";
 import HeroLarge from "@components/HeroLarge.astro";
 import MultiFeatureSection from "@components/MultiFeatureSection.astro";
 import CardCluster from "@components/cards/CardCluster.astro";
-import ConnectionsDiagram from "./_components/ConnectionsDiagram.astro";
-import DeploymentDiagram from "./_components/DeploymentDiagram.astro";
 import PlatformArchitectureDiagram from "./_components/PlatformArchitectureDiagram.astro";
 import PlatformUseCaseDiagram from "./_components/PlatformUseCaseDiagram.astro";
 
@@ -121,7 +118,7 @@ const operationalScenarios = [
 const platformFoundation = [
   {
     number: "01",
-    title: "Tables",
+    title: "Data tables",
     description:
       "Keep structured operational data available to apps, automations, agents, and functions.",
     link: "/product/data/",
@@ -194,7 +191,7 @@ const platformFoundation = [
       }}
     />
 
-    <div class="site-grid-section platform-overview__scenario-section">
+    <div class="page-section platform-overview__scenario-section">
       <MultiFeatureSection
         id="platform-operational-scenarios"
         variant="light"
@@ -205,35 +202,7 @@ const platformFoundation = [
       />
     </div>
 
-    <div class="site-grid-section site-grid-section--no-top">
-      <FeatureSection
-        variant="light"
-        demo={ConnectionsDiagram}
-        imagePosition="left"
-        headline="Keep your systems. Keep your data."
-        body="Budibase works around the enterprise systems IT already owns. Connect databases, APIs, business applications, internal services, and AI models, then expose only the data and permitted actions each operational workflow needs."
-        linkAction={{
-          label: "Explore connections",
-          href: "/product/connections/",
-        }}
-      />
-    </div>
-
-    <div class="site-grid-section site-grid-section--no-top">
-      <FeatureSection
-        variant="light"
-        demo={DeploymentDiagram}
-        imagePosition="right"
-        headline="Deploy on your terms"
-        body="Run Budibase in the environment that fits your architecture. Choose Budibase Cloud or self-host, then connect the platform to the infrastructure, identity, data, APIs, and AI models your organization controls."
-        linkAction={{
-          label: "Explore self-hosting",
-          href: "/product/self-host/",
-        }}
-      />
-    </div>
-
-    <div class="site-grid-section site-grid-section--no-top">
+    <div class="page-section page-section--no-top">
       <CardCluster
         columns={4}
         Variant="white"
@@ -245,7 +214,7 @@ const platformFoundation = [
       />
     </div>
 
-    <div class="site-grid-section">
+    <div class="page-section">
       <CardCluster
         columns={4}
         Variant="white"
@@ -257,8 +226,8 @@ const platformFoundation = [
       />
     </div>
 
-    <div class="site-grid-section site-grid-section--no-top">
-      <CTA theme="light" />
+    <div class="page-section page-section--no-top">
+      <CTA />
     </div>
   </div>
 </Layout>

@@ -2,62 +2,83 @@
 import TitleBlock from "@components/TitleBlock.astro";
 import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
 
-const stats = [
-  {
-    value: "900M",
-    description: "Actions automated",
-  },
-  {
-    value: "400K+",
-    description: "Users",
-  },
-  {
-    value: "100+",
-    description: "Enterprises transformed",
-  },
-  {
-    value: "600K",
-    description: "Operations transformed",
-  },
+type Props = {
+  variant?: "default" | "ramp-showcase";
+};
+
+const { variant = "default" } = Astro.props as Props;
+const isRampShowcase = variant === "ramp-showcase";
+
+const defaultStats = [
+  { value: "900M", description: "Actions automated" },
+  { value: "400K+", description: "Users" },
+  { value: "100+", description: "Enterprises transformed" },
+  { value: "600K", description: "Operations transformed" },
 ] as const;
 ---
 
-<section class="homepage-proof" aria-labelledby="homepage-proof-title">
-  <div class="homepage-proof__intro">
-    <TitleBlock
-      variant="section"
-      titleId="homepage-proof-title"
-      titleLines={[
-        { text: "Open platform." },
-        {
-          text: "Enterprise proven.",
-          className: "homepage-proof__title-accent",
-        },
-      ]}
-      description="Across enterprise operations, Budibase helps IT deliver more software, support more users, and transform critical work without giving up control."
-      containerClass="homepage-proof__title-block"
-      titleClass="homepage-proof__title"
-      descriptionClass="homepage-proof__description"
-    />
-
-    <div class="homepage-proof__logos">
-      <EnterpriseLogoGrid
-        placement="hero"
-        replaceSpaceForceWithPierreFabre={true}
-      />
-    </div>
-  </div>
-
-  <div class="homepage-proof__stats">
-    {
-      stats.map((stat) => (
-        <div class="homepage-proof__stat">
-          <p class="homepage-proof__stat-value">{stat.value}</p>
-          <p class="homepage-proof__stat-description">{stat.description}</p>
+<section
+  class:list={[
+    "homepage-proof",
+    { "homepage-proof--ramp-showcase": isRampShowcase },
+  ]}
+  aria-labelledby="homepage-proof-title"
+>
+  {
+    isRampShowcase ? (
+      <div class="homepage-proof-showcase__grid">
+        <div class="homepage-proof-showcase__title-card">
+          <TitleBlock
+            variant="section"
+            titleId="homepage-proof-title"
+            titleLines={[
+              { text: "Open platform." },
+              { text: "Enterprise proven." },
+            ]}
+            containerClass="homepage-proof-showcase__title-block"
+            titleClass="homepage-proof-showcase__title"
+          />
         </div>
-      ))
-    }
-  </div>
+
+        <div class="homepage-proof-showcase__logos">
+          <EnterpriseLogoGrid placement="showcase" />
+        </div>
+      </div>
+    ) : (
+      <>
+        <div class="homepage-proof__intro">
+          <TitleBlock
+            variant="section"
+            titleId="homepage-proof-title"
+            titleLines={[
+              { text: "Open platform." },
+              { text: "Enterprise proven." },
+            ]}
+            description="Across enterprise operations, Budibase helps IT deliver more software, support more users, and transform critical work without giving up control."
+            containerClass="homepage-proof__title-block"
+            titleClass="homepage-proof__title"
+            descriptionClass="homepage-proof__description"
+          />
+
+          <div class="homepage-proof__logos">
+            <EnterpriseLogoGrid
+              placement="hero"
+              replaceSpaceForceWithPierreFabre={true}
+            />
+          </div>
+        </div>
+
+        <div class="homepage-proof__stats">
+          {defaultStats.map((stat) => (
+            <div class="homepage-proof__stat">
+              <p class="homepage-proof__stat-value">{stat.value}</p>
+              <p class="homepage-proof__stat-description">{stat.description}</p>
+            </div>
+          ))}
+        </div>
+      </>
+    )
+  }
 </section>
 
 <style>
@@ -84,26 +105,6 @@ const stats = [
     color: var(--bb-text-base);
   }
 
-  :global(.homepage-proof__title-accent) {
-    position: relative;
-    z-index: 0;
-    width: fit-content;
-  }
-
-  :global(.homepage-proof__title-accent)::after {
-    position: absolute;
-    z-index: -1;
-    right: -0.08em;
-    bottom: 0.04em;
-    left: 0.44em;
-    height: 0.1em;
-    border-radius: 999px 45% 999px 55%;
-    background: var(--bb-brand-yellow);
-    content: "";
-    transform: rotate(-0.35deg);
-    transform-origin: left center;
-  }
-
   :global(.homepage-proof__title-block .homepage-proof__description) {
     max-width: 40rem;
     color: var(--bb-text-body);
@@ -118,11 +119,17 @@ const stats = [
   .homepage-proof__logos :global(.enterprise-logo-grid--hero) {
     --logo-grid-cell-width: clamp(5.25rem, 9vw, 7.75rem);
     --logo-grid-cell-height: clamp(3.875rem, 6vw, 5.5rem);
-    --logo-grid-column-gap: 0.1875rem;
+    --logo-grid-row-gap: 6px;
+    --logo-grid-column-gap: 6px;
   }
 
   .homepage-proof__logos :global(.enterprise-logo-grid__inner) {
     margin-inline: 0;
+  }
+
+  .homepage-proof__logos :global(.enterprise-logo-grid__cell) {
+    border-color: var(--bb-border-subtle);
+    background: var(--bb-background-sand);
   }
 
   .homepage-proof__logos :global(.enterprise-logo-grid__image),
@@ -135,13 +142,11 @@ const stats = [
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: clamp(2rem, 4vw, 4.5rem);
-    margin-top: clamp(3.5rem, 6vw, 6rem);
+    margin-top: clamp(2rem, 4vw, 3rem);
   }
 
   .homepage-proof__stat {
     min-width: 0;
-    padding-top: clamp(1.5rem, 2.5vw, 2.25rem);
-    border-top: 1px solid var(--bb-border-bold);
   }
 
   .homepage-proof__stat p {
@@ -171,6 +176,57 @@ const stats = [
     text-transform: uppercase;
   }
 
+  .homepage-proof-showcase__grid {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 0;
+    margin-top: 0;
+  }
+
+  .homepage-proof-showcase__title-card {
+    display: flex;
+    min-width: 0;
+    min-height: 100%;
+    grid-column: span 2;
+    align-items: flex-end;
+    padding: clamp(1.5rem, 2.5vw, 2.5rem);
+    background: var(--bb-brand-bright-green);
+  }
+
+  :global(.homepage-proof-showcase__title-block) {
+    max-width: 100%;
+  }
+
+  :global(.homepage-proof-showcase__title) {
+    margin: 0;
+    color: var(--bb-text-body);
+    font-size: calc(
+      var(--bb-text-heading-section-font-size) - 0.5rem
+    ) !important;
+    line-height: 1.02;
+  }
+
+  .homepage-proof-showcase__logos {
+    grid-column: span 6;
+    min-width: 0;
+  }
+
+  @media (max-width: 1199px) {
+    .homepage-proof-showcase__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .homepage-proof-showcase__title-card,
+    .homepage-proof-showcase__logos {
+      grid-column: 1;
+    }
+
+    .homepage-proof-showcase__title-card {
+      min-height: 18rem;
+      padding: clamp(2rem, 5vw, 3.5rem);
+    }
+  }
+
   @media (min-width: 768px) and (max-width: 1023px) {
     .homepage-proof__intro {
       gap: clamp(1.5rem, 4vw, 3rem);
@@ -197,10 +253,6 @@ const stats = [
       max-width: 43rem;
     }
 
-    :global(.homepage-proof__title-accent)::after {
-      left: 0.2em;
-    }
-
     .homepage-proof__logos {
       width: 100%;
     }
@@ -208,11 +260,16 @@ const stats = [
     .homepage-proof__stats {
       grid-template-columns: minmax(0, 1fr);
       gap: 2.5rem;
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
 
     .homepage-proof__logos :global(.enterprise-logo-grid__inner) {
       padding-inline: 0;
+    }
+
+    .homepage-proof-showcase__title-card {
+      min-height: 21rem;
+      padding: 1.5rem;
     }
   }
 </style>

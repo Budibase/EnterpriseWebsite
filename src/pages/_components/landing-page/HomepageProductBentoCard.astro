@@ -1,0 +1,331 @@
+---
+import Icon from "@components/Icon.astro";
+import OnePlatformAgent from "@components/OnePlatformAgent.astro";
+import OnePlatformApp from "@components/OnePlatformApp.astro";
+import OnePlatformAutomation from "@components/OnePlatformAutomation.astro";
+import OnePlatformData from "@components/OnePlatformData.astro";
+import FunctionsMedia from "@assets/images/platform/AgentInAutomations.png?url";
+
+type Product =
+  "agents" | "requests" | "automations" | "functions" | "tables" | "apps";
+type Size = "small" | "large" | "extra-large";
+
+interface Props {
+  product: Product;
+  title: string;
+  href: string;
+  size: Size;
+}
+
+const { product, title, href, size } = Astro.props as Props;
+---
+
+<a
+  class:list={["homepage-product-card", `is-${product}`, `is-${size}`]}
+  href={href}
+  aria-label={title}
+>
+  <div class="homepage-product-card__header">
+    <h3>{title}</h3>
+    <span class="homepage-product-card__arrow" aria-hidden="true">
+      <Icon name="ArrowRight" size="20" />
+    </span>
+  </div>
+
+  <div class="homepage-product-card__media" aria-hidden="true">
+    {product === "agents" && <OnePlatformAgent />}
+    {product === "automations" && <OnePlatformAutomation />}
+    {product === "tables" && <OnePlatformData />}
+    {product === "apps" && <OnePlatformApp />}
+
+    {
+      product === "functions" && (
+        <img
+          src={FunctionsMedia}
+          alt=""
+          class="homepage-product-card__functions"
+          loading="lazy"
+          decoding="async"
+        />
+      )
+    }
+
+    {
+      product === "requests" && (
+        <span class="homepage-product-card__requests">
+          <span class="homepage-product-card__requests-bar">
+            <span>
+              <strong>Request queue</strong>
+              <small>Operations</small>
+            </span>
+            <em>3 open</em>
+          </span>
+          <span class="homepage-product-card__request is-highlighted">
+            <span>
+              <>
+                <strong>Salesforce access</strong>
+                <small>Sarah Chen</small>
+              </>
+            </span>
+            <em class="is-review">Review</em>
+          </span>
+          <span class="homepage-product-card__request">
+            <span>
+              <>
+                <strong>Vendor onboarding</strong>
+                <small>Finance</small>
+              </>
+            </span>
+            <em class="is-approved">Approved</em>
+          </span>
+          <span class="homepage-product-card__request">
+            <span>
+              <>
+                <strong>Device replacement</strong>
+                <small>IT operations</small>
+              </>
+            </span>
+            <em class="is-new">New</em>
+          </span>
+        </span>
+      )
+    }
+  </div>
+</a>
+
+<style>
+  .homepage-product-card {
+    position: relative;
+    display: block;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0;
+    background: var(--bb-background-sand);
+    color: var(--bb-text-base);
+    text-decoration: none;
+    transition: background-color 180ms ease;
+  }
+
+  .homepage-product-card:hover {
+    background: var(--bb-background-sand-hover);
+  }
+
+  .homepage-product-card:focus-visible {
+    outline: 3px solid var(--bb-brand-forest-green);
+    outline-offset: -4px;
+  }
+
+  .homepage-product-card__header {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: clamp(1.25rem, 2.4vw, 2rem);
+  }
+
+  .homepage-product-card h3 {
+    margin: 0;
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    font-size: 1.375rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: normal;
+  }
+
+  .homepage-product-card__arrow {
+    display: inline-flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: 0 0 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    color: var(--bb-brand-forest-green);
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .homepage-product-card:hover .homepage-product-card__arrow {
+    border-color: var(--bb-brand-forest-green);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+  }
+
+  .homepage-product-card__media {
+    position: absolute;
+    right: 1rem;
+    bottom: 0;
+    display: block;
+    width: calc(100% - 2rem);
+    height: 66%;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    border-bottom: 0;
+    background: var(--bb-background-base);
+    box-shadow: 0 1rem 2.5rem var(--bb-transparent-black-200);
+    pointer-events: none;
+  }
+
+  .homepage-product-card.is-large .homepage-product-card__media {
+    right: clamp(1.5rem, 4vw, 3rem);
+    width: min(72%, 42rem);
+    height: 78%;
+  }
+
+  .homepage-product-card.is-extra-large .homepage-product-card__media {
+    right: clamp(1.5rem, 5vw, 4.5rem);
+    width: min(64%, 49rem);
+    height: 80%;
+  }
+
+  .homepage-product-card__media :global(.one-platform-agent),
+  .homepage-product-card__media :global(.one-platform-app),
+  .homepage-product-card__media :global(.one-platform-automation),
+  .homepage-product-card__media :global(.one-platform-data) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .homepage-product-card__functions {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .homepage-product-card__requests {
+    display: block;
+    height: 100%;
+    padding: 1rem;
+    background: var(--bb-background-surface);
+  }
+
+  .homepage-product-card__requests-bar,
+  .homepage-product-card__request {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .homepage-product-card__requests-bar {
+    margin-bottom: 0.75rem;
+  }
+
+  .homepage-product-card__requests-bar > span,
+  .homepage-product-card__request > span {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .homepage-product-card__requests strong {
+    overflow: hidden;
+    color: var(--bb-text-base);
+    font-size: 0.6875rem;
+    font-style: normal;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .homepage-product-card__requests small {
+    color: var(--bb-text-subtle);
+    font-size: 0.5625rem;
+  }
+
+  .homepage-product-card__requests em {
+    flex: 0 0 auto;
+    border-radius: 999px;
+    padding: 0.25rem 0.45rem;
+    font-size: 0.5625rem;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .homepage-product-card__requests-bar > em {
+    background: var(--bb-celery-200);
+    color: var(--bb-celery-1300);
+  }
+
+  .homepage-product-card__request {
+    min-height: 3.25rem;
+    border: 1px solid var(--bb-border-base);
+    border-bottom: 0;
+    padding: 0.625rem;
+    background: var(--bb-background-base);
+  }
+
+  .homepage-product-card__request:last-child {
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+
+  .homepage-product-card__request.is-highlighted {
+    background: var(--bb-celery-100);
+  }
+
+  .homepage-product-card__request .is-review {
+    background: var(--bb-yellow-200);
+    color: var(--bb-yellow-1300);
+  }
+
+  .homepage-product-card__request .is-approved {
+    background: var(--bb-celery-200);
+    color: var(--bb-celery-1300);
+  }
+
+  .homepage-product-card__request .is-new {
+    background: var(--bb-blue-200);
+    color: var(--bb-blue-1300);
+  }
+
+  @media (max-width: 1023px) {
+    .homepage-product-card.is-large .homepage-product-card__media,
+    .homepage-product-card.is-extra-large .homepage-product-card__media {
+      right: 1.5rem;
+      width: 70%;
+      height: 76%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .homepage-product-card h3 {
+      font-size: 1.25rem;
+    }
+
+    .homepage-product-card__header {
+      padding: 1.25rem;
+    }
+
+    .homepage-product-card__arrow {
+      width: 2.5rem;
+      height: 2.5rem;
+      flex-basis: 2.5rem;
+    }
+
+    .homepage-product-card__media,
+    .homepage-product-card.is-large .homepage-product-card__media,
+    .homepage-product-card.is-extra-large .homepage-product-card__media {
+      right: 1rem;
+      width: calc(100% - 2rem);
+      height: 68%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .homepage-product-card,
+    .homepage-product-card__arrow {
+      transition: none;
+    }
+  }
+</style>

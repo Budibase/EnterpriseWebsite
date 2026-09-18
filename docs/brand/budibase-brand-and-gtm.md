@@ -587,8 +587,14 @@ capabilities. Conservative styling alone is not evidence of maturity.
 - Use TikTok Sans Condensed Black at its native `900` weight for major
   statements, category claims, titles, and headings that should feel
   unmistakably Budibase.
-- Use variable TikTok Sans for body copy, explanation, evidence, technical
-  detail, and interface content.
+- Use variable TikTok Sans for large sentence-case section headings, body copy,
+  explanation, evidence, technical detail, navigation, controls, and interface
+  content.
+- Set `h2`, `h3`, and `h4` headings in variable TikTok Sans at weight `500`
+  with natural letter spacing.
+- Keep TikTok Sans's default forms for marketing copy. Use its `ss06`
+  disambiguation forms selectively for technical identifiers where a seriffed
+  `I`, tailed `l`, and slashed `0` improve recognition.
 - Do not turn every heading into an oversized all-caps statement. Contrast is
   what gives the display typography authority.
 
@@ -805,6 +811,38 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 - What quantitative outcomes can Budibase substantiate consistently?
 
 ## Decision log
+
+### 17 September 2026
+
+- Restricted TikTok Sans Condensed Black to decisive uppercase display
+  statements and separated supporting typography from the display face. After
+  testing IBM Plex Sans, moved the active supporting treatment to a neutral
+  neo-grotesk system for evaluation: Inter Display Regular for large
+  sentence-case section headings and Inter for body copy, navigation, controls,
+  and interface content. The lighter heading weight, tight tracking, and
+  compact line height create the calm, editorial character shown in the chosen
+  reference while preserving contrast with the condensed display face.
+- Rejected Host Grotesk after testing it across headings, body copy, navigation,
+  and interface content. Its rounder, more geometric construction made the site
+  feel softer and more generic than intended. Restored Inter Display and Inter
+  as the active supporting system while retaining TikTok Sans Condensed Black
+  for decisive uppercase display statements.
+- Rejected the separate Inter Display and Inter supporting system and restored
+  variable TikTok Sans across sentence-case headings, body copy, navigation,
+  controls, and interface content. TikTok Sans Condensed Black remains the
+  distinct uppercase display cut.
+- Standardized `h2`, `h3`, and `h4` headings at TikTok Sans Medium (`500`) with
+  natural letter spacing, including the shared `TitleBlock` section variant.
+- Removed the unsupported global `ss04` request from TikTok Sans. Retained the
+  default forms for marketing copy and enabled `ss06` only through the
+  `technical-identifier` utility for clearer `I`, `l`, and `0` forms.
+
+### 15 September 2026
+
+- Established square corners as the site-wide container treatment. Cards,
+  panels, section surfaces, hero media shells, and other containers use a
+  `0` border radius; pills, circular status or avatar elements, and other
+  controls may remain rounded when their shape is functional.
 
 ### 10 September 2026
 

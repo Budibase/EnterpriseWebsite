@@ -110,7 +110,7 @@ const metrics = [
 
           <div class="enterprise-section__block enterprise-section__block--metrics">
             <TitleBlock
-              variant="homepage-section"
+              variant="section"
               titleColorMode="split-primary-secondary"
               titleLines={[
                 { text: "Scale with confidence." },
@@ -140,14 +140,11 @@ const metrics = [
       isSecurityOnly && (
         <div class="enterprise-section__block">
           <TitleBlock
-            variant="homepage-section"
-            titleColorMode="split-primary-secondary"
-            titleLines={[
-              { text: "Enterprise-Grade Security." },
-              {
-                text: "Certified to protect your data and operations, no matter the industry or use case.",
-              },
-            ]}
+            variant="section"
+            title="Enterprise-Grade Security."
+            description="Certified to protect your data and operations, no matter the industry or use case."
+            descriptionAlign="center"
+            descriptionClass="enterprise-section__security-description"
             containerClass="homepage-section-header enterprise-section__header"
           />
 
@@ -279,20 +276,16 @@ const metrics = [
     margin-bottom: 0;
   }
 
-  :global(.enterprise-section__header .homepage-section-header__title) {
+  :global(.enterprise-section__header .section-title) {
     color: var(--bb-text-on-base);
   }
 
-  :global(
-    .enterprise-section__header .homepage-section-header__title span:last-child
-  ) {
+  :global(.enterprise-section__header .section-title span:last-child) {
     color: var(--bb-text-on-base-muted);
   }
 
   :global(
-    .enterprise-section--security
-      .enterprise-section__header
-      .homepage-section-header__title
+    .enterprise-section--security .enterprise-section__header .section-title
   ) {
     color: var(--bb-text-base);
   }
@@ -300,10 +293,18 @@ const metrics = [
   :global(
     .enterprise-section--security
       .enterprise-section__header
-      .homepage-section-header__title
+      .section-title
       span:last-child
   ) {
     color: var(--bb-text-muted);
+  }
+
+  :global(.enterprise-section__security-description) {
+    font-family: var(--font-sans);
+    font-size: var(--bb-text-copy-body-font-size);
+    font-weight: var(--bb-text-copy-body-font-weight);
+    line-height: var(--bb-text-copy-body-line-height);
+    letter-spacing: normal;
   }
 
   :global(.enterprise-section--security .enterprise-section__header) {

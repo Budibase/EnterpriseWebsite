@@ -68,7 +68,7 @@ const hasBeforeTitle = Astro.slots.has("before-title");
       underline={linkUnderline}
     >
       <div
-        class={`card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 hover:bg-stone-200!  p-4 rounded-md ${className}`}
+        class={`card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 hover:bg-stone-200!  p-4 rounded-none ${className}`}
       >
         <div class={`card-content ${cardContentClass}`}>
           {showTagAtTop && (
@@ -109,13 +109,13 @@ const hasBeforeTitle = Astro.slots.has("before-title");
                 <img
                   src={resolvedImageSrc}
                   alt={imageAlt}
-                  class="card-image rounded-sm"
+                  class="card-image rounded-none"
                   loading="lazy"
                 />
               )}
               {!resolvedImageSrc && imagePlaceholderColor && (
                 <div
-                  class="card-image rounded-sm"
+                  class="card-image rounded-none"
                   role="img"
                   aria-label={imageAlt}
                   style={`background-color: ${imagePlaceholderColor};`}
@@ -129,7 +129,7 @@ const hasBeforeTitle = Astro.slots.has("before-title");
     </Link>
   ) : (
     <div
-      class={`card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 p-4 rounded-md ${className}`}
+      class={`card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 p-4 rounded-none ${className}`}
     >
       <div class={`card-content ${cardContentClass}`}>
         {showTagAtTop && (
@@ -160,13 +160,13 @@ const hasBeforeTitle = Astro.slots.has("before-title");
               <img
                 src={resolvedImageSrc}
                 alt={imageAlt}
-                class="card-image rounded-sm"
+                class="card-image rounded-none"
                 loading="lazy"
               />
             )}
             {!resolvedImageSrc && imagePlaceholderColor && (
               <div
-                class="card-image rounded-sm"
+                class="card-image rounded-none"
                 role="img"
                 aria-label={imageAlt}
                 style={`background-color: ${imagePlaceholderColor};`}
@@ -252,7 +252,7 @@ const hasBeforeTitle = Astro.slots.has("before-title");
     height: 100%;
     width: 100%;
     border: 1px solid var(--border);
-    border-radius: 0.25rem;
+    border-radius: 0;
     overflow: hidden;
     position: relative;
   }

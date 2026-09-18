@@ -122,12 +122,18 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
           variant={usesDarkControls ? "outline-on-dark" : "secondary"}
           size="medium"
           target="_blank"
+          class={!usesDarkControls
+            ? "hover:!text-[var(--bb-brand-forest-green)]"
+            : undefined}
         />
         <Button
           label="Book a demo"
           url="/contact/"
           variant={usesDarkControls ? "bright-on-dark" : "cta"}
           size="medium"
+          icon="ArrowRight"
+          iconPosition="end"
+          class="!gap-[16px]"
         />
       </div>
 
@@ -246,7 +252,9 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         url="/contact/"
         variant="cta"
         size="medium"
-        class="mobile-nav-action-button"
+        icon="ArrowRight"
+        iconPosition="end"
+        class="mobile-nav-action-button !gap-[16px]"
       />
     </div>
   </div>
@@ -460,7 +468,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
   .nav-shell.nav-shell--immersive-overlay .nav-shell__inner {
     max-width: none;
     height: 4.75rem;
-    padding-inline: clamp(1.25rem, 3vw, 3.5rem) !important;
+    padding-inline: var(--site-content-inset) !important;
   }
 
   .nav-shell.nav-shell--immersive-overlay

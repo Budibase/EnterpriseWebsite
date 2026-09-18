@@ -38,7 +38,7 @@ export interface NavDropdownMenu {
 export const platformDropdownMenu: NavDropdownMenu = {
   featuredCard: {
     href: "/platform/",
-    title: "Overview",
+    title: "Platform",
     description:
       "See how Budibase brings agents, apps, and automations together.",
     ctaLabel: "View overview",
@@ -84,7 +84,7 @@ export const platformDropdownMenu: NavDropdownMenu = {
       items: [
         {
           href: "/product/data/",
-          label: "Tables",
+          label: "Data tables",
           description: "Structured data for apps and workflows.",
           prefetch: true,
           icon: "Table",
@@ -291,6 +291,13 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
           description: "Start from ready-to-build operational templates.",
           prefetch: true,
         },
+        {
+          href: "/partners/",
+          label: "Partners",
+          description:
+            "Find a delivery partner or join the Budibase partner network.",
+          prefetch: true,
+        },
       ],
     },
     {
@@ -333,13 +340,6 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
     {
       heading: "Company",
       items: [
-        {
-          href: "/partners/",
-          label: "Partners",
-          description:
-            "Find a delivery partner or join the Budibase partner network.",
-          prefetch: true,
-        },
         {
           href: "https://github.com/orgs/Budibase/projects/15/views/7",
           label: "Roadmap",

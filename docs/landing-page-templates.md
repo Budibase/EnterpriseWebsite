@@ -14,7 +14,7 @@ feature detail, proof, and the next action.
 
 ## Platform landing pages
 
-Use `PlatformLandingPage.astro` for Tables, Requests and Approvals, Activity and
+Use `PlatformLandingPage.astro` for Data tables, Requests and Approvals, Activity and
 Insights, Knowledge, Admin and Security, Self-hosting, and API Explorer.
 
 Platform pages use a split copy-and-media hero followed by the shared

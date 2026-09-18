@@ -20,7 +20,7 @@ const resolvedFeatureMedia =
 ---
 
 <div class="product-detail-body">
-  <div class="site-grid-section">
+  <div class="page-section">
     <CardCluster
       SectionTitle={content.cardCluster.title}
       SectionDescription={content.cardCluster.description}
@@ -30,7 +30,7 @@ const resolvedFeatureMedia =
 
   {
     content.features.map((feature, index) => (
-      <div class="site-grid-section site-grid-section--no-top">
+      <div class="page-section page-section--no-top">
         <FeatureSection
           image={resolvedFeatureMedia[index].image}
           imageAlt={
@@ -49,7 +49,7 @@ const resolvedFeatureMedia =
     ))
   }
 
-  <div class="site-grid-section site-grid-section--no-top">
+  <div class="page-section page-section--no-top">
     <StatSection />
   </div>
 

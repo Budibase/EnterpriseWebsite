@@ -11,7 +11,7 @@ import { getOpsLibraryCards } from "../../data/opsLibraryCardData";
 import OpsBookADemoButton from "./_components/OpsBookADemoButton.astro";
 
 const ASSET_GROUP_ORDER = [
-  { key: "tables", label: "Tables" },
+  { key: "tables", label: "Data tables" },
   { key: "automations", label: "Automations" },
   { key: "tools", label: "Tools" },
   { key: "aiModel", label: "AI model" },
@@ -264,7 +264,7 @@ const relatedAgents: RelatedAgent[] = allAgentCards
 
     .agent-detail-article {
       background: var(--bg-1);
-      border-radius: 0.8rem;
+      border-radius: 0;
       padding: 1rem;
       min-width: 0;
     }

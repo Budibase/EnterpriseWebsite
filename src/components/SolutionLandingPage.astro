@@ -31,7 +31,7 @@ const featureImages = [
 ---
 
 <div class="solution-landing-page">
-  <div class="site-grid-section site-grid-section--hero">
+  <div class="page-section page-section--hero">
     <HeroSmall
       class="hero-small--white"
       image={HeroImage}
@@ -51,7 +51,7 @@ const featureImages = [
 
   {
     usesHomepageProof && (
-      <div class="site-grid-section solution-proof-grid-section">
+      <div class="page-section solution-proof-section">
         <HomepageProofSection />
       </div>
     )
@@ -59,7 +59,7 @@ const featureImages = [
 
   {
     content.features.map((feature, index) => (
-      <div class="site-grid-section site-grid-section--no-top">
+      <div class="page-section page-section--no-top">
         <FeatureSection
           variant={feature.variant}
           image={featureImages[index].src}
@@ -74,23 +74,23 @@ const featureImages = [
 
   {
     !usesHomepageProof && (
-      <div class="site-grid-section site-grid-section--no-top">
+      <div class="page-section page-section--no-top">
         <StatSection variant="forest-green" />
       </div>
     )
   }
 
-  <div class="site-grid-section site-grid-section--no-top">
+  <div class="page-section page-section--no-top">
     <EnterpriseSection variant="security" />
   </div>
 
-  <div class="site-grid-section site-grid-section--no-top">
+  <div class="page-section page-section--no-top">
     <CTA />
   </div>
 </div>
 
 <style>
-  .solution-proof-grid-section {
+  .solution-proof-section {
     background: var(--bb-background-base);
   }
 </style>

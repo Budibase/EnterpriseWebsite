@@ -135,7 +135,7 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
     <Fragment slot="header">
       <div class="mx-auto w-full max-w-3xl">
         <TitleBlock
-          variant="hero-large"
+          variant="hero"
           title={pageTitle}
           titleClass="mb-2 text-[var(--text-primary)]"
         />
@@ -145,7 +145,7 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
 
         <section class="mx-auto mt-8 w-full max-w-2xl">
           <div
-            class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4 md:p-5"
+            class="rounded-none border border-[var(--border-color)] bg-[var(--bg-2)] p-4 md:p-5"
           >
             <label for="connections-search" class="sr-only">
               Search connectors
@@ -699,7 +699,7 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
       <section
         data-connector-empty
         hidden
-        class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4 text-center"
+        class="rounded-none border border-[var(--border-color)] bg-[var(--bg-2)] p-4 text-center"
         aria-live="polite"
       >
         <p class="m-0 text-[var(--bb-text-body)]">
@@ -808,7 +808,7 @@ const { title: pageTitle, description: pageDescription } = getProductPageMeta(
   .integration-card {
     background-color: var(--bb-gray-75);
     padding: 8px 12px;
-    border-radius: 0.375rem;
+    border-radius: 0;
     border: 1px solid var(--border);
     display: flex;
     flex-direction: row;

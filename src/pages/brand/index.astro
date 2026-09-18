@@ -96,11 +96,11 @@ const colors = [
 
 <Layout title={pageTitle} description={pageDescription}>
   <div class="brand-page">
-    <section class="brand-hero site-grid-section" aria-labelledby="brand-title">
+    <section class="brand-hero page-section" aria-labelledby="brand-title">
       <div class="brand-shell brand-hero__inner">
         <p class="brand-eyebrow">Budibase identity</p>
         <TitleBlock
-          variant="hero-large"
+          variant="hero"
           title="Brand assets"
           titleId="brand-title"
           titleClass="brand-hero__title"
@@ -119,14 +119,14 @@ const colors = [
 
     <section
       id="logos"
-      class="brand-section site-grid-section"
+      class="brand-section page-section"
       aria-labelledby="logos-title"
     >
       <div class="brand-shell">
         <div class="brand-section__heading">
           <p class="brand-eyebrow">01 / Logos</p>
           <TitleBlock
-            variant="display-small"
+            variant="section"
             title="Logos"
             titleId="logos-title"
             description="Use the forest-green treatment on light backgrounds and the bright-green treatment on dark backgrounds."
@@ -177,14 +177,14 @@ const colors = [
 
     <section
       id="colors"
-      class="brand-section brand-section--tinted site-grid-section"
+      class="brand-section brand-section--tinted page-section"
       aria-labelledby="colors-title"
     >
       <div class="brand-shell">
         <div class="brand-section__heading">
           <p class="brand-eyebrow">02 / Colors</p>
           <TitleBlock
-            variant="display-small"
+            variant="section"
             title="Colors"
             titleId="colors-title"
             description="Select a swatch to copy its hex value. Each color has a clear role in the system."
@@ -229,14 +229,14 @@ const colors = [
 
     <section
       id="typography"
-      class="brand-section site-grid-section"
+      class="brand-section page-section"
       aria-labelledby="typography-title"
     >
       <div class="brand-shell">
         <div class="brand-section__heading">
           <p class="brand-eyebrow">03 / Typography</p>
           <TitleBlock
-            variant="display-small"
+            variant="section"
             title="Typography"
             titleId="typography-title"
             description="Use contrast to give the display face authority. Keep explanation, evidence, and interface content easy to read."
@@ -260,7 +260,7 @@ const colors = [
 
           <article class="brand-type-card brand-type-card--body">
             <div class="brand-type-meta">
-              <span>Body and interface</span>
+              <span>Content system</span>
               <strong>TikTok Sans</strong>
             </div>
             <p class="brand-type-body-sample">
@@ -273,6 +273,7 @@ const colors = [
             >
               <span style="font-weight: 300">300 Light</span>
               <span style="font-weight: 400">400 Regular</span>
+              <span style="font-weight: 500">500 Medium · H2–H4</span>
               <span style="font-weight: 600">600 Semibold</span>
               <span style="font-weight: 900">900 Black</span>
             </div>
@@ -705,7 +706,10 @@ const colors = [
     max-width: 30rem;
     margin: 0;
     color: var(--bb-text-body) !important;
+    font-family: var(--font-heading-sans);
     font-size: clamp(1.35rem, 2.6vw, 2rem);
+    font-weight: 400;
+    letter-spacing: -0.035em !important;
     line-height: 1.25;
   }
 

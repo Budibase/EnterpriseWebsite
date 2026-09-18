@@ -33,22 +33,20 @@ const enterpriseFeatureBullets = [
   rawTitle="Alternate homepage preview | Budibase"
   robots="noindex,nofollow"
 >
-  <div class="homepage-grid">
-    <div class="site-grid-section site-grid-section--hero">
+  <div class="homepage-layout">
+    <div class="page-section page-section--hero">
       <Hero />
     </div>
-    <div class="site-grid-section homepage-proof-grid-section">
+    <div class="page-section homepage-proof-section">
       <HomepageProofSection />
     </div>
-    <div class="site-grid-section site-grid-section--multi-feature">
+    <div class="page-section page-section--dark">
       <Platform />
     </div>
-    <div class="site-grid-section">
+    <div class="page-section">
       <PlatformCapabilities />
     </div>
-    <div
-      class="site-grid-section site-grid-section--no-top site-grid-section--forest-green"
-    >
+    <div class="page-section page-section--no-top page-section--forest-green">
       <FeatureSection
         variant="forest-green"
         image={criticalOperationsImage}
@@ -64,20 +62,20 @@ const enterpriseFeatureBullets = [
         bullets={enterpriseFeatureBullets}
       />
     </div>
-    <div class="site-grid-section">
+    <div class="page-section">
       <CustomerStoriesFeature />
     </div>
-    <div class="site-grid-section site-grid-section--no-top">
+    <div class="page-section page-section--no-top">
       <EnterpriseSection variant="security" />
     </div>
-    <div class="site-grid-section site-grid-section--no-top">
+    <div class="page-section page-section--no-top">
       <CTA />
     </div>
   </div>
 </Layout>
 
 <style>
-  .homepage-proof-grid-section {
+  .homepage-proof-section {
     background: var(--bb-background-base);
   }
 </style>

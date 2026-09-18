@@ -1,0 +1,1372 @@
+---
+import TitleBlock from "@components/TitleBlock.astro";
+import Icon from "@components/Icon.astro";
+import caretDownIcon from "@assets/images/homepage/use-cases/caret-down.svg?url";
+import completedIcon from "@assets/images/homepage/use-cases/completed.svg?url";
+import dotsThreeIcon from "@assets/images/homepage/use-cases/dots-three.svg?url";
+import processingIcon from "@assets/images/homepage/use-cases/processing.svg?url";
+import warningIcon from "@assets/images/homepage/use-cases/warning.svg?url";
+import PostgresLogo from "@assets/logos/Postgres.svg?url";
+import SAPLogo from "@assets/logos/SAP.svg?url";
+import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
+import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+
+type IconName = "Sparkle" | "Table" | "Code" | "AppWindow" | "Lightning";
+type AssetStatus = "Live" | "Connected" | "Not deployed" | "—";
+type StatusTone = "success" | "info" | "attention" | "danger" | "neutral";
+
+interface SolutionAsset {
+  name: string;
+  type: "Agent" | "App" | "Automation" | "Table" | "API" | "Database";
+  owner: string;
+  status: AssetStatus;
+  created: string;
+  icon?: IconName;
+  iconSrc?: string;
+  iconAlt?: string;
+  iconColor?: string;
+}
+
+interface SummaryMetric {
+  label: string;
+  value: string;
+  tone: StatusTone;
+}
+
+interface DemoRow {
+  name: string;
+  status: string;
+  tone: StatusTone;
+  source: string;
+  updated: string;
+}
+
+interface Solution {
+  id: string;
+  label: string;
+  color: string;
+  overview: string;
+  assets: readonly SolutionAsset[];
+  demo: {
+    title: string;
+    columnLabel: string;
+    total: string;
+    metrics: readonly SummaryMetric[];
+    rows: readonly DemoRow[];
+  };
+}
+
+const solutions: readonly Solution[] = [
+  {
+    id: "purchase-approvals",
+    label: "Purchase approvals",
+    color: "var(--bb-celery-600)",
+    overview:
+      "Employees submit purchase requests with the items, supplier and cost. Requests are automatically routed to the right approvers based on your approval rules, with employees notified when more information is needed or a decision is made. Approved requests can then be passed to your purchasing system to create the PO.",
+    assets: [
+      {
+        name: "Purchase request portal",
+        type: "App",
+        owner: "Maya Patel",
+        status: "Live",
+        created: "Nov 7, 2025",
+        icon: "AppWindow",
+        iconColor: "var(--bb-orange-700)",
+      },
+      {
+        name: "Approval agent",
+        type: "Agent",
+        owner: "Maya Patel",
+        status: "Live",
+        created: "Nov 7, 2025",
+        icon: "Sparkle",
+        iconColor: "var(--bb-purple-700)",
+      },
+      {
+        name: "Purchase requests",
+        type: "Table",
+        owner: "Maya Patel",
+        status: "—",
+        created: "Nov 6, 2025",
+        icon: "Table",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "Route purchase approvals",
+        type: "Automation",
+        owner: "Daniel Kim",
+        status: "Live",
+        created: "Nov 5, 2025",
+        icon: "Lightning",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "SAP supplier lookup",
+        type: "API",
+        owner: "Alex Morgan",
+        status: "Connected",
+        created: "Nov 4, 2025",
+        iconSrc: SAPLogo,
+        iconAlt: "SAP",
+      },
+    ],
+    demo: {
+      title: "Requests",
+      columnLabel: "Requests",
+      total: "2,208",
+      metrics: [
+        { label: "All requests", value: "2,208", tone: "neutral" },
+        { label: "Completed", value: "2,184", tone: "success" },
+        { label: "Processing", value: "1", tone: "info" },
+        { label: "Needs input", value: "2", tone: "attention" },
+        { label: "Failed", value: "0", tone: "danger" },
+      ],
+      rows: [
+        {
+          name: "Standing desks for finance",
+          status: "Needs input",
+          tone: "attention",
+          source: "Agent: Approval agent",
+          updated: "Seconds ago",
+        },
+        {
+          name: "Dell laptop for software developer",
+          status: "Processing",
+          tone: "info",
+          source: "Automation: Approval routing",
+          updated: "Seconds ago",
+        },
+        {
+          name: "External hard drive for IT",
+          status: "Completed",
+          tone: "success",
+          source: "Automation: Approval routing",
+          updated: "Minutes ago",
+        },
+        {
+          name: "Webcams for remote employees",
+          status: "Completed",
+          tone: "success",
+          source: "Agent: Procurement assistant",
+          updated: "Hours ago",
+        },
+        {
+          name: "Network switch for infrastructure",
+          status: "Completed",
+          tone: "success",
+          source: "Automation: Approval routing",
+          updated: "Hours ago",
+        },
+        {
+          name: "Backup UPS for data center",
+          status: "Completed",
+          tone: "success",
+          source: "Agent: Procurement assistant",
+          updated: "Days ago",
+        },
+        {
+          name: "Security keys for new starters",
+          status: "Completed",
+          tone: "success",
+          source: "Automation: Approval routing",
+          updated: "Days ago",
+        },
+        {
+          name: "Projector for training sessions",
+          status: "Completed",
+          tone: "success",
+          source: "Agent: Procurement assistant",
+          updated: "Weeks ago",
+        },
+      ],
+    },
+  },
+  {
+    id: "factory-inspections",
+    label: "Factory inspections",
+    color: "var(--bb-yellow-600)",
+    overview:
+      "Operators complete scheduled inspections with readings, photos and notes at the point of work. Failed checks create follow-up actions automatically, notify the right owner and remain visible until corrective work is complete.",
+    assets: [
+      {
+        name: "Factory inspection form",
+        type: "App",
+        owner: "Elena Rossi",
+        status: "Live",
+        created: "Nov 8, 2025",
+        icon: "AppWindow",
+        iconColor: "var(--bb-orange-700)",
+      },
+      {
+        name: "Inspection records",
+        type: "Table",
+        owner: "Elena Rossi",
+        status: "—",
+        created: "Nov 7, 2025",
+        icon: "Table",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "Escalate failed inspections",
+        type: "Automation",
+        owner: "Elena Rossi",
+        status: "Live",
+        created: "Nov 6, 2025",
+        icon: "Lightning",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "ServiceNow work orders",
+        type: "API",
+        owner: "Alex Morgan",
+        status: "Connected",
+        created: "Nov 3, 2025",
+        iconSrc: ServiceNowLogo,
+        iconAlt: "ServiceNow",
+      },
+    ],
+    demo: {
+      title: "Inspections",
+      columnLabel: "Inspections",
+      total: "1,264",
+      metrics: [
+        { label: "All inspections", value: "1,264", tone: "neutral" },
+        { label: "Passed", value: "1,198", tone: "success" },
+        { label: "In progress", value: "18", tone: "info" },
+        { label: "Needs action", value: "42", tone: "attention" },
+        { label: "Failed", value: "6", tone: "danger" },
+      ],
+      rows: [
+        {
+          name: "Line 4 pre-shift safety check",
+          status: "Needs action",
+          tone: "attention",
+          source: "App: Factory inspection form",
+          updated: "Minutes ago",
+        },
+        {
+          name: "Packaging station quality check",
+          status: "In progress",
+          tone: "info",
+          source: "App: Factory inspection form",
+          updated: "Minutes ago",
+        },
+        {
+          name: "Loading bay equipment check",
+          status: "Passed",
+          tone: "success",
+          source: "Automation: Inspection review",
+          updated: "Hours ago",
+        },
+        {
+          name: "Cold storage temperature audit",
+          status: "Passed",
+          tone: "success",
+          source: "App: Factory inspection form",
+          updated: "Hours ago",
+        },
+        {
+          name: "Emergency stop inspection",
+          status: "Failed",
+          tone: "danger",
+          source: "Automation: Inspection review",
+          updated: "Yesterday",
+        },
+        {
+          name: "Assembly line guard check",
+          status: "Passed",
+          tone: "success",
+          source: "App: Factory inspection form",
+          updated: "Yesterday",
+        },
+        {
+          name: "Warehouse aisle inspection",
+          status: "Passed",
+          tone: "success",
+          source: "App: Factory inspection form",
+          updated: "2 days ago",
+        },
+        {
+          name: "Forklift daily inspection",
+          status: "Passed",
+          tone: "success",
+          source: "Automation: Inspection review",
+          updated: "2 days ago",
+        },
+      ],
+    },
+  },
+  {
+    id: "incident-management",
+    label: "Incident management",
+    color: "var(--bb-cyan-600)",
+    overview:
+      "Teams report operational incidents in one place. Budibase captures severity and impact, routes each incident to the right responder and keeps investigation, remediation and closure visible to everyone involved.",
+    assets: [
+      {
+        name: "Incident intake",
+        type: "App",
+        owner: "Jordan Lee",
+        status: "Live",
+        created: "Nov 8, 2025",
+        icon: "AppWindow",
+        iconColor: "var(--bb-orange-700)",
+      },
+      {
+        name: "Incident triage agent",
+        type: "Agent",
+        owner: "Jordan Lee",
+        status: "Live",
+        created: "Nov 7, 2025",
+        icon: "Sparkle",
+        iconColor: "var(--bb-purple-700)",
+      },
+      {
+        name: "Incident records",
+        type: "Table",
+        owner: "Jordan Lee",
+        status: "—",
+        created: "Nov 5, 2025",
+        icon: "Table",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "ServiceNow incidents",
+        type: "API",
+        owner: "Alex Morgan",
+        status: "Connected",
+        created: "Nov 2, 2025",
+        iconSrc: ServiceNowLogo,
+        iconAlt: "ServiceNow",
+      },
+    ],
+    demo: {
+      title: "Incidents",
+      columnLabel: "Incidents",
+      total: "482",
+      metrics: [
+        { label: "All incidents", value: "482", tone: "neutral" },
+        { label: "Resolved", value: "431", tone: "success" },
+        { label: "Investigating", value: "12", tone: "info" },
+        { label: "Needs input", value: "35", tone: "attention" },
+        { label: "Critical", value: "4", tone: "danger" },
+      ],
+      rows: [
+        {
+          name: "VPN unavailable for remote staff",
+          status: "Investigating",
+          tone: "info",
+          source: "Agent: Incident triage",
+          updated: "Seconds ago",
+        },
+        {
+          name: "Warehouse scanner outage",
+          status: "Critical",
+          tone: "danger",
+          source: "App: Incident intake",
+          updated: "Minutes ago",
+        },
+        {
+          name: "Finance export missing records",
+          status: "Needs input",
+          tone: "attention",
+          source: "Agent: Incident triage",
+          updated: "Minutes ago",
+        },
+        {
+          name: "Customer portal login errors",
+          status: "Resolved",
+          tone: "success",
+          source: "Automation: Response workflow",
+          updated: "Hours ago",
+        },
+        {
+          name: "Branch printer connectivity",
+          status: "Resolved",
+          tone: "success",
+          source: "App: Incident intake",
+          updated: "Hours ago",
+        },
+        {
+          name: "Delayed inventory synchronization",
+          status: "Resolved",
+          tone: "success",
+          source: "Automation: Response workflow",
+          updated: "Yesterday",
+        },
+        {
+          name: "Access badge reader offline",
+          status: "Resolved",
+          tone: "success",
+          source: "Agent: Incident triage",
+          updated: "Yesterday",
+        },
+        {
+          name: "Meeting room display unavailable",
+          status: "Resolved",
+          tone: "success",
+          source: "App: Incident intake",
+          updated: "2 days ago",
+        },
+      ],
+    },
+  },
+  {
+    id: "asset-tracking",
+    label: "Asset tracking",
+    color: "var(--bb-purple-600)",
+    overview:
+      "Teams maintain a governed record of equipment, ownership, location and lifecycle state. Updates stay connected to existing data sources, while reminders and review steps keep records accurate.",
+    assets: [
+      {
+        name: "Asset register",
+        type: "Table",
+        owner: "Sam Williams",
+        status: "—",
+        created: "Nov 9, 2025",
+        icon: "Table",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "Asset management app",
+        type: "App",
+        owner: "Sam Williams",
+        status: "Live",
+        created: "Nov 7, 2025",
+        icon: "AppWindow",
+        iconColor: "var(--bb-orange-700)",
+      },
+      {
+        name: "Lifecycle reminders",
+        type: "Automation",
+        owner: "Sam Williams",
+        status: "Live",
+        created: "Nov 5, 2025",
+        icon: "Lightning",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "PostgreSQL asset database",
+        type: "Database",
+        owner: "Priya Shah",
+        status: "Connected",
+        created: "Oct 29, 2025",
+        iconSrc: PostgresLogo,
+        iconAlt: "PostgreSQL",
+      },
+    ],
+    demo: {
+      title: "Assets",
+      columnLabel: "Assets",
+      total: "4,820",
+      metrics: [
+        { label: "All assets", value: "4,820", tone: "neutral" },
+        { label: "Active", value: "4,302", tone: "success" },
+        { label: "In maintenance", value: "184", tone: "info" },
+        { label: "Needs review", value: "286", tone: "attention" },
+        { label: "Retired", value: "48", tone: "danger" },
+      ],
+      rows: [
+        {
+          name: "MacBook Pro · ENG-0428",
+          status: "Needs review",
+          tone: "attention",
+          source: "App: Asset management",
+          updated: "Minutes ago",
+        },
+        {
+          name: "Forklift · WH-0017",
+          status: "In maintenance",
+          tone: "info",
+          source: "Automation: Lifecycle reminders",
+          updated: "Hours ago",
+        },
+        {
+          name: "Network switch · DC-0084",
+          status: "Active",
+          tone: "success",
+          source: "Database: PostgreSQL",
+          updated: "Hours ago",
+        },
+        {
+          name: "Tablet · OPS-0216",
+          status: "Active",
+          tone: "success",
+          source: "App: Asset management",
+          updated: "Yesterday",
+        },
+        {
+          name: "Label printer · WH-0032",
+          status: "Retired",
+          tone: "danger",
+          source: "Automation: Lifecycle reminders",
+          updated: "Yesterday",
+        },
+        {
+          name: "Safety scanner · FAC-0112",
+          status: "Active",
+          tone: "success",
+          source: "Database: PostgreSQL",
+          updated: "2 days ago",
+        },
+        {
+          name: "Laptop · FIN-0063",
+          status: "Active",
+          tone: "success",
+          source: "App: Asset management",
+          updated: "2 days ago",
+        },
+        {
+          name: "UPS · DC-0018",
+          status: "Active",
+          tone: "success",
+          source: "Database: PostgreSQL",
+          updated: "3 days ago",
+        },
+      ],
+    },
+  },
+  {
+    id: "knowledge-assistant",
+    label: "Knowledge assistant",
+    color: "var(--bb-orange-600)",
+    overview:
+      "Employees ask operational questions in plain language. The assistant searches approved company sources, returns grounded answers and routes uncertain or sensitive requests to a person for review.",
+    assets: [
+      {
+        name: "Knowledge assistant",
+        type: "Agent",
+        owner: "Nora Chen",
+        status: "Live",
+        created: "Nov 9, 2025",
+        icon: "Sparkle",
+        iconColor: "var(--bb-purple-700)",
+      },
+      {
+        name: "Approved answers",
+        type: "Table",
+        owner: "Nora Chen",
+        status: "—",
+        created: "Nov 7, 2025",
+        icon: "Table",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "Escalate unanswered questions",
+        type: "Automation",
+        owner: "Nora Chen",
+        status: "Live",
+        created: "Nov 6, 2025",
+        icon: "Lightning",
+        iconColor: "var(--bb-celery-700)",
+      },
+      {
+        name: "SharePoint knowledge",
+        type: "API",
+        owner: "Alex Morgan",
+        status: "Connected",
+        created: "Nov 1, 2025",
+        iconSrc: SharePointLogo,
+        iconAlt: "Microsoft SharePoint",
+      },
+    ],
+    demo: {
+      title: "Questions",
+      columnLabel: "Questions",
+      total: "3,408",
+      metrics: [
+        { label: "All questions", value: "3,408", tone: "neutral" },
+        { label: "Answered", value: "3,274", tone: "success" },
+        { label: "Reviewing", value: "21", tone: "info" },
+        { label: "Needs input", value: "97", tone: "attention" },
+        { label: "Unanswered", value: "16", tone: "danger" },
+      ],
+      rows: [
+        {
+          name: "What is the travel approval policy?",
+          status: "Answered",
+          tone: "success",
+          source: "Agent: Knowledge assistant",
+          updated: "Seconds ago",
+        },
+        {
+          name: "How do I request production access?",
+          status: "Needs input",
+          tone: "attention",
+          source: "Agent: Knowledge assistant",
+          updated: "Minutes ago",
+        },
+        {
+          name: "Which supplier terms are approved?",
+          status: "Reviewing",
+          tone: "info",
+          source: "Automation: Human review",
+          updated: "Minutes ago",
+        },
+        {
+          name: "Where is the incident response guide?",
+          status: "Answered",
+          tone: "success",
+          source: "API: SharePoint knowledge",
+          updated: "Hours ago",
+        },
+        {
+          name: "Can contractors access payroll data?",
+          status: "Unanswered",
+          tone: "danger",
+          source: "Automation: Human review",
+          updated: "Hours ago",
+        },
+        {
+          name: "How do I report a damaged asset?",
+          status: "Answered",
+          tone: "success",
+          source: "Agent: Knowledge assistant",
+          updated: "Yesterday",
+        },
+        {
+          name: "What is the retention period for audits?",
+          status: "Answered",
+          tone: "success",
+          source: "API: SharePoint knowledge",
+          updated: "Yesterday",
+        },
+        {
+          name: "Where can I find the onboarding checklist?",
+          status: "Answered",
+          tone: "success",
+          source: "Agent: Knowledge assistant",
+          updated: "2 days ago",
+        },
+      ],
+    },
+  },
+] as const;
+
+const sectionId = "homepage-operations-solutions";
+const statusIcon = (tone: StatusTone) => {
+  if (tone === "success") return completedIcon;
+  if (tone === "info") return processingIcon;
+  if (tone === "attention" || tone === "danger") return warningIcon;
+  return undefined;
+};
+---
+
+<section
+  class="operations-solutions"
+  aria-labelledby={`${sectionId}-title`}
+  data-operations-solutions
+>
+  <div class="operations-solutions__container">
+    <TitleBlock
+      variant="section"
+      title="Solutions for better operations"
+      description="Manage requests, conduct inspections, streamline procurement, track assets, and resolve incidents with tools built around the way your teams work."
+      titleId={`${sectionId}-title`}
+      containerClass="operations-solutions__header"
+      titleClass="operations-solutions__title"
+      descriptionClass="operations-solutions__intro"
+    />
+
+    <div class="operations-solutions__stage">
+      <div
+        class="operations-solutions__tabs"
+        role="tablist"
+        aria-label="Operational solutions"
+        data-solution-tabs
+      >
+        {
+          solutions.map((solution, index) => {
+            const selected = index === 0;
+            const tabId = `${sectionId}-${solution.id}-tab`;
+            const panelId = `${sectionId}-${solution.id}-panel`;
+            return (
+              <button
+                id={tabId}
+                class:list={[
+                  "operations-solutions__tab",
+                  selected && "is-active",
+                ]}
+                type="button"
+                role="tab"
+                aria-selected={selected ? "true" : "false"}
+                aria-controls={panelId}
+                tabindex={selected ? 0 : -1}
+                data-solution-tab={solution.id}
+                style={`--tab-color: ${solution.color};`}
+              >
+                <span
+                  class="operations-solutions__tab-dot"
+                  aria-hidden="true"
+                />
+                <span>{solution.label}</span>
+              </button>
+            );
+          })
+        }
+      </div>
+
+      <div class="operations-solutions__workspace">
+        {
+          solutions.map((solution, index) => {
+            const selected = index === 0;
+            const tabId = `${sectionId}-${solution.id}-tab`;
+            const panelId = `${sectionId}-${solution.id}-panel`;
+            return (
+              <section
+                id={panelId}
+                class="operations-solutions__panel"
+                role="tabpanel"
+                aria-labelledby={tabId}
+                data-solution-panel={solution.id}
+                hidden={!selected}
+              >
+                <div class="operations-solutions__module">
+                  <h3 class="operations-solutions__module-title">Overview</h3>
+                  <p class="operations-solutions__overview">
+                    {solution.overview}
+                  </p>
+                </div>
+
+                <div class="operations-solutions__module">
+                  <h3 class="operations-solutions__module-title">Assets</h3>
+                  <div class="operations-solutions__table-wrap">
+                    <table class="operations-solutions__assets-table">
+                      <caption class="sr-only">
+                        Illustrative assets for {solution.label}
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Type</th>
+                          <th class="column-owner" scope="col">
+                            Owner
+                          </th>
+                          <th scope="col">Status</th>
+                          <th class="column-created" scope="col">
+                            Created
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {solution.assets.map((asset) => (
+                          <tr>
+                            <th scope="row">
+                              <span
+                                class="operations-solutions__asset-icon"
+                                style={
+                                  asset.iconColor
+                                    ? `--asset-color: ${asset.iconColor};`
+                                    : undefined
+                                }
+                              >
+                                {asset.iconSrc ? (
+                                  <img
+                                    src={asset.iconSrc}
+                                    alt={asset.iconAlt ?? ""}
+                                    loading="lazy"
+                                    decoding="async"
+                                  />
+                                ) : (
+                                  <Icon
+                                    name={asset.icon ?? "Table"}
+                                    size="15"
+                                    weight="fill"
+                                  />
+                                )}
+                              </span>
+                              <span>{asset.name}</span>
+                            </th>
+                            <td>{asset.type}</td>
+                            <td class="column-owner">{asset.owner}</td>
+                            <td>
+                              <span
+                                class:list={[
+                                  "operations-solutions__asset-status",
+                                  asset.status === "Live" && "is-live",
+                                  asset.status === "Connected" &&
+                                    "is-connected",
+                                ]}
+                              >
+                                {asset.status}
+                              </span>
+                            </td>
+                            <td class="column-created">{asset.created}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="operations-solutions__module">
+                  <h3 class="operations-solutions__module-title">Demo</h3>
+                  <div
+                    class="operations-solutions__demo"
+                    aria-label={`Illustrative ${solution.label} dashboard`}
+                  >
+                    <h4 class="operations-solutions__demo-title">
+                      {solution.demo.title}
+                    </h4>
+
+                    <div class="operations-solutions__metrics">
+                      {solution.demo.metrics.map((metric) => (
+                        <div
+                          class:list={[
+                            "operations-solutions__metric",
+                            `is-${metric.tone}`,
+                          ]}
+                        >
+                          <span>{metric.label}</span>
+                          <strong>{metric.value}</strong>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div
+                      class="operations-solutions__filter"
+                      aria-hidden="true"
+                    >
+                      <span>Filter by status</span>
+                      <img src={caretDownIcon} alt="" />
+                    </div>
+
+                    <div class="operations-solutions__table-wrap">
+                      <table class="operations-solutions__demo-table">
+                        <caption class="sr-only">
+                          Illustrative {solution.demo.title.toLowerCase()} for{" "}
+                          {solution.label}
+                        </caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">{solution.demo.columnLabel}</th>
+                            <th scope="col">Status</th>
+                            <th class="column-source" scope="col">
+                              Source
+                            </th>
+                            <th class="column-updated" scope="col">
+                              Updated
+                            </th>
+                            <th class="column-actions" scope="col">
+                              <span class="sr-only">Actions</span>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {solution.demo.rows.map((row) => {
+                            const icon = statusIcon(row.tone);
+                            const [sourceType, ...sourceName] =
+                              row.source.split(": ");
+                            return (
+                              <tr>
+                                <th scope="row">{row.name}</th>
+                                <td>
+                                  <span
+                                    class:list={[
+                                      "operations-solutions__status",
+                                      `is-${row.tone}`,
+                                    ]}
+                                  >
+                                    {row.status}
+                                    {icon && (
+                                      <img
+                                        src={icon}
+                                        alt=""
+                                        aria-hidden="true"
+                                      />
+                                    )}
+                                  </span>
+                                </td>
+                                <td class="column-source">
+                                  <span class="operations-solutions__source-type">
+                                    {sourceType}:
+                                  </span>{" "}
+                                  {sourceName.join(": ")}
+                                </td>
+                                <td class="column-updated">{row.updated}</td>
+                                <td class="column-actions" aria-hidden="true">
+                                  <img src={dotsThreeIcon} alt="" />
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div
+                      class="operations-solutions__pagination"
+                      aria-hidden="true"
+                    >
+                      <span>
+                        Showing 1–{solution.demo.rows.length} of{" "}
+                        {solution.demo.total} items
+                      </span>
+                      <span class="operations-solutions__pagination-actions">
+                        <>
+                          <span>Previous</span>
+                          <span>Next</span>
+                        </>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .operations-solutions {
+    width: 100%;
+    background: transparent;
+  }
+  .operations-solutions__container {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+  :global(.operations-solutions__header) {
+    max-width: 54rem;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+  :global(.operations-solutions__header .title-block__description) {
+    max-width: 50rem;
+  }
+  :global(.operations-solutions__title) {
+    color: var(--bb-text-base);
+  }
+  :global(.operations-solutions__intro) {
+    color: var(--bb-text-body) !important;
+  }
+
+  .operations-solutions__stage {
+    width: 100%;
+    margin-inline: auto;
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+  }
+  .operations-solutions__tabs {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .operations-solutions__tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .operations-solutions__tab {
+    display: inline-flex;
+    min-height: 2.3125rem;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 0.25rem 0.25rem 0 0;
+    background: var(--bb-background-surface-raised);
+    padding: 0.625rem 0.75rem;
+    color: var(--bb-text-subtle);
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.0625;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .operations-solutions__tab:hover {
+    background: var(--bb-gray-100);
+  }
+  .operations-solutions__tab:focus-visible {
+    position: relative;
+    z-index: 3;
+    outline: 2px solid var(--bb-brand-forest-green);
+    outline-offset: 2px;
+  }
+  .operations-solutions__tab.is-active {
+    z-index: 2;
+    border-color: var(--bb-border-base);
+    background: var(--bb-background-surface-base);
+    color: var(--bb-text-base);
+    font-weight: 500;
+  }
+  .operations-solutions__tab-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    flex: 0 0 0.625rem;
+    border-radius: 50%;
+    background: var(--tab-color);
+  }
+
+  .operations-solutions__workspace {
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-base);
+    padding: 1.25rem;
+  }
+  .operations-solutions__panel[hidden] {
+    display: none;
+  }
+  .operations-solutions__module {
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-subtle);
+  }
+  .operations-solutions__module + .operations-solutions__module {
+    border-top: 0;
+  }
+  .operations-solutions__module-title {
+    margin: 0;
+    border-bottom: 1px solid var(--bb-border-base);
+    padding: 0.5rem 0.75rem;
+    color: var(--bb-text-base);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.0625;
+  }
+  .operations-solutions__overview {
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    color: var(--bb-text-subtle) !important;
+    font-size: 1rem;
+    line-height: 1.375;
+  }
+
+  .operations-solutions__table-wrap {
+    min-width: 0;
+    overflow: hidden;
+  }
+  .operations-solutions table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  .operations-solutions th,
+  .operations-solutions td {
+    height: 2.0625rem;
+    border-bottom: 1px solid var(--bb-border-subtle);
+    padding: 0.5rem 0.75rem;
+    overflow: hidden;
+    color: var(--bb-gray-600);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.0625;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .operations-solutions tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+  .operations-solutions thead th {
+    color: var(--bb-gray-700);
+  }
+  .operations-solutions tbody th {
+    color: var(--bb-text-base);
+  }
+  .operations-solutions .operations-solutions__assets-table th,
+  .operations-solutions .operations-solutions__assets-table td {
+    color: var(--bb-text-subtle);
+    font-size: 1rem;
+  }
+  .operations-solutions__assets-table th:first-child {
+    width: auto;
+  }
+  .operations-solutions__assets-table th:not(:first-child),
+  .operations-solutions__assets-table td:not(:first-child) {
+    width: 8.75rem;
+  }
+  .operations-solutions__assets-table tbody th {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .operations-solutions__asset-icon {
+    display: inline-flex;
+    width: 0.9375rem;
+    height: 0.9375rem;
+    flex: 0 0 0.9375rem;
+    align-items: center;
+    justify-content: center;
+    color: var(--asset-color, var(--bb-gray-600));
+  }
+  .operations-solutions__asset-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .operations-solutions__asset-status.is-live,
+  .operations-solutions__asset-status.is-connected {
+    color: var(--bb-celery-700);
+  }
+
+  .operations-solutions__demo {
+    margin: 0.75rem;
+    background: var(--bb-background-surface-base);
+    padding: 0.75rem 2.25rem 0;
+  }
+  .operations-solutions__demo-title {
+    margin: 0 0 0.75rem;
+    color: var(--bb-text-base);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .operations-solutions__metrics {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+  .operations-solutions__metric {
+    display: flex;
+    min-height: 4rem;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.25rem;
+    background: var(--bb-background-surface-subtle);
+    padding: 0.75rem;
+  }
+  .operations-solutions__metric.is-success {
+    background: var(--bb-celery-100);
+  }
+  .operations-solutions__metric.is-info {
+    background: var(--bb-cyan-100);
+  }
+  .operations-solutions__metric.is-attention {
+    background: var(--bb-yellow-100);
+  }
+  .operations-solutions__metric.is-danger {
+    background: var(--bb-red-100);
+  }
+  .operations-solutions__metric span {
+    color: var(--bb-gray-700);
+    font-size: 0.75rem;
+    line-height: 1.1;
+  }
+  .operations-solutions__metric strong {
+    color: var(--bb-text-base);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .operations-solutions__filter {
+    display: flex;
+    width: 13.5rem;
+    min-height: 1.75rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-block: 1.25rem 0.5rem;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.5rem;
+    color: var(--bb-gray-700);
+    font-size: 0.75rem;
+  }
+  .operations-solutions__filter img {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .operations-solutions__demo-table th:first-child {
+    width: auto;
+  }
+  .operations-solutions__demo-table th:nth-child(2),
+  .operations-solutions__demo-table td:nth-child(2) {
+    width: 12.5rem;
+  }
+  .operations-solutions__demo-table .column-source {
+    width: 15rem;
+  }
+  .operations-solutions__demo-table .column-updated {
+    width: 8.75rem;
+    text-align: right;
+  }
+  .operations-solutions__demo-table .column-actions {
+    width: 3.75rem;
+  }
+  .operations-solutions__status {
+    display: inline-flex;
+    min-height: 1.4375rem;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 0.1875rem;
+    padding: 0.1875rem 0.25rem;
+    color: var(--bb-text-base);
+    font-size: 0.8125rem;
+    line-height: 1.0625rem;
+  }
+  .operations-solutions__status.is-success {
+    background: var(--bb-celery-1400);
+    color: var(--bb-celery-100);
+  }
+  .operations-solutions__status.is-info {
+    background: var(--bb-cyan-100);
+    color: var(--bb-cyan-1400);
+  }
+  .operations-solutions__status.is-attention {
+    background: var(--bb-yellow-100);
+    color: var(--bb-brown-1400);
+  }
+  .operations-solutions__status.is-danger {
+    background: var(--bb-red-100);
+    color: var(--bb-red-1400);
+  }
+  .operations-solutions__status img {
+    width: 0.8125rem;
+    height: 0.8125rem;
+  }
+  .operations-solutions__source-type {
+    color: var(--bb-gray-600);
+  }
+  .operations-solutions__demo-table .column-actions img {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .operations-solutions__pagination {
+    display: flex;
+    min-height: 3.9375rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem;
+    color: var(--bb-gray-700);
+    font-size: 0.8125rem;
+  }
+  .operations-solutions__pagination-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .operations-solutions__pagination-actions span {
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0.25rem;
+    padding: 0.1875rem 0.375rem;
+  }
+
+  @media (max-width: 768px) {
+    :global(.operations-solutions__header) {
+      margin-bottom: 2rem;
+    }
+    .operations-solutions__tabs {
+      margin-inline: calc(var(--site-content-inset) * -1);
+      padding-inline: var(--site-content-inset);
+      scroll-padding-inline: var(--site-content-inset);
+    }
+    .operations-solutions__tab {
+      min-height: 2.5rem;
+      font-size: 0.9375rem;
+    }
+    .operations-solutions__workspace {
+      padding: 0.75rem;
+    }
+    .operations-solutions__overview {
+      font-size: 0.9375rem;
+      line-height: 1.4;
+    }
+    .operations-solutions .column-owner,
+    .operations-solutions .column-created,
+    .operations-solutions .column-source,
+    .operations-solutions .column-updated,
+    .operations-solutions .column-actions {
+      display: none;
+    }
+    .operations-solutions__assets-table th:nth-child(2),
+    .operations-solutions__assets-table td:nth-child(2),
+    .operations-solutions__assets-table th:nth-child(4),
+    .operations-solutions__assets-table td:nth-child(4) {
+      width: 5.75rem;
+    }
+    .operations-solutions__demo {
+      margin: 0.5rem;
+      padding: 0.75rem 0.5rem 0;
+    }
+    .operations-solutions__metrics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .operations-solutions__metric:last-child {
+      grid-column: 1 / -1;
+    }
+    .operations-solutions__filter {
+      width: min(100%, 13.5rem);
+    }
+    .operations-solutions__demo-table th:nth-child(2),
+    .operations-solutions__demo-table td:nth-child(2) {
+      width: 6.75rem;
+    }
+    .operations-solutions th,
+    .operations-solutions td {
+      height: auto;
+      min-height: 2.25rem;
+      padding: 0.5rem;
+    }
+    .operations-solutions__assets-table tbody th,
+    .operations-solutions__demo-table tbody th {
+      white-space: normal;
+    }
+    .operations-solutions__pagination {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  function setupOperationsSolutions() {
+    document
+      .querySelectorAll<HTMLElement>("[data-operations-solutions]")
+      .forEach((section) => {
+        if (section.dataset.initialized === "true") return;
+        const tabs = Array.from(
+          section.querySelectorAll<HTMLButtonElement>("[data-solution-tab]"),
+        );
+        const panels = Array.from(
+          section.querySelectorAll<HTMLElement>("[data-solution-panel]"),
+        );
+
+        const activate = (nextTab: HTMLButtonElement, focus = false) => {
+          const nextId = nextTab.dataset.solutionTab;
+          tabs.forEach((tab) => {
+            const selected = tab === nextTab;
+            tab.classList.toggle("is-active", selected);
+            tab.setAttribute("aria-selected", String(selected));
+            tab.tabIndex = selected ? 0 : -1;
+          });
+          panels.forEach((panel) => {
+            panel.hidden = panel.dataset.solutionPanel !== nextId;
+          });
+          nextTab.scrollIntoView({ block: "nearest", inline: "nearest" });
+          if (focus) nextTab.focus();
+        };
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener("click", () => activate(tab));
+          tab.addEventListener("keydown", (event) => {
+            let nextIndex = index;
+            if (event.key === "ArrowRight")
+              nextIndex = (index + 1) % tabs.length;
+            else if (event.key === "ArrowLeft")
+              nextIndex = (index - 1 + tabs.length) % tabs.length;
+            else if (event.key === "Home") nextIndex = 0;
+            else if (event.key === "End") nextIndex = tabs.length - 1;
+            else return;
+            event.preventDefault();
+            activate(tabs[nextIndex], true);
+          });
+        });
+        section.dataset.initialized = "true";
+      });
+  }
+
+  setupOperationsSolutions();
+  document.addEventListener("astro:page-load", setupOperationsSolutions);
+</script>

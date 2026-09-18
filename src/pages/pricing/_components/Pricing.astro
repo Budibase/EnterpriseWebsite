@@ -1,7 +1,6 @@
 ---
 import Button from "@components/Button.astro";
 import Card from "@components/cards/Card.astro";
-import FeatureBadge from "@components/FeatureBadge.astro";
 import Icon from "@components/Icon.astro";
 import TitleBlock from "@components/TitleBlock.astro";
 import EnterpriseLogoGrid from "../../_components/landing-page/EnterpriseLogoGrid.astro";
@@ -132,11 +131,11 @@ const openSourcePlanFeatures = [
 ];
 
 const selfHostedEnterprisePlanFeatures = [
-  "Enhanced capabilities",
-  "Operational controls",
-  "Security & compliance",
-  "Deployment flexibility",
-  "Dedicated support",
+  "Unlimited users, creators, groups, workspaces",
+  "Operational command center",
+  "Enterprise security controls",
+  "Flexible deployment options (inc Airgap)",
+  "Dedicated support, services and SLAs",
 ];
 
 const cloudCards = [
@@ -231,11 +230,11 @@ const cloudCards = [
     buttonUrl: "/contact",
     addonItems: ["Air-gapped deployment", "Onboarding and training"],
     features: [
-      "Active directory/SCIM",
-      "365 days logs",
-      "Audit logs",
-      "Priorty support/SLAs",
-      "Micro Frontends (MFEs)",
+      "Unlimited users, creators, groups, workspaces",
+      "Operational command center",
+      "Enterprise security controls",
+      "Flexible deployment options (inc Airgap)",
+      "Dedicated support, services and SLAs",
     ],
     hostingItems: getHostingItems(cloudEnterpriseEntry),
   },
@@ -246,7 +245,7 @@ const selfHostedCards = [
     title: "Open source",
     description:
       "Access a complete operations platform that you can run on your own infrastructure.",
-    buttonLabel: "Get started free",
+    buttonLabel: "Self-host for free",
     buttonHref: "https://docs.budibase.com",
     buttonTarget: "_blank",
     buttonVariant: "cta" as const,
@@ -259,7 +258,7 @@ const selfHostedCards = [
       "Design a custom package with enhanced governance, security, and support requirements.",
     buttonLabel: "Get pricing",
     buttonHref: "/contact",
-    buttonVariant: "primary" as const,
+    buttonVariant: "bright-on-dark" as const,
     features: selfHostedEnterprisePlanFeatures,
     tone: "custom",
   },
@@ -379,12 +378,10 @@ const faqItems: FaqItem[] = [
   <div class="w-full flex flex-col gap-8">
     <section class="pricing-hero" aria-labelledby="pricing-heading">
       <div class="pricing-hero__copy">
-        <FeatureBadge label="Pricing" />
         <TitleBlock
-          variant="hero-large"
+          variant="hero"
           titleId="pricing-heading"
           title="Open source flexibility. Enterprise control."
-          description="Start for free. Scale with the controls and support your organization needs."
           descriptionAlign="center"
         />
       </div>
@@ -403,7 +400,8 @@ const faqItems: FaqItem[] = [
                   url={card.buttonHref}
                   target={card.buttonTarget}
                   variant={card.buttonVariant}
-                  size="medium"
+                  size="large"
+                  class="w-full"
                 />
               </div>
               <ul class="pricing-self-host-card__features">
@@ -555,9 +553,9 @@ const faqItems: FaqItem[] = [
 
 <style>
   .pricing-page {
-    --pricing-card-radius: 4px;
+    --pricing-card-radius: 0;
     --pricing-card-gap: 0.75rem;
-    --pricing-feature-radius: 4px;
+    --pricing-feature-radius: 0;
     --pricing-community-bg: var(--bb-gray-50);
     --pricing-community-feature-bg: var(--bb-gray-100);
     --pricing-custom-bg: var(--bb-brand-forest-green);
@@ -598,10 +596,10 @@ const faqItems: FaqItem[] = [
 
   .pricing-self-host-card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: var(--pricing-card-gap);
     min-height: 260px;
-    padding: 0.5rem;
+    padding: 2rem;
     border: 1px solid var(--bb-border-subtle);
     border-radius: var(--pricing-card-radius);
   }
@@ -623,7 +621,7 @@ const faqItems: FaqItem[] = [
     align-items: flex-start;
     justify-content: center;
     gap: 1.25rem;
-    padding: 0.75rem;
+    padding: 1.5rem 0;
   }
 
   .pricing-self-host-card__copy {
@@ -635,21 +633,25 @@ const faqItems: FaqItem[] = [
 
   .pricing-self-host-card h2 {
     margin: 0;
+    width: 100%;
     color: var(--bb-text-base);
     font-family: var(--font-sans);
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
     line-height: 1.1;
     letter-spacing: 0;
+    text-align: center;
   }
 
   .pricing-self-host-card p {
     margin: 0;
+    width: 100%;
     color: var(--bb-text-body);
     font-family: var(--font-sans);
-    font-size: 0.875rem;
+    font-size: var(--bb-text-copy-compact-font-size);
     font-weight: 400;
-    line-height: 1.43;
+    line-height: var(--bb-text-copy-body-line-height);
+    text-align: center;
   }
 
   .pricing-self-host-card.is-custom h2 {
@@ -947,7 +949,7 @@ const faqItems: FaqItem[] = [
     }
 
     .pricing-self-host-card__content {
-      padding: 1rem;
+      padding: 2rem 0;
     }
 
     .pricing-self-host-card__features {

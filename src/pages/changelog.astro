@@ -27,7 +27,7 @@ const entries = filterBlogFeed(await getBlogFeedItems(), "product");
     <main class="min-h-[60vh]">
       {
         entries.length === 0 ? (
-          <section class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4">
+          <section class="rounded-none border border-[var(--border-color)] bg-[var(--bg-2)] p-4">
             <p class="m-0 text-[var(--bb-text-body)]">
               No changelog entries yet.
             </p>

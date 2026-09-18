@@ -2,13 +2,13 @@
 import Layout from "../layouts/MainLayout.astro";
 import Hero from "./_components/landing-page/HeroRulebaseExperiment.astro";
 import HomepageCustomerLogoRow from "./_components/landing-page/HomepageCustomerLogoRow.astro";
-import HomepageProofSection from "./_components/landing-page/HomepageProofSection.astro";
-import Platform from "./_components/landing-page/Platform.astro";
+import HomepageProducts from "./_components/landing-page/HomepageProducts.astro";
+import HomepageUseCases from "./_components/landing-page/HomepageUseCases.astro";
 import CustomerStoriesFeature from "./_components/landing-page/CustomerStoriesFeature.astro";
-import PlatformCapabilities from "./_components/landing-page/PlatformCapabilities.astro";
 import EnterpriseSection from "./_components/landing-page/EnterpriseSection.astro";
 import FeatureSection from "@components/FeatureSection.astro";
 import CTA from "@components/CTA.astro";
+import Divider from "@components/ui/Divider.astro";
 import criticalOperationsImage from "@assets/images/feature-sections/critical-operations.png?url";
 
 const enterpriseFeatureBullets = [
@@ -34,27 +34,23 @@ const enterpriseFeatureBullets = [
   rawTitle="Budibase | Agents, Workflows & Internal Tools Made Easy"
   navTheme="immersive-overlay"
 >
-  <div class="homepage-grid">
-    <div class="site-grid-section site-grid-section--hero">
+  <div class="homepage-layout">
+    <div class="page-section page-section--hero">
       <Hero />
     </div>
     <div
-      class="site-grid-section site-grid-section--logos homepage-customer-logo-row-section"
+      class="page-section page-section--logos homepage-customer-logo-card-section"
     >
-      <HomepageCustomerLogoRow />
+      <HomepageCustomerLogoRow variant="cards" />
     </div>
-    <div class="site-grid-section homepage-proof-grid-section">
-      <HomepageProofSection />
+    <div class="page-section homepage-use-cases-section">
+      <HomepageUseCases />
     </div>
-    <div class="site-grid-section homepage-multi-feature-section">
-      <Platform />
+    <Divider />
+    <div class="page-section homepage-products-section">
+      <HomepageProducts />
     </div>
-    <div class="site-grid-section">
-      <PlatformCapabilities />
-    </div>
-    <div
-      class="site-grid-section site-grid-section--no-top site-grid-section--forest-green"
-    >
+    <div class="page-section page-section--no-top page-section--forest-green">
       <FeatureSection
         variant="forest-green"
         image={criticalOperationsImage}
@@ -70,13 +66,14 @@ const enterpriseFeatureBullets = [
         bullets={enterpriseFeatureBullets}
       />
     </div>
-    <div class="site-grid-section">
+    <div class="page-section">
       <CustomerStoriesFeature />
     </div>
-    <div class="site-grid-section site-grid-section--no-top">
+    <div class="page-section page-section--no-top">
       <EnterpriseSection variant="security" />
     </div>
-    <div class="site-grid-section site-grid-section--no-top">
+    <div class="page-section page-section--no-top homepage-cta-section">
+      <Divider />
       <CTA />
     </div>
   </div>
@@ -91,19 +88,26 @@ const enterpriseFeatureBullets = [
     max-width: var(--site-container-max) !important;
   }
 
-  .homepage-grid {
+  .homepage-layout {
     overflow-x: clip;
   }
 
-  .homepage-customer-logo-row-section {
-    background: var(--bg-2);
+  .homepage-layout > .page-section--hero {
+    padding-bottom: 0;
   }
 
-  .homepage-proof-grid-section {
+  .homepage-customer-logo-card-section {
+    background: var(--bb-background-base);
+    padding-top: clamp(0.5rem, 1.25vw, 1rem);
+  }
+
+  .homepage-products-section,
+  .homepage-use-cases-section {
     background: var(--bb-background-base);
   }
 
-  .homepage-multi-feature-section {
-    background: var(--bb-gray-900);
+  .homepage-use-cases-section :global(.multi-feature-section) {
+    --multi-feature-background: transparent;
+    background: transparent;
   }
 </style>

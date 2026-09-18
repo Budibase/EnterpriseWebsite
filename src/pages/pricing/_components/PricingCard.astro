@@ -498,7 +498,7 @@ const showHostingSection = hostingItems.length > 0;
                           </button>
                           <span
                             role="tooltip"
-                            class="end-users-popover p-3 rounded-sm text-sm text-primary"
+                            class="end-users-popover p-3 rounded-none text-sm text-primary"
                             data-overage-kind="end-users"
                             data-overage-annual={endUsersAddonPricing?.annual}
                             data-overage-monthly={endUsersAddonPricing?.monthly}
@@ -527,7 +527,7 @@ const showHostingSection = hostingItems.length > 0;
                           </button>
                           <span
                             role="tooltip"
-                            class="end-users-popover p-3 rounded-sm text-sm text-primary"
+                            class="end-users-popover p-3 rounded-none text-sm text-primary"
                             data-overage-kind="creators"
                             data-overage-annual={creatorsAddonPricing?.annual}
                             data-overage-monthly={creatorsAddonPricing?.monthly}
@@ -616,7 +616,7 @@ const showHostingSection = hostingItems.length > 0;
   .pricing-card {
     background: var(--bb-background-base);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 0;
     padding: 24px 16px;
     min-height: 100%;
   }
@@ -624,7 +624,7 @@ const showHostingSection = hostingItems.length > 0;
   .pricing-card--self-host-open-source,
   .pricing-card--self-host-enterprise {
     overflow: hidden;
-    border-radius: 18px;
+    border-radius: 0;
     padding: 0;
   }
 
@@ -829,7 +829,7 @@ const showHostingSection = hostingItems.length > 0;
     line-height: 1.2;
     padding: 10px 40px 10px 12px;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 0;
     background: var(--bg-1);
     color: var(--text-primary);
     max-width: 100%;
@@ -847,7 +847,7 @@ const showHostingSection = hostingItems.length > 0;
     line-height: 1.2;
     padding: 0 10px;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 0;
     background: var(--bg-1);
     margin: 0;
   }

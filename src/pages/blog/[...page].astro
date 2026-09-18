@@ -62,7 +62,7 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
     <header
       class="mx-auto mb-[1.4rem] grid w-full min-w-0 max-w-[var(--site-container-max)] gap-6 px-[var(--site-content-inset)] max-md:mb-4 max-md:gap-5"
     >
-      <TitleBlock variant="hero-large" title="Blog" />
+      <TitleBlock variant="hero" title="Blog" />
       <BlogTopicPills activeTopic="blog" />
     </header>
 
@@ -70,7 +70,7 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
       {
         page.data.length === 0 ? (
           <div class="mx-auto w-full max-w-[var(--site-container-max)] px-[var(--site-content-inset)]">
-            <section class="rounded-[10px] border border-[var(--border-color)] bg-[var(--bg-2)] p-4">
+            <section class="rounded-none border border-[var(--border-color)] bg-[var(--bg-2)] p-4">
               <p class="m-0 text-[var(--bb-text-body)]">No blog entries yet.</p>
             </section>
           </div>

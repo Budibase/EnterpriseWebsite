@@ -1,6 +1,7 @@
 ---
 import Button from "@components/Button.astro";
 import FeatureBadge from "@components/FeatureBadge.astro";
+import TitleBlock from "@components/TitleBlock.astro";
 import HomepageVideoSequence from "./HomepageVideoSequence.astro";
 ---
 
@@ -26,14 +27,19 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
       </div>
 
       <div class="rulebase-hero__copy">
-        <h1 id="rulebase-hero-title" class="rulebase-hero__title text-balance">
-          Modernise your processes.<br />
-          Keep control of your data.
-        </h1>
+        <TitleBlock
+          variant="hero"
+          titleId="rulebase-hero-title"
+          titleLines={[
+            { text: "The open-source platform for enterprise operations." },
+          ]}
+          containerClass="rulebase-hero__title-block"
+          titleClass="rulebase-hero__title"
+        />
         <p class="rulebase-hero__description text-balance">
-          Build agents, apps and automations across your people, data and
-          systems. Self-host or deploy in our cloud, with enterprise security
-          and governance built in.
+          Modernise operations across your people, data and systems with custom
+          agents, apps and automations. Self-host or deploy in our cloud, with
+          enterprise security and governance built in.
         </p>
         <div class="rulebase-hero__actions">
           <Button
@@ -41,6 +47,9 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
             url="/contact/"
             variant="bright-on-dark"
             size="large"
+            icon="ArrowRight"
+            iconPosition="end"
+            class="!gap-[16px]"
           />
         </div>
       </div>
@@ -60,7 +69,7 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
     );
     position: relative;
     display: grid;
-    min-height: clamp(38rem, 72svh, 44rem);
+    min-height: clamp(40.5rem, calc(72svh + 2.5rem), 46.5rem);
     grid-template-columns: repeat(2, minmax(0, 1fr));
     overflow: hidden;
     background: var(--bb-celery-1500);
@@ -114,7 +123,7 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
   }
 
   .rulebase-hero__announcement-link:focus-visible {
-    border-radius: 0.25rem;
+    border-radius: 0;
     outline: 2px solid var(--bb-brand-yellow);
     outline-offset: 0.375rem;
   }
@@ -125,18 +134,10 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
     color: var(--bb-text-on-base);
   }
 
-  .rulebase-hero__title {
+  :global(.rulebase-hero__title) {
     max-width: 40rem;
     margin: 0;
-    color: var(--bb-white);
-    font-family: var(--bb-text-display-medium-font-family);
-    font-size: calc(var(--bb-text-heading-hero-font-size) - 1rem);
-    font-weight: var(--bb-text-display-medium-font-weight);
-    line-height: calc(1em + 0.125rem);
-    letter-spacing: var(--bb-text-display-medium-letter-spacing);
-    text-transform: var(--bb-text-display-medium-text-transform);
-    transform: scaleX(0.9);
-    transform-origin: left center;
+    color: var(--bb-white) !important;
   }
 
   .rulebase-hero__description {
@@ -186,7 +187,7 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
     }
 
     .rulebase-hero__copy-panel {
-      min-height: clamp(28rem, 58svh, 34rem);
+      min-height: clamp(30.5rem, calc(58svh + 2.5rem), 36.5rem);
       padding: calc(var(--site-nav-height) + clamp(2rem, 5vw, 3rem))
         var(--site-content-inset) clamp(3.5rem, 8vw, 5rem);
     }

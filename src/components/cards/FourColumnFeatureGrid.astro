@@ -33,7 +33,7 @@ const toneClass = tone === "on-dark" ? "four-column-feature-grid--on-dark" : "";
 <section class={`four-column-feature-grid ${toneClass} ${className}`}>
   <div class="four-column-feature-grid__container">
     <TitleBlock
-      variant="homepage-section"
+      variant="section"
       titleColorMode="split-primary-secondary"
       titleLines={[{ text: title }, { text: subtitle }]}
       containerClass="homepage-section-header four-column-feature-grid__header"
@@ -99,18 +99,14 @@ const toneClass = tone === "on-dark" ? "four-column-feature-grid--on-dark" : "";
     background: var(--four-column-feature-grid-border, var(--bb-border-subtle));
   }
 
-  :global(.four-column-feature-grid__header .homepage-section-header__title) {
+  :global(.four-column-feature-grid__header .section-title) {
     color: var(
       --four-column-feature-grid-header-title-color,
       var(--bb-text-base)
     ) !important;
   }
 
-  :global(
-    .four-column-feature-grid__header
-      .homepage-section-header__title
-      span:last-child
-  ) {
+  :global(.four-column-feature-grid__header .section-title span:last-child) {
     color: var(
       --four-column-feature-grid-header-subtitle-color,
       var(--bb-text-subtle)

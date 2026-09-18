@@ -9,7 +9,8 @@ import Icon from "@components/Icon.astro";
 // - type?: 'button' | 'submit' | 'reset' (button only)
 // - class?: string (additional classes)
 // - size?: 'small' | 'medium' | 'large' | 'extra-large' (defaults to 'medium')
-// - icon?: string (optional icon name to display before the label)
+// - icon?: string (optional icon name to display beside the label)
+// - iconPosition?: 'start' | 'end' (defaults to 'start')
 // - iconSize?: string (optional icon size in pixels, overrides default size-based calculation)
 // - attributes?: additional HTML attributes for specialized wrappers
 
@@ -33,6 +34,7 @@ interface Props {
   ariaLabel?: string;
   size?: Size;
   icon?: string;
+  iconPosition?: "start" | "end";
   iconSize?: string;
   target?: string;
   rel?: string;
@@ -59,8 +61,8 @@ const variantClasses = {
 const sizeClasses = {
   small: "px-3 py-1.5 text-base",
   medium: "px-[18px] py-[7px] text-base",
-  large: "px-[22px] py-2.5 [font-size:var(--bb-text-copy-lead-font-size)]",
-  "extra-large": "px-6 py-3 text-xl",
+  large: "px-[22px] py-2.5 text-[18px]",
+  "extra-large": "px-6 py-3 text-base",
 };
 
 const gapClasses = {
@@ -78,7 +80,7 @@ const iconSizes = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-[0px] !font-[550] transition-colors duration-150 active:scale-[0.98] !no-underline cursor-pointer font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "inline-flex items-center justify-center rounded-[0px] !font-[500] transition-colors duration-150 active:scale-[0.98] !no-underline cursor-pointer font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 const {
   label,
@@ -89,6 +91,7 @@ const {
   ariaLabel,
   size = "medium",
   icon,
+  iconPosition = "start",
   iconSize: providedIconSize,
   target,
   rel,
@@ -122,13 +125,23 @@ const computedRel =
       rel={computedRel}
       {...attributes}
     >
-      {icon && iconSize && <Icon name={icon} size={iconSize} />}
+      {iconPosition === "start" && icon && iconSize && (
+        <Icon name={icon} size={iconSize} />
+      )}
       {label}
+      {iconPosition === "end" && icon && iconSize && (
+        <Icon name={icon} size={iconSize} />
+      )}
     </a>
   ) : (
     <button type={type} class={classes} aria-label={ariaLabel} {...attributes}>
-      {icon && iconSize && <Icon name={icon} size={iconSize} />}
+      {iconPosition === "start" && icon && iconSize && (
+        <Icon name={icon} size={iconSize} />
+      )}
       {label}
+      {iconPosition === "end" && icon && iconSize && (
+        <Icon name={icon} size={iconSize} />
+      )}
     </button>
   )
 }
