@@ -1,5 +1,6 @@
 ---
 import Button from "@components/Button.astro";
+import Icon from "@components/Icon.astro";
 import TitleBlock from "@components/TitleBlock.astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
@@ -21,9 +22,11 @@ export type MultiFeatureMedia = MultiFeatureImageMedia | MultiFeatureDemoMedia;
 
 export interface MultiFeatureItem {
   id: string;
+  icon?: string;
+  iconWeight?: string;
   title: string;
   description: string;
-  action: {
+  action?: {
     label: string;
     href: string;
   };
@@ -41,6 +44,8 @@ interface Props {
   id?: string;
   variant?: Variant;
   shellSurface?: ShellSurface;
+  showHeader?: boolean;
+  class?: string;
 }
 
 const {
@@ -51,6 +56,8 @@ const {
   id = `multi-feature-${Math.random().toString(36).slice(2, 9)}`,
   variant = "dark",
   shellSurface = "default",
+  showHeader = true,
+  class: className,
 } = Astro.props as Props;
 
 const isDemoMedia = (
@@ -69,22 +76,28 @@ const titleId = `${id}-title`;
     "multi-feature-section",
     `multi-feature-section--${variant}`,
     shellSurface === "sand" && "multi-feature-section--sand",
+    className,
   ]}
-  aria-labelledby={titleId}
+  aria-labelledby={showHeader ? titleId : undefined}
+  aria-label={!showHeader ? title : undefined}
   data-multi-feature
   data-active-feature={activeFeatureId}
   data-active-media-kind={activeMediaKind}
 >
   <div class="multi-feature-section__container">
-    <TitleBlock
-      variant="section"
-      title={title}
-      description={description}
-      titleId={titleId}
-      containerClass="multi-feature-section__header"
-      titleClass="multi-feature-section__title"
-      descriptionClass="multi-feature-section__intro"
-    />
+    {
+      showHeader && (
+        <TitleBlock
+          variant="section"
+          title={title}
+          description={description}
+          titleId={titleId}
+          containerClass="multi-feature-section__header"
+          titleClass="multi-feature-section__title"
+          descriptionClass="multi-feature-section__intro"
+        />
+      )
+    }
 
     <div class="multi-feature-section__shell">
       <div class="multi-feature-section__accordion" data-feature-accordion>
@@ -111,7 +124,16 @@ const titleId = `${id}-title`;
                     aria-controls={panelId}
                     data-feature-trigger={feature.id}
                   >
-                    <span>{feature.title}</span>
+                    <span class="multi-feature-section__trigger-label">
+                      {feature.icon && (
+                        <Icon
+                          name={feature.icon}
+                          size="24"
+                          weight={feature.iconWeight ?? "regular"}
+                        />
+                      )}
+                      <span>{feature.title}</span>
+                    </span>
                     <span
                       class="multi-feature-section__indicator"
                       aria-hidden="true"
@@ -130,14 +152,16 @@ const titleId = `${id}-title`;
                   <p class="multi-feature-section__feature-description">
                     {feature.description}
                   </p>
-                  <div class="multi-feature-section__action">
-                    <Button
-                      label={feature.action.label}
-                      url={feature.action.href}
-                      variant="primary"
-                      size="medium"
-                    />
-                  </div>
+                  {feature.action && (
+                    <div class="multi-feature-section__action">
+                      <Button
+                        label={feature.action.label}
+                        url={feature.action.href}
+                        variant="primary"
+                        size="medium"
+                      />
+                    </div>
+                  )}
                 </div>
               </article>
             );
@@ -332,6 +356,17 @@ const titleId = `${id}-title`;
   .multi-feature-section__trigger:hover {
     color: var(--multi-feature-hover);
     opacity: 1;
+  }
+
+  .multi-feature-section__trigger-label {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .multi-feature-section__trigger-label :global(svg) {
+    flex: 0 0 auto;
   }
 
   .multi-feature-section--light

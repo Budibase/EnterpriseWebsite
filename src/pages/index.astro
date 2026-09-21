@@ -3,31 +3,11 @@ import Layout from "../layouts/MainLayout.astro";
 import Hero from "./_components/landing-page/HeroRulebaseExperiment.astro";
 import HomepageCustomerLogoRow from "./_components/landing-page/HomepageCustomerLogoRow.astro";
 import HomepageProducts from "./_components/landing-page/HomepageProducts.astro";
-import HomepageUseCases from "./_components/landing-page/HomepageUseCasesSplitExperiment.astro";
+import HomepageSecuritySection from "./_components/landing-page/HomepageSecuritySection.astro";
+import HomepageUseCases from "./_components/landing-page/HomepageUseCases.astro";
 import CustomerStoriesFeature from "./_components/landing-page/CustomerStoriesFeature.astro";
-import EnterpriseSection from "./_components/landing-page/EnterpriseSection.astro";
-import FeatureSection from "@components/FeatureSection.astro";
 import CTA from "@components/CTA.astro";
 import Divider from "@components/ui/Divider.astro";
-import criticalOperationsImage from "@assets/images/feature-sections/critical-operations.png?url";
-
-const enterpriseFeatureBullets = [
-  {
-    icon: "CloudCheck",
-    iconWeight: "fill",
-    text: "Run on-premise, in private cloud environments, air-gapped networks, or public cloud infrastructure.",
-  },
-  {
-    icon: "ShieldCheck",
-    iconWeight: "fill",
-    text: "Role-based access control, audit logging, SSO, and enterprise governance built into the platform.",
-  },
-  {
-    icon: "Gauge",
-    iconWeight: "fill",
-    text: "Support thousands of users, millions of actions, and mission-critical operational processes.",
-  },
-] as const;
 ---
 
 <Layout
@@ -50,27 +30,9 @@ const enterpriseFeatureBullets = [
     <div class="page-section homepage-products-section">
       <HomepageProducts />
     </div>
-    <div class="page-section page-section--no-top page-section--forest-green">
-      <FeatureSection
-        variant="forest-green"
-        image={criticalOperationsImage}
-        imageAlt="Person wearing glasses working on a laptop"
-        badge={{
-          icon: "ShieldCheck",
-          iconWeight: "fill",
-          label: "Designed for regulated enterprises",
-          variant: "yellow",
-        }}
-        headline="Built for critical operations"
-        body="Built for complex environments, Budibase gives teams the control, security, and reliability to run essential operations with confidence."
-        bullets={enterpriseFeatureBullets}
-      />
-    </div>
+    <HomepageSecuritySection />
     <div class="page-section">
       <CustomerStoriesFeature />
-    </div>
-    <div class="page-section page-section--no-top">
-      <EnterpriseSection variant="security" />
     </div>
     <div class="page-section page-section--no-top homepage-cta-section">
       <Divider />

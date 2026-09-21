@@ -1,0 +1,317 @@
+---
+import Button from "@components/Button.astro";
+import CardCluster from "@components/cards/CardCluster.astro";
+import MultiFeatureSection from "@components/MultiFeatureSection.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import SecurityPlaceholder from "@assets/images/ops-library/ops-library-hero-placeholder.png?url";
+import EuAiActBadge from "@assets/logos/enterprise-grid/eu-ai-act.png?url";
+import GdprBadge from "@assets/logos/enterprise-grid/gdpr.svg?url";
+import IronBankBadge from "@assets/logos/enterprise-grid/iron-bank.png?url";
+import Iso27001Badge from "@assets/logos/enterprise-grid/iso-27001.png?url";
+import OpenSourceBadge from "@assets/logos/enterprise-grid/open-source.png?url";
+
+const securityFeatures = [
+  {
+    id: "deployment",
+    title: "Deploy on your terms",
+    description:
+      "Run Budibase Cloud, private cloud, on-premise, or in air-gapped environments.",
+  },
+  {
+    id: "identity-access",
+    title: "Governance and access",
+    description:
+      "Connect SSO and SCIM, then apply roles, permissions, and user groups.",
+  },
+  {
+    id: "model-agnostic",
+    title: "Model agnostic",
+    description:
+      "Choose and connect the AI models that fit your architecture, policies, and operational requirements.",
+  },
+  {
+    id: "customizable",
+    title: "Customizable",
+    description:
+      "Extend Budibase with custom components, plugins, data sources, and APIs.",
+  },
+  {
+    id: "interoperability",
+    title: "Interoperability built-in",
+    description:
+      "Connect existing databases, APIs, and enterprise systems without replacing your underlying estate.",
+  },
+  {
+    id: "audit-accountability",
+    title: "Audit and accountability",
+    description:
+      "Track important system and workspace events with enterprise audit logs.",
+  },
+  {
+    id: "change-recovery",
+    title: "Safe change and recovery",
+    description:
+      "Manage releases, backups, restore points, and operational changes safely.",
+  },
+] as const;
+
+const switcherFeatures = securityFeatures.map((feature) => ({
+  id: feature.id,
+  title: feature.title,
+  description: feature.description,
+  media: {
+    src: SecurityPlaceholder,
+    alt: "",
+    width: 1254,
+    height: 1254,
+    fit: "cover" as const,
+  },
+}));
+
+const assuranceItems = [
+  {
+    image: Iso27001Badge,
+    imageAlt: "ISO 27001 certified",
+    title: "ISO 27001",
+    description: "Certified information security management.",
+  },
+  {
+    image: GdprBadge,
+    imageAlt: "GDPR",
+    title: "GDPR",
+    description: "Data protection controls for regulated environments.",
+  },
+  {
+    image: IronBankBadge,
+    imageAlt: "United States Department of Defense",
+    title: "Iron Bank",
+    description: "A hardened container for U.S. government environments.",
+  },
+  {
+    image: EuAiActBadge,
+    imageAlt: "EU Artificial Intelligence Act",
+    title: "EU AI Act",
+    description: "Controls to support responsible, governed AI.",
+  },
+  {
+    image: OpenSourceBadge,
+    imageAlt: "Open source",
+    title: "Open source",
+    description: "Inspect, extend, and self-host the platform on your terms.",
+  },
+] as const;
+---
+
+<section
+  class="homepage-security page-section"
+  aria-labelledby="homepage-security-title"
+>
+  <div class="homepage-security__container">
+    <header class="homepage-security__header">
+      <TitleBlock
+        variant="section"
+        titleId="homepage-security-title"
+        title="Built for regulated enterprises."
+        description="Deploy Budibase within your architecture, govern who can access data and take action, and keep the software behind critical operations accountable and recoverable."
+        containerClass="homepage-security__title-block"
+        titleClass="homepage-security__title"
+        descriptionClass="homepage-security__description"
+      />
+      <Button
+        label="Book a demo"
+        url="/contact/"
+        variant="bright-on-dark"
+        size="large"
+        icon="ArrowRight"
+        iconPosition="end"
+      />
+    </header>
+
+    <CardCluster
+      columns={5}
+      Variant="dark"
+      CardTitleTag="h3"
+      cards={assuranceItems}
+      responsiveLayout="stack"
+      presentation="badge"
+      class="homepage-security__assurance-cluster"
+    />
+
+    <MultiFeatureSection
+      id="homepage-security-features"
+      class="homepage-security__feature-switcher"
+      title="Security controls"
+      description="Explore the controls available across the Budibase platform."
+      features={switcherFeatures}
+      initialFeatureId={securityFeatures[0].id}
+      variant="dark"
+      showHeader={false}
+    />
+  </div>
+</section>
+
+<style>
+  .homepage-security {
+    overflow: hidden;
+    background: var(--bb-celery-1500);
+    color: var(--bb-text-on-base);
+  }
+
+  .homepage-security__container {
+    --homepage-security-border: var(--bb-transparent-white-75);
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    padding-inline: var(--site-content-inset);
+  }
+
+  .homepage-security__header {
+    display: flex;
+    max-width: 54rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  :global(.homepage-security__title) {
+    color: var(--bb-white) !important;
+  }
+
+  :global(.homepage-security__description) {
+    max-width: 39.5rem !important;
+    color: var(--bb-text-on-base-subtle) !important;
+  }
+
+  :global(.homepage-security__assurance-cluster .card-cluster__container) {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  :global(.homepage-security__assurance-cluster.card-cluster) {
+    --card-cluster-card-border: var(--homepage-security-border);
+    --card-cluster-card-description: var(
+      --bb-text-on-base-secondary
+    ) !important;
+  }
+
+  :global(.homepage-security__feature-switcher.multi-feature-section) {
+    --multi-feature-background: transparent;
+    --multi-feature-shell-background: var(--bb-transparent-white-50);
+    --multi-feature-border: var(--homepage-security-border);
+    --multi-feature-text: var(--bb-text-on-base);
+    --multi-feature-text-subtle: var(--bb-text-on-base-subtle);
+    --multi-feature-hover: var(--bb-white);
+    --multi-feature-active: var(--bb-celery-200) !important;
+    --multi-feature-focus: var(--bb-celery-200);
+    --multi-feature-indicator-background: var(--bb-white);
+    margin-top: clamp(2rem, 4vw, 3.5rem);
+    background: transparent;
+  }
+
+  :global(
+    .homepage-security__feature-switcher .multi-feature-section__container
+  ) {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  :global(.homepage-security__feature-switcher .multi-feature-section__shell) {
+    grid-template-columns: minmax(18rem, 4fr) minmax(0, 8fr);
+  }
+
+  :global(
+    .homepage-security__feature-switcher .multi-feature-section__accordion
+  ) {
+    padding-inline: clamp(1.25rem, 3vw, 2.5rem);
+  }
+
+  :global(
+    .homepage-security__feature-switcher .multi-feature-section__trigger
+  ) {
+    gap: 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  :global(
+    .homepage-security__feature-switcher
+      .multi-feature-section__item.is-active
+      .multi-feature-section__trigger
+  ) {
+    color: var(--bb-celery-200) !important;
+    font-weight: 500;
+  }
+
+  :global(
+    .homepage-security__feature-switcher .multi-feature-section__indicator
+  ) {
+    background: var(--bb-white);
+  }
+
+  :global(
+    .homepage-security__feature-switcher
+      .multi-feature-section__item.is-active
+      .multi-feature-section__indicator
+  ) {
+    background: var(--bb-celery-200) !important;
+  }
+
+  :global(
+    .homepage-security__feature-switcher
+      .multi-feature-section__indicator::before
+  ),
+  :global(
+    .homepage-security__feature-switcher
+      .multi-feature-section__indicator::after
+  ) {
+    background: var(--bb-celery-1500);
+  }
+
+  :global(
+    .homepage-security__feature-switcher
+      .multi-feature-section__feature-description
+  ) {
+    max-width: 30rem;
+    color: var(--bb-text-on-base-secondary) !important;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  :global(
+    .homepage-security__feature-switcher .multi-feature-section__media-stage
+  ) {
+    min-height: clamp(34rem, 43vw, 40rem);
+  }
+
+  @media (max-width: 63.999rem) {
+    :global(
+      .homepage-security__feature-switcher .multi-feature-section__shell
+    ) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    :global(
+      .homepage-security__feature-switcher .multi-feature-section__media-stage
+    ) {
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 47.999rem) {
+    .homepage-security__header {
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    :global(.homepage-security__feature-switcher) {
+      margin-top: 2rem;
+    }
+
+    :global(
+      .homepage-security__feature-switcher .multi-feature-section__trigger
+    ) {
+      font-size: 1.125rem;
+    }
+  }
+</style>

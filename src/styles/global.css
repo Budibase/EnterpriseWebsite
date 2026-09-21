@@ -44,6 +44,7 @@
     --bb-text-muted: rgb(0 0 0 / 0.69);
     --bb-text-on-base: #f8f8f8;
     --bb-text-on-base-subtle: #e1e1e1;
+    --bb-text-on-base-secondary: rgb(225 225 225 / 0.8);
     --bb-text-on-base-muted: rgb(255 255 255 / 0.39);
     --bb-background-surface-base: #ffffff;
     --bb-background-surface-subtle: #f8f8f8;
