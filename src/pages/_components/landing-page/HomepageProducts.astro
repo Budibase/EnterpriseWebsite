@@ -19,6 +19,7 @@ const productGroups = [
     id: "connect",
     title: "Connect",
     color: "var(--bb-cinnamon-600)",
+    surface: "var(--bb-background-sand)",
     imageBackground: "cinnamon-1300",
     cards: [
       {
@@ -66,6 +67,7 @@ const productGroups = [
     id: "automate",
     title: "Automate",
     color: "var(--bb-celery-600)",
+    surface: "var(--homepage-product-background-sand-light)",
     imageBackground: "celery-1300",
     cards: [
       {
@@ -144,6 +146,7 @@ const productGroups = [
     id: "interact",
     title: "Interact",
     color: "var(--bb-cyan-600)",
+    surface: "var(--bb-background-sand)",
     imageBackground: "cyan-1300",
     cards: [
       {
@@ -172,6 +175,7 @@ const productGroups = [
     id: "govern",
     title: "Govern",
     color: "var(--bb-yellow-600)",
+    surface: "var(--homepage-product-background-sand-light)",
     imageBackground: "yellow-1300",
     cards: [
       {
@@ -229,7 +233,7 @@ const productGroups = [
                 groupIndex > 0 && "homepage-product-group--joined",
               ]}
               aria-labelledby={titleId}
-              style={`--homepage-product-group-color: ${group.color};${itemBackgroundStyle}`}
+              style={`--homepage-product-group-color: ${group.color};--homepage-product-group-background: ${group.surface};${itemBackgroundStyle}`}
             >
               <h3 id={titleId} class="homepage-product-group__label">
                 <span
@@ -293,7 +297,13 @@ const productGroups = [
   }
 
   .homepage-products__groups {
+    --homepage-product-background-sand-light: color-mix(
+      in srgb,
+      var(--bb-background-sand) 40%,
+      var(--bb-background-base)
+    );
     --homepage-product-label-height: 2.75rem;
+    --homepage-product-section-clearance: 0.5rem;
     --homepage-product-workspace-padding: clamp(0.875rem, 2vw, 1.25rem);
     display: flex;
     flex-direction: column;
@@ -323,7 +333,7 @@ const productGroups = [
     border: 1px solid var(--bb-border-base);
     border-bottom: 0;
     border-radius: 0;
-    background: var(--bb-background-sand);
+    background: var(--homepage-product-group-background);
     padding: 0 1rem;
     color: var(--bb-text-base);
     font-family: var(--font-sans);
@@ -346,14 +356,19 @@ const productGroups = [
     z-index: 1;
     margin-top: -1px;
     border: 1px solid var(--bb-border-base);
-    background: var(--bb-background-sand);
+    background: var(--homepage-product-group-background);
     padding: var(--homepage-product-workspace-padding);
+    padding-top: calc(
+      var(--homepage-product-workspace-padding) +
+        var(--homepage-product-section-clearance)
+    );
   }
 
   .homepage-product-group:not(:last-child) .homepage-product-group__workspace {
     padding-bottom: calc(
       var(--homepage-product-workspace-padding) +
-        var(--homepage-product-label-height)
+        var(--homepage-product-label-height) +
+        var(--homepage-product-section-clearance)
     );
   }
 
