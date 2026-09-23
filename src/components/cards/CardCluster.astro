@@ -1,18 +1,59 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import Icon from "@components/Icon.astro";
 import defaultCardImage from "@assets/images/backgrounds/light/card-cluster-default.png";
 
 type Columns = 2 | 3 | 4 | 5;
 type Variant = "white" | "light" | "dark";
 type ResponsiveLayout = "scroll" | "stack";
-type ImageAspectRatio = "auto" | "16/9";
+type ImageAspectRatio = "auto" | "16/9" | "4/3" | "1/1";
+type ImagePresentation = "image" | "solid";
 type Presentation = "default" | "badge";
+type MediaScene =
+  | {
+      type: "agent";
+      role: string;
+      instructions: readonly {
+        text: string;
+        binding?: string;
+        bindingBadge?: boolean;
+        bindingIcon?: string;
+        suffix?: string;
+        approval?: boolean;
+      }[];
+    }
+  | {
+      type: "automation";
+      nodes: readonly { label: string; icon: string }[];
+    }
+  | {
+      type: "function";
+      name: string;
+      code: readonly string[];
+    };
 type CardBackgroundColor =
   | "white"
   | "surface"
   | "raised"
   | "celery-200"
+  | "celery-900"
+  | "celery-1200"
+  | "celery-1300"
+  | "purple-200"
+  | "purple-900"
+  | "purple-1200"
+  | "fuchsia-1200"
+  | "cinnamon-1200"
+  | "cinnamon-1300"
+  | "cyan-200"
+  | "cyan-900"
+  | "cyan-1200"
+  | "cyan-1300"
+  | "yellow-200"
+  | "yellow-900"
+  | "yellow-1200"
+  | "yellow-1300"
   | "bright-green"
   | "forest-green";
 
@@ -22,6 +63,11 @@ interface Card {
   number?: string;
   image?: ImageMetadata | string;
   imageAlt?: string;
+  mediaBadges?: readonly {
+    label: string;
+    icon: ImageMetadata | string;
+  }[];
+  mediaScene?: MediaScene;
   link?: string;
 }
 
@@ -35,7 +81,9 @@ interface Props {
   cards?: readonly Card[];
   responsiveLayout?: ResponsiveLayout;
   imageAspectRatio?: ImageAspectRatio;
+  imagePresentation?: ImagePresentation;
   presentation?: Presentation;
+  showArrowButton?: boolean;
   class?: string;
 }
 
@@ -86,7 +134,9 @@ const {
   cards = defaultCards,
   responsiveLayout = "scroll",
   imageAspectRatio = "auto",
+  imagePresentation = "image",
   presentation = "default",
+  showArrowButton = false,
   class: className = "",
 } = Astro.props as Props;
 
@@ -96,6 +146,29 @@ const responsiveLayoutClass = `card-cluster--responsive-${responsiveLayout}`;
 const imageAspectRatioClass = `card-cluster--images-${imageAspectRatio.replace("/", "-")}`;
 const presentationClass = `card-cluster--presentation-${presentation}`;
 const CardTitle = cardTitleTag;
+
+type FunctionCodeTokenTone = "keyword" | "function" | "api";
+
+const functionCodeTokenPattern =
+  /(\b(?:async|function|for|const|of|await|return)\b|\bapi\.jira\b|\.create_issue\b|\bsync\b)/g;
+
+const tokenizeFunctionCodeLine = (line: string) =>
+  line
+    .split(functionCodeTokenPattern)
+    .filter(Boolean)
+    .map((text) => {
+      let tone: FunctionCodeTokenTone | undefined;
+
+      if (/^(async|function|for|const|of|await|return)$/.test(text)) {
+        tone = "keyword";
+      } else if (text === "sync") {
+        tone = "function";
+      } else if (text === "api.jira" || text === ".create_issue") {
+        tone = "api";
+      }
+
+      return { text, tone };
+    });
 ---
 
 <section
@@ -137,29 +210,161 @@ const CardTitle = cardTitleTag;
                 )}
 
                 <div class="card-cluster__image-wrap">
-                  {card.number ? (
-                    <span class="card-cluster__card-number">{card.number}</span>
-                  ) : typeof image === "string" ? (
-                    <img
-                      src={image}
-                      alt={card.imageAlt ?? card.title}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <Image
-                      src={image}
-                      alt={card.imageAlt ?? card.title}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  )}
+                  {card.mediaBadges?.length ? (
+                    <ul
+                      class="card-cluster__media-badges"
+                      aria-label={`${card.title} connection examples`}
+                    >
+                      {card.mediaBadges.map((badge) => (
+                        <li class="card-cluster__media-badge">
+                          {typeof badge.icon === "string" ? (
+                            <img src={badge.icon} alt="" aria-hidden="true" />
+                          ) : (
+                            <Image src={badge.icon} alt="" aria-hidden="true" />
+                          )}
+                          <span>{badge.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : card.mediaScene?.type === "agent" ? (
+                    <div
+                      class="card-cluster__media-scene card-cluster__media-scene--agent"
+                      aria-hidden="true"
+                    >
+                      <div class="card-cluster__editor-header">
+                        <strong>Agent instructions</strong>
+                      </div>
+                      <ol class="card-cluster__editor-body card-cluster__agent-instructions">
+                        <li class="card-cluster__agent-section"># Role</li>
+                        <li>{card.mediaScene.role}</li>
+                        <li class="card-cluster__agent-spacer">&nbsp;</li>
+                        <li class="card-cluster__agent-section">
+                          # Instructions
+                        </li>
+                        <li>For every request:</li>
+                        {card.mediaScene.instructions.map((instruction) => (
+                          <li>
+                            <span class="card-cluster__agent-bullet">-</span>
+                            <span>{instruction.text}</span>
+                            {instruction.binding && (
+                              <span
+                                class:list={[
+                                  "card-cluster__tool-binding",
+                                  {
+                                    "card-cluster__tool-binding--badged":
+                                      instruction.bindingBadge,
+                                  },
+                                ]}
+                              >
+                                {instruction.bindingIcon && (
+                                  <img
+                                    class="card-cluster__tool-binding-icon"
+                                    src={instruction.bindingIcon}
+                                    alt=""
+                                    aria-hidden="true"
+                                  />
+                                )}
+                                <span class="card-cluster__tool-binding-label">
+                                  {instruction.binding}
+                                </span>
+                              </span>
+                            )}
+                            {instruction.approval && (
+                              <span class="card-cluster__approval-marker">
+                                ◇
+                              </span>
+                            )}
+                            {instruction.suffix && (
+                              <span>{instruction.suffix}</span>
+                            )}
+                          </li>
+                        ))}
+                        <li class="card-cluster__agent-spacer">&nbsp;</li>
+                      </ol>
+                    </div>
+                  ) : card.mediaScene?.type === "automation" ? (
+                    <div
+                      class="card-cluster__media-scene card-cluster__media-scene--automation"
+                      aria-hidden="true"
+                    >
+                      <ol
+                        class="card-cluster__automation-flow"
+                        data-automation-flow
+                      >
+                        {card.mediaScene.nodes.map((node) => (
+                          <li class="card-cluster__automation-node">
+                            <span class="card-cluster__automation-node-icon">
+                              <Icon name={node.icon} size="22" weight="fill" />
+                            </span>
+                            <span>{node.label}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  ) : card.mediaScene?.type === "function" ? (
+                    <div
+                      class="card-cluster__media-scene card-cluster__media-scene--function"
+                      aria-hidden="true"
+                    >
+                      <div class="card-cluster__editor-header">
+                        <strong>{card.mediaScene.name}</strong>
+                      </div>
+                      <ol class="card-cluster__editor-body card-cluster__function-code">
+                        {card.mediaScene.code.map((line) => (
+                          <li>
+                            <code>
+                              {tokenizeFunctionCodeLine(line).map((token) => (
+                                <span
+                                  class:list={[
+                                    "card-cluster__function-token",
+                                    token.tone &&
+                                      `card-cluster__function-token--${token.tone}`,
+                                  ]}
+                                >
+                                  {token.text}
+                                </span>
+                              ))}
+                            </code>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  ) : imagePresentation !== "solid" ? (
+                    <>
+                      {card.number ? (
+                        <span class="card-cluster__card-number">
+                          {card.number}
+                        </span>
+                      ) : typeof image === "string" ? (
+                        <img
+                          src={image}
+                          alt={card.imageAlt ?? card.title}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <Image
+                          src={image}
+                          alt={card.imageAlt ?? card.title}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                    </>
+                  ) : null}
                 </div>
 
                 <div class="card-cluster__content">
-                  <CardTitle class="card-cluster__card-title">
-                    {card.title}
-                  </CardTitle>
+                  <div class="card-cluster__title-row">
+                    <CardTitle class="card-cluster__card-title">
+                      {card.title}
+                    </CardTitle>
+                    {showArrowButton && card.link && (
+                      <span class="card-cluster__arrow" aria-hidden="true">
+                        <Icon name="ArrowRight" size="20" />
+                      </span>
+                    )}
+                  </div>
                   {card.description && <p>{card.description}</p>}
                 </div>
               </article>
@@ -179,6 +384,9 @@ const CardTitle = cardTitleTag;
     --card-cluster-card-border: var(--bb-border-subtle);
     --card-cluster-card-text: var(--bb-text-base);
     --card-cluster-card-description: var(--bb-text-body);
+    --card-cluster-scene-accent-subtle: var(--bb-cinnamon-200);
+    --card-cluster-scene-accent-strong: var(--bb-cinnamon-1200);
+    --card-cluster-scene-accent-code: var(--bb-cinnamon-400);
     width: 100%;
     background: var(--card-cluster-section-background);
   }
@@ -210,6 +418,77 @@ const CardTitle = cardTitleTag;
 
   .card-cluster--cards-celery-200 {
     --card-cluster-image-background: var(--bb-celery-200);
+  }
+
+  .card-cluster--cards-celery-900 {
+    --card-cluster-image-background: var(--bb-celery-900);
+  }
+
+  .card-cluster--cards-celery-1200 {
+    --card-cluster-image-background: var(--bb-celery-1200);
+  }
+
+  .card-cluster--cards-celery-1300 {
+    --card-cluster-image-background: var(--bb-celery-1300);
+    --card-cluster-scene-accent-subtle: var(--bb-celery-200);
+    --card-cluster-scene-accent-strong: var(--bb-celery-1200);
+    --card-cluster-scene-accent-code: var(--bb-celery-200);
+  }
+
+  .card-cluster--cards-purple-200 {
+    --card-cluster-image-background: var(--bb-purple-200);
+  }
+
+  .card-cluster--cards-purple-900 {
+    --card-cluster-image-background: var(--bb-purple-900);
+  }
+
+  .card-cluster--cards-purple-1200 {
+    --card-cluster-image-background: var(--bb-purple-1200);
+  }
+
+  .card-cluster--cards-fuchsia-1200 {
+    --card-cluster-image-background: var(--bb-fuchsia-1200);
+  }
+
+  .card-cluster--cards-cinnamon-1200 {
+    --card-cluster-image-background: var(--bb-cinnamon-1200);
+  }
+
+  .card-cluster--cards-cinnamon-1300 {
+    --card-cluster-image-background: var(--bb-cinnamon-1300);
+  }
+
+  .card-cluster--cards-cyan-200 {
+    --card-cluster-image-background: var(--bb-cyan-200);
+  }
+
+  .card-cluster--cards-cyan-900 {
+    --card-cluster-image-background: var(--bb-cyan-900);
+  }
+
+  .card-cluster--cards-cyan-1200 {
+    --card-cluster-image-background: var(--bb-cyan-1200);
+  }
+
+  .card-cluster--cards-cyan-1300 {
+    --card-cluster-image-background: var(--bb-cyan-1300);
+  }
+
+  .card-cluster--cards-yellow-200 {
+    --card-cluster-image-background: var(--bb-yellow-200);
+  }
+
+  .card-cluster--cards-yellow-900 {
+    --card-cluster-image-background: var(--bb-yellow-900);
+  }
+
+  .card-cluster--cards-yellow-1200 {
+    --card-cluster-image-background: var(--bb-yellow-1200);
+  }
+
+  .card-cluster--cards-yellow-1300 {
+    --card-cluster-image-background: var(--bb-yellow-1300);
   }
 
   .card-cluster--cards-bright-green {
@@ -295,6 +574,7 @@ const CardTitle = cardTitleTag;
   }
 
   .card-cluster__image-wrap {
+    container-type: inline-size;
     display: grid;
     place-items: center;
     flex: 0 0 auto;
@@ -304,25 +584,347 @@ const CardTitle = cardTitleTag;
     padding: 2rem;
   }
 
-  .card-cluster__image-wrap img {
+  .card-cluster__image-wrap > img {
     display: block;
     width: 100%;
     object-position: center;
   }
 
-  .card-cluster--images-16-9 .card-cluster__image-wrap {
+  .card-cluster--images-16-9 .card-cluster__image-wrap,
+  .card-cluster--images-4-3 .card-cluster__image-wrap,
+  .card-cluster--images-1-1 .card-cluster__image-wrap {
     position: relative;
-    aspect-ratio: 16 / 9;
     min-height: 0;
     padding: 0;
   }
 
-  .card-cluster--images-16-9 .card-cluster__image-wrap img {
+  .card-cluster--images-16-9 .card-cluster__image-wrap {
+    aspect-ratio: 16 / 9;
+  }
+
+  .card-cluster--images-4-3 .card-cluster__image-wrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  .card-cluster--images-1-1 .card-cluster__image-wrap {
+    aspect-ratio: 1;
+  }
+
+  .card-cluster--images-16-9 .card-cluster__image-wrap > img,
+  .card-cluster--images-4-3 .card-cluster__image-wrap > img,
+  .card-cluster--images-1-1 .card-cluster__image-wrap > img {
     position: absolute;
     inset: 2rem;
     width: calc(100% - 4rem);
     height: calc(100% - 4rem);
     object-fit: cover;
+  }
+
+  .card-cluster__media-badges {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.375rem;
+    margin: 0 !important;
+    padding: 1.25rem;
+  }
+
+  .card-cluster__media-badge {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 !important;
+    background: var(--bb-transparent-white-900);
+    padding: 0.75rem 1rem;
+    color: var(--bb-text-base) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-align: left;
+  }
+
+  .card-cluster__media-badge img {
+    position: static;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 1.25rem;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .card-cluster__media-badge span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .card-cluster__media-scene {
+    position: absolute;
+    inset: 1.25rem;
+    display: flex;
+    min-width: 0;
+    color: var(--bb-text-base);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .card-cluster__automation-node-icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-cluster__media-scene--agent,
+  .card-cluster__media-scene--function {
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .card-cluster__media-scene--agent,
+  .card-cluster__media-scene--function {
+    container-type: inline-size;
+    background: var(--bb-background-base);
+  }
+
+  .card-cluster__editor-header {
+    display: flex;
+    min-height: clamp(1.75rem, 11cqi, 2.375rem);
+    flex: 0 0 auto;
+    align-items: center;
+    padding: 0 clamp(0.4375rem, 3cqi, 0.75rem);
+  }
+
+  .card-cluster__editor-header strong {
+    color: var(--bb-text-base);
+    font-family: var(--font-sans) !important;
+    font-size: clamp(0.875rem, 4.3cqi, 1.125rem);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .card-cluster__editor-body {
+    min-height: 0;
+    flex: 1;
+    counter-reset: agent-instruction-line;
+    margin: 0 clamp(0.4375rem, 3cqi, 0.75rem) !important;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-component-base);
+    padding-block: clamp(0.4375rem, 3cqi, 0.75rem) !important;
+    padding-inline: 0 !important;
+    list-style: none;
+  }
+
+  .card-cluster__editor-body li {
+    position: relative;
+    min-height: 1em;
+    counter-increment: agent-instruction-line;
+    margin: 0 !important;
+    overflow: hidden;
+    padding-right: 0.75rem;
+    padding-left: 2.25rem;
+    color: var(--bb-text-base) !important;
+    font-family: var(--font-sans) !important;
+    font-size: clamp(0.9375rem, calc(4.2cqi - 1px), 1.0625rem);
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.4;
+    text-overflow: clip;
+    white-space: nowrap;
+  }
+
+  .card-cluster__editor-body li::before {
+    position: absolute;
+    left: 0.25rem;
+    width: 1.25rem;
+    content: counter(agent-instruction-line);
+    color: var(--bb-text-subtle);
+    font-size: 1em;
+    font-variant-numeric: tabular-nums;
+    font-weight: 400;
+    text-align: right;
+  }
+
+  .card-cluster__agent-instructions li.card-cluster__agent-section {
+    color: var(--bb-orange-900) !important;
+    font-weight: 600;
+  }
+
+  .card-cluster__agent-bullet {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  .card-cluster__tool-binding {
+    color: var(--bb-orange-1000);
+  }
+
+  .card-cluster__tool-binding--badged {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    border: 1px solid var(--bb-border-base);
+    background-color: transparent;
+    background-image: linear-gradient(var(--bb-cyan-100), var(--bb-cyan-100));
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    padding: 1px 3px;
+    color: var(--bb-cyan-1000);
+    line-height: 1;
+    vertical-align: baseline;
+  }
+
+  .card-cluster__tool-binding--badged.is-visible {
+    animation: card-cluster-binding-fill 2s ease-out forwards;
+  }
+
+  .card-cluster__tool-binding-icon {
+    display: block;
+    width: 1.25rem;
+    height: 0.875rem;
+    flex: 0 0 auto;
+    object-fit: contain;
+  }
+
+  .card-cluster__approval-marker {
+    margin-left: 0.125rem;
+    color: var(--bb-orange-1000);
+  }
+
+  @keyframes card-cluster-binding-fill {
+    to {
+      background-size: 100% 100%;
+    }
+  }
+
+  .card-cluster__automation-flow {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+
+  .card-cluster__media-scene--automation {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-cluster__automation-flow {
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    gap: 0.625rem;
+  }
+
+  .card-cluster__automation-flow::before {
+    position: absolute;
+    z-index: 0;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    width: 1px;
+    background: var(--bb-transparent-white-600);
+    content: "";
+  }
+
+  .card-cluster__automation-flow.is-reveal-ready::before {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1000ms linear 300ms;
+  }
+
+  .card-cluster__automation-flow.is-visible::before {
+    transform: scaleY(1);
+  }
+
+  .card-cluster__automation-node {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 !important;
+    background: var(--bb-transparent-white-900);
+    padding: 0.75rem;
+    font-weight: 500;
+  }
+
+  .card-cluster__automation-flow.is-reveal-ready
+    .card-cluster__automation-node {
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+  }
+
+  .card-cluster__automation-flow.is-visible .card-cluster__automation-node {
+    opacity: 1;
+  }
+
+  .card-cluster__automation-flow.is-visible
+    .card-cluster__automation-node:nth-child(2) {
+    transition-delay: 500ms;
+  }
+
+  .card-cluster__automation-flow.is-visible
+    .card-cluster__automation-node:nth-child(3) {
+    transition-delay: 1000ms;
+  }
+
+  .card-cluster__automation-node-icon {
+    width: 2rem;
+    height: 2rem;
+    background: var(--card-cluster-scene-accent-subtle);
+    color: var(--card-cluster-scene-accent-strong);
+  }
+
+  .card-cluster__function-code {
+    border-color: var(--bb-celery-1600);
+    background: var(--bb-celery-1600);
+    color: var(--bb-text-on-base-subtle);
+  }
+
+  .card-cluster__editor-body.card-cluster__function-code li {
+    color: var(--bb-text-on-base-subtle) !important;
+  }
+
+  .card-cluster__function-code li::before {
+    color: var(--bb-text-on-base-muted);
+    font-size: 13px;
+  }
+
+  .card-cluster__function-code li,
+  .card-cluster__function-code code {
+    font-family: var(--font-mono) !important;
+  }
+
+  .card-cluster__function-code code {
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: pre;
+  }
+
+  .card-cluster__function-token--keyword {
+    color: var(--bb-orange-300);
+  }
+
+  .card-cluster__function-token--function {
+    color: var(--bb-text-on-base);
+  }
+
+  .card-cluster__function-token--api {
+    color: var(--bb-celery-200);
   }
 
   .card-cluster__card-number {
@@ -345,13 +947,44 @@ const CardTitle = cardTitleTag;
     padding: 1.25rem 0;
   }
 
+  .card-cluster__title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
   .card-cluster__card-title {
+    flex: 1;
     margin: 0;
     color: var(--card-cluster-card-text);
     font-size: var(--bb-text-heading-card-font-size);
     font-weight: 600;
     line-height: var(--bb-text-heading-card-line-height);
     letter-spacing: 0;
+  }
+
+  .card-cluster__arrow {
+    display: inline-flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: 0 0 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    color: var(--bb-brand-forest-green);
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .card-cluster__card:hover .card-cluster__arrow,
+  .card-cluster__card:focus-within .card-cluster__arrow {
+    border-color: var(--bb-brand-forest-green);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
   }
 
   .card-cluster__content p {
@@ -474,4 +1107,121 @@ const CardTitle = cardTitleTag;
       );
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-cluster__arrow {
+      transition: none;
+    }
+
+    .card-cluster__tool-binding--badged {
+      background-size: 100% 100%;
+      animation: none;
+    }
+
+    .card-cluster__automation-flow.is-reveal-ready
+      .card-cluster__automation-node {
+      opacity: 1;
+      transition: none;
+    }
+
+    .card-cluster__automation-flow.is-reveal-ready::before {
+      transform: none;
+      transition: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .card-cluster__media-badge {
+      padding-block: 0.6875rem;
+      line-height: 1rem;
+    }
+
+    .card-cluster__media-badge img {
+      width: 1rem;
+      height: 1rem;
+      flex-basis: 1rem;
+    }
+
+    .card-cluster__automation-flow {
+      gap: 0.375rem;
+    }
+
+    .card-cluster__automation-flow::before {
+      top: 1.25rem;
+      bottom: 1.25rem;
+      left: 1.375rem;
+    }
+
+    .card-cluster__automation-node {
+      gap: 0.625rem;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .card-cluster__automation-node-icon {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
 </style>
+
+<script>
+  const revealBindingBadges = () => {
+    const badges = document.querySelectorAll<HTMLElement>(
+      ".card-cluster__tool-binding--badged:not([data-binding-observed])",
+    );
+
+    if (!("IntersectionObserver" in window)) {
+      badges.forEach((badge) => badge.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.25 },
+    );
+
+    badges.forEach((badge) => {
+      badge.dataset.bindingObserved = "true";
+      observer.observe(badge);
+    });
+  };
+
+  const revealAutomationFlows = () => {
+    const flows = document.querySelectorAll<HTMLElement>(
+      "[data-automation-flow]:not([data-automation-observed])",
+    );
+
+    if (!("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.25 },
+    );
+
+    flows.forEach((flow) => {
+      flow.dataset.automationObserved = "true";
+      flow.classList.add("is-reveal-ready");
+      observer.observe(flow);
+    });
+  };
+
+  const setupCardClusterReveals = () => {
+    revealBindingBadges();
+    revealAutomationFlows();
+  };
+
+  setupCardClusterReveals();
+  document.addEventListener("astro:page-load", setupCardClusterReveals);
+</script>

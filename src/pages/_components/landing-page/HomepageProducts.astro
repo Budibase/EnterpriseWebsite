@@ -1,43 +1,200 @@
 ---
+import CardCluster from "@components/cards/CardCluster.astro";
 import TitleBlock from "@components/TitleBlock.astro";
-import HomepageProductBentoCard from "./HomepageProductBentoCard.astro";
+import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+import JiraLogo from "@assets/logos/Jira.svg?url";
+import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
+import RestApiLogo from "@assets/logos/rest-api.svg?url";
+import AnthropicLogo from "@assets/logos/anthropic.avif?url";
+import AzureOpenAILogo from "@assets/logos/azure-openai.svg?url";
+import OpenAILogo from "@assets/logos/openai.avif?url";
+import BudibaseSymbol from "@assets/BBSymbol.svg?url";
+import PostgresLogo from "@assets/logos/Postgres.svg?url";
+import MySQLLogo from "@assets/logos/MYSQL.svg?url";
+import MSSQLLogo from "@assets/logos/MSSQL.svg?url";
+import SAPLogo from "@assets/logos/SAP.svg?url";
 
-const products = [
+const productGroups = [
   {
-    product: "agents",
-    title: "Agents",
-    href: "/product/agents/",
-    size: "large",
+    id: "connect",
+    title: "Connect",
+    color: "var(--bb-cinnamon-600)",
+    imageBackground: "cinnamon-1300",
+    cards: [
+      {
+        title: "AI models",
+        description:
+          "Choose the models that fit your architecture, policies, and workloads.",
+        imageAlt: "",
+        mediaBadges: [
+          { label: "Anthropic", icon: AnthropicLogo },
+          { label: "Azure", icon: AzureOpenAILogo },
+          { label: "OpenAI", icon: OpenAILogo },
+          { label: "Budibase AI", icon: BudibaseSymbol },
+        ],
+        link: "/product/agents/",
+      },
+      {
+        title: "APIs",
+        description:
+          "Connect and reuse actions across the systems your operations depend on.",
+        imageAlt: "",
+        mediaBadges: [
+          { label: "SharePoint", icon: SharePointLogo },
+          { label: "Jira", icon: JiraLogo },
+          { label: "ServiceNow", icon: ServiceNowLogo },
+          { label: "Custom REST API", icon: RestApiLogo },
+        ],
+        link: "/product/apis/",
+      },
+      {
+        title: "Data",
+        description:
+          "Use built-in tables or connect directly to existing data sources.",
+        imageAlt: "",
+        mediaBadges: [
+          { label: "Budibase Tables", icon: BudibaseSymbol },
+          { label: "PostgreSQL", icon: PostgresLogo },
+          { label: "MySQL", icon: MySQLLogo },
+          { label: "MSSQL", icon: MSSQLLogo },
+        ],
+        link: "/product/data/",
+      },
+    ],
   },
   {
-    product: "requests",
-    title: "Requests",
-    href: "/product/requests/",
-    size: "small",
+    id: "automate",
+    title: "Automate",
+    color: "var(--bb-celery-600)",
+    imageBackground: "celery-1300",
+    cards: [
+      {
+        title: "Agents",
+        description:
+          "Handle context-dependent work with agents grounded in your data and rules.",
+        imageAlt: "",
+        mediaScene: {
+          type: "agent",
+          role: "You are the Purchase Requisition Agent.",
+          instructions: [
+            { text: "Identify the requester" },
+            { text: "Collect supplier and order details" },
+            {
+              text: "Validate with ",
+              binding: "sap.suppliers.read",
+              bindingBadge: true,
+              bindingIcon: SAPLogo,
+            },
+            {
+              text: "Create a draft with ",
+              binding: "sap.req.create",
+              bindingBadge: true,
+              bindingIcon: SAPLogo,
+            },
+            { text: "Present the draft for confirmation" },
+            { text: "Check whether approval is required" },
+            {
+              text: "Create the PO with ",
+              binding: "sap.po.create",
+              approval: true,
+            },
+            { text: "Return the PO number" },
+          ],
+        },
+        link: "/product/agents/",
+      },
+      {
+        title: "Automations",
+        description:
+          "Run predictable, event-driven workflows across your stack.",
+        imageAlt: "",
+        mediaScene: {
+          type: "automation",
+          nodes: [
+            { label: "Request submitted", icon: "Lightning" },
+            { label: "Amount over £5k?", icon: "GitFork" },
+            { label: "Send for approval", icon: "CheckCircle" },
+          ],
+        },
+        link: "/product/automations/",
+      },
+      {
+        title: "Functions",
+        description:
+          "Build code-first automations with loops, reusable logic, and direct API access.",
+        imageAlt: "",
+        mediaScene: {
+          type: "function",
+          name: "Function",
+          code: [
+            "async function sync(items) {",
+            "  for (const item of items) {",
+            "    await api.jira",
+            "      .create_issue(item)",
+            "  }",
+            "  return items.length",
+            "}",
+          ],
+        },
+        link: "/product/functions/",
+      },
+    ],
   },
   {
-    product: "automations",
-    title: "Automations",
-    href: "/product/automations/",
-    size: "small",
+    id: "engage",
+    title: "Engage",
+    color: "var(--bb-cyan-600)",
+    imageBackground: "cyan-1300",
+    cards: [
+      {
+        title: "Agent channels",
+        description:
+          "Let teams work with agents through native chat and connected channels.",
+        imageAlt: "",
+        link: "/product/agents/",
+      },
+      {
+        title: "Apps",
+        description: "Give teams secure interfaces for operational work.",
+        imageAlt: "",
+        link: "/product/apps/",
+      },
+      {
+        title: "Requests",
+        description:
+          "Bring agent requests to people for review, follow-up, and resolution.",
+        imageAlt: "",
+        link: "/product/requests/",
+      },
+    ],
   },
   {
-    product: "functions",
-    title: "Functions",
-    href: "/product/functions/",
-    size: "small",
-  },
-  {
-    product: "tables",
-    title: "Tables",
-    href: "/product/data/",
-    size: "small",
-  },
-  {
-    product: "apps",
-    title: "Apps",
-    href: "/product/apps/",
-    size: "extra-large",
+    id: "govern",
+    title: "Govern",
+    color: "var(--bb-yellow-600)",
+    imageBackground: "yellow-1300",
+    cards: [
+      {
+        title: "Activity",
+        description:
+          "Review system activity, execution history, and actions across operations.",
+        imageAlt: "",
+        link: "/product/activity/",
+      },
+      {
+        title: "Approvals",
+        description:
+          "Require human approval before agents take consequential actions.",
+        imageAlt: "",
+        link: "/product/requests/",
+      },
+      {
+        title: "Permissions",
+        description: "Control who can access data, use tools, and take action.",
+        imageAlt: "",
+        link: "/product/admin-security/",
+      },
+    ],
   },
 ] as const;
 ---
@@ -47,15 +204,49 @@ const products = [
     <TitleBlock
       variant="section"
       title="One platform for every operation."
-      description="Build apps, automate predictable work, deploy agents for context-dependent tasks, handle requests and approvals, and extend workflows with reusable functions—all around the systems and data you already own."
+      description="Connect your systems, automate work, engage teams, and govern activity from one open platform."
       titleId="homepage-products-title"
       containerClass="homepage-products__header"
       titleClass="homepage-products__title"
       descriptionClass="homepage-products__intro"
     />
 
-    <div class="homepage-products__grid">
-      {products.map((product) => <HomepageProductBentoCard {...product} />)}
+    <div class="homepage-products__groups">
+      {
+        productGroups.map((group) => {
+          const titleId = `homepage-products-${group.id}-title`;
+
+          return (
+            <section
+              class="homepage-product-group"
+              aria-labelledby={titleId}
+              style={`--homepage-product-group-color: ${group.color};`}
+            >
+              <h3 id={titleId} class="homepage-product-group__label">
+                <span
+                  class="homepage-product-group__status"
+                  aria-hidden="true"
+                />
+                <span>{group.title}</span>
+              </h3>
+              <div class="homepage-product-group__workspace">
+                <CardCluster
+                  columns={3}
+                  Variant="white"
+                  CardBackgroundColor={group.imageBackground}
+                  CardTitleTag="h4"
+                  cards={group.cards}
+                  responsiveLayout="stack"
+                  imageAspectRatio="4/3"
+                  imagePresentation="solid"
+                  showArrowButton={true}
+                  class="homepage-product-group__cluster"
+                />
+              </div>
+            </section>
+          );
+        })
+      }
     </div>
   </div>
 </section>
@@ -78,7 +269,8 @@ const products = [
   }
 
   :global(.homepage-products__header .title-block__description) {
-    max-width: 50rem;
+    max-width: 100%;
+    text-wrap: wrap;
   }
 
   :global(.homepage-products__title) {
@@ -89,103 +281,112 @@ const products = [
     color: var(--bb-text-body) !important;
   }
 
-  .homepage-products__grid {
-    --bento-gap: clamp(0.625rem, 1.5vw, 0.875rem);
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(3, minmax(0, 1fr));
-    gap: var(--bento-gap);
+  .homepage-products__groups {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .homepage-product-group {
     width: 100%;
-    aspect-ratio: 1;
   }
 
-  .homepage-products__grid > :global(:nth-child(1)) {
-    grid-column: 1 / span 2;
-    grid-row: 1;
+  .homepage-product-group__label {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.625rem;
+    margin: 0;
+    border: 1px solid var(--bb-border-base);
+    border-bottom: 0;
+    border-radius: 0.25rem 0.25rem 0 0;
+    background: var(--bb-background-sand);
+    padding: 0.75rem 1rem;
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.0625;
+    letter-spacing: normal;
   }
 
-  .homepage-products__grid > :global(:nth-child(2)) {
-    grid-column: 3;
-    grid-row: 1;
+  .homepage-product-group__status {
+    width: 0.75rem;
+    height: 0.75rem;
+    flex: 0 0 0.75rem;
+    border-radius: 50%;
+    background: var(--homepage-product-group-color);
   }
 
-  .homepage-products__grid > :global(:nth-child(3)) {
-    grid-column: 1;
-    grid-row: 2;
+  .homepage-product-group__workspace {
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-sand);
+    padding: clamp(0.875rem, 2vw, 1.25rem);
   }
 
-  .homepage-products__grid > :global(:nth-child(4)) {
-    grid-column: 2;
-    grid-row: 2;
+  :global(.homepage-product-group__cluster.card-cluster) {
+    --card-cluster-card-description: var(--text-secondary);
+    background: transparent;
   }
 
-  .homepage-products__grid > :global(:nth-child(5)) {
-    grid-column: 3;
-    grid-row: 2;
+  :global(.homepage-product-group__cluster .card-cluster__container) {
+    width: 100%;
+    padding-inline: 0;
   }
 
-  .homepage-products__grid > :global(:nth-child(6)) {
-    grid-column: 1 / span 3;
-    grid-row: 3;
+  :global(.homepage-product-group__cluster .card-cluster__grid) {
+    gap: clamp(0.75rem, 1.5vw, 1rem);
   }
 
-  @media (max-width: 1023px) {
-    .homepage-products__grid {
-      --bento-cell-size: calc(
-        (100vw - (2 * var(--site-content-inset)) - var(--bento-gap)) / 2
-      );
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: repeat(4, var(--bento-cell-size));
-      grid-auto-rows: var(--bento-cell-size);
-      aspect-ratio: auto;
-    }
+  :global(.homepage-product-group__cluster .card-cluster__card) {
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease;
+  }
 
-    .homepage-products__grid > :global(:nth-child(1)) {
-      grid-column: 1 / span 2;
-      grid-row: 1;
-    }
+  :global(.homepage-product-group__cluster .card-cluster__card:hover) {
+    border-color: var(--bb-brand-forest-green);
+    background: var(--bb-background-sand-hover);
+  }
 
-    .homepage-products__grid > :global(:nth-child(2)) {
-      grid-column: 1;
-      grid-row: 2;
-    }
+  :global(.homepage-product-group__cluster .card-cluster__image-wrap) {
+    border-radius: 0;
+  }
 
-    .homepage-products__grid > :global(:nth-child(3)) {
-      grid-column: 2;
-      grid-row: 2;
-    }
+  :global(.homepage-product-group__cluster .card-cluster__content) {
+    min-height: 9.5rem;
+    padding: 1.25rem;
+  }
 
-    .homepage-products__grid > :global(:nth-child(4)) {
-      grid-column: 1;
-      grid-row: 3;
-    }
-
-    .homepage-products__grid > :global(:nth-child(5)) {
-      grid-column: 2;
-      grid-row: 3;
-    }
-
-    .homepage-products__grid > :global(:nth-child(6)) {
-      grid-column: 1 / span 2;
-      grid-row: 4;
-    }
+  :global(.homepage-product-group__cluster .card-cluster__content p) {
+    color: var(--text-secondary) !important;
   }
 
   @media (max-width: 767px) {
-    .homepage-products__grid {
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: none;
-      grid-auto-rows: calc(100vw - (2 * var(--site-content-inset)));
+    .homepage-products__groups {
+      gap: 1.5rem;
     }
 
-    .homepage-products__grid > :global(:nth-child(1)),
-    .homepage-products__grid > :global(:nth-child(2)),
-    .homepage-products__grid > :global(:nth-child(3)),
-    .homepage-products__grid > :global(:nth-child(4)),
-    .homepage-products__grid > :global(:nth-child(5)),
-    .homepage-products__grid > :global(:nth-child(6)) {
-      grid-column: 1;
-      grid-row: auto;
+    .homepage-product-group__workspace {
+      padding: 0.75rem;
+    }
+
+    :global(.homepage-product-group__cluster .card-cluster__content) {
+      min-height: 8.5rem;
+      padding: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.homepage-product-group__cluster .card-cluster__card) {
+      transition: none;
     }
   }
 </style>
