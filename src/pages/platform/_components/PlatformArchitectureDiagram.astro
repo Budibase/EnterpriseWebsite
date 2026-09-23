@@ -4,7 +4,7 @@ import ArchitectureItem from "./diagram/ArchitectureItem.astro";
 import ArchitectureLayer from "./diagram/ArchitectureLayer.astro";
 import DiagramFrame from "./diagram/DiagramFrame.astro";
 
-const engagementChannels = [
+const interactionChannels = [
   { title: "Web apps", icon: "Browser" },
   { title: "Slack", icon: "SlackLogo" },
   { title: "Teams", icon: "MicrosoftTeamsLogo" },
@@ -96,7 +96,7 @@ const systemCategories = [
 <DiagramFrame
   class="architecture-diagram"
   title="How the Budibase platform works"
-  description="Budibase connects to the systems the organization already uses. Apps, automations, agents, and functions execute the work within shared governance, while people engage through web, mobile, chat, and email."
+  description="Budibase connects to the systems the organization already uses. Apps, automations, agents, and functions execute the work within shared governance, while people interact through web, mobile, chat, and email."
   gridSize={2.5}
 >
   <div class="architecture-diagram__layout">
@@ -148,14 +148,14 @@ const systemCategories = [
       <ArchitectureConnector />
 
       <ArchitectureLayer
-        title="Engage"
+        title="Interact"
         description="Where people interact with your operations."
       >
         <div
           class="architecture-diagram__items architecture-diagram__items--four"
         >
           {
-            engagementChannels.map((channel) => (
+            interactionChannels.map((channel) => (
               <ArchitectureItem title={channel.title} icon={channel.icon} />
             ))
           }

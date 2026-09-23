@@ -639,7 +639,10 @@ const tokenizeFunctionCodeLine = (line: string) =>
     align-items: center;
     gap: 0.75rem;
     margin: 0 !important;
-    background: var(--bb-transparent-white-900);
+    background: var(
+      --card-cluster-media-badge-background,
+      var(--bb-transparent-white-900)
+    );
     padding: 0.75rem 1rem;
     color: var(--bb-text-base) !important;
     font-size: 1rem;
@@ -691,6 +694,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
   .card-cluster__media-scene--function {
     container-type: inline-size;
     background: var(--bb-background-base);
+    padding-bottom: 0.5rem;
   }
 
   .card-cluster__editor-header {
@@ -856,7 +860,10 @@ const tokenizeFunctionCodeLine = (line: string) =>
     align-items: center;
     gap: 0.75rem;
     margin: 0 !important;
-    background: var(--bb-transparent-white-900);
+    background: var(
+      --card-cluster-automation-node-background,
+      var(--bb-transparent-white-900)
+    );
     padding: 0.75rem;
     font-weight: 500;
   }

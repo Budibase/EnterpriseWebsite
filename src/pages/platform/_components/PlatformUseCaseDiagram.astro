@@ -37,7 +37,7 @@ interface ScenarioConfig {
   summary: string;
   connect: readonly DiagramItem[];
   build: readonly DiagramItem[];
-  engage: readonly DiagramItem[];
+  interact: readonly DiagramItem[];
   governance: readonly GovernanceCapability[];
 }
 
@@ -68,7 +68,7 @@ const scenarios: Record<Scenario, ScenarioConfig> = {
         tone: "function",
       },
     ],
-    engage: [
+    interact: [
       { title: "Web app", description: "Request inbox", icon: "Browser" },
       {
         title: "Teams",
@@ -107,7 +107,7 @@ const scenarios: Record<Scenario, ScenarioConfig> = {
         tone: "automation",
       },
     ],
-    engage: [
+    interact: [
       {
         title: "Web app",
         description: "Onboarding hub",
@@ -144,7 +144,7 @@ const scenarios: Record<Scenario, ScenarioConfig> = {
         tone: "automation",
       },
     ],
-    engage: [
+    interact: [
       { title: "Web app", description: "Request inbox", icon: "Browser" },
       {
         title: "Teams",
@@ -177,7 +177,7 @@ const scenarios: Record<Scenario, ScenarioConfig> = {
         tone: "automation",
       },
     ],
-    engage: [
+    interact: [
       {
         title: "Web app",
         description: "Maintenance hub",
@@ -220,7 +220,7 @@ const scenarios: Record<Scenario, ScenarioConfig> = {
         tone: "automation",
       },
     ],
-    engage: [
+    interact: [
       {
         title: "Web app",
         description: "Review workspace",
@@ -282,10 +282,10 @@ const layers = [
     tone: "execution" as const,
   },
   {
-    key: "engage",
-    title: "Engage",
+    key: "interact",
+    title: "Interact",
     description: "Where people interact with the operation.",
-    items: config.engage,
+    items: config.interact,
     tone: "quiet" as const,
   },
 ] as const;

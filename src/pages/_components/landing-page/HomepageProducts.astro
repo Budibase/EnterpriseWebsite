@@ -141,8 +141,8 @@ const productGroups = [
     ],
   },
   {
-    id: "engage",
-    title: "Engage",
+    id: "interact",
+    title: "Interact",
     color: "var(--bb-cyan-600)",
     imageBackground: "cyan-1300",
     cards: [
@@ -204,7 +204,7 @@ const productGroups = [
     <TitleBlock
       variant="section"
       title="One platform for every operation."
-      description="Connect your systems, automate work, engage teams, and govern activity from one open platform."
+      description="Connect your systems, automate work, give teams secure interfaces, and govern activity from one open platform."
       titleId="homepage-products-title"
       containerClass="homepage-products__header"
       titleClass="homepage-products__title"
@@ -213,21 +213,32 @@ const productGroups = [
 
     <div class="homepage-products__groups">
       {
-        productGroups.map((group) => {
+        productGroups.map((group, groupIndex) => {
           const titleId = `homepage-products-${group.id}-title`;
+          const itemBackgroundStyle =
+            group.id === "connect"
+              ? "--card-cluster-media-badge-background: var(--bb-background-base);"
+              : group.id === "automate"
+                ? "--card-cluster-automation-node-background: var(--bb-background-base);"
+                : "";
 
           return (
             <section
-              class="homepage-product-group"
+              class:list={[
+                "homepage-product-group",
+                groupIndex > 0 && "homepage-product-group--joined",
+              ]}
               aria-labelledby={titleId}
-              style={`--homepage-product-group-color: ${group.color};`}
+              style={`--homepage-product-group-color: ${group.color};${itemBackgroundStyle}`}
             >
               <h3 id={titleId} class="homepage-product-group__label">
                 <span
                   class="homepage-product-group__status"
                   aria-hidden="true"
                 />
-                <span>{group.title}</span>
+                <span class="homepage-product-group__label-text">
+                  {group.title}
+                </span>
               </h3>
               <div class="homepage-product-group__workspace">
                 <CardCluster
@@ -282,28 +293,38 @@ const productGroups = [
   }
 
   .homepage-products__groups {
+    --homepage-product-label-height: 2.75rem;
+    --homepage-product-workspace-padding: clamp(0.875rem, 2vw, 1.25rem);
     display: flex;
     flex-direction: column;
-    gap: clamp(1.5rem, 3vw, 2.5rem);
   }
 
   .homepage-product-group {
+    position: relative;
     width: 100%;
+  }
+
+  .homepage-product-group--joined {
+    margin-top: calc(0rem - var(--homepage-product-label-height));
   }
 
   .homepage-product-group__label {
     position: relative;
     z-index: 2;
     display: inline-flex;
-    min-height: 2.75rem;
+    width: 9rem;
+    min-width: 9rem;
+    max-width: 9rem;
+    height: var(--homepage-product-label-height);
+    box-sizing: border-box;
     align-items: center;
     gap: 0.625rem;
     margin: 0;
     border: 1px solid var(--bb-border-base);
     border-bottom: 0;
-    border-radius: 0.25rem 0.25rem 0 0;
+    border-radius: 0;
     background: var(--bb-background-sand);
-    padding: 0.75rem 1rem;
+    padding: 0 1rem;
     color: var(--bb-text-base);
     font-family: var(--font-sans);
     font-size: 1.25rem;
@@ -326,7 +347,14 @@ const productGroups = [
     margin-top: -1px;
     border: 1px solid var(--bb-border-base);
     background: var(--bb-background-sand);
-    padding: clamp(0.875rem, 2vw, 1.25rem);
+    padding: var(--homepage-product-workspace-padding);
+  }
+
+  .homepage-product-group:not(:last-child) .homepage-product-group__workspace {
+    padding-bottom: calc(
+      var(--homepage-product-workspace-padding) +
+        var(--homepage-product-label-height)
+    );
   }
 
   :global(.homepage-product-group__cluster.card-cluster) {
@@ -371,11 +399,7 @@ const productGroups = [
 
   @media (max-width: 767px) {
     .homepage-products__groups {
-      gap: 1.5rem;
-    }
-
-    .homepage-product-group__workspace {
-      padding: 0.75rem;
+      --homepage-product-workspace-padding: 0.75rem;
     }
 
     :global(.homepage-product-group__cluster .card-cluster__content) {
