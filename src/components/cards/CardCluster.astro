@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import Icon from "@components/Icon.astro";
 import defaultCardImage from "@assets/images/backgrounds/light/card-cluster-default.png";
 
@@ -67,6 +68,8 @@ interface Card {
     label: string;
     icon: ImageMetadata | string;
   }[];
+  mediaDemo?: AstroComponentFactory;
+  mediaDemoProps?: Record<string, unknown>;
   mediaScene?: MediaScene;
   link?: string;
 }
@@ -198,6 +201,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
         {
           cards.map((card) => {
             const image = card.image ?? defaultCardImage;
+            const MediaDemo = card.mediaDemo;
 
             return (
               <article class="card-cluster__card">
@@ -210,7 +214,11 @@ const tokenizeFunctionCodeLine = (line: string) =>
                 )}
 
                 <div class="card-cluster__image-wrap">
-                  {card.mediaBadges?.length ? (
+                  {MediaDemo ? (
+                    <div class="card-cluster__media-demo" aria-hidden="true">
+                      <MediaDemo {...card.mediaDemoProps} />
+                    </div>
+                  ) : card.mediaBadges?.length ? (
                     <ul
                       class="card-cluster__media-badges"
                       aria-label={`${card.title} connection examples`}
@@ -588,6 +596,16 @@ const tokenizeFunctionCodeLine = (line: string) =>
     display: block;
     width: 100%;
     object-position: center;
+  }
+
+  .card-cluster__media-demo {
+    position: absolute;
+    inset: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: none;
   }
 
   .card-cluster--images-16-9 .card-cluster__image-wrap,

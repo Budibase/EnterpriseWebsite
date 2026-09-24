@@ -1,84 +1,88 @@
 ---
 import OnePlatformAgentBg from "@assets/images/homepage/onePlatform/OnePlatformAgent.png?url";
-import AvatarImage from "@assets/images/avatars/Ellipse.png?url";
-import BudibaseSymbol from "@assets/BBSymbolWhite.svg?url";
-import Icon from "@components/Icon.astro";
+import BudibaseSymbol from "@assets/BBSymbol.svg?url";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+
+interface Props {
+  embedded?: boolean;
+}
+
+const { embedded = false } = Astro.props as Props;
 ---
 
 <div
-  class="one-platform-agent"
+  class:list={[
+    "one-platform-agent",
+    embedded && "one-platform-agent--embedded",
+  ]}
   role="img"
-  aria-label="Agent preview showing a chat thread about Salesforce access and an add reply input"
+  aria-label="Microsoft Teams conversation where an employee requests a replacement monitor and an IT assistant creates a request for review"
 >
-  <img
-    src={OnePlatformAgentBg}
-    alt=""
-    class="one-platform-agent__bg"
-    aria-hidden="true"
-    fetchpriority="high"
-    loading="eager"
-    decoding="async"
-  />
+  {
+    !embedded && (
+      <img
+        src={OnePlatformAgentBg}
+        alt=""
+        class="one-platform-agent__bg"
+        aria-hidden="true"
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
+      />
+    )
+  }
   <div class="one-platform-agent__surface" aria-hidden="true">
     <div class="one-platform-agent__panel">
       <div class="one-platform-agent__header">
-        <p class="one-platform-agent__title">Chat with Agent</p>
+        <span class="one-platform-agent__channel-logo">
+          <img
+            src={TeamsLogo}
+            alt=""
+            class="one-platform-agent__channel-logo-image"
+          />
+        </span>
+        <p class="one-platform-agent__title">Microsoft Teams</p>
       </div>
 
       <div class="one-platform-agent__messages">
-        <article class="one-platform-agent__message">
-          <img
-            src={AvatarImage}
-            alt="Sarah Chen"
-            class="one-platform-agent__avatar"
-          />
-
+        <article
+          class="one-platform-agent__message one-platform-agent__message--user"
+        >
           <div class="one-platform-agent__message-copy">
-            <div class="one-platform-agent__meta">
-              <span class="one-platform-agent__name">Sarah Chen</span>
-              <span class="one-platform-agent__time">12 mins</span>
-            </div>
-
             <p class="one-platform-agent__message-text">
-              <span class="one-platform-agent__mention">@Ops Assistant</span>
-              <span> I need Salesforce access for reporting?</span>
+              My monitor screen smashed when moving office. I need a new
+              monitor.
             </p>
           </div>
         </article>
 
         <article class="one-platform-agent__message">
           <span class="one-platform-agent__assistant-badge">
-            <img
-              src={BudibaseSymbol}
-              alt=""
+            <span
               class="one-platform-agent__assistant-symbol"
-            />
+              style={`--assistant-symbol: url("${BudibaseSymbol}")`}></span>
           </span>
 
           <div class="one-platform-agent__message-copy">
             <div class="one-platform-agent__meta">
-              <span class="one-platform-agent__name">Ops Assistant</span>
+              <span class="one-platform-agent__name">IT assistant</span>
               <span class="one-platform-agent__time">12 mins</span>
             </div>
 
             <p class="one-platform-agent__assistant-text">
-              Salesforce access request created. Submitted for Ops review.
+              Device request created and sent for review.
             </p>
+
+            <div class="one-platform-agent__request-card">
+              <p class="one-platform-agent__request-title">
+                A request for a new monitor created
+              </p>
+              <span class="one-platform-agent__request-action"
+                >View request</span
+              >
+            </div>
           </div>
         </article>
-      </div>
-
-      <div class="one-platform-agent__input-wrap">
-        <div class="one-platform-agent__input">
-          <span class="one-platform-agent__input-icon-wrap">
-            <Icon
-              name="Plus"
-              size="24"
-              class="one-platform-agent__input-icon"
-            />
-          </span>
-          <span class="one-platform-agent__input-text">Add a reply</span>
-        </div>
       </div>
     </div>
   </div>
@@ -111,6 +115,15 @@ import Icon from "@components/Icon.astro";
     );
   }
 
+  .one-platform-agent--embedded {
+    padding: 0;
+    background: transparent;
+  }
+
+  .one-platform-agent--embedded::after {
+    display: none;
+  }
+
   .one-platform-agent__bg {
     position: absolute;
     inset: 0;
@@ -137,30 +150,48 @@ import Icon from "@components/Icon.astro";
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px;
+    container-type: inline-size;
   }
 
   .one-platform-agent__header {
     min-height: 45px;
     display: flex;
     align-items: center;
+    gap: 8px;
     padding: 10px 18px;
     border-bottom: 1px solid var(--bb-gray-100);
+  }
+
+  .one-platform-agent__channel-logo {
+    display: inline-flex;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .one-platform-agent__channel-logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
   }
 
   .one-platform-agent__title {
     margin: 0;
     color: var(--bb-gray-800) !important;
-    font-size: 14px;
-    line-height: 1.5;
+    font-family: var(--font-sans) !important;
+    font-size: clamp(0.875rem, 4.3cqi, 1.125rem);
+    line-height: 1.25;
     font-weight: 500;
   }
 
   .one-platform-agent__messages {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    padding: 20px 12px 12px;
+    gap: 20px;
+    padding: 10px 12px 8px;
   }
 
   .one-platform-agent__message {
@@ -171,30 +202,37 @@ import Icon from "@components/Icon.astro";
     min-width: 0;
   }
 
-  .one-platform-agent__avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 999px;
-    flex-shrink: 0;
+  .one-platform-agent__message--user {
+    justify-content: flex-end;
+  }
+
+  .one-platform-agent__message--user .one-platform-agent__message-copy {
+    flex: 0 1 auto;
+    align-items: flex-end;
+    max-width: 76%;
   }
 
   .one-platform-agent__assistant-badge {
     width: 28px;
     height: 28px;
-    border-radius: 999px;
-    background: var(--bb-brand);
+    overflow: hidden;
+    border-radius: 28%;
+    background: var(--bb-brand-bright-green);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    padding: 4px;
+    padding: 0;
     box-sizing: border-box;
+    transform: translateY(-3.5px);
   }
 
   .one-platform-agent__assistant-symbol {
-    width: 15px;
-    height: 15px;
-    object-fit: contain;
+    width: 14px;
+    height: 14px;
+    background: var(--bb-brand-forest-green);
+    -webkit-mask: var(--assistant-symbol) center / contain no-repeat;
+    mask: var(--assistant-symbol) center / contain no-repeat;
     display: block;
   }
 
@@ -217,8 +255,24 @@ import Icon from "@components/Icon.astro";
     font-weight: 400;
   }
 
+  .one-platform-agent__message--user .one-platform-agent__meta {
+    justify-content: flex-end;
+  }
+
+  .one-platform-agent__message:not(.one-platform-agent__message--user)
+    .one-platform-agent__message-copy {
+    gap: 6px;
+  }
+
+  .one-platform-agent__message:not(.one-platform-agent__message--user)
+    .one-platform-agent__meta {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
   .one-platform-agent__name {
     color: var(--bb-gray-800);
+    font-weight: 500;
   }
 
   .one-platform-agent__time {
@@ -227,13 +281,12 @@ import Icon from "@components/Icon.astro";
 
   .one-platform-agent__message-text {
     margin: 0;
+    border-radius: 0;
+    background: var(--bb-cyan-200);
+    padding: 7px 10px;
     color: var(--bb-text-base) !important;
     font-size: 14px;
     line-height: 1.5;
-  }
-
-  .one-platform-agent__mention {
-    color: var(--accent-blue) !important;
   }
 
   .one-platform-agent__assistant-text {
@@ -243,56 +296,58 @@ import Icon from "@components/Icon.astro";
     line-height: 1.5;
   }
 
-  .one-platform-agent__message-text span,
-  .one-platform-agent__assistant-text span {
-    color: inherit !important;
-  }
-
-  .one-platform-agent__input-wrap {
-    margin-top: auto;
-    padding: 0 12px;
-  }
-
-  .one-platform-agent__input {
-    min-height: 45px;
+  .one-platform-agent__request-card {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 0 12px;
-    border: 1px solid var(--bb-gray-75);
-    border-radius: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-sand);
+    padding: 8px;
   }
 
-  .one-platform-agent__input-icon-wrap {
-    width: 37px;
-    height: 37px;
-    border-radius: 26px;
-    background: var(--bb-gray-100);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+  .one-platform-agent__request-title {
+    margin: 0;
   }
 
-  .one-platform-agent__input-icon {
-    color: var(--bb-gray-600);
-  }
-
-  .one-platform-agent__input-icon :global(*) {
-    color: inherit;
-  }
-
-  .one-platform-agent__input-text {
-    color: var(--bb-gray-900);
+  .one-platform-agent__request-title {
+    color: var(--bb-text-base);
     font-size: 14px;
+    font-weight: 500;
     line-height: 1.5;
-    font-weight: 400;
+  }
+
+  .one-platform-agent__request-action {
+    display: inline-flex;
+    min-height: 28px;
+    align-items: center;
+    border: 1px solid var(--bb-brand-forest-green);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 0 9px;
   }
 
   @media (max-width: 420px) {
     .one-platform-agent {
       padding-top: 32px;
       padding-left: 14px;
+    }
+
+    .one-platform-agent--embedded {
+      padding: 0;
+    }
+
+    .one-platform-agent__message--user .one-platform-agent__message-copy {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    :global(.card-cluster__image-wrap:has(.one-platform-agent--embedded)) {
+      min-height: 420px !important;
     }
   }
 </style>

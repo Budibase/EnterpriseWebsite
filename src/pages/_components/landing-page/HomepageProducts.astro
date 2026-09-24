@@ -1,6 +1,8 @@
 ---
 import CardCluster from "@components/cards/CardCluster.astro";
 import TitleBlock from "@components/TitleBlock.astro";
+import OnePlatformAgent from "@components/OnePlatformAgent.astro";
+import HomepageEquipmentInventoryDemo from "./HomepageEquipmentInventoryDemo.astro";
 import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
 import JiraLogo from "@assets/logos/Jira.svg?url";
 import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
@@ -8,7 +10,6 @@ import RestApiLogo from "@assets/logos/rest-api.svg?url";
 import AnthropicLogo from "@assets/logos/anthropic.avif?url";
 import AzureOpenAILogo from "@assets/logos/azure-openai.svg?url";
 import OpenAILogo from "@assets/logos/openai.avif?url";
-import BudibaseSymbol from "@assets/BBSymbol.svg?url";
 import PostgresLogo from "@assets/logos/Postgres.svg?url";
 import MySQLLogo from "@assets/logos/MYSQL.svg?url";
 import MSSQLLogo from "@assets/logos/MSSQL.svg?url";
@@ -19,7 +20,6 @@ const productGroups = [
     id: "connect",
     title: "Connect",
     color: "var(--bb-cinnamon-600)",
-    surface: "var(--bb-background-sand)",
     imageBackground: "cinnamon-1300",
     cards: [
       {
@@ -31,7 +31,7 @@ const productGroups = [
           { label: "Anthropic", icon: AnthropicLogo },
           { label: "Azure", icon: AzureOpenAILogo },
           { label: "OpenAI", icon: OpenAILogo },
-          { label: "Budibase AI", icon: BudibaseSymbol },
+          { label: "Budibase AI", icon: "/favicon.svg" },
         ],
         link: "/product/agents/",
       },
@@ -54,7 +54,7 @@ const productGroups = [
           "Use built-in tables or connect directly to existing data sources.",
         imageAlt: "",
         mediaBadges: [
-          { label: "Budibase Tables", icon: BudibaseSymbol },
+          { label: "Budibase Tables", icon: "/favicon.svg" },
           { label: "PostgreSQL", icon: PostgresLogo },
           { label: "MySQL", icon: MySQLLogo },
           { label: "MSSQL", icon: MSSQLLogo },
@@ -67,7 +67,6 @@ const productGroups = [
     id: "automate",
     title: "Automate",
     color: "var(--bb-celery-600)",
-    surface: "var(--homepage-product-background-sand-light)",
     imageBackground: "celery-1300",
     cards: [
       {
@@ -146,20 +145,22 @@ const productGroups = [
     id: "interact",
     title: "Interact",
     color: "var(--bb-cyan-600)",
-    surface: "var(--bb-background-sand)",
     imageBackground: "cyan-1300",
     cards: [
       {
         title: "Agent channels",
         description:
-          "Let teams work with agents through native chat and connected channels.",
+          "Let teams work with agents through Slack and Microsoft Teams.",
         imageAlt: "",
+        mediaDemo: OnePlatformAgent,
+        mediaDemoProps: { embedded: true },
         link: "/product/agents/",
       },
       {
         title: "Apps",
         description: "Give teams secure interfaces for operational work.",
         imageAlt: "",
+        mediaDemo: HomepageEquipmentInventoryDemo,
         link: "/product/apps/",
       },
       {
@@ -175,7 +176,6 @@ const productGroups = [
     id: "govern",
     title: "Govern",
     color: "var(--bb-yellow-600)",
-    surface: "var(--homepage-product-background-sand-light)",
     imageBackground: "yellow-1300",
     cards: [
       {
@@ -217,7 +217,7 @@ const productGroups = [
 
     <div class="homepage-products__groups">
       {
-        productGroups.map((group, groupIndex) => {
+        productGroups.map((group) => {
           const titleId = `homepage-products-${group.id}-title`;
           const itemBackgroundStyle =
             group.id === "connect"
@@ -228,12 +228,9 @@ const productGroups = [
 
           return (
             <section
-              class:list={[
-                "homepage-product-group",
-                groupIndex > 0 && "homepage-product-group--joined",
-              ]}
+              class="homepage-product-group"
               aria-labelledby={titleId}
-              style={`--homepage-product-group-color: ${group.color};--homepage-product-group-background: ${group.surface};${itemBackgroundStyle}`}
+              style={`--homepage-product-group-color: ${group.color};${itemBackgroundStyle}`}
             >
               <h3 id={titleId} class="homepage-product-group__label">
                 <span
@@ -297,16 +294,10 @@ const productGroups = [
   }
 
   .homepage-products__groups {
-    --homepage-product-background-sand-light: color-mix(
-      in srgb,
-      var(--bb-background-sand) 40%,
-      var(--bb-background-base)
-    );
-    --homepage-product-label-height: 2.75rem;
-    --homepage-product-section-clearance: 0.5rem;
     --homepage-product-workspace-padding: clamp(0.875rem, 2vw, 1.25rem);
     display: flex;
     flex-direction: column;
+    gap: calc(clamp(1.25rem, 2.5vw, 2rem) + 0.5rem);
   }
 
   .homepage-product-group {
@@ -314,18 +305,12 @@ const productGroups = [
     width: 100%;
   }
 
-  .homepage-product-group--joined {
-    margin-top: calc(0rem - var(--homepage-product-label-height));
-  }
-
   .homepage-product-group__label {
     position: relative;
     z-index: 2;
     display: inline-flex;
     width: 9rem;
-    min-width: 9rem;
-    max-width: 9rem;
-    height: var(--homepage-product-label-height);
+    height: 2.75rem;
     box-sizing: border-box;
     align-items: center;
     gap: 0.625rem;
@@ -333,7 +318,7 @@ const productGroups = [
     border: 1px solid var(--bb-border-base);
     border-bottom: 0;
     border-radius: 0;
-    background: var(--homepage-product-group-background);
+    background: var(--bb-background-sand);
     padding: 0 1rem;
     color: var(--bb-text-base);
     font-family: var(--font-sans);
@@ -356,20 +341,9 @@ const productGroups = [
     z-index: 1;
     margin-top: -1px;
     border: 1px solid var(--bb-border-base);
-    background: var(--homepage-product-group-background);
+    background: var(--bb-background-sand);
     padding: var(--homepage-product-workspace-padding);
-    padding-top: calc(
-      var(--homepage-product-workspace-padding) +
-        var(--homepage-product-section-clearance)
-    );
-  }
-
-  .homepage-product-group:not(:last-child) .homepage-product-group__workspace {
-    padding-bottom: calc(
-      var(--homepage-product-workspace-padding) +
-        var(--homepage-product-label-height) +
-        var(--homepage-product-section-clearance)
-    );
+    padding-top: calc(var(--homepage-product-workspace-padding) + 0.5rem);
   }
 
   :global(.homepage-product-group__cluster.card-cluster) {
