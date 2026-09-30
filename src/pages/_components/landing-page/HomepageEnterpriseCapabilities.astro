@@ -1,0 +1,265 @@
+---
+import Button from "@components/Button.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import EuAiActBadge from "@assets/logos/enterprise-grid/eu-ai-act.png?url";
+import GdprBadge from "@assets/logos/enterprise-grid/gdpr.svg?url";
+import IronBankBadge from "@assets/logos/enterprise-grid/iron-bank.png?url";
+import Iso27001Badge from "@assets/logos/enterprise-grid/iso-27001.png?url";
+
+const capabilityGroups = [
+  {
+    title: "Deploy on your infrastructure",
+    description:
+      "Run Budibase Cloud or self-host across private cloud, on-premise, and air-gapped environments to meet your architecture and policy requirements.",
+  },
+  {
+    title: "Control access to the last permission",
+    description:
+      "Control who can view, build, and act across apps, data, and resources with granular roles, permissions, SSO, and SCIM.",
+  },
+  {
+    title: "Protected by default",
+    description:
+      "Manage roles, permissions, SSO, audit history, and operational controls centrally across the Budibase platform.",
+  },
+  {
+    title: "Security and compliance",
+    description:
+      "Support regulated environments with enterprise security controls, flexible deployment, and independently recognized assurance standards.",
+  },
+] as const;
+
+const assuranceItems = [
+  {
+    image: Iso27001Badge,
+    imageAlt: "ISO 27001 certified",
+    title: "ISO 27001",
+  },
+  {
+    image: GdprBadge,
+    imageAlt: "GDPR",
+    title: "GDPR",
+  },
+  {
+    image: IronBankBadge,
+    imageAlt: "United States Department of Defense",
+    title: "Iron Bank",
+  },
+  {
+    image: EuAiActBadge,
+    imageAlt: "EU Artificial Intelligence Act",
+    title: "AI Act",
+  },
+] as const;
+---
+
+<div class="homepage-enterprise-panel">
+  <header class="homepage-enterprise-panel__header">
+    <TitleBlock
+      variant="section"
+      titleId="homepage-security-title"
+      title="Built for regulated enterprises."
+      description="Deploy Budibase within your architecture, govern who can access data and take action, and keep the software behind critical operations accountable and recoverable."
+      containerClass="homepage-enterprise-panel__title-block"
+      titleClass="homepage-enterprise-panel__title"
+      descriptionClass="homepage-enterprise-panel__description"
+    />
+    <Button
+      label="Book a demo"
+      url="/contact/"
+      variant="bright-on-dark"
+      size="large"
+      icon="ArrowRight"
+      iconPosition="end"
+    />
+  </header>
+
+  <div
+    class="homepage-enterprise-panel__capabilities"
+    aria-label="Enterprise platform capabilities"
+  >
+    {
+      capabilityGroups.map((group) => (
+        <section class="homepage-enterprise-panel__capability">
+          <span class="homepage-enterprise-panel__marker" aria-hidden="true" />
+          <h3>{group.title}</h3>
+          <p>{group.description}</p>
+        </section>
+      ))
+    }
+  </div>
+
+  <ul
+    class="homepage-enterprise-panel__assurance"
+    aria-label="Security certifications and assurance"
+  >
+    {
+      assuranceItems.map((item) => (
+        <li>
+          <img src={item.image} alt={item.imageAlt} loading="lazy" />
+          <div>
+            <h4>{item.title}</h4>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .homepage-enterprise-panel {
+    --homepage-enterprise-panel-surface: var(--bb-celery-1500);
+    overflow: hidden;
+    border: 1px solid
+      var(--homepage-security-border, var(--bb-transparent-white-75));
+  }
+
+  .homepage-enterprise-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(2rem, 5vw, 5rem);
+    padding: clamp(1.75rem, 4vw, 3.5rem);
+    background: var(--homepage-enterprise-panel-surface);
+  }
+
+  :global(.homepage-enterprise-panel__title-block) {
+    max-width: 50rem;
+  }
+
+  :global(.homepage-enterprise-panel__title) {
+    color: var(--bb-white) !important;
+  }
+
+  :global(.homepage-enterprise-panel__description) {
+    max-width: 46rem !important;
+    color: var(--bb-text-on-base-subtle) !important;
+  }
+
+  .homepage-enterprise-panel__header :global(.button) {
+    flex: 0 0 auto;
+  }
+
+  .homepage-enterprise-panel__capabilities {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    border-top: 1px solid
+      var(--homepage-security-border, var(--bb-transparent-white-75));
+    background: var(--homepage-security-border, var(--bb-transparent-white-75));
+  }
+
+  .homepage-enterprise-panel__capability {
+    display: flex;
+    min-width: 0;
+    min-height: 17rem;
+    flex-direction: column;
+    padding: clamp(1.5rem, 2.5vw, 2.25rem);
+    background: var(--homepage-enterprise-panel-surface);
+  }
+
+  .homepage-enterprise-panel__marker {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-bottom: 1.5rem;
+    background: var(--bb-celery-200);
+  }
+
+  .homepage-enterprise-panel__capability h3 {
+    max-width: 13rem;
+    margin: 0;
+    color: var(--bb-white);
+    font-size: 1.375rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .homepage-enterprise-panel__capability > p {
+    margin: 1rem 0 0;
+    color: var(--bb-text-on-base-secondary) !important;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .homepage-enterprise-panel__assurance {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    border-top: 1px solid
+      var(--homepage-security-border, var(--bb-transparent-white-75));
+    margin: 0;
+    padding: 0;
+    background: var(--homepage-security-border, var(--bb-transparent-white-75));
+    list-style: none;
+  }
+
+  .homepage-enterprise-panel__assurance li {
+    display: flex;
+    min-height: 16rem;
+    min-width: 0;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: clamp(2.5rem, 4vw, 3.5rem);
+    padding: 1rem;
+    background: var(--homepage-enterprise-panel-surface);
+  }
+
+  .homepage-enterprise-panel__assurance img {
+    display: block;
+    width: auto;
+    max-width: 4rem;
+    height: 4rem;
+    flex: 0 0 auto;
+    object-fit: contain;
+    object-position: left top;
+  }
+
+  .homepage-enterprise-panel__assurance h4 {
+    margin: 0;
+    color: var(--bb-white);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 63.999rem) {
+    .homepage-enterprise-panel__header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .homepage-enterprise-panel__capabilities,
+    .homepage-enterprise-panel__assurance {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .homepage-enterprise-panel__capability {
+      min-height: 15rem;
+    }
+  }
+
+  @media (max-width: 47.999rem) {
+    .homepage-enterprise-panel__header {
+      padding: 1.5rem;
+    }
+
+    .homepage-enterprise-panel__capabilities,
+    .homepage-enterprise-panel__assurance {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .homepage-enterprise-panel__capability {
+      min-height: 0;
+      padding: 1.5rem;
+    }
+
+    .homepage-enterprise-panel__assurance li {
+      min-height: 13rem;
+    }
+  }
+</style>

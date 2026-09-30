@@ -1,0 +1,242 @@
+---
+const actions = [
+  {
+    source: "Agent",
+    action: "Monitor request created",
+    status: "Completed",
+    tone: "complete",
+    progressStep: 0,
+  },
+  {
+    source: "Automation",
+    action: "Approval routed",
+    status: "Waiting",
+    tone: "waiting",
+    progressStep: 0,
+  },
+  {
+    source: "Agent",
+    action: "Supplier record checked",
+    status: "Waiting",
+    tone: "waiting",
+    progressStep: 1,
+  },
+  {
+    source: "Agent",
+    action: "Asset record updated",
+    status: "Waiting",
+    tone: "waiting",
+    progressStep: 2,
+  },
+  {
+    source: "Automation",
+    action: "Inventory sync failed",
+    status: "Failed",
+    tone: "failed",
+    progressStep: 0,
+  },
+  {
+    source: "Agent",
+    action: "Request details summarized",
+    status: "Completed",
+    tone: "complete",
+    progressStep: 0,
+  },
+] as const;
+---
+
+<div class="homepage-actions-demo" aria-hidden="true">
+  <div class="homepage-actions-demo__header">
+    <span>Actions</span>
+    <span class="homepage-actions-demo__count">122,182 actions</span>
+  </div>
+
+  <div class="homepage-actions-demo__list">
+    {
+      actions.map(({ source, action, status, tone, progressStep }) => (
+        <div class="homepage-actions-demo__row">
+          <span class="homepage-actions-demo__source">{source}</span>
+          <span
+            class:list={[
+              "homepage-actions-demo__status",
+              `homepage-actions-demo__status--${tone}`,
+            ]}
+            data-progress-step={progressStep || undefined}
+          >
+            {status}
+          </span>
+          <span class="homepage-actions-demo__action">{action}</span>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .homepage-actions-demo {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bb-gray-900);
+    color: var(--bb-text-on-base);
+    font-family: var(--font-sans);
+  }
+
+  .homepage-actions-demo__header {
+    display: flex;
+    min-height: 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--bb-transparent-white-100);
+    padding-inline: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .homepage-actions-demo__count {
+    color: var(--bb-text-on-base-subtle);
+    font-size: 0.75rem;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .homepage-actions-demo__list {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    flex-direction: column;
+  }
+
+  .homepage-actions-demo__row {
+    display: grid;
+    flex: 1;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-content: center;
+    column-gap: 0.5rem;
+    border-bottom: 1px solid var(--bb-transparent-white-100);
+    padding: 0.25rem 0.75rem;
+  }
+
+  .homepage-actions-demo__row:last-child {
+    border-bottom: 0;
+  }
+
+  .homepage-actions-demo__source,
+  .homepage-actions-demo__status {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .homepage-actions-demo__source {
+    color: var(--bb-text-on-base-subtle);
+  }
+
+  .homepage-actions-demo__status--complete {
+    color: var(--bb-celery-300);
+  }
+
+  .homepage-actions-demo__status--waiting {
+    color: var(--bb-yellow-300);
+  }
+
+  .homepage-actions-demo__status--failed {
+    color: var(--bb-red-500);
+  }
+
+  .homepage-actions-demo__status.is-updated {
+    animation: homepage-actions-status-appear 220ms ease-out;
+  }
+
+  @keyframes homepage-actions-status-appear {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .homepage-actions-demo__action {
+    overflow: hidden;
+    grid-column: 1 / -1;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1199px) {
+    :global(.card-cluster__image-wrap:has(.homepage-actions-demo)) {
+      min-height: 20rem !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .homepage-actions-demo__status.is-updated {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  document
+    .querySelectorAll<HTMLElement>(".homepage-actions-demo")
+    .forEach((root) => {
+      const statuses = [1, 2].map((step) =>
+        root.querySelector<HTMLElement>(`[data-progress-step="${step}"]`),
+      );
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
+      const timers: number[] = [];
+
+      function complete(status: HTMLElement | null) {
+        if (!status || status.textContent === "Completed") return;
+        status.textContent = "Completed";
+        status.classList.replace(
+          "homepage-actions-demo__status--waiting",
+          "homepage-actions-demo__status--complete",
+        );
+        if (!reducedMotion.matches) status.classList.add("is-updated");
+      }
+
+      function completeAll() {
+        timers.forEach(window.clearTimeout);
+        statuses.forEach(complete);
+      }
+
+      if (reducedMotion.matches) {
+        completeAll();
+        return;
+      }
+
+      function start() {
+        timers.push(window.setTimeout(() => complete(statuses[0]), 700));
+        timers.push(window.setTimeout(() => complete(statuses[1]), 1600));
+      }
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            observer.disconnect();
+            start();
+          },
+          { threshold: 0.35 },
+        );
+        observer.observe(root);
+      } else {
+        start();
+      }
+
+      reducedMotion.addEventListener("change", () => {
+        if (reducedMotion.matches) completeAll();
+      });
+    });
+</script>

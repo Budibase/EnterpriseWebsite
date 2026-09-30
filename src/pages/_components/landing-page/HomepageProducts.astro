@@ -2,7 +2,11 @@
 import CardCluster from "@components/cards/CardCluster.astro";
 import TitleBlock from "@components/TitleBlock.astro";
 import OnePlatformAgent from "@components/OnePlatformAgent.astro";
+import HomepageActionsDemo from "./HomepageActionsDemo.astro";
 import HomepageEquipmentInventoryDemo from "./HomepageEquipmentInventoryDemo.astro";
+import HomepageHumanApprovalsDemo from "./HomepageHumanApprovalsDemo.astro";
+import HomepageOperationsCenterDemo from "./HomepageOperationsCenterDemo.astro";
+import HomepagePermissionsDemo from "./HomepagePermissionsDemo.astro";
 import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
 import JiraLogo from "@assets/logos/Jira.svg?url";
 import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
@@ -164,10 +168,11 @@ const productGroups = [
         link: "/product/apps/",
       },
       {
-        title: "Requests",
+        title: "Operations center",
         description:
-          "Bring agent requests to people for review, follow-up, and resolution.",
+          "Open your apps, follow requests, and complete tasks in one place.",
         imageAlt: "",
+        mediaDemo: HomepageOperationsCenterDemo,
         link: "/product/requests/",
       },
     ],
@@ -183,19 +188,22 @@ const productGroups = [
         description:
           "Review system activity, execution history, and actions across operations.",
         imageAlt: "",
+        mediaDemo: HomepageActionsDemo,
         link: "/product/activity/",
       },
       {
-        title: "Approvals",
+        title: "Human approvals",
         description:
-          "Require human approval before agents take consequential actions.",
+          "Require a human decision before sensitive access or consequential agent actions.",
         imageAlt: "",
+        mediaDemo: HomepageHumanApprovalsDemo,
         link: "/product/requests/",
       },
       {
         title: "Permissions",
         description: "Control who can access data, use tools, and take action.",
         imageAlt: "",
+        mediaDemo: HomepagePermissionsDemo,
         link: "/product/admin-security/",
       },
     ],
@@ -384,6 +392,10 @@ const productGroups = [
 
   :global(.homepage-product-group__cluster .card-cluster__content p) {
     color: var(--text-secondary) !important;
+  }
+
+  :global(.homepage-product-group__cluster .one-platform-agent__title) {
+    font-size: 1rem;
   }
 
   @media (max-width: 767px) {

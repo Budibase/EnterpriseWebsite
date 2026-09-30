@@ -1,0 +1,134 @@
+<div class="homepage-human-approvals-demo" aria-hidden="true">
+  <div class="homepage-human-approvals-demo__panel">
+    <div class="homepage-human-approvals-demo__header">
+      <span class="homepage-human-approvals-demo__indicator"></span>
+      <span>Needs my input</span>
+    </div>
+
+    <div class="homepage-human-approvals-demo__body">
+      <div class="homepage-human-approvals-demo__detail">
+        <span>Request description</span>
+        <p>
+          Request for access to production admin dashboard to debug a production
+          issue related to data loss.
+        </p>
+      </div>
+      <div class="homepage-human-approvals-demo__detail">
+        <span>Submitted by</span>
+        <p>Joe Johnston</p>
+      </div>
+    </div>
+
+    <div class="homepage-human-approvals-demo__footer">
+      <span
+        class="homepage-human-approvals-demo__button homepage-human-approvals-demo__button--reject"
+      >
+        Reject request
+      </span>
+      <span
+        class="homepage-human-approvals-demo__button homepage-human-approvals-demo__button--approve"
+      >
+        Approve request
+      </span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .homepage-human-approvals-demo {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    place-items: center;
+    font-family: var(--font-sans);
+    pointer-events: none;
+  }
+
+  .homepage-human-approvals-demo__panel {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+  }
+
+  .homepage-human-approvals-demo__header {
+    display: flex;
+    min-height: 2.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--bb-border-base);
+    padding-inline: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .homepage-human-approvals-demo__indicator {
+    width: 0.5rem;
+    height: 0.5rem;
+    flex: 0 0 0.5rem;
+    border-radius: 50%;
+    background: var(--bb-yellow-600);
+  }
+
+  .homepage-human-approvals-demo__body {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.875rem 0.75rem 1rem;
+  }
+
+  .homepage-human-approvals-demo__detail > span {
+    color: var(--bb-text-subtle);
+    font-size: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .homepage-human-approvals-demo__detail p {
+    margin: 0.125rem 0 0;
+    color: var(--bb-text-body);
+    font-size: 0.8125rem;
+    line-height: 1.35;
+  }
+
+  .homepage-human-approvals-demo__footer {
+    display: flex;
+    gap: 0.5rem;
+    border-top: 1px solid var(--bb-border-base);
+    padding: 0.75rem;
+  }
+
+  .homepage-human-approvals-demo__button {
+    display: grid;
+    min-height: 2rem;
+    flex: 1;
+    place-items: center;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .homepage-human-approvals-demo__button--reject {
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-raised);
+    color: var(--bb-text-base);
+  }
+
+  .homepage-human-approvals-demo__button--approve {
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-brand-bright-green);
+  }
+
+  @media (max-width: 1199px) {
+    :global(.card-cluster__image-wrap:has(.homepage-human-approvals-demo)) {
+      min-height: 20rem !important;
+    }
+
+    .homepage-human-approvals-demo__body {
+      padding-block: 0.75rem 0.875rem;
+    }
+  }
+</style>

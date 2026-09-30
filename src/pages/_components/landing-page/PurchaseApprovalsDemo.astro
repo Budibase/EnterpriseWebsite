@@ -1,0 +1,781 @@
+---
+import Icon from "@components/Icon.astro";
+import BudibaseSymbol from "@assets/BBSymbol.svg?url";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+
+// Illustrative request data, shared by the inbox and Teams conversation.
+const request = { id: "PR-1042", item: "5 laptops", amount: "£6,250" };
+---
+
+<div
+  class="purchase-demo"
+  style={`--assistant-symbol: url("${BudibaseSymbol}")`}
+  aria-hidden="true"
+>
+  <div class="purchase-demo__canvas">
+    <div class="desktop">
+      <div class="desktop__chrome">
+        <span class="window-dots"><i></i><i></i><i></i></span>
+        <span>Operations center</span>
+        <Icon name="Plus" />
+      </div>
+      <div class="desktop__shell">
+        <div class="desktop__rail">
+          <Icon name="AppWindow" weight="fill" />
+          <Icon name="EnvelopeOpen" weight="fill" />
+          <Icon name="Table" weight="fill" />
+          <Icon name="Users" weight="fill" />
+        </div>
+        <div class="inbox">
+          <div class="inbox__heading">
+            <span>Approval inbox</span>
+            <Icon name="Plus" />
+          </div>
+          <div class="inbox__tabs">
+            <span class="inbox__tab--active"
+              >Needs approval <b data-purchase-count>3</b></span
+            >
+            <span>All approvals</span>
+          </div>
+          <div class="request-slot">
+            <div class="request-slot__inner">
+              <div class="request request--new">
+                <div class="request__heading">
+                  <span class="request__label"><i></i> New request</span>
+                  <span>Just now</span>
+                </div>
+                <div class="request__summary">
+                  <span>{request.item} for the team</span>
+                  <span>{request.amount}</span>
+                </div>
+                <div class="request__meta">
+                  {request.id}
+                  <span>·</span> IT equipment
+                </div>
+                <div class="request__footer">
+                  <span class="request__source"
+                    ><img src={TeamsLogo} alt="" /> Microsoft Teams</span
+                  >
+                  <span class="request__status">Awaiting approval</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="request request--quiet">
+            <div class="request__summary">
+              <span>Software renewal</span><span>£1,200</span>
+            </div>
+            <div class="request__meta">PR-1041 <span>·</span> Software</div>
+          </div>
+          <div class="request request--quiet">
+            <div class="request__summary">
+              <span>Office supplies</span><span>£340</span>
+            </div>
+            <div class="request__meta">PR-1040 <span>·</span> Facilities</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone">
+      <div class="phone__chrome">
+        <span>9:41</span>
+        <span class="phone__speaker"></span>
+        <svg viewBox="0 0 31 12" fill="none" aria-hidden="true">
+          <path d="M1 10V7M5 10V4M9 10V1" stroke="currentColor" stroke-width="2"
+          ></path>
+          <rect x="16" y="2" width="12" height="8" rx="2" stroke="currentColor"
+          ></rect>
+          <path d="M19 4H25V8H19Z" fill="currentColor"></path>
+          <path d="M30 4V8" stroke="currentColor"></path>
+        </svg>
+      </div>
+      <div class="teams">
+        <div class="teams__brand">
+          <img src={TeamsLogo} alt="" /><span>Microsoft Teams</span>
+        </div>
+        <div class="conversation">
+          <span class="conversation__time">Today, 9:41</span>
+          <div class="message message--outgoing">
+            Can I request {request.item} for the team? {request.amount} in total.
+          </div>
+          <div class="conversation__author">
+            <span class="agent-avatar"
+              ><span class="agent-avatar__symbol"></span></span
+            >
+            <span>Purchasing agent</span>
+          </div>
+          <div class="message message--incoming">
+            <p>
+              I’ve created your purchase request and sent it to your manager for
+              approval.
+            </p>
+            <div class="message__receipt">
+              <span class="message__receipt-label"
+                ><Icon name="CheckCircle" /><span>{request.id} · Submitted</span
+                ></span
+              >
+              <span class="message__request-action">View request</span>
+            </div>
+          </div>
+        </div>
+        <div class="teams__compose">
+          <span>Type a message</span><Icon name="ArrowRight" />
+        </div>
+      </div>
+      <div class="phone__home"><span></span></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .purchase-demo {
+    --demo-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --demo-motion-duration: 440ms;
+    container-type: inline-size;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    pointer-events: none;
+    user-select: none;
+  }
+  .purchase-demo__canvas {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    isolation: isolate;
+    font-size: 1.8cqw;
+    line-height: 1.4;
+  }
+  .purchase-demo :global(svg) {
+    width: 1.2em;
+    height: 1.2em;
+    flex-shrink: 0;
+  }
+  .desktop {
+    --desktop-outline: var(--bb-transparent-white-400);
+    position: absolute;
+    bottom: 5%;
+    left: 35%;
+    width: 78%;
+    height: 86%;
+    overflow: hidden;
+    border: 1px solid var(--desktop-outline);
+    border-radius: 1.5cqw;
+  }
+  .desktop__chrome {
+    display: flex;
+    height: 6cqw;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 2cqw;
+    border-bottom: 1px solid var(--desktop-outline);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base-subtle);
+  }
+  .window-dots {
+    display: flex;
+    gap: 0.7cqw;
+  }
+  .window-dots i {
+    width: 1.1cqw;
+    height: 1.1cqw;
+    border-radius: 50%;
+    background: var(--bb-transparent-white-500);
+  }
+  .desktop__shell {
+    display: flex;
+    box-sizing: border-box;
+    height: calc(100% - 6cqw);
+    gap: 8px;
+  }
+  .desktop__rail {
+    display: flex;
+    width: 4.5cqw;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 3.5cqw;
+    flex-direction: column;
+    padding-top: 2cqw;
+    border-right: 1px solid var(--desktop-outline);
+    color: rgb(255 255 255 / 0.5);
+  }
+  .inbox {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    margin: 1.3cqw 1.3cqw 1.3cqw 0;
+    padding: 4cqw 15cqw 4cqw 5cqw;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 4px;
+    background: var(--bb-background-surface-base);
+  }
+  .inbox__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 3.3cqw;
+    font-weight: 500;
+  }
+  .inbox__heading :global(svg) {
+    width: 2.3cqw;
+    height: 2.3cqw;
+    color: var(--bb-text-subtle);
+  }
+  .inbox__tabs {
+    display: flex;
+    gap: 3cqw;
+    margin: 2.7cqw 0 3cqw;
+    border-bottom: 1px solid var(--bb-border-base);
+    color: var(--bb-text-subtle);
+  }
+  .inbox__tabs > span {
+    display: flex;
+    align-items: center;
+    gap: 0.8cqw;
+    padding-bottom: 1.4cqw;
+  }
+  .inbox__tab--active {
+    border-bottom: 1px solid var(--bb-text-base);
+    color: var(--bb-text-base);
+  }
+  .inbox__tabs b {
+    display: grid;
+    width: 2.2cqw;
+    height: 2.2cqw;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--bb-background-surface-raised);
+    font-size: 1.5cqw;
+    font-weight: 400;
+  }
+  .request {
+    padding: 2.2cqw;
+    border: 1px solid var(--bb-border-base);
+  }
+  .request-slot {
+    display: grid;
+    grid-template-rows: 1fr;
+    overflow: hidden;
+    transition: grid-template-rows var(--demo-motion-duration)
+      var(--demo-motion-ease);
+  }
+  .request-slot__inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+  .request--new {
+    border-color: color-mix(
+      in srgb,
+      var(--bb-brand-forest-green) 32%,
+      var(--bb-border-base)
+    );
+  }
+  .request__heading,
+  .request__summary,
+  .request__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1cqw;
+  }
+  .request__heading {
+    margin-bottom: 1.7cqw;
+    font-size: 1.45cqw;
+    color: var(--bb-text-subtle);
+  }
+  .request__label {
+    display: flex;
+    align-items: center;
+    gap: 0.7cqw;
+    color: var(--bb-brand-forest-green);
+  }
+  .request__label i {
+    width: 0.7cqw;
+    height: 0.7cqw;
+    border-radius: 50%;
+    background: var(--bb-brand-forest-green);
+  }
+  .request__summary {
+    font-size: 2cqw;
+    font-weight: 500;
+  }
+  .request__meta {
+    display: flex;
+    gap: 1cqw;
+    margin-top: 0.7cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.6cqw;
+  }
+  .request__footer {
+    margin-top: 2.3cqw;
+    padding-top: 1.7cqw;
+    border-top: 1px solid var(--bb-border-subtle);
+    font-size: 1.4cqw;
+  }
+  .request__source {
+    display: flex;
+    align-items: center;
+    gap: 0.7cqw;
+    color: var(--bb-text-subtle);
+  }
+  .request__source img {
+    width: 1.8cqw;
+    height: 1.8cqw;
+  }
+  .request__status {
+    padding: 0.4cqw 0.8cqw;
+    background: color-mix(
+      in srgb,
+      var(--bb-brand-yellow) 17%,
+      var(--bb-background-surface-base)
+    );
+  }
+  .request--quiet {
+    margin-top: 1.5cqw;
+    border-color: var(--bb-border-subtle);
+  }
+  .request-slot + .request--quiet {
+    transition: margin-top var(--demo-motion-duration) var(--demo-motion-ease);
+  }
+  .request--quiet .request__summary {
+    font-size: 1.8cqw;
+    font-weight: 400;
+  }
+  .phone {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    bottom: 5%;
+    left: 3%;
+    width: 29%;
+    min-height: 58cqw;
+    flex-direction: column;
+    border: 1px solid var(--bb-transparent-white-400);
+    border-radius: 3.4cqw;
+    overflow: hidden;
+    background: transparent;
+  }
+  .phone__chrome {
+    display: flex;
+    height: 4.8cqw;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.9cqw;
+    border-bottom: 1px solid var(--bb-transparent-white-400);
+    color: var(--bb-transparent-white-800);
+    font-size: 1.3cqw;
+  }
+  .phone__speaker {
+    width: 5cqw;
+    height: 0.6cqw;
+    border: 1px solid var(--bb-transparent-white-800);
+    border-radius: 1cqw;
+  }
+  .phone__chrome svg {
+    width: 3.7cqw;
+    height: 1.5cqw;
+  }
+  .teams {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 1.2cqw 1.2cqw 0;
+    border-radius: 4px;
+    background: var(--bb-background-surface-base);
+  }
+  .teams__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.8cqw;
+    padding: 1.6cqw;
+    border-bottom: 1px solid var(--bb-border-subtle);
+    font-size: 1.55cqw;
+    font-weight: 500;
+    color: var(--bb-gray-800);
+  }
+  .teams__brand img {
+    width: 2.3cqw;
+    height: 2.3cqw;
+  }
+  .agent-avatar {
+    display: grid;
+    width: 3.4cqw;
+    height: 3.4cqw;
+    place-items: center;
+    background: var(--bb-brand-bright-green);
+    border-radius: 12%;
+  }
+  .agent-avatar__symbol {
+    display: block;
+    width: 1.8cqw;
+    height: 1.8cqw;
+    background: var(--bb-brand-forest-green);
+    -webkit-mask: var(--assistant-symbol) center / contain no-repeat;
+    mask: var(--assistant-symbol) center / contain no-repeat;
+  }
+  .conversation {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.3cqw;
+    font-size: calc(1.55cqw - 1px);
+  }
+  .conversation__time {
+    text-align: center;
+    font-size: 1.15cqw;
+    color: var(--bb-text-subtle);
+    margin-bottom: 1.7cqw;
+  }
+  .message {
+    padding: 1.3cqw;
+  }
+  .message--outgoing {
+    margin-left: 3.2cqw;
+    border-radius: 1cqw 1cqw 0 1cqw;
+    background: var(--bb-cyan-200);
+  }
+  .conversation__author {
+    display: flex;
+    align-items: center;
+    gap: 0.6cqw;
+    margin: 2.2cqw 0 0.8cqw;
+    font-size: 1.3cqw;
+  }
+  .conversation__author .agent-avatar {
+    width: 2.4cqw;
+    height: 2.4cqw;
+  }
+  .conversation__author .agent-avatar__symbol {
+    width: 1.3cqw;
+    height: 1.3cqw;
+  }
+  .message--incoming {
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0 1cqw 1cqw;
+  }
+  .message p {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+  }
+  .message__receipt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1cqw;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-sand);
+    padding: 1cqw;
+    margin-block: 1.2cqw;
+    color: var(--bb-text-base);
+    font-size: 1.35cqw;
+  }
+  .message__receipt-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6cqw;
+  }
+  .message__receipt :global(svg) {
+    color: var(--bb-brand-forest-green);
+  }
+  .message__request-action {
+    display: inline-flex;
+    min-height: 3.5cqw;
+    align-items: center;
+    padding: 0 1.1cqw;
+    border: 1px solid var(--bb-brand-forest-green);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .teams__compose {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.3cqw;
+    padding: 1cqw;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 1cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.35cqw;
+  }
+  .phone__home {
+    display: flex;
+    height: 2cqw;
+    justify-content: center;
+    align-items: center;
+  }
+  .phone__home span {
+    width: 8cqw;
+    height: 0.4cqw;
+    border-radius: 1cqw;
+    background: var(--bb-transparent-white-800);
+  }
+
+  .purchase-demo[data-step] .message--outgoing,
+  .purchase-demo[data-step] .conversation__author,
+  .purchase-demo[data-step] .message--incoming,
+  .purchase-demo[data-step] .request--new {
+    opacity: 0;
+    transform: translateY(0.4cqw);
+    transition:
+      opacity var(--demo-motion-duration) var(--demo-motion-ease),
+      transform var(--demo-motion-duration) var(--demo-motion-ease);
+  }
+  .purchase-demo[data-step="1"] .message--outgoing,
+  .purchase-demo[data-step="2"] .message--outgoing,
+  .purchase-demo[data-step="3"] .message--outgoing,
+  .purchase-demo[data-step="2"] .conversation__author,
+  .purchase-demo[data-step="3"] .conversation__author,
+  .purchase-demo[data-step="2"] .message--incoming,
+  .purchase-demo[data-step="3"] .message--incoming,
+  .purchase-demo[data-step="3"] .request--new {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .purchase-demo[data-step="0"] .request-slot,
+  .purchase-demo[data-step="1"] .request-slot,
+  .purchase-demo[data-step="2"] .request-slot {
+    grid-template-rows: 0fr;
+  }
+  .purchase-demo[data-step="0"] .request-slot + .request--quiet,
+  .purchase-demo[data-step="1"] .request-slot + .request--quiet,
+  .purchase-demo[data-step="2"] .request-slot + .request--quiet {
+    margin-top: 0;
+  }
+  .purchase-demo.is-resetting .message--outgoing,
+  .purchase-demo.is-resetting .conversation__author,
+  .purchase-demo.is-resetting .message--incoming,
+  .purchase-demo.is-resetting .request--new,
+  .purchase-demo.is-resetting .request-slot,
+  .purchase-demo.is-resetting .request-slot + .request--quiet {
+    transition: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .purchase-demo[data-step] .request-slot {
+      grid-template-rows: 1fr;
+      transition: none;
+    }
+    .purchase-demo[data-step] .request-slot + .request--quiet {
+      margin-top: 1.5cqw;
+      transition: none;
+    }
+    .purchase-demo[data-step] .message--outgoing,
+    .purchase-demo[data-step] .conversation__author,
+    .purchase-demo[data-step] .message--incoming,
+    .purchase-demo[data-step] .request--new {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  @container (max-width: 460px) {
+    .purchase-demo__canvas {
+      aspect-ratio: 3 / 4;
+    }
+    .desktop {
+      display: none;
+    }
+    .phone {
+      bottom: 5%;
+      left: 15%;
+      width: 70%;
+      min-height: 112cqw;
+      border-radius: 5cqw;
+    }
+    .phone__chrome {
+      height: 7cqw;
+      padding-inline: 3cqw;
+      font-size: 2.5cqw;
+    }
+    .phone__speaker {
+      width: 9cqw;
+      height: 1cqw;
+    }
+    .phone__chrome svg {
+      width: 6cqw;
+      height: 2.5cqw;
+    }
+    .teams {
+      margin: 2cqw 2cqw 0;
+    }
+    .teams__brand {
+      gap: 1.4cqw;
+      padding: 2cqw 2.5cqw;
+      font-size: 2.8cqw;
+    }
+    .teams__brand img {
+      width: 4cqw;
+      height: 4cqw;
+    }
+    .agent-avatar {
+      width: 5cqw;
+      height: 5cqw;
+    }
+    .agent-avatar__symbol {
+      width: 2.7cqw;
+      height: 2.7cqw;
+    }
+    .conversation {
+      padding: 2.5cqw;
+      font-size: calc(4cqw - 1px);
+    }
+    .conversation__time {
+      font-size: 2.2cqw;
+    }
+    .message {
+      padding: 2cqw;
+    }
+    .message--outgoing {
+      margin-left: 6cqw;
+    }
+    .conversation__author {
+      font-size: 2.5cqw;
+      margin-top: 3cqw;
+    }
+    .conversation__author .agent-avatar {
+      width: 4cqw;
+      height: 4cqw;
+    }
+    .conversation__author .agent-avatar__symbol {
+      width: 2.1cqw;
+      height: 2.1cqw;
+    }
+    .message__receipt {
+      padding-block: 1.7cqw;
+      margin-block: 1.7cqw;
+      font-size: 2.6cqw;
+    }
+    .message__request-action {
+      min-height: 7cqw;
+      padding-inline: 2cqw;
+    }
+    .teams__compose {
+      margin: 1cqw 2.5cqw;
+      padding: 1.5cqw;
+      font-size: 2.6cqw;
+    }
+    .phone__home {
+      height: 3cqw;
+    }
+    .phone__home span {
+      width: 14cqw;
+    }
+  }
+</style>
+
+<script>
+  function setupPurchaseApprovalsDemo() {
+    document.querySelectorAll<HTMLElement>(".purchase-demo").forEach((root) => {
+      if (root.dataset.initialized === "true") return;
+      root.dataset.initialized = "true";
+
+      const count = root.querySelector<HTMLElement>("[data-purchase-count]");
+      const panel = root.closest<HTMLElement>("[data-split-solution-panel]");
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
+      const timers: number[] = [];
+      let inView = false;
+      let playing = false;
+      let resetFrame = 0;
+
+      const clearTimers = () => {
+        timers.forEach(window.clearTimeout);
+        timers.length = 0;
+        window.cancelAnimationFrame(resetFrame);
+      };
+
+      const showComplete = () => {
+        clearTimers();
+        playing = false;
+        root.classList.remove("is-resetting");
+        delete root.dataset.step;
+        if (count) count.textContent = "3";
+      };
+
+      const schedule = (callback: () => void, delay: number) => {
+        timers.push(window.setTimeout(callback, delay));
+      };
+
+      const beginCycle = () => {
+        clearTimers();
+        root.classList.add("is-resetting");
+        root.dataset.step = "0";
+        if (count) count.textContent = "2";
+        // Apply the reset state before transitions are enabled for the next step.
+        void root.offsetWidth;
+        resetFrame = window.requestAnimationFrame(() => {
+          root.classList.remove("is-resetting");
+        });
+
+        schedule(() => (root.dataset.step = "1"), 500);
+        schedule(() => (root.dataset.step = "2"), 1800);
+        schedule(() => {
+          root.dataset.step = "3";
+          if (count) count.textContent = "3";
+        }, 3100);
+        schedule(beginCycle, 6500);
+      };
+
+      const updatePlayback = () => {
+        const shouldPlay =
+          inView &&
+          document.visibilityState === "visible" &&
+          !panel?.hidden &&
+          !reducedMotion.matches;
+
+        if (shouldPlay && !playing) {
+          playing = true;
+          beginCycle();
+        } else if (!shouldPlay && playing) {
+          showComplete();
+        }
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          inView = entries.some((entry) => entry.intersectionRatio >= 0.35);
+          updatePlayback();
+        },
+        { threshold: [0, 0.35] },
+      );
+      observer.observe(root);
+
+      const panelObserver = panel
+        ? new MutationObserver(updatePlayback)
+        : undefined;
+      if (panel)
+        panelObserver?.observe(panel, {
+          attributes: true,
+          attributeFilter: ["hidden"],
+        });
+
+      document.addEventListener("visibilitychange", updatePlayback);
+      reducedMotion.addEventListener("change", updatePlayback);
+      document.addEventListener(
+        "astro:before-swap",
+        () => {
+          showComplete();
+          observer.disconnect();
+          panelObserver?.disconnect();
+          document.removeEventListener("visibilitychange", updatePlayback);
+          reducedMotion.removeEventListener("change", updatePlayback);
+        },
+        { once: true },
+      );
+    });
+  }
+
+  setupPurchaseApprovalsDemo();
+  document.addEventListener("astro:page-load", setupPurchaseApprovalsDemo);
+</script>

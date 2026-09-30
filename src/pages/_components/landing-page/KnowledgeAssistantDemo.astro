@@ -1,0 +1,648 @@
+---
+import Icon from "@components/Icon.astro";
+import BudibaseSymbol from "@assets/BBSymbol.svg?url";
+import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+---
+
+<div
+  class="knowledge-demo"
+  style={`--assistant-symbol: url("${BudibaseSymbol}")`}
+  aria-hidden="true"
+>
+  <div class="knowledge-demo__canvas">
+    <div class="knowledge-desktop">
+      <div class="knowledge-desktop__chrome">
+        <span class="knowledge-desktop__dots"><i></i><i></i><i></i></span>
+      </div>
+      <div class="knowledge-desktop__screen">
+        <div class="knowledge-teams__brand">
+          <img src={TeamsLogo} alt="" /><span>Microsoft Teams</span>
+        </div>
+        <div class="knowledge-teams__workspace">
+          <div class="knowledge-teams__sidebar">
+            <div class="knowledge-teams__section">
+              <div class="knowledge-teams__section-label">
+                <Icon name="CaretDown" /> Chats
+              </div>
+              <div class="knowledge-teams__chat knowledge-teams__chat--active">
+                <span
+                  class="knowledge-teams__chat-avatar knowledge-teams__chat-avatar--budibase"
+                  ><span></span></span
+                >
+                <span class="knowledge-teams__chat-copy"
+                  >Knowledge assistant</span
+                >
+              </div>
+              <div class="knowledge-teams__chat">
+                <span
+                  class="knowledge-teams__chat-avatar knowledge-teams__chat-avatar--maintenance"
+                  ><span></span></span
+                >
+                <span class="knowledge-teams__chat-copy">Maintenance</span>
+              </div>
+              <div class="knowledge-teams__chat">
+                <span
+                  class="knowledge-teams__chat-avatar knowledge-teams__chat-avatar--it"
+                  ><span></span></span
+                >
+                <span class="knowledge-teams__chat-copy">IT assistant</span>
+              </div>
+              <div class="knowledge-teams__chat">
+                <span
+                  class="knowledge-teams__chat-avatar knowledge-teams__chat-avatar--purchasing"
+                  ><span></span></span
+                >
+                <span class="knowledge-teams__chat-copy">Purchasing agent</span>
+              </div>
+            </div>
+            <div
+              class="knowledge-teams__section knowledge-teams__section--channels"
+            >
+              <div class="knowledge-teams__section-label">
+                <Icon name="CaretDown" /> Teams and channels
+              </div>
+              <div class="knowledge-teams__channel">
+                <span class="knowledge-teams__channel-hash">#</span>
+                <span>Operations</span>
+              </div>
+              <div class="knowledge-teams__channel">
+                <span class="knowledge-teams__channel-hash">#</span>
+                <span>Factory inspections</span>
+              </div>
+              <div class="knowledge-teams__channel">
+                <span class="knowledge-teams__channel-hash">#</span>
+                <span>Maintenance</span>
+              </div>
+              <div class="knowledge-teams__channel">
+                <span class="knowledge-teams__channel-hash">#</span>
+                <span>IT</span>
+              </div>
+              <div class="knowledge-teams__channel">
+                <span class="knowledge-teams__channel-hash">#</span>
+                <span>Security</span>
+              </div>
+            </div>
+          </div>
+          <div class="knowledge-teams__main">
+            <div class="knowledge-conversation">
+              <span class="knowledge-conversation__time">Today, 9:41</span>
+              <div class="knowledge-message knowledge-message--question">
+                Where can I find the inspection checklist?
+              </div>
+              <div class="knowledge-conversation__author">
+                <span class="knowledge-agent-avatar"><span></span></span>
+                <span>Knowledge assistant</span>
+              </div>
+              <div class="knowledge-message knowledge-message--answer">
+                <p>
+                  The checklist is in the Operations handbook. The PDF covers
+                  the pre-start checks.
+                </p>
+                <div class="knowledge-message__sources">
+                  <span
+                    ><img src={SharePointLogo} alt="" /> Operations handbook</span
+                  >
+                  <span><b>PDF</b> Safety procedures</span>
+                </div>
+              </div>
+            </div>
+            <div class="knowledge-teams__compose">
+              <span>Type a message</span><Icon name="ArrowRight" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .knowledge-demo {
+    --demo-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --demo-motion-duration: 440ms;
+    container-type: inline-size;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    pointer-events: none;
+    user-select: none;
+  }
+  .knowledge-demo__canvas {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    isolation: isolate;
+    font-size: 1.8cqw;
+    line-height: 1.4;
+  }
+  .knowledge-demo :global(svg) {
+    width: 1.2em;
+    height: 1.2em;
+    flex-shrink: 0;
+  }
+  .knowledge-desktop {
+    --desktop-outline: var(--bb-transparent-white-400);
+    position: absolute;
+    top: 8%;
+    left: 4%;
+    display: flex;
+    width: 92%;
+    height: 84%;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--desktop-outline);
+    border-radius: 1.5cqw;
+  }
+  .knowledge-desktop__chrome {
+    display: flex;
+    height: 6cqw;
+    flex: 0 0 auto;
+    align-items: center;
+    padding-inline: 2cqw;
+    border-bottom: 1px solid var(--desktop-outline);
+    color: var(--bb-text-on-base-subtle);
+  }
+  .knowledge-desktop__dots {
+    display: flex;
+    gap: 0.7cqw;
+  }
+  .knowledge-desktop__dots i {
+    width: 1.1cqw;
+    height: 1.1cqw;
+    border-radius: 50%;
+    background: var(--bb-transparent-white-500);
+  }
+  .knowledge-desktop__screen {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 1.3cqw;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 4px;
+    background: var(--bb-background-surface-base);
+  }
+  .knowledge-teams__brand {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.9cqw;
+    padding: 1.5cqw 2.3cqw;
+    border-bottom: 1px solid var(--bb-border-subtle);
+    color: var(--bb-text-base);
+    font-size: 1.65cqw;
+    font-weight: 500;
+  }
+  .knowledge-teams__brand img {
+    width: 2.5cqw;
+    height: 2.5cqw;
+  }
+  .knowledge-teams__workspace {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+  }
+  .knowledge-teams__sidebar {
+    box-sizing: border-box;
+    width: 22cqw;
+    flex: 0 0 auto;
+    padding: 1.2cqw 0.8cqw;
+    border-right: 1px solid var(--bb-border-subtle);
+    background: var(--bb-background-surface-subtle);
+  }
+  .knowledge-teams__section + .knowledge-teams__section {
+    margin-top: 0.9cqw;
+  }
+  .knowledge-teams__section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.3cqw;
+    padding: 0.4cqw 0.5cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.25cqw;
+    font-weight: 500;
+  }
+  .knowledge-teams__section-label :global(svg) {
+    width: 0.9em;
+    height: 0.9em;
+  }
+  .knowledge-teams__chat {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.8cqw;
+    padding: 0.55cqw 0.8cqw 0.55cqw 1.9cqw;
+    border: 1px solid transparent;
+    border-radius: 3px;
+  }
+  .knowledge-teams__chat--active {
+    border-color: var(--bb-border-subtle);
+    background: var(--bb-background-surface-base);
+  }
+  .knowledge-teams__chat-avatar {
+    display: grid;
+    width: 2cqw;
+    height: 2cqw;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 3px;
+  }
+  .knowledge-teams__chat-avatar--budibase {
+    background: var(--bb-brand-bright-green);
+    --chat-symbol-color: var(--bb-brand-forest-green);
+  }
+  .knowledge-teams__chat-avatar span {
+    width: 1.2cqw;
+    height: 1.2cqw;
+    background: var(--chat-symbol-color);
+    -webkit-mask: var(--assistant-symbol) center / contain no-repeat;
+    mask: var(--assistant-symbol) center / contain no-repeat;
+  }
+  .knowledge-teams__chat-avatar--maintenance {
+    background: var(--bb-orange-300);
+    --chat-symbol-color: var(--bb-orange-1400);
+  }
+  .knowledge-teams__chat-avatar--it {
+    background: var(--bb-blue-300);
+    --chat-symbol-color: var(--bb-blue-1400);
+  }
+  .knowledge-teams__chat-avatar--purchasing {
+    background: var(--bb-purple-300);
+    --chat-symbol-color: var(--bb-purple-1400);
+  }
+  .knowledge-teams__chat-copy {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.25cqw;
+  }
+  .knowledge-teams__section--channels {
+    padding-top: 0.8cqw;
+    border-top: 1px solid var(--bb-border-subtle);
+  }
+  .knowledge-teams__channel {
+    display: flex;
+    align-items: center;
+    gap: 0.5cqw;
+    padding: 0.55cqw 0.4cqw 0.55cqw 1.9cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.15cqw;
+    white-space: nowrap;
+  }
+  .knowledge-teams__channel-hash {
+    width: 1.2cqw;
+    flex: 0 0 auto;
+    color: var(--bb-text-subtle);
+    font-size: 1.3cqw;
+    font-weight: 600;
+    text-align: center;
+  }
+  .knowledge-teams__main {
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+  }
+  .knowledge-conversation {
+    box-sizing: border-box;
+    display: flex;
+    width: min(100%, 57cqw);
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+    margin-inline: auto;
+    padding: 2.2cqw 2cqw;
+    font-size: 1.75cqw;
+  }
+  .knowledge-conversation__time {
+    margin-bottom: 2cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.25cqw;
+    text-align: center;
+  }
+  .knowledge-message {
+    box-sizing: border-box;
+    padding: 1.4cqw 1.6cqw;
+  }
+  .knowledge-message--question {
+    width: max-content;
+    max-width: 70%;
+    align-self: flex-end;
+    border-radius: 1cqw 1cqw 0 1cqw;
+    background: var(--bb-cyan-200);
+  }
+  .knowledge-conversation__author {
+    display: flex;
+    align-items: center;
+    gap: 0.8cqw;
+    margin: 2cqw 0 0.8cqw;
+    font-size: 1.5cqw;
+  }
+  .knowledge-agent-avatar {
+    display: grid;
+    width: 2.8cqw;
+    height: 2.8cqw;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 12%;
+    background: var(--bb-brand-bright-green);
+  }
+  .knowledge-agent-avatar span {
+    width: 1.5cqw;
+    height: 1.5cqw;
+    background: var(--bb-brand-forest-green);
+    -webkit-mask: var(--assistant-symbol) center / contain no-repeat;
+    mask: var(--assistant-symbol) center / contain no-repeat;
+  }
+  .knowledge-message--answer {
+    width: 78%;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0 1cqw 1cqw;
+  }
+  .knowledge-message p {
+    margin: 0;
+    color: inherit;
+    font: inherit;
+  }
+  .knowledge-message__sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8cqw 1.8cqw;
+    margin-top: 1.4cqw;
+    padding-top: 1.2cqw;
+    border-top: 1px solid var(--bb-border-subtle);
+    color: var(--bb-text-subtle);
+    font-size: 1.35cqw;
+  }
+  .knowledge-message__sources > span {
+    display: flex;
+    align-items: center;
+    gap: 0.6cqw;
+    white-space: nowrap;
+  }
+  .knowledge-message__sources img {
+    width: 1.6cqw;
+    height: 1.6cqw;
+  }
+  .knowledge-message__sources b {
+    color: var(--bb-orange-700);
+    font-size: 1.2cqw;
+  }
+  .knowledge-teams__compose {
+    box-sizing: border-box;
+    display: flex;
+    width: min(calc(100% - 4cqw), 53cqw);
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto 2cqw;
+    padding: 1cqw 1.2cqw;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 4px;
+    color: var(--bb-text-subtle);
+    font-size: 1.45cqw;
+  }
+  .knowledge-demo[data-step] .knowledge-message--question,
+  .knowledge-demo[data-step] .knowledge-conversation__author,
+  .knowledge-demo[data-step] .knowledge-message--answer {
+    opacity: 0;
+    transform: translateY(0.6cqw);
+    transition:
+      opacity var(--demo-motion-duration) var(--demo-motion-ease),
+      transform var(--demo-motion-duration) var(--demo-motion-ease);
+  }
+  .knowledge-demo[data-step="1"] .knowledge-message--question,
+  .knowledge-demo[data-step="2"] .knowledge-message--question,
+  .knowledge-demo[data-step="2"] .knowledge-conversation__author,
+  .knowledge-demo[data-step="2"] .knowledge-message--answer {
+    opacity: 1;
+    transform: none;
+  }
+  .knowledge-demo.is-resetting .knowledge-message--question,
+  .knowledge-demo.is-resetting .knowledge-conversation__author,
+  .knowledge-demo.is-resetting .knowledge-message--answer {
+    transition: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .knowledge-demo[data-step] .knowledge-message--question,
+    .knowledge-demo[data-step] .knowledge-conversation__author,
+    .knowledge-demo[data-step] .knowledge-message--answer {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+  @container (max-width: 460px) {
+    .knowledge-demo__canvas {
+      height: 118cqw;
+      aspect-ratio: auto;
+    }
+    .knowledge-desktop {
+      top: 4%;
+      left: 4%;
+      width: 92%;
+      height: 92%;
+      border-radius: 2cqw;
+    }
+    .knowledge-desktop__chrome {
+      height: 6cqw;
+      padding-inline: 2.2cqw;
+      font-size: 2.3cqw;
+    }
+    .knowledge-desktop__screen {
+      margin: 1.4cqw;
+    }
+    .knowledge-teams__brand {
+      gap: 1.3cqw;
+      padding: 2cqw 2.5cqw;
+      font-size: 2.8cqw;
+    }
+    .knowledge-teams__brand img {
+      width: 4cqw;
+      height: 4cqw;
+    }
+    .knowledge-teams__sidebar {
+      width: 11cqw;
+      padding: 2cqw 1cqw;
+    }
+    .knowledge-teams__section-label,
+    .knowledge-teams__chat-copy,
+    .knowledge-teams__section--channels {
+      display: none;
+    }
+    .knowledge-teams__section + .knowledge-teams__section {
+      margin-top: 1cqw;
+    }
+    .knowledge-teams__chat {
+      justify-content: center;
+      padding: 1.5cqw 0;
+    }
+    .knowledge-teams__chat-avatar {
+      width: 4cqw;
+      height: 4cqw;
+    }
+    .knowledge-teams__chat-avatar span {
+      width: 2.1cqw;
+      height: 2.1cqw;
+    }
+    .knowledge-conversation {
+      width: 100%;
+      padding: 2.5cqw;
+      font-size: 3.8cqw;
+    }
+    .knowledge-conversation__time {
+      margin-bottom: 3cqw;
+      font-size: 2.3cqw;
+    }
+    .knowledge-message {
+      padding: 2cqw;
+    }
+    .knowledge-message--question {
+      max-width: 80%;
+    }
+    .knowledge-conversation__author {
+      gap: 1cqw;
+      margin-top: 3cqw;
+      font-size: 3cqw;
+    }
+    .knowledge-agent-avatar {
+      width: 4cqw;
+      height: 4cqw;
+    }
+    .knowledge-agent-avatar span {
+      width: 2.1cqw;
+      height: 2.1cqw;
+    }
+    .knowledge-message--answer {
+      width: 95%;
+    }
+    .knowledge-message__sources {
+      flex-direction: column;
+      gap: 1cqw;
+      margin-top: 2cqw;
+      padding-top: 1.5cqw;
+      font-size: 3.2cqw;
+    }
+    .knowledge-message__sources img {
+      width: 2.9cqw;
+      height: 2.9cqw;
+    }
+    .knowledge-message__sources b {
+      font-size: 2.5cqw;
+    }
+    .knowledge-teams__compose {
+      width: calc(100% - 5cqw);
+      margin-bottom: 2cqw;
+      padding: 1.5cqw;
+      font-size: 2.6cqw;
+    }
+  }
+</style>
+
+<script>
+  function setupKnowledgeAssistantDemo() {
+    document
+      .querySelectorAll<HTMLElement>(".knowledge-demo")
+      .forEach((root) => {
+        if (root.dataset.initialized === "true") return;
+        root.dataset.initialized = "true";
+
+        const panel = root.closest<HTMLElement>("[data-split-solution-panel]");
+        const reducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        );
+        const timers: number[] = [];
+        let inView = false;
+        let playing = false;
+        let resetFrame = 0;
+
+        const clearTimers = () => {
+          timers.forEach(window.clearTimeout);
+          timers.length = 0;
+          window.cancelAnimationFrame(resetFrame);
+        };
+
+        const showComplete = () => {
+          clearTimers();
+          playing = false;
+          root.classList.remove("is-resetting");
+          delete root.dataset.step;
+        };
+
+        const schedule = (callback: () => void, delay: number) => {
+          timers.push(window.setTimeout(callback, delay));
+        };
+
+        const beginCycle = () => {
+          clearTimers();
+          root.classList.add("is-resetting");
+          root.dataset.step = "0";
+          void root.offsetWidth;
+          resetFrame = window.requestAnimationFrame(() => {
+            root.classList.remove("is-resetting");
+          });
+
+          schedule(() => (root.dataset.step = "1"), 600);
+          schedule(() => (root.dataset.step = "2"), 2200);
+          schedule(beginCycle, 6500);
+        };
+
+        const updatePlayback = () => {
+          const shouldPlay =
+            inView &&
+            document.visibilityState === "visible" &&
+            !panel?.hidden &&
+            !reducedMotion.matches;
+
+          if (shouldPlay && !playing) {
+            playing = true;
+            beginCycle();
+          } else if (!shouldPlay && playing) {
+            showComplete();
+          }
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            inView = entries.some((entry) => entry.intersectionRatio >= 0.35);
+            updatePlayback();
+          },
+          { threshold: [0, 0.35] },
+        );
+        observer.observe(root);
+
+        const panelObserver = panel
+          ? new MutationObserver(updatePlayback)
+          : undefined;
+        if (panel)
+          panelObserver?.observe(panel, {
+            attributes: true,
+            attributeFilter: ["hidden"],
+          });
+
+        document.addEventListener("visibilitychange", updatePlayback);
+        reducedMotion.addEventListener("change", updatePlayback);
+        document.addEventListener(
+          "astro:before-swap",
+          () => {
+            showComplete();
+            observer.disconnect();
+            panelObserver?.disconnect();
+            document.removeEventListener("visibilitychange", updatePlayback);
+            reducedMotion.removeEventListener("change", updatePlayback);
+          },
+          { once: true },
+        );
+      });
+  }
+
+  setupKnowledgeAssistantDemo();
+  document.addEventListener("astro:page-load", setupKnowledgeAssistantDemo);
+</script>

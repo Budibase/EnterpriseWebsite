@@ -1,0 +1,763 @@
+---
+import Icon from "@components/Icon.astro";
+import BudibaseSymbol from "@assets/BBSymbol.svg?url";
+
+const incident = {
+  id: "INC-2048",
+  title: "Conveyor 04 stopped",
+  location: "North plant · Line 4",
+};
+---
+
+<div
+  class="incident-demo"
+  style={`--assistant-symbol: url("${BudibaseSymbol}")`}
+  aria-hidden="true"
+>
+  <div class="incident-demo__canvas">
+    <div class="desktop">
+      <div class="desktop__chrome">
+        <span class="window-dots"><i></i><i></i><i></i></span>
+        <span>Operations center</span>
+        <Icon name="Plus" />
+      </div>
+      <div class="desktop__shell">
+        <div class="desktop__rail">
+          <Icon name="AppWindow" weight="fill" />
+          <Icon name="Table" weight="fill" />
+          <Icon name="Wrench" weight="fill" />
+          <Icon name="Users" weight="fill" />
+        </div>
+        <div class="incident-workspace">
+          <div class="incident-workspace__heading">
+            <span>Incident detail</span>
+            <Icon name="Plus" />
+          </div>
+          <div class="incident-record">
+            <span class="incident-record__id"
+              >{incident.id} · Reported just now</span
+            >
+            <strong>{incident.title}</strong>
+            <span class="incident-record__location">{incident.location}</span>
+          </div>
+          <div class="incident-details">
+            <div class="incident-section-title">Details</div>
+            <div class="incident-details__grid">
+              <div class="incident-details__field">
+                <span>Impact</span>
+                <strong>Production paused</strong>
+              </div>
+              <div class="incident-details__field">
+                <span>Severity</span>
+                <strong
+                  class="incident-details__value incident-details__value--severity"
+                >
+                  <span class="incident-details__initial">Medium</span>
+                  <span class="incident-details__final">High</span>
+                </strong>
+              </div>
+              <div class="incident-details__field">
+                <span>Status</span>
+                <strong
+                  class="incident-details__value incident-details__value--status"
+                >
+                  <span class="incident-details__initial">Reported</span>
+                  <span class="incident-details__final">Investigating</span>
+                </strong>
+              </div>
+              <div class="incident-details__field incident-details__assignee">
+                <span>Assigned team</span>
+                <strong>Maintenance response</strong>
+              </div>
+            </div>
+          </div>
+          <div class="incident-activity">
+            <div class="incident-section-title">Activity</div>
+            <div
+              class="incident-activity__event incident-activity__event--status"
+            >
+              <span class="agent-avatar"><span></span></span>
+              <span
+                ><strong>Incident agent</strong> set status to Investigating</span
+              >
+            </div>
+            <div
+              class="incident-activity__event incident-activity__event--severity"
+            >
+              <span class="agent-avatar"><span></span></span>
+              <span
+                ><strong>Incident agent</strong> changed severity to High</span
+              >
+            </div>
+            <div
+              class="incident-activity__event incident-activity__event--assignment"
+            >
+              <span class="agent-avatar"><span></span></span>
+              <span
+                ><strong>Incident agent</strong> assigned Maintenance response</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone">
+      <div class="phone__chrome">
+        <span>9:41</span>
+        <span class="phone__speaker"></span>
+        <svg viewBox="0 0 31 12" fill="none" aria-hidden="true">
+          <path d="M1 10V7M5 10V4M9 10V1" stroke="currentColor" stroke-width="2"
+          ></path>
+          <rect x="16" y="2" width="12" height="8" rx="2" stroke="currentColor"
+          ></rect>
+          <path d="M19 4H25V8H19Z" fill="currentColor"></path>
+          <path d="M30 4V8" stroke="currentColor"></path>
+        </svg>
+      </div>
+      <div class="incident-form">
+        <div class="incident-form__body">
+          <strong class="incident-form__title">Report incident</strong>
+          <span class="incident-form__context">{incident.location}</span>
+          <div class="incident-form__field">
+            <span>Asset</span>
+            <strong>Conveyor 04</strong>
+          </div>
+          <div class="incident-form__field">
+            <span>What happened?</span>
+            <strong>Line stopped unexpectedly</strong>
+          </div>
+          <div class="incident-form__field">
+            <span>Impact</span>
+            <strong>Production paused</strong>
+          </div>
+          <div class="incident-form__field">
+            <span>Severity</span>
+            <strong class="incident-form__severity"><i></i> Medium</strong>
+          </div>
+          <div class="incident-form__photo">
+            <span class="incident-form__photo-icon">+</span>
+            <span>Photo evidence <small>1 photo attached</small></span>
+          </div>
+        </div>
+        <div class="incident-form__footer">
+          <span class="incident-form__submit"
+            >Submit incident <Icon name="ArrowRight" /></span
+          >
+        </div>
+      </div>
+      <div class="phone__home"><span></span></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .incident-demo {
+    --demo-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --demo-motion-duration: 440ms;
+    container-type: inline-size;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    pointer-events: none;
+    user-select: none;
+  }
+  .incident-demo__canvas {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    isolation: isolate;
+    font-size: 1.8cqw;
+    line-height: 1.4;
+  }
+  .incident-demo :global(svg) {
+    width: 1.2em;
+    height: 1.2em;
+    flex-shrink: 0;
+  }
+  .desktop {
+    --desktop-outline: var(--bb-transparent-white-400);
+    position: absolute;
+    bottom: 5%;
+    left: 35%;
+    width: 78%;
+    height: 86%;
+    overflow: hidden;
+    border: 1px solid var(--desktop-outline);
+    border-radius: 1.5cqw;
+  }
+  .desktop__chrome {
+    display: flex;
+    height: 6cqw;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 2cqw;
+    border-bottom: 1px solid var(--desktop-outline);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base-subtle);
+  }
+  .window-dots {
+    display: flex;
+    gap: 0.7cqw;
+  }
+  .window-dots i {
+    width: 1.1cqw;
+    height: 1.1cqw;
+    border-radius: 50%;
+    background: var(--bb-transparent-white-500);
+  }
+  .desktop__shell {
+    display: flex;
+    box-sizing: border-box;
+    height: calc(100% - 6cqw);
+    gap: 8px;
+  }
+  .desktop__rail {
+    display: flex;
+    width: 4.5cqw;
+    flex-shrink: 0;
+    align-items: center;
+    flex-direction: column;
+    gap: 3.5cqw;
+    padding-top: 2cqw;
+    border-right: 1px solid var(--desktop-outline);
+    color: rgb(255 255 255 / 0.5);
+  }
+  .incident-workspace {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    margin: 1.3cqw 1.3cqw 1.3cqw 0;
+    padding: 3cqw 15cqw 3cqw 5cqw;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 6px;
+    background: var(--bb-background-surface-base);
+  }
+  .incident-workspace__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 3.3cqw;
+    font-weight: 500;
+  }
+  .incident-workspace__heading :global(svg) {
+    width: 2.3cqw;
+    height: 2.3cqw;
+    color: var(--bb-text-subtle);
+  }
+  .incident-record {
+    margin-top: 1.7cqw;
+    padding-bottom: 1.5cqw;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .incident-record__id,
+  .incident-record__location {
+    display: block;
+    color: var(--bb-text-subtle);
+    font-size: 1.35cqw;
+  }
+  .incident-record > strong {
+    display: block;
+    margin: 0.8cqw 0 0.5cqw;
+    font-size: 2.25cqw;
+    font-weight: 500;
+  }
+  .incident-section-title {
+    margin-bottom: 0.9cqw;
+    font-size: 1.65cqw;
+    font-weight: 500;
+  }
+  .incident-details {
+    margin-top: 1.4cqw;
+  }
+  .incident-details__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8cqw 2cqw;
+  }
+  .incident-details__field {
+    display: flex;
+    min-height: 4.1cqw;
+    flex-direction: column;
+    gap: 0.4cqw;
+    border-bottom: 1px solid var(--bb-border-subtle);
+  }
+  .incident-details__field > span {
+    color: var(--bb-text-subtle);
+    font-size: 1.2cqw;
+  }
+  .incident-details__field strong {
+    font-size: 1.45cqw;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .incident-details__value {
+    position: relative;
+    min-height: 2cqw;
+  }
+  .incident-details__initial,
+  .incident-details__final {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity var(--demo-motion-duration) var(--demo-motion-ease);
+  }
+  .incident-details__initial {
+    opacity: 0;
+  }
+  .incident-details__value--severity .incident-details__final {
+    padding-inline: 0.6cqw;
+    background: var(--bb-yellow-300);
+  }
+  .incident-details__value--status .incident-details__final {
+    padding-inline: 0.6cqw;
+    background: var(--bb-cyan-200);
+  }
+  .incident-activity {
+    margin-top: 1.5cqw;
+  }
+  .incident-activity__event {
+    display: flex;
+    align-items: center;
+    gap: 0.9cqw;
+    padding: 0.6cqw 0;
+    border-top: 1px solid var(--bb-border-subtle);
+  }
+  .incident-activity__event strong,
+  .incident-activity__event > span:last-child {
+    font-size: 1.35cqw;
+    white-space: nowrap;
+  }
+  .incident-activity__event strong {
+    font-weight: 500;
+  }
+  .agent-avatar {
+    display: grid;
+    width: 2.4cqw;
+    height: 2.4cqw;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 12%;
+    background: var(--bb-brand-bright-green);
+  }
+  .agent-avatar span {
+    width: 1.3cqw;
+    height: 1.3cqw;
+    background: var(--bb-brand-forest-green);
+    -webkit-mask: var(--assistant-symbol) center / contain no-repeat;
+    mask: var(--assistant-symbol) center / contain no-repeat;
+  }
+  .phone {
+    position: absolute;
+    z-index: 1;
+    bottom: 5%;
+    left: 3%;
+    display: flex;
+    width: 29%;
+    min-height: 58cqw;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--bb-transparent-white-400);
+    border-radius: 3.4cqw;
+    background: transparent;
+  }
+  .phone__chrome {
+    display: flex;
+    height: 4.8cqw;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.9cqw;
+    border-bottom: 1px solid var(--bb-transparent-white-400);
+    color: var(--bb-transparent-white-800);
+    font-size: 1.3cqw;
+  }
+  .phone__speaker {
+    width: 5cqw;
+    height: 0.6cqw;
+    border: 1px solid var(--bb-transparent-white-800);
+    border-radius: 1cqw;
+  }
+  .phone__chrome svg {
+    width: 3.7cqw;
+    height: 1.5cqw;
+  }
+  .incident-form {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 1.2cqw 1.2cqw 0;
+    border-radius: 4px;
+    background: var(--bb-background-surface-base);
+  }
+  .incident-form__body {
+    min-height: 0;
+    flex: 1;
+    padding: 1.7cqw;
+    background: var(--bb-background-surface-base);
+  }
+  .incident-form__title {
+    display: block;
+    font-size: 2.2cqw;
+    font-weight: 500;
+  }
+  .incident-form__context {
+    display: block;
+    margin: 0.2cqw 0 1.7cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.15cqw;
+  }
+  .incident-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5cqw;
+    margin-top: 1.1cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.15cqw;
+  }
+  .incident-form__field strong {
+    display: flex;
+    min-height: 3.2cqw;
+    align-items: center;
+    overflow: hidden;
+    padding: 0.6cqw 0.9cqw;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0.5cqw;
+    color: var(--bb-text-base);
+    font-size: 1.2cqw;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .incident-form__severity {
+    gap: 0.7cqw;
+  }
+  .incident-form__severity i {
+    width: 0.8cqw;
+    height: 0.8cqw;
+    border-radius: 50%;
+    background: var(--bb-yellow-500);
+  }
+  .incident-form__photo {
+    display: flex;
+    align-items: center;
+    gap: 0.9cqw;
+    margin-top: 1.5cqw;
+    padding: 0.8cqw;
+    border: 1px dashed var(--bb-border-base);
+    font-size: 1.15cqw;
+  }
+  .incident-form__photo-icon {
+    display: grid;
+    width: 2.8cqw;
+    height: 2.8cqw;
+    place-items: center;
+    background: var(--bb-background-sand);
+    font-size: 1.7cqw;
+  }
+  .incident-form__photo small {
+    display: block;
+    color: var(--bb-text-subtle);
+    font-size: 1.05cqw;
+  }
+  .incident-form__footer {
+    position: relative;
+    display: flex;
+    min-height: 6.3cqw;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-end;
+    padding-inline: 1.7cqw;
+    border-top: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-base);
+  }
+  .incident-form__submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6cqw;
+    padding: 0.8cqw 1cqw;
+    font-size: 1.15cqw;
+    font-weight: 500;
+    white-space: nowrap;
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+  }
+  .phone__home {
+    display: flex;
+    height: 2cqw;
+    align-items: center;
+    justify-content: center;
+  }
+  .phone__home span {
+    width: 8cqw;
+    height: 0.4cqw;
+    border-radius: 1cqw;
+    background: var(--bb-transparent-white-800);
+  }
+
+  .incident-demo[data-step] .incident-activity__event,
+  .incident-demo[data-step] .incident-details__assignee {
+    opacity: 0;
+    transform: translateY(0.4cqw);
+    transition:
+      opacity var(--demo-motion-duration) var(--demo-motion-ease),
+      transform var(--demo-motion-duration) var(--demo-motion-ease);
+  }
+  .incident-demo[data-step] .incident-details__initial {
+    opacity: 1;
+  }
+  .incident-demo[data-step] .incident-details__final {
+    opacity: 0;
+  }
+  .incident-demo[data-step="1"] .incident-activity__event--status,
+  .incident-demo[data-step="2"] .incident-activity__event--status,
+  .incident-demo[data-step="3"] .incident-activity__event--status,
+  .incident-demo[data-step="2"] .incident-activity__event--severity,
+  .incident-demo[data-step="3"] .incident-activity__event--severity,
+  .incident-demo[data-step="3"] .incident-activity__event--assignment,
+  .incident-demo[data-step="3"] .incident-details__assignee {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .incident-demo[data-step="2"]
+    .incident-details__value--severity
+    .incident-details__initial,
+  .incident-demo[data-step="3"]
+    .incident-details__value--severity
+    .incident-details__initial,
+  .incident-demo[data-step="1"]
+    .incident-details__value--status
+    .incident-details__initial,
+  .incident-demo[data-step="2"]
+    .incident-details__value--status
+    .incident-details__initial,
+  .incident-demo[data-step="3"]
+    .incident-details__value--status
+    .incident-details__initial {
+    opacity: 0;
+  }
+  .incident-demo[data-step="2"]
+    .incident-details__value--severity
+    .incident-details__final,
+  .incident-demo[data-step="3"]
+    .incident-details__value--severity
+    .incident-details__final,
+  .incident-demo[data-step="1"]
+    .incident-details__value--status
+    .incident-details__final,
+  .incident-demo[data-step="2"]
+    .incident-details__value--status
+    .incident-details__final,
+  .incident-demo[data-step="3"]
+    .incident-details__value--status
+    .incident-details__final {
+    opacity: 1;
+  }
+  .incident-demo.is-resetting .incident-activity__event,
+  .incident-demo.is-resetting .incident-details__assignee,
+  .incident-demo.is-resetting .incident-details__initial,
+  .incident-demo.is-resetting .incident-details__final {
+    transition: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .incident-demo[data-step] .incident-activity__event,
+    .incident-demo[data-step] .incident-details__assignee {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .incident-demo[data-step] .incident-details__initial {
+      opacity: 0;
+    }
+    .incident-demo[data-step] .incident-details__final {
+      opacity: 1;
+    }
+  }
+  @container (max-width: 460px) {
+    .incident-demo__canvas {
+      aspect-ratio: 3 / 4;
+    }
+    .desktop {
+      display: none;
+    }
+    .phone {
+      bottom: 5%;
+      left: 15%;
+      width: 70%;
+      min-height: 112cqw;
+      border-radius: 5cqw;
+    }
+    .phone__chrome {
+      height: 7cqw;
+      padding-inline: 3cqw;
+      font-size: 2.5cqw;
+    }
+    .phone__speaker {
+      width: 9cqw;
+      height: 1cqw;
+    }
+    .phone__chrome svg {
+      width: 6cqw;
+      height: 2.5cqw;
+    }
+    .incident-form {
+      margin: 2cqw 2cqw 0;
+    }
+    .incident-form__body {
+      padding: 3cqw;
+    }
+    .incident-form__title {
+      font-size: 4.1cqw;
+    }
+    .incident-form__context {
+      margin-bottom: 2.6cqw;
+      font-size: 2.5cqw;
+    }
+    .incident-form__field {
+      gap: 0.8cqw;
+      margin-top: 1.8cqw;
+      font-size: 2.6cqw;
+    }
+    .incident-form__field strong {
+      min-height: 6.4cqw;
+      padding-inline: 1.6cqw;
+      font-size: 2.7cqw;
+    }
+    .incident-form__severity i {
+      width: 1.5cqw;
+      height: 1.5cqw;
+    }
+    .incident-form__photo {
+      gap: 1.5cqw;
+      margin-top: 2.6cqw;
+      padding: 1.5cqw;
+      font-size: 2.6cqw;
+    }
+    .incident-form__photo-icon {
+      width: 5cqw;
+      height: 5cqw;
+      font-size: 3cqw;
+    }
+    .incident-form__photo small {
+      font-size: 2.3cqw;
+    }
+    .incident-form__footer {
+      min-height: 10cqw;
+      padding-inline: 3cqw;
+    }
+    .incident-form__submit {
+      padding: 1.5cqw 2cqw;
+      font-size: 2.6cqw;
+    }
+    .phone__home {
+      height: 3cqw;
+    }
+    .phone__home span {
+      width: 14cqw;
+    }
+  }
+</style>
+
+<script>
+  function setupIncidentManagementDemo() {
+    document.querySelectorAll<HTMLElement>(".incident-demo").forEach((root) => {
+      if (root.dataset.initialized === "true") return;
+      root.dataset.initialized = "true";
+
+      const panel = root.closest<HTMLElement>("[data-split-solution-panel]");
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
+      const timers: number[] = [];
+      let inView = false;
+      let playing = false;
+      let resetFrame = 0;
+
+      const clearTimers = () => {
+        timers.forEach(window.clearTimeout);
+        timers.length = 0;
+        window.cancelAnimationFrame(resetFrame);
+      };
+
+      const showComplete = () => {
+        clearTimers();
+        playing = false;
+        root.classList.remove("is-resetting");
+        delete root.dataset.step;
+      };
+
+      const schedule = (callback: () => void, delay: number) => {
+        timers.push(window.setTimeout(callback, delay));
+      };
+
+      const beginCycle = () => {
+        clearTimers();
+        root.classList.add("is-resetting");
+        root.dataset.step = "0";
+        void root.offsetWidth;
+        resetFrame = window.requestAnimationFrame(() => {
+          root.classList.remove("is-resetting");
+        });
+
+        schedule(() => (root.dataset.step = "1"), 1100);
+        schedule(() => (root.dataset.step = "2"), 2500);
+        schedule(() => (root.dataset.step = "3"), 3600);
+        schedule(beginCycle, 6700);
+      };
+
+      const updatePlayback = () => {
+        const shouldPlay =
+          inView &&
+          document.visibilityState === "visible" &&
+          !panel?.hidden &&
+          !reducedMotion.matches;
+
+        if (shouldPlay && !playing) {
+          playing = true;
+          beginCycle();
+        } else if (!shouldPlay && playing) {
+          showComplete();
+        }
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          inView = entries.some((entry) => entry.intersectionRatio >= 0.35);
+          updatePlayback();
+        },
+        { threshold: [0, 0.35] },
+      );
+      observer.observe(root);
+
+      const panelObserver = panel
+        ? new MutationObserver(updatePlayback)
+        : undefined;
+      if (panel)
+        panelObserver?.observe(panel, {
+          attributes: true,
+          attributeFilter: ["hidden"],
+        });
+
+      document.addEventListener("visibilitychange", updatePlayback);
+      reducedMotion.addEventListener("change", updatePlayback);
+      document.addEventListener(
+        "astro:before-swap",
+        () => {
+          showComplete();
+          observer.disconnect();
+          panelObserver?.disconnect();
+          document.removeEventListener("visibilitychange", updatePlayback);
+          reducedMotion.removeEventListener("change", updatePlayback);
+        },
+        { once: true },
+      );
+    });
+  }
+
+  setupIncidentManagementDemo();
+  document.addEventListener("astro:page-load", setupIncidentManagementDemo);
+</script>

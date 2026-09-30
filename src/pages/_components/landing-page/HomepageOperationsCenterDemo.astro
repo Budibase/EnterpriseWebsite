@@ -1,0 +1,207 @@
+---
+import BudibaseSymbol from "@assets/BBSymbol.svg?url";
+---
+
+<div class="homepage-operations-center">
+  <div class="homepage-operations-center__header">
+    <span
+      class="homepage-operations-center__symbol"
+      style={`--operations-center-symbol: url("${BudibaseSymbol}")`}></span>
+    <span>Operations center</span>
+  </div>
+
+  <div class="homepage-operations-center__tabs">
+    <span>Apps</span>
+    <span class="homepage-operations-center__tab--active">Requests</span>
+    <span>Tasks</span>
+  </div>
+
+  <div class="homepage-operations-center__body">
+    <div class="homepage-operations-center__heading">
+      <strong>My requests</strong>
+      <span>4 requests</span>
+    </div>
+
+    <div class="homepage-operations-center__request">
+      <span class="homepage-operations-center__request-copy">
+        <strong>Replacement monitor</strong>
+      </span>
+      <span
+        class="homepage-operations-center__status homepage-operations-center__status--review"
+      >
+        In review
+      </span>
+    </div>
+
+    <div class="homepage-operations-center__request">
+      <span class="homepage-operations-center__request-copy">
+        <strong>Software access</strong>
+      </span>
+      <span
+        class="homepage-operations-center__status homepage-operations-center__status--complete"
+      >
+        Complete
+      </span>
+    </div>
+
+    <div class="homepage-operations-center__request">
+      <span class="homepage-operations-center__request-copy">
+        <strong>New starter setup</strong>
+      </span>
+      <span
+        class="homepage-operations-center__status homepage-operations-center__status--progress"
+      >
+        In progress
+      </span>
+    </div>
+
+    <div class="homepage-operations-center__request">
+      <span class="homepage-operations-center__request-copy">
+        <strong>Supplier onboarding</strong>
+      </span>
+      <span
+        class="homepage-operations-center__status homepage-operations-center__status--review"
+      >
+        In review
+      </span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .homepage-operations-center {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+  }
+
+  .homepage-operations-center__header {
+    display: flex;
+    min-height: 2.625rem;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bb-brand-forest-green);
+    padding-inline: 0.75rem;
+    color: var(--bb-text-on-base);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .homepage-operations-center__symbol {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 1rem;
+    background: currentColor;
+    -webkit-mask: var(--operations-center-symbol) center / contain no-repeat;
+    mask: var(--operations-center-symbol) center / contain no-repeat;
+  }
+
+  .homepage-operations-center__tabs {
+    display: flex;
+    min-width: 0;
+    align-items: stretch;
+    gap: 0.625rem;
+    border-bottom: 1px solid var(--bb-border-base);
+    background: var(--bb-background-sand);
+    padding-inline: 0.75rem;
+    color: var(--bb-text-subtle);
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .homepage-operations-center__tabs span {
+    display: flex;
+    min-height: 2.125rem;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+  }
+
+  .homepage-operations-center__tabs .homepage-operations-center__tab--active {
+    border-bottom-color: var(--bb-cyan-900);
+    color: var(--bb-text-base);
+    font-weight: 500;
+  }
+
+  .homepage-operations-center__body {
+    padding: 0.75rem;
+  }
+
+  .homepage-operations-center__heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.375rem;
+    font-size: 0.875rem;
+  }
+
+  .homepage-operations-center__heading strong {
+    font-weight: 500;
+  }
+
+  .homepage-operations-center__heading span {
+    color: var(--bb-text-subtle);
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .homepage-operations-center__request {
+    display: flex;
+    min-height: 2.375rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border: 1px solid var(--bb-border-base);
+    padding: 0.375rem 0.5rem;
+  }
+
+  .homepage-operations-center__request + .homepage-operations-center__request {
+    border-top: 0;
+  }
+
+  .homepage-operations-center__request-copy {
+    display: flex;
+    min-width: 0;
+    font-size: 0.875rem;
+    line-height: 1.25;
+  }
+
+  .homepage-operations-center__request-copy strong {
+    overflow: hidden;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .homepage-operations-center__status {
+    flex: 0 0 auto;
+    padding: 0.25rem 0.375rem;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+
+  .homepage-operations-center__status--review {
+    background: var(--bb-yellow-200);
+  }
+
+  .homepage-operations-center__status--complete {
+    background: var(--bb-celery-200);
+  }
+
+  .homepage-operations-center__status--progress {
+    background: var(--bb-cyan-200);
+  }
+
+  @media (max-width: 1199px) {
+    :global(.card-cluster__image-wrap:has(.homepage-operations-center)) {
+      min-height: 20rem !important;
+    }
+  }
+</style>

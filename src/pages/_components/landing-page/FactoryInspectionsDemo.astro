@@ -1,0 +1,641 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<div class="inspection-demo" aria-hidden="true">
+  <div class="inspection-demo__canvas">
+    <div class="inspection-desktop">
+      <div class="inspection-desktop__header">
+        <span class="inspection-desktop__dots"><i></i><i></i><i></i></span>
+        <span>Budibase</span>
+        <Icon name="Plus" />
+      </div>
+      <div class="inspection-desktop__workspace">
+        <div class="inspection-desktop__rail">
+          <Icon name="AppWindow" weight="fill" />
+          <Icon name="Table" weight="fill" />
+          <Icon name="Wrench" weight="fill" />
+          <Icon name="Users" weight="fill" />
+        </div>
+        <div class="inspection-records">
+          <div class="inspection-records__heading">
+            <span>Inspection records</span>
+            <Icon name="Plus" />
+          </div>
+          <div class="inspection-records__tabs">
+            <span class="inspection-records__tab inspection-records__tab--active"
+              >All inspections <span class="inspection-records__count">24</span
+              ></span
+            >
+            <span class="inspection-records__tab"
+              >Follow-up needed <span class="inspection-records__count">2</span
+              ></span
+            >
+          </div>
+          <div class="inspection-records__table">
+            <div class="inspection-records__columns">
+              <span>Asset</span><span>Result</span>
+            </div>
+            <div
+              class="inspection-records__row inspection-records__row--current"
+            >
+              <span>
+                <strong>Conveyor 04</strong>
+                <small>North plant · Line 4</small>
+              </span>
+              <span
+                class="inspection-records__status inspection-records__status--action"
+                >Follow-up needed</span
+              >
+            </div>
+            <div class="inspection-records__row">
+              <span>
+                <strong>Press 02</strong>
+                <small>North plant · Line 2</small>
+              </span>
+              <span
+                class="inspection-records__status inspection-records__status--passed"
+                >Passed</span
+              >
+            </div>
+            <div class="inspection-records__row">
+              <span>
+                <strong>Packing line 03</strong>
+                <small>South plant · Line 3</small>
+              </span>
+              <span
+                class="inspection-records__status inspection-records__status--passed"
+                >Passed</span
+              >
+            </div>
+            <div class="inspection-records__row">
+              <span>
+                <strong>Pump 07</strong>
+                <small>North plant · Utility room</small>
+              </span>
+              <span
+                class="inspection-records__status inspection-records__status--action"
+                >Follow-up needed</span
+              >
+            </div>
+            <div class="inspection-records__row">
+              <span>
+                <strong>Boiler 01</strong>
+                <small>South plant · Boiler room</small>
+              </span>
+              <span
+                class="inspection-records__status inspection-records__status--passed"
+                >Passed</span
+              >
+            </div>
+            <div class="inspection-records__row">
+              <span>
+                <strong>Forklift 06</strong>
+                <small>North plant · Warehouse</small>
+              </span>
+              <span
+                class="inspection-records__status inspection-records__status--passed"
+                >Passed</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inspection-tablet">
+      <div class="inspection-tablet__camera"><span></span></div>
+      <div class="inspection-tablet__screen">
+        <div class="inspection-form__appbar"></div>
+        <div class="inspection-form__content">
+          <div class="inspection-form__title">Factory inspection</div>
+          <div class="inspection-form__context">North plant · Line 4</div>
+
+          <div class="inspection-form__fields">
+            <div class="inspection-form__field">
+              <span>Equipment</span>
+              <strong>Conveyor 04</strong>
+            </div>
+            <div class="inspection-form__field">
+              <span>Inspection date</span>
+              <strong>Today, 29 Sep</strong>
+            </div>
+          </div>
+
+          <div class="inspection-form__section-title">Safety checks</div>
+          <div class="inspection-form__check">
+            <span>Safety guard secured</span>
+            <span class="inspection-form__choices">
+              <span
+                class="inspection-form__choice inspection-form__choice--pass"
+                >Pass</span
+              >
+              <span class="inspection-form__choice">Fail</span>
+            </span>
+          </div>
+          <div class="inspection-form__check">
+            <span>Motor temperature</span>
+            <span class="inspection-form__reading">78°C</span>
+          </div>
+          <div class="inspection-form__check">
+            <span>No oil leaks</span>
+            <span class="inspection-form__choices">
+              <span class="inspection-form__choice">Pass</span>
+              <span
+                class="inspection-form__choice inspection-form__choice--fail"
+                >Fail</span
+              >
+            </span>
+          </div>
+
+          <div class="inspection-form__attachment">
+            <span class="inspection-form__attachment-icon">+</span>
+            <span
+              ><strong>Photo evidence</strong><small>1 photo attached</small
+              ></span
+            >
+          </div>
+          <div class="inspection-form__notes">
+            <span>Notes</span>
+            <strong>Oil visible beneath drive motor</strong>
+          </div>
+        </div>
+        <div class="inspection-form__footer">
+          <span class="inspection-form__submit"
+            >Submit inspection <Icon name="ArrowRight" /></span
+          >
+        </div>
+      </div>
+      <div class="inspection-tablet__home"><span></span></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .inspection-demo {
+    container-type: inline-size;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    pointer-events: none;
+    user-select: none;
+  }
+  .inspection-demo__canvas {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    font-size: 1.8cqw;
+    line-height: 1.35;
+  }
+  .inspection-demo :global(svg) {
+    width: 1.2em;
+    height: 1.2em;
+    flex-shrink: 0;
+  }
+  .inspection-desktop {
+    --desktop-outline: var(--bb-transparent-white-400);
+    position: absolute;
+    bottom: 5%;
+    left: 54%;
+    width: 60%;
+    height: 86%;
+    overflow: hidden;
+    border: 1px solid var(--desktop-outline);
+    border-radius: 1.5cqw;
+  }
+  .inspection-desktop__header {
+    display: flex;
+    height: 6cqw;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 2cqw;
+    border-bottom: 1px solid var(--desktop-outline);
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base-subtle);
+  }
+  .inspection-desktop__dots {
+    display: flex;
+    gap: 0.7cqw;
+  }
+  .inspection-desktop__dots i {
+    width: 1.1cqw;
+    height: 1.1cqw;
+    border-radius: 50%;
+    background: var(--bb-transparent-white-500);
+  }
+  .inspection-desktop__workspace {
+    display: flex;
+    height: calc(100% - 6cqw);
+    gap: 8px;
+  }
+  .inspection-desktop__rail {
+    display: flex;
+    width: 4.5cqw;
+    flex-shrink: 0;
+    align-items: center;
+    flex-direction: column;
+    gap: 3.5cqw;
+    padding-top: 2cqw;
+    border-right: 1px solid var(--desktop-outline);
+    color: rgb(255 255 255 / 0.5);
+  }
+  .inspection-records {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    margin: 1.3cqw 1.3cqw 1.3cqw 0;
+    padding: 3.5cqw 14cqw 3.5cqw 2cqw;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 6px;
+    background: var(--bb-background-surface-base);
+  }
+  .inspection-records__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 3.3cqw;
+    font-weight: 500;
+  }
+  .inspection-records__heading :global(svg) {
+    width: 2.3cqw;
+    height: 2.3cqw;
+    color: var(--bb-text-subtle);
+  }
+  .inspection-records__tabs {
+    display: flex;
+    align-items: center;
+    gap: 2cqw;
+    margin: 2.7cqw 0 2cqw;
+    white-space: nowrap;
+  }
+  .inspection-records__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9cqw;
+    padding-bottom: 1.3cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.7cqw;
+  }
+  .inspection-records__tab--active {
+    border-bottom: 1px solid var(--bb-text-base);
+    color: var(--bb-text-base);
+  }
+  .inspection-records__count {
+    display: grid;
+    width: 2.2cqw;
+    height: 2.2cqw;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--bb-background-surface-raised);
+    font-size: 1.4cqw;
+  }
+  .inspection-records__table {
+    margin-right: -14cqw;
+    border-top: 1px solid var(--bb-border-base);
+    border-left: 1px solid var(--bb-border-base);
+  }
+  .inspection-records__columns,
+  .inspection-records__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 2cqw;
+  }
+  .inspection-records__columns {
+    padding: 1.1cqw 15.7cqw 1.1cqw 1.7cqw;
+    border-bottom: 1px solid var(--bb-border-base);
+    color: var(--bb-text-subtle);
+    font-size: 1.4cqw;
+  }
+  .inspection-records__row {
+    min-height: 8.7cqw;
+    padding: 1.2cqw 15.7cqw 1.2cqw 1.7cqw;
+    border-bottom: 1px solid var(--bb-border-subtle);
+    background: var(--bb-background-surface-base);
+  }
+  .inspection-records__row--current {
+    background: var(--bb-background-sand);
+  }
+  .inspection-records__row strong,
+  .inspection-records__row small {
+    display: block;
+  }
+  .inspection-records__row strong {
+    font-size: 1.75cqw;
+    font-weight: 500;
+  }
+  .inspection-records__row small {
+    margin-top: 0.4cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.35cqw;
+  }
+  .inspection-records__status {
+    padding: 0.6cqw 0.8cqw;
+    font-size: 1.25cqw;
+    white-space: nowrap;
+  }
+  .inspection-records__status--action {
+    background: var(--bb-yellow-300);
+    color: var(--bb-text-base);
+  }
+  .inspection-records__status--passed {
+    background: var(--bb-celery-300);
+    color: var(--bb-text-base);
+  }
+  .inspection-tablet {
+    position: absolute;
+    z-index: 1;
+    bottom: 5%;
+    left: 3%;
+    display: flex;
+    width: 48%;
+    height: 82%;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--bb-transparent-white-400);
+    border-radius: 2.4cqw;
+    background: transparent;
+  }
+  .inspection-tablet__camera,
+  .inspection-tablet__home {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    background: transparent;
+  }
+  .inspection-tablet__camera {
+    height: 2.5cqw;
+  }
+  .inspection-tablet__camera span {
+    width: 0.5cqw;
+    height: 0.5cqw;
+    border-radius: 50%;
+    background: var(--bb-transparent-white-800);
+  }
+  .inspection-tablet__home {
+    height: 2.4cqw;
+  }
+  .inspection-tablet__home span {
+    width: 6.5cqw;
+    height: 0.35cqw;
+    border-radius: 99px;
+    background: var(--bb-transparent-white-800);
+  }
+  .inspection-tablet__screen {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+    overflow: hidden;
+    margin-inline: 1.3cqw;
+    background: transparent;
+  }
+  .inspection-form__appbar {
+    height: 2cqw;
+    flex: 0 0 auto;
+    border-bottom: 1px solid var(--bb-transparent-white-400);
+  }
+  .inspection-form__content {
+    min-height: 0;
+    flex: 1;
+    overflow: hidden;
+    padding: 2.2cqw 2.2cqw 1cqw;
+    background: var(--bb-background-surface-base);
+  }
+  .inspection-form__title {
+    margin-top: 0.3cqw;
+    font-size: 2.4cqw;
+    font-weight: 500;
+  }
+  .inspection-form__context {
+    margin-top: 0.3cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.2cqw;
+  }
+  .inspection-form__fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1cqw;
+    margin-top: 1.5cqw;
+  }
+  .inspection-form__field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.5cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.15cqw;
+  }
+  .inspection-form__field strong {
+    overflow: hidden;
+    padding: 0.8cqw 1cqw;
+    border: 1px solid var(--bb-border-base);
+    border-radius: 0.5cqw;
+    color: var(--bb-text-base);
+    font-size: 1.3cqw;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .inspection-form__section-title {
+    margin-top: 1.6cqw;
+    padding-bottom: 0.7cqw;
+    border-bottom: 1px solid var(--bb-border-base);
+    font-size: 1.45cqw;
+    font-weight: 500;
+  }
+  .inspection-form__check {
+    display: flex;
+    min-height: 4.4cqw;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1cqw;
+    border-bottom: 1px solid var(--bb-border-subtle);
+    font-size: 1.25cqw;
+  }
+  .inspection-form__choices {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3cqw;
+    white-space: nowrap;
+  }
+  .inspection-form__choice {
+    display: grid;
+    min-width: clamp(30px, 4.4cqw, 46px);
+    min-height: clamp(18px, 2.6cqw, 26px);
+    place-items: center;
+    padding-inline: 0.4cqw;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-base);
+    color: var(--bb-text-subtle);
+    font-size: clamp(9px, 1.15cqw, 12px);
+    font-weight: 500;
+  }
+  .inspection-form__choice--pass {
+    border-color: var(--bb-celery-300);
+    background: var(--bb-celery-300);
+    color: var(--bb-text-base);
+  }
+  .inspection-form__choice--fail {
+    border-color: var(--bb-yellow-300);
+    background: var(--bb-yellow-300);
+    color: var(--bb-text-base);
+  }
+  .inspection-form__reading {
+    padding: 0.5cqw 0.7cqw;
+    border: 1px solid var(--bb-border-base);
+  }
+  .inspection-form__attachment {
+    display: flex;
+    align-items: center;
+    gap: 1cqw;
+    margin-top: 0.6cqw;
+    padding: 0.8cqw;
+    border: 1px dashed var(--bb-border-base);
+  }
+  .inspection-form__attachment-icon {
+    display: grid;
+    width: 3.1cqw;
+    height: 3.1cqw;
+    place-items: center;
+    background: var(--bb-background-sand);
+    font-size: 2cqw;
+  }
+  .inspection-form__attachment strong,
+  .inspection-form__attachment small {
+    display: block;
+    font-size: 1.1cqw;
+  }
+  .inspection-form__attachment strong {
+    font-weight: 500;
+  }
+  .inspection-form__attachment small {
+    color: var(--bb-text-subtle);
+  }
+  .inspection-form__notes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4cqw;
+    margin-top: 0.6cqw;
+    color: var(--bb-text-subtle);
+    font-size: 1.1cqw;
+  }
+  .inspection-form__notes strong {
+    overflow: hidden;
+    padding: 0.7cqw 0.8cqw;
+    border: 1px solid var(--bb-border-base);
+    color: var(--bb-text-base);
+    font-size: 1.1cqw;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .inspection-form__footer {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1.1cqw 2.2cqw;
+    border-top: 1px solid var(--bb-border-base);
+    background: var(--bb-background-surface-base);
+    color: var(--bb-text-subtle);
+    font-size: 1.2cqw;
+  }
+  .inspection-form__submit {
+    display: inline-flex;
+    min-height: 3.5cqw;
+    align-items: center;
+    gap: 1cqw;
+    padding: 0 1.2cqw;
+    background: #1264a3;
+    color: var(--bb-text-on-base);
+    font-weight: 500;
+  }
+  @container (max-width: 460px) {
+    .inspection-demo__canvas {
+      aspect-ratio: 3 / 4;
+    }
+    .inspection-desktop {
+      display: none;
+    }
+    .inspection-tablet {
+      inset: 5% 5% 5% 5%;
+      width: auto;
+      height: auto;
+      border-radius: 5cqw;
+    }
+    .inspection-tablet__camera,
+    .inspection-tablet__home {
+      height: 4cqw;
+    }
+    .inspection-tablet__camera span {
+      width: 0.8cqw;
+      height: 0.8cqw;
+    }
+    .inspection-tablet__home span {
+      width: 10cqw;
+      height: 0.5cqw;
+    }
+    .inspection-tablet__screen {
+      margin-inline: 2cqw;
+    }
+    .inspection-form__appbar {
+      height: 3cqw;
+    }
+    .inspection-form__content {
+      padding: 4cqw;
+    }
+    .inspection-form__title {
+      font-size: 4.3cqw;
+    }
+    .inspection-form__context,
+    .inspection-form__field,
+    .inspection-form__attachment strong,
+    .inspection-form__attachment small {
+      font-size: 2.2cqw;
+    }
+    .inspection-form__fields {
+      gap: 2cqw;
+      margin-top: 3.4cqw;
+    }
+    .inspection-form__field strong {
+      padding: 1.6cqw;
+      font-size: 2.4cqw;
+    }
+    .inspection-form__section-title {
+      margin-top: 3.4cqw;
+      padding-bottom: 1.4cqw;
+      font-size: 2.9cqw;
+    }
+    .inspection-form__check {
+      min-height: 8cqw;
+      font-size: 2.5cqw;
+    }
+    .inspection-form__attachment {
+      margin-top: 2.7cqw;
+      padding: 1.5cqw;
+    }
+    .inspection-form__attachment-icon {
+      width: 6cqw;
+      height: 6cqw;
+      font-size: 3.5cqw;
+    }
+    .inspection-form__notes,
+    .inspection-form__notes strong {
+      font-size: 2.2cqw;
+    }
+    .inspection-form__notes strong {
+      padding: 1.3cqw;
+    }
+    .inspection-form__footer {
+      padding: 2cqw 4cqw;
+      font-size: 2.4cqw;
+    }
+    .inspection-form__submit {
+      min-height: 7cqw;
+      padding-inline: 2cqw;
+    }
+  }
+</style>

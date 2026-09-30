@@ -1,0 +1,535 @@
+---
+import Icon from "@components/Icon.astro";
+import PostgresLogo from "@assets/logos/Postgres.svg?url";
+
+const asset = {
+  id: "AST-2048",
+  name: "Pump 07",
+  location: "North plant · Line 4",
+};
+---
+
+<div class="asset-demo" aria-hidden="true">
+  <div class="asset-demo__canvas">
+    <div class="asset-app">
+      <div class="asset-app__chrome">
+        <span class="asset-app__dots"><i></i><i></i><i></i></span>
+        <span>Budibase</span>
+      </div>
+      <div class="asset-app__shell">
+        <div class="asset-app__rail">
+          <Icon name="AppWindow" weight="fill" />
+          <Icon name="Table" weight="fill" />
+          <Icon name="Wrench" weight="fill" />
+        </div>
+        <div class="asset-register">
+          <div class="asset-register__heading">
+            <span>Asset register</span>
+            <span class="asset-register__add">Add asset</span>
+          </div>
+          <div class="asset-register__source">
+            <img src={PostgresLogo} alt="" /> Connected to PostgreSQL
+          </div>
+
+          <div class="asset-summary">
+            <div class="asset-summary__card">
+              <strong>128</strong><span>Total assets</span>
+            </div>
+            <div class="asset-summary__card">
+              <strong>112</strong><span>In service</span>
+            </div>
+            <div class="asset-summary__card">
+              <strong>9</strong><span>Inspection due</span>
+            </div>
+            <div class="asset-summary__card">
+              <strong>7</strong><span>Open issues</span>
+            </div>
+          </div>
+
+          <div class="asset-filters">
+            <span class="asset-filters__search">Search assets...</span>
+            <span>All statuses <Icon name="CaretDown" /></span>
+            <span>All locations <Icon name="CaretDown" /></span>
+          </div>
+
+          <div class="asset-register__content">
+            <div class="asset-register__table">
+              <div class="asset-register__columns">
+                <span>Asset</span><span>ID</span><span>Type</span><span
+                  >Location</span
+                ><span>Status</span><span>Owner</span><span
+                  >Next inspection</span
+                >
+              </div>
+              <div class="asset-register__row">
+                <strong class="asset-register__name">{asset.name}</strong>
+                <span class="asset-register__id">{asset.id}</span>
+                <span class="asset-register__type">Pump</span>
+                <span>{asset.location}</span>
+                <span class="asset-register__status">In service</span>
+                <span class="asset-register__owner"><b>MW</b> M. Walsh</span>
+                <span class="asset-register__inspection">18 Oct 2026</span>
+              </div>
+              <div class="asset-register__row">
+                <strong class="asset-register__name">Press 02</strong>
+                <span class="asset-register__id">AST-2047</span>
+                <span class="asset-register__type">Press</span>
+                <span>North plant · Line 2</span>
+                <span class="asset-register__status">In service</span>
+                <span
+                  class="asset-register__owner asset-register__owner--orange"
+                  ><b>AP</b> A. Patel</span
+                >
+                <span class="asset-register__inspection">02 Nov 2026</span>
+              </div>
+              <div class="asset-register__row">
+                <strong class="asset-register__name">Forklift 06</strong>
+                <span class="asset-register__id">AST-2046</span>
+                <span class="asset-register__type">Vehicle</span>
+                <span>Warehouse</span>
+                <span class="asset-register__status asset-register__status--due"
+                  >Inspection due</span
+                >
+                <span
+                  class="asset-register__owner asset-register__owner--purple"
+                  ><b>SC</b> S. Chen</span
+                >
+                <span class="asset-register__inspection">29 Sep 2026</span>
+              </div>
+              <div class="asset-register__row">
+                <strong class="asset-register__name">Compressor 12</strong>
+                <span class="asset-register__id">AST-2045</span>
+                <span class="asset-register__type">Compressor</span>
+                <span>West plant · Line 1</span>
+                <span class="asset-register__status">In service</span>
+                <span
+                  class="asset-register__owner asset-register__owner--seafoam"
+                  ><b>JM</b> J. Murphy</span
+                >
+                <span class="asset-register__inspection">15 Dec 2026</span>
+              </div>
+              <div class="asset-register__row">
+                <strong class="asset-register__name">Generator 03</strong>
+                <span class="asset-register__id">AST-2044</span>
+                <span class="asset-register__type">Generator</span>
+                <span>Utility room</span>
+                <span class="asset-register__status asset-register__status--due"
+                  >Inspection due</span
+                >
+                <span class="asset-register__owner asset-register__owner--pink"
+                  ><b>RL</b> R. Lee</span
+                >
+                <span class="asset-register__inspection">26 Sep 2026</span>
+              </div>
+              <div class="asset-register__row">
+                <strong class="asset-register__name">Conveyor 04</strong>
+                <span class="asset-register__id">AST-2043</span>
+                <span class="asset-register__type">Conveyor</span>
+                <span>South plant · Line 3</span>
+                <span class="asset-register__status">In service</span>
+                <span
+                  class="asset-register__owner asset-register__owner--yellow"
+                  ><b>DB</b> D. Byrne</span
+                >
+                <span class="asset-register__inspection">21 Nov 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .asset-demo {
+    --asset-surface: color-mix(
+      in srgb,
+      var(--bb-brand-forest-green) 14%,
+      var(--bb-gray-900)
+    );
+    --asset-raised: color-mix(
+      in srgb,
+      var(--bb-brand-forest-green) 13%,
+      var(--bb-gray-800)
+    );
+    --asset-border: var(--bb-transparent-white-200);
+    --asset-text: var(--bb-text-on-base);
+    --asset-muted: var(--bb-text-on-base-secondary);
+    --asset-accent: #4a154b;
+    container-type: inline-size;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-brand-forest-green);
+    color: var(--asset-text);
+    font-family: var(--font-sans);
+    pointer-events: none;
+    user-select: none;
+  }
+  .asset-demo__canvas {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    isolation: isolate;
+    font-size: 1.8cqw;
+    line-height: 1.4;
+  }
+  .asset-demo :global(svg) {
+    width: 1.2em;
+    height: 1.2em;
+    flex-shrink: 0;
+  }
+  .asset-app {
+    --device-outline: var(--bb-transparent-white-400);
+    position: absolute;
+    top: 8%;
+    left: 4%;
+    width: 92%;
+    height: 84%;
+    overflow: hidden;
+    border: 1px solid var(--device-outline);
+    border-radius: 1.5cqw;
+  }
+  .asset-app__chrome {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    height: 6cqw;
+    align-items: center;
+    padding-inline: 2cqw;
+    border-bottom: 1px solid var(--device-outline);
+    color: var(--bb-text-on-base-subtle);
+  }
+  .asset-app__chrome::after {
+    content: "";
+  }
+  .asset-app__dots {
+    display: flex;
+    gap: 0.7cqw;
+  }
+  .asset-app__dots i {
+    width: 1.1cqw;
+    height: 1.1cqw;
+    border-radius: 50%;
+    background: var(--bb-transparent-white-500);
+  }
+  .asset-app__shell {
+    display: flex;
+    box-sizing: border-box;
+    height: calc(100% - 6cqw);
+    gap: 8px;
+  }
+  .asset-app__rail {
+    display: flex;
+    width: 4.5cqw;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.5cqw;
+    padding-top: 2cqw;
+    border-right: 1px solid var(--device-outline);
+    color: rgb(255 255 255 / 0.5);
+  }
+  .asset-register {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 1.3cqw 1.3cqw 1.3cqw 0;
+    padding: 2cqw;
+    border: 1px solid var(--asset-border);
+    border-radius: 4px;
+    background: var(--asset-surface);
+  }
+  .asset-register__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2.7cqw;
+    font-weight: 500;
+  }
+  .asset-register__add {
+    padding: calc(0.65cqw + 2px) calc(1.1cqw + 4px);
+    background: var(--asset-accent);
+    color: var(--bb-text-on-base);
+    font-size: calc(1.15cqw + 2px);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .asset-register__source {
+    display: flex;
+    align-items: center;
+    gap: 0.6cqw;
+    margin: 0.4cqw 0 1.7cqw;
+    color: var(--asset-muted);
+    font-size: 1.25cqw;
+  }
+  .asset-register__source img {
+    width: 1.8cqw;
+    height: 1.8cqw;
+  }
+  .asset-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1cqw;
+    margin-bottom: 2cqw;
+  }
+  .asset-summary__card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.4cqw;
+    padding: calc(1.3cqw - 2px) 1.3cqw;
+    border: 1px solid var(--asset-border);
+    border-radius: 0;
+    background: var(--asset-raised);
+  }
+  .asset-summary__card strong {
+    font-size: 2.3cqw;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .asset-summary__card span {
+    color: var(--asset-muted);
+    font-size: 1cqw;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .asset-filters {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 0.8cqw;
+    margin-bottom: 1.6cqw;
+  }
+  .asset-filters > span {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7cqw 1cqw;
+    border: 1px solid var(--asset-border);
+    border-radius: 0;
+    background: var(--asset-raised);
+    color: var(--asset-muted);
+    font-size: 1.1cqw;
+    white-space: nowrap;
+  }
+  .asset-filters__search {
+    color: var(--bb-text-on-base-muted) !important;
+  }
+  .asset-register__content {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--asset-border);
+    border-radius: 0;
+  }
+  .asset-register__table {
+    display: flex;
+    height: 100%;
+    min-width: 0;
+    flex-direction: column;
+    background: var(--asset-raised);
+  }
+  .asset-register__columns,
+  .asset-register__row {
+    display: grid;
+    grid-template-columns: 16% 12% 12% 18% 15% 13% 14%;
+    align-items: center;
+    gap: 0;
+    padding-inline: 1cqw;
+    border-bottom: 1px solid var(--asset-border);
+  }
+  .asset-register__columns {
+    flex: 0 0 auto;
+    min-height: 3.4cqw;
+    background: var(--asset-accent);
+    color: var(--bb-text-on-base-subtle);
+    font-size: 1cqw;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .asset-register__row {
+    flex: 1 1 auto;
+    min-height: 4.2cqw;
+    font-size: 1.05cqw;
+    white-space: nowrap;
+  }
+  .asset-register__name {
+    font-size: 1.15cqw;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .asset-register__id {
+    color: var(--asset-muted);
+    white-space: nowrap;
+  }
+  .asset-register__type {
+    width: max-content;
+    padding: max(0px, calc(0.4cqw - 2px)) 0.6cqw;
+    border-radius: 2cqw;
+    background: var(--bb-transparent-white-100);
+    color: var(--asset-text);
+    font-size: 1cqw;
+    white-space: nowrap;
+  }
+  .asset-register__status {
+    width: max-content;
+    padding: max(0px, calc(0.4cqw - 2px)) 0.6cqw;
+    border-radius: 2cqw;
+    background: var(--bb-celery-1000);
+    color: var(--bb-celery-100);
+    font-size: calc(0.9cqw + 1px);
+    white-space: nowrap;
+  }
+  .asset-register__status--due {
+    background: var(--bb-brown-900);
+    color: var(--bb-brown-100);
+  }
+  .asset-register__inspection {
+    white-space: nowrap;
+  }
+  .asset-register__owner {
+    display: flex;
+    align-items: center;
+    gap: calc(0.4cqw + 2px);
+    white-space: nowrap;
+  }
+  .asset-register__owner b {
+    display: grid;
+    width: calc(2cqw - 2px);
+    height: calc(2cqw - 2px);
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--bb-blue-200);
+    color: var(--bb-blue-900);
+    font-size: 0.75cqw;
+    font-weight: 600;
+  }
+  .asset-register__owner--orange b {
+    background: var(--bb-orange-200);
+    color: var(--bb-orange-900);
+  }
+  .asset-register__owner--purple b {
+    background: var(--bb-purple-200);
+    color: var(--bb-purple-900);
+  }
+  .asset-register__owner--seafoam b {
+    background: var(--bb-seafoam-200);
+    color: var(--bb-seafoam-900);
+  }
+  .asset-register__owner--pink b {
+    background: var(--bb-pink-200);
+    color: var(--bb-pink-900);
+  }
+  .asset-register__owner--yellow b {
+    background: var(--bb-yellow-200);
+    color: var(--bb-yellow-900);
+  }
+  @container (max-width: 460px) {
+    .asset-demo__canvas {
+      height: 100cqw;
+      aspect-ratio: auto;
+    }
+    .asset-app {
+      top: 3%;
+      left: 4%;
+      width: 92%;
+      height: 94%;
+      border-radius: 2cqw;
+    }
+    .asset-app__chrome {
+      height: 5cqw;
+      padding-inline: 2.5cqw;
+      font-size: 2.3cqw;
+    }
+    .asset-app__shell {
+      height: calc(100% - 5cqw);
+      gap: 0;
+    }
+    .asset-app__rail {
+      display: none;
+    }
+    .asset-register {
+      margin: 1.5cqw;
+      padding: 2cqw;
+    }
+    .asset-register__heading {
+      font-size: 3.5cqw;
+    }
+    .asset-register__add {
+      padding: calc(0.8cqw + 2px) calc(1.5cqw + 4px);
+      font-size: calc(2cqw + 2px);
+    }
+    .asset-register__source {
+      margin-bottom: 1.5cqw;
+      font-size: 1.9cqw;
+    }
+    .asset-register__source img {
+      width: 2.5cqw;
+      height: 2.5cqw;
+    }
+    .asset-summary {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1cqw;
+      margin-bottom: 1.8cqw;
+    }
+    .asset-summary__card {
+      padding: calc(1.4cqw - 2px) 1.4cqw;
+    }
+    .asset-summary__card strong {
+      font-size: 3cqw;
+    }
+    .asset-summary__card span {
+      font-size: 2cqw;
+    }
+    .asset-filters {
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 1.8cqw;
+    }
+    .asset-filters > span {
+      padding: 1.1cqw;
+      font-size: 2cqw;
+    }
+    .asset-filters > span:last-child {
+      display: none;
+    }
+    .asset-register__content {
+      flex: 1;
+    }
+    .asset-register__columns,
+    .asset-register__row {
+      grid-template-columns: 38% 27% 35%;
+      padding-inline: 1cqw;
+    }
+    .asset-register__columns {
+      min-height: 5cqw;
+      font-size: 2cqw;
+    }
+    .asset-register__row {
+      min-height: 6.5cqw;
+      font-size: 2.2cqw;
+    }
+    .asset-register__name {
+      font-size: 2.3cqw;
+    }
+    .asset-register__status {
+      padding: 0 0.7cqw;
+      font-size: calc(1.5cqw + 1px);
+    }
+    .asset-register__columns > :nth-child(3),
+    .asset-register__columns > :nth-child(4),
+    .asset-register__columns > :nth-child(6),
+    .asset-register__columns > :nth-child(7),
+    .asset-register__row > :nth-child(3),
+    .asset-register__row > :nth-child(4),
+    .asset-register__row > :nth-child(6),
+    .asset-register__row > :nth-child(7) {
+      display: none;
+    }
+  }
+</style>

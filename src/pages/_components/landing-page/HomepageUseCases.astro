@@ -7,14 +7,21 @@ import SAPLogo from "@assets/logos/SAP.svg?url";
 import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
 import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
 import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+import PurchaseApprovalsDemo from "./PurchaseApprovalsDemo.astro";
+import FactoryInspectionsDemo from "./FactoryInspectionsDemo.astro";
+import IncidentManagementDemo from "./IncidentManagementDemo.astro";
+import KnowledgeAssistantDemo from "./KnowledgeAssistantDemo.astro";
+import AssetTrackingDemo from "./AssetTrackingDemo.astro";
 
-type IconName = "Sparkle" | "Table" | "AppWindow" | "Lightning" | "Code";
+type IconName =
+  "Sparkle" | "Table" | "SquaresFour" | "AppWindow" | "Lightning" | "Code";
 type AssetType =
   | "Agent"
   | "App"
   | "Automation"
   | "Channels"
   | "Table"
+  | "Operations center"
   | "Function"
   | "API"
   | "Database";
@@ -40,6 +47,7 @@ const assetColorByType: Partial<Record<AssetType, string>> = {
   Agent: "var(--bb-cyan-300)",
   Automation: "var(--bb-purple-300)",
   Table: "var(--bb-yellow-300)",
+  "Operations center": "var(--bb-celery-300)",
   Function: "var(--bb-chartreuse-300)",
 };
 
@@ -52,24 +60,24 @@ const solutions: readonly Solution[] = [
       "Employees submit purchase requests with the items, supplier and cost. Requests are automatically routed to the right approvers based on your approval rules, with employees notified when more information is needed or a decision is made. Approved requests can then be passed to your purchasing system to create the PO.",
     assets: [
       {
-        name: "Purchase request portal",
+        name: "Purchase request form",
         type: "App",
         icon: "AppWindow",
       },
       {
-        name: "Approval agent",
+        name: "Purchasing agent",
         type: "Agent",
         icon: "Sparkle",
       },
       {
-        name: "Purchase requests",
-        type: "Table",
-        icon: "Table",
+        name: "Approval inbox",
+        type: "Operations center",
+        icon: "SquaresFour",
       },
       {
-        name: "Route purchase approvals",
-        type: "Automation",
-        icon: "Lightning",
+        name: "My requests",
+        type: "Operations center",
+        icon: "SquaresFour",
       },
       {
         name: "Microsoft Teams",
@@ -128,7 +136,7 @@ const solutions: readonly Solution[] = [
         icon: "AppWindow",
       },
       {
-        name: "Incident triage agent",
+        name: "Incident agent",
         type: "Agent",
         icon: "Sparkle",
       },
@@ -150,15 +158,10 @@ const solutions: readonly Solution[] = [
     label: "Asset tracking",
     color: "var(--bb-purple-600)",
     overview:
-      "Teams maintain a governed record of equipment, ownership, location and lifecycle state. Updates stay connected to existing data sources, while reminders and review steps keep records accurate.",
+      "Give teams an asset register connected to your existing PostgreSQL database. Updates to equipment, ownership and location stay in the source data, with IT controlling access and automated reminders helping keep records accurate.",
     assets: [
       {
         name: "Asset register",
-        type: "Table",
-        icon: "Table",
-      },
-      {
-        name: "Asset management app",
         type: "App",
         icon: "AppWindow",
       },
@@ -219,7 +222,7 @@ const sectionId = "homepage-operations-solutions";
   <div class="operations-solutions-split__container">
     <TitleBlock
       variant="section"
-      title="Solutions for better operations"
+      title="Solutions that perfectly fit your organization"
       description="Manage requests, conduct inspections, streamline procurement, track assets, and resolve incidents with tools built around the way your teams work."
       titleId={`${sectionId}-title`}
       containerClass="operations-solutions-split__header"
@@ -364,7 +367,19 @@ const sectionId = "homepage-operations-solutions";
                     class="operations-solutions-split__demo"
                     aria-hidden="true"
                   >
-                    <div class="operations-solutions-split__demo-filler" />
+                    {solution.id === "purchase-approvals" ? (
+                      <PurchaseApprovalsDemo />
+                    ) : solution.id === "factory-inspections" ? (
+                      <FactoryInspectionsDemo />
+                    ) : solution.id === "incident-management" ? (
+                      <IncidentManagementDemo />
+                    ) : solution.id === "asset-tracking" ? (
+                      <AssetTrackingDemo />
+                    ) : solution.id === "knowledge-assistant" ? (
+                      <KnowledgeAssistantDemo />
+                    ) : (
+                      <div class="operations-solutions-split__demo-filler" />
+                    )}
                   </div>
                 </div>
               </section>
@@ -646,6 +661,9 @@ const sectionId = "homepage-operations-solutions";
     }
     .operations-solutions-split__asset-identity {
       gap: 0.375rem;
+    }
+    .operations-solutions-split__asset-name {
+      white-space: normal;
     }
   }
 </style>
