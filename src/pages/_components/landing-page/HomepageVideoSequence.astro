@@ -31,8 +31,7 @@ const playerUrl = `${streamBase}/iframe?${playerParams}`;
     title="Enterprise operations hero video"
     tabindex="-1"
     allow="autoplay; encrypted-media"
-    loading="eager"
-  ></iframe>
+    loading="eager"></iframe>
 </div>
 
 <script>
@@ -43,7 +42,9 @@ const playerUrl = `${streamBase}/iframe?${playerParams}`;
       const source = player?.dataset.playerSrc;
       if (!player || !source) return;
 
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
       const updatePlayback = () => {
         // Unload the player as well as hiding it, so reduced motion stops playback.
         if (reducedMotion.matches) {
