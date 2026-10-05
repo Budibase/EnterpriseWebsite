@@ -123,19 +123,17 @@ const selfHostedEnterpriseEntry =
   pricing.enterprise[1];
 
 const openSourcePlanFeatures = [
-  "Unlimited apps",
-  "Unlimited automations",
-  "Unlimited agents",
-  "Standard SSO",
   "Unlimited users",
+  "Unlimited apps, agents, automations, tables, APIs",
+  "Standard SSO",
 ];
 
 const selfHostedEnterprisePlanFeatures = [
-  "Unlimited users, creators, groups, workspaces",
-  "Operational command center",
-  "Enterprise security controls",
-  "Flexible deployment options (inc Airgap)",
-  "Dedicated support, services and SLAs",
+  "Unlimited users, creators, groups and workspaces",
+  "Extended activity, audit logs and backups",
+  "Enterprise identity and access controls",
+  "Flexible deployment options, including air-gapped",
+  "Dedicated support, onboarding, training and SLAs",
 ];
 
 const cloudCards = [
@@ -243,6 +241,7 @@ const cloudCards = [
 const selfHostedCards = [
   {
     title: "Open source",
+    price: "$0",
     description:
       "Access a complete operations platform that you can run on your own infrastructure.",
     buttonLabel: "Self-host for free",
@@ -254,6 +253,7 @@ const selfHostedCards = [
   },
   {
     title: "Enterprise",
+    price: "Custom",
     description:
       "Design a custom package with enhanced governance, security, and support requirements.",
     buttonLabel: "Contact sales",
@@ -393,7 +393,10 @@ const faqItems: FaqItem[] = [
               <div class="pricing-self-host-card__content">
                 <div class="pricing-self-host-card__copy">
                   <h2>{card.title}</h2>
-                  <p>{card.description}</p>
+                  <p class="pricing-self-host-card__price">{card.price}</p>
+                  <p class="pricing-self-host-card__description">
+                    {card.description}
+                  </p>
                 </div>
                 <Button
                   label={card.buttonLabel}
@@ -427,7 +430,7 @@ const faqItems: FaqItem[] = [
           <p>Trusted by the world's most important organizations</p>
         </div>
         <div class="pricing-logo-grid__logos">
-          <EnterpriseLogoGrid placement="card-row" />
+          <EnterpriseLogoGrid placement="outline-row" />
         </div>
       </div>
 
@@ -599,7 +602,8 @@ const faqItems: FaqItem[] = [
     width: 100%;
     flex-direction: column;
     align-items: center;
-    padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
+    justify-content: center;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
     border-block: 1px solid var(--pricing-grid-line);
     text-align: center;
   }
@@ -627,6 +631,7 @@ const faqItems: FaqItem[] = [
   .pricing-self-host-card {
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: max-content minmax(0, 1fr);
     gap: var(--pricing-card-gap);
     min-height: 260px;
     padding: 2rem clamp(2.5rem, 4vw, 3.5rem);
@@ -635,6 +640,28 @@ const faqItems: FaqItem[] = [
 
   .pricing-self-host-card + .pricing-self-host-card {
     border-left: 1px solid var(--pricing-grid-line);
+  }
+
+  .pricing-self-host-card.is-custom {
+    background: var(--bb-celery-1400);
+  }
+
+  .pricing-self-host-card.is-custom h2 {
+    color: var(--bb-text-on-base) !important;
+  }
+
+  .pricing-self-host-card.is-custom .pricing-self-host-card__price {
+    color: var(--bb-text-on-base-subtle) !important;
+  }
+
+  .pricing-self-host-card.is-custom .pricing-self-host-card__description {
+    color: var(--bb-text-on-base-subtle) !important;
+  }
+
+  .pricing-self-host-card.is-custom .pricing-self-host-card__features li {
+    border-top-color: var(--bb-transparent-white-300);
+    color: var(--bb-text-on-base) !important;
+    -webkit-text-fill-color: var(--bb-text-on-base);
   }
 
   .pricing-self-host-card__content {
@@ -650,8 +677,8 @@ const faqItems: FaqItem[] = [
   .pricing-self-host-card__copy {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
     min-width: 0;
+    width: 100%;
   }
 
   .pricing-self-host-card h2 {
@@ -663,18 +690,28 @@ const faqItems: FaqItem[] = [
     font-weight: 600;
     line-height: 1.1;
     letter-spacing: 0;
-    text-align: center;
+    text-align: left;
   }
 
-  .pricing-self-host-card p {
-    margin: 0;
+  .pricing-self-host-card__price {
+    margin: 0.75rem 0 0;
+    color: var(--bb-text-subtle) !important;
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.1;
+    text-align: left;
+  }
+
+  .pricing-self-host-card__description {
+    margin: clamp(1.5rem, 2.5vw, 2.5rem) 0 0;
     width: 100%;
     color: var(--bb-text-body);
     font-family: var(--font-sans);
-    font-size: var(--bb-text-copy-compact-font-size);
+    font-size: 1rem;
     font-weight: 400;
     line-height: var(--bb-text-copy-body-line-height);
-    text-align: center;
+    text-align: left;
   }
 
   .pricing-self-host-card__features {
@@ -689,7 +726,7 @@ const faqItems: FaqItem[] = [
 
   .pricing-self-host-card__features li {
     display: flex;
-    flex: 1 1 0;
+    flex: 0 0 auto;
     min-height: 2.25rem;
     align-items: center;
     justify-content: flex-start;
@@ -700,8 +737,8 @@ const faqItems: FaqItem[] = [
     color: var(--bb-text-base) !important;
     -webkit-text-fill-color: var(--bb-text-base);
     font-family: var(--font-sans);
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 400;
     line-height: 1.25;
     text-align: left;
   }
@@ -769,10 +806,6 @@ const faqItems: FaqItem[] = [
     font-size: 1.125rem;
     font-weight: 400;
     line-height: 1.4;
-  }
-
-  .pricing-logo-grid__logos {
-    padding: clamp(1rem, 2.5vw, 2rem);
   }
 
   .pricing-cloud-section {
@@ -967,16 +1000,12 @@ const faqItems: FaqItem[] = [
     }
 
     .pricing-hero__copy {
-      padding: 2.5rem 1.25rem;
+      padding: 2rem 1.25rem;
     }
 
     .pricing-self-host-card {
       grid-template-columns: 1fr;
       padding: 1.25rem 1.5rem;
-    }
-
-    .pricing-logo-grid__logos {
-      padding: 1rem;
     }
 
     .pricing-self-host-card__content {
@@ -988,7 +1017,6 @@ const faqItems: FaqItem[] = [
     }
 
     .pricing-self-host-card__features li {
-      flex-basis: auto;
       min-height: 2.75rem;
     }
 

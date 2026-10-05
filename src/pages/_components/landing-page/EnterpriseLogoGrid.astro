@@ -23,7 +23,13 @@ import EricssonBlackLogo from "@assets/logos/enterprise-grid/ericsson-black.svg?
 import BulgariaCrestLogo from "@assets/images/homepage/customer-stories/bulgaria-logo.png?url";
 
 type Placement =
-  "hero" | "hero-compact" | "hero-row" | "section" | "showcase" | "card-row";
+  | "hero"
+  | "hero-compact"
+  | "hero-row"
+  | "section"
+  | "showcase"
+  | "card-row"
+  | "outline-row";
 
 type ImageLogo = {
   type: "image";
@@ -245,17 +251,19 @@ const isCompact = placement === "hero-compact";
 const isRow = placement === "hero-row";
 const isShowcase = placement === "showcase";
 const isCardRow = placement === "card-row";
+const isOutlineRow = placement === "outline-row";
+const isLogoRow = isCardRow || isOutlineRow;
 ---
 
 <div
   class={`enterprise-logo-grid enterprise-logo-grid--${placement}`}
   aria-label="Trusted by enterprise and government teams"
-  role={isCardRow ? "region" : undefined}
-  tabindex={isCardRow ? "0" : undefined}
+  role={isLogoRow ? "region" : undefined}
+  tabindex={isLogoRow ? "0" : undefined}
 >
   <div class="enterprise-logo-grid__inner">
     {
-      isCompact || isRow || isShowcase || isCardRow
+      isCompact || isRow || isShowcase || isLogoRow
         ? (isCompact
             ? compactLogos
             : isRow
@@ -353,6 +361,11 @@ const isCardRow = placement === "card-row";
     overflow: visible;
   }
 
+  .enterprise-logo-grid--outline-row {
+    --logo-grid-column-gap: 0;
+    overflow: visible;
+  }
+
   .enterprise-logo-grid__inner {
     display: flex;
     align-items: flex-start;
@@ -386,7 +399,8 @@ const isCardRow = placement === "card-row";
     border-left: 1px solid var(--bb-border-subtle);
   }
 
-  .enterprise-logo-grid--card-row .enterprise-logo-grid__inner {
+  :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
+    .enterprise-logo-grid__inner {
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     gap: var(--logo-grid-column-gap);
@@ -405,44 +419,65 @@ const isCardRow = placement === "card-row";
     scroll-snap-align: start;
   }
 
-  .enterprise-logo-grid--card-row .enterprise-logo-grid__image {
+  .enterprise-logo-grid--outline-row .enterprise-logo-grid__cell {
+    box-sizing: border-box;
+    width: 100%;
+    height: clamp(6.5rem, 9vw, 7.75rem);
+    padding: clamp(0.75rem, 1.2vw, 1.25rem);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    scroll-snap-align: start;
+  }
+
+  .enterprise-logo-grid--outline-row
+    .enterprise-logo-grid__cell
+    + .enterprise-logo-grid__cell {
+    border-left: 1px solid var(--pricing-grid-line, var(--bb-border-base));
+  }
+
+  :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
+    .enterprise-logo-grid__image {
     opacity: 0.88;
     filter: grayscale(1) brightness(0.9) contrast(1.08);
   }
 
-  .enterprise-logo-grid--card-row .enterprise-logo-grid__image.is-arm-card {
+  :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
+    .enterprise-logo-grid__image.is-arm-card {
     width: calc(min(8.5rem, 92%) - 20px);
     height: auto;
     max-height: none;
   }
 
-  .enterprise-logo-grid--card-row .enterprise-logo-grid__image.is-amex {
+  :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
+    .enterprise-logo-grid__image.is-amex {
     width: auto;
     height: 2.5rem;
     max-width: min(6.25rem, 88%);
   }
 
-  .enterprise-logo-grid--card-row .enterprise-logo-grid__image.is-saab-card {
+  :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
+    .enterprise-logo-grid__image.is-saab-card {
     width: min(8.5rem, 92%);
     height: auto;
     max-height: 2.5rem;
   }
 
-  .enterprise-logo-grid--card-row
+  :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
     .enterprise-logo-grid__image.is-austrian-patent-card {
     width: min(8.5rem, 92%);
     height: auto;
     max-height: 2.5rem;
   }
 
-  .enterprise-logo-grid--card-row
+  :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
     .enterprise-logo-grid__image.is-ericsson-card {
     width: min(8.5rem, 92%);
     height: auto;
     max-height: 2.25rem;
   }
 
-  .enterprise-logo-grid--card-row
+  :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
     .enterprise-logo-grid__image.is-northern-territory-card {
     width: min(8.5rem, 92%);
     height: auto;
@@ -450,12 +485,16 @@ const isCardRow = placement === "card-row";
     mix-blend-mode: normal;
   }
 
-  .enterprise-logo-grid--card-row .enterprise-logo-grid__northrop {
+  :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
+    .enterprise-logo-grid__northrop {
     color: var(--bb-text-body);
     opacity: 0.88;
   }
 
-  .enterprise-logo-grid--card-row:focus-visible {
+  :is(
+    .enterprise-logo-grid--card-row,
+    .enterprise-logo-grid--outline-row
+  ):focus-visible {
     outline: 2px solid var(--bb-brand-forest-green);
     outline-offset: 0.25rem;
   }
@@ -703,19 +742,26 @@ const isCardRow = placement === "card-row";
   }
 
   @media (max-width: 1199px) {
-    .enterprise-logo-grid--card-row {
+    :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row) {
       overflow-x: auto;
       overscroll-behavior-inline: contain;
-      padding-bottom: 0.25rem;
       scroll-snap-type: inline proximity;
       scrollbar-width: none;
     }
 
-    .enterprise-logo-grid--card-row::-webkit-scrollbar {
+    .enterprise-logo-grid--card-row {
+      padding-bottom: 0.25rem;
+    }
+
+    :is(
+      .enterprise-logo-grid--card-row,
+      .enterprise-logo-grid--outline-row
+    )::-webkit-scrollbar {
       display: none;
     }
 
-    .enterprise-logo-grid--card-row .enterprise-logo-grid__inner {
+    :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
+      .enterprise-logo-grid__inner {
       grid-template-columns: repeat(8, clamp(10rem, 22vw, 12rem));
       justify-content: flex-start;
       width: max-content;
@@ -778,9 +824,14 @@ const isCardRow = placement === "card-row";
       padding-inline: 1rem;
     }
 
-    .enterprise-logo-grid--card-row .enterprise-logo-grid__inner {
+    :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
+      .enterprise-logo-grid__inner {
       grid-template-columns: repeat(8, clamp(9.5rem, 55vw, 11.5rem));
       padding-inline: 0;
+    }
+
+    .enterprise-logo-grid--outline-row {
+      padding-bottom: 0;
     }
 
     .enterprise-logo-grid--hero-compact {
