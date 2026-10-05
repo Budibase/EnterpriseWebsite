@@ -216,6 +216,10 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
   }
 
   @media (max-width: 767px) {
+    :global(.rulebase-hero__title.hero-title) {
+      font-size: clamp(2.5rem, 11vw, 3rem);
+    }
+
     .rulebase-hero__copy-panel {
       min-height: 0;
       padding-top: calc(var(--site-nav-height) + 2rem);
