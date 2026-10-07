@@ -2,6 +2,7 @@
 import Button from "@components/Button.astro";
 import FeatureBadge from "@components/FeatureBadge.astro";
 import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
 type BadgeVariant =
   | "celery"
@@ -34,6 +35,9 @@ interface Props {
   subtitle: string;
   image: string;
   imageAlt: string;
+  mediaFit?: "cover" | "contain";
+  mediaDemo?: AstroComponentFactory;
+  mediaDemoProps?: Record<string, unknown>;
   logosHeading?: string;
   badge?: Badge;
   action?: Action;
@@ -47,6 +51,9 @@ const {
   subtitle,
   image,
   imageAlt,
+  mediaFit = "cover",
+  mediaDemo: MediaDemo,
+  mediaDemoProps = {},
   logosHeading,
   badge,
   action,
@@ -103,8 +110,21 @@ const isBrandDark = theme === "brand-dark";
         <slot name="content-extra" />
       </div>
 
-      <figure class="hero-small__image">
-        <img src={image} alt={imageAlt} loading="eager" decoding="async" />
+      <figure
+        class:list={[
+          "hero-small__image",
+          mediaFit === "contain" && "hero-small__image--contain",
+        ]}
+      >
+        {
+          MediaDemo ? (
+            <div class="hero-small__demo" role="img" aria-label={imageAlt}>
+              <MediaDemo {...mediaDemoProps} />
+            </div>
+          ) : (
+            <img src={image} alt={imageAlt} loading="eager" decoding="async" />
+          )
+        }
       </figure>
     </div>
 
@@ -232,6 +252,20 @@ const isBrandDark = theme === "brand-dark";
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .hero-small__image--contain {
+    display: grid;
+    align-items: center;
+    background: var(--bb-background-surface-subtle);
+  }
+
+  .hero-small__image--contain img {
+    object-fit: contain;
+  }
+  .hero-small__demo {
+    width: 100%;
+    padding: clamp(1rem, 3vw, 2rem);
   }
 
   .hero-small__logos {

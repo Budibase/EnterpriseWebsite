@@ -9,8 +9,10 @@
 /internal-tools /product/apps/ 301
 /signup-plus /contact/ 301
 /signup-plus/ /contact/ 301
-/templates /ops/ 301
-/templates/ /ops/ 301
+/ops /process/ 301
+/ops/ /process/ 301
+/templates /process/ 301
+/templates/ /process/ 301
 /manufacturing/templates/manufacturing-inventory-management-software/ /blog/tutorials/manufacturing-dashboard/ 301
 /manufacturing/templates/manufacturing-quality-control-checklist/ /product/apps/ 301
 /operations/templates/maintenance-schedule-template/ /product/apps/ 301
@@ -60,9 +62,9 @@
 /blog/data/           /blog/category/data/           301
 /blog/tutorials/      /blog/category/tutorials/      301
 /customers/str%C3%B6er-x/     /customers/stroer-x/ 301
-/resources/     /ops/ 301
+/resources/     /process/ 301
 /components/     /product/apps/ 301
-/operations/     /ops/ 301
+/operations/     /process/ 301
 /platform/api-integration-platform/     /product/apis/ 301
 /categories/api/     /product/connections/ 301
 /categories/auth/     /product/connections/ 301
@@ -71,6 +73,7 @@
 
 # Dynamic redirects must remain after exact redirects so exact rules do not
 # consume Cloudflare's 100-rule dynamic redirect budget.
+/ops/* /process/:splat 301
 /admin-panels/* /product/apps/ 301
 /approval-apps/* /product/apps/ 301
 /business-apps/* /product/apps/ 301
@@ -78,7 +81,7 @@
 /forms/* /product/apps/ 301
 /integration/* /product/connections/ 301
 /internal-tools/* /product/apps/ 301
-/templates/* /ops/ 301
+/templates/* /process/ 301
 /it/templates/* /product/apps/ 301
 /legal/templates/* /product/apps/ 301
 /logistics/templates/* /blog/tutorials/fleet-management-portal/ 301

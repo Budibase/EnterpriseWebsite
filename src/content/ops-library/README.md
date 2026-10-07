@@ -1,6 +1,6 @@
 # Ops Library content
 
-This folder contains the Ops Library entries for `/ops`.
+This folder contains the Ops Library entries for `/process`.
 
 ## Add a new entry
 1. Create a new markdown file in `src/content/ops-library/`.
@@ -15,8 +15,8 @@ This folder contains the Ops Library entries for `/ops`.
 4. Add 2–3 short paragraphs in the markdown body describing what the entry solves.
 
 ## Routing
-- The directory lives at `/ops`.
-- Each entry lives at `/ops/[slug]`.
+- The directory lives at `/process`.
+- Each entry lives at `/process/[slug]`.
 
 ## Update links
-- Navigation should point to `/ops`.
+- Navigation should point to `/process`.

@@ -61,17 +61,14 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       <HeaderDropDown
         label={platformNavMenu.label}
         menu={platformNavMenu.menu}
-        fullWidth={isVideoOverlay || isImmersiveOverlay}
       />
       <HeaderDropDown
         label={solutionsNavMenu.label}
         menu={solutionsNavMenu.menu}
-        fullWidth={isVideoOverlay || isImmersiveOverlay}
       />
       <HeaderDropDown
         label={resourcesNavMenu.label}
         menu={resourcesNavMenu.menu}
-        fullWidth={isVideoOverlay || isImmersiveOverlay}
       />
       <a
         target="_self"
@@ -261,6 +258,13 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 </div>
 
 <script>
+  declare global {
+    interface Window {
+      __budibaseHeaderDropdownsBound?: boolean;
+      __siteMobileNavBound?: boolean;
+    }
+  }
+
   (function () {
     function initHeaderDropdowns() {
       if (window.__budibaseHeaderDropdownsBound) return;
@@ -270,10 +274,33 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       const triggerSelector = "[data-header-dropdown-trigger]";
       const desktopBreakpoint = window.matchMedia("(min-width: 1024px)");
 
-      function closeDropdown(root, focusTrigger = false) {
+      function positionDropdown(root: HTMLElement) {
+        const panel = root.querySelector("[data-header-dropdown-menu]");
+        if (!panel) return;
+
+        root.style.setProperty("--dropdown-offset-x", "0px");
+        // Use the layout position, independent of the opening animation.
+        const top = root.getBoundingClientRect().bottom + 8;
+        root.style.setProperty(
+          "--dropdown-max-height",
+          `${Math.max(0, window.innerHeight - top - 16)}px`,
+        );
+        const bounds = panel.getBoundingClientRect();
+        const viewportWidth = document.documentElement.clientWidth;
+        const left = Math.max(
+          16,
+          Math.min(bounds.left, viewportWidth - bounds.width - 16),
+        );
+        root.style.setProperty(
+          "--dropdown-offset-x",
+          `${left - bounds.left}px`,
+        );
+      }
+
+      function closeDropdown(root: HTMLElement, focusTrigger = false) {
         root.removeAttribute("data-open");
 
-        const trigger = root.querySelector(triggerSelector);
+        const trigger = root.querySelector<HTMLElement>(triggerSelector);
         trigger?.setAttribute("aria-expanded", "false");
 
         if (focusTrigger) {
@@ -281,9 +308,9 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         }
       }
 
-      function openDropdown(root) {
+      function openDropdown(root: HTMLElement) {
         document
-          .querySelectorAll(`${rootSelector}[data-open="true"]`)
+          .querySelectorAll<HTMLElement>(`${rootSelector}[data-open="true"]`)
           .forEach((openRoot) => {
             if (openRoot !== root) {
               closeDropdown(openRoot);
@@ -291,14 +318,15 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
           });
 
         root.setAttribute("data-open", "true");
+        positionDropdown(root);
         root
           .querySelector(triggerSelector)
           ?.setAttribute("aria-expanded", "true");
       }
 
-      function closeAllDropdowns(exceptRoot = null) {
+      function closeAllDropdowns(exceptRoot: HTMLElement | null = null) {
         document
-          .querySelectorAll(`${rootSelector}[data-open="true"]`)
+          .querySelectorAll<HTMLElement>(`${rootSelector}[data-open="true"]`)
           .forEach((openRoot) => {
             if (openRoot !== exceptRoot) {
               closeDropdown(openRoot);
@@ -308,8 +336,9 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 
       document.addEventListener("focusin", (event) => {
         const target = event.target;
+        if (!(target instanceof Element)) return;
         const focusedRoot = target?.closest(rootSelector);
-        const openRoot = document.querySelector(
+        const openRoot = document.querySelector<HTMLElement>(
           `${rootSelector}[data-open="true"]`,
         );
 
@@ -320,11 +349,12 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 
       document.addEventListener("click", (event) => {
         const target = event.target;
+        if (!(target instanceof Element)) return;
         const trigger = target?.closest(triggerSelector);
 
         if (trigger) {
           event.preventDefault();
-          const root = trigger.closest(rootSelector);
+          const root = trigger.closest<HTMLElement>(rootSelector);
 
           if (root) {
             if (root.hasAttribute("data-open")) {
@@ -347,7 +377,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
           return;
         }
 
-        const openRoot = document.querySelector(
+        const openRoot = document.querySelector<HTMLElement>(
           `${rootSelector}[data-open="true"]`,
         );
 
@@ -361,6 +391,12 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
           closeAllDropdowns();
         }
       };
+
+      window.addEventListener("resize", () => {
+        document
+          .querySelectorAll<HTMLElement>(`${rootSelector}[data-open="true"]`)
+          .forEach(positionDropdown);
+      });
 
       if (desktopBreakpoint.addEventListener) {
         desktopBreakpoint.addEventListener(
@@ -423,7 +459,10 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 
       openMenu();
     });
-    closeMenuButton?.addEventListener("click", closeMenu);
+    closeMenuButton?.addEventListener("click", () => {
+      closeMenu();
+      mobileMenuButton?.focus();
+    });
     mobileMenu?.addEventListener("click", (e) => {
       if (e.target === mobileMenu) {
         closeMenu();
@@ -436,6 +475,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && isMenuOpen()) {
         closeMenu();
+        mobileMenuButton?.focus();
       }
     });
 
@@ -454,6 +494,20 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 </script>
 
 <style>
+  .mobile-nav-panel {
+    height: 100dvh;
+    min-height: 0;
+  }
+
+  .mobile-nav-header,
+  .mobile-nav-actions {
+    flex-shrink: 0;
+  }
+
+  .mobile-nav-scroll {
+    overscroll-behavior: contain;
+  }
+
   .nav-shell.nav-shell--surface {
     background-color: var(--bb-background-surface) !important;
   }
@@ -497,14 +551,14 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     :global(.header-dropdown [data-header-dropdown-trigger]:hover),
   .nav-shell.nav-shell--immersive-overlay
     :global(.header-dropdown [data-header-dropdown-trigger]:focus-visible) {
-    background: var(--bb-transparent-white-200);
+    background: transparent;
     color: var(--bb-white) !important;
   }
 
   .nav-shell.nav-shell--immersive-overlay
     :global(.header-dropdown[data-open="true"] [data-header-dropdown-trigger]) {
-    background: var(--bb-celery-200);
-    color: var(--bb-celery-1200) !important;
+    background: transparent;
+    color: var(--bb-white) !important;
     text-shadow: none;
   }
 
@@ -559,14 +613,14 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     :global(.header-dropdown [data-header-dropdown-trigger]:hover),
   .nav-shell.nav-shell--brand-dark
     :global(.header-dropdown [data-header-dropdown-trigger]:focus-visible) {
-    background: var(--bb-transparent-white-100);
+    background: transparent;
     color: var(--bb-white) !important;
   }
 
   .nav-shell.nav-shell--brand-dark
     :global(.header-dropdown[data-open="true"] [data-header-dropdown-trigger]) {
-    background: var(--bb-celery-200);
-    color: var(--bb-celery-1200) !important;
+    background: transparent;
+    color: var(--bb-white) !important;
   }
 
   .nav-shell.nav-shell--brand-dark .nav-github-link:hover {

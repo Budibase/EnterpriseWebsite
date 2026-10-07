@@ -1,0 +1,589 @@
+---
+import Layout from "../../layouts/MainLayout.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import Icon from "@components/Icon.astro";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+import SlackLogo from "@assets/logos/Slack.svg?url";
+import DiscordLogo from "@assets/logos/discord.svg?url";
+import {
+  getProcessDirectoryRows,
+  processAssetTypes,
+} from "../../data/processDirectory";
+
+const channelLogos: Record<string, string> = {
+  Slack: SlackLogo,
+  Teams: TeamsLogo,
+  "Microsoft Teams": TeamsLogo,
+  Discord: DiscordLogo,
+};
+const processes = await getProcessDirectoryRows();
+const description =
+  "Browse Budibase process templates for business operations.";
+const dateFormat = new Intl.DateTimeFormat("en-GB", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<Layout title="Process templates" description={description}>
+  <section
+    class="process-directory"
+    data-process-directory
+    aria-labelledby="process-title"
+  >
+    <header class="directory-heading">
+      <TitleBlock
+        variant="hero"
+        title="Process templates"
+        titleId="process-title"
+      />
+    </header>
+
+    <div class="directory-toolbar">
+      <div class="directory-search">
+        <svg
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+          ><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 4 4"
+          ></path></svg
+        >
+        <label for="process-search" class="sr-only"
+          >Search processes and connections</label
+        >
+        <input
+          id="process-search"
+          type="search"
+          placeholder="Search processes…"
+          autocomplete="off"
+          data-process-search
+        />
+      </div>
+      <div
+        class="asset-switcher"
+        role="group"
+        aria-label="Filter by asset type"
+      >
+        <button type="button" data-asset-filter="all" aria-pressed="true"
+          >All</button
+        >
+        {
+          processAssetTypes.map((asset) => (
+            <button
+              type="button"
+              data-asset-filter={asset.id}
+              aria-pressed="false"
+            >
+              {asset.label}
+            </button>
+          ))
+        }
+      </div>
+      <div class="directory-sort">
+        <label for="process-sort" class="sr-only">Sort processes</label>
+        <select id="process-sort" data-process-sort
+          ><option value="newest">Newest</option><option value="ai"
+            >AI process</option
+          ></select
+        >
+        <Icon name="CaretDown" size="14" />
+      </div>
+    </div>
+
+    <div
+      class="directory-table-scroll"
+      tabindex="0"
+      role="region"
+      aria-label="Process directory table"
+    >
+      <table>
+        <caption class="sr-only"
+          >Compare process assets, AI, connections, and update dates</caption
+        >
+        <thead
+          ><tr
+            ><th scope="col">Process</th><th scope="col">Assets</th><th
+              scope="col">Total assets</th
+            ><th scope="col">AI</th><th scope="col">Connections</th><th
+              scope="col">Updated</th
+            ></tr
+          ></thead
+        >
+        <tbody data-process-rows>
+          {
+            processes.map((process) => (
+              <tr
+                data-process-row
+                data-search={[
+                  process.name,
+                  process.description,
+                  ...process.connections,
+                ]
+                  .join(" ")
+                  .toLowerCase()}
+                data-assets={process.assets.map((asset) => asset.id).join(" ")}
+                data-ai={String(process.ai)}
+                data-updated={process.updated.getTime()}
+                data-name={process.name}
+              >
+                <th scope="row">
+                  <>
+                    <a href={process.href} class="process-name">
+                      {process.name}
+                      <span class="process-arrow">
+                        <Icon name="ArrowUpRight" size="16" />
+                      </span>
+                    </a>
+                    <p class="process-description">{process.description}</p>
+                  </>
+                </th>
+                <td>
+                  <div class="asset-icons">
+                    {process.assets.map((asset) =>
+                      asset.id === "agent-channels" ? (
+                        process.channels.map((channel) => (
+                          <span
+                            class="asset-icon"
+                            tabindex="0"
+                            data-tooltip={`Agent channel: ${channel}`}
+                            aria-label={`Agent channel: ${channel}`}
+                          >
+                            <img
+                              src={channelLogos[channel]}
+                              alt=""
+                              width="19"
+                              height="19"
+                            />
+                          </span>
+                        ))
+                      ) : (
+                        <span
+                          class="asset-icon"
+                          tabindex="0"
+                          data-tooltip={asset.label}
+                          aria-label={asset.label}
+                        >
+                          <Icon name={asset.icon} size="19" weight="fill" />
+                        </span>
+                      ),
+                    )}
+                  </div>
+                </td>
+                <td class="asset-total">
+                  <span
+                    title={
+                      process.totalAssets === null
+                        ? "Complete asset inventory not yet recorded"
+                        : process.inventory.join(", ")
+                    }
+                  >
+                    {process.totalAssets ?? "—"}
+                  </span>
+                </td>
+                <td>
+                  <span
+                    class:list={["ai-state", process.ai && "ai-state--yes"]}
+                    aria-label={process.ai ? "Uses AI" : "Does not use AI"}
+                  >
+                    <Icon name={process.ai ? "Check" : "X"} size="18" />
+                  </span>
+                </td>
+                <td>
+                  <div class="connection-list">
+                    {process.connections.slice(0, 2).map((connection) => (
+                      <span>{connection}</span>
+                    ))}
+                    {process.connections.length > 2 && (
+                      <span
+                        class="connection-overflow"
+                        tabindex="0"
+                        data-tooltip={process.connections.slice(2).join(", ")}
+                        aria-label={`Other connections: ${process.connections.slice(2).join(", ")}`}
+                      >
+                        +{process.connections.length - 2}
+                      </span>
+                    )}
+                    {process.connections.length === 0 && "—"}
+                  </div>
+                </td>
+                <td class="process-date">
+                  <time datetime={process.updated.toISOString().slice(0, 10)}>
+                    {dateFormat.format(process.updated)}
+                  </time>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="directory-empty" data-process-empty hidden>
+      <Icon name="SquaresFour" size="28" /><h2>No processes found</h2><p>
+        Try another search or asset type.
+      </p><button type="button" data-process-reset>Clear filters</button>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  function initDirectory() {
+    const root = document.querySelector<HTMLElement>(
+      "[data-process-directory]",
+    );
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = "true";
+    const search = root.querySelector<HTMLInputElement>(
+      "[data-process-search]",
+    )!;
+    const sort = root.querySelector<HTMLSelectElement>("[data-process-sort]")!;
+    const buttons = [
+      ...root.querySelectorAll<HTMLButtonElement>("[data-asset-filter]"),
+    ];
+    const rows = [
+      ...root.querySelectorAll<HTMLTableRowElement>("[data-process-row]"),
+    ];
+    const body = root.querySelector<HTMLTableSectionElement>(
+      "[data-process-rows]",
+    )!;
+    const empty = root.querySelector<HTMLElement>("[data-process-empty]")!;
+    let filter = "all";
+    function update() {
+      const query = search.value.trim().toLowerCase();
+      const ordered = [...rows].sort((a, b) => {
+        const aiOrder =
+          sort.value === "ai"
+            ? Number(b.dataset.ai === "true") - Number(a.dataset.ai === "true")
+            : 0;
+        return (
+          aiOrder ||
+          Number(b.dataset.updated) - Number(a.dataset.updated) ||
+          (a.dataset.name ?? "").localeCompare(b.dataset.name ?? "")
+        );
+      });
+      let visible = 0;
+      for (const row of ordered) {
+        row.hidden = !(
+          row.dataset.search?.includes(query) &&
+          (filter === "all" || row.dataset.assets?.split(" ").includes(filter))
+        );
+        if (!row.hidden) visible++;
+        body.append(row);
+      }
+      buttons.forEach((button) =>
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.assetFilter === filter),
+        ),
+      );
+      empty.hidden = visible > 0;
+    }
+    buttons.forEach((button) =>
+      button.addEventListener("click", () => {
+        filter = button.dataset.assetFilter ?? "all";
+        update();
+      }),
+    );
+    search.addEventListener("input", update);
+    sort.addEventListener("change", update);
+    root
+      .querySelector("[data-process-reset]")
+      ?.addEventListener("click", () => {
+        search.value = "";
+        filter = "all";
+        update();
+        search.focus();
+      });
+    update();
+  }
+  initDirectory();
+  document.addEventListener("astro:page-load", initDirectory);
+</script>
+
+<style>
+  .process-directory {
+    max-width: var(--site-container-max);
+    margin: 0 auto;
+    padding: 88px 24px 96px;
+    color: var(--text-primary);
+  }
+  .directory-heading {
+    margin-bottom: 72px;
+  }
+  .directory-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .directory-search {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex: 1 1 210px;
+    min-width: 165px;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    background: var(--bg-1);
+  }
+  .directory-search input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    color: var(--text-primary);
+    background: transparent;
+    font: inherit;
+    font-size: 14px;
+  }
+  .directory-search:focus-within {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 2px;
+  }
+  .asset-switcher {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border: 1px solid var(--border-color);
+  }
+  .asset-switcher button {
+    min-height: 34px;
+    padding: 0 10px;
+    white-space: nowrap;
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .asset-switcher button:hover {
+    background: var(--bb-background-sand-hover);
+    color: var(--text-primary);
+  }
+  .asset-switcher button[aria-pressed="true"] {
+    background: var(--bb-background-sand-hover);
+    color: var(--text-primary);
+  }
+  .directory-sort {
+    position: relative;
+    flex: 0 0 128px;
+  }
+  .directory-sort select {
+    width: 100%;
+    height: 42px;
+    padding: 0 32px 0 12px;
+    border: 1px solid var(--border-color);
+    appearance: none;
+    background: var(--bg-1);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .directory-sort :global(svg) {
+    position: absolute;
+    right: 12px;
+    top: 14px;
+    pointer-events: none;
+  }
+  button:focus-visible,
+  select:focus-visible,
+  a:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 3px;
+  }
+  .directory-table-scroll {
+    margin-top: 16px;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+  }
+  table {
+    width: 100%;
+    min-width: 940px;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13px;
+  }
+  thead {
+    background: var(--bb-background-sand);
+    color: var(--text-secondary);
+  }
+  thead th {
+    height: 44px;
+    padding: 12px 18px;
+    font-weight: 400;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border-color);
+  }
+  tbody th,
+  tbody td {
+    padding: 21px 18px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+  }
+  tbody th {
+    width: 39%;
+    font-weight: 400;
+  }
+  tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+  tbody tr:hover {
+    background: var(--bg-2);
+  }
+  tr[hidden] {
+    display: none;
+  }
+  .process-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .process-name:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .process-arrow {
+    opacity: 0;
+    color: var(--text-secondary);
+  }
+  tr:hover .process-arrow,
+  .process-name:focus-visible .process-arrow {
+    opacity: 1;
+  }
+  .process-description {
+    max-width: 390px;
+    margin: 6px 0 0;
+    color: var(--bb-text-body);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .asset-icons {
+    display: flex;
+    gap: 12px;
+    color: var(--text-secondary);
+  }
+  .asset-icon,
+  .connection-overflow {
+    position: relative;
+    display: inline-flex;
+    cursor: help;
+  }
+  [data-tooltip]:hover::after,
+  [data-tooltip]:focus-visible::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 240px;
+    padding: 7px 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-1);
+    color: var(--text-primary);
+    box-shadow: 0 3px 12px var(--border-color);
+    font-size: 12px;
+    line-height: 1.5;
+    z-index: 2;
+  }
+  .asset-total {
+    font-variant-numeric: tabular-nums;
+  }
+  .ai-state {
+    display: flex;
+    color: var(--text-secondary);
+  }
+  .ai-state--yes {
+    color: var(--text-primary);
+  }
+  .connection-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 155px;
+  }
+  .connection-list > span {
+    background: var(--bg-2);
+    border: 1px solid var(--border-color);
+    padding: 2px 6px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .process-date {
+    white-space: nowrap;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+  .directory-empty {
+    padding: 60px 20px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    border-top: 0;
+    color: var(--text-secondary);
+  }
+  .directory-empty[hidden] {
+    display: none;
+  }
+  .directory-empty :global(svg) {
+    margin: 0 auto 16px;
+  }
+  .directory-empty h2 {
+    margin: 0 0 8px;
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .directory-empty p {
+    margin: 0 0 20px;
+  }
+  .directory-empty button {
+    padding: 10px 16px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-1);
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+  @media (max-width: 1200px) {
+    .directory-toolbar {
+      flex-wrap: wrap;
+    }
+    .directory-search {
+      flex-basis: calc(100% - 145px);
+    }
+    .asset-switcher {
+      order: 3;
+      width: 100%;
+      overflow-x: auto;
+    }
+  }
+  @media (max-width: 767px) {
+    .process-directory {
+      padding: 48px 16px 64px;
+    }
+    .directory-heading {
+      margin-bottom: 36px;
+    }
+    .asset-switcher button {
+      min-height: 40px;
+      padding: 0 12px;
+    }
+    .directory-table-scroll {
+      margin-right: -16px;
+    }
+    .directory-search {
+      min-width: 0;
+    }
+  }
+</style>

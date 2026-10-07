@@ -33,46 +33,75 @@ export interface NavFeaturedCard {
 export interface NavDropdownMenu {
   featuredCard: NavFeaturedCard;
   columns: NavDropdownColumn[];
+  footerLink?: NavDropdownItem;
+  footerLinks?: NavDropdownItem[];
+  groupMobileColumns?: boolean;
 }
 
 export const platformDropdownMenu: NavDropdownMenu = {
   featuredCard: {
     href: "/platform/",
     title: "Platform",
-    description:
-      "See how Budibase brings agents, apps, and automations together.",
+    description: "Explore the Budibase platform.",
     ctaLabel: "View overview",
     image: platformCardImage,
   },
+  groupMobileColumns: true,
   columns: [
     {
-      heading: "Products",
+      heading: "Connect",
+      items: [
+        {
+          href: "/product/agents/",
+          label: "AI models",
+          description: "Choose your models.",
+          prefetch: true,
+          icon: "StarFour",
+        },
+        {
+          href: "/product/apis/",
+          label: "APIs",
+          description: "Connect business system actions.",
+          prefetch: true,
+          icon: "Code",
+        },
+        {
+          href: "/product/data/",
+          label: "Data tables",
+          description: "Connect and store data.",
+          prefetch: true,
+          icon: "Table",
+        },
+        {
+          href: "/product/knowledge/",
+          label: "Knowledge",
+          description: "Ground agents in knowledge.",
+          prefetch: true,
+          icon: "BookOpen",
+        },
+      ],
+    },
+    {
+      heading: "Automate",
       items: [
         {
           href: "/product/agents/",
           label: "Agents",
-          description: "AI agents that handle operational work.",
+          description: "Handle work with oversight.",
           prefetch: true,
           icon: "Robot",
         },
         {
-          href: "/product/apps/",
-          label: "Apps",
-          description: "Secure internal tools for every team.",
-          prefetch: true,
-          icon: "AppWindow",
-        },
-        {
           href: "/product/automations/",
           label: "Automations",
-          description: "Event-driven workflows across your stack.",
+          description: "Run event-driven workflows.",
           prefetch: true,
           icon: "Lightning",
         },
         {
           href: "/product/functions/",
           label: "Functions",
-          description: "Server-side functions for your workflows.",
+          description: "Build reusable workflow logic.",
           prefetch: true,
           badge: "Alpha",
           icon: "Function",
@@ -80,70 +109,70 @@ export const platformDropdownMenu: NavDropdownMenu = {
       ],
     },
     {
-      heading: "Features",
+      heading: "Interact",
       items: [
         {
-          href: "/product/data/",
-          label: "Data tables",
-          description: "Structured data for apps and workflows.",
+          href: "/product/agents/",
+          label: "Chat with agents",
+          description: "Use Slack or Teams.",
           prefetch: true,
-          icon: "Table",
+          icon: "ChatCircle",
         },
         {
-          href: "/product/connections/",
-          label: "Connections",
-          description: "Connect data, tools, models, and APIs.",
+          href: "/product/apps/",
+          label: "Apps",
+          description: "Build secure operational interfaces.",
           prefetch: true,
-          icon: "PlugsConnected",
+          icon: "AppWindow",
         },
         {
-          href: "/product/apis/",
-          label: "API Explorer",
-          description: "Explore and connect external APIs.",
+          href: "/product/requests/",
+          label: "Operations center",
+          description: "Track requests and tasks.",
           prefetch: true,
-          icon: "Code",
-        },
-        {
-          href: "/product/knowledge/",
-          label: "Knowledge",
-          description: "Ground agents with retrieval workflows.",
-          prefetch: true,
-          icon: "BookOpen",
+          icon: "EnvelopeOpen",
         },
       ],
     },
     {
-      heading: "Scale",
+      heading: "Govern",
       items: [
         {
-          href: "/product/requests/",
-          label: "Requests & Approvals",
-          description: "Handle intake, approvals, and follow-up.",
-          prefetch: true,
-          icon: "EnvelopeOpen",
-        },
-        {
           href: "/product/activity/",
-          label: "Activity & Insights",
-          description: "Track activity across operational workflows.",
+          label: "Activity",
+          description: "Monitor and audit actions.",
           prefetch: true,
           icon: "Gauge",
         },
         {
-          href: "/product/admin-security/",
-          label: "Admin & Security",
-          description: "Controls for secure enterprise operations.",
+          href: "/product/requests/",
+          label: "Human approvals",
+          description: "Review consequential actions.",
           prefetch: true,
-          icon: "ShieldCheck",
+          icon: "UserSwitch",
         },
         {
-          href: "/product/self-host/",
-          label: "Self-hosting",
-          description: "Deploy Budibase in your own environment.",
+          href: "/product/admin-security/",
+          label: "Permissions",
+          description: "Control access and actions.",
           prefetch: true,
-          icon: "CloudCheck",
+          icon: "Keyhole",
         },
       ],
+    },
+  ],
+  footerLinks: [
+    {
+      href: "/security/",
+      label: "Security & compliance",
+      prefetch: true,
+      icon: "ShieldCheck",
+    },
+    {
+      href: "/product/self-host/",
+      label: "Self-hosting",
+      prefetch: true,
+      icon: "CloudCheck",
     },
   ],
 };
@@ -152,32 +181,60 @@ export const solutionsDropdownMenu: NavDropdownMenu = {
   featuredCard: {
     href: "/enterprise/",
     title: "Enterprise",
-    description:
-      "Scale Budibase across teams with governance, security, and deployment control.",
+    description: "Scale with enterprise controls.",
     ctaLabel: "Explore enterprise",
     image: solutionsCardImage,
     imageTint: true,
   },
   columns: [
     {
+      heading: "Use cases",
+      items: [
+        {
+          href: "/solutions/requests-and-approvals/",
+          label: "Requests and approvals",
+          description: "Route requests through approvals.",
+          prefetch: true,
+        },
+        {
+          href: "/solutions/case-management/",
+          label: "Case management",
+          description: "Assign owners, resolve cases.",
+          prefetch: true,
+        },
+        {
+          href: "/solutions/data-collection-processes/",
+          label: "Data collection and review",
+          description: "Collect and review data.",
+          prefetch: true,
+        },
+        {
+          href: "/solutions/knowledge-assistants/",
+          label: "Knowledge assistants",
+          description: "Find answers from knowledge.",
+          prefetch: true,
+        },
+      ],
+    },
+    {
       heading: "Industries",
       items: [
         {
           href: "/solutions/public-sector/",
           label: "Public sector",
-          description: "Secure workflows for public service teams.",
+          description: "Modernize public service workflows.",
           prefetch: true,
         },
         {
           href: "/solutions/finance/",
           label: "Finance",
-          description: "Controlled tools for finance operations.",
+          description: "Control finance operations.",
           prefetch: true,
         },
         {
           href: "/solutions/utilities/",
           label: "Utilities",
-          description: "Operational workflows for utility teams.",
+          description: "Connect utility operations.",
           prefetch: true,
         },
         {
@@ -188,68 +245,20 @@ export const solutionsDropdownMenu: NavDropdownMenu = {
         },
       ],
     },
-    {
-      heading: "Use cases",
-      columnSpan: 2,
-      items: [
-        {
-          href: "/ops/",
-          label: "Use Cases",
-          description: "Common operational apps and agents.",
-          prefetch: true,
-        },
-        {
-          href: "/ops/access-request/",
-          label: "Access Requests",
-          description: "Manage employee access requests.",
-          prefetch: true,
-        },
-        {
-          href: "/ops/software-installation-request/",
-          label: "Software Requests",
-          description: "Standardize software intake and approval.",
-          prefetch: true,
-        },
-        {
-          href: "/ops/vendor-onboarding-review/",
-          label: "Vendor Onboarding",
-          description: "Review and approve vendor onboarding.",
-          prefetch: true,
-        },
-        {
-          href: "/ops/purchase-order-request/",
-          label: "Purchase Orders",
-          description: "Coordinate purchasing workflows.",
-          prefetch: true,
-        },
-        {
-          href: "/ops/invoice-approval-workflow/",
-          label: "Invoice Approvals",
-          description: "Route invoices for review.",
-          prefetch: true,
-        },
-        {
-          href: "/ops/deal-desk-approval/",
-          label: "Deal Desk",
-          description: "Approve non-standard sales deals.",
-          prefetch: true,
-        },
-        {
-          href: "/ops/customer-refund-request/",
-          label: "Refund Requests",
-          description: "Review customer refund requests.",
-          prefetch: true,
-        },
-      ],
-    },
   ],
+  footerLink: {
+    href: "/process/",
+    label: "Templates",
+    description: "Start with operational templates.",
+    prefetch: true,
+  },
 };
 
 export const resourcesDropdownMenu: NavDropdownMenu = {
   featuredCard: {
-    href: "/ops/",
+    href: "/process/",
     title: "Templates",
-    description: "Start faster with ready-to-build operational templates.",
+    description: "Start with operational templates.",
     ctaLabel: "Browse templates",
     image: resourcesCardImage,
   },
@@ -260,42 +269,30 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
         {
           href: "https://docs.budibase.com/docs/hosting-methods",
           label: "Install",
-          description: "Install Budibase in your own environment.",
           target: "_blank",
           rel: "noopener noreferrer",
         },
         {
           href: "https://docs.budibase.com/",
           label: "Docs",
-          description: "Read the Budibase documentation.",
           target: "_blank",
           rel: "noopener noreferrer",
         },
         {
           href: "https://docs.budibase.com/reference/appcreate",
           label: "API reference",
-          description: "Explore Budibase API resources.",
           target: "_blank",
           rel: "noopener noreferrer",
         },
         {
           href: "https://github.com/Budibase/budibase",
           label: "Source code",
-          description: "View the Budibase source code.",
           target: "_blank",
           rel: "noopener noreferrer",
         },
         {
-          href: "/ops/",
+          href: "/process/",
           label: "Templates",
-          description: "Start from ready-to-build operational templates.",
-          prefetch: true,
-        },
-        {
-          href: "/partners/",
-          label: "Partners",
-          description:
-            "Find a delivery partner or join the Budibase partner network.",
           prefetch: true,
         },
       ],
@@ -306,33 +303,28 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
         {
           href: "/customers/",
           label: "Customer stories",
-          description: "See how teams build with Budibase.",
           prefetch: true,
         },
         {
           href: "/blog/",
           label: "Blog",
-          description: "Guides, comparisons, and product thinking.",
           prefetch: true,
         },
         {
           href: "https://github.com/Budibase/budibase/releases",
           label: "Changelog",
-          description: "Product updates and release notes.",
           target: "_blank",
           rel: "noopener noreferrer",
         },
         {
           href: "https://github.com/Budibase/budibase/discussions",
           label: "Community forum",
-          description: "Join the Budibase community.",
           target: "_blank",
           rel: "noopener noreferrer",
         },
         {
           href: "/support/",
           label: "Support",
-          description: "Support terms and service information.",
           prefetch: true,
         },
       ],
@@ -343,29 +335,32 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
         {
           href: "https://github.com/orgs/Budibase/projects/15/views/7",
           label: "Roadmap",
-          description: "See what the Budibase team is building.",
           target: "_blank",
           rel: "noopener noreferrer",
         },
         {
           href: "/about/",
           label: "About",
-          description: "Learn more about Budibase.",
           prefetch: true,
         },
         {
           href: "https://budibase.bamboohr.com/careers/",
           label: "Jobs",
-          description: "Explore open roles at Budibase.",
           target: "_blank",
           rel: "noopener noreferrer",
         },
         {
           href: "/events/",
           label: "Events",
-          description: "Join upcoming Budibase events.",
         },
       ],
+    },
+  ],
+  footerLinks: [
+    {
+      href: "/partners/",
+      label: "Partners",
+      prefetch: true,
     },
   ],
 };
@@ -374,8 +369,7 @@ export const companyDropdownMenu: NavDropdownMenu = {
   featuredCard: {
     href: "/customers/",
     title: "Company",
-    description:
-      "Learn how Budibase supports teams building secure operational software at scale.",
+    description: "Meet the Budibase team.",
     ctaLabel: "Meet Budibase",
     image: companyCardImage,
   },
@@ -386,32 +380,31 @@ export const companyDropdownMenu: NavDropdownMenu = {
         {
           href: "/customers/",
           label: "Customers",
-          description: "Customer stories and case studies.",
+          description: "Explore customer stories.",
           prefetch: true,
         },
         {
           href: "/partners/",
           label: "Partners",
-          description:
-            "Find a delivery partner or join the Budibase partner network.",
+          description: "Find a delivery partner.",
           prefetch: true,
         },
         {
           href: "/enterprise/",
           label: "Enterprise",
-          description: "Security, control, and support at scale.",
+          description: "Enterprise controls and support.",
           prefetch: true,
         },
         {
           href: "/security/",
           label: "Security",
-          description: "How Budibase protects teams and data.",
+          description: "Explore Budibase security practices.",
           prefetch: true,
         },
         {
           href: "/contact/",
           label: "Contact",
-          description: "Talk to the Budibase team.",
+          description: "Talk to our team.",
           prefetch: true,
         },
       ],
@@ -446,4 +439,6 @@ export const flattenMenuItems = (menu: NavDropdownMenu): NavDropdownItem[] => [
     prefetch: menu.featuredCard.href.startsWith("/"),
   },
   ...menu.columns.flatMap((column) => column.items),
+  ...(menu.footerLink ? [menu.footerLink] : []),
+  ...(menu.footerLinks ?? []),
 ];

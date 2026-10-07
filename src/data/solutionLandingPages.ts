@@ -1,3 +1,13 @@
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { useCaseLandingPages } from "./useCaseLandingPages";
+
+export interface SolutionMedia {
+  image?: string;
+  imageAlt: string;
+  demo?: AstroComponentFactory;
+  demoProps?: Record<string, unknown>;
+}
+
 export interface SolutionFeature {
   headline: string;
   body: string;
@@ -7,11 +17,13 @@ export interface SolutionFeature {
     text: string;
   }[];
   variant: "white" | "light";
+  media?: SolutionMedia;
 }
 
 export interface SolutionLandingContent {
   title: string;
   metaDescription: string;
+  proofStyle?: "compact" | "homepage" | "none";
   hero: {
     badgeLabel: string;
     badgeIcon: string;
@@ -19,11 +31,14 @@ export interface SolutionLandingContent {
     headline: string;
     subtitle: string;
     logosHeading: string;
+    media?: SolutionMedia;
   };
   features: readonly [SolutionFeature, SolutionFeature];
+  examples?: readonly { title: string; description: string; link: string }[];
 }
 
 export const solutionLandingPages = {
+  ...useCaseLandingPages,
   "public-sector": {
     title: "Public sector",
     metaDescription:
@@ -322,6 +337,10 @@ export const solutionSlugs = [
   "finance",
   "utilities",
   "manufacturing",
+  "requests-and-approvals",
+  "case-management",
+  "data-collection-processes",
+  "knowledge-assistants",
 ] as const;
 
 export type SolutionSlug = (typeof solutionSlugs)[number];

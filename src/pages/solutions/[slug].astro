@@ -21,5 +21,8 @@ const { content } = Astro.props as { content: SolutionLandingContent };
   rawTitle={`${content.title} | Budibase`}
   description={content.metaDescription}
 >
-  <SolutionLandingPage content={content} proofStyle="homepage" />
+  <SolutionLandingPage
+    content={content}
+    proofStyle={content.proofStyle ?? "homepage"}
+  />
 </Layout>

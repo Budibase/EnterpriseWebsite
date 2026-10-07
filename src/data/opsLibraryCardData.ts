@@ -76,7 +76,7 @@ export async function getOpsLibraryCards(): Promise<AgentCardItem[]> {
         departmentId,
         department: getDepartmentLabel(departmentId),
         description: entry.data.outcome,
-        linkUrl: `/ops/${slug}`,
+        linkUrl: `/process/${slug}`,
       };
     })
     .sort((a, b) => a.name.localeCompare(b.name));

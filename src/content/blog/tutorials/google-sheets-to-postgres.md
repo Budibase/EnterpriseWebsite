@@ -380,6 +380,6 @@ We also offer free SSO.
 
 ### 50+ free application templates
 
-Budibase is the ideal solution for creating all kinds of professional apps and utilities. To help get you started, we’ve created more than 50 free, fully customizable [app templates](https://budibase.com/ops/).
+Budibase is the ideal solution for creating all kinds of professional apps and utilities. To help get you started, we’ve created more than 50 free, fully customizable [app templates](https://budibase.com/process/).
 
 To start building applications the smart, easy way, sign up to Budibase today for free.

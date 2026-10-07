@@ -883,12 +883,12 @@ article blockquote p {
   align-items: center;
   min-height: 2.25rem;
   padding: 0.45rem 0.75rem;
-  border-radius: 9999px;
+  border-radius: 0;
 }
 
 .nav-shell .desktop-nav-link:hover,
 .nav-shell .desktop-nav-link:focus-visible {
-  background: var(--bb-celery-200);
+  background: transparent;
   color: var(--text-primary) !important;
 }
 
@@ -899,7 +899,15 @@ article blockquote p {
 
 .nav-shell .header-dropdown[data-open="true"] [data-header-dropdown-trigger] {
   color: var(--text-primary) !important;
-  background: var(--bb-celery-200);
+  background: transparent;
+}
+
+.nav-shell
+  .header-dropdown[data-open="true"]
+  [data-header-dropdown-trigger]
+  > span:first-child {
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
 }
 
 .mobile-nav-overlay {

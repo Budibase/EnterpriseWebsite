@@ -359,6 +359,6 @@ Check out our [plug-ins page](https://github.com/Budibase/plugins) to learn more
 
 ### 50+ free app templates
 
-We’re so confident in what our platform can do, that we decided it only makes sense to show you. Check out our collection of over 50 free, deployment-ready, and fully customizable [application templates](https://budibase.com/ops/).
+We’re so confident in what our platform can do, that we decided it only makes sense to show you. Check out our collection of over 50 free, deployment-ready, and fully customizable [application templates](https://budibase.com/process/).
 
 Sign up to Budibase today to start turning data into action.

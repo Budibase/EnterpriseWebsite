@@ -5,6 +5,7 @@ import GlobeSimple from "phosphor-astro/GlobeSimple.astro";
 import Certificate from "phosphor-astro/Certificate.astro";
 import Icon from "@components/Icon.astro";
 import Link from "@components/Link.astro";
+import FeatureBadge from "@components/FeatureBadge.astro";
 import {
   companyDropdownMenu,
   platformDropdownMenu,
@@ -18,6 +19,7 @@ interface FooterLink {
   url: string;
   target?: string;
   rel?: string;
+  badge?: string;
 }
 
 interface FooterGroup {
@@ -35,6 +37,7 @@ const toFooterLink = (item: NavDropdownItem): FooterLink => ({
   url: item.href,
   target: item.target,
   rel: item.rel,
+  badge: item.badge,
 });
 
 const makeMenuColumn = (
@@ -67,10 +70,15 @@ const footerColumns: FooterColumn[] = [
       label: platformDropdownMenu.featuredCard.title,
       url: platformDropdownMenu.featuredCard.href,
     },
-    platformDropdownMenu.columns.map((column) => ({
-      title: column.heading,
-      links: column.items.map(toFooterLink),
-    })),
+    [
+      ...platformDropdownMenu.columns.map((column) => ({
+        title: column.heading,
+        links: column.items.map(toFooterLink),
+      })),
+      ...(platformDropdownMenu.footerLinks?.length
+        ? [{ links: platformDropdownMenu.footerLinks.map(toFooterLink) }]
+        : []),
+    ],
   ),
   makeMenuColumn(
     "Solutions",
@@ -78,10 +86,15 @@ const footerColumns: FooterColumn[] = [
       label: solutionsDropdownMenu.featuredCard.title,
       url: solutionsDropdownMenu.featuredCard.href,
     },
-    solutionsDropdownMenu.columns.map((column) => ({
-      title: column.heading,
-      links: column.items.map(toFooterLink),
-    })),
+    [
+      ...solutionsDropdownMenu.columns.map((column) => ({
+        title: column.heading,
+        links: column.items.map(toFooterLink),
+      })),
+      ...(solutionsDropdownMenu.footerLink
+        ? [{ links: [toFooterLink(solutionsDropdownMenu.footerLink)] }]
+        : []),
+    ],
   ),
   {
     title: "Pricing",
@@ -110,12 +123,17 @@ const footerColumns: FooterColumn[] = [
       label: resourcesDropdownMenu.featuredCard.title,
       url: resourcesDropdownMenu.featuredCard.href,
     },
-    resourcesDropdownMenu.columns
-      .filter((column) => column.heading !== "Company")
-      .map((column) => ({
-        title: column.heading,
-        links: column.items.map(toFooterLink),
-      })),
+    [
+      ...resourcesDropdownMenu.columns
+        .filter((column) => column.heading !== "Company")
+        .map((column) => ({
+          title: column.heading,
+          links: column.items.map(toFooterLink),
+        })),
+      ...(resourcesDropdownMenu.footerLinks?.length
+        ? [{ links: resourcesDropdownMenu.footerLinks.map(toFooterLink) }]
+        : []),
+    ],
   ),
   {
     title: "Company",
@@ -168,7 +186,14 @@ const currentYear = new Date().getFullYear();
                             variant="secondary"
                             appearance="quiet"
                             size="large"
-                          />
+                          >
+                            {link.badge && (
+                              <FeatureBadge
+                                label={link.badge}
+                                variant="celery"
+                              />
+                            )}
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -509,5 +534,13 @@ const currentYear = new Date().getFullYear();
     .footer-nav {
       grid-template-columns: 1fr;
     }
+  }
+
+  .footer-nav :global(.feature-badge) {
+    min-height: 1.25rem;
+    padding: 0.1875rem 0.4375rem;
+    font-size: 0.6875rem;
+    line-height: 1;
+    flex-shrink: 0;
   }
 </style>

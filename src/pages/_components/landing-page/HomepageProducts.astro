@@ -4,8 +4,8 @@ import TitleBlock from "@components/TitleBlock.astro";
 import OnePlatformAgent from "@components/OnePlatformAgent.astro";
 import HomepageActionsDemo from "./HomepageActionsDemo.astro";
 import HomepageEquipmentInventoryDemo from "./HomepageEquipmentInventoryDemo.astro";
-import HomepageHumanApprovalsDemo from "./HomepageHumanApprovalsDemo.astro";
-import HomepageOperationsCenterDemo from "./HomepageOperationsCenterDemo.astro";
+import HomepageHumanApprovalsDemo from "@components/demos/HumanApprovalsDemo.astro";
+import HomepageOperationsCenterDemo from "@components/demos/OperationsCenterDemo.astro";
 import HomepagePermissionsDemo from "./HomepagePermissionsDemo.astro";
 import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
 import JiraLogo from "@assets/logos/Jira.svg?url";
@@ -152,7 +152,7 @@ const productGroups = [
     imageBackground: "cyan-1300",
     cards: [
       {
-        title: "Agent channels",
+        title: "Chat with agents",
         description:
           "Let teams work with agents through Slack and Microsoft Teams.",
         imageAlt: "",

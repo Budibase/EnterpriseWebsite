@@ -3,8 +3,7 @@ import {
   flattenMenuItems,
   type NavDropdownMenu,
 } from "@components/navDropdownData";
-import FeatureBadge from "@components/FeatureBadge.astro";
-import Icon from "@components/Icon.astro";
+import MobileNavItem from "@components/MobileNavItem.astro";
 
 interface Props {
   label: string;
@@ -35,78 +34,65 @@ const items = flattenMenuItems(menu);
           d="M12 5v14M5 12h14"></path>
       </svg>
     </summary>
-    <ul class="mobile-nav-sub-list">
-      {
-        items.map(({ href, label, prefetch, badge, target, rel, disabled }) => (
-          <li class="mobile-nav-sub-item">
-            {disabled ? (
-              <span
-                aria-disabled="true"
-                class="mobile-nav-sub-link mobile-nav-sub-link-disabled"
-              >
-                <span class="mobile-nav-sub-link__label">
-                  {label}
-                  {target === "_blank" && (
-                    <Icon
-                      name="ArrowUpRightBold"
-                      size="14"
-                      class="mobile-nav-sub-link__external-icon"
-                      aria-hidden="true"
-                    />
-                  )}
-                </span>
-                {badge && <FeatureBadge label={badge} />}
-              </span>
-            ) : (
-              <a
-                href={href}
-                target={target}
-                rel={
-                  rel ??
-                  (target === "_blank" ? "noopener noreferrer" : undefined)
-                }
-                data-astro-prefetch={prefetch ? "" : undefined}
-                class="mobile-nav-sub-link font-medium nav-link transition-colors"
-              >
-                <span class="mobile-nav-sub-link__label">
-                  {label}
-                  {target === "_blank" && (
-                    <Icon
-                      name="ArrowUpRightBold"
-                      size="14"
-                      class="mobile-nav-sub-link__external-icon"
-                      aria-hidden="true"
-                    />
-                  )}
-                </span>
-                {badge && <FeatureBadge label={badge} />}
-              </a>
-            )}
-          </li>
-        ))
-      }
-    </ul>
+    {
+      menu.groupMobileColumns ? (
+        <ul class="mobile-nav-sub-list mobile-nav-sub-list--grouped">
+          <MobileNavItem item={items[0]} grouped />
+          {menu.columns.map((column) => (
+            <li class="mobile-nav-group">
+              <h3 class="mobile-nav-group__heading">{column.heading}</h3>
+              <ul class="mobile-nav-group__links" aria-label={column.heading}>
+                {column.items.map((item) => (
+                  <MobileNavItem item={item} grouped />
+                ))}
+              </ul>
+            </li>
+          ))}
+          {(menu.footerLink || menu.footerLinks?.length) && (
+            <li class="mobile-nav-footer-links">
+              <ul class="mobile-nav-group__links">
+                {[
+                  ...(menu.footerLink ? [menu.footerLink] : []),
+                  ...(menu.footerLinks ?? []),
+                ].map((item) => (
+                  <MobileNavItem item={item} grouped />
+                ))}
+              </ul>
+            </li>
+          )}
+        </ul>
+      ) : (
+        <ul class="mobile-nav-sub-list">
+          {items.map((item) => (
+            <MobileNavItem item={item} />
+          ))}
+        </ul>
+      )
+    }
   </details>
 </li>
 
 <style>
-  .mobile-nav-sub-link__label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
+  .mobile-nav-sub-list--grouped {
+    gap: 1.25rem;
   }
-
-  .mobile-nav-sub-link__external-icon {
-    flex: 0 0 0.875rem;
-    color: currentColor;
-    transform: translateY(-0.1rem);
-  }
-
-  .mobile-nav-sub-link :global(.feature-badge) {
-    min-height: 1.25rem;
-    padding: 0.1875rem 0.4375rem;
+  .mobile-nav-group__heading {
+    margin: 0 0 0.5rem 0.25rem;
     color: var(--text-secondary);
-    font-size: 0.6875rem;
-    line-height: 1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .mobile-nav-group__links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .mobile-nav-footer-links {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--bb-border-subtle);
   }
 </style>

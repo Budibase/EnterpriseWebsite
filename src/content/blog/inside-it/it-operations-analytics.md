@@ -241,6 +241,6 @@ Check out our custom [plug-ins documentation](https://docs.budibase.com/docs/cus
 
 ### 50+ free application templates
 
-Budibase is the fast, cost-effective way to build all sorts of custom applications. To prove it, we’ve created more than 50 free, fully customizable [application templates](https://budibase.com/ops/).
+Budibase is the fast, cost-effective way to build all sorts of custom applications. To prove it, we’ve created more than 50 free, fully customizable [application templates](https://budibase.com/process/).
 
 Sign up to Budibase today to start building tools to transform your IT operations.

@@ -1,5 +1,8 @@
 ---
 import CTA from "@components/CTA.astro";
+import Card from "@components/cards/Card.astro";
+import SectionBlock from "@components/SectionBlock.astro";
+import FourColumnFeatureGrid from "@components/cards/FourColumnFeatureGrid.astro";
 import FeatureSection from "@components/FeatureSection.astro";
 import HeroSmall from "@components/HeroSmall.astro";
 import StatSection from "@components/StatSection.astro";
@@ -12,7 +15,7 @@ import SecondFeatureImage from "@assets/images/feature-sections/regulated-enterp
 
 interface Props {
   content: SolutionLandingContent;
-  proofStyle?: "compact" | "homepage";
+  proofStyle?: "compact" | "homepage" | "none";
 }
 
 const { content, proofStyle = "compact" } = Astro.props as Props;
@@ -34,8 +37,12 @@ const featureImages = [
   <div class="page-section page-section--hero">
     <HeroSmall
       class="hero-small--white"
-      image={HeroImage}
-      imageAlt="Modern office building exterior"
+      image={content.hero.media?.image ?? HeroImage}
+      imageAlt={content.hero.media?.imageAlt ??
+        "Modern office building exterior"}
+      mediaFit={content.hero.media ? "contain" : "cover"}
+      mediaDemo={content.hero.media?.demo}
+      mediaDemoProps={content.hero.media?.demoProps}
       badge={{
         icon: content.hero.badgeIcon,
         iconWeight: content.hero.badgeIconWeight,
@@ -45,7 +52,9 @@ const featureImages = [
       title={content.hero.headline}
       subtitle={content.hero.subtitle}
       action={{ label: "Book a demo", href: "/contact/" }}
-      logosHeading={usesHomepageProof ? undefined : content.hero.logosHeading}
+      logosHeading={proofStyle === "compact"
+        ? content.hero.logosHeading
+        : undefined}
     />
   </div>
 
@@ -62,8 +71,15 @@ const featureImages = [
       <div class="page-section page-section--no-top">
         <FeatureSection
           variant={feature.variant}
-          image={featureImages[index].src}
-          imageAlt={featureImages[index].alt}
+          image={
+            feature.media?.demo
+              ? undefined
+              : (feature.media?.image ?? featureImages[index].src)
+          }
+          imageAlt={feature.media?.imageAlt ?? featureImages[index].alt}
+          demo={feature.media?.demo}
+          demoProps={feature.media?.demoProps}
+          mediaFit={feature.media ? "contain" : "cover"}
           headline={feature.headline}
           body={feature.body}
           bullets={feature.bullets}
@@ -73,15 +89,76 @@ const featureImages = [
   }
 
   {
-    !usesHomepageProof && (
+    proofStyle === "compact" && (
       <div class="page-section page-section--no-top">
         <StatSection variant="forest-green" />
       </div>
     )
   }
 
+  {
+    content.examples && (
+      <div class="page-section page-section--no-top">
+        <div class="solution-examples">
+          <SectionBlock
+            title="Start with a working example"
+            description="Explore these configurable starting points from the Ops Library. Adapt the data, integrations, and approval rules to your organisation."
+            maxWidth="3xl"
+          >
+            <div class="solution-examples__grid">
+              {content.examples.map((example) => (
+                <Card
+                  label={example.title}
+                  description={example.description}
+                  linkUrl={example.link}
+                  openInNewTab={false}
+                  linkAppearance="quiet"
+                />
+              ))}
+            </div>
+          </SectionBlock>
+        </div>
+      </div>
+    )
+  }
+
   <div class="page-section page-section--no-top">
-    <EnterpriseSection variant="security" />
+    {
+      content.examples ? (
+        <FourColumnFeatureGrid
+          title="Keep control with IT."
+          subtitle="Build each workflow around your organisation’s requirements."
+          features={[
+            {
+              iconName: "ShieldCheck",
+              title: "Control access",
+              description:
+                "Apply platform roles and permissions to the apps and data your teams use.",
+            },
+            {
+              iconName: "UserSwitch",
+              title: "Require human decisions",
+              description:
+                "Add approval steps where access, exceptions, or consequential actions need review.",
+            },
+            {
+              iconName: "CloudCheck",
+              title: "Choose your deployment",
+              description:
+                "Run in Budibase Cloud or self-host within your own infrastructure.",
+            },
+            {
+              iconName: "PlugsConnected",
+              title: "Work with your systems",
+              description:
+                "Connect existing databases and APIs while IT manages credentials and permitted actions.",
+            },
+          ]}
+        />
+      ) : (
+        <EnterpriseSection variant="security" />
+      )
+    }
   </div>
 
   <div class="page-section page-section--no-top">
@@ -90,6 +167,28 @@ const featureImages = [
 </div>
 
 <style>
+  .solution-examples {
+    width: min(
+      calc(100% - 2 * var(--site-content-inset)),
+      var(--site-container-max)
+    );
+    margin-inline: auto;
+  }
+  .solution-examples__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+  .solution-examples__grid :global(.card-link),
+  .solution-examples__grid :global(.card) {
+    height: 100%;
+  }
+  @media (min-width: 768px) {
+    .solution-examples__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
   .solution-proof-section {
     background: var(--bb-background-base);
   }

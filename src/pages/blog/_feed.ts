@@ -349,7 +349,7 @@ export async function getBlogFeedItems(): Promise<BlogFeedItem[]> {
   const opsLibraryItems: BlogFeedItem[] = opsLibraryEntries.map((entry) => ({
     kind: "workflow",
     slug: entry.id,
-    href: `/ops/${entry.data.slug ?? entry.id}/`,
+    href: `/process/${entry.data.slug ?? entry.id}/`,
     title: entry.data.title,
     description: entry.data.outcome,
     category: "useCases",
