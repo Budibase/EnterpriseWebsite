@@ -30,14 +30,12 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
         <TitleBlock
           variant="hero"
           titleId="rulebase-hero-title"
-          titleLines={[
-            { text: "The open-source platform for enterprise operations." },
-          ]}
+          titleLines={[{ text: "Make critical work move faster." }]}
           containerClass="rulebase-hero__title-block"
           titleClass="rulebase-hero__title"
         />
         <p class="rulebase-hero__description text-balance">
-          Modernise operations across your people, data and systems with custom
+          Modernise processes across your people, data and systems with custom
           agents, apps and automations. Self-host or deploy in our cloud, with
           enterprise security and governance built in.
         </p>
@@ -134,10 +132,11 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
     color: var(--bb-text-on-base);
   }
 
-  :global(.rulebase-hero__title) {
+  :global(.rulebase-hero__title.hero-title) {
     max-width: 40rem;
     margin: 0;
     color: var(--bb-white) !important;
+    font-size: var(--bb-text-heading-hero-font-size);
   }
 
   .rulebase-hero__description {
@@ -217,7 +216,7 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
 
   @media (max-width: 767px) {
     :global(.rulebase-hero__title.hero-title) {
-      font-size: clamp(2.5rem, 11vw, 3rem);
+      font-size: clamp(3rem, 12vw, 3.5rem);
     }
 
     .rulebase-hero__copy-panel {

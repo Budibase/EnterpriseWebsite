@@ -44,58 +44,6 @@ const isCompact = menu.columns.length === 1;
   >
     <div class="header-dropdown-panel__shell">
       <div class="header-dropdown-panel__inner">
-        {
-          !isCompact && (
-            <a
-              href={menu.featuredCard.href}
-              class="header-dropdown-feature-card"
-              data-astro-prefetch={
-                menu.featuredCard.href.startsWith("/") ? "" : undefined
-              }
-            >
-              <span
-                class:list={[
-                  "header-dropdown-feature-card__media",
-                  menu.featuredCard.imageTint &&
-                    "header-dropdown-feature-card__media--tinted",
-                ]}
-              >
-                <img
-                  src={menu.featuredCard.image}
-                  alt=""
-                  class="header-dropdown-feature-card__image"
-                  loading="eager"
-                />
-              </span>
-              <span class="header-dropdown-feature-card__body">
-                <span class="header-dropdown-feature-card__title">
-                  {menu.featuredCard.title}
-                </span>
-                <span class="header-dropdown-feature-card__description">
-                  {menu.featuredCard.description}
-                </span>
-                <span class="header-dropdown-feature-card__cta">
-                  {menu.featuredCard.ctaLabel}
-                  <svg
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    aria-hidden="true"
-                    class="header-dropdown-feature-card__cta-icon"
-                  >
-                    <path
-                      d="M3.25 8H12.5M8.75 4.25L12.5 8L8.75 11.75"
-                      stroke="currentColor"
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-              </span>
-            </a>
-          )
-        }
-
         <div class="header-dropdown-columns">
           {
             menu.columns.map((column) => (
@@ -286,15 +234,13 @@ const isCompact = menu.columns.length === 1;
       clamp(1.75rem, 3vw, 2.75rem);
     border: 1px solid var(--border-color);
     border-radius: 0;
-    background: var(--bb-background-surface);
+    background: var(--bb-background-sand);
   }
 
   .header-dropdown-panel__inner {
-    display: grid;
+    display: block;
     width: 100%;
-    grid-template-columns: minmax(15rem, 20rem) minmax(0, 1fr);
-    gap: clamp(2rem, 4vw, 4rem);
-    align-items: start;
+    min-width: 0;
   }
 
   .header-dropdown--compact .header-dropdown-panel {
@@ -310,11 +256,6 @@ const isCompact = menu.columns.length === 1;
     width: 100%;
     padding: 1rem;
     border-radius: 0;
-  }
-
-  .header-dropdown--compact .header-dropdown-panel__inner {
-    display: block;
-    width: 100%;
   }
 
   .header-dropdown--compact.header-dropdown--full-width {
@@ -348,105 +289,6 @@ const isCompact = menu.columns.length === 1;
     min-width: 0;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(1.5rem, 3vw, 3rem);
-  }
-
-  .header-dropdown-feature-card {
-    display: flex;
-    min-width: 0;
-    overflow: hidden;
-    flex-direction: column;
-    border: 1px solid var(--border-color);
-    border-radius: 0;
-    background: var(--bg-1);
-    color: var(--text-primary);
-    text-decoration: none;
-    transition:
-      border-color 180ms ease,
-      background-color 180ms ease;
-  }
-
-  .header-dropdown-feature-card:hover,
-  .header-dropdown-feature-card:focus-visible {
-    border-color: var(--bb-brand-bright-green);
-    background: var(--bb-celery-200);
-    color: var(--text-primary);
-  }
-
-  .header-dropdown-feature-card:focus-visible {
-    outline: 2px solid rgb(var(--ring));
-    outline-offset: 2px;
-  }
-
-  .header-dropdown-feature-card__media {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    aspect-ratio: 1.85 / 1;
-  }
-
-  .header-dropdown-feature-card__media--tinted::after {
-    position: absolute;
-    inset: 0;
-    background: var(--bb-brand-forest-green);
-    content: "";
-    opacity: 0.42;
-    pointer-events: none;
-  }
-
-  .header-dropdown-feature-card__image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .header-dropdown-feature-card__body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    padding: 1.125rem;
-  }
-
-  .header-dropdown-feature-card__title {
-    color: var(--text-primary);
-    font-family: var(--bb-text-display-small-font-family);
-    font-size: var(--bb-text-display-small-font-size);
-    font-weight: var(--bb-text-display-small-font-weight);
-    line-height: var(--bb-text-display-small-line-height);
-    letter-spacing: var(--bb-text-display-small-letter-spacing);
-    text-transform: var(--bb-text-display-small-text-transform);
-  }
-
-  .header-dropdown-feature-card__description {
-    max-width: 22rem;
-    color: var(--text-primary);
-    font-size: 0.95rem;
-    font-weight: 400;
-    line-height: 1.35;
-    white-space: normal;
-  }
-
-  .header-dropdown-feature-card__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--text-primary);
-    font-size: 0.95rem;
-    font-weight: 600;
-    line-height: 1.2;
-  }
-
-  .header-dropdown-feature-card__cta-icon {
-    width: 1rem;
-    height: 1rem;
-    transition: transform 180ms ease;
-  }
-
-  .header-dropdown-feature-card:hover .header-dropdown-feature-card__cta-icon,
-  .header-dropdown-feature-card:focus-visible
-    .header-dropdown-feature-card__cta-icon {
-    transform: translateX(2px);
   }
 
   .header-dropdown--compact .header-dropdown-columns {
@@ -585,11 +427,6 @@ const isCompact = menu.columns.length === 1;
   }
 
   @media (max-width: 1120px) {
-    .header-dropdown-panel__inner {
-      grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
-      gap: 1.5rem;
-    }
-
     .header-dropdown-columns {
       gap: 1rem;
     }
@@ -599,8 +436,6 @@ const isCompact = menu.columns.length === 1;
     .header-dropdown-trigger,
     .header-dropdown-trigger__caret,
     .header-dropdown-panel,
-    .header-dropdown-feature-card,
-    .header-dropdown-feature-card__cta-icon,
     .header-dropdown-link,
     .header-dropdown-link__label,
     .header-dropdown-link__description,

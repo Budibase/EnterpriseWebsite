@@ -1,10 +1,27 @@
 ---
 import Icon from "@components/Icon.astro";
+
+interface Props {
+  variant?: "default" | "grid";
+  primaryLabel?: string;
+  primaryHref?: string;
+  ariaLabel?: string;
+}
+
+const {
+  variant = "default",
+  primaryLabel = "Request a Demo",
+  primaryHref = "/contact/",
+  ariaLabel = "Get started with Budibase",
+} = Astro.props;
 ---
 
-<section class="cta-section" aria-label="Get started with Budibase">
-  <a class="cta-action cta-action--demo" href="/contact/">
-    <span class="cta-action__label">Request a Demo</span>
+<section
+  class:list={["cta-section", { "cta-section--grid": variant === "grid" }]}
+  aria-label={ariaLabel}
+>
+  <a class="cta-action cta-action--demo" href={primaryHref}>
+    <span class="cta-action__label">{primaryLabel}</span>
     <span class="cta-action__icon" aria-hidden="true">
       <Icon name="ArrowRight" size="40" />
     </span>
@@ -31,6 +48,17 @@ import Icon from "@components/Icon.astro";
     max-width: var(--site-container-max);
     margin-inline: auto;
     padding-inline: var(--site-content-inset);
+  }
+
+  .cta-section--grid {
+    max-width: none;
+    gap: 0;
+    padding-inline: 0;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+
+  .cta-section--grid .cta-action + .cta-action {
+    border-top: 1px solid var(--bb-border-base);
   }
 
   .cta-action {
@@ -95,6 +123,15 @@ import Icon from "@components/Icon.astro";
     .cta-section {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem;
+    }
+
+    .cta-section--grid {
+      gap: 0;
+    }
+
+    .cta-section--grid .cta-action + .cta-action {
+      border-top: 0;
+      border-left: 1px solid var(--bb-border-base);
     }
   }
 

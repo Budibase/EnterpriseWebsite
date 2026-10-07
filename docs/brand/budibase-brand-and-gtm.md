@@ -1,11 +1,18 @@
 # Budibase brand and GTM direction
 
 **Status:** Working source of truth  
-**Last updated:** 10 September 2026
+**Last updated:** 6 October 2026
 
 Use this document to guide Budibase website design, customer-facing copy,
 campaigns, presentations, customer stories, sales enablement, product launches,
 and other go-to-market communications.
+
+## Mission
+
+Make critical work move faster.
+
+This is the approved company mission. Use this wording when stating Budibase's
+mission in current customer-facing content.
 
 ## Strategic objective
 
@@ -811,6 +818,11 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 - What quantitative outcomes can Budibase substantiate consistently?
 
 ## Decision log
+
+### 6 October 2026
+
+- Updated the company mission to “Make critical work move faster,” replacing
+  “Make the workplace faster.” Applied the new wording to the About page.
 
 ### 17 September 2026
 

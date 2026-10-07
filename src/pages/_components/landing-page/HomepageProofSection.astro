@@ -1,6 +1,7 @@
 ---
 import TitleBlock from "@components/TitleBlock.astro";
-import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
+import EnterpriseLogoGrid from "@components/EnterpriseLogoGrid.astro";
+import { homepageProofStats } from "../../../data/homepageProofStats";
 
 type Props = {
   variant?: "default" | "ramp-showcase";
@@ -8,13 +9,6 @@ type Props = {
 
 const { variant = "default" } = Astro.props as Props;
 const isRampShowcase = variant === "ramp-showcase";
-
-const defaultStats = [
-  { value: "900M", description: "Actions automated" },
-  { value: "400K+", description: "Users" },
-  { value: "100+", description: "Enterprises transformed" },
-  { value: "600K", description: "Operations transformed" },
-] as const;
 ---
 
 <section
@@ -69,7 +63,7 @@ const defaultStats = [
         </div>
 
         <div class="homepage-proof__stats">
-          {defaultStats.map((stat) => (
+          {homepageProofStats.map((stat) => (
             <div class="homepage-proof__stat">
               <p class="homepage-proof__stat-value">{stat.value}</p>
               <p class="homepage-proof__stat-description">{stat.description}</p>

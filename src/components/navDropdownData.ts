@@ -365,12 +365,6 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
           label: "Events",
           description: "Join upcoming Budibase events.",
         },
-        {
-          href: "/about/#leadership",
-          label: "Leadership",
-          description: "Meet the Budibase leadership team.",
-          prefetch: true,
-        },
       ],
     },
   ],
