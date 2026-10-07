@@ -2,14 +2,14 @@
 import HeroPoster from "@assets/videos/homepage-hero-poster.jpg?url";
 
 const streamBase =
-  "https://customer-dlipcq15j21v7rm7.cloudflarestream.com/ffbfea7742d6f3d394462eb6e05de8f2";
+  "https://customer-dlipcq15j21v7rm7.cloudflarestream.com/2dc1c29637c825e1736d45a0a6b24daa";
 const playerParams = new URLSearchParams({
   autoplay: "true",
   muted: "true",
   loop: "true",
   controls: "false",
   preload: "auto",
-  poster: `${streamBase}/thumbnails/thumbnail.jpg?time=1s&width=1440&height=1080&fit=clip`,
+  poster: `${streamBase}/thumbnails/thumbnail.jpg?time=0s&width=1440&height=1080&fit=clip`,
 });
 const playerUrl = `${streamBase}/iframe?${playerParams}`;
 ---
