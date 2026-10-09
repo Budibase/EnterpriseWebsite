@@ -1,6 +1,7 @@
 ---
 import FeatureBadge from "@components/FeatureBadge.astro";
 import Icon from "@components/Icon.astro";
+import NavStatusLight from "@components/ui/NavStatusLight.astro";
 import type { NavDropdownMenu } from "@components/navDropdownData";
 
 interface Props {
@@ -82,6 +83,7 @@ const columnCount = menu.columns.reduce(
                             class="header-dropdown-link header-dropdown-link--disabled"
                           >
                             <span class="header-dropdown-link__label">
+                              <NavStatusLight href={href} />
                               {label}
                               {badge && <FeatureBadge label={badge} />}
                             </span>
@@ -105,6 +107,7 @@ const columnCount = menu.columns.reduce(
                             class="header-dropdown-link"
                           >
                             <span class="header-dropdown-link__label">
+                              <NavStatusLight href={href} />
                               {label}
                               {badge && <FeatureBadge label={badge} />}
                               <span
@@ -152,6 +155,7 @@ const columnCount = menu.columns.reduce(
             data-astro-prefetch={menu.footerLink.prefetch ? "" : undefined}
           >
             <span class="header-dropdown-link__label">
+              <NavStatusLight href={menu.footerLink.href} />
               {menu.footerLink.label}
               <Icon name="ArrowRight" size="18" />
             </span>
@@ -176,6 +180,7 @@ const columnCount = menu.columns.reduce(
                 data-astro-prefetch={item.prefetch ? "" : undefined}
               >
                 <span class="header-dropdown-link__label">
+                  <NavStatusLight href={item.href} />
                   {item.label}
                   <span aria-hidden="true">
                     <Icon name="ArrowRight" size="18" />
@@ -302,21 +307,22 @@ const columnCount = menu.columns.reduce(
     display: grid;
     min-width: 0;
     grid-template-columns: repeat(var(--dropdown-columns), minmax(0, 1fr));
-    gap: 3rem;
+    gap: 1.5rem;
   }
 
   .header-dropdown-column {
     min-width: 0;
-    max-width: 14rem;
+    width: 16rem;
+    max-width: 100%;
   }
   .header-dropdown-column--span-2 {
     grid-column: span 2;
-    max-width: 31rem;
+    width: 33.5rem;
   }
   .header-dropdown-column--span-2 .header-dropdown-column__list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem 3rem;
+    gap: 1.5rem;
   }
 
   .header-dropdown-column__heading {
@@ -385,6 +391,7 @@ const columnCount = menu.columns.reduce(
 
   .header-dropdown-link__description {
     display: block;
+    margin-left: 16px;
     color: var(--text-secondary);
     font-size: 0.8125rem;
     font-weight: 400;
@@ -454,7 +461,7 @@ const columnCount = menu.columns.reduce(
 
   @media (min-width: 1024px) and (max-width: 1279px) {
     .header-dropdown--four-columns .header-dropdown-columns {
-      column-gap: 1.5rem;
+      column-gap: 1rem;
     }
   }
 

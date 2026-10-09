@@ -10,6 +10,7 @@ type: Service
 tier: Silver
 summary: A short, approved description of the partner and the work they deliver.
 logo: ../../../assets/images/partners/example-partner.svg
+logoBackground: light
 website: https://example.com
 regions:
   - Europe
@@ -26,6 +27,14 @@ Only add names, logos, descriptions, and claims approved for public use.
 Service partner assignments approved on 9 October 2026: large agencies are Gold,
 small agencies are Silver, and individuals are Bronze. Technology partners stay
 NA. A tier describes the approved partnership level, not certification.
+
+Logos appear in square 42px containers, with the symbol contained inside at 30px.
+Use `logoBackground: dark` for light artwork such as Gutilab's supplied symbol;
+the default is `light`. Use `transparent` to leave the container unfilled.
+Official website favicons are suitable compact symbols.
+Record the source of each retrieved asset in `src/assets/images/partners/SOURCES.md`.
+Profiles without a verified logo display a decorative 42px square of nine
+touching blocks in a 3 × 3 grid using existing Budibase color tokens.
 
 Logo, website, and summary may be omitted until supplied. The directory shows
 Partner, Type, Partner tier, and Regions. Service partners offer Budibase

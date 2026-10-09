@@ -2,6 +2,7 @@
 import type { NavDropdownItem } from "@components/navDropdownData";
 import FeatureBadge from "@components/FeatureBadge.astro";
 import Icon from "@components/Icon.astro";
+import NavStatusLight from "@components/ui/NavStatusLight.astro";
 
 interface Props {
   item: NavDropdownItem;
@@ -24,6 +25,7 @@ const { href, label, prefetch, badge, target, rel, disabled } = item;
         class="mobile-nav-sub-link mobile-nav-sub-link-disabled"
       >
         <span class="mobile-nav-sub-link__label">
+          <NavStatusLight href={href} />
           {label}
           {target === "_blank" && (
             <Icon
@@ -45,6 +47,7 @@ const { href, label, prefetch, badge, target, rel, disabled } = item;
         class="mobile-nav-sub-link font-medium nav-link transition-colors"
       >
         <span class="mobile-nav-sub-link__label">
+          <NavStatusLight href={href} />
           {label}
           {target === "_blank" && (
             <Icon
@@ -69,7 +72,7 @@ const { href, label, prefetch, badge, target, rel, disabled } = item;
   .mobile-nav-sub-link__label {
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.5rem;
   }
 
   .mobile-nav-sub-link__external-icon {

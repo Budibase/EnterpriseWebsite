@@ -218,6 +218,7 @@ const partners = defineCollection({
       tier: z.enum(partnerTiers).optional(),
       summary: z.string().min(20).max(320).optional(),
       logo: image().optional(),
+      logoBackground: z.enum(["light", "dark", "transparent"]).default("light"),
       website: z.url().optional(),
       regions: z.array(z.enum(partnerRegions)).default([]),
       featured: z.boolean().default(false),

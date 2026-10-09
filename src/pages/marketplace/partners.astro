@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/MarketplaceLayout.astro";
 import TitleBlock from "@components/TitleBlock.astro";
-import Table from "@components/MarketplaceTable.astro";
+import Table, { type Row } from "@components/MarketplaceTable.astro";
 import Link from "@components/Link.astro";
 import {
   partnerRegions,
@@ -11,12 +11,15 @@ import {
   partnerJoinUrl,
 } from "../../data/partnerDirectory";
 const partners = await getCollection("partners");
-const rows = partners.map(({ data }) => {
+const rows: Row[] = partners.map(({ data }) => {
   const tier = data.type === "Technology" ? "NA" : (data.tier ?? "—");
   return {
     name: data.name,
     href: data.website,
+    target: "_blank",
     logo: data.logo?.src,
+    logoContainer: true,
+    logoBackground: data.logoBackground,
     categories: data.regions,
     facets: {
       type: [data.type],

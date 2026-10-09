@@ -94,6 +94,9 @@ const footerColumns: FooterColumn[] = [
       ...(solutionsDropdownMenu.footerLink
         ? [{ links: [toFooterLink(solutionsDropdownMenu.footerLink)] }]
         : []),
+      ...(solutionsDropdownMenu.footerLinks?.length
+        ? [{ links: solutionsDropdownMenu.footerLinks.map(toFooterLink) }]
+        : []),
     ],
   ),
   {

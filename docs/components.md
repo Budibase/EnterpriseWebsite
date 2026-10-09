@@ -19,6 +19,10 @@ responsive behavior, and interaction patterns remain consistent.
   not fit a content-specific family. `FilterTabs` is currently the canonical
   component in this directory.
 
+Navigation dropdown links use `ui/NavStatusLight.astro` for their decorative
+8px square palette markers. `getNavStatusColor` in `navDropdownData.ts` keeps
+each destination's marker color consistent across desktop and mobile menus.
+
 ## Core components
 
 ### Page shell
@@ -187,6 +191,11 @@ layout behavior from the current URL.
   Store approved tiers on each profile. Logos and websites
   can be omitted until supplied; do not create placeholders for missing claims.
   `partnerJoinUrl` in `src/data/partnerDirectory.ts` owns the shared join link.
+  Partner logos use 42px square containers and contained 30px symbols; profiles
+  can select a dark logo background for light artwork. Store official asset
+  sources in `src/assets/images/partners/SOURCES.md`.
+  Missing partner logos use a decorative 3 × 3 color mosaic filling the 42px
+  container, rather than invented partner artwork.
 
 ## Blog and customer archives
 

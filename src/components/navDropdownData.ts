@@ -61,7 +61,7 @@ export const platformDropdownMenu: NavDropdownMenu = {
         {
           href: "/product/apis/",
           label: "APIs",
-          description: "Connect business system actions.",
+          description: "Connect system actions.",
           prefetch: true,
           icon: "Code",
         },
@@ -121,7 +121,7 @@ export const platformDropdownMenu: NavDropdownMenu = {
         {
           href: "/product/apps/",
           label: "Apps",
-          description: "Build secure operational interfaces.",
+          description: "Build custom interfaces.",
           prefetch: true,
           icon: "AppWindow",
         },
@@ -260,12 +260,18 @@ export const solutionsDropdownMenu: NavDropdownMenu = {
       ],
     },
   ],
-  footerLink: {
-    href: "/marketplace/templates/",
-    label: "Templates",
-    description: "Start with operational templates.",
-    prefetch: true,
-  },
+  footerLinks: [
+    {
+      href: "/marketplace/templates/",
+      label: "Templates",
+      prefetch: true,
+    },
+    {
+      href: "/marketplace/partners/",
+      label: "Partners",
+      prefetch: true,
+    },
+  ],
 };
 
 export const resourcesDropdownMenu: NavDropdownMenu = {
@@ -469,3 +475,27 @@ export const flattenMenuItems = (menu: NavDropdownMenu): NavDropdownItem[] => [
   ...(menu.footerLink ? [menu.footerLink] : []),
   ...(menu.footerLinks ?? []),
 ];
+
+const navStatusPalette = [
+  "var(--bb-celery-600)",
+  "var(--bb-cyan-600)",
+  "var(--bb-purple-600)",
+  "var(--bb-orange-600)",
+  "var(--bb-yellow-600)",
+  "var(--bb-cinnamon-600)",
+  "var(--bb-seafoam-600)",
+  "var(--bb-pink-600)",
+];
+
+const navStatusHrefs = [
+  ...new Set(
+    navDropdownMenus.flatMap(({ menu }) =>
+      flattenMenuItems(menu).map(({ href }) => href),
+    ),
+  ),
+];
+
+export const getNavStatusColor = (href: string): string =>
+  navStatusPalette[
+    Math.max(0, navStatusHrefs.indexOf(href)) % navStatusPalette.length
+  ];

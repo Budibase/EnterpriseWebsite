@@ -1,7 +1,8 @@
 ---
 name: "Naroum Solutions Numériques"
 type: Service
-tier: Bronze
+logo: ../../../assets/images/partners/naroum-solutions-numeriques.svg
+tier: Silver
 regions:
   - North America
 order: 3

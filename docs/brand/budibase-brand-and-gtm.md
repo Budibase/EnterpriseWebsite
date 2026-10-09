@@ -623,6 +623,8 @@ capabilities. Conservative styling alone is not evidence of maturity.
   soft consumer-SaaS appearance.
 - Use square status lights throughout the homepage, including section markers
   and status indicators in its product demonstrations.
+- Give desktop and mobile navigation dropdown links 8px square markers in
+  varied existing palette colors, keeping colors consistent for each destination.
 
 ### Imagery and product presentation
 
@@ -754,6 +756,8 @@ website navigation and adds its own Home, Templates, Connections, Plugins,
 and Partners navigation, with contribution and forum links. Directory URLs
 live under `/marketplace/`; individual process templates retain `/process/`
 URLs. Public partner listings must use approved profiles rather than examples.
+When a partner has no verified logo, use a decorative 42px square of nine
+touching blocks in a 3 × 3 grid, using existing Budibase color tokens.
 
 The Marketplace homepage opens with a forest-green welcome banner, sentence-case
 TikTok Sans, and light text. A static mosaic of three touching columns of varied
@@ -849,6 +853,12 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 
 ### 9 October 2026
 
+- Added a 42px, 3 × 3 Budibase color mosaic as the fallback for partner profiles
+  without a verified logo. Retained original partner symbols where available.
+- Reduced navigation dropdown square markers from 12px to 8px on desktop and
+  mobile.
+- Added 12px square palette-color markers to navigation dropdown links on
+  desktop and mobile; retained the top-level navigation labels without markers.
 - Added 16 approved Service partner listings from the supplied partner list.
   Assigned Gold to large agencies, Silver to small agencies, and Bronze to
   individuals. Grouped locations into the existing regions and omitted emails,

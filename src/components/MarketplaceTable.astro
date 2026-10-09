@@ -13,8 +13,11 @@ export interface Row {
   id?: string;
   name: string;
   href?: string;
+  target?: "_self" | "_blank";
   description?: string;
   logo?: string;
+  logoContainer?: boolean;
+  logoBackground?: "light" | "dark" | "transparent";
   icon?: string;
   iconWeight?: "regular" | "fill";
   category?: string;
@@ -53,6 +56,17 @@ const {
 } = Astro.props;
 const id = `marketplace-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 const Description = descriptionLayout === "inline" ? "span" : "p";
+const logoFallbackColors = [
+  "--bb-brand-bright-green",
+  "--bb-celery-200",
+  "--bb-brand-yellow",
+  "--bb-blue-400",
+  "--bb-brand-forest-green",
+  "--bb-background-sand",
+  "--bb-fuchsia-1300",
+  "--bb-red-500",
+  "--bb-purple-400",
+];
 ---
 
 <section
@@ -189,7 +203,28 @@ const Description = descriptionLayout === "inline" ? "span" : "p";
             >
               <th scope="row">
                 <div class="catalogue-name">
-                  {row.logo ? (
+                  {row.logoContainer ? (
+                    <span
+                      class:list={[
+                        "catalogue-logo",
+                        {
+                          "catalogue-logo--dark": row.logoBackground === "dark",
+                          "catalogue-logo--transparent":
+                            row.logoBackground === "transparent",
+                          "catalogue-logo--mosaic": !row.logo,
+                        },
+                      ]}
+                      aria-hidden="true"
+                    >
+                      {row.logo ? (
+                        <img src={row.logo} alt="" width="30" height="30" />
+                      ) : (
+                        logoFallbackColors.map((color) => (
+                          <span style={`background: var(${color})`} />
+                        ))
+                      )}
+                    </span>
+                  ) : row.logo ? (
                     <img src={row.logo} alt="" width="24" height="24" />
                   ) : (
                     row.icon && (
@@ -204,7 +239,15 @@ const Description = descriptionLayout === "inline" ? "span" : "p";
                   )}
                   <div class="catalogue-name-copy">
                     {row.href ? (
-                      <a href={row.href}>
+                      <a
+                        href={row.href}
+                        target={row.target}
+                        rel={
+                          row.target === "_blank"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                      >
                         {row.name}
                         <Icon name="ArrowUpRight" size="15" />
                       </a>
@@ -532,6 +575,34 @@ const Description = descriptionLayout === "inline" ? "span" : "p";
   .catalogue-name img {
     object-fit: contain;
     flex-shrink: 0;
+  }
+  .catalogue-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    background: var(--bb-background-sand);
+  }
+  .catalogue-logo--dark {
+    background: var(--bb-brand-forest-green);
+  }
+  .catalogue-logo--transparent {
+    background: transparent;
+  }
+  .catalogue-logo img {
+    width: 30px;
+    height: 30px;
+  }
+  .catalogue-logo--mosaic {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+  .catalogue-logo--mosaic span {
+    width: 100%;
+    height: 100%;
   }
   .catalogue-icon {
     display: flex;

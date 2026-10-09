@@ -1,0 +1,25 @@
+---
+import { getNavStatusColor } from "@components/navDropdownData";
+
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<span
+  class="nav-status-light"
+  style={`--nav-status-color: ${getNavStatusColor(href)};`}
+  aria-hidden="true"></span>
+
+<style>
+  .nav-status-light {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 0;
+    background: var(--nav-status-color);
+  }
+</style>
