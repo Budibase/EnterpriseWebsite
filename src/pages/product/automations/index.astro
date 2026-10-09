@@ -147,18 +147,13 @@ Add looping, branching, and conditional logic to craft intelligent rules for rea
 }
 ---
 
-<Layout
-  title={pageTitle}
-  description={pageMetaDescription}
-  navTheme="brand-dark"
->
+<Layout title={pageTitle} description={pageMetaDescription} navTheme="default">
   <ProductLandingPage
     title="Automations you can control and rely on"
     description={pageDescription}
     demo={AutomationDemo}
     demoProps={{ breakout: false }}
     backgroundImage={AutomationDemoBackground}
-    theme="brand-dark"
     mediaWithinBackground
     {bodyContent}
     featureImages={[AutomationFeatureOneImage, AutomationFeatureTwoImage]}

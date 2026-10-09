@@ -1022,7 +1022,7 @@ So, we need _integration platforms_ - tools that allow us to connect a variety o
 
 The value of these kinds of tools is allowing us set up simple _if/then_ automation rules across different platforms. For example, to pass data from one tool to another, when a certain event happens.
 
-Check out our [Zapier integration](https://budibase.com/product/connections/) page to learn more.
+Check out our [Zapier integration](https://budibase.com/marketplace/connections/) page to learn more.
 
 ### Low-code development
 
@@ -1106,6 +1106,6 @@ Grant or restrict access to users at the level of data sources, queries, screens
 
 We have total confidence in our platform. Tens of thousands of companies around the world rely on Budibase to solve all kinds of business problems. But why take our word for it?
 
-We’ve created over 50 free, customizable [app templates](https://budibase.com/process/) to show off what Budibase is capable of.
+We’ve created over 50 free, customizable [app templates](https://budibase.com/marketplace/templates/) to show off what Budibase is capable of.
 
 To start building custom solutions the fast, easy way, sign up to Budibase for free today.

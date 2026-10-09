@@ -109,7 +109,7 @@ The simple answer is that Budibase does it better.
 
 You see, with most form builders, when a user submits their details, really all the tool does is ping you in a designated mailbox. This is something, but it’s not exactly the slickest solution, especially for large businesses.
 
-With Budibase, what you do with your form data is up to you. We offer a huge range of [third-party integrations](https://budibase.com/product/connections/), to send data to CRMs, softphones, calendar apps, you name it.
+With Budibase, what you do with your form data is up to you. We offer a huge range of [third-party integrations](https://budibase.com/marketplace/connections/), to send data to CRMs, softphones, calendar apps, you name it.
 
 It’s the perfect way to automate client communication workflows, in just a few clicks.
 

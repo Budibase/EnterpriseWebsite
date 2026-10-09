@@ -85,14 +85,18 @@ const mergeAssetsWithFallback = (
   return merged;
 };
 
-const buildOpsLibraryPromptFallback = (entry: CollectionEntry<"opsLibrary">) => {
+const buildOpsLibraryPromptFallback = (
+  entry: CollectionEntry<"opsLibrary">,
+) => {
   const assists = entry.data.aiAssists.slice(0, 3).join(", ");
   const humanChecks = entry.data.humansDecide.slice(0, 3).join(", ");
 
   return [
     `You are orchestrating the \"${entry.data.title}\" workflow for ${entry.data.role}.`,
     `Goal: ${entry.data.outcome}`,
-    assists ? `AI assistance: ${assists}.` : "AI assistance: classify, summarize, and route work.",
+    assists
+      ? `AI assistance: ${assists}.`
+      : "AI assistance: classify, summarize, and route work.",
     humanChecks
       ? `Human decision points: ${humanChecks}.`
       : "Human decision points: exceptions and final approvals.",
@@ -113,7 +117,9 @@ const buildOpsLibraryFallbackAssets = (
       slug === "access-request" ? "Access Requests" : undefined,
       slug === "access-request" ? "Decisions" : undefined,
       ...dataTableSignals.map((signal) => `${signal} records`),
-      entry.data.tags.includes("Human-in-the-loop") ? "Decision audit log" : undefined,
+      entry.data.tags.includes("Human-in-the-loop")
+        ? "Decision audit log"
+        : undefined,
     ]),
     automations: uniqueStrings([
       ...entry.data.steps
@@ -144,13 +150,14 @@ const rendered = await render(entry);
 const OpsLibraryContent = rendered.Content;
 const promptCardStyle = entry.data.promptCardStyle ?? "default";
 const usePromptCardExperience = promptCardStyle === "snippet";
-const useDefaultPromptCard = usePromptCardExperience && slug === "access-request" && !explicitPrompt;
+const useDefaultPromptCard =
+  usePromptCardExperience && slug === "access-request" && !explicitPrompt;
 
 const detail: DetailViewModel = {
   title: entry.data.title,
   outcome: entry.data.outcome,
   slug,
-  pageTitle: `${entry.data.title} | Ops Library | Budibase`,
+  pageTitle: `${entry.data.title} | Process templates | Budibase`,
   heroPrompt: explicitPrompt || buildOpsLibraryPromptFallback(entry),
   promptCardStyle,
   usePromptCardExperience,
@@ -167,7 +174,9 @@ const assetGroups = ASSET_GROUP_ORDER.map((group) => ({
 }));
 
 const allAgentCards = await getOpsLibraryCards();
-const currentAgentCard = allAgentCards.find((card) => card.slug === detail.slug);
+const currentAgentCard = allAgentCards.find(
+  (card) => card.slug === detail.slug,
+);
 const relatedAgents: RelatedAgent[] = allAgentCards
   .filter((card) => card.slug !== detail.slug)
   .sort((a, b) => {
@@ -194,23 +203,24 @@ const relatedAgents: RelatedAgent[] = allAgentCards
   }));
 ---
 
-<Layout title={detail.pageTitle} description={detail.outcome}>
+<Layout
+  title={detail.pageTitle}
+  description={detail.outcome}
+  canonicalURL={new URL(Astro.url.pathname, Astro.site)}
+>
   <div class="learn-detail-shell">
     <main class="side-rail-main-inner agent-detail-main pb-20">
-      
-
-      <AgentDetailHero
-        title={detail.title}
-        outcome={detail.outcome}
-      >
+      <AgentDetailHero title={detail.title} outcome={detail.outcome}>
         <div class="flex flex-col gap-4 items-center">
-          <OpsBookADemoButton opSlug={detail.slug} variant="cta" size="large"  />
-            {
+          <OpsBookADemoButton opSlug={detail.slug} variant="cta" size="large" />
+          {
             detail.usePromptCardExperience ? (
               <AccessRequestPrompt
                 collapsible
                 collapsedHeight={260}
-                promptText={detail.useDefaultPromptCard ? undefined : detail.heroPrompt}
+                promptText={
+                  detail.useDefaultPromptCard ? undefined : detail.heroPrompt
+                }
                 agentTitle={detail.title}
                 toolsUsed={detail.assetsUsed.tools}
               />
@@ -223,7 +233,6 @@ const relatedAgents: RelatedAgent[] = allAgentCards
             )
           }
         </div>
-        
       </AgentDetailHero>
 
       <section class="agent-detail-content-grid">

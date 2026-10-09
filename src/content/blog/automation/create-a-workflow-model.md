@@ -342,7 +342,7 @@ Combine our flexible RBAC framework with conditional UIs to maximize security an
 
 Streamline all sorts of workflows with Budibase. Our platform offers a dedicated, flowchart-based automation builder, with a wide range of built-in trigger and action blocks. Build custom automations with minimal manual code.
 
-We also support a huge variety of third-party integrations through Zapier, WebHooks, REST API, and more. Check out our [integrations page](https://budibase.com/product/connections/) to learn more.
+We also support a huge variety of third-party integrations through Zapier, WebHooks, REST API, and more. Check out our [integrations page](https://budibase.com/marketplace/connections/) to learn more.
 
 ### Custom plug-ins
 
@@ -354,6 +354,6 @@ Check out our [plug-ins documentation](https://docs.budibase.com/docs/custom-plu
 
 We think that Budibase is the ideal solution for building tools to manage and improve all sorts of workflows. Tens of thousands of businesses around the world agree with us.
 
-But, we’d rather show you what our platform can do. That’s why we’ve created more than 50 free, fully-deployable [app templates](https://budibase.com/process/) to get you started.
+But, we’d rather show you what our platform can do. That’s why we’ve created more than 50 free, fully-deployable [app templates](https://budibase.com/marketplace/templates/) to get you started.
 
 Sign up to Budibase today to build custom applications the fast, easy way.

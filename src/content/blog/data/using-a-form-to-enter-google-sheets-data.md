@@ -297,4 +297,4 @@ We’re on a mission to create the world’s largest ecosystem of open-source to
 
 Sign up today for free to start building your own incredible, low-code solutions.
 
-Or, check out our library of free, deployable[ app templates](https://budibase.com/process/) to see more of what Budibase can do.
+Or, check out our library of free, deployable[ app templates](https://budibase.com/marketplace/templates/) to see more of what Budibase can do.

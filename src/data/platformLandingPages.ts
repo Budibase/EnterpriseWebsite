@@ -1,6 +1,96 @@
 import type { PlatformLandingContent } from "./landingPageTypes";
 
 export const platformLandingPages = {
+  "ai-models": {
+    title: "AI models — Budibase AI and bring your own models",
+    metaDescription:
+      "Connect Budibase AI or bring your own models to build agents, generate data, run agents in automations, and generate code with Budibase.",
+    proof: "none",
+    hero: {
+      badge: "AI models",
+      headline: "Your choice of AI. More ways to build.",
+      subtitle:
+        "Use Budibase AI, our packaged model customized and evaluated for reliable results, or bring your own models. Give IT one foundation for building agents, generating data, running automations, and writing code.",
+      imageAlt:
+        "Budibase AI and your own models connect to Budibase to power agents, data generation, automations, and code generation",
+    },
+    features: [
+      {
+        headline: "Budibase AI, customized for operational work",
+        body: "Budibase AI is our packaged model with additional customization for work in Budibase. Extensive testing and evaluation focus on consistent, reliable results across the tasks your team needs to deliver.",
+        bullets: [
+          {
+            icon: "Sparkle",
+            text: "Start with a packaged model customized for the Budibase platform.",
+          },
+          {
+            icon: "CheckCircle",
+            text: "Use AI backed by extensive testing and evaluation.",
+          },
+          {
+            icon: "Wrench",
+            text: "Focus on the agents, data, and workflows your organization needs.",
+          },
+        ],
+      },
+      {
+        headline: "Bring the models that fit your organization",
+        body: "Connect your own model providers with your credentials and model configuration. Keep model selection with IT, aligned with your architecture, policies, and the work each model needs to perform.",
+        bullets: [
+          {
+            icon: "PlugsConnected",
+            text: "Connect providers such as OpenAI, Anthropic, Google, and Mistral.",
+          },
+          {
+            icon: "Keyhole",
+            text: "Use custom provider connections for compatible model endpoints.",
+          },
+          {
+            icon: "Robot",
+            text: "Select a connected model when configuring each agent.",
+          },
+        ],
+      },
+    ],
+    cardCluster: {
+      title: "Connect a model. Put it to work.",
+      description:
+        "Use connected models across the software IT builds for business operations.",
+      columns: 4,
+      responsiveLayout: "stack",
+      background: "surface",
+      cards: [
+        {
+          number: "01",
+          title: "Build agents",
+          description:
+            "Create agents with instructions, knowledge, and tools to handle operational requests with human oversight.",
+          link: "/product/agents/",
+        },
+        {
+          number: "02",
+          title: "Generate data",
+          description:
+            "Describe what you need to generate Budibase tables, fields, and sample data for your workspace.",
+          link: "/product/data/",
+        },
+        {
+          number: "03",
+          title: "Use agents in automations",
+          description:
+            "Add an Agent node to an automation, pass in workflow context, and use its output in subsequent steps.",
+          link: "/product/automations/",
+        },
+        {
+          number: "04",
+          title: "Generate code",
+          description:
+            "Describe the logic you need to generate JavaScript for bindings and automation steps. Review and adapt it before use.",
+          link: "/product/apps/",
+        },
+      ],
+    },
+  },
   data: {
     title: "Data tables",
     metaDescription:

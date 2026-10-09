@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { content, featureImages, featureMedia } = Astro.props as Props;
-const resolvedFeatureMedia =
+const resolvedFeatureMedia: readonly ProductDetailMedia[] =
   featureMedia ?? featureImages?.map((image) => ({ image })) ?? [];
 ---
 
@@ -25,6 +25,10 @@ const resolvedFeatureMedia =
       SectionTitle={content.cardCluster.title}
       SectionDescription={content.cardCluster.description}
       cards={content.cardCluster.cards}
+      columns={content.cardCluster.columns}
+      responsiveLayout={content.cardCluster.responsiveLayout}
+      CardBackgroundColor={content.cardCluster.background}
+      showArrowButton={content.cardCluster.cards.some((card) => card.link)}
     />
   </div>
 
@@ -32,7 +36,13 @@ const resolvedFeatureMedia =
     content.features.map((feature, index) => (
       <div class="page-section page-section--no-top">
         <FeatureSection
-          image={resolvedFeatureMedia[index].image}
+          image={
+            resolvedFeatureMedia[index].demo
+              ? undefined
+              : resolvedFeatureMedia[index].image
+          }
+          demo={resolvedFeatureMedia[index].demo}
+          demoProps={resolvedFeatureMedia[index].demoProps}
           imageAlt={
             resolvedFeatureMedia[index].imageAlt ??
             `${feature.headline} product interface`
@@ -49,9 +59,13 @@ const resolvedFeatureMedia =
     ))
   }
 
-  <div class="page-section page-section--no-top">
-    <StatSection />
-  </div>
+  {
+    content.proof !== "none" && (
+      <div class="page-section page-section--no-top">
+        <StatSection />
+      </div>
+    )
+  }
 
   <ProductPageFooter />
 </div>

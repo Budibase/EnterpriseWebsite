@@ -5,14 +5,14 @@
 /business-apps /product/apps/ 301
 /directories /product/apps/ 301
 /forms /product/apps/ 301
-/integration /product/connections/ 301
+/integration /marketplace/connections/ 301
 /internal-tools /product/apps/ 301
 /signup-plus /contact/ 301
 /signup-plus/ /contact/ 301
-/ops /process/ 301
-/ops/ /process/ 301
-/templates /process/ 301
-/templates/ /process/ 301
+/ops /marketplace/templates/ 301
+/ops/ /marketplace/templates/ 301
+/templates /marketplace/templates/ 301
+/templates/ /marketplace/templates/ 301
 /manufacturing/templates/manufacturing-inventory-management-software/ /blog/tutorials/manufacturing-dashboard/ 301
 /manufacturing/templates/manufacturing-quality-control-checklist/ /product/apps/ 301
 /operations/templates/maintenance-schedule-template/ /product/apps/ 301
@@ -62,13 +62,13 @@
 /blog/data/           /blog/category/data/           301
 /blog/tutorials/      /blog/category/tutorials/      301
 /customers/str%C3%B6er-x/     /customers/stroer-x/ 301
-/resources/     /process/ 301
+/resources/     /marketplace/templates/ 301
 /components/     /product/apps/ 301
-/operations/     /process/ 301
+/operations/     /marketplace/templates/ 301
 /platform/api-integration-platform/     /product/apis/ 301
-/categories/api/     /product/connections/ 301
-/categories/auth/     /product/connections/ 301
-/categories/data/     /product/connections/ 301
+/categories/api/     /marketplace/connections/ 301
+/categories/auth/     /marketplace/connections/ 301
+/categories/data/     /marketplace/connections/ 301
 /blog/updates/v3/launchweek/     /blog/updates/v3/launchweek/day5/ 301
 
 # Dynamic redirects must remain after exact redirects so exact rules do not
@@ -79,9 +79,9 @@
 /business-apps/* /product/apps/ 301
 /directories/* /product/apps/ 301
 /forms/* /product/apps/ 301
-/integration/* /product/connections/ 301
+/integration/* /marketplace/connections/ 301
 /internal-tools/* /product/apps/ 301
-/templates/* /process/ 301
+/templates/* /marketplace/templates/ 301
 /it/templates/* /product/apps/ 301
 /legal/templates/* /product/apps/ 301
 /logistics/templates/* /blog/tutorials/fleet-management-portal/ 301
@@ -93,7 +93,7 @@
 /resources/itil-processes/change-management/:page /blog/inside-it/change-management-tools/ 301
 /resources/itil-processes/service-request-management/:page /blog/inside-it/service-request-management/ 301
 /resources/itil-processes/configuration-management/:page /blog/inside-it/itil-application-management/ 301
-/integrations/*  /product/connections/  301
+/integrations/*  /marketplace/connections/  301
 /blog/updates/page/:number  /changelog/  301
 /blog/:category/page/:number /blog/category/:category/:number 301
 /blog/page/:page            /blog/:page                    301

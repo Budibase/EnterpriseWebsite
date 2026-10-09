@@ -29,22 +29,44 @@ import SelfHostHeroImage from "@assets/images/feature-sections/critical-operatio
 import SelfHostFeatureOneImage from "@assets/images/feature-sections/regulated-enterprises.png?url";
 import SelfHostFeatureTwoImage from "@assets/images/platform/PlatformCockapoo.png?url";
 import ApiExplorerVideo from "@assets/videos/api-explorer.webm?url";
+import AIModelConnections from "../pages/product/_components/AIModelConnections.astro";
+import BudibaseAIProcess from "../pages/product/_components/BudibaseAIProcess.astro";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
 interface Props {
   slug: PlatformLandingSlug;
   content: PlatformLandingContent;
-  theme?: "default" | "brand-dark";
+  showGetStarted?: boolean;
 }
 
-const { slug, content, theme = "default" } = Astro.props as Props;
+const { slug, content, showGetStarted = false } = Astro.props as Props;
 
 const pageImages: Record<
   PlatformLandingSlug,
   {
     hero: string;
+    heroDemo?: AstroComponentFactory;
     features: readonly [ProductDetailMedia, ProductDetailMedia];
   }
 > = {
+  "ai-models": {
+    hero: KnowledgeHeroImage,
+    heroDemo: AIModelConnections,
+    features: [
+      {
+        image: KnowledgeFeatureOneImage,
+        imageAlt:
+          "Budibase AI combines a packaged model, additional customization, and extensive testing and evaluation",
+        demo: BudibaseAIProcess,
+      },
+      {
+        image: KnowledgeHeroImage,
+        imageAlt:
+          "Budibase agent instructions editor with a connected Mistral model and IT help desk tools",
+        fit: "contain",
+      },
+    ],
+  },
   data: {
     hero: TablesHeroImage,
     features: [
@@ -108,21 +130,40 @@ const images = pageImages[slug];
 <div class="platform-landing-page">
   <div class="page-section page-section--hero">
     <HeroSmall
+      class={images.heroDemo ? "platform-landing-hero--diagram" : undefined}
       image={images.hero}
       imageAlt={content.hero.imageAlt}
+      mediaDemo={images.heroDemo}
+      badge={content.hero.badge
+        ? {
+            label: content.hero.badge,
+            variant: "light",
+          }
+        : undefined}
       title={content.hero.headline}
       subtitle={content.hero.subtitle}
       action={{ label: "Book a demo", href: "/contact/" }}
-      secondaryAction={theme === "brand-dark"
+      secondaryAction={showGetStarted
         ? {
             label: "Get started",
             href: "https://account.budibase.app/register",
             target: "_blank",
           }
         : undefined}
-      {theme}
+      theme="default"
     />
   </div>
 
   <ProductDetailBody content={content} featureMedia={images.features} />
 </div>
+
+<style>
+  :global(.platform-landing-hero--diagram .hero-small__image) {
+    aspect-ratio: auto;
+    align-self: center;
+  }
+
+  :global(.platform-landing-hero--diagram .hero-small__demo) {
+    padding: 0;
+  }
+</style>

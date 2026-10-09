@@ -1,0 +1,153 @@
+import { connections } from "./connectionDirectory";
+
+export const marketplaceConnectionCategories = [
+  "APIs",
+  "Databases",
+  "AI models",
+  "Knowledge bases",
+] as const;
+
+const knowledgeSources = new Set([
+  "Confluence",
+  "Notion",
+  "Microsoft SharePoint",
+  "Nextcloud",
+]);
+const apiDataSources = new Set(["Amazon S3", "Google Sheets"]);
+
+const descriptions: Record<string, string> = {
+  Anthropic: "Claude AI models",
+  "Azure OpenAI": "AI models hosted on Azure",
+  Google: "Gemini AI models",
+  Groq: "AI model inference",
+  Mistral: "Language and reasoning models",
+  OpenAI: "Language and multimodal AI models",
+  OpenRouter: "Access to multiple AI providers",
+  "Custom provider": "Your own AI model endpoint",
+  Ansible: "IT configuration and automation",
+  Ashby: "Recruiting and applicant tracking",
+  Attio: "Customer relationship management",
+  BambooHR: "Employee records and HR management",
+  BanksAPI: "Bank accounts and financial data",
+  Baremetrics: "Subscription revenue analytics",
+  Billsby: "Subscription billing",
+  "Breezy HR": "Recruiting and applicant tracking",
+  Brevo: "Email marketing and customer messaging",
+  BulkSMS: "SMS messaging",
+  Buttondown: "Email newsletters",
+  Clever: "Education data and application access",
+  ClickUp: "Tasks and project management",
+  Confluence: "Team documentation and knowledge",
+  "Custom REST API": "Your own REST API endpoint",
+  Datadog: "Infrastructure and application monitoring",
+  Deel: "Global payroll and workforce management",
+  Dixa: "Customer service conversations",
+  Discord: "Community and team messaging",
+  Dots: "Payouts and digital wallets",
+  Exa: "Web search for AI applications",
+  Factorial: "HR and workforce management",
+  Figma: "Collaborative interface design",
+  Fountain: "High-volume recruiting",
+  GitHub: "Code repositories and collaboration",
+  GitLab: "Source control and software delivery",
+  Goody: "Employee and customer gifting",
+  Helcim: "Payment processing",
+  HiBob: "Employee records and HR management",
+  Homerun: "Recruiting and applicant tracking",
+  HubSpot: "CRM, marketing, and sales",
+  Hypatos: "AI document processing",
+  Intercom: "Customer support and messaging",
+  Ironclad: "Contract lifecycle management",
+  "Jina AI": "Embeddings and search tools",
+  Jira: "Issue tracking and project management",
+  Jobsoid: "Recruiting and applicant tracking",
+  "Keatext AI": "Customer feedback analysis",
+  Kenjo: "HR and workforce management",
+  Lambda: "GPU cloud infrastructure",
+  Lob: "Direct mail and address verification",
+  Localizely: "Translation and localization management",
+  LogisticsOS: "Delivery route optimization",
+  Mastercard: "Payment and financial services",
+  MeasureOne: "Consumer data verification",
+  Nanonets: "Document data extraction",
+  Notion: "Documents, wikis, and team knowledge",
+  Nextcloud: "File sharing and collaboration",
+  Oyster: "Global employment and payroll",
+  Okta: "Identity and access management",
+  OpenAPI: "APIs described with OpenAPI specifications",
+  PagerDuty: "Incident response and on-call management",
+  "Peach Payments": "Online payment processing",
+  Pinpoint: "Recruiting and applicant tracking",
+  Podium: "Customer messaging and reviews",
+  Remote: "Global employment and payroll",
+  Resend: "Transactional email delivery",
+  Rivery: "Data integration and pipelines",
+  Sage: "Accounting and business management",
+  Secoda: "Data catalog and governance",
+  ServiceNow: "IT service and workflow management",
+  "Microsoft SharePoint": "Documents and team collaboration",
+  ShipEngine: "Shipping rates, labels, and tracking",
+  Shippo: "Shipping labels and tracking",
+  Shortcut: "Software project and issue tracking",
+  Slack: "Team messaging and collaboration",
+  SmartRecruiters: "Recruiting and applicant tracking",
+  SMTP: "Email delivery through your mail server",
+  SoftLedger: "Accounting and financial management",
+  Splunk: "Log analytics and monitoring",
+  SpotDraft: "Contract lifecycle management",
+  Stripe: "Payments and billing",
+  SuprSend: "Notifications across messaging channels",
+  Sumsub: "Identity verification",
+  Tavily: "Web search for AI applications",
+  "Microsoft Teams": "Team messaging and collaboration",
+  Terminal: "Fleet telematics data",
+  Theirstack: "Job listings and company data",
+  Tilled: "Embedded payment processing",
+  Trello: "Boards and task management",
+  Tremendous: "Rewards and incentive payouts",
+  Twilio: "SMS, voice, and messaging",
+  Verifiable: "Healthcare provider credential verification",
+  VirusTotal: "File and URL threat analysis",
+  "Volt IO": "Open banking payments",
+  Workable: "Recruiting and applicant tracking",
+  X: "Social posts and conversations",
+  Zendesk: "Customer support and ticketing",
+  "Amazon S3": "Cloud object storage",
+  CouchDB: "JSON document database",
+  DynamoDB: "Managed NoSQL database",
+  Elasticsearch: "Search and analytics engine",
+  Firestore: "Cloud document database",
+  "Google Sheets": "Collaborative spreadsheets",
+  MongoDB: "Document database",
+  MSSQL: "Microsoft relational database",
+  MySQL: "Open-source relational database",
+  Oracle: "Enterprise relational database",
+  PostgreSQL: "Open-source relational database",
+  Redis: "In-memory data store",
+  Snowflake: "Cloud data warehouse",
+  Supabase: "PostgreSQL database platform",
+  PGVector: "Vector search for PostgreSQL",
+};
+
+export const marketplaceConnections = connections
+  .filter((connection) => connection.category !== "Deployment options")
+  .map((connection) => {
+    const category = knowledgeSources.has(connection.name)
+      ? "Knowledge bases"
+      : connection.category === "AI model providers"
+        ? "AI models"
+        : connection.category === "Data" && !apiDataSources.has(connection.name)
+          ? "Databases"
+          : "APIs";
+
+    return {
+      ...connection,
+      anchor: `connection-${connection.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "")}`,
+      description: descriptions[connection.name],
+      sourceCategory: connection.category,
+      category,
+    };
+  });

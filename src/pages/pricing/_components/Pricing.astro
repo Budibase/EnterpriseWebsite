@@ -75,8 +75,6 @@ const cloudAllowanceFeatures = [
   },
   {
     label: `${formatCloudQuantity(defaultCloudPackage.monthlyActions)} monthly actions`,
-    faqHref: "#faq-cloud-allowances",
-    faqLabel: "Read about monthly action allowances",
   },
   {
     label: `${formatCloudQuantity(defaultCloudPackage.monthlyAiCredits)} monthly AI credits`,
@@ -324,27 +322,35 @@ const faqItems: FaqItem[] = [
                   }
                   {
                     cloudAllowanceFeatures.map((feature) => (
-                      <li class="pricing-plan-card__feature--linked">
+                      <li
+                        class:list={{
+                          "pricing-plan-card__feature--linked": feature.faqHref,
+                        }}
+                      >
                         <span
                           class="pricing-plan-card__feature-icon"
                           aria-hidden="true"
                         >
                           <Icon name="CheckCircle" weight="fill" size="18" />
                         </span>
-                        <a
-                          class="pricing-plan-card__faq-link"
-                          href={feature.faqHref}
-                          aria-label={feature.faqLabel}
-                          data-pricing-faq-link
-                        >
-                          <span>{feature.label}</span>
-                          <span
-                            class="pricing-plan-card__faq-link-icon"
-                            aria-hidden="true"
+                        {feature.faqHref ? (
+                          <a
+                            class="pricing-plan-card__faq-link"
+                            href={feature.faqHref}
+                            aria-label={feature.faqLabel}
+                            data-pricing-faq-link
                           >
-                            <Icon name="PlusCircle" weight="fill" size="18" />
-                          </span>
-                        </a>
+                            <span>{feature.label}</span>
+                            <span
+                              class="pricing-plan-card__faq-link-icon"
+                              aria-hidden="true"
+                            >
+                              <Icon name="PlusCircle" weight="fill" size="18" />
+                            </span>
+                          </a>
+                        ) : (
+                          <span>{feature.label}</span>
+                        )}
                       </li>
                     ))
                   }

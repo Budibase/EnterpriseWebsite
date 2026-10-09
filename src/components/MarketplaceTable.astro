@@ -1,0 +1,643 @@
+---
+import Icon from "@components/Icon.astro";
+import Link from "@components/Link.astro";
+import MagnifyingGlass from "phosphor-astro/MagnifyingGlass.astro";
+export interface Cell {
+  text?: string;
+  href?: string;
+  values?: readonly string[];
+  icons?: string[];
+  boolean?: boolean;
+}
+export interface Row {
+  id?: string;
+  name: string;
+  href?: string;
+  description?: string;
+  logo?: string;
+  icon?: string;
+  iconWeight?: "regular" | "fill";
+  category?: string;
+  categories?: readonly string[];
+  facets?: Record<string, readonly string[]>;
+  cells: Cell[];
+}
+interface Props {
+  label: string;
+  columns: string[];
+  rows: Row[];
+  descriptionLayout?: "stacked" | "inline";
+  searchLabel?: string;
+  filters?: readonly string[];
+  filterLabel?: string;
+  facetFilters?: {
+    key: string;
+    label: string;
+    options: readonly string[];
+    presentation?: "select" | "switcher";
+  }[];
+  emptyTitle?: string;
+  emptyDescription?: string;
+}
+const {
+  label,
+  columns,
+  rows,
+  descriptionLayout = "stacked",
+  searchLabel,
+  filters = [],
+  filterLabel = "Category",
+  facetFilters = [],
+  emptyTitle = "No matches found",
+  emptyDescription = "Try another search or filter.",
+} = Astro.props;
+const id = `marketplace-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+const Description = descriptionLayout === "inline" ? "span" : "p";
+---
+
+<section
+  class:list={[
+    "marketplace-directory",
+    { "descriptions-inline": descriptionLayout === "inline" },
+  ]}
+  data-marketplace-directory
+  aria-label={label}
+>
+  {
+    searchLabel && (
+      <div class="catalogue-toolbar">
+        <div class="catalogue-search">
+          <MagnifyingGlass width="18" height="18" aria-hidden="true" />
+          <label for={`${id}-search`} class="sr-only">
+            {searchLabel}
+          </label>
+          <input
+            id={`${id}-search`}
+            type="search"
+            placeholder={`${searchLabel}…`}
+            autocomplete="off"
+            data-catalogue-search
+          />
+        </div>
+        {filters.length > 0 && (
+          <div class="catalogue-select">
+            <label for={`${id}-filter`} class="sr-only">
+              {filterLabel}
+            </label>
+            <select id={`${id}-filter`} data-catalogue-filter>
+              <option value="all">All {filterLabel.toLowerCase()}</option>
+              {filters.map((filter) => (
+                <option value={filter}>{filter}</option>
+              ))}
+            </select>
+            <Icon name="CaretDown" size="14" />
+          </div>
+        )}
+        {facetFilters.map((facet) =>
+          facet.presentation === "switcher" ? (
+            <div
+              class="catalogue-switcher"
+              role="group"
+              aria-label={facet.label}
+              data-catalogue-switcher={facet.key}
+            >
+              <button
+                type="button"
+                data-catalogue-switch-value="all"
+                aria-pressed="true"
+              >
+                All
+              </button>
+              {facet.options.map((option) => (
+                <button
+                  type="button"
+                  data-catalogue-switch-value={option}
+                  aria-pressed="false"
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div class="catalogue-select">
+              <label for={`${id}-${facet.key}-filter`} class="sr-only">
+                {facet.label}
+              </label>
+              <select
+                id={`${id}-${facet.key}-filter`}
+                data-catalogue-facet={facet.key}
+              >
+                <option value="all">All {facet.label.toLowerCase()}</option>
+                {facet.options.map((option) => (
+                  <option value={option}>{option}</option>
+                ))}
+              </select>
+              <Icon name="CaretDown" size="14" />
+            </div>
+          ),
+        )}
+        <div class="catalogue-select">
+          <>
+            <label for={`${id}-sort`} class="sr-only">
+              Sort {label.toLowerCase()}
+            </label>
+            <select id={`${id}-sort`} data-catalogue-sort>
+              <>
+                <option value="az">Name: A–Z</option>
+                <option value="za">Name: Z–A</option>
+              </>
+            </select>
+            <Icon name="CaretDown" size="14" />
+          </>
+        </div>
+      </div>
+    )
+  }
+  <div
+    class="catalogue-scroll"
+    tabindex="0"
+    role="region"
+    aria-label={`${label} table`}
+  >
+    <table>
+      <caption class="sr-only">{label}</caption>
+      <thead
+        ><tr>{columns.map((column) => <th scope="col">{column}</th>)}</tr
+        ></thead
+      >
+      <tbody data-catalogue-rows>
+        {
+          rows.map((row) => (
+            <tr
+              id={row.id}
+              data-catalogue-row
+              data-name={row.name}
+              data-category={row.category}
+              data-categories={JSON.stringify(row.categories ?? [])}
+              data-facets={JSON.stringify(row.facets ?? {})}
+              data-search={[
+                row.name,
+                row.description,
+                row.category,
+                ...row.cells.flatMap((cell) => [
+                  cell.text ?? "",
+                  ...(cell.values ?? []),
+                ]),
+              ]
+                .join(" ")
+                .toLowerCase()}
+            >
+              <th scope="row">
+                <div class="catalogue-name">
+                  {row.logo ? (
+                    <img src={row.logo} alt="" width="24" height="24" />
+                  ) : (
+                    row.icon && (
+                      <span class="catalogue-icon">
+                        <Icon
+                          name={row.icon}
+                          size="24"
+                          weight={row.iconWeight ?? "fill"}
+                        />
+                      </span>
+                    )
+                  )}
+                  <div class="catalogue-name-copy">
+                    {row.href ? (
+                      <a href={row.href}>
+                        {row.name}
+                        <Icon name="ArrowUpRight" size="15" />
+                      </a>
+                    ) : (
+                      <span class="catalogue-title">{row.name}</span>
+                    )}
+                    {row.description && (
+                      <Description class="catalogue-description">
+                        {row.description}
+                      </Description>
+                    )}
+                  </div>
+                </div>
+              </th>
+              {row.cells.map((cell) => (
+                <td>
+                  {typeof cell.boolean === "boolean" ? (
+                    <span
+                      class="cell-icons"
+                      aria-label={cell.boolean ? "Uses AI" : "Does not use AI"}
+                    >
+                      <Icon name={cell.boolean ? "Check" : "X"} size="18" />
+                    </span>
+                  ) : cell.icons ? (
+                    <div class="cell-icons">
+                      {cell.icons.map((icon) => (
+                        <Icon name={icon} size="19" weight="fill" />
+                      ))}
+                    </div>
+                  ) : cell.values ? (
+                    <div class="cell-values">
+                      {cell.values.map((value) => (
+                        <span>{value}</span>
+                      ))}
+                      {!cell.values.length && "—"}
+                    </div>
+                  ) : cell.href ? (
+                    <Link
+                      label={cell.text ?? "View"}
+                      url={cell.href}
+                      appearance="quiet"
+                      size="small"
+                    />
+                  ) : (
+                    cell.text
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="catalogue-empty" data-catalogue-empty hidden={rows.length > 0}>
+    <MagnifyingGlass width="28" height="28" aria-hidden="true" /><h3>
+      {emptyTitle}
+    </h3><p>
+      {emptyDescription}
+    </p>
+    {
+      rows.length > 0 && (
+        <button type="button" data-catalogue-reset>
+          Clear filters
+        </button>
+      )
+    }
+  </div>
+  <span class="sr-only" aria-live="polite" data-catalogue-status></span>
+</section>
+<script>
+  function initCatalogues() {
+    document
+      .querySelectorAll<HTMLElement>("[data-marketplace-directory]")
+      .forEach((root) => {
+        if (root.dataset.ready) return;
+        root.dataset.ready = "true";
+        const search = root.querySelector<HTMLInputElement>(
+          "[data-catalogue-search]",
+        );
+        if (!search) return;
+        const filter = root.querySelector<HTMLSelectElement>(
+          "[data-catalogue-filter]",
+        );
+        const facets = [
+          ...root.querySelectorAll<HTMLSelectElement>("[data-catalogue-facet]"),
+        ];
+        const switchers = [
+          ...root.querySelectorAll<HTMLElement>("[data-catalogue-switcher]"),
+        ];
+        const sort = root.querySelector<HTMLSelectElement>(
+          "[data-catalogue-sort]",
+        )!;
+        const body = root.querySelector<HTMLTableSectionElement>(
+          "[data-catalogue-rows]",
+        )!;
+        const rows = [
+          ...root.querySelectorAll<HTMLTableRowElement>("[data-catalogue-row]"),
+        ];
+        const update = () => {
+          let visible = 0;
+          [...rows]
+            .sort(
+              (a, b) =>
+                (a.dataset.name ?? "").localeCompare(b.dataset.name ?? "") *
+                (sort.value === "za" ? -1 : 1),
+            )
+            .forEach((row) => {
+              row.hidden = !(
+                row.dataset.search?.includes(
+                  search.value.trim().toLowerCase(),
+                ) &&
+                (!filter ||
+                  filter.value === "all" ||
+                  row.dataset.category === filter.value ||
+                  JSON.parse(row.dataset.categories ?? "[]").includes(
+                    filter.value,
+                  )) &&
+                switchers.every((switcher) => {
+                  const value =
+                    switcher.querySelector<HTMLButtonElement>(
+                      '[aria-pressed="true"]',
+                    )?.dataset.catalogueSwitchValue ?? "all";
+                  return (
+                    value === "all" ||
+                    (
+                      JSON.parse(row.dataset.facets ?? "{}")[
+                        switcher.dataset.catalogueSwitcher ?? ""
+                      ] ?? []
+                    ).includes(value)
+                  );
+                }) &&
+                facets.every(
+                  (facet) =>
+                    facet.value === "all" ||
+                    (
+                      JSON.parse(row.dataset.facets ?? "{}")[
+                        facet.dataset.catalogueFacet ?? ""
+                      ] ?? []
+                    ).includes(facet.value),
+                )
+              );
+              if (!row.hidden) visible++;
+              body.append(row);
+            });
+          root.querySelector<HTMLElement>("[data-catalogue-empty]")!.hidden =
+            visible > 0;
+          root.querySelector<HTMLElement>(
+            "[data-catalogue-status]",
+          )!.textContent = `${visible} results`;
+        };
+        search.addEventListener("input", update);
+        [filter, ...facets, sort].forEach((control) =>
+          control?.addEventListener("change", update),
+        );
+        switchers.forEach((switcher) => {
+          const buttons = [
+            ...switcher.querySelectorAll<HTMLButtonElement>("button"),
+          ];
+          buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+              buttons.forEach((item) =>
+                item.setAttribute("aria-pressed", String(item === button)),
+              );
+              update();
+            });
+          });
+        });
+        root
+          .querySelector("[data-catalogue-reset]")
+          ?.addEventListener("click", () => {
+            search.value = "";
+            if (filter) filter.value = "all";
+            facets.forEach((facet) => {
+              facet.value = "all";
+            });
+            switchers.forEach((switcher) => {
+              switcher
+                .querySelectorAll<HTMLButtonElement>("button")
+                .forEach((button) => {
+                  button.setAttribute(
+                    "aria-pressed",
+                    String(button.dataset.catalogueSwitchValue === "all"),
+                  );
+                });
+            });
+            update();
+            search.focus();
+          });
+        update();
+      });
+  }
+  initCatalogues();
+  document.addEventListener("astro:page-load", initCatalogues);
+</script>
+<style>
+  .catalogue-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .catalogue-switcher {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+  }
+  .catalogue-switcher button {
+    min-height: 34px;
+    padding: 0 10px;
+    white-space: nowrap;
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .catalogue-switcher button:hover,
+  .catalogue-switcher button[aria-pressed="true"] {
+    background: var(--bb-background-sand-hover);
+    color: var(--text-primary);
+  }
+  .catalogue-search {
+    display: flex;
+    flex: 1 1 240px;
+    min-width: 0;
+    align-items: center;
+    gap: 10px;
+    height: 44px;
+    padding-inline: 12px;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    background: var(--bg-1);
+  }
+  .catalogue-search input {
+    width: 100%;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 14px;
+  }
+  .catalogue-select {
+    position: relative;
+    min-width: 0;
+  }
+  .catalogue-select select {
+    width: 100%;
+    height: 44px;
+    max-width: 280px;
+    appearance: none;
+    padding: 0 36px 0 12px;
+    background: var(--bg-1);
+    border: 1px solid var(--border-color);
+    font: inherit;
+    font-size: 14px;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+  .catalogue-select :global(svg) {
+    position: absolute;
+    right: 12px;
+    top: 15px;
+    pointer-events: none;
+  }
+  .catalogue-search:focus-within,
+  select:focus-visible,
+  button:focus-visible,
+  a:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 3px;
+  }
+  .catalogue-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+  }
+  table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+  thead {
+    background: var(--bb-background-sand);
+    color: var(--text-secondary);
+  }
+  thead th {
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  tbody th,
+  tbody td {
+    padding: 22px 20px;
+    border-top: 1px solid var(--border-color);
+    vertical-align: middle;
+  }
+  tbody th {
+    font-weight: 400;
+    width: 45%;
+  }
+  tbody tr[id] {
+    scroll-margin-top: calc(var(--site-nav-height) + 24px);
+  }
+  tbody tr:hover {
+    background: var(--bg-2);
+  }
+  tr[hidden] {
+    display: none;
+  }
+  .catalogue-name {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .catalogue-name img {
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .catalogue-icon {
+    display: flex;
+    color: var(--text-primary);
+    flex-shrink: 0;
+  }
+  .catalogue-name a,
+  .catalogue-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+  .catalogue-name a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .catalogue-name a :global(svg) {
+    color: var(--text-secondary);
+  }
+  .catalogue-name p {
+    margin: 6px 0 0;
+    max-width: 440px;
+    color: var(--bb-text-body);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .descriptions-inline tbody th {
+    width: 75%;
+  }
+  .descriptions-inline .catalogue-name-copy {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+  .descriptions-inline .catalogue-description {
+    color: rgb(var(--text-subtle));
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .cell-values {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .cell-values span {
+    padding: 3px 7px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-2);
+    font-size: 12px;
+  }
+  .cell-icons {
+    display: flex;
+    gap: 12px;
+    color: var(--text-secondary);
+  }
+  .catalogue-empty {
+    text-align: center;
+    padding: 48px 20px;
+    border: 1px solid var(--border-color);
+    border-top: 0;
+    color: var(--text-secondary);
+  }
+  .catalogue-empty[hidden] {
+    display: none;
+  }
+  .catalogue-empty :global(svg) {
+    margin: 0 auto 16px;
+  }
+  .catalogue-empty h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+  }
+  .catalogue-empty p {
+    margin: 0;
+  }
+  .catalogue-empty button {
+    margin-top: 20px;
+    padding: 10px 16px;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    color: var(--text-primary);
+    background: var(--bg-1);
+  }
+  @media (max-width: 1200px) {
+    .catalogue-switcher {
+      order: 1;
+      width: 100%;
+    }
+  }
+  @media (max-width: 767px) {
+    .catalogue-switcher button {
+      min-height: 40px;
+      padding-inline: 12px;
+    }
+    .catalogue-select {
+      flex: 1 1 140px;
+    }
+    .catalogue-select select {
+      max-width: none;
+    }
+  }
+</style>

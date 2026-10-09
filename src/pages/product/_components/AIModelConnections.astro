@@ -1,0 +1,126 @@
+---
+import Icon from "@components/Icon.astro";
+
+const uses = [
+  { label: "Build agents", icon: "Robot" },
+  { label: "Generate data", icon: "Table" },
+  { label: "Run automations", icon: "Lightning" },
+  { label: "Generate code", icon: "Code" },
+];
+---
+
+<div class="model-connections">
+  <p class="model-connections__eyebrow">Choose your model</p>
+  <div class="model-connections__options">
+    <div class="model-connections__option">
+      <Icon name="Sparkle" size="24" />
+      <div>
+        <strong>Budibase AI</strong>
+        <span>Packaged, customized, and evaluated</span>
+      </div>
+    </div>
+    <div class="model-connections__option">
+      <Icon name="PlugsConnected" size="24" />
+      <div>
+        <strong>Your own models</strong>
+        <span>Your provider and credentials</span>
+      </div>
+    </div>
+  </div>
+  <div class="model-connections__connector" aria-hidden="true">
+    <Icon name="ArrowDown" size="24" />
+  </div>
+  <div class="model-connections__platform">
+    <strong>Build with Budibase</strong>
+    <ul>
+      {
+        uses.map((use) => (
+          <li>
+            <Icon name={use.icon} size="20" />
+            <span>{use.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<style>
+  .model-connections {
+    width: 100%;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-sand);
+    padding: clamp(1rem, 3vw, 2rem);
+    color: var(--bb-text-base);
+  }
+  .model-connections__eyebrow {
+    margin: 0 0 1rem;
+    color: var(--bb-text-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .model-connections__options {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .model-connections__option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid var(--bb-border-subtle);
+    background: var(--bb-background-surface-base);
+    padding: 1rem;
+  }
+  .model-connections__option > :global(svg) {
+    flex-shrink: 0;
+  }
+  .model-connections__option div {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+  .model-connections strong {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .model-connections__option span {
+    color: var(--bb-text-body);
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  .model-connections__connector {
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem;
+  }
+  .model-connections__platform {
+    background: var(--bb-brand-forest-green);
+    padding: 1.25rem;
+    color: var(--bb-text-on-base);
+  }
+  .model-connections__platform ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .model-connections__platform li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--bb-text-on-base) !important;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  .model-connections__platform :global(svg) {
+    flex-shrink: 0;
+    color: var(--bb-brand-bright-green);
+  }
+  @media (max-width: 479px) {
+    .model-connections__platform ul {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/MarketplaceLayout.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import Table from "@components/MarketplaceTable.astro";
+import {
+  marketplaceConnections,
+  marketplaceConnectionCategories,
+} from "../../data/marketplaceConnections";
+const rows = marketplaceConnections.map((connection) => ({
+  name: connection.name,
+  description: connection.description,
+  logo: connection.logo,
+  icon: connection.logo ? undefined : "Sparkle",
+  id: connection.anchor,
+  facets: { category: [connection.category] },
+  cells: [{ text: connection.category }],
+}));
+---
+
+<Layout
+  active="Connections"
+  title="Connections"
+  description="Explore the systems, data sources, and AI providers available around Budibase."
+>
+  <div class="marketplace-page-heading">
+    <TitleBlock
+      variant="section"
+      title="Connections"
+      titleId="marketplace-page-title"
+    />
+  </div>
+  <Table
+    label="Connections"
+    columns={["Connection", "Category"]}
+    rows={rows}
+    descriptionLayout="inline"
+    searchLabel="Search connections"
+    facetFilters={[
+      {
+        key: "category",
+        label: "Connection categories",
+        options: marketplaceConnectionCategories,
+        presentation: "switcher",
+      },
+    ]}
+  />
+</Layout>

@@ -104,6 +104,11 @@ responsive layout.
 
 ### Heroes
 
+- Use `src/components/BlockMosaic.astro` for static, decorative solid-color
+  mosaics. The `marketplace` preset retains the varied rectangular composition;
+  the `hero` preset uses three columns of two blocks with varied heights. Parent
+  wrappers control sizing and placement; the component owns the shared palette.
+
 - Use `src/components/HeroLarge.astro` for the media- or demo-led product hero.
 - Use `src/components/HeroSmall.astro` for the compact product hero with an
   image, optional badge, action, and customer logos.
@@ -114,22 +119,26 @@ the same pattern.
 
 ### Product page layouts
 
+Product and platform page heroes use light surfaces and light navigation. Keep
+this treatment consistent across both shared landing-page compositions.
+
 - Use `src/components/ProductPageLayout.astro` for product pages with bespoke
   body content and the standard compact product header.
 - Use `ProductLandingPage.astro` for Apps, Agents, Automations, and Functions.
   It combines `HeroLarge` with the canonical `ProductDetailBody` composition.
-- Use `PlatformLandingPage.astro` for Data tables, Requests and Approvals, Activity
+- Use `PlatformLandingPage.astro` for AI models, Data tables, Requests and Approvals, Activity
   and Insights, Knowledge, Admin and Security, Self-hosting, and API Explorer.
   It combines `HeroSmall` with `ProductDetailBody`.
 - Use `ProductDetailBody.astro` when a Product or Platform page needs the
-  standard three-card overview, two feature sections, stats, and canonical
-  product footer.
-- Use `ProductPageFooter.astro` as the canonical ending for the 12 platform
+- standard card overview, two feature sections, stats, and canonical
+  product footer. The overview supports configurable columns and responsive
+  stacking; pages can omit stats when they need capability-specific evidence.
+- Use `ProductPageFooter.astro` as the canonical ending for product and platform
   pages. It renders the homepage CTA followed by `ProductFeatureNav.astro`,
   leaving platform navigation immediately above the global footer.
 
-`ProductPageLayout` accepts a custom `header` slot for pages such as the
-connections directory that need controls inside the header. It does not infer
+`ProductPageLayout` accepts a custom `header` slot for pages that need
+controls inside the header. It does not infer
 layout behavior from the current URL.
 
 ### Page composition
@@ -157,6 +166,27 @@ layout behavior from the current URL.
 - `ContactSalesCTA.astro` is the smaller inline sales call to action. The two CTA
   components have different layout roles and should not be combined into one
   highly conditional component.
+
+## Marketplace directories
+
+- `MarketplaceLayout.astro` preserves the global navigation and provides the
+  Marketplace title, secondary navigation, and community links.
+- The page-scoped `MarketplacePromotion.astro` supports the forest-green welcome
+  banner and future image or process promotions. Configure it through
+  `marketplacePromotion` in `src/data/marketplaceHomepage.ts`; `variant: "welcome"`
+  selects the decorative block mosaic. Eyebrow and action fields are optional.
+  Welcome banners can select `illustration: "shapes"` for the square geometric
+  composition in `MarketplaceShapes.astro`. Pass a unique `titleId` when showing
+  multiple promotions on one page.
+- `MarketplaceTable.astro` provides searchable, filterable directories for
+  Connections, Plugins, Partners, and contribution paths. Connection rows use
+  stable IDs for links from the Marketplace homepage.
+- `ProcessDirectory.astro` provides the Templates directory at
+  `/marketplace/templates/`; individual templates remain at `/process/[slug]/`.
+- Partner profiles come only from the approved partners content collection.
+  Store approved tiers on each profile. Logos and websites
+  can be omitted until supplied; do not create placeholders for missing claims.
+  `partnerJoinUrl` in `src/data/partnerDirectory.ts` owns the shared join link.
 
 ## Blog and customer archives
 

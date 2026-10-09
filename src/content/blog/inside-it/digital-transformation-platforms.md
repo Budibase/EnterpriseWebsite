@@ -479,7 +479,7 @@ Basically, Zapier is a tool for connecting tools from different vendors, with a 
 
 In the right hands, this can be a hugely elegant and cost-effective way to make massive cost savings across individual workflows and business processes.
 
-Take a look at our [Zapier integration](https://budibase.com/product/connections/) to learn more.
+Take a look at our [Zapier integration](https://budibase.com/marketplace/connections/) to learn more.
 
 ![Salesforce Logo](https://res.cloudinary.com/daog6scxm/image/upload/v1677240736/cms/Salesforce_logo_rqqa7c.webp "Salesforce logo")
 
@@ -509,7 +509,7 @@ Amazon Web Services occupy a slightly different corner of the digital transforma
 
 In fact, AWS comprises over 170 distinct services. Rather than directly shaping the way your business manages individual processes, it empowers your developers to build performant, scalable custom solutions to fuel your transformation efforts.
 
-Check out our [Amazon S3 integration](https://budibase.com/product/connections/) page to see a little bit more of what this can mean in practice.
+Check out our [Amazon S3 integration](https://budibase.com/marketplace/connections/) page to see a little bit more of what this can mean in practice.
 
 ![Microsoft Logo](https://res.cloudinary.com/daog6scxm/image/upload/v1677240737/cms/Microsoft_logo_ifn4gn.webp "Microsoft Logo")
 
@@ -661,6 +661,6 @@ You can even draw on third-party tools as triggers and actions using Zapier, Web
 
 ### 50+ free app templates
 
-We have huge confidence in what our platform can do. But why take our word for it? To prove it, we’ve built more than fifty free, deployable, and fully customizable [application templates](https://budibase.com/process/) to show off what Budibase is capable of.
+We have huge confidence in what our platform can do. But why take our word for it? To prove it, we’ve built more than fifty free, deployable, and fully customizable [application templates](https://budibase.com/marketplace/templates/) to show off what Budibase is capable of.
 
 To start using Budibase for free, sign up today. 

@@ -324,6 +324,6 @@ Check out our [plug-ins documentation](https://docs.budibase.com/docs/custom-plu
 
 ### 50+ free application templates
 
-Budibase is the ideal solution for building all kinds of web applications. To show off what our platform is capable of, we’ve created more than fifty free, deployment-ready, and fully customizable [app templates](https://budibase.com/process/).
+Budibase is the ideal solution for building all kinds of web applications. To show off what our platform is capable of, we’ve created more than fifty free, deployment-ready, and fully customizable [app templates](https://budibase.com/marketplace/templates/).
 
 Sign up to Budibase today to start building professional apps the fast, easy way.

@@ -213,7 +213,7 @@ For process management, this is invaluable. Not only does it enable us to stream
 
 Zapier also offers additional, albeit limited, functionality for building simple interfaces, applying data transformations, and implementing business rules. All of this is contained in an intuitive, flow-chart-style interface.
 
-Check out our [Zapier integration](https://budibase.com/product/connections/) page to find out more.
+Check out our [Zapier integration](https://budibase.com/marketplace/connections/) page to find out more.
 
 ![Oracle Logo](https://res.cloudinary.com/daog6scxm/image/upload/v1669739599/cms/Oracle_Logo_lzcgrn.webp "Oracle Logo")
 
@@ -225,7 +225,7 @@ So, using Oracle as a BPMS, you can analyze existing processes, model new ones, 
 
 As you might expect, you’ll also enjoy a high degree of integrability with Oracle’s wider ecosystem of resource planning, supply chain, data management, infrastructure, and hardware solutions.
 
-Take a look at our [Oracle integration](https://budibase.com/product/connections/) page for more information.  
+Take a look at our [Oracle integration](https://budibase.com/marketplace/connections/) page for more information.
 ![Dynamics Logo](https://res.cloudinary.com/daog6scxm/image/upload/v1669739616/cms/Dynamics_Logo_jhk3fw.webp "Dynamics Logo")
 
 ### Dynamics365
@@ -310,7 +310,7 @@ Budibase offers exceptional development experiences for a huge array of differen
 
 But don’t just take our word for it.
 
-We’ve also created more than 50 fully customizable, deployment-ready, free [app templates](https://budibase.com/process/) to get you started.
+We’ve also created more than 50 fully customizable, deployment-ready, free [app templates](https://budibase.com/marketplace/templates/) to get you started.
 
 To start building tools the smart, easy way, sign up for Budibase today.
 

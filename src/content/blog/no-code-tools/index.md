@@ -391,7 +391,7 @@ Since we know we’re trying to assess different tools’ efficiency, we can pay
 * Intuitiveness.
 * 
 
-Each of these plays a slightly different role depending on who your target users are. To see more of what Budibase can do, check out our range of free [app templates.](https://budibase.com/process/)
+Each of these plays a slightly different role depending on who your target users are. To see more of what Budibase can do, check out our range of free [app templates.](https://budibase.com/marketplace/templates/)
 
 ## **No-code tools: final thoughts**
 

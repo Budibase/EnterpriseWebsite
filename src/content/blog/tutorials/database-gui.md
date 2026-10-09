@@ -458,4 +458,4 @@ Today we explored many aspects of building a database GUI. We went from the simp
 
 You can use these tips to build your own database GUI or even any app you want. We hope you’ve enjoyed, and see you again next time!
 
-We’ve also create 50+ free, deployable [app templates](https://budibase.com/process/) to help get you started with Budibase.
+We’ve also create 50+ free, deployable [app templates](https://budibase.com/marketplace/templates/) to help get you started with Budibase.

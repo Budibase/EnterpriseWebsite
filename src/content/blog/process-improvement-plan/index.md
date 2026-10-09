@@ -230,7 +230,7 @@ Once you’ve gathered feedback on your current processes, you can use our range
 
 Low-code development is the ideal solution for redesigning processes. With Budibase, it’s never been easier to automate key admin tasks. Use any in-app action to trigger our library of automations, or use our JavaScript editor to create custom functionality.
 
-With a range of [third-party integrations](https://budibase.com/product/connections/), it’s easy to trigger automations in external tools.
+With a range of [third-party integrations](https://budibase.com/marketplace/connections/), it’s easy to trigger automations in external tools.
 
 Use low-code tools to digitize processes, at a fraction of the cost. Quickly build, test, and deploy prototypes, to create effective tools, without excessive sunk costs.
 

@@ -1,3 +1,5 @@
+export const partnerTypes = ["Technology", "Service"] as const;
+
 export const partnerRegions = [
   "Global",
   "Africa",
@@ -8,11 +10,8 @@ export const partnerRegions = [
   "North America",
 ] as const;
 
-export const partnerServices = [
-  "Solution design",
-  "Apps, automations and agents",
-  "Data and API integration",
-  "Deployment and self-hosting",
-  "Managed services and support",
-  "Training and enablement",
-] as const;
+// Service tiers use the approved assignments stored on each partner profile.
+export const partnerTiers = ["Bronze", "Silver", "Gold", "NA"] as const;
+
+// Replace with the Budibase-hosted partner form URL when available.
+export const partnerJoinUrl = "/contact/?op=become-a-partner#book-a-call";

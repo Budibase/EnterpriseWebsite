@@ -1,7 +1,7 @@
 # Budibase brand and GTM direction
 
 **Status:** Working source of truth  
-**Last updated:** 6 October 2026
+**Last updated:** 9 October 2026
 
 Use this document to guide Budibase website design, customer-facing copy,
 campaigns, presentations, customer stories, sales enablement, product launches,
@@ -113,15 +113,21 @@ security, governance, data, deployment, and operations. Partners add delivery
 leverage around that ownership rather than displacing it.
 
 The public proposition is the **Budibase partner network**. Its website
-experience serves two connected jobs:
+directory distinguishes two partner types: **Technology** and **Service**.
+Technology partners show **NA** for partner tier in the directory.
+Approved Service partner tiers are **Gold** for large agencies, **Silver** for
+small agencies, and **Bronze** for individuals. These assignments do not imply
+certification or additional commercial benefits.
+Its website experience serves two connected jobs:
 
-- Help enterprise buyers find delivery partners by region and service.
+- Help enterprise buyers find delivery partners by region and partnership tier.
 - Help qualified delivery organizations explore and join the network.
 
 While the network is early, emphasize product resources, technical guidance,
-joint delivery planning, and selective co-marketing. Do not imply formal tiers,
-certification, guaranteed leads, revenue sharing, exclusive access, or fixed
-commercial benefits unless those programs are approved and operational.
+joint delivery planning, and selective co-marketing. Only use approved tier
+assignments. Do not imply certification, guaranteed leads, revenue sharing,
+exclusive access, or fixed commercial benefits unless those programs are
+approved and operational.
 
 ## Customer problem
 
@@ -609,10 +615,14 @@ capabilities. Conservative styling alone is not evidence of maturity.
 
 - Use clear grids, strong alignment, generous but controlled space, and modular
   compositions.
+- Use light hero surfaces on product and platform pages. Retain forest green
+  in typography, actions, diagrams, and purposeful section contrasts.
 - Balance major brand statements with denser product, architecture, and
   evidence sections.
 - Use rounded cards and pills only where they have a functional reason. Avoid a
   soft consumer-SaaS appearance.
+- Use square status lights throughout the homepage, including section markers
+  and status indicators in its product demonstrations.
 
 ### Imagery and product presentation
 
@@ -738,6 +748,24 @@ Lead with IT leverage and the operational outcome. Show the platform working,
 make the existing estate and enterprise control visible, and provide evidence
 early.
 
+Marketplace is the primary directory for reusable process templates,
+connections, community plugins, and approved partners. It retains the main
+website navigation and adds its own Home, Templates, Connections, Plugins,
+and Partners navigation, with contribution and forum links. Directory URLs
+live under `/marketplace/`; individual process templates retain `/process/`
+URLs. Public partner listings must use approved profiles rather than examples.
+
+The Marketplace homepage opens with a forest-green welcome banner, sentence-case
+TikTok Sans, and light text. A static mosaic of three touching columns of varied
+rectangular blocks sits on the right, using bright green, pale green, yellow,
+and sand with occasional blue and coral accents. Keep the desktop banner
+approximately 300px tall. On mobile the mosaic sits below the copy. The directory
+cards provide the next action without a banner button.
+
+All mosaic blocks use solid fills. Larger blocks include dark forest green,
+bright green, and dark purple, with occasional pink, lavender, and peach accents
+among the smaller blocks.
+
 ### Campaigns and product launches
 
 Anchor the campaign in a specific request IT needs to deliver. Explain what can
@@ -818,6 +846,53 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 - What quantitative outcomes can Budibase substantiate consistently?
 
 ## Decision log
+
+### 9 October 2026
+
+- Added 16 approved Service partner listings from the supplied partner list.
+  Assigned Gold to large agencies, Silver to small agencies, and Bronze to
+  individuals. Grouped locations into the existing regions and omitted emails,
+  industries, and unsupported delivery-service claims.
+- Removed the Services column and filter from the partner directory. Service
+  partners share the Budibase development and support proposition, so the
+  directory compares partner type, tier, and regions instead.
+- Changed homepage status lights from circles to squares, including use-case
+  tabs, product group labels, and product demonstration status indicators.
+- Adopted Marketplace as the primary directory for Templates, Connections,
+  Plugins, and Partners, replacing the previous directory landing pages.
+- Kept individual template URLs at `/process/[slug]/` and used permanent
+  redirects from the former directory URLs to their Marketplace destinations.
+- Removed fictional partner preview profiles from the public directory.
+- Retained the partner contact flow until a Budibase-hosted form is available.
+- Replaced the initial template promotion with a forest-green Marketplace
+  welcome banner and three columns of colorful, touching rectangular blocks.
+  Used sentence-case light text and kept the banner free of buttons; directory
+  cards remain the immediate next step.
+- Selected the geometric shape grid after comparing it with the rectangular
+  block treatment. Hid the block banner while retaining its configuration for
+  future swaps; kept the forest-green background, copy, and 280px desktop height.
+- Increased the geometric welcome banner to 300px on desktop while retaining
+  three illustration columns and the compact mobile treatment.
+- Restored the rectangular block treatment for another review following team
+  preference, retaining the 300px desktop height and the geometric alternative
+  in code.
+- Added vertical stripes to three larger blocks using forest green and yellow,
+  bright green and forest green, and dark purple and light text color pairings.
+- Rejected the striped block treatment after review. Restored solid fills while
+  retaining the taller blocks and expanded accent palette.
+- Chose the solid block banner for the Marketplace and hid the geometric
+  comparison banner. Kept dark forest-green blocks in the outer right column
+  so they do not merge with the copy background; retained the geometric variant
+  in code for future swaps.
+
+### 8 October 2026
+
+- Defined Technology and Service as the two partner types in the Budibase
+  partner network directory.
+- Set partner tier to NA for Technology partners in the directory.
+- Standardized product and platform page heroes on light surfaces and light
+  navigation. Retained forest green for brand typography, actions, diagrams,
+  and purposeful section contrasts.
 
 ### 6 October 2026
 

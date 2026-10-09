@@ -68,7 +68,7 @@ You can even add in conditions and process blocks to manipulate and transform re
 
 However, as we know, using integration platforms as rapid application development tools requires your existing software stack to support this.
 
-Check out our [Zapier integration](https://budibase.com/product/connections/) page for more information.
+Check out our [Zapier integration](https://budibase.com/marketplace/connections/) page for more information.
 
 ![Zapier](https://res.cloudinary.com/daog6scxm/image/upload/v1665144465/cms/Zapier_lvms57.webp "Zapier")
 

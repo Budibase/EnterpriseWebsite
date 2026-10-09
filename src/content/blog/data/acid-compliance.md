@@ -289,6 +289,6 @@ We also offer free SSO through OpenID, OAuth, and more.
 
 ### 50+ free application templates
 
-We have such confidence in what Budibase is capable of, that we decided we might as well show you. That’s why we created more than fifty free, deployment-ready, customizable [application templates](https://budibase.com/process/).
+We have such confidence in what Budibase is capable of, that we decided we might as well show you. That’s why we created more than fifty free, deployment-ready, customizable [application templates](https://budibase.com/marketplace/templates/).
 
 To start building apps the fast, easy way, sign up to Budibase today for free.

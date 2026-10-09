@@ -328,7 +328,7 @@ We also offer our own built-in database, with full CSV upload support, to help y
 
 Use our intuitive automation builder to create sleek, streamlined, and integrated processes, with minimal custom code. Use our step-based interface to create nested, fully custom automation rules with ease.
 
-We also offer a range of third-party integrations that can be used as automation actions and triggers alike. Check out our [integrations page](https://budibase.com/product/connections/) to learn more.
+We also offer a range of third-party integrations that can be used as automation actions and triggers alike. Check out our [integrations page](https://budibase.com/marketplace/connections/) to learn more.
 
 ### Custom plug-ins
 
@@ -354,7 +354,7 @@ Budibase offers unrivaled scope to provide the perfect level of data exposure fo
 
 Budibase is the smart, easy way to build all sorts of custom solutions. But, it’s understandable if you don’t just want to take our word for it.
 
-To get you started, we’ve built more than 50 free, customizable, and fully ready-to-deploy [app templates](https://budibase.com/process/) to show off what our platform can do.
+To get you started, we’ve built more than 50 free, customizable, and fully ready-to-deploy [app templates](https://budibase.com/marketplace/templates/) to show off what our platform can do.
 
 To start using Budibase today, simply sign up for free.
 

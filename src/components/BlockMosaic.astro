@@ -1,0 +1,135 @@
+---
+interface Props {
+  preset?: "marketplace" | "hero";
+}
+const { preset = "marketplace" } = Astro.props;
+
+// Each column totals 100 units. Different boundaries make one connected mosaic.
+const marketplaceColumns = [
+  [
+    [8, "pale-green"],
+    [12, "brightgreen"],
+    [5, "pink"],
+    [12, "yellow"],
+    [8, "green"],
+    [6, "coral"],
+    [24, "magenta"],
+    [7, "magenta"],
+    [9, "pale-green"],
+    [9, "green"],
+  ],
+  [
+    [10, "yellow"],
+    [6, "lavender"],
+    [12, "green"],
+    [8, "pale-green"],
+    [9, "blue"],
+    [23, "brightgreen"],
+    [5, "yellow"],
+    [11, "sand"],
+    [7, "brightgreen"],
+    [9, "brightgreen"],
+  ],
+  [
+    [6, "forestgreen"],
+    [14, "green"],
+    [7, "peach"],
+    [9, "sand"],
+    [5, "yellow"],
+    [12, "coral"],
+    [9, "pale-green"],
+    [8, "brightgreen"],
+    [24, "forestgreen"],
+    [6, "yellow"],
+  ],
+] as const;
+
+const heroColumns = [
+  [
+    [6, "yellow"],
+    [4, "blue"],
+  ],
+  [
+    [3, "pale-green"],
+    [7, "brightgreen"],
+  ],
+  [
+    [2, "magenta"],
+    [8, "coral"],
+  ],
+] as const;
+const columns = preset === "hero" ? heroColumns : marketplaceColumns;
+---
+
+<div class="block-mosaic" aria-hidden="true">
+  {
+    columns.map((column) => (
+      <div class="block-column">
+        {column.map(([height, color]) => (
+          <span
+            class={`mosaic-block mosaic-block--${color}`}
+            style={`flex-grow: ${height};`}
+          />
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .block-mosaic {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    pointer-events: none;
+  }
+  .block-column {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .mosaic-block {
+    display: block;
+    flex-basis: 0;
+    min-height: 0;
+  }
+  .mosaic-block--brightgreen {
+    background: var(--bb-brand-bright-green);
+  }
+  .mosaic-block--pale-green {
+    background: var(--bb-celery-200);
+  }
+  .mosaic-block--green {
+    background: var(--bb-celery-900);
+  }
+  .mosaic-block--forestgreen {
+    background: var(--bb-brand-forest-green);
+  }
+  .mosaic-block--yellow {
+    background: var(--bb-brand-yellow);
+  }
+  .mosaic-block--sand {
+    background: var(--bb-background-sand);
+  }
+  .mosaic-block--blue {
+    background: var(--bb-blue-400);
+  }
+  .mosaic-block--coral {
+    background: var(--bb-red-500);
+  }
+  .mosaic-block--pink {
+    background: var(--bb-magenta-400);
+  }
+  .mosaic-block--magenta {
+    background: var(--bb-fuchsia-1300);
+  }
+  .mosaic-block--lavender {
+    background: var(--bb-purple-400);
+  }
+  .mosaic-block--peach {
+    background: var(--bb-orange-300);
+  }
+</style>

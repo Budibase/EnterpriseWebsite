@@ -683,7 +683,7 @@ We can also think about some of the more long-standing players in the data manag
 
 Specifically, the Oracle Cloud Infrastructure ecosystem is probably the most established enterprise data management system around - with everything from data lakes and warehousing to containerization, application layer, and DBMS functionalities.
 
-Check out our [Oracle integration](https://budibase.com/product/connections/) page to learn more.
+Check out our [Oracle integration](https://budibase.com/marketplace/connections/) page to learn more.
 
 ![SAP logo](https://res.cloudinary.com/daog6scxm/image/upload/v1677238457/cms/SAP_Logo_zhccha.webp "SAP logo")
 
@@ -1010,6 +1010,6 @@ We also offer extensive third-party integrations, with Zapier, Rest, Webhooks, a
 
 We have huge confidence in what Budiabse is capable of. But why should you take our word for it?
 
-Check out our library of over fifty free, deployable, and fully customizable [application templates](https://budibase.com/process/) to see our platform in action.
+Check out our library of over fifty free, deployable, and fully customizable [application templates](https://budibase.com/marketplace/templates/) to see our platform in action.
 
 To start building data management solutions the fast, easy way, sign up for Budibase today.

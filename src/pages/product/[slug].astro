@@ -24,24 +24,25 @@ export function getStaticPaths() {
 }
 
 const page = Astro.props as LandingPageProps;
-const brandDarkSlugs: readonly PlatformLandingSlug[] = [
+const getStartedSlugs: readonly PlatformLandingSlug[] = [
+  "ai-models",
   "data",
   "apis",
   "knowledge",
   "self-host",
   "admin-security",
 ];
-const usesBrandDarkTheme = brandDarkSlugs.includes(page.slug);
+const showGetStarted = getStartedSlugs.includes(page.slug);
 ---
 
 <Layout
   title={page.content.title}
   description={page.content.metaDescription}
-  navTheme={usesBrandDarkTheme ? "brand-dark" : "default"}
+  navTheme="default"
 >
   <PlatformLandingPage
     slug={page.slug}
     content={page.content}
-    theme={usesBrandDarkTheme ? "brand-dark" : "default"}
+    {showGetStarted}
   />
 </Layout>

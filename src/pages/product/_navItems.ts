@@ -58,7 +58,7 @@ export const platformNavItemsData: NavGroup[] = [
     items: [
       {
         text: "Connections",
-        link: "/product/connections/",
+        link: "/marketplace/connections/",
         sectionId: "connections",
         iconName: "Link",
         pageTitle: "Connections",

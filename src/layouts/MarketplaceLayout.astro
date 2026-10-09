@@ -1,0 +1,182 @@
+---
+import Layout from "./MainLayout.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import Link from "@components/Link.astro";
+import Icon from "@components/Icon.astro";
+interface Props {
+  active: string;
+  title: string;
+  description: string;
+}
+const { active, title, description } = Astro.props;
+const tabs = [
+  ["Home", "/marketplace/"],
+  ["Templates", "/marketplace/templates/"],
+  ["Connections", "/marketplace/connections/"],
+  ["Plugins", "/marketplace/plugins/"],
+  ["Partners", "/marketplace/partners/"],
+];
+---
+
+<Layout
+  title={`${title} | Budibase Marketplace`}
+  description={description}
+  canonicalURL={new URL(Astro.url.pathname, Astro.site)}
+>
+  <header class="marketplace-header">
+    <div class="marketplace-shell">
+      <TitleBlock
+        variant="hero"
+        title="Marketplace"
+        titleClass="marketplace-title"
+      />
+      <div class="marketplace-navigation">
+        <nav class="marketplace-tabs" aria-label="Marketplace">
+          {
+            tabs.map(([label, href]) => (
+              <a
+                href={href}
+                aria-current={active === label ? "page" : undefined}
+              >
+                {label}
+              </a>
+            ))
+          }
+        </nav>
+        <nav class="marketplace-help" aria-label="Marketplace community">
+          <Link
+            label="Contribute"
+            url="/marketplace/contribute/"
+            appearance="quiet"
+            size="small"
+            ariaCurrent={active === "Contribute" ? "page" : undefined}
+          />
+          <Link
+            label="Community forum"
+            url="https://github.com/Budibase/budibase/discussions"
+            appearance="quiet"
+            size="small"><Icon name="ArrowUpRight" size="14" /></Link
+          >
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="marketplace-content marketplace-shell">
+    <slot />
+  </div>
+</Layout>
+<style>
+  .marketplace-shell {
+    max-width: var(--site-container-max);
+    margin: 0 auto;
+    padding-inline: 24px;
+  }
+  .marketplace-header {
+    padding-top: 64px;
+    background: var(--bb-background-sand);
+    border-bottom: 1px solid var(--border-color);
+  }
+  .marketplace-header :global(.marketplace-title) {
+    color: var(--bb-brand-forest-green);
+  }
+  .marketplace-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 40px;
+    padding-bottom: 16px;
+  }
+  .marketplace-tabs {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+  }
+  .marketplace-tabs a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    font-size: 15px;
+    white-space: nowrap;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  .marketplace-tabs a:hover,
+  .marketplace-tabs a[aria-current="page"] {
+    background: var(--bb-background-sand-hover);
+    color: var(--text-primary);
+  }
+  .marketplace-tabs a[aria-current="page"] {
+    font-weight: 500;
+  }
+  .marketplace-tabs a:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: -2px;
+  }
+  .marketplace-help {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-shrink: 0;
+  }
+  .marketplace-content {
+    padding-block: 48px 96px;
+  }
+  .marketplace-content :global(.marketplace-page-heading) {
+    margin-bottom: 32px;
+  }
+  .marketplace-content :global(.marketplace-section) {
+    margin-top: 56px;
+  }
+  .marketplace-content :global(.marketplace-section-heading) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .marketplace-content :global(.marketplace-section-heading h2) {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+  }
+  .marketplace-content :global(.marketplace-note) {
+    color: var(--bb-text-body);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 20px;
+  }
+  @media (max-width: 1000px) {
+    .marketplace-navigation {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .marketplace-tabs {
+      max-width: 100%;
+    }
+  }
+  @media (max-width: 767px) {
+    .marketplace-shell {
+      padding-inline: 16px;
+    }
+    .marketplace-header {
+      padding-top: 40px;
+    }
+    .marketplace-navigation {
+      margin-top: 24px;
+    }
+    .marketplace-tabs a {
+      padding-inline: 12px;
+    }
+    .marketplace-content {
+      padding-block: 32px 64px;
+    }
+    .marketplace-content :global(.marketplace-section-heading) {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+</style>

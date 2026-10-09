@@ -282,7 +282,7 @@ We also offer a vast library of powerful built-in automations, which can be trig
 
 Unlike other low-code builders, Budibase is totally free and unlimited. We don’t charge hidden fees to build multiple apps or add extra users. We even offer free SSO across all of your Budibase tools.
 
-Check out our range of [Budibase templates](https://budibase.com/process/), to help get you started.
+Check out our range of [Budibase templates](https://budibase.com/marketplace/templates/), to help get you started.
 
 ### ![5f7e0a00 c2ef 11eb 9b22 c26c59286fc7 vkbx35](https://res.cloudinary.com/daog6scxm/image/upload/v1637860395/cms/5f7e0a00-c2ef-11eb-9b22-c26c59286fc7_vkbx35.png)
 
@@ -300,7 +300,7 @@ Connect new or rebuilt apps to legacy data sources and tools, using MySQL, Postg
 
 ### Integrate with your software stack
 
-One of the most common reasons for legacy application modernization is a lack of compatibility with newer tools. Budibase apps offer superior levels of [integration with third-party apps.](https://budibase.com/product/connections/)
+One of the most common reasons for legacy application modernization is a lack of compatibility with newer tools. Budibase apps offer superior levels of [integration with third-party apps.](https://budibase.com/marketplace/connections/)
 
 Use Zapier, Webhooks, and more to connect your rebuilt apps to a range of existing tools, for improved workflows, and reduced admin time. You can also set up actions within Budibase apps, triggering automations in third-party tools.
 

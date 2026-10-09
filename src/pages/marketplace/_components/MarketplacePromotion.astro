@@ -1,0 +1,266 @@
+---
+import TitleBlock from "@components/TitleBlock.astro";
+import Button from "@components/Button.astro";
+import Icon from "@components/Icon.astro";
+import BlockMosaic from "@components/BlockMosaic.astro";
+import Shapes from "./MarketplaceShapes.astro";
+import type { MarketplacePromotion } from "../../../data/marketplaceHomepage";
+interface Props {
+  promotion: MarketplacePromotion;
+  titleId?: string;
+}
+const { promotion, titleId = "marketplace-promotion-title" } = Astro.props;
+const isWelcome = promotion.variant === "welcome";
+const hasMedia =
+  !isWelcome && Boolean(promotion.image || promotion.steps?.length);
+---
+
+<section
+  class:list={[
+    "promotion-card",
+    {
+      "promotion-card-with-media": hasMedia,
+      "promotion-card--welcome": isWelcome,
+    },
+  ]}
+  aria-labelledby={titleId}
+>
+  <div class="promotion-copy">
+    {
+      promotion.eyebrow && (
+        <span class="promotion-eyebrow">{promotion.eyebrow}</span>
+      )
+    }
+    <TitleBlock
+      variant="section"
+      title={promotion.title}
+      description={promotion.description}
+      titleId={titleId}
+      titleClass="promotion-title"
+      descriptionClass="promotion-description"
+      containerClass="promotion-text"
+    />
+    {
+      promotion.linkLabel && promotion.href && (
+        <Button
+          label={promotion.linkLabel}
+          url={promotion.href}
+          variant="cta"
+          icon="ArrowRight"
+          iconPosition="end"
+          class="promotion-action"
+        />
+      )
+    }
+  </div>
+  {
+    isWelcome && promotion.illustration === "shapes" ? (
+      <div class="promotion-shapes" aria-hidden="true">
+        <Shapes />
+      </div>
+    ) : isWelcome ? (
+      <div class="promotion-blocks" aria-hidden="true">
+        <BlockMosaic preset="marketplace" />
+      </div>
+    ) : promotion.image ? (
+      <div class="promotion-media">
+        <img src={promotion.image.src} alt={promotion.image.alt} />
+      </div>
+    ) : promotion.steps?.length ? (
+      <div class="promotion-overview">
+        <ol aria-label="Process overview">
+          {promotion.steps.map((step, index) => (
+            <li>
+              {index > 0 && <span class="step-connector" aria-hidden="true" />}
+              <span class="step-icon" aria-hidden="true">
+                <Icon name={step.icon} size="22" />
+              </span>
+              <span>{step.label}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ) : null
+  }
+</section>
+
+<style>
+  .promotion-card {
+    width: 100%;
+    padding: 40px;
+    margin-bottom: 32px;
+    background: var(--bb-background-sand);
+    border: 1px solid var(--border-color);
+  }
+  .promotion-card-with-media {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 48px;
+  }
+  .promotion-copy {
+    min-width: 0;
+  }
+  .promotion-eyebrow {
+    display: block;
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .promotion-copy :global(.promotion-title) {
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.15;
+    color: var(--bb-brand-forest-green);
+  }
+  .promotion-copy :global(.promotion-description) {
+    max-width: 520px;
+    margin-top: 16px;
+    font-size: 17px;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+  .promotion-copy :global(.promotion-action) {
+    margin-top: 24px;
+    min-height: 44px;
+  }
+  .promotion-overview {
+    padding: 32px;
+    background: var(--bb-brand-forest-green);
+    color: var(--bb-text-on-base);
+  }
+  .promotion-overview ol {
+    display: grid;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .promotion-overview li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 16px;
+    color: var(--bb-text-on-base) !important;
+  }
+  .step-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--bb-brand-bright-green);
+    color: var(--bb-brand-forest-green);
+  }
+  .step-connector {
+    position: absolute;
+    height: 24px;
+    left: 21px;
+    bottom: 100%;
+    border-left: 1px solid var(--bb-brand-bright-green);
+  }
+  .promotion-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .promotion-card--welcome {
+    --bb-text-body: var(--bb-text-on-base);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 25%);
+    min-height: 300px;
+    padding: 0;
+    gap: 0;
+    overflow: hidden;
+    background: var(--bb-brand-forest-green);
+    border: 0;
+    color: var(--bb-text-on-base);
+  }
+  .promotion-card--welcome .promotion-copy {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+  }
+  .promotion-card--welcome .promotion-copy :global(.promotion-text) {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 48px;
+  }
+  .promotion-card--welcome .promotion-copy :global(.promotion-title) {
+    color: var(--bb-text-on-base);
+    text-wrap: pretty;
+  }
+  .promotion-card--welcome .promotion-copy :global(.promotion-description) {
+    max-width: none;
+    margin-top: 0;
+    font-size: clamp(22px, 2.2vw, 30px);
+    line-height: 1.3;
+    text-wrap: pretty;
+  }
+  .promotion-card--welcome .promotion-eyebrow {
+    color: var(--bb-text-on-base-subtle);
+  }
+  .promotion-blocks {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .promotion-shapes {
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+    min-width: 0;
+  }
+  .promotion-shapes :global(.shape-grid) {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+  @media (max-width: 1023px) {
+    .promotion-card {
+      padding: 32px;
+      gap: 32px;
+    }
+    .promotion-overview {
+      padding: 24px;
+    }
+    .promotion-card--welcome {
+      padding: 0;
+      gap: 0;
+    }
+    .promotion-card--welcome .promotion-copy {
+      padding: 28px;
+    }
+  }
+  @media (max-width: 767px) {
+    .promotion-card {
+      padding: 24px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+    .promotion-copy :global(.promotion-description) {
+      font-size: 16px;
+    }
+    .promotion-overview {
+      padding: 24px 20px;
+    }
+    .promotion-card--welcome {
+      grid-template-columns: minmax(0, 1fr);
+      padding: 0;
+      gap: 0;
+    }
+    .promotion-card--welcome .promotion-copy {
+      min-height: 280px;
+      padding: 24px;
+    }
+    .promotion-card--welcome .promotion-copy :global(.promotion-text) {
+      gap: 40px;
+    }
+    .promotion-blocks,
+    .promotion-shapes {
+      height: 144px;
+    }
+  }
+</style>

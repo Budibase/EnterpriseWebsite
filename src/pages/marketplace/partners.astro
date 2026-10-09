@@ -1,0 +1,89 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/MarketplaceLayout.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import Table from "@components/MarketplaceTable.astro";
+import Link from "@components/Link.astro";
+import {
+  partnerRegions,
+  partnerTypes,
+  partnerTiers,
+  partnerJoinUrl,
+} from "../../data/partnerDirectory";
+const partners = await getCollection("partners");
+const rows = partners.map(({ data }) => {
+  const tier = data.type === "Technology" ? "NA" : (data.tier ?? "—");
+  return {
+    name: data.name,
+    href: data.website,
+    logo: data.logo?.src,
+    categories: data.regions,
+    facets: {
+      type: [data.type],
+      tier: tier === "—" ? [] : [tier],
+    },
+    cells: [{ values: [data.type] }, { text: tier }, { values: data.regions }],
+  };
+});
+---
+
+<Layout
+  active="Partners"
+  title="Partners"
+  description="Find delivery expertise for Budibase apps, automations, integration, and deployment."
+>
+  <div class="marketplace-page-heading partner-heading">
+    <TitleBlock
+      variant="section"
+      title="Partners"
+      titleId="marketplace-page-title"
+    />
+    <div class="partner-network" id="become-a-partner">
+      <Link label="Join the partner network" url={partnerJoinUrl} />
+    </div>
+  </div>
+  <div class="partner-directory">
+    <Table
+      label="Partners"
+      columns={["Partner", "Type", "Partner tier", "Regions"]}
+      rows={rows}
+      searchLabel="Search partners"
+      filters={partnerRegions}
+      filterLabel="Regions"
+      facetFilters={[
+        {
+          key: "type",
+          label: "Partner types",
+          options: partnerTypes,
+          presentation: "switcher",
+        },
+        {
+          key: "tier",
+          label: "Partner tiers",
+          options: partnerTiers,
+        },
+      ]}
+      emptyTitle={partners.length
+        ? "No partners found"
+        : "Partner profiles are being prepared"}
+      emptyDescription={partners.length
+        ? "Try another search, type, tier, or region."
+        : "Interested in joining? Get in touch through the partner network link above."}
+    />
+  </div>
+</Layout>
+<style>
+  .partner-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+  }
+  .partner-network {
+    margin-left: auto;
+  }
+  .partner-directory :global(tbody th) {
+    width: 25%;
+  }
+</style>

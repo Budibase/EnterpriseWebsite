@@ -1,0 +1,75 @@
+---
+import Icon from "@components/Icon.astro";
+
+const qualities = [
+  { title: "Packaged model", icon: "Cube" },
+  { title: "Additional customization", icon: "Wrench" },
+  { title: "Extensive testing and evaluation", icon: "CheckCircle" },
+];
+---
+
+<div class="budibase-ai-process">
+  <div class="budibase-ai-process__heading">
+    <Icon name="Sparkle" size="32" />
+    <strong>Budibase AI</strong>
+  </div>
+  <ul>
+    {
+      qualities.map((quality) => (
+        <li>
+          <Icon name={quality.icon} size="24" />
+          <span>{quality.title}</span>
+        </li>
+      ))
+    }
+  </ul>
+  <p>Designed for consistent, reliable results.</p>
+</div>
+
+<style>
+  .budibase-ai-process {
+    border: 1px solid var(--bb-border-subtle);
+    background: var(--bb-background-sand);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    color: var(--bb-text-base);
+  }
+  .budibase-ai-process__heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .budibase-ai-process__heading strong {
+    font-size: var(--bb-text-heading-subsection-font-size);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .budibase-ai-process ul {
+    display: grid;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+  }
+  .budibase-ai-process li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--bb-border-subtle);
+    background: var(--bb-background-surface-base);
+    padding: 1rem;
+    color: var(--bb-text-base) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .budibase-ai-process :global(svg) {
+    flex-shrink: 0;
+    color: var(--bb-brand-forest-green);
+  }
+  .budibase-ai-process p {
+    margin: 0;
+    color: var(--bb-text-body);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+</style>

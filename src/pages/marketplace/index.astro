@@ -1,0 +1,316 @@
+---
+import Layout from "../../layouts/MarketplaceLayout.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import CTA from "@components/CTA.astro";
+import Divider from "@components/ui/Divider.astro";
+import Card from "@components/cards/Card.astro";
+import Icon from "@components/Icon.astro";
+import Promotion from "./_components/MarketplacePromotion.astro";
+import { getProcessDirectoryRows } from "../../data/processDirectory";
+import { marketplaceConnections } from "../../data/marketplaceConnections";
+import { marketplacePlugins } from "../../data/marketplacePlugins";
+import {
+  marketplacePromotion,
+  newArrivalListings,
+  type ListingReference,
+} from "../../data/marketplaceHomepage";
+const directories = [
+  {
+    name: "Templates",
+    href: "/marketplace/templates/",
+    icon: "SquaresFour",
+    description:
+      "Start with a process for the work your organization needs to run.",
+  },
+  {
+    name: "Connections",
+    href: "/marketplace/connections/",
+    icon: "PlugsConnected",
+    description: "Build around your existing systems, data, and AI providers.",
+  },
+  {
+    name: "Plugins",
+    href: "/marketplace/plugins/",
+    icon: "Cube",
+    description:
+      "Extend Budibase with components and connectors from the community.",
+  },
+  {
+    name: "Partners",
+    href: "/marketplace/partners/",
+    icon: "Unite",
+    iconWeight: "regular",
+    description:
+      "Find expertise for implementation, integration, and deployment.",
+  },
+];
+const processes = await getProcessDirectoryRows();
+function resolveListing(reference: ListingReference) {
+  if (reference.type === "Template") {
+    const process = processes.find(
+      (process) => process.href === `/process/${reference.slug}/`,
+    );
+    if (!process)
+      throw new Error(`Unknown Marketplace template: ${reference.slug}`);
+    return {
+      ...process,
+      type: reference.type,
+      icon: "SquaresFour",
+      logo: undefined,
+      credit: "By Budibase",
+    };
+  }
+  if (reference.type === "Connection") {
+    const connection = marketplaceConnections.find(
+      (connection) => connection.name === reference.name,
+    );
+    if (!connection)
+      throw new Error(`Unknown Marketplace connection: ${reference.name}`);
+    return {
+      ...connection,
+      type: reference.type,
+      icon: "PlugsConnected",
+      href: `/marketplace/connections/#${connection.anchor}`,
+      credit: connection.category,
+    };
+  }
+  const plugin = marketplacePlugins.find(
+    (plugin) => plugin.name === reference.name,
+  );
+  if (!plugin) throw new Error(`Unknown Marketplace plugin: ${reference.name}`);
+  return {
+    ...plugin,
+    type: reference.type,
+    icon:
+      plugin.type === "Component"
+        ? "AppWindow"
+        : plugin.type === "Automation"
+          ? "Lightning"
+          : "Table",
+    logo: undefined,
+    credit: `By ${plugin.author}`,
+  };
+}
+const showcases = [
+  {
+    title: "New arrivals",
+    id: "marketplace-new-arrivals",
+    listings: [...newArrivalListings]
+      .sort((a, b) => b.addedAt.localeCompare(a.addedAt))
+      .slice(0, 4)
+      .map((reference) => ({
+        ...resolveListing(reference),
+        addedAt: reference.addedAt,
+      })),
+  },
+];
+---
+
+<Layout
+  active="Home"
+  title="Home"
+  description="Discover Budibase process templates, connections, community plugins, and delivery partners."
+>
+  <Promotion promotion={marketplacePromotion} />
+  <nav class="directory-cards" aria-label="Marketplace directories">
+    {
+      directories.map((directory) => (
+        <Card
+          label={directory.name}
+          description={directory.description}
+          linkUrl={directory.href}
+          openInNewTab={false}
+          linkAppearance="quiet"
+          class="directory-card"
+          cardContentClass="directory-card-content"
+        >
+          <span class="directory-icon" slot="before-title" aria-hidden="true">
+            <Icon
+              name={directory.icon}
+              size="24"
+              weight={directory.iconWeight ?? "fill"}
+            />
+          </span>
+        </Card>
+      ))
+    }
+  </nav>
+  {
+    showcases.map((showcase) => (
+      <section class="marketplace-section" aria-labelledby={showcase.id}>
+        <header class="marketplace-section-heading">
+          <TitleBlock
+            variant="section"
+            title={showcase.title}
+            titleId={showcase.id}
+          />
+        </header>
+        <div class="listing-cards">
+          {showcase.listings.map((listing) => (
+            <Card
+              label={listing.name}
+              description={listing.description}
+              linkUrl={listing.href}
+              openInNewTab={false}
+              linkAppearance="quiet"
+              class="listing-card"
+              cardContentClass="listing-card-content"
+            >
+              <div class="listing-identity" slot="before-title">
+                <span
+                  class:list={[
+                    "listing-icon",
+                    { "listing-logo": Boolean(listing.logo) },
+                  ]}
+                  aria-hidden="true"
+                >
+                  {listing.logo ? (
+                    <img
+                      src={listing.logo}
+                      alt=""
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <Icon name={listing.icon} size="24" weight="fill" />
+                  )}
+                </span>
+                <span class="listing-type">{listing.type}</span>
+              </div>
+              <span class="listing-credit">{listing.credit}</span>
+            </Card>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+  <div class="marketplace-section marketplace-cta">
+    <Divider />
+    <CTA />
+  </div>
+</Layout>
+<style>
+  .directory-cards,
+  .listing-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .directory-cards :global(.card-link),
+  .directory-cards :global(.directory-card) {
+    height: 100%;
+  }
+  .directory-cards :global(.directory-card) {
+    padding: 24px;
+    background: var(--bb-background-surface-base);
+    border: 1px solid var(--border-color);
+  }
+  .directory-cards :global(a.card-link.alink:hover) {
+    text-decoration: none;
+  }
+  .directory-cards :global(.directory-card-content) {
+    gap: 12px;
+  }
+  .directory-cards :global(.card-title) {
+    color: var(--bb-brand-forest-green);
+    margin: 8px 0 0;
+  }
+  .directory-cards :global(.directory-card p) {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .listing-cards :global(.card-link),
+  .listing-cards :global(.listing-card) {
+    height: 100%;
+  }
+  .listing-cards :global(.listing-card) {
+    padding: 24px;
+    background: var(--bb-background-surface-base);
+    border: 1px solid var(--border-color);
+  }
+  .listing-cards :global(a.card-link.alink:hover) {
+    text-decoration: none;
+  }
+  .listing-cards :global(a.card-link:focus-visible) {
+    outline: 2px solid var(--bb-brand-forest-green);
+    outline-offset: 3px;
+  }
+  .listing-cards :global(.listing-card-content) {
+    gap: 12px;
+    height: 100%;
+  }
+  .listing-cards :global(.card-title) {
+    color: var(--bb-brand-forest-green);
+    margin: 8px 0 0;
+    align-items: flex-start;
+  }
+  .listing-cards :global(.card-icon) {
+    margin-top: 4px;
+  }
+  .listing-cards :global(.listing-card p) {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .listing-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .listing-type,
+  .listing-credit {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+  .listing-credit {
+    margin-top: auto;
+    padding-top: 8px;
+  }
+  .listing-icon {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    background: var(--bb-brand-bright-green);
+    color: var(--bb-brand-forest-green);
+  }
+  .listing-logo {
+    background: var(--bb-background-sand);
+  }
+  .listing-logo img {
+    object-fit: contain;
+  }
+  .directory-icon {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    background: var(--bb-brand-bright-green);
+    color: var(--bb-brand-forest-green);
+  }
+  @media (max-width: 1023px) {
+    .directory-cards,
+    .listing-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 767px) {
+    .directory-cards,
+    .listing-cards {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  .marketplace-cta :global(.cta-section) {
+    padding-inline: 0;
+  }
+  .marketplace-cta :global(.divider) {
+    width: 100%;
+    max-width: none;
+  }
+</style>

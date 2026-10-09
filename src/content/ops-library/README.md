@@ -1,8 +1,10 @@
-# Ops Library content
+# Process template content
 
-This folder contains the Ops Library entries for `/process`.
+This folder contains the process templates listed in `/marketplace/templates/`.
+Individual templates retain their `/process/[slug]/` URLs.
 
 ## Add a new entry
+
 1. Create a new markdown file in `src/content/ops-library/`.
 2. Name the file with the slug you want in the URL (for example, `holiday-approval.md`).
 3. Include all required frontmatter fields:
@@ -15,8 +17,12 @@ This folder contains the Ops Library entries for `/process`.
 4. Add 2–3 short paragraphs in the markdown body describing what the entry solves.
 
 ## Routing
-- The directory lives at `/process`.
+
+- The directory lives at `/marketplace/templates/`.
+- The old `/process/` landing page permanently redirects to the directory.
 - Each entry lives at `/process/[slug]`.
 
 ## Update links
-- Navigation should point to `/process`.
+
+- Directory navigation should point to `/marketplace/templates/`.
+- Template links should point to `/process/[slug]/`.

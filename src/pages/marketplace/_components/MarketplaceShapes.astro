@@ -1,0 +1,66 @@
+<svg
+  class="shape-grid"
+  viewBox="0 0 300 300"
+  preserveAspectRatio="xMaxYMid meet"
+  width="300"
+  height="300"
+  aria-hidden="true"
+  focusable="false"
+>
+  <!-- The three columns share a square grid; taller curves span two rows. -->
+  <rect x="0" y="0" width="100" height="100" class="maroon"></rect>
+  <circle cx="50" cy="50" r="50" class="sand"></circle>
+  <rect x="0" y="100" width="100" height="200" class="pale-green"></rect>
+  <path d="M0 300V150a50 50 0 0 1 100 0v150Z" class="coral"></path>
+
+  <rect x="100" y="0" width="100" height="200" class="yellow"></rect>
+  <path d="M200 0a100 100 0 0 0 0 200Z" class="blue"></path>
+  <rect x="100" y="200" width="100" height="100" class="forestgreen"></rect>
+  <circle cx="150" cy="250" r="50" class="yellow"></circle>
+
+  <rect x="200" y="0" width="100" height="100" class="brightgreen"></rect>
+  {
+    [208, 223, 238, 253, 268, 283].map((x) => (
+      <rect x={x} y="10" width="8" height="80" class="forestgreen" />
+    ))
+  }
+  <rect x="200" y="100" width="100" height="100" class="maroon"></rect>
+  <circle cx="250" cy="150" r="50" class="sand"></circle>
+  <rect x="200" y="200" width="100" height="100" class="coral"></rect>
+  <path d="M200 300v-50a50 50 0 0 1 100 0v50Z" class="green"></path>
+</svg>
+
+<style>
+  .shape-grid {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .forestgreen {
+    fill: var(--bb-brand-forest-green);
+  }
+  .brightgreen {
+    fill: var(--bb-brand-bright-green);
+  }
+  .pale-green {
+    fill: var(--bb-celery-200);
+  }
+  .green {
+    fill: var(--bb-celery-900);
+  }
+  .yellow {
+    fill: var(--bb-brand-yellow);
+  }
+  .sand {
+    fill: var(--bb-background-sand);
+  }
+  .blue {
+    fill: var(--bb-blue-400);
+  }
+  .coral {
+    fill: var(--bb-red-500);
+  }
+  .maroon {
+    fill: var(--bb-fuchsia-1300);
+  }
+</style>

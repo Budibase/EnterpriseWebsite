@@ -311,6 +311,6 @@ Check out our [plug-ins docs](https://docs.budibase.com/docs/custom-plugin) to l
 
 ### 50+ free app templates
 
-We have a lot of confidence in what our platform is capable of. To show you, we’ve created more than fifty free, customizable, and ready-to-deploy [app templates](https://budibase.com/process/).
+We have a lot of confidence in what our platform is capable of. To show you, we’ve created more than fifty free, customizable, and ready-to-deploy [app templates](https://budibase.com/marketplace/templates/).
 
 To start building custom solutions the fast, easy way, sign up to Budibase today for free.

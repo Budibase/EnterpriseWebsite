@@ -52,7 +52,7 @@ export const platformDropdownMenu: NavDropdownMenu = {
       heading: "Connect",
       items: [
         {
-          href: "/product/agents/",
+          href: "/product/ai-models/",
           label: "AI models",
           description: "Choose your models.",
           prefetch: true,
@@ -174,6 +174,20 @@ export const platformDropdownMenu: NavDropdownMenu = {
       prefetch: true,
       icon: "CloudCheck",
     },
+    {
+      href: "https://github.com/orgs/Budibase/projects/15/views/7",
+      label: "Roadmap",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      icon: "Path",
+    },
+    {
+      href: "https://github.com/Budibase/budibase/releases",
+      label: "Changelog",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      icon: "BookOpen",
+    },
   ],
 };
 
@@ -247,7 +261,7 @@ export const solutionsDropdownMenu: NavDropdownMenu = {
     },
   ],
   footerLink: {
-    href: "/process/",
+    href: "/marketplace/templates/",
     label: "Templates",
     description: "Start with operational templates.",
     prefetch: true,
@@ -256,10 +270,10 @@ export const solutionsDropdownMenu: NavDropdownMenu = {
 
 export const resourcesDropdownMenu: NavDropdownMenu = {
   featuredCard: {
-    href: "/process/",
-    title: "Templates",
-    description: "Start with operational templates.",
-    ctaLabel: "Browse templates",
+    href: "/marketplace/",
+    title: "Marketplace",
+    description: "Explore templates, connections, plugins, and partners.",
+    ctaLabel: "Explore Marketplace",
     image: resourcesCardImage,
   },
   columns: [
@@ -290,9 +304,22 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
           target: "_blank",
           rel: "noopener noreferrer",
         },
+      ],
+    },
+    {
+      heading: "Marketplace",
+      items: [
+        { href: "/marketplace/templates/", label: "Templates", prefetch: true },
         {
-          href: "/process/",
-          label: "Templates",
+          href: "/marketplace/connections/",
+          label: "Connections",
+          prefetch: true,
+        },
+        { href: "/marketplace/plugins/", label: "Plugins", prefetch: true },
+        { href: "/marketplace/partners/", label: "Partners", prefetch: true },
+        {
+          href: "/marketplace/contribute/",
+          label: "Contribute",
           prefetch: true,
         },
       ],
@@ -358,8 +385,8 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
   ],
   footerLinks: [
     {
-      href: "/partners/",
-      label: "Partners",
+      href: "/marketplace/",
+      label: "Explore Marketplace",
       prefetch: true,
     },
   ],
@@ -384,7 +411,7 @@ export const companyDropdownMenu: NavDropdownMenu = {
           prefetch: true,
         },
         {
-          href: "/partners/",
+          href: "/marketplace/partners/",
           label: "Partners",
           description: "Find a delivery partner.",
           prefetch: true,

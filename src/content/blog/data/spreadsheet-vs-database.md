@@ -95,7 +95,7 @@ Airtable is a great example of this.
 
 This is an intuitive platform that allows everyday users to initiate complex data processing, with familiar, spreadsheet-like interfaces.
 
-Check out our [Airtable integration](https://budibase.com/product/connections/) page for more information.
+Check out our [Airtable integration](https://budibase.com/marketplace/connections/) page for more information.
 
 ## When would you use a database instead of a spreadsheet?
 
@@ -682,6 +682,6 @@ Check out our [deployment docs](https://docs.budibase.com/docs/deployment-inform
 
 Our low-code platform is transforming the way businesses of all sizes build tools to manage their platform.
 
-We’re so confident in what Budibase can do that we’ve built over 50 free, fully deployable [app templates](https://budibase.com/process/) to show it off.
+We’re so confident in what Budibase can do that we’ve built over 50 free, fully deployable [app templates](https://budibase.com/marketplace/templates/) to show it off.
 
 Sign up to Budibase to start building applications the smart way, today.

@@ -1,0 +1,68 @@
+---
+import Layout from "../../layouts/MarketplaceLayout.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import Table from "@components/MarketplaceTable.astro";
+import Link from "@components/Link.astro";
+import {
+  marketplacePlugins,
+  pluginSource,
+} from "../../data/marketplacePlugins";
+const rows = marketplacePlugins.map((plugin) => ({
+  name: plugin.name,
+  description: plugin.description,
+  href: plugin.href,
+  icon:
+    plugin.type === "Component"
+      ? "AppWindow"
+      : plugin.type === "Automation"
+        ? "Lightning"
+        : "Table",
+  facets: { type: [plugin.type] },
+  cells: [
+    { text: plugin.type },
+    { text: plugin.author },
+    { values: plugin.tags },
+  ],
+}));
+---
+
+<Layout
+  active="Plugins"
+  title="Plugins"
+  description="Explore community plugins for Budibase components, data sources, and automations."
+>
+  <div class="marketplace-page-heading">
+    <TitleBlock
+      variant="section"
+      title="Plugins"
+      description="Community plugins for components, data sources, and automations."
+      titleId="marketplace-page-title"
+    />
+  </div>
+  <Table
+    label="Plugins"
+    columns={["Plugin", "Type", "Author", "Tags"]}
+    rows={rows}
+    searchLabel="Search plugins"
+    facetFilters={[
+      {
+        key: "type",
+        label: "Plugin types",
+        options: ["Component", "Datasource", "Automation"],
+        presentation: "switcher",
+      },
+    ]}
+  />
+  <p class="marketplace-note">
+    Selected entries from the <Link
+      label="community plugin catalogue"
+      url={pluginSource}
+      size="small"
+    />. Check each repository for installation, support, and version
+    compatibility. For Svelte 5, see the <Link
+      label="plugin migration guide"
+      url="https://github.com/Budibase/budibase/discussions/17316#discussion-9108649"
+      size="small"
+    />.
+  </p>
+</Layout>

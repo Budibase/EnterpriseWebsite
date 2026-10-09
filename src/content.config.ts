@@ -3,7 +3,11 @@ import { glob } from "astro/loaders";
 // Import utilities from `astro:content`
 import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
-import { partnerRegions, partnerServices } from "./data/partnerDirectory";
+import {
+  partnerRegions,
+  partnerTypes,
+  partnerTiers,
+} from "./data/partnerDirectory";
 
 const seoSchema = z.object({
   title: z.string().min(5).max(120),
@@ -203,15 +207,19 @@ const legal = defineCollection({
 });
 
 const partners = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/partners" }),
+  loader: glob({
+    pattern: "**/[^_]*.md",
+    base: "./src/content/marketplace/partners/",
+  }),
   schema: ({ image }) =>
     z.object({
       name: z.string().min(1),
-      summary: z.string().min(20).max(320),
-      logo: image(),
-      website: z.url(),
-      regions: z.array(z.enum(partnerRegions)).min(1),
-      services: z.array(z.enum(partnerServices)).min(1),
+      type: z.enum(partnerTypes),
+      tier: z.enum(partnerTiers).optional(),
+      summary: z.string().min(20).max(320).optional(),
+      logo: image().optional(),
+      website: z.url().optional(),
+      regions: z.array(z.enum(partnerRegions)).default([]),
       featured: z.boolean().default(false),
       order: z.number().int().nonnegative().default(100),
     }),
