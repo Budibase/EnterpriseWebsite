@@ -11,11 +11,11 @@ const rows = marketplacePlugins.map((plugin) => ({
   name: plugin.name,
   description: plugin.description,
   href: plugin.href,
-  icon:
+  assetType:
     plugin.type === "Component"
-      ? "AppWindow"
+      ? "App"
       : plugin.type === "Automation"
-        ? "Lightning"
+        ? "Automation"
         : "Table",
   facets: { type: [plugin.type] },
   cells: [

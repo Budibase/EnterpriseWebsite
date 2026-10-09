@@ -1,6 +1,6 @@
 ---
 import TitleBlock from "@components/TitleBlock.astro";
-import Icon from "@components/Icon.astro";
+import AssetTypeIcon from "@components/ui/AssetTypeIcon.astro";
 import Button from "@components/Button.astro";
 import PostgresLogo from "@assets/logos/Postgres.svg?url";
 import SAPLogo from "@assets/logos/SAP.svg?url";
@@ -41,15 +41,6 @@ interface Solution {
   overview: string;
   assets: readonly SolutionAsset[];
 }
-
-const assetColorByType: Partial<Record<AssetType, string>> = {
-  App: "var(--bb-orange-300)",
-  Agent: "var(--bb-cyan-300)",
-  Automation: "var(--bb-purple-300)",
-  Table: "var(--bb-yellow-300)",
-  "Operations center": "var(--bb-celery-300)",
-  Function: "var(--bb-chartreuse-300)",
-};
 
 const solutions: readonly Solution[] = [
   {
@@ -309,34 +300,18 @@ const sectionId = "homepage-operations-solutions";
                             role="listitem"
                           >
                             <div class="operations-solutions-split__asset-identity">
-                              <span
-                                class:list={[
-                                  "operations-solutions-split__asset-icon",
-                                  {
-                                    "is-integration": Boolean(asset.iconSrc),
-                                  },
-                                ]}
-                                style={
-                                  assetColorByType[asset.type]
-                                    ? `--asset-color: ${assetColorByType[asset.type]};`
-                                    : undefined
-                                }
-                              >
-                                {asset.iconSrc ? (
+                              {asset.iconSrc ? (
+                                <span class="operations-solutions-split__asset-icon is-integration">
                                   <img
                                     src={asset.iconSrc}
                                     alt={asset.iconAlt ?? ""}
                                     loading="lazy"
                                     decoding="async"
                                   />
-                                ) : (
-                                  <Icon
-                                    name={asset.icon ?? "Table"}
-                                    size="14"
-                                    weight="fill"
-                                  />
-                                )}
-                              </span>
+                                </span>
+                              ) : (
+                                <AssetTypeIcon type={asset.type} />
+                              )}
                               <span class="operations-solutions-split__asset-name">
                                 {asset.name}
                               </span>
@@ -583,13 +558,8 @@ const sectionId = "homepage-operations-solutions";
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--asset-color, var(--bb-gray-700));
+    background: var(--bb-background-raised);
     color: var(--bb-black);
-  }
-  .operations-solutions-split__asset-icon :global(svg) {
-    width: 0.875rem;
-    height: 0.875rem;
-    color: currentColor;
   }
   .operations-solutions-split__asset-icon img {
     display: block;

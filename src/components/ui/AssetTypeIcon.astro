@@ -1,0 +1,50 @@
+---
+import Icon from "@components/Icon.astro";
+
+interface Props {
+  type: string;
+}
+
+const presets: Record<string, { icon: string; background: string }> = {
+  Agent: { icon: "Sparkle", background: "--bb-cyan-300" },
+  App: { icon: "AppWindow", background: "--bb-orange-300" },
+  Automation: { icon: "Lightning", background: "--bb-purple-300" },
+  Table: { icon: "Table", background: "--bb-yellow-300" },
+  "Operations center": { icon: "SquaresFour", background: "--bb-celery-300" },
+  Function: { icon: "Code", background: "--bb-chartreuse-300" },
+};
+const { type } = Astro.props;
+const preset = presets[type === "Ops center" ? "Operations center" : type];
+---
+
+{
+  preset && (
+    <span
+      class="asset-type-icon"
+      style={`--asset-color: var(${preset.background})`}
+      aria-hidden="true"
+      data-asset-type={type}
+    >
+      <Icon name={preset.icon} size="14" weight="fill" />
+    </span>
+  )
+}
+
+<style>
+  .asset-type-icon {
+    display: inline-flex;
+    width: 1.375rem;
+    height: 1.375rem;
+    flex: 0 0 1.375rem;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--asset-color);
+    color: var(--bb-black);
+  }
+  .asset-type-icon :global(svg) {
+    width: 0.875rem;
+    height: 0.875rem;
+    color: currentColor;
+  }
+</style>

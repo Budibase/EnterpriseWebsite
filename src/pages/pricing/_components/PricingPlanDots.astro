@@ -1,0 +1,43 @@
+---
+interface Props {
+  rows: 1 | 2 | 3;
+}
+
+const { rows } = Astro.props;
+const colors = [
+  "var(--bb-cyan-600)",
+  "var(--bb-purple-400)",
+  "var(--bb-orange-600)",
+  "var(--bb-brand-yellow)",
+  "var(--bb-indigo-900)",
+  "var(--bb-seafoam-300)",
+  "var(--bb-pink-600)",
+  "var(--bb-blue-1200)",
+];
+const gridColors = colors.slice(0, rows * 3 - 1);
+const centerIndex = Math.floor(rows / 2) * 3 + 1;
+gridColors.splice(centerIndex, 0, "var(--bb-brand-bright-green)");
+---
+
+<span class="pricing-plan-dots" aria-hidden="true">
+  {
+    gridColors.map((color) => (
+      <span class="pricing-plan-dots__square" style={`background: ${color};`} />
+    ))
+  }
+</span>
+
+<style>
+  .pricing-plan-dots {
+    display: grid;
+    grid-template-columns: repeat(3, 8px);
+    gap: 0;
+    flex: 0 0 auto;
+  }
+
+  .pricing-plan-dots__square {
+    width: 8px;
+    height: 8px;
+    border-radius: 0;
+  }
+</style>

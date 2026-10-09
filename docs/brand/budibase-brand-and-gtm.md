@@ -625,6 +625,14 @@ capabilities. Conservative styling alone is not evidence of maturity.
   and status indicators in its product demonstrations.
 - Give desktop and mobile navigation dropdown links 8px square markers in
   varied existing palette colors, keeping colors consistent for each destination.
+- Place a three-column grid of varied palette-color 8px squares opposite each
+  pricing plan title: one row for Community, three for Enterprise, two for Cloud.
+  Squares touch, and each square within a plan's grid uses a visibly distinct
+  color. Use contrasting hues and lightness at 8px rather than similar shades.
+  Include the brand bright-green token in every plan's grid, and use existing
+  `global.css` color tokens for all squares.
+  Place bright green in the center column and the center row where possible;
+  use the lower of the two middle rows for Cloud.
 
 ### Imagery and product presentation
 
@@ -853,6 +861,12 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 
 ### 9 October 2026
 
+- Required brand bright green in every pricing plan square grid, with all square
+  colors sourced from existing `global.css` palette tokens.
+- Removed spacing between pricing plan squares and required a distinct palette
+  color for every square within each plan's grid.
+- Added 8px square palette grids opposite pricing plan titles: three squares
+  for Community, nine for Enterprise, and six for Cloud.
 - Added a 42px, 3 × 3 Budibase color mosaic as the fallback for partner profiles
   without a verified logo. Retained original partner symbols where available.
 - Reduced navigation dropdown square markers from 12px to 8px on desktop and

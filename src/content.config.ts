@@ -143,6 +143,8 @@ const assetsUsedSchema = z.object({
   tools: z.array(z.string()).optional(),
   aiModel: z.array(z.string()).optional(),
   apps: z.array(z.string()).optional(),
+  functions: z.array(z.string()).optional(),
+  knowledgeSources: z.array(z.enum(["SharePoint", "PDF"])).optional(),
 });
 
 const opsLibrary = defineCollection({
@@ -177,6 +179,7 @@ const opsLibrary = defineCollection({
     promptCardStyle: z.enum(["default", "snippet"]).optional(),
     heroPrompt: z.string().optional(),
     assetsUsed: assetsUsedSchema.optional(),
+    aiModelRequired: z.boolean().optional(),
     tags: z.array(z.string()),
     aiAssists: z.array(z.string()),
     humansDecide: z.array(z.string()),

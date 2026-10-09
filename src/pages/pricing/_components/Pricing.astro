@@ -6,6 +6,7 @@ import TitleBlock from "@components/TitleBlock.astro";
 import EnterpriseLogoGrid from "@components/EnterpriseLogoGrid.astro";
 import Plus from "phosphor-astro/Plus.astro";
 import { cloudPackages } from "./cloudPackages";
+import PricingPlanDots from "./PricingPlanDots.astro";
 
 type FaqItem = {
   id?: string;
@@ -31,6 +32,7 @@ const selfHostedEnterprisePlanFeatures = [
 const selfHostedCards = [
   {
     title: "Community",
+    dotRows: 1 as const,
     price: "$0",
     description:
       "Access a complete operations platform that you can run on your own infrastructure.",
@@ -42,6 +44,7 @@ const selfHostedCards = [
   },
   {
     title: "Enterprise",
+    dotRows: 3 as const,
     price: "Custom",
     description:
       "Design a custom package with enhanced governance, security, and support.",
@@ -237,7 +240,10 @@ const faqItems: FaqItem[] = [
                 selfHostedCards.map((card) => (
                   <article class="pricing-plan-card">
                     <div class="pricing-plan-card__intro">
-                      <h3>{card.title}</h3>
+                      <div class="pricing-plan-card__title-row">
+                        <h3>{card.title}</h3>
+                        <PricingPlanDots rows={card.dotRows} />
+                      </div>
                       <p class="pricing-plan-card__price">{card.price}</p>
                       <p class="pricing-plan-card__description">
                         {card.description}
@@ -284,7 +290,10 @@ const faqItems: FaqItem[] = [
             <div class="pricing-cloud-plan">
               <article class="pricing-plan-card">
                 <div class="pricing-plan-card__intro">
-                  <h3>Cloud</h3>
+                  <div class="pricing-plan-card__title-row">
+                    <h3>Cloud</h3>
+                    <PricingPlanDots rows={2} />
+                  </div>
                   <p class="pricing-plan-card__price">
                     From ${formatCloudNumber(defaultCloudPackage.pricePerMonth)} /
                     month
@@ -573,6 +582,14 @@ const faqItems: FaqItem[] = [
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.2;
+  }
+
+  .pricing-plan-card__title-row {
+    display: flex;
+    min-height: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
   .pricing-plan-card__price {

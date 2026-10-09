@@ -1,9 +1,13 @@
 ---
 import TitleBlock from "@components/TitleBlock.astro";
 import Icon from "@components/Icon.astro";
+import AssetTypeIcon from "@components/ui/AssetTypeIcon.astro";
 import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
 import SlackLogo from "@assets/logos/Slack.svg?url";
-import DiscordLogo from "@assets/logos/discord.svg?url";
+import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+import SalesforceLogo from "@assets/logos/Salesforce.svg?url";
+import BudibaseLogo from "@assets/logos/budibase.svg?url";
+import { marketplaceConnections } from "../data/marketplaceConnections";
 import {
   getProcessDirectoryRows,
   processAssetTypes,
@@ -13,16 +17,60 @@ const channelLogos: Record<string, string> = {
   Slack: SlackLogo,
   Teams: TeamsLogo,
   "Microsoft Teams": TeamsLogo,
-  Discord: DiscordLogo,
+};
+const connectionLogos: Record<string, string | undefined> = {
+  ...Object.fromEntries(
+    marketplaceConnections.map((item) => [item.name.toLowerCase(), item.logo]),
+  ),
+  salesforce: SalesforceLogo,
+  budibasedb: BudibaseLogo,
+};
+connectionLogos["email/smtp"] = connectionLogos.smtp;
+const filterAssets = processAssetTypes.filter(
+  (asset) => asset.id !== "functions",
+);
+const assetColumns = filterAssets.filter(
+  (asset) => asset.id !== "agent-channels",
+);
+const columnLabels: Record<string, string> = {
+  agents: "Agent",
+  apps: "App",
+  automations: "Automation",
+  functions: "Function",
+  "operations-center": "Ops center",
 };
 const processes = await getProcessDirectoryRows();
+function getSymbolGroups(process: (typeof processes)[number]) {
+  return [
+    {
+      label: "Knowledge source",
+      names: process.knowledge,
+      logos: { "Microsoft SharePoint": SharePointLogo } as Record<
+        string,
+        string | undefined
+      >,
+      fallback: "FilePdf",
+    },
+    {
+      label: "Agent chat",
+      names: process.channels,
+      logos: channelLogos,
+      fallback: "ChatsCircle",
+    },
+    {
+      label: "Connection",
+      names: process.connections,
+      logos: Object.fromEntries(
+        process.connections.map((name) => [
+          name,
+          connectionLogos[name.toLowerCase()],
+        ]),
+      ),
+      fallback: "PlugsConnected",
+    },
+  ];
+}
 const { embedded = false } = Astro.props as { embedded?: boolean };
-const dateFormat = new Intl.DateTimeFormat("en-GB", {
-  day: "2-digit",
-  month: "short",
-  year: "numeric",
-  timeZone: "UTC",
-});
 ---
 
 <section
@@ -71,7 +119,7 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
         >All</button
       >
       {
-        processAssetTypes.map((asset) => (
+        filterAssets.map((asset) => (
           <button
             type="button"
             data-asset-filter={asset.id}
@@ -101,17 +149,28 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
   >
     <table>
       <caption class="sr-only"
-        >Compare process assets, AI, connections, and update dates</caption
+        >Compare process assets, knowledge sources, channels, connections, and
+        AI model requirements</caption
       >
-      <thead
-        ><tr
-          ><th scope="col">Process</th><th scope="col">Assets</th><th
-            scope="col">Total assets</th
-          ><th scope="col">AI</th><th scope="col">Connections</th><th
-            scope="col">Updated</th
-          ></tr
-        ></thead
-      >
+      <thead>
+        <tr>
+          <th scope="col" class="process-column">Process</th>
+          {
+            assetColumns.map((asset) => (
+              <th
+                scope="col"
+                class:list={["asset-column", `asset-column--${asset.id}`]}
+              >
+                {columnLabels[asset.id]}
+              </th>
+            ))
+          }
+          <th scope="col" class="knowledge-column">Knowledge</th>
+          <th scope="col" class="channels-column">Agent chat</th>
+          <th scope="col" class="connections-column">Connections</th>
+          <th scope="col" class="ai-column">AI required</th>
+        </tr>
+      </thead>
       <tbody data-process-rows>
         {
           processes.map((process) => (
@@ -121,11 +180,13 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
                 process.name,
                 process.description,
                 ...process.connections,
+                ...process.knowledge,
+                ...process.channels,
               ]
                 .join(" ")
                 .toLowerCase()}
               data-assets={process.assets.map((asset) => asset.id).join(" ")}
-              data-ai={String(process.ai)}
+              data-ai={String(process.aiModelRequired)}
               data-updated={process.updated.getTime()}
               data-name={process.name}
             >
@@ -140,79 +201,68 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
                   <p class="process-description">{process.description}</p>
                 </>
               </th>
-              <td>
-                <div class="asset-icons">
-                  {process.assets.map((asset) =>
-                    asset.id === "agent-channels" ? (
-                      process.channels.map((channel) => (
-                        <span
-                          class="asset-icon"
-                          tabindex="0"
-                          data-tooltip={`Agent channel: ${channel}`}
-                          aria-label={`Agent channel: ${channel}`}
-                        >
-                          <img
-                            src={channelLogos[channel]}
-                            alt=""
-                            width="19"
-                            height="19"
-                          />
-                        </span>
-                      ))
-                    ) : (
+              {assetColumns.map((asset) => (
+                <td class="asset-cell">
+                  {process.assets.some((used) => used.id === asset.id) && (
+                    <span
+                      class="asset-icon"
+                      tabindex="0"
+                      role="img"
+                      data-tooltip={columnLabels[asset.id]}
+                      aria-label={columnLabels[asset.id]}
+                    >
+                      <AssetTypeIcon type={columnLabels[asset.id]} />
+                    </span>
+                  )}
+                </td>
+              ))}
+              {getSymbolGroups(process).map((group) => (
+                <td>
+                  <div class="asset-icons">
+                    {group.names.map((name) => (
                       <span
                         class="asset-icon"
                         tabindex="0"
-                        data-tooltip={asset.label}
-                        aria-label={asset.label}
+                        role="img"
+                        data-tooltip={name}
+                        aria-label={`${group.label}: ${name}`}
                       >
-                        <Icon name={asset.icon} size="19" weight="fill" />
+                        <span aria-hidden="true">
+                          {group.logos[name] ? (
+                            <img
+                              src={group.logos[name]}
+                              alt=""
+                              width="19"
+                              height="19"
+                            />
+                          ) : (
+                            <Icon name={group.fallback} size="19" />
+                          )}
+                        </span>
                       </span>
-                    ),
-                  )}
-                </div>
-              </td>
-              <td class="asset-total">
+                    ))}
+                  </div>
+                </td>
+              ))}
+              <td class="asset-cell">
                 <span
-                  title={
-                    process.totalAssets === null
-                      ? "Complete asset inventory not yet recorded"
-                      : process.inventory.join(", ")
+                  class:list={[
+                    "ai-state",
+                    process.aiModelRequired && "ai-state--yes",
+                  ]}
+                  role="img"
+                  aria-label={
+                    process.aiModelRequired ? "AI required" : "AI not required"
                   }
                 >
-                  {process.totalAssets ?? "—"}
+                  <span aria-hidden="true">
+                    <Icon
+                      name={process.aiModelRequired ? "CheckCircle" : "X"}
+                      size="18"
+                      weight={process.aiModelRequired ? "fill" : "regular"}
+                    />
+                  </span>
                 </span>
-              </td>
-              <td>
-                <span
-                  class:list={["ai-state", process.ai && "ai-state--yes"]}
-                  aria-label={process.ai ? "Uses AI" : "Does not use AI"}
-                >
-                  <Icon name={process.ai ? "Check" : "X"} size="18" />
-                </span>
-              </td>
-              <td>
-                <div class="connection-list">
-                  {process.connections.slice(0, 2).map((connection) => (
-                    <span>{connection}</span>
-                  ))}
-                  {process.connections.length > 2 && (
-                    <span
-                      class="connection-overflow"
-                      tabindex="0"
-                      data-tooltip={process.connections.slice(2).join(", ")}
-                      aria-label={`Other connections: ${process.connections.slice(2).join(", ")}`}
-                    >
-                      +{process.connections.length - 2}
-                    </span>
-                  )}
-                  {process.connections.length === 0 && "—"}
-                </div>
-              </td>
-              <td class="process-date">
-                <time datetime={process.updated.toISOString().slice(0, 10)}>
-                  {dateFormat.format(process.updated)}
-                </time>
               </td>
             </tr>
           ))
@@ -404,7 +454,8 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
   }
   table {
     width: 100%;
-    min-width: 940px;
+    min-width: 1200px;
+    table-layout: fixed;
     border-collapse: collapse;
     text-align: left;
     font-size: 13px;
@@ -415,19 +466,31 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
   }
   thead th {
     height: 44px;
-    padding: 12px 18px;
+    padding: 12px 10px;
     font-weight: 400;
-    white-space: nowrap;
+    white-space: normal;
     border-bottom: 1px solid var(--border-color);
   }
   tbody th,
   tbody td {
-    padding: 21px 18px;
+    padding: 21px 10px;
     border-bottom: 1px solid var(--border-color);
     vertical-align: middle;
   }
+  .process-column {
+    width: 32%;
+  }
+  .connections-column {
+    width: 12%;
+  }
+  .asset-column,
+  .ai-column {
+    text-align: center;
+  }
+  .asset-cell {
+    text-align: center;
+  }
   tbody th {
-    width: 39%;
     font-weight: 400;
   }
   tbody tr:last-child > * {
@@ -440,6 +503,8 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
     display: none;
   }
   .process-name {
+    max-width: 100%;
+    overflow-wrap: anywhere;
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -453,6 +518,7 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
     text-underline-offset: 4px;
   }
   .process-arrow {
+    flex-shrink: 0;
     opacity: 0;
     color: var(--text-secondary);
   }
@@ -461,6 +527,7 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
     opacity: 1;
   }
   .process-description {
+    overflow-wrap: anywhere;
     max-width: 390px;
     margin: 6px 0 0;
     color: var(--bb-text-body);
@@ -469,14 +536,27 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
   }
   .asset-icons {
     display: flex;
-    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
     color: var(--text-secondary);
   }
-  .asset-icon,
-  .connection-overflow {
+  .asset-icon {
     position: relative;
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 28px;
+    color: var(--text-secondary);
     cursor: help;
+  }
+  .asset-icon img {
+    display: block;
+    object-fit: contain;
+  }
+  .asset-icon > span {
+    display: flex;
   }
   [data-tooltip]:hover::after,
   [data-tooltip]:focus-visible::after {
@@ -496,34 +576,12 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
     line-height: 1.5;
     z-index: 2;
   }
-  .asset-total {
-    font-variant-numeric: tabular-nums;
-  }
   .ai-state {
-    display: flex;
+    display: inline-flex;
     color: var(--text-secondary);
   }
   .ai-state--yes {
     color: var(--text-primary);
-  }
-  .connection-list {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
-    min-width: 155px;
-  }
-  .connection-list > span {
-    background: var(--bg-2);
-    border: 1px solid var(--border-color);
-    padding: 2px 6px;
-    font-size: 11px;
-    white-space: nowrap;
-  }
-  .process-date {
-    white-space: nowrap;
-    color: var(--text-secondary);
-    font-variant-numeric: tabular-nums;
   }
   .directory-empty {
     padding: 60px 20px;

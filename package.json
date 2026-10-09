@@ -7,8 +7,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run check:content && astro build",
+    "build": "npm run check:content && npm run check:templates && astro build",
     "check:content": "node scripts/check-blog-content.mjs",
+    "check:templates": "node --experimental-strip-types --test scripts/process-template-assets.test.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier . --check",

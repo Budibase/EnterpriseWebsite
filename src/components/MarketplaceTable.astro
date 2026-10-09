@@ -1,5 +1,6 @@
 ---
 import Icon from "@components/Icon.astro";
+import AssetTypeIcon from "@components/ui/AssetTypeIcon.astro";
 import Link from "@components/Link.astro";
 import MagnifyingGlass from "phosphor-astro/MagnifyingGlass.astro";
 export interface Cell {
@@ -20,6 +21,7 @@ export interface Row {
   logoBackground?: "light" | "dark" | "transparent";
   icon?: string;
   iconWeight?: "regular" | "fill";
+  assetType?: string;
   category?: string;
   categories?: readonly string[];
   facets?: Record<string, readonly string[]>;
@@ -226,6 +228,8 @@ const logoFallbackColors = [
                     </span>
                   ) : row.logo ? (
                     <img src={row.logo} alt="" width="24" height="24" />
+                  ) : row.assetType ? (
+                    <AssetTypeIcon type={row.assetType} />
                   ) : (
                     row.icon && (
                       <span class="catalogue-icon">

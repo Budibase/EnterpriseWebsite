@@ -106,6 +106,15 @@ responsive layout.
   `CustomerIndustryPills`.
 - Use `src/components/Pagination.astro` for paginated archives.
 
+### Asset symbols
+
+Use `ui/AssetTypeIcon.astro` for the homepage solution switcher, template
+comparison symbols, and plugin directory icons. Plugin components use App,
+datasources use Table, and automation plugins use Automation. It owns the 22px square container, 14px filled icon, black
+icon color, and shared type palette: Agent cyan, App orange, Automation purple,
+Operations center green, Table yellow, and Function chartreuse. Parent markup
+provides accessible labels and any focus or tooltip behavior.
+
 ### Heroes
 
 - Use `src/components/BlockMosaic.astro` for static, decorative solid-color
@@ -187,6 +196,12 @@ layout behavior from the current URL.
   stable IDs for links from the Marketplace homepage.
 - `ProcessDirectory.astro` provides the Templates directory at
   `/marketplace/templates/`; individual templates remain at `/process/[slug]/`.
+  It compares individual asset types with blank cells for absent assets,
+  named knowledge/channel/connection symbols, and an AI model requirement.
+  Knowledge is limited to documented SharePoint/PDF sources. Sources displayed
+  in dedicated columns are omitted from Connections. `processTemplateAssets.ts`
+  normalizes integration aliases and resolves inventory presence and AI
+  requirements; see the template content README for authoring fields.
 - Partner profiles come only from the approved partners content collection.
   Store approved tiers on each profile. Logos and websites
   can be omitted until supplied; do not create placeholders for missing claims.

@@ -1,4 +1,5 @@
 ---
+import BlockMosaic from "@components/BlockMosaic.astro";
 import Icon from "@components/Icon.astro";
 
 interface Props {
@@ -35,6 +36,9 @@ const {
     <span class="cta-action__icon" aria-hidden="true">
       <Icon name="ArrowRight" size="40" />
     </span>
+    <div class="cta-action__mosaic">
+      <BlockMosaic preset="hero" />
+    </div>
   </a>
 </section>
 
@@ -84,8 +88,20 @@ const {
   }
 
   .cta-action--build {
+    position: relative;
     background: var(--bb-gray-900);
     color: var(--bb-text-on-base) !important;
+  }
+
+  .cta-action__mosaic {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    width: 11.25rem;
+    max-width: 100%;
+    height: 1.6875rem;
+    pointer-events: none;
   }
 
   .cta-action:focus-visible {

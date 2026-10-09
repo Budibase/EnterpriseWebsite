@@ -1,12 +1,13 @@
 import { getCollection } from "astro:content";
+import { getTemplateAssets } from "./processTemplateAssets";
 
 export const processAssetTypes = [
   { id: "agents", label: "Agent", icon: "Sparkle" },
   { id: "apps", label: "Apps", icon: "AppWindow" },
   { id: "automations", label: "Automations", icon: "Lightning" },
   { id: "functions", label: "Functions", icon: "Code" },
-  { id: "operations-center", label: "Operations center", icon: "SquaresFour" },
-  { id: "agent-channels", label: "Agent channels", icon: "ChatsCircle" },
+  { id: "operations-center", label: "Ops center", icon: "SquaresFour" },
+  { id: "agent-channels", label: "Agent chat", icon: "ChatsCircle" },
 ] as const;
 
 export async function getProcessDirectoryRows() {
@@ -14,7 +15,7 @@ export async function getProcessDirectoryRows() {
   return entries
     .map((entry) => {
       const data = entry.data;
-      const tags = data.tags.map((tag) => tag.toLowerCase());
+
       // Read named assets from the authored guide, rather than generating counts
       // from the illustrative product demonstrations or integration list.
       const sectionAssets = (id: string, subsection?: string) => {
@@ -32,57 +33,30 @@ export async function getProcessDirectoryRows() {
       const declared = data.assetsUsed;
       const apps = declared?.apps ?? sectionAssets("screens");
       const automations = declared?.automations ?? sectionAssets("automations");
-      const tables = declared?.tables ?? sectionAssets("data", "Tables");
-      const channels = tags.includes("chat")
-        ? data.integrations.filter((name) =>
-            /^(slack|teams|microsoft teams|discord)$/i.test(name),
-          )
-        : [];
-      const assets = processAssetTypes.filter(({ id }) => {
-        switch (id) {
-          case "agents":
-            return tags.includes("agents");
-          case "apps":
-            return apps.length > 0 || tags.includes("apps");
-          case "automations":
-            return automations.length > 0 || tags.includes("automations");
-          case "functions":
-            return tags.includes("functions");
-          case "operations-center":
-            return tags.includes("operations center");
-          case "agent-channels":
-            return channels.length > 0;
-        }
+      const resolved = getTemplateAssets({
+        ...data,
+        assetsUsed: {
+          ...declared,
+          ...(apps.length > 0 ? { apps } : {}),
+          ...(automations.length > 0 ? { automations } : {}),
+        },
       });
-      const inventory = [
-        ...apps,
-        ...automations,
-        ...tables,
-        ...(declared?.tools ?? []),
-        ...(declared?.aiModel ?? []),
-        ...channels,
-      ];
-      // Older guides without a named inventory should not display a made-up total.
-      const completeInventory =
-        (!tags.includes("apps") || apps.length > 0) &&
-        (!tags.includes("automations") || automations.length > 0);
-      const totalAssets = completeInventory
-        ? inventory.length + (tags.includes("agents") ? 1 : 0)
-        : null;
+      const presence: Record<string, boolean> = {
+        agents: resolved.agent,
+        apps: resolved.app,
+        automations: resolved.automation,
+        functions: resolved.function,
+        "operations-center": resolved.operationsCenter,
+        "agent-channels": resolved.channels.length > 0,
+      };
+      const assets = processAssetTypes.filter(({ id }) => presence[id]);
       const slug = data.slug ?? entry.id;
       return {
         name: data.title,
         description: data.outcome,
         href: `/process/${slug}/`,
         assets,
-        channels,
-        totalAssets,
-        inventory,
-        ai:
-          tags.includes("agents") ||
-          data.aiAssists.length > 0 ||
-          Boolean(declared?.aiModel?.length),
-        connections: data.integrations,
+        ...resolved,
         updated: data.lastUpdated,
       };
     })
