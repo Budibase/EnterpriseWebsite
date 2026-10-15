@@ -1,7 +1,7 @@
 ---
 import Icon from "@components/Icon.astro";
 
-type Variant = "white" | "light" | "bright-green" | "forest-green";
+type Variant = "white" | "light" | "lime" | "olive";
 
 interface StatCard {
   icon: string;
@@ -63,8 +63,8 @@ const cards: readonly StatCard[] = [
     --stat-section-background: var(--bb-background-surface);
   }
 
-  .stat-section--bright-green {
-    --stat-section-background: var(--bb-celery-200);
+  .stat-section--lime {
+    --stat-section-background: var(--bb-lime);
     --stat-section-icon-background: color-mix(
       in srgb,
       var(--bb-text-base) 8%,
@@ -72,19 +72,19 @@ const cards: readonly StatCard[] = [
     );
   }
 
-  .stat-section--forest-green {
-    --stat-section-background: var(--bb-brand-forest-green);
+  .stat-section--olive {
+    --stat-section-background: var(--bb-olive);
     --stat-section-text: var(--bb-text-on-base);
     --stat-section-icon-background: var(--bb-transparent-white-100);
   }
 
-  .stat-section--forest-green .stat-section__intro h2,
-  .stat-section--forest-green .stat-section__intro p,
-  .stat-section--forest-green .stat-section__card h3 {
+  .stat-section--olive .stat-section__intro h2,
+  .stat-section--olive .stat-section__intro p,
+  .stat-section--olive .stat-section__card h3 {
     color: var(--bb-text-on-base) !important;
   }
 
-  .stat-section--forest-green .stat-section__icon {
+  .stat-section--olive .stat-section__icon {
     color: var(--bb-text-on-base);
   }
 

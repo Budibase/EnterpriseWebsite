@@ -29,7 +29,7 @@ LangChain is an open-source AI framework. This means that it provides a set of t
 
 ![LangChain Alternatives](https://res.cloudinary.com/daog6scxm/image/upload/v1745414287/cms/ai-agents/open-source-ai-agents/LangChain_hooj2w.webp "LangChain Alternatives")
 
-(*LangChain Website*)
+(_LangChain Website_)
 
 More specifically, it offers a range of pre-built tools and functions for tasks like chaining prompts, facilitating memory, using tools, or interacting with external data. This facilitates more sophisticated AI behaviors than stand-alone API calls to an AI model.
 
@@ -41,7 +41,7 @@ To facilitate this, LangChain offers integrations with a range of LLM providers,
 
 With a better grasp of what LangChain is, we can begin to flesh out its positioning by thinking about its top use cases, along with the kinds of personas it’s optimized for.
 
-We’ve already hinted at some of these, including referring to the idea of *autonomy* within AI-based systems.
+We’ve already hinted at some of these, including referring to the idea of _autonomy_ within AI-based systems.
 
 More specifically, use cases for LangChain include:
 
@@ -54,7 +54,7 @@ More specifically, use cases for LangChain include:
 
 Notably, these types of solutions might be applied to a huge range of contexts and internal functions. For instance, [agentic AI workflows](https://budibase.com/blog/ai-agents/ai-agentic-workflows/) might be deployed for internal services such as ITSM and HR, or customer-facing use cases.
 
-It’s also important to consider the kinds of users that LangChain is primarily targeted at. 
+It’s also important to consider the kinds of users that LangChain is primarily targeted at.
 
 Generally speaking, it assumes a high level of technical knowledge and expertise. Indeed, it’s primarily aimed at developers, machine learning engineers, and other AI professionals.
 
@@ -98,7 +98,7 @@ This requires careful consideration of our requirements across a range of techni
 
 With a strong understanding of what we’re looking for, we can begin to outline some of the top LangChain alternatives and competitors on the market today.
 
-We’ve chosen a range of platforms, giving a broad picture of the options that are available to us. 
+We’ve chosen a range of platforms, giving a broad picture of the options that are available to us.
 
 Specifically, our picks are:
 
@@ -184,8 +184,8 @@ Here’s a summary of how these stack up.
     font-size: 0.8rem;
     font-weight: 700;
     white-space: nowrap;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -246,7 +246,7 @@ AutoGPT is one of the most prevalent agentic AI frameworks. Like LangChain, it�
 
 ![AutoGPT](https://res.cloudinary.com/daog6scxm/image/upload/v1745414282/cms/ai-agents/open-source-ai-agents/AutoGPT_oww52v.webp "AutoGPT")
 
-(*AutoGTP Website*)
+(_AutoGTP Website_)
 
 #### Pros
 
@@ -278,7 +278,7 @@ Next, we have MetaGPT. This is a slightly different proposition to LangChain or 
 
 ![MetaGPT](https://res.cloudinary.com/daog6scxm/image/upload/v1745414282/cms/ai-agents/open-source-ai-agents/MetaGPT_srybtd.webp "MetaGPT")
 
-(*MetaGPT Website*)
+(_MetaGPT Website_)
 
 #### Pros
 
@@ -310,7 +310,7 @@ SuperAgent is another open-source framework for creating AI agents. It also offe
 
 ![SuperAgent](https://res.cloudinary.com/daog6scxm/image/upload/v1745414281/cms/ai-agents/open-source-ai-agents/SuperAgent_fsz1d5.webp "SuperAgent")
 
-(*SuperAgent*)
+(_SuperAgent_)
 
 #### Pros
 
@@ -342,11 +342,11 @@ CrewAI is an open-source framework aimed at teams that need to build complex, mu
 
 ![CrewAI](https://res.cloudinary.com/daog6scxm/image/upload/v1745414282/cms/ai-agents/open-source-ai-agents/CrewAI_lnzolc.webp "CrewAI")
 
-(*CrewAI Website*)
+(_CrewAI Website_)
 
 #### Pros
 
-CrewAI is focused on empowering developers to create teams of specialist agents, known as *Crews*. Each is assigned a specific role, tools, and goals, allowing specialized contributions towards a wider task.
+CrewAI is focused on empowering developers to create teams of specialist agents, known as _Crews_. Each is assigned a specific role, tools, and goals, allowing specialized contributions towards a wider task.
 
 To support this, it also offers highly effective observability and monitoring. The Crew Control Pane enables developers to trace agent execution and agent behavior in real time.
 
@@ -362,7 +362,7 @@ On top of this, some users note that documentation for more advanced functionali
 
 #### Licensing
 
-CrewAI is available as either an open-source or commercial platform. 
+CrewAI is available as either an open-source or commercial platform.
 
 Like other tools we’ve seen, the open-source version is offered under the MIT license.
 
@@ -374,7 +374,7 @@ CAMEL is another open-source AI agent framework. It’s generally focused on res
 
 ![CAMEL](https://res.cloudinary.com/daog6scxm/image/upload/v1745414282/cms/ai-agents/open-source-ai-agents/Camel_AI_vuxrai.webp "CAMEL")
 
-(*CAMEL Website*)
+(_CAMEL Website_)
 
 #### Pros
 
@@ -406,7 +406,7 @@ Lastly, we have LlamaIndex, a framework that helps developers to ingest, index, 
 
 ![LlamaIndex](https://res.cloudinary.com/daog6scxm/image/upload/v1746191983/cms/ai-agents/open-source-ai-agents/LlamaIndex_ruiapb.webp "LlamaIndex")
 
-(*LlamaIndex Website*)
+(_LlamaIndex Website_)
 
 #### Pros
 
@@ -428,7 +428,7 @@ It’s also a highly flexible and modular framework, but advanced use cases may 
 
 Like most of the tools we’ve seen so far, LlamaIndex can be used, modified, and distributed for free under the MIT license.
 
-There’s also a commercial product with usage-based pricing, along with a usable free tier. 
+There’s also a commercial product with usage-based pricing, along with a usable free tier.
 
 This offers fixed license tiers, as well as custom enterprise pricing, making it a predictable, scalable choice for commercial usage.
 

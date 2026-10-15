@@ -1,0 +1,328 @@
+---
+import Icon from "@components/Icon.astro";
+import IsoLogo from "@assets/logos/enterprise-grid/iso-27001.png?url";
+import IronBankLogo from "@assets/logos/enterprise-grid/iron-bank.png?url";
+import GdprLogo from "@assets/logos/enterprise-grid/gdpr.svg?url";
+
+interface Props {
+  variant:
+    "overview" | "controls" | "isolation" | "iso" | "iron-bank" | "privacy";
+}
+const { variant } = Astro.props;
+// Conceptual deployment and control illustrations, not a live security scan.
+const assets = [
+  { label: "Apps", icon: "AppWindow" },
+  { label: "Agents", icon: "Sparkle" },
+  { label: "Automations", icon: "Lightning" },
+];
+const controls = [
+  { label: "Role-based access", value: "Roles", icon: "Keyhole" },
+  { label: "Single sign-on", value: "Identity", icon: "Users" },
+  { label: "Audit logging", value: "Activity", icon: "Gauge" },
+  { label: "Credentials", value: "Environment variables", icon: "ShieldCheck" },
+  { label: "Cloud encryption", value: "TLS 1.3 · AES-256", icon: "Cloud" },
+];
+const titles = {
+  overview: "Security and compliance",
+  controls: "Built-in security controls",
+  isolation: "Isolated deployment",
+  iso: "ISO 27001",
+  "iron-bank": "Iron Bank",
+  privacy: "Data protection",
+};
+---
+
+<div
+  class:list={[
+    "security-visual",
+    `security-visual--${variant}`,
+    ["iso", "iron-bank", "privacy"].includes(variant) &&
+      "security-visual--proof",
+  ]}
+  role="img"
+  aria-label={`${titles[variant]} illustration`}
+>
+  <div class="security-visual__panel" aria-hidden="true">
+    {
+      !["iso", "iron-bank", "privacy"].includes(variant) && (
+        <div class="security-visual__heading">
+          <img
+            src="/brand/budibase-symbol-forest.svg"
+            width="16"
+            height="16"
+            alt=""
+          />
+          {titles[variant]}
+        </div>
+      )
+    }
+    {
+      (variant === "overview" || variant === "isolation") && (
+        <>
+          {variant === "isolation" && (
+            <div class="security-visual__internet">
+              <Icon name="Cloud" size="20" />
+              <span>Public internet</span>
+              <span class="security-visual__disconnected">
+                <Icon name="X" size="14" />
+                Disconnected
+              </span>
+            </div>
+          )}
+          <div class="security-visual__boundary">
+            <div class="security-visual__boundary-label">
+              <>
+                <Icon name="ShieldCheck" size="17" />
+                <strong>
+                  {variant === "overview"
+                    ? "Your controlled environment"
+                    : "Air-gapped environment"}
+                </strong>
+              </>
+            </div>
+            <div class="security-visual__assets">
+              {assets.map((asset) => (
+                <div>
+                  <Icon name={asset.icon} size="22" />
+                  <span>{asset.label}</span>
+                </div>
+              ))}
+            </div>
+            {variant === "overview" ? (
+              <div class="security-visual__control-summary">
+                <span>
+                  <Icon name="Keyhole" size="15" />
+                  Access controls
+                </span>
+                <span>
+                  <Icon name="ShieldCheck" size="15" />
+                  Encryption
+                </span>
+                <span>
+                  <Icon name="Gauge" size="15" />
+                  Audit logging
+                </span>
+              </div>
+            ) : (
+              <div class="security-visual__internal">
+                <Icon name="Table" size="18" />
+                <span>Internal data and systems</span>
+              </div>
+            )}
+          </div>
+          <div class="security-visual__footer">
+            {variant === "overview"
+              ? "Built-in controls · Independent assurance"
+              : "Sensitive operations inside your network"}
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "controls" && (
+        <div class="security-visual__controls">
+          {controls.map((control) => (
+            <div>
+              <span>
+                <Icon name={control.icon} size="18" />
+                {control.label}
+              </span>
+              <strong>{control.value}</strong>
+            </div>
+          ))}
+        </div>
+      )
+    }
+    {
+      variant === "iso" && (
+        <div class="security-visual__proof">
+          <img src={IsoLogo} alt="" width="176" height="176" />
+        </div>
+      )
+    }
+    {
+      variant === "iron-bank" && (
+        <div class="security-visual__proof">
+          <img src={IronBankLogo} alt="" width="176" height="176" />
+        </div>
+      )
+    }
+    {
+      variant === "privacy" && (
+        <div class="security-visual__proof">
+          <img src={GdprLogo} alt="" width="176" height="176" />
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .security-visual {
+    width: 100%;
+    max-width: 34rem;
+    container-type: inline-size;
+    color: var(--bb-text-base);
+    line-height: 1.4;
+  }
+  .security-visual__panel {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    font-size: clamp(10px, 3.1cqw, 15px);
+  }
+  .security-visual--overview {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    max-width: none;
+    background: var(--bb-background-base);
+  }
+  .security-visual--overview .security-visual__panel {
+    border: 0;
+    font-size: clamp(9px, 2.2cqw, 12px);
+  }
+  .security-visual strong {
+    font-weight: 500;
+  }
+  .security-visual__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.9em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+    font-weight: 500;
+  }
+  .security-visual__boundary {
+    margin: 1em;
+    padding: 1em;
+    border: 1px dashed var(--bb-olive);
+  }
+  .security-visual__boundary-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--bb-olive);
+  }
+  .security-visual__assets {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6em;
+    margin-block: 1em;
+  }
+  .security-visual__assets > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 0.9em 0.2em;
+    background: var(--bb-background-sand);
+    color: var(--bb-olive);
+  }
+  .security-visual__control-summary {
+    display: grid;
+    gap: 0.5em;
+  }
+  .security-visual__control-summary > span {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .security-visual__control-summary :global(svg) {
+    color: var(--bb-olive);
+  }
+  .security-visual__footer {
+    padding: 0.8em 1em;
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
+    font-size: 0.85em;
+  }
+  .security-visual__controls {
+    padding-inline: 1em;
+  }
+  .security-visual__controls > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1em 0;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .security-visual__controls > div:last-child {
+    border: 0;
+  }
+  .security-visual__controls > div > span {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .security-visual__controls :global(svg) {
+    color: var(--bb-olive);
+    flex: none;
+  }
+  .security-visual__controls strong {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+    text-align: right;
+  }
+  .security-visual__internet {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin: 1em;
+    padding: 0.7em;
+    background: var(--bb-background-sand);
+    color: var(--bb-text-subtle);
+  }
+  .security-visual__disconnected {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    margin-left: auto;
+    color: var(--bb-graphite);
+    font-size: 0.85em;
+  }
+  .security-visual__disconnected :global(svg) {
+    color: var(--bb-crimson);
+  }
+  .security-visual__internal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 0.8em;
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
+  }
+  .security-visual__proof {
+    display: grid;
+    place-items: center;
+    padding: 1.25em;
+  }
+  .security-visual--proof .security-visual__panel {
+    border: 0;
+    background: var(--bb-coconut);
+  }
+  .security-visual__proof > img {
+    width: clamp(112px, 52cqw, 176px);
+    height: clamp(112px, 52cqw, 176px);
+    object-fit: contain;
+  }
+  @container (max-width: 340px) {
+    .security-visual--overview .security-visual__boundary {
+      margin: 0.7em;
+      padding: 0.7em;
+    }
+    .security-visual--overview .security-visual__assets {
+      margin-block: 0.7em;
+    }
+    .security-visual--overview .security-visual__assets > div {
+      padding-block: 0.5em;
+    }
+    .security-visual--overview .security-visual__control-summary {
+      gap: 0.25em;
+    }
+  }
+</style>

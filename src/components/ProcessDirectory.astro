@@ -2,30 +2,12 @@
 import TitleBlock from "@components/TitleBlock.astro";
 import Icon from "@components/Icon.astro";
 import AssetTypeIcon from "@components/ui/AssetTypeIcon.astro";
-import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
-import SlackLogo from "@assets/logos/Slack.svg?url";
-import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
-import SalesforceLogo from "@assets/logos/Salesforce.svg?url";
-import BudibaseLogo from "@assets/logos/budibase.svg?url";
-import { marketplaceConnections } from "../data/marketplaceConnections";
+import TemplateSourceIcon from "@components/ui/TemplateSourceIcon.astro";
 import {
   getProcessDirectoryRows,
   processAssetTypes,
 } from "../data/processDirectory";
 
-const channelLogos: Record<string, string> = {
-  Slack: SlackLogo,
-  Teams: TeamsLogo,
-  "Microsoft Teams": TeamsLogo,
-};
-const connectionLogos: Record<string, string | undefined> = {
-  ...Object.fromEntries(
-    marketplaceConnections.map((item) => [item.name.toLowerCase(), item.logo]),
-  ),
-  salesforce: SalesforceLogo,
-  budibasedb: BudibaseLogo,
-};
-connectionLogos["email/smtp"] = connectionLogos.smtp;
 const filterAssets = processAssetTypes.filter(
   (asset) => asset.id !== "functions",
 );
@@ -45,28 +27,13 @@ function getSymbolGroups(process: (typeof processes)[number]) {
     {
       label: "Knowledge source",
       names: process.knowledge,
-      logos: { "Microsoft SharePoint": SharePointLogo } as Record<
-        string,
-        string | undefined
-      >,
-      fallback: "FilePdf",
+      kind: "knowledge" as const,
     },
-    {
-      label: "Agent chat",
-      names: process.channels,
-      logos: channelLogos,
-      fallback: "ChatsCircle",
-    },
+    { label: "Agent chat", names: process.channels, kind: "channel" as const },
     {
       label: "Connection",
       names: process.connections,
-      logos: Object.fromEntries(
-        process.connections.map((name) => [
-          name,
-          connectionLogos[name.toLowerCase()],
-        ]),
-      ),
-      fallback: "PlugsConnected",
+      kind: "connection" as const,
     },
   ];
 }
@@ -228,16 +195,7 @@ const { embedded = false } = Astro.props as { embedded?: boolean };
                         aria-label={`${group.label}: ${name}`}
                       >
                         <span aria-hidden="true">
-                          {group.logos[name] ? (
-                            <img
-                              src={group.logos[name]}
-                              alt=""
-                              width="19"
-                              height="19"
-                            />
-                          ) : (
-                            <Icon name={group.fallback} size="19" />
-                          )}
+                          <TemplateSourceIcon name={name} kind={group.kind} />
                         </span>
                       </span>
                     ))}
@@ -481,14 +439,14 @@ const { embedded = false } = Astro.props as { embedded?: boolean };
     width: 32%;
   }
   .connections-column {
-    width: 12%;
+    width: 18%;
   }
   .asset-column,
   .ai-column {
-    text-align: center;
+    text-align: left;
   }
   .asset-cell {
-    text-align: center;
+    text-align: left;
   }
   tbody th {
     font-weight: 400;

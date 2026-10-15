@@ -2,22 +2,26 @@
 import { Image } from "astro:assets";
 import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c07d627de130d801d4.svg";
 ---
+
 <div class="form-demo rounded-none bg-[var(--bg-2)]" data-stage="form">
   <div class="form-demo-flow">
     <section class="form-demo-form-card" aria-label="Access request form">
       <div class="form-demo-card-header">
         <h3 class="form-demo-title">Software access request</h3>
 
-        <button class="form-demo-submit" type="button">
-          Submit
-        </button>
+        <button class="form-demo-submit" type="button"> Submit </button>
       </div>
 
       <div class="form-demo-field-group">
         <p class="form-demo-field-label">Tool type</p>
         <div class="form-demo-select" aria-hidden="true">
           <span class="form-demo-select-value">VPN</span>
-          <Image src={CaretDownIcon} alt="" class="form-demo-caret" aria-hidden="true" />
+          <Image
+            src={CaretDownIcon}
+            alt=""
+            class="form-demo-caret"
+            aria-hidden="true"
+          />
         </div>
       </div>
 
@@ -32,7 +36,8 @@ import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c
         <p class="form-demo-field-label">Justification</p>
         <div class="form-demo-long-form" aria-hidden="true">
           <span class="form-demo-select-value">
-            I need VPN access to securely access internal company systems while working remotely.
+            I need VPN access to securely access internal company systems while
+            working remotely.
           </span>
         </div>
       </div>
@@ -54,7 +59,12 @@ import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c
     overflow: hidden;
     border: 1px solid rgb(var(--border) / 0.45);
     background:
-      radial-gradient(circle at center, var(--form-demo-grid-dot) 1.3px, transparent 1.3px) 0 0 / 20px 20px,
+      radial-gradient(
+          circle at center,
+          var(--form-demo-grid-dot) 1.3px,
+          transparent 1.3px
+        )
+        0 0 / 20px 20px,
       var(--bg-2);
     animation: form-demo-dot-drift 14s linear infinite;
   }
@@ -166,7 +176,7 @@ import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c
     justify-content: center;
     border: 0;
     border-radius: 999px;
-    background: var(--bb-orange-800);
+    background: var(--bb-rust);
     color: rgb(var(--on-primary));
     padding: 8px 20px;
     font-size: 16px;
@@ -180,7 +190,7 @@ import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c
 
   .form-demo-submit:hover,
   .form-demo-submit:focus-visible {
-    background: var(--bb-orange-1000);
+    background: var(--bb-rust);
   }
 
   .form-demo-submit:focus-visible {
@@ -194,11 +204,15 @@ import CaretDownIcon from "@assets/images/demos/app-demo/481b5637386cfa51221252c
 
   @keyframes form-demo-dot-drift {
     from {
-      background-position: 0 0, 0 0;
+      background-position:
+        0 0,
+        0 0;
     }
 
     to {
-      background-position: 20px 20px, 0 0;
+      background-position:
+        20px 20px,
+        0 0;
     }
   }
 

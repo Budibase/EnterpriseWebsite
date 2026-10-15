@@ -1,0 +1,60 @@
+---
+import Icon from "@components/Icon.astro";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+import SlackLogo from "@assets/logos/Slack.svg?url";
+import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+import SalesforceLogo from "@assets/logos/Salesforce.svg?url";
+import { marketplaceConnections } from "../../data/marketplaceConnections";
+interface Props {
+  name: string;
+  kind?: "knowledge" | "channel" | "connection";
+}
+const { name, kind = "connection" } = Astro.props;
+const budibaseSymbol =
+  "https://imagedelivery.net/XiRLXgWL40dYpEp7QOAxig/89581e38-e967-4282-96ed-0eedc4e72400/public";
+const logos: Record<string, string | undefined> = {
+  ...Object.fromEntries(
+    marketplaceConnections.map((item) => [item.name.toLowerCase(), item.logo]),
+  ),
+  "microsoft teams": TeamsLogo,
+  slack: SlackLogo,
+  "microsoft sharepoint": SharePointLogo,
+  salesforce: SalesforceLogo,
+  budibase: budibaseSymbol,
+  budibasedb: budibaseSymbol,
+};
+logos["email/smtp"] = logos.smtp;
+const logo = logos[name.toLowerCase()];
+const fallback =
+  kind === "knowledge"
+    ? "FilePdf"
+    : kind === "channel"
+      ? "ChatsCircle"
+      : "PlugsConnected";
+---
+
+<span class="template-source-icon" aria-hidden="true">
+  {
+    logo ? (
+      <img src={logo} alt="" width="19" height="19" />
+    ) : (
+      <Icon name={fallback} size="19" />
+    )
+  }
+</span>
+<style>
+  .template-source-icon {
+    display: inline-flex;
+    width: 22px;
+    height: 22px;
+    flex: 0 0 22px;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+  }
+  img {
+    width: 19px;
+    height: 19px;
+    object-fit: contain;
+  }
+</style>

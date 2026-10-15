@@ -29,7 +29,7 @@ Software asset management comprises all of your efforts to furnish your team wit
 
 At a more concrete level, there are a few key strands to this, including:
 
-- Documenting which software assets we own, use, or control. 
+- Documenting which software assets we own, use, or control.
 - Providing information on these is required to manage their lifecycles.
 - Tracking how and when tools are used.
 - Controlling costs.
@@ -43,11 +43,11 @@ Stemming on from this, it also includes managing any workflows relating to norma
 
 The core functionality of any software asset management tool is enabling us to track and manage their underlying configuration data.
 
-This centers around an asset database. That is, an inventory stores information relating to our asset estate. However, individual platforms can vary quite widely in how this works. 
+This centers around an asset database. That is, an inventory stores information relating to our asset estate. However, individual platforms can vary quite widely in how this works.
 
 So, some tools might use a relatively rigid proprietary database, whereas others give us more flexibility to connect to an existing CMDB or define a custom schema for a standalone asset database.
 
-Similarly, the best SAM tools also give us the flexibility to define our own workflows. 
+Similarly, the best SAM tools also give us the flexibility to define our own workflows.
 
 This can take a few forms, including configuring request and approval flows, automating lifecycle management tasks such as audits, or integrating with our existing tech stack for tasks such as ticketing or change management.
 
@@ -155,19 +155,19 @@ Here’s a summary of what each one offers:
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 
   .comparison-table .tag {
     margin: 0.1rem;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -410,7 +410,7 @@ Lastly, we have Snipe-IT. This is a popular, free and open-source tool for manag
 
 #### Pros
 
-One huge selling point of Snipe-IT is that it offers a free, fully usable asset management solution requiring relatively little implementation. It largely works out of the box, with most configuration options being handled using built-in admin settings, rather than in-depth customization. 
+One huge selling point of Snipe-IT is that it offers a free, fully usable asset management solution requiring relatively little implementation. It largely works out of the box, with most configuration options being handled using built-in admin settings, rather than in-depth customization.
 
 This is great if you want core SAM functionality, including asset data management, license management, or basic automations such as email notifications for new asset requests or license expiries.
 

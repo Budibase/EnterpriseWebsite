@@ -39,6 +39,7 @@ It also offers a range of features aimed at teams who need to automate and strea
 There’s ample scope for configuration, too, alongside extensive native integration options, app plug-ins, and developer tools, making FreshService a strong option for teams that need to add additional functionality to the core ITSM offering.
 
 So…
+
 ## Why would you look for a FreshService alternative?
 
 With a better grasp of what FreshService offers, we can start to think about some of the key reasons that an alternative platform might be a more suitable solution.
@@ -215,19 +216,19 @@ Here’s a brief summary of how they compare.
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 
   .comparison-table .tag {
     margin: 0.1rem;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -323,7 +324,7 @@ Budibase is the open-source, low-code platform that turns data into action. IT t
 
 #### Features
 
-Budibase is the leading low-code tool for external data connections. We offer direct querying for all sorts of RDMBSs, NoSQL tools, APIs, and spreadsheets alongside our internal, low-code database. 
+Budibase is the leading low-code tool for external data connections. We offer direct querying for all sorts of RDMBSs, NoSQL tools, APIs, and spreadsheets alongside our internal, low-code database.
 
 Once you’ve connected your data, you can create custom views, assign role permissions, and autogenerate fully functional app UIs. Budibase offers exceptional design customization for building professional front-ends with minimal custom code.
 

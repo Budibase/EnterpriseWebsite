@@ -16,31 +16,7 @@ export async function getProcessDirectoryRows() {
     .map((entry) => {
       const data = entry.data;
 
-      // Read named assets from the authored guide, rather than generating counts
-      // from the illustrative product demonstrations or integration list.
-      const sectionAssets = (id: string, subsection?: string) => {
-        let section =
-          (entry.body ?? "")
-            .split(new RegExp(`<h2 id="${id}">[^<]*</h2>`))[1]
-            ?.split(/<h2 /)[0] ?? "";
-        if (subsection)
-          section =
-            section.split(`### ${subsection}`)[1]?.split(/\n### /)[0] ?? "";
-        return [...section.matchAll(/^\*\*([^*]+)\*\*:/gm)].map(
-          (match) => match[1],
-        );
-      };
-      const declared = data.assetsUsed;
-      const apps = declared?.apps ?? sectionAssets("screens");
-      const automations = declared?.automations ?? sectionAssets("automations");
-      const resolved = getTemplateAssets({
-        ...data,
-        assetsUsed: {
-          ...declared,
-          ...(apps.length > 0 ? { apps } : {}),
-          ...(automations.length > 0 ? { automations } : {}),
-        },
-      });
+      const resolved = getTemplateAssets(data);
       const presence: Record<string, boolean> = {
         agents: resolved.agent,
         apps: resolved.app,

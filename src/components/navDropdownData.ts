@@ -67,7 +67,7 @@ export const platformDropdownMenu: NavDropdownMenu = {
         },
         {
           href: "/product/data/",
-          label: "Data tables",
+          label: "Data",
           description: "Connect and store data.",
           prefetch: true,
           icon: "Table",
@@ -162,6 +162,11 @@ export const platformDropdownMenu: NavDropdownMenu = {
     },
   ],
   footerLinks: [
+    {
+      href: "/marketplace/connections/",
+      label: "Connections",
+      prefetch: true,
+    },
     {
       href: "/security/",
       label: "Security & compliance",
@@ -269,6 +274,11 @@ export const solutionsDropdownMenu: NavDropdownMenu = {
     {
       href: "/marketplace/partners/",
       label: "Partners",
+      prefetch: true,
+    },
+    {
+      href: "/customers/",
+      label: "Customer stories",
       prefetch: true,
     },
   ],
@@ -475,27 +485,3 @@ export const flattenMenuItems = (menu: NavDropdownMenu): NavDropdownItem[] => [
   ...(menu.footerLink ? [menu.footerLink] : []),
   ...(menu.footerLinks ?? []),
 ];
-
-const navStatusPalette = [
-  "var(--bb-celery-600)",
-  "var(--bb-cyan-600)",
-  "var(--bb-purple-600)",
-  "var(--bb-orange-600)",
-  "var(--bb-yellow-600)",
-  "var(--bb-cinnamon-600)",
-  "var(--bb-seafoam-600)",
-  "var(--bb-pink-600)",
-];
-
-const navStatusHrefs = [
-  ...new Set(
-    navDropdownMenus.flatMap(({ menu }) =>
-      flattenMenuItems(menu).map(({ href }) => href),
-    ),
-  ),
-];
-
-export const getNavStatusColor = (href: string): string =>
-  navStatusPalette[
-    Math.max(0, navStatusHrefs.indexOf(href)) % navStatusPalette.length
-  ];

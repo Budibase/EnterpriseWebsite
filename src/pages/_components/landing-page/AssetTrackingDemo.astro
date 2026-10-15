@@ -77,7 +77,7 @@ const asset = {
                 <span>North plant · Line 2</span>
                 <span class="asset-register__status">In service</span>
                 <span
-                  class="asset-register__owner asset-register__owner--orange"
+                  class="asset-register__owner asset-register__owner--tangerine"
                   ><b>AP</b> A. Patel</span
                 >
                 <span class="asset-register__inspection">02 Nov 2026</span>
@@ -91,7 +91,7 @@ const asset = {
                   >Inspection due</span
                 >
                 <span
-                  class="asset-register__owner asset-register__owner--purple"
+                  class="asset-register__owner asset-register__owner--orchid"
                   ><b>SC</b> S. Chen</span
                 >
                 <span class="asset-register__inspection">29 Sep 2026</span>
@@ -102,8 +102,7 @@ const asset = {
                 <span class="asset-register__type">Compressor</span>
                 <span>West plant · Line 1</span>
                 <span class="asset-register__status">In service</span>
-                <span
-                  class="asset-register__owner asset-register__owner--seafoam"
+                <span class="asset-register__owner asset-register__owner--zen"
                   ><b>JM</b> J. Murphy</span
                 >
                 <span class="asset-register__inspection">15 Dec 2026</span>
@@ -128,7 +127,7 @@ const asset = {
                 <span>South plant · Line 3</span>
                 <span class="asset-register__status">In service</span>
                 <span
-                  class="asset-register__owner asset-register__owner--yellow"
+                  class="asset-register__owner asset-register__owner--vivid-vargas"
                   ><b>DB</b> D. Byrne</span
                 >
                 <span class="asset-register__inspection">21 Nov 2026</span>
@@ -145,14 +144,10 @@ const asset = {
   .asset-demo {
     --asset-surface: color-mix(
       in srgb,
-      var(--bb-brand-forest-green) 14%,
-      var(--bb-gray-900)
+      var(--bb-olive) 14%,
+      var(--bb-graphite)
     );
-    --asset-raised: color-mix(
-      in srgb,
-      var(--bb-brand-forest-green) 13%,
-      var(--bb-gray-800)
-    );
+    --asset-raised: color-mix(in srgb, var(--bb-olive) 13%, var(--bb-gray-900));
     --asset-border: var(--bb-transparent-white-200);
     --asset-text: var(--bb-text-on-base);
     --asset-muted: var(--bb-text-on-base-secondary);
@@ -162,7 +157,7 @@ const asset = {
     width: 100%;
     overflow: hidden;
     border: 1px solid var(--bb-border-base);
-    background: var(--bb-brand-forest-green);
+    background: var(--bb-olive);
     color: var(--asset-text);
     font-family: var(--font-sans);
     pointer-events: none;
@@ -228,7 +223,7 @@ const asset = {
     gap: 3.5cqw;
     padding-top: 2cqw;
     border-right: 1px solid var(--device-outline);
-    color: rgb(255 255 255 / 0.5);
+    color: var(--bb-text-on-base-muted);
   }
   .asset-register {
     display: flex;
@@ -380,14 +375,14 @@ const asset = {
     width: max-content;
     padding: max(0px, calc(0.4cqw - 2px)) 0.6cqw;
     border-radius: 2cqw;
-    background: var(--bb-celery-1000);
-    color: var(--bb-celery-100);
+    background: var(--bb-olive-1200);
+    color: var(--bb-lime-100);
     font-size: calc(0.9cqw + 1px);
     white-space: nowrap;
   }
   .asset-register__status--due {
-    background: var(--bb-brown-900);
-    color: var(--bb-brown-100);
+    background: var(--bb-gold);
+    color: var(--bb-white);
   }
   .asset-register__inspection {
     white-space: nowrap;
@@ -405,30 +400,30 @@ const asset = {
     flex: 0 0 auto;
     place-items: center;
     border-radius: 50%;
-    background: var(--bb-blue-200);
-    color: var(--bb-blue-900);
+    background: var(--bb-cloud-soft);
+    color: var(--bb-navy);
     font-size: 0.75cqw;
     font-weight: 600;
   }
-  .asset-register__owner--orange b {
-    background: var(--bb-orange-200);
-    color: var(--bb-orange-900);
+  .asset-register__owner--tangerine b {
+    background: var(--bb-tangerine-soft);
+    color: color-mix(in srgb, var(--bb-rust) 80%, var(--bb-graphite));
   }
-  .asset-register__owner--purple b {
-    background: var(--bb-purple-200);
-    color: var(--bb-purple-900);
+  .asset-register__owner--orchid b {
+    background: var(--bb-orchid-soft);
+    color: var(--bb-plum);
   }
-  .asset-register__owner--seafoam b {
-    background: var(--bb-seafoam-200);
-    color: var(--bb-seafoam-900);
+  .asset-register__owner--zen b {
+    background: var(--bb-zen-soft);
+    color: color-mix(in srgb, var(--bb-ocean) 80%, var(--bb-graphite));
   }
   .asset-register__owner--pink b {
-    background: var(--bb-pink-200);
-    color: var(--bb-pink-900);
+    background: var(--bb-pink-soft);
+    color: color-mix(in srgb, var(--bb-azalea) 80%, var(--bb-graphite));
   }
-  .asset-register__owner--yellow b {
-    background: var(--bb-yellow-200);
-    color: var(--bb-yellow-900);
+  .asset-register__owner--vivid-vargas b {
+    background: var(--bb-vivid-vargas-soft);
+    color: color-mix(in srgb, var(--bb-gold) 80%, var(--bb-graphite));
   }
   @container (max-width: 460px) {
     .asset-demo__canvas {

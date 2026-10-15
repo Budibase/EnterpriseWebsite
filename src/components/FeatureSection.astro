@@ -5,7 +5,7 @@ import Icon from "@components/Icon.astro";
 import Link from "@components/Link.astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
-type Variant = "white" | "light" | "forest-green";
+type Variant = "white" | "light" | "olive";
 type ImagePosition = "left" | "right";
 
 interface Badge {
@@ -15,14 +15,7 @@ interface Badge {
   href?: string;
   target?: string;
   rel?: string;
-  variant?:
-    | "celery"
-    | "light"
-    | "bright-blue"
-    | "bright-pink"
-    | "yellow"
-    | "bright-yellow"
-    | "bright-orange";
+  variant?: "olive" | "light" | "zen" | "pink" | "vivid-vargas" | "tangerine";
 }
 
 interface Bullet {
@@ -91,7 +84,7 @@ if (video && !image) {
 }
 
 const visibleBullets = bullets.slice(0, 3);
-const isForest = variant === "forest-green";
+const isForest = variant === "olive";
 const linkVariant = isForest ? "secondary" : "primary";
 const Demo = demo;
 ---
@@ -216,15 +209,15 @@ const Demo = demo;
     --feature-section-background: var(--bb-background-surface);
   }
 
-  .feature-section--forest-green {
-    --feature-section-background: var(--bb-brand-forest-green);
+  .feature-section--olive {
+    --feature-section-background: var(--bb-olive);
     --feature-section-text: var(--bb-text-on-base);
     --feature-section-body: var(--bb-text-on-base);
     --feature-section-divider: var(--bb-transparent-white-200);
     --feature-section-icon-background: var(--bb-transparent-white-100);
   }
 
-  .feature-section--forest-green .feature-section__bullet h3 {
+  .feature-section--olive .feature-section__bullet h3 {
     color: var(--bb-text-on-base) !important;
   }
 
@@ -262,7 +255,7 @@ const Demo = demo;
   .feature-section__image-panel--video {
     border: 1px solid var(--bb-border-subtle);
     padding: 12px;
-    background: var(--bb-celery-100);
+    background: var(--bb-lime-100);
   }
 
   .feature-section__image-panel--demo {

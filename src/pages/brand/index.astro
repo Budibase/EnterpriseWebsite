@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
+import { coreColors, accentColors, greyColors } from "../../data/brandPalette";
 import Icon from "@components/Icon.astro";
 import TitleBlock from "@components/TitleBlock.astro";
 
@@ -11,87 +12,42 @@ const logos = [
   {
     name: "Full logo",
     description: "The complete Budibase mark and wordmark.",
-    tone: "forest",
-    previewLabel: "Forest green logo on a light background",
+    tone: "olive",
+    previewLabel: "Olive logo on a light background",
     svg: "/brand/budibase-logo-forest.svg",
     png: "/brand/budibase-logo-forest.png",
   },
   {
     name: "Full logo",
     description: "The complete Budibase mark and wordmark.",
-    tone: "bright",
-    previewLabel: "Bright green logo on a dark background",
+    tone: "lime",
+    previewLabel: "Lime logo on a dark background",
     svg: "/brand/budibase-logo-bright.svg",
     png: "/brand/budibase-logo-bright.png",
   },
   {
     name: "Symbol",
     description: "The standalone Budibase symbol for compact spaces.",
-    tone: "forest",
-    previewLabel: "Forest green symbol on a light background",
+    tone: "olive",
+    previewLabel: "Olive symbol on a light background",
     svg: "/brand/budibase-symbol-forest.svg",
     png: "/brand/budibase-symbol-forest.png",
   },
   {
     name: "Symbol",
     description: "The standalone Budibase symbol for compact spaces.",
-    tone: "bright",
-    previewLabel: "Bright green symbol on a dark background",
+    tone: "lime",
+    previewLabel: "Lime symbol on a dark background",
     svg: "/brand/budibase-symbol-bright.svg",
     png: "/brand/budibase-symbol-bright.png",
   },
 ] as const;
 
-const colors = [
-  {
-    name: "Forest green",
-    value: "#163300",
-    role: "Primary brand anchor",
-    tone: "dark",
-  },
-  {
-    name: "Bright green",
-    value: "#9DF75C",
-    role: "Action, progress, connection, success",
-    tone: "light",
-  },
-  {
-    name: "Yellow",
-    value: "#FFBC0D",
-    role: "Proof, selection, attention, human review",
-    tone: "light",
-  },
-  {
-    name: "Ink",
-    value: "#131313",
-    role: "Body copy",
-    tone: "dark",
-  },
-  {
-    name: "White",
-    value: "#FFFFFF",
-    role: "Base surface",
-    tone: "light",
-  },
-  {
-    name: "Subtle surface",
-    value: "#F8F8F8",
-    role: "Quiet surface",
-    tone: "light",
-  },
-  {
-    name: "Raised surface",
-    value: "#F3F3F3",
-    role: "Elevated surface",
-    tone: "light",
-  },
-  {
-    name: "Border",
-    value: "#DADADA",
-    role: "Default border",
-    tone: "light",
-  },
-] as const;
+const colorGroups = [
+  { title: "Core", colors: coreColors },
+  { title: "Accents", colors: accentColors },
+  { title: "Greys", colors: greyColors },
+];
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -129,7 +85,7 @@ const colors = [
             variant="section"
             title="Logos"
             titleId="logos-title"
-            description="Use the forest-green treatment on light backgrounds and the bright-green treatment on dark backgrounds."
+            description="Use the olive treatment on light backgrounds and the lime treatment on dark backgrounds."
           />
         </div>
 
@@ -191,38 +147,43 @@ const colors = [
           />
         </div>
 
-        <div class="brand-color-grid">
-          {
-            colors.map((color) => (
-              <button
-                type="button"
-                class="brand-color-card"
-                style={`--brand-swatch: ${color.value}`}
-                data-copy-color={color.value}
-                aria-label={`Copy ${color.name} ${color.value}`}
-              >
-                <span
-                  class:list={[
-                    "brand-color-swatch",
-                    `brand-color-swatch--${color.tone}`,
-                  ]}
-                  aria-hidden="true"
-                />
-                <span class="brand-card-content brand-color-content">
-                  <span class="brand-color-heading">
-                    <span class="brand-color-name">{color.name}</span>
-                    <span class="brand-color-value">{color.value}</span>
-                  </span>
-                  <span class="brand-color-role">{color.role}</span>
-                  <span class="brand-copy-action">
-                    <Icon name="Copy" size="16" />
-                    <span data-copy-label>Copy hex</span>
-                  </span>
-                </span>
-              </button>
-            ))
-          }
-        </div>
+        {
+          colorGroups.map((group) => (
+            <div class="brand-color-group">
+              <h3 class="brand-color-group__title">{group.title}</h3>
+              <div class="brand-color-grid">
+                {group.colors.map((color) => (
+                  <button
+                    type="button"
+                    class="brand-color-card"
+                    style={`--brand-swatch: var(${color.token})`}
+                    data-copy-color={color.value}
+                    aria-label={`Copy ${color.name} ${color.value}`}
+                  >
+                    <span
+                      class:list={[
+                        "brand-color-swatch",
+                        `brand-color-swatch--${color.tone}`,
+                      ]}
+                      aria-hidden="true"
+                    />
+                    <span class="brand-card-content brand-color-content">
+                      <span class="brand-color-heading">
+                        <span class="brand-color-name">{color.name}</span>
+                        <span class="brand-color-value">{color.value}</span>
+                      </span>
+                      <span class="brand-color-role">{color.role}</span>
+                      <span class="brand-copy-action">
+                        <Icon name="Copy" size="16" />
+                        <span data-copy-label>Copy hex</span>
+                      </span>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))
+        }
         <p class="brand-copy-status" data-copy-status aria-live="polite"></p>
       </div>
     </section>
@@ -364,7 +325,7 @@ const colors = [
   }
 
   .brand-hero {
-    background: var(--bb-celery-100);
+    background: var(--bb-lime-100);
   }
 
   .brand-hero__inner {
@@ -377,7 +338,7 @@ const colors = [
 
   .brand-eyebrow {
     margin: 0 0 0.75rem;
-    color: var(--bb-celery-1000);
+    color: var(--bb-olive-1000);
     font-size: 0.8125rem;
     font-weight: 650;
     letter-spacing: 0.08em;
@@ -427,14 +388,14 @@ const colors = [
   .brand-jump-links a:focus-visible,
   .brand-download-links a:hover,
   .brand-download-links a:focus-visible {
-    border-color: var(--bb-brand-forest-green);
-    background: var(--bb-brand-forest-green);
+    border-color: var(--bb-olive);
+    background: var(--bb-olive);
     color: var(--bb-text-on-base);
   }
 
   .brand-jump-links a:focus-visible,
   .brand-download-links a:focus-visible {
-    outline: 2px solid var(--bb-brand-forest-green);
+    outline: 2px solid var(--bb-olive);
     outline-offset: 3px;
   }
 
@@ -475,8 +436,8 @@ const colors = [
     background: var(--bb-background-surface-base);
   }
 
-  .brand-logo-card--bright .brand-logo-preview {
-    background: var(--bb-brand-forest-green);
+  .brand-logo-card--lime .brand-logo-preview {
+    background: var(--bb-olive);
   }
 
   .brand-logo-preview {
@@ -509,7 +470,7 @@ const colors = [
 
   .brand-card-content h3 {
     margin: 0;
-    color: var(--bb-text-base);
+    color: var(--bb-olive);
     font-size: 1.25rem;
     font-weight: 650;
     line-height: 1.2;
@@ -540,6 +501,13 @@ const colors = [
     font-size: 1rem;
   }
 
+  .brand-color-group + .brand-color-group {
+    margin-top: 2rem;
+  }
+  .brand-color-group__title {
+    margin: 0 0 1rem;
+    color: var(--bb-olive);
+  }
   .brand-color-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -564,19 +532,19 @@ const colors = [
   }
 
   .brand-color-card:hover {
-    border-color: var(--bb-brand-forest-green);
+    border-color: var(--bb-olive);
     box-shadow: 0 0.5rem 1.25rem rgb(var(--text) / 0.08);
     transform: translateY(-2px);
   }
 
   .brand-color-card:focus-visible {
-    outline: 2px solid var(--bb-brand-forest-green);
+    outline: 2px solid var(--bb-olive);
     outline-offset: 3px;
   }
 
   .brand-color-card.is-copied {
-    border-color: var(--bb-brand-forest-green);
-    box-shadow: 0 0 0 2px var(--bb-brand-bright-green);
+    border-color: var(--bb-olive);
+    box-shadow: 0 0 0 2px var(--bb-lime);
   }
 
   .brand-color-swatch {
@@ -624,7 +592,7 @@ const colors = [
     align-items: center;
     gap: 0.45rem;
     margin-top: auto;
-    color: var(--bb-brand-forest-green);
+    color: var(--bb-olive);
     font-size: 0.875rem;
     font-weight: 650;
   }
@@ -632,7 +600,7 @@ const colors = [
   .brand-copy-status {
     min-height: 1.35rem;
     margin: 1rem 0 0;
-    color: var(--bb-brand-forest-green) !important;
+    color: var(--bb-olive) !important;
     font-size: 0.875rem;
     font-weight: 600;
   }
@@ -647,7 +615,7 @@ const colors = [
   }
 
   .brand-type-card--display {
-    background: var(--bb-brand-forest-green);
+    background: var(--bb-olive);
     color: var(--bb-text-on-base);
   }
 
@@ -675,12 +643,12 @@ const colors = [
 
   .brand-type-card--display .brand-type-meta > span,
   .brand-type-card--display .brand-type-meta > strong {
-    color: var(--bb-text-on-base);
+    color: var(--bb-text-on-base) !important;
   }
 
   .brand-type-specimen {
     margin: 0;
-    color: var(--bb-brand-bright-green) !important;
+    color: var(--bb-lime) !important;
     font-family: var(--font-tiktok-sans-condensed), var(--font-sans);
     font-size: clamp(3rem, 7vw, 6.25rem);
     font-weight: 900;
@@ -698,7 +666,7 @@ const colors = [
   }
 
   .brand-type-details strong {
-    color: var(--bb-text-on-base);
+    color: var(--bb-text-on-base) !important;
     font-weight: 600;
   }
 

@@ -146,19 +146,19 @@ Here’s a summary of the platforms we’ve chosen.
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 
   .comparison-table .tag {
     margin: 0.1rem;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 

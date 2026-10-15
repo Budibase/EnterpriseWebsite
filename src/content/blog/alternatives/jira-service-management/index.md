@@ -10,7 +10,7 @@ draft: false
 
 Atlassian’s Jira Service Management (JSM) is one of the biggest players in the ISTM space. With extensive customization and configuration on offer, Atlassian have managed to corner a huge portion of the market for IT service management software.
 
-However, JSM isn’t necessarily the right choice for every IT department. 
+However, JSM isn’t necessarily the right choice for every IT department.
 
 Rather, there are a few key areas where it shines. For instance, it’s highly integrated with the wider Atlassian ecosystem. Naturally, if you already have their project management, release management, or documentation tools embedded, this can be a real boon.
 
@@ -116,7 +116,6 @@ As such, it’s important to understand some of the key variables that might rul
   </details>
 </div>
 
-
 ## 8 Jira Service Management alternatives
 
 Now that we have a better grasp of what JSM offers and where it sits in the market, we can start to think about its key competitors.
@@ -215,19 +214,19 @@ We’ve picked a range of platforms from across the market for ITSM workflow sof
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 
   .comparison-table .tag {
     margin: 0.1rem;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -443,7 +442,7 @@ As is often the case, ease of use comes at the expense of a certain degree of co
 
 Additionally, FreshService does not offer a self-hosted option. While a cloud solution will be ideal for many organizations, others might have self-hosting as a firm requirement, particularly for security.
 
-Some users also report difficulties with scaling FreshService’s cloud offering to higher user or transaction volumes. 
+Some users also report difficulties with scaling FreshService’s cloud offering to higher user or transaction volumes.
 
 #### Pricing
 
@@ -482,12 +481,11 @@ ManageEngine has the potential to be very cost-effective, depending on your spec
 
 The cloud platform starts at $13 per technician per month for help desk only, and goes up to $67 for an enterprise plan which also includes asset management, change management, and project management. There are also discounted prices for self-hosted licenses.
 
-In addition to feature restrictions, pricing also takes account of *nodes*, the proprietary concept that relates to asset data. So, if you need to manage a large asset inventory or service portfolio, costs could quickly escalate.
+In addition to feature restrictions, pricing also takes account of _nodes_, the proprietary concept that relates to asset data. So, if you need to manage a large asset inventory or service portfolio, costs could quickly escalate.
 
 ### 5. SolarWinds
 
 SolarWinds is another key player in the ITSM space. It offers extensive capabilities across key IT workflows, as well as related tasks such as device monitoring.
-
 
 ![SolarWinds](https://res.cloudinary.com/daog6scxm/image/upload/v1751362922/cms/alternatives/SolarWinds_Website_b9xhmd.webp)
 (SolarWinds Website)
@@ -520,7 +518,7 @@ At the same time, some useful enterprise features, such as custom user roles, ar
 
 SysAid is a highly established, mature offering in the ITSM space, aimed at medium to large enterprises with a particular focus on automation and customization.
 
-![Jira Service Management Alternatives - SysAid](https://res.cloudinary.com/daog6scxm/image/upload/v1751363011/cms/alternatives/SysAid_Website_vpkdkz.webp) 
+![Jira Service Management Alternatives - SysAid](https://res.cloudinary.com/daog6scxm/image/upload/v1751363011/cms/alternatives/SysAid_Website_vpkdkz.webp)
 (SysAid Website)
 
 #### Pros

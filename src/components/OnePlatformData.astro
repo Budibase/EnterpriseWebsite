@@ -1,7 +1,25 @@
 ---
 import OnePlatformDataBg from "@assets/images/homepage/onePlatform/OnePlatformData.png?url";
-import BBSymbol from "@assets/logos/bbSymbol.svg?url";
 import Icon from "@components/Icon.astro";
+
+const BBSymbol = "/brand/budibase-symbol-forest.svg";
+
+interface Props {
+  presentation?: "default" | "framed";
+  showFieldMenu?: boolean;
+}
+const { presentation = "default", showFieldMenu = false } = Astro.props;
+// Field labels follow https://docs.budibase.com/docs/budibasedb.
+const fieldTypes = [
+  "Text",
+  "Long Form Text",
+  "Number",
+  "Boolean",
+  "Date/time",
+  "Options",
+  "Attachments",
+  "Relationships",
+];
 
 interface DataTab {
   label: string;
@@ -74,9 +92,17 @@ const rows: DataRow[] = [
 ---
 
 <div
-  class="one-platform-data"
+  class:list={[
+    "one-platform-data",
+    presentation === "framed" && "one-platform-data--framed",
+    showFieldMenu && "one-platform-data--field-menu",
+  ]}
   role="img"
-  aria-label="Data preview showing access request records in a cropped table over a scenic background"
+  aria-label={showFieldMenu
+    ? "Budibase access request table with an add-field dropdown showing available field types"
+    : presentation === "framed"
+      ? "Budibase data table showing access request records"
+      : "Data preview showing access request records in a cropped table over a scenic background"}
 >
   <img
     src={OnePlatformDataBg}
@@ -128,7 +154,27 @@ const rows: DataRow[] = [
         <span>Employee</span>
         <span>System</span>
         <span>AI Category</span>
-        <span>Status</span>
+        {
+          showFieldMenu ? (
+            <div class="one-platform-data__add-field">
+              <span class="one-platform-data__add-field-trigger">
+                <Icon name="Plus" size="18" />
+              </span>
+              <div class="one-platform-data__field-menu">
+                <div class="one-platform-data__field-menu-title">
+                  Field type
+                </div>
+                <ul>
+                  {fieldTypes.map((type) => (
+                    <li>{type}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : (
+            <span>Status</span>
+          )
+        }
       </div>
 
       {
@@ -159,16 +205,18 @@ const rows: DataRow[] = [
               </span>
             </div>
             <div class="one-platform-data__cell">
-              <span
-                class:list={[
-                  "one-platform-data__chip",
-                  "one-platform-data__chip--status",
-                  row.statusTone === "pending" && "is-pending",
-                  row.statusTone === "approved" && "is-approved",
-                ]}
-              >
-                {row.status}
-              </span>
+              {!showFieldMenu && (
+                <span
+                  class:list={[
+                    "one-platform-data__chip",
+                    "one-platform-data__chip--status",
+                    row.statusTone === "pending" && "is-pending",
+                    row.statusTone === "approved" && "is-approved",
+                  ]}
+                >
+                  {row.status}
+                </span>
+              )}
             </div>
           </div>
         ))
@@ -238,7 +286,7 @@ const rows: DataRow[] = [
     font-size: 13px;
     line-height: 1.15;
     font-weight: 400;
-    color: var(--bb-gray-900);
+    color: var(--bb-graphite);
   }
 
   .one-platform-data__tab {
@@ -249,7 +297,7 @@ const rows: DataRow[] = [
     padding: 4px 8px;
     border-radius: 12px;
     white-space: nowrap;
-    color: var(--bb-gray-900);
+    color: var(--bb-graphite);
     background: transparent;
   }
 
@@ -302,7 +350,7 @@ const rows: DataRow[] = [
   }
 
   .one-platform-data__header {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
   }
 
   .one-platform-data__header > span {
@@ -311,7 +359,7 @@ const rows: DataRow[] = [
     align-items: center;
     padding: 8px 12px;
     border-right: 0.5px solid var(--bb-gray-100);
-    color: var(--bb-gray-900);
+    color: var(--bb-graphite);
     font-size: 14px;
     line-height: 17px;
     font-weight: 400;
@@ -337,7 +385,7 @@ const rows: DataRow[] = [
     align-items: center;
     padding: 8px 12px;
     border-right: 0.5px solid var(--bb-gray-100);
-    color: var(--bb-gray-900);
+    color: var(--bb-graphite);
     font-size: 14px;
     line-height: 17px;
     font-weight: 400;
@@ -363,7 +411,7 @@ const rows: DataRow[] = [
 
   .one-platform-data__chip--employee {
     background: var(--bb-gray-100);
-    color: var(--bb-gray-900);
+    color: var(--bb-graphite);
   }
 
   .one-platform-data__chip--category,
@@ -372,28 +420,28 @@ const rows: DataRow[] = [
   }
 
   .one-platform-data__chip--category.is-sales {
-    background: var(--bb-purple-1100);
+    background: var(--bb-plum);
     color: var(--bb-gray-50);
   }
 
   .one-platform-data__chip--category.is-engineering {
-    background: var(--bb-blue-1000);
+    background: var(--bb-navy);
     color: var(--bb-gray-50);
   }
 
   .one-platform-data__chip--category.is-documentation {
-    background: var(--bb-orange-800);
+    background: var(--bb-rust);
     color: var(--bb-gray-50);
   }
 
   .one-platform-data__chip--status.is-pending {
-    background: var(--bb-brand-yellow);
-    color: var(--bb-brand-forest-green);
+    background: var(--bb-vivid-vargas);
+    color: var(--bb-olive);
   }
 
   .one-platform-data__chip--status.is-approved {
-    background: var(--bb-green-200);
-    color: var(--bb-gray-900);
+    background: var(--bb-lime-200);
+    color: var(--bb-graphite);
   }
 
   @media (max-width: 420px) {
@@ -406,5 +454,101 @@ const rows: DataRow[] = [
       width: 620px;
       min-width: 620px;
     }
+  }
+
+  .one-platform-data--framed {
+    container-type: inline-size;
+    padding: 0;
+    background: var(--bb-background-base);
+  }
+  .one-platform-data--framed::after,
+  .one-platform-data--framed .one-platform-data__bg {
+    display: none;
+  }
+  .one-platform-data--framed .one-platform-data__workspace {
+    width: 100%;
+    min-width: 0;
+    box-shadow: none;
+  }
+  .one-platform-data--framed .one-platform-data__header,
+  .one-platform-data--framed .one-platform-data__row {
+    grid-template-columns: 1.15fr 1fr 1.1fr 1fr;
+  }
+  .one-platform-data--framed .one-platform-data__tabbar {
+    padding: 0.5rem;
+  }
+  .one-platform-data--framed .one-platform-data__tab {
+    border-radius: 0;
+    font-size: clamp(10px, 2.3cqw, 13px);
+  }
+  .one-platform-data--framed .one-platform-data__tab:nth-child(n + 3) {
+    display: none;
+  }
+  .one-platform-data--framed .one-platform-data__header > span,
+  .one-platform-data--framed .one-platform-data__cell {
+    min-width: 0;
+    overflow: hidden;
+    padding-inline: clamp(4px, 1.4cqw, 8px);
+    font-size: clamp(10px, 2.3cqw, 14px);
+  }
+  .one-platform-data--framed .one-platform-data__chip {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    padding-inline: 5px;
+    border-radius: 2px;
+    font-size: clamp(9px, 2.1cqw, 13px);
+    text-overflow: ellipsis;
+  }
+  .one-platform-data--field-menu .one-platform-data__header,
+  .one-platform-data--field-menu .one-platform-data__row {
+    grid-template-columns: 1.15fr 1fr 1.1fr 36px;
+  }
+  .one-platform-data__add-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    color: var(--bb-olive);
+  }
+  .one-platform-data__add-field-trigger {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    background: var(--bb-lime);
+  }
+  .one-platform-data__field-menu {
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + 4px);
+    right: 4px;
+    width: 176px;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    box-shadow: 0 4px 12px var(--bb-transparent-black-100);
+    color: var(--bb-text-base);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .one-platform-data__field-menu-title {
+    padding: 8px 10px;
+    background: var(--bb-background-sand);
+    border-bottom: 1px solid var(--bb-border-base);
+    font-weight: 500;
+  }
+  .one-platform-data__field-menu ul {
+    margin: 0 !important;
+    padding: 4px;
+    list-style: none;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  .one-platform-data__field-menu li {
+    display: block;
+    padding: 4px 6px;
+    font-size: inherit;
+    line-height: inherit;
   }
 </style>

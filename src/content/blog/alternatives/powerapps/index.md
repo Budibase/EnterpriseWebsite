@@ -12,7 +12,7 @@ draft: false
 
 Microsoft PowerApps was one of the first modern low-code platforms when it launched in 2015. The goal was to provide large businesses with a new, faster way to output custom applications.
 
-Today, it’s used by developers and other IT professionals alike to simplify the process of building custom software. 
+Today, it’s used by developers and other IT professionals alike to simplify the process of building custom software.
 
 Thousands of companies in all kinds of industries choose PowerApps for internal development projects.
 
@@ -21,6 +21,7 @@ However, that doesn’t mean that PowerApps is the right fit for every organizat
 Today, we’re checking out some of the top PowerApps alternatives from across the market.
 
 Specifically, we’ll cover the following:
+
 - [10 PowerApps alternatives](#10-powerapps-alternatives)
 - [PowerApps vs Budibase](#powerapps-vs-budibase)
 - [How to choose a PowerApps alternative](#how-to-choose-a-powerapps-alternative)
@@ -30,6 +31,7 @@ The goal isn’t just to present a list of platforms. Rather, we want to give yo
 Let’s jump right in.
 
 ## Background
+
 To frame our discussion, here are some of the key details you need to know about Microsoft's internal application builder.
 <style>
   .faq-section {
@@ -78,7 +80,7 @@ To frame our discussion, here are some of the key details you need to know about
   }
 
   .faq-section a {
-    color: var(--bb-purple-1100);
+    color: var(--bb-plum);
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 0.16em;
@@ -114,15 +116,16 @@ To frame our discussion, here are some of the key details you need to know about
   </details>
 </div>
 
-
 ## 10 PowerApps alternatives
+
 Now that we’ve seen what PowerApps is and where it sits in the market, we can start to run through some of its key competitors.
 
 The low-code market is fairly varied in terms of the users that specific vendors target. This ranges from platforms for empowering everyday users to build solutions on one end of the spectrum - to full-blown developer tools at the other.
 
-We’ve selected tools from various points along this spectrum. 
+We’ve selected tools from various points along this spectrum.
 
 These are:
+
 1. [Budibase](#1-budibase)
 2. [Mendix](#2-mendix)
 3. [Retool](#3-retool)
@@ -217,19 +220,19 @@ These are:
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 
   .comparison-table .tag {
     margin: 0.1rem;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -385,7 +388,8 @@ These are:
 Let’s take each one in turn.
 
 ## 1. Budibase
-Budibase is the open-source, low-code platform that empowers teams to turn data into action. 
+
+Budibase is the open-source, low-code platform that empowers teams to turn data into action.
 
 Connect any data, build professional interfaces, automate manual processes, and host your tools wherever you like - with minimal custom coding.
 
@@ -394,6 +398,7 @@ Budibase is the ideal solution for busy IT teams that need to output internal to
 ![Budibase design platform interface](https://res.cloudinary.com/daog6scxm/image/upload/v1680181644/ui/homepage-design-ui_sizp7b.webp)
 
 ### Features
+
 Budibase offers leading connectivity for external data sources. Build applications based on SQL and NoSQL databases, REST APIs, Google Sheets, or our internal database. You can even build your own custom data source plug-ins with our dedicated CLI. Easily create advanced views on top of connected data to control user access in conjunction with our fully customizable visual RBAC editor.
 
 It’s never been easier to build stunning user interfaces without writing extensive custom code. Autogenerate CRUD screens and forms, customize your app styling, and configure a huge range of native components to empower your team to interact with your data.
@@ -405,9 +410,10 @@ You have the complete power and flexibility to host your Budibase applications h
 We’re also proud to offer some of the most generous pricing in the low-code space, with free SSO, granular RBAC, multiplayer collaboration, and unlimited applications across all plans.
 
 ### Use cases
+
 Budibase is the ideal vehicle for building all kinds of internal tools. You can easily output CRUD apps, approval tools, dashboards, portals, forms, and any other data-centric UIs in a fraction of the time a traditional build might take.
 
-The reality is that internal development teams don’t have the time or resources to meet the demand for digital solutions. 
+The reality is that internal development teams don’t have the time or resources to meet the demand for digital solutions.
 
 So, IT departments need a faster, more cost-effective way to ship applications for internal users.
 
@@ -416,6 +422,7 @@ Budibase empowers non-developers in technical teams to leverage data and build c
 Check out our [features overview](https://budibase.com/product/) to learn more.
 
 ### Pricing
+
 Budibase offers three distinct pricing tiers to scale as your needs grow and evolve - Free, Premium, and Enterprise. On the free tier, you can build unlimited applications for up to five users in the cloud or twenty users if you self-host - with free SSO.
 
 Premium licenses are billed based on usage. We distinguish between users who build applications and those who use them. Creators are billed at $50 per month while end-users are $5.
@@ -430,6 +437,7 @@ Enterprise licenses offer custom pricing, with enforceable SSO, environment vari
 </aside>
 
 ## 2. Mendix
+
 Mendix is another one of the more established names in the low-code space. It’s also one of the most developer-centric platforms on our list - aimed firmly at expediting projects for traditional development teams.
 
 More specifically, Mendix is squarely aimed at the enterprise market. For example, it offers dedicated functionality for integrating into the SCRUM lifecycle.
@@ -437,6 +445,7 @@ More specifically, Mendix is squarely aimed at the enterprise market. For exampl
 ![Mendix image](https://res.cloudinary.com/daog6scxm/image/upload/v1755611576/cms/alternatives/retool/Mendix_qnd5ts.webp "Mendix PowerApps Alternative")(Mendix Website)
 
 ### Pros
+
 Mendix’s centerpiece is its visual IDE - Mendix Studio Pro. This offers a sleek, intuitive drag-and-drop experience for building interfaces - along with support for custom front-end scripting, advanced version control, and other highly developer-centric functionality.
 
 Mendix also outshines many other PowerApps alternatives on extensibility. It offers a dedicated SDK for building custom extensions, integrations, and other tools - making it a strong choice for legacy modernization and other more complex low-code use cases.
@@ -444,6 +453,7 @@ Mendix also outshines many other PowerApps alternatives on extensibility. It off
 It also benefits from a large, active community of users, providing huge swathes of resources, tips, and extensions that can be used by other Mendix developers.
 
 ### Cons
+
 Like PowerApps, Mendix sits somewhat toward the more code-intensive side of the low-code market. This affords a certain degree of extra flexibility, but it also means that its viability may be comparatively limited for users with lesser development skills.
 
 For example, there isn’t much native customization on offer when it comes to building user interfaces. In fact, we may have to rely on custom CSS for design tasks that can be handled visually in other platforms.
@@ -451,6 +461,7 @@ For example, there isn’t much native customization on offer when it comes to b
 Some users also complain that Mendix applications can suffer from performance issues at scale. However, this is often resolvable with appropriate optimization strategies. For instance, implementing batching when comitting large volumes of data.
 
 ### Pricing
+
 Compared to some other PowerApps alternatives, Mendix can be relatively expensive. There are three pricing tiers that allow us to build a single application - free, standard, and premium. Premium is the custom option for enterprises.
 
 Standard bills at $998 per month. However, it's important to note that this doesn’t include the required hosting and compute resources, which will be billed separately.
@@ -458,6 +469,7 @@ Standard bills at $998 per month. However, it's important to note that this does
 If you want to build for than one application in Mendix, the cheapest paid option is the standard tier at $2495 per month, plus each additional user.
 
 ## 3. Retool
+
 Retool is another highly developer-focused low-code platform. Ultimately, its goal is to enable development teams to expedite projects - freeing them up to focus on their core product instead of building internal tools.
 
 Launched in 2017, it’s a slightly newer entrant to the space than either Mendix or PowerApps, but it has nonetheless cornered a significant portion of the internal tools market. More recently, it's also launched a suite of tools for building LLM-powered systems, including AI agents.
@@ -465,6 +477,7 @@ Launched in 2017, it’s a slightly newer entrant to the space than either Mendi
 ![Retool website UI](https://res.cloudinary.com/daog6scxm/image/upload/v1755611577/cms/alternatives/retool/Retool_eu6iyk.webp "Retool")(Retool Website)
 
 ### Pros
+
 One of the reasons for Retool’s popularity is that it was one of the first platforms to bring more modern user experiences to a low-code platform. It offers a powerful, intuitive interface for combining and configuring UI elements.
 
 It also offers extensive flexibility when it comes to connecting to external data sources. Retool offers a considerable number of native connectors. Unlike PowerApps, we don’t need to go through additional platforms to configure these.
@@ -472,6 +485,7 @@ It also offers extensive flexibility when it comes to connecting to external dat
 Retool is also a particularly strong offering for workflow automation. The automation builder is built around a user-friendly flow-based interface, with huge scope for custom code, branching logic, and more - creating the potential for very powerful solutions. It also offers intuitive experiences for building, managing, and deploying AI agents, capable of calling external tools.
 
 ### Cons
+
 Of course, Retool has downsides too. Like Mendix, it’s relatively expensive compared to some other low-code tools. This can present barriers to getting up and running for many organizations who want to experiment with low-code.
 
 It also has quite a high requirement in terms of technical skills. So, compared to some other more no-code platforms in this list, you may need to write custom code more often to achieve specific functionality.
@@ -479,6 +493,7 @@ It also has quite a high requirement in terms of technical skills. So, compared 
 Retool has also suffered reputational problems after a large-scale data breach in August 2023 due to a phishing attack, although the platform itself offers extensive enterprise-grade security capabilities.
 
 ### Pricing
+
 Retool offers four pricing tiers - Free, Team, Business, and Enterprise. Like Budibase, it distinguishes between end users and app creators in its pricing. In terms of per-user costs, it’s not excessive. The free tier can be used with up to five users in the cloud or self-hosted.
 
 However, there are limitations at each price point that could inhibit scalability. For example, the Team tier charges $10 per month for creators and $5 for end users. But, it also imposes a limit of 5,000 automation runs per month. We'll need a Business license at $50/$15 per month to access embedded apps or custom branding.
@@ -488,6 +503,7 @@ Features like SSO, platform APIs, and custom branding are restricted to custom p
 Take a look at our guide to the top [Retool alternatives](https://budibase.com/blog/alternatives/retool/) .
 
 ## 4. Appian
+
 Appian sits at a different point in the low-code market. The difference is that it aims more at everyday business users than technical colleagues like IT teams or developers - as most of our PowerApps alternatives have so far.
 
 Therefore, its messaging is more focused on process management - especially leveraging AI - than app development. Of course, in practice, this means much of the same functionality is on offer.
@@ -495,6 +511,7 @@ Therefore, its messaging is more focused on process management - especially leve
 ![Appian website](https://res.cloudinary.com/daog6scxm/image/upload/v1755611575/cms/alternatives/retool/Appian_cqk9kj.webp)(Appian Website)
 
 ### Pros
+
 Appian is another low-code tool, but it skews more heavily toward process management and automation than some of the other platforms we’ve seen. So, we get native AI tools, robotic process automation, process discovery, and more.
 
 Appian is a great fit for teams that want to automate processes securely. There are specific governance tools, so IT teams can retain control. It's also impressive when it comes to implementing security controls over AI-based solutions.
@@ -507,9 +524,10 @@ Some users complain that Appian some of the flexibility in key aspects that we m
 
 According to some reports, it can also have a comparatively steep learning curve.
 
-Some users also complain that Appian isn’t ideal for working with data on a larger scale. There are reports of performance issues with large data sets. 
+Some users also complain that Appian isn’t ideal for working with data on a larger scale. There are reports of performance issues with large data sets.
 
 ### Pricing
+
 Appian's pricing is based around three tiers, on a per-user per-month model - Standard, Advanced, and Premium.
 
 However, the specific costs associated with each of these are not currently available on their pricing page.
@@ -517,14 +535,15 @@ However, the specific costs associated with each of these are not currently avai
 Each tier implements distinct feature and usage restrictions. For example, we’ll need an Advanced license to access most AI capabilities.
 
 ## 5. AppSheet
+
 AppSheet is another departure from some of the other PowerApps competitors we’ve seen. It’s really more of a no-code tool, whereas the other platforms in this round-up are low-code solutions.
 
 On the one hand, this means it can be used by a far wider set of users. On the other, it means that customization and more advanced use cases are significantly limited.
 
 ![AppSheet website image](https://res.cloudinary.com/daog6scxm/image/upload/v1755611575/cms/alternatives/retool/AppSheet_khb3x6.webp)(AppSheet Website)
 
-
 ### Pros
+
 AppSheet makes it incredibly easy for users without much in the way of technical skills to build working applications - albeit, relatively simple ones. For example, creating simple data entry forms, CRUD apps, or approval tools on top of a spreadsheet.
 
 Business logic can be implemented using a range of AI or visual tools - or familiar spreadsheet formulae.
@@ -532,6 +551,7 @@ Business logic can be implemented using a range of AI or visual tools - or famil
 On top of this, AppSheet offers a few deployment options. We can publish instantly in a flow that’s similar to the wider WorkSpace ecosystem. Or, we can deploy to native mobile app stores with relative ease.
 
 ### Cons
+
 Again, the downside to this is that opening up the platform to a wider set of creators sacrifices a certain amount of power and flexibility. There’s really no scope for custom code, other than using Google App Scripts. AppSheet also can’t be self-hosted.
 
 Like PowerApps, AppSheet also skews heavily toward the vendor’s native ecosystem. It’s easy to build applications with Google Sheets or external SaaS tools as data sources, but connecting to external databases can be a bit more awkward - although not impossible.
@@ -539,6 +559,7 @@ Like PowerApps, AppSheet also skews heavily toward the vendor’s native ecosyst
 Different pricing tiers also impose limits in terms of the attached spreadsheets.
 
 ### Pricing
+
 Like most PowerApps alternatives, AppSheet is billed on a per-user basis. However, there’s no distinction between end-users and developers. Everyone is charged the same. You can have up to ten users with a free license.
 
 The Starter and Core tiers charge $5 and $10 per user per month, respectively. However, these still limit you to spreadsheets as data sources.
@@ -546,6 +567,7 @@ The Starter and Core tiers charge $5 and $10 per user per month, respectively. H
 You’ll need to purchase an enterprise license with custom pricing in order to use SaaS tools, APIs, or external databases within your application’s data layer.
 
 ## 6. OutSystems
+
 Next, we have OutSystems - another veteran platform in the low-code market. Out of all of our PowerApps alternatives, this is perhaps the most explicitly developer-focused.
 
 It’s also one of the most enterprise-centric platforms in the low-code market. So, it also comes with a suite of tools around testing, performance monitoring, and other pieces of functionality aimed at more complex development processes.
@@ -553,6 +575,7 @@ It’s also one of the most enterprise-centric platforms in the low-code market.
 ![Outsystems image](https://res.cloudinary.com/daog6scxm/image/upload/v1755611576/cms/alternatives/retool/OutSystems_vankti.webp)(OutSystems Website)
 
 ### Pros
+
 OutSystems provides some of the most advanced developer experiences of any tool in its class. For example, it is a particularly strong offering in terms of multi-platform development - including web apps, native mobile apps, PWAs, and more.
 
 Besides this, customization options are extensive. Developers can build their own custom integrations, components, and code modules. The Forge Marketplace is a vast resource of community contributions.
@@ -560,6 +583,7 @@ Besides this, customization options are extensive. Developers can build their ow
 OutSystems also provides advanced capabilities around generative AI. This is helpful for developers creating, testing, and monitoring code, as well as as building AI agents.
 
 ### Cons
+
 OutSystems is not one of the most user-friendly PowerApps alternatives. Like many developer tools, it can be quite tricky to get up and running. For instance, other self-hostable Retool alternatives can be easier to set up.
 
 This is particularly challenging, as the cloud-based version of the platform imposes additional limitations - including around data support.
@@ -567,7 +591,8 @@ This is particularly challenging, as the cloud-based version of the platform imp
 On top of this, OutSystems presents a very steep learning curve for new users. Since it’s a more complex solution in the first place, it’s important to get familiar with its particular architecture and development style before you can ship solutions.
 
 ### Pricing
-OutSystems pricing is somewhat different to many of the other PowerApps alternatives we've seen so far. This is based around a proprietary concept known as *Application Objects* (AOs). An AO can be any aspect of how we build an application, including databases, tables, screens, API requests, and more.
+
+OutSystems pricing is somewhat different to many of the other PowerApps alternatives we've seen so far. This is based around a proprietary concept known as _Application Objects_ (AOs). An AO can be any aspect of how we build an application, including databases, tables, screens, API requests, and more.
 
 Licenses for OutSystems Developer Cloud start from $36,300 for a single application with up to 100 internal users. We’ll then need to pay additional fees for extra users, building multiple apps, or 24/7 support.
 
@@ -643,7 +668,7 @@ FileMaker is one of the oldest names in the low-code space. In fact, it’s been
 
 In recent years, though, it's reinvented itself as a powerful platform for implementing AI capabilities within application projects.
 
-![Filemaker](https://res.cloudinary.com/daog6scxm/image/upload/v1755611575/cms/alternatives/retool/FileMaker_mycj16.webp  "Filemaker") (Filemaker Website)
+![Filemaker](https://res.cloudinary.com/daog6scxm/image/upload/v1755611575/cms/alternatives/retool/FileMaker_mycj16.webp "Filemaker") (Filemaker Website)
 
 #### Pros
 
@@ -704,6 +729,7 @@ The Team and Business tiers bill at $20 and $45 per user per month, respectively
 Additionally, custom pricing is required to store more than 500,000 rows per base, to make more than 500,000 automation runs in a month, or to access premium security features.
 
 ## PowerApps vs Budibase
+
 Now that we’ve seen a range of different platforms from across the no/low-code market, it’s time to dive deeper into how PowerApps and Budibase stack up together.
 
 Both platforms set out to solve a similar problem. Businesses need faster, more cost-effective ways to output internal tools.
@@ -713,6 +739,7 @@ However, within this, they differ in terms of the more granular approach they ta
 At Budibase, we’ve tailored our product for colleagues within IT teams who need to furnish their colleagues with professional data-centric apps - whether these are solutions engineers, product managers, data specialists, or other technical roles.
 
 ### Data
+
 When it comes to supported data, PowerApps heavily favors the wider Microsoft ecosystem. So, it’s easy to interact with SQL Server, Dynamics, SharePoint, or data stored in other native platforms.
 
 Budibase takes a very different approach. We offer a huge range of native data connectors, including MySQL, Postgres, MSSQL, Couch, REST APIs, S3, Oracle, Mongo, Google Sheets, and many more.
@@ -720,15 +747,17 @@ Budibase takes a very different approach. We offer a huge range of native data c
 You can even build your own custom data source plug-ins with our dedicated CLI - or use BudibaseDB to create a data model from scratch without writing a single query.
 
 ### UIs
+
 PowerApps is well-known for presenting a steep learning curve when building app UIs. Some simple tasks like adding form logic or in-app navigation may require us to manually write formulae using Power Fx - a proprietary language based on visual basic.
 
-With Budibase, coding is very much optional. 
+With Budibase, coding is very much optional.
 
 Our UI builder is focused on offering advanced capabilities within an easy-to-use drag-and-drop platform. So, you can simply drag in components and populate them with connected data, but we also offer native mobile responsiveness and custom conditionality. You can even autogenerate CRUD and form UIs based on connected tables or views. Autogenerated screen inherit the access rules of the underlying data, making it easier than ever to ship secure internal tools at pace.
 
 Budibase also offers front-end scripting using JavaScript or a huge library of handlebar helpers. Whether you’re a seasoned developer or a less technical user, Budibase makes it easy to implement custom logic on top of professional designs.
 
 ### Automations
+
 PowerApps is sometimes used for automating manual tasks, but many use cases will require us to use Power Automate - which is a separate platform under the Power Platform umbrella.
 
 By contrast, Budibase has a powerful built-in automation editor. We offer a large set of configurable automation actions, which can be triggered as scheduled jobs or using in-app actions, database events, or incoming API requests and WebHooks.
@@ -736,6 +765,7 @@ By contrast, Budibase has a powerful built-in automation editor. We offer a larg
 It’s never been easier to build custom automations to manage internal processes, data, and workflows.
 
 ### Functionality
+
 Budibase is also the clear leader in terms of enterprise functionality. We offer free SSO for all users, optional self-hosting, a built-in database, custom data source plug-ins, and much more. We also offer a range of advanced AI features, which can be powered by OpenAI, Azure, or Budibase AI.
 
 You can even build as many applications as you want on our free tier, with pricing plans that scale as your needs grow and change.
@@ -743,11 +773,13 @@ You can even build as many applications as you want on our free tier, with prici
 So, as well as making it considerably easier to build custom applications with a wider range of data sources, Budibase is also much better positioned to meet the needs of modern, agile, and security-first businesses.
 
 ## How to choose a PowerApps alternative
+
 We’ve seen a variety of PowerApps competitors today that occupy very different corners of the low-code market. Of course, we need to be realistic that no single tool can be the right fit for every organization or use case.
 
 So, it’s important to outline the specific decision points that you’ll encounter when assessing the market to find the right platform for your needs.
 
 ### Pricing
+
 Perhaps the most obvious variable that we’ll need to consider is the relative costs of our different options. This is slightly trickier than you might initially think. For one thing, each of the vendors we’ve seen so far structures their pricing plan differently.
 
 So, some are per-user, some are per-user and per-creator, and some are per-app - or a combination of these.
@@ -755,6 +787,7 @@ So, some are per-user, some are per-user and per-creator, and some are per-app -
 Within this, each platform also takes a different approach to imposing other usage limits across their respective pricing tiers - whether these are based on automation runs, connected data, feature restrictions, or some other variable.
 
 ## User personas
+
 Next, we need to choose a platform that’s appropriate for the kinds of colleagues we envision using it. As we’ve seen, there’s quite a broad scope here - from tools for non-technical business users, all the way up to full-on development tools.
 
 Obviously, there’s a fair amount of grey area here. Broadly speaking though, here’s how the market breaks up in terms of target users:
@@ -842,19 +875,19 @@ Obviously, there’s a fair amount of grey area here. Broadly speaking though, h
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 
   .comparison-table .tag {
     margin: 0.1rem;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -896,6 +929,7 @@ Obviously, there’s a fair amount of grey area here. Broadly speaking though, h
 </div>
 
 ## Open-source / Souce-available vs closed-source
+
 For some organizations - particularly enterprises, public bodies, and other security conscious businesses - open-source technology is a massive priority. The ability to audit the source code of software that interacts with mission-critical data is crucial.
 
 Here are the tools we’ve seen today, broken down by open vs closed source code:
@@ -983,19 +1017,19 @@ Here are the tools we’ve seen today, broken down by open vs closed source code
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 
   .comparison-table .tag {
     margin: 0.1rem;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -1037,6 +1071,7 @@ Here are the tools we’ve seen today, broken down by open vs closed source code
 </div>
 
 ## Extensibility
+
 Extensibility is how much scope a particular platform affords us to add our own functionality, integrations, UI elements, or other features. This can be critical, particularly in niche use cases or situations where we’re dealing with esoteric data.
 
 It can also simply be helpful to have the ability to extend a given platform to add functionality that the vendor doesn’t natively provide.

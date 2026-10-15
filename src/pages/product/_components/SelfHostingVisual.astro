@@ -1,0 +1,420 @@
+---
+import Icon from "@components/Icon.astro";
+import DockerLogo from "@assets/logos/Docker.svg?url";
+import KubernetesLogo from "@assets/logos/kubernetes.svg?url";
+
+interface Props {
+  variant:
+    "overview" | "deployment" | "ownership" | "cli" | "plugins" | "upgrades";
+}
+const { variant } = Astro.props;
+// Conceptual deployment illustrations. Commands: https://docs.budibase.com/docs/budibase-cli-reference.
+const titles = {
+  overview: "Self-hosted Budibase",
+  deployment: "Your deployment",
+  ownership: "Your infrastructure",
+  cli: "Budibase CLI",
+  plugins: "Extend with plugins",
+  upgrades: "Upgrade control",
+};
+const assets = [
+  { label: "Apps", icon: "AppWindow" },
+  { label: "Agents", icon: "Sparkle" },
+  { label: "Automations", icon: "Lightning" },
+];
+const ownership = [
+  { label: "Data location", value: "Chosen by your team", icon: "Table" },
+  { label: "Security", value: "Your requirements", icon: "ShieldCheck" },
+  { label: "Operations", value: "Your infrastructure", icon: "Wrench" },
+];
+---
+
+<div
+  class:list={["self-hosting-visual", `self-hosting-visual--${variant}`]}
+  role="img"
+  aria-label={`${titles[variant]} illustration`}
+>
+  <div class="self-hosting-visual__panel" aria-hidden="true">
+    <div class="self-hosting-visual__heading">
+      <img
+        src="/brand/budibase-symbol-forest.svg"
+        width="16"
+        height="16"
+        alt=""
+      />{titles[variant]}
+    </div>
+    {
+      (variant === "overview" || variant === "deployment") && (
+        <>
+          <div class="self-hosting-visual__domain">
+            <>
+              <Icon name="Browser" size="16" />
+              <span>budibase.yourcompany.com</span>
+            </>
+          </div>
+          <div class="self-hosting-visual__boundary">
+            <div class="self-hosting-visual__boundary-label">
+              <>
+                <Icon name="ShieldCheck" size="17" />
+                <strong>Your infrastructure</strong>
+              </>
+            </div>
+            {variant === "overview" && (
+              <div class="self-hosting-visual__assets">
+                {assets.map((asset) => (
+                  <div>
+                    <Icon name={asset.icon} size="22" />
+                    <span>{asset.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div class="self-hosting-visual__runtimes">
+              <>
+                <span>
+                  <img src={DockerLogo} width="28" height="28" alt="" />
+                  Docker
+                </span>
+                <span class="self-hosting-visual__or">or</span>
+                <span>
+                  <img src={KubernetesLogo} width="28" height="28" alt="" />
+                  Kubernetes
+                </span>
+              </>
+            </div>
+          </div>
+          <div class="self-hosting-visual__footer">
+            <>
+              <Icon name="Table" size="16" />
+              <span>Your data. Your infrastructure.</span>
+            </>
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "ownership" && (
+        <>
+          <div class="self-hosting-visual__platform">
+            <>
+              <img
+                src="/brand/budibase-symbol-forest.svg"
+                width="27"
+                height="27"
+                alt=""
+              />
+              <div>
+                <>
+                  <strong>Budibase</strong>
+                  <span>Managed by your team</span>
+                </>
+              </div>
+            </>
+          </div>
+          <div class="self-hosting-visual__ownership">
+            {ownership.map((field) => (
+              <div>
+                <span>
+                  <Icon name={field.icon} size="18" />
+                  {field.label}
+                </span>
+                <strong>{field.value}</strong>
+              </div>
+            ))}
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "cli" && (
+        <div class="self-hosting-visual__terminal">
+          <>
+            <span>Initialize Docker Compose</span>
+            <code>
+              <b>$</b> budi hosting --init
+            </code>
+            <span>Start Budibase</span>
+            <code>
+              <b>$</b> budi hosting --start
+            </code>
+          </>
+        </div>
+      )
+    }
+    {
+      variant === "plugins" && (
+        <div class="self-hosting-visual__plugins">
+          <>
+            <div>
+              <>
+                <Icon name="Table" size="21" />
+                <span>
+                  <>
+                    <strong>Datasource plugins</strong>
+                    <small>Connect custom systems</small>
+                  </>
+                </span>
+              </>
+            </div>
+            <div>
+              <>
+                <Icon name="Lightning" size="21" />
+                <span>
+                  <>
+                    <strong>Automation plugins</strong>
+                    <small>Add functionality</small>
+                  </>
+                </span>
+              </>
+            </div>
+          </>
+        </div>
+      )
+    }
+    {
+      variant === "upgrades" && (
+        <>
+          <div class="self-hosting-visual__upgrade-row">
+            <>
+              <span>Budibase version</span>
+              <strong>You choose</strong>
+            </>
+          </div>
+          <div class="self-hosting-visual__upgrade-row">
+            <>
+              <span>Upgrade schedule</span>
+              <strong>Your team's timeline</strong>
+            </>
+          </div>
+          <div class="self-hosting-visual__footer">
+            <>
+              <Icon name="CheckCircle" size="16" />
+              <span>Roll out when you're ready</span>
+            </>
+          </div>
+        </>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .self-hosting-visual {
+    width: 100%;
+    max-width: 34rem;
+    container-type: inline-size;
+    color: var(--bb-text-base);
+    line-height: 1.4;
+  }
+  .self-hosting-visual__panel {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    font-size: clamp(10px, 3.3cqw, 15px);
+  }
+  .self-hosting-visual--overview {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    max-width: none;
+    background: var(--bb-background-base);
+  }
+  .self-hosting-visual--overview .self-hosting-visual__panel {
+    border: 0;
+    font-size: clamp(9px, 2.2cqw, 12px);
+  }
+  .self-hosting-visual strong {
+    font-weight: 500;
+  }
+  .self-hosting-visual__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.85em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+    font-weight: 500;
+  }
+  .self-hosting-visual__domain {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin: 1em;
+    padding: 0.65em;
+    border: 1px solid var(--bb-border-base);
+    color: var(--bb-text-subtle);
+  }
+  .self-hosting-visual__boundary {
+    margin: 1em;
+    padding: 1em;
+    border: 1px dashed var(--bb-olive);
+  }
+  .self-hosting-visual__boundary-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--bb-olive);
+  }
+  .self-hosting-visual__assets {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6em;
+    margin-block: 1em;
+  }
+  .self-hosting-visual__assets > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.8em 0.2em;
+    background: var(--bb-background-sand);
+    color: var(--bb-olive);
+  }
+  .self-hosting-visual__runtimes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    padding-top: 0.9em;
+  }
+  .self-hosting-visual__runtimes > span {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .self-hosting-visual__runtimes img {
+    width: 2em;
+    height: 2em;
+    object-fit: contain;
+  }
+  .self-hosting-visual__or {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .self-hosting-visual__footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.85em 1em;
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
+    font-size: 0.85em;
+  }
+  .self-hosting-visual__platform {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    padding: 1.25em 1em;
+  }
+  .self-hosting-visual__platform > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+  }
+  .self-hosting-visual__platform > div > span {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .self-hosting-visual__ownership {
+    padding-inline: 1em;
+  }
+  .self-hosting-visual__ownership > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1em 0;
+    border-top: 1px solid var(--bb-border-base);
+  }
+  .self-hosting-visual__ownership > div > span {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .self-hosting-visual__ownership :global(svg) {
+    color: var(--bb-olive);
+    flex: none;
+  }
+  .self-hosting-visual__ownership strong {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+    text-align: right;
+  }
+  .self-hosting-visual__terminal {
+    display: grid;
+    gap: 0.7em;
+    padding: 1em;
+    background: var(--bb-olive);
+    color: var(--bb-coconut);
+  }
+  .self-hosting-visual__terminal > span {
+    color: var(--bb-lime);
+    font-size: 0.8em;
+  }
+  .self-hosting-visual__terminal code {
+    font-size: 0.85em;
+    line-height: 1.6;
+    white-space: nowrap;
+  }
+  .self-hosting-visual__terminal b {
+    color: var(--bb-lime);
+    font-weight: 400;
+  }
+  .self-hosting-visual__plugins > div {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    padding: 1.1em 1em;
+  }
+  .self-hosting-visual__plugins > div + div {
+    border-top: 1px solid var(--bb-border-base);
+  }
+  .self-hosting-visual__plugins :global(svg) {
+    color: var(--bb-olive);
+    flex: none;
+  }
+  .self-hosting-visual__plugins > div > span {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+  }
+  .self-hosting-visual__plugins small {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .self-hosting-visual__upgrade-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    padding: 1em;
+  }
+  .self-hosting-visual__upgrade-row + .self-hosting-visual__upgrade-row {
+    border-top: 1px solid var(--bb-border-base);
+  }
+  .self-hosting-visual__upgrade-row > span {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .self-hosting-visual__upgrade-row strong {
+    color: var(--bb-olive);
+  }
+  @container (max-width: 340px) {
+    .self-hosting-visual--overview .self-hosting-visual__domain {
+      margin: 0.65em;
+      padding: 0.45em;
+    }
+    .self-hosting-visual--overview .self-hosting-visual__boundary {
+      margin: 0.65em;
+      padding: 0.65em;
+    }
+    .self-hosting-visual--overview .self-hosting-visual__assets {
+      margin-block: 0.6em;
+    }
+    .self-hosting-visual--overview .self-hosting-visual__assets > div {
+      padding-block: 0.4em;
+    }
+    .self-hosting-visual--overview .self-hosting-visual__runtimes {
+      padding-top: 0.5em;
+    }
+  }
+</style>

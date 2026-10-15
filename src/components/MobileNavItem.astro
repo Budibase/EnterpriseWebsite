@@ -25,7 +25,7 @@ const { href, label, prefetch, badge, target, rel, disabled } = item;
         class="mobile-nav-sub-link mobile-nav-sub-link-disabled"
       >
         <span class="mobile-nav-sub-link__label">
-          <NavStatusLight href={href} />
+          <NavStatusLight />
           {label}
           {target === "_blank" && (
             <Icon
@@ -47,7 +47,7 @@ const { href, label, prefetch, badge, target, rel, disabled } = item;
         class="mobile-nav-sub-link font-medium nav-link transition-colors"
       >
         <span class="mobile-nav-sub-link__label">
-          <NavStatusLight href={href} />
+          <NavStatusLight />
           {label}
           {target === "_blank" && (
             <Icon
@@ -84,7 +84,7 @@ const { href, label, prefetch, badge, target, rel, disabled } = item;
   .mobile-nav-sub-link :global(.feature-badge) {
     min-height: 1.25rem;
     padding: 0.1875rem 0.4375rem;
-    color: var(--text-secondary);
+    color: var(--bb-gray-650);
     font-size: 0.6875rem;
     line-height: 1;
   }

@@ -1,0 +1,60 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import ActivityVisual from "./ActivityVisual.astro";
+import type { PlatformLandingContent } from "../../../data/landingPageTypes";
+
+interface Props {
+  content: PlatformLandingContent;
+}
+const { content } = Astro.props;
+const variants = ["errors", "usage", "totals"] as const;
+const cards = content.cardCluster.cards.map((card, index) => ({
+  ...card,
+  mediaDemo: ActivityVisual,
+  mediaDemoProps: { variant: variants[index] },
+}));
+const faqs = [
+  {
+    question: "What can I see in the actions overview?",
+    answer:
+      "The actions overview brings activity across your workspaces into one place, so you can review actions and their status without losing sight of the wider operation.",
+  },
+  {
+    question: "Can I follow agent requests in real time?",
+    answer:
+      "Yes. View live requests as users interact with agents and follow their progress.",
+  },
+  {
+    question: "How does Activity help me investigate errors?",
+    answer:
+      "Activity surfaces failed actions and errors, helping you identify the work that needs attention and where to start investigating.",
+  },
+  {
+    question: "Can I get an overview of usage?",
+    answer:
+      "Yes. Review activity across your workspaces to understand usage, and use stat cards to see action, request and error totals at a glance.",
+  },
+];
+---
+
+<div class="activity-landing-page">
+  <GridLandingPage
+    slug="activity"
+    heroAspectRatio="var(--activity-hero-ratio, 3 / 2)"
+    {content}
+    {cards}
+    {faqs}
+  >
+    <ActivityVisual slot="hero-media" variant="overview" />
+    <ActivityVisual slot="feature-0" variant="actions" />
+    <ActivityVisual slot="feature-1" variant="requests" />
+  </GridLandingPage>
+</div>
+
+<style>
+  @media (max-width: 599px) {
+    .activity-landing-page {
+      --activity-hero-ratio: 5 / 4;
+    }
+  }
+</style>

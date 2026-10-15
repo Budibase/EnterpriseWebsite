@@ -7,7 +7,7 @@ profilePic: "https://res.cloudinary.com/daog6scxm/image/upload/v1639756662/cms/I
 category: "alternatives"
 ---
 
-Asset management is one of the most common, mission-critical ITSM workflows. Efficiently handling requests for devices helps us to minimize internal admin costs. This ensures that our IT resources are deployed as effectively as possible. 
+Asset management is one of the most common, mission-critical ITSM workflows. Efficiently handling requests for devices helps us to minimize internal admin costs. This ensures that our IT resources are deployed as effectively as possible.
 
 At the same time, we can improve experiences for service users with a centralized, accessible tool to submit and manage requests.
 
@@ -64,7 +64,7 @@ But first, let’s start with the basics.
   }
 
   .faq-section a {
-    color: var(--bb-purple-1100);
+    color: var(--bb-plum);
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 0.16em;
@@ -146,6 +146,7 @@ As we said earlier, we’ve chosen a range of options from across the market for
 Some offer ready-to-use tools straight out of the box, while others will enable us to build internal tools to match our existing asset information management flows.
 
 Our top picks are:
+
 1. [Budibase](#1-budibase)
 2. [Ralph 3](#2-ralph-3)
 3. [Snipe-IT](#3-snipe-it)
@@ -241,19 +242,19 @@ Here's a summary of what each one offers.
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 
   .comparison-table .tag {
     margin: 0.1rem;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -409,7 +410,7 @@ Check out our [pricing page](https://budibase.com/pricing/) to learn more.
 
 ![Free Asset Management Software](https://res.cloudinary.com/daog6scxm/image/upload/v1718094733/cms/free-asset-management-software/Ralph_3_x2qsbi.webp "Free Asset Management Software")
 
-(*Ralph 3 Website*)
+(_Ralph 3 Website_)
 
 Ralph 3 is a comprehensive open-source asset management tool aimed specifically at data center and back-office use cases.
 
@@ -445,7 +446,7 @@ You might also like our guide to [free asset management software](https://budiba
 
 ![Snipe-IT](https://res.cloudinary.com/daog6scxm/image/upload/v1718094733/cms/free-asset-management-software/Snipe_IT_mgelk2.webp "Snipe-IT")
 
-(*Snipe-IT Website*)
+(_Snipe-IT Website_)
 
 Snipe-IT is a relatively simple standalone IT asset management tool that’s available as a free self-hosted platform. Or, we can opt to pay for it with managed cloud hosting.
 
@@ -479,7 +480,7 @@ Support plans for self-hosted users are also billed as an optional extra, starti
 
 ![CMDBuild](https://res.cloudinary.com/daog6scxm/image/upload/v1718094733/cms/free-asset-management-software/CMDBuild_cqsyyk.webp "CMDBuild")
 
-(*CMDBuild Website*)
+(_CMDBuild Website_)
 
 CMDBuild is a slightly different prospect. Rather than offering a pre-built solution, it’s an open-source environment for configuring custom asset management solutions.
 
@@ -513,7 +514,7 @@ Additional paid services include pay-per-use support packages and training progr
 
 ![AssetTiger](https://res.cloudinary.com/daog6scxm/image/upload/v1718094733/cms/free-asset-management-software/AssetTiger_tnlsv7.webp "AssetTiger")
 
-(*Asset Tiger Website*)
+(_Asset Tiger Website_)
 
 Next, we have AssetTiger. This is a free, cloud-based asset management platform that we can use off-the-shelf.
 
@@ -547,7 +548,7 @@ Importantly, AssetTiger also doesn’t impose feature restrictions across its pr
 
 ![OpenMaint](https://res.cloudinary.com/daog6scxm/image/upload/v1750154241/cms/free-asset-management-software/OpenMaint_dn32gb.webp "OpenMaint")
 
-(*OpenMaint Website*)
+(_OpenMaint Website_)
 
 Powered by CMDBuild, OpenMaint is a free solution for managing facilities, maintenance, and infrastructure. So, it offers great functionality for this niche, but might not be suitable for IT teams.
 
@@ -579,7 +580,7 @@ Quotations are offered on a custom basis, according to our service level needs a
 
 ![Shelf](https://res.cloudinary.com/daog6scxm/image/upload/v1750154241/cms/free-asset-management-software/Shelf_u7bzhm.webp "Shelf")
 
-(*Shelf Website*)
+(_Shelf Website_)
 
 Next, we have Shelf Asset Tracking. This is a modern, web-based asset management solution with a usable free tier, making it a strong option for teams of a range of sizes.
 
@@ -631,7 +632,7 @@ So, you might want to look elsewhere if you need a free asset management softwar
 
 #### Pricing
 
-Beyond the free tier, paid plans start from $16 AUD per month (around 10 USD) for unlimited users and up to 100 assets. 
+Beyond the free tier, paid plans start from $16 AUD per month (around 10 USD) for unlimited users and up to 100 assets.
 
 There are then three pricing tiers above this, with their own respective maximum asset counts.
 
@@ -670,9 +671,10 @@ However, there are also several paid options available. This includes public and
 We can also opt for a paid self-hosted license, ranging from €100-1,000 per month, with varying numbers of IT agents and stored assets, as well as a small number of feature restrictions across the tiers.
 
 ## Turn data into action with Budibase
+
 ![Budibase design platform interface](https://res.cloudinary.com/daog6scxm/image/upload/v1680181644/ui/homepage-design-ui_sizp7b.webp)
 
-Budibase is the [open-source, low-code platform](https://budibase.com/blog/open-source-low-code-platforms/) that empowers IT teams to turn data into action. 
+Budibase is the [open-source, low-code platform](https://budibase.com/blog/open-source-low-code-platforms/) that empowers IT teams to turn data into action.
 
 With extensive external data support, powerful automations, autogenerated UIs, optional self-hosting, and more, there’s never been a better way to ship professional internal tools at pace.
 

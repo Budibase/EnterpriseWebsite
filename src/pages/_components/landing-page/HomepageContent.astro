@@ -1,0 +1,69 @@
+---
+import Hero from "./HomepageHero.astro";
+import HomepageCustomerLogoRow from "./HomepageCustomerLogoRow.astro";
+import HomepageProducts from "./HomepageProducts.astro";
+import HomepageSecuritySection from "./HomepageSecuritySection.astro";
+import HomepageUseCases from "./HomepageUseCases.astro";
+import CustomerStoriesFeature from "./CustomerStoriesFeature.astro";
+import CTA from "@components/CTA.astro";
+import Divider from "@components/ui/Divider.astro";
+---
+
+<div class="homepage-layout">
+  <div class="page-section page-section--hero">
+    <Hero />
+  </div>
+  <div
+    class="page-section page-section--logos homepage-customer-logo-card-section"
+  >
+    <HomepageCustomerLogoRow variant="cards" />
+  </div>
+  <div class="page-section homepage-use-cases-section">
+    <HomepageUseCases />
+  </div>
+  <Divider />
+  <div class="page-section homepage-products-section">
+    <HomepageProducts />
+  </div>
+  <HomepageSecuritySection />
+  <div class="page-section">
+    <CustomerStoriesFeature />
+  </div>
+  <div class="page-section page-section--no-top homepage-cta-section">
+    <Divider />
+    <CTA />
+  </div>
+</div>
+
+<style>
+  :global(html) {
+    overflow-x: clip;
+  }
+
+  :global(body .nav-shell.nav-shell--immersive-overlay .nav-shell__inner) {
+    max-width: var(--site-container-max) !important;
+  }
+
+  .homepage-layout {
+    overflow-x: clip;
+  }
+
+  .homepage-layout > .page-section--hero {
+    padding-bottom: 0;
+  }
+
+  .homepage-customer-logo-card-section {
+    background: var(--bb-background-base);
+    padding-top: clamp(0.5rem, 1.25vw, 1rem);
+  }
+
+  .homepage-products-section,
+  .homepage-use-cases-section {
+    background: var(--bb-background-base);
+  }
+
+  .homepage-use-cases-section :global(.multi-feature-section) {
+    --multi-feature-background: transparent;
+    background: transparent;
+  }
+</style>

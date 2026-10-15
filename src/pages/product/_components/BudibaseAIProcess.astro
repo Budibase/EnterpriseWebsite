@@ -1,29 +1,24 @@
 ---
-import Icon from "@components/Icon.astro";
-
 const qualities = [
-  { title: "Packaged model", icon: "Cube" },
-  { title: "Additional customization", icon: "Wrench" },
-  { title: "Extensive testing and evaluation", icon: "CheckCircle" },
+  "Models tested for Budibase",
+  "Instructions refined for your tasks",
+  "Results evaluated",
 ];
 ---
 
 <div class="budibase-ai-process">
   <div class="budibase-ai-process__heading">
-    <Icon name="Sparkle" size="32" />
     <strong>Budibase AI</strong>
   </div>
   <ul>
     {
       qualities.map((quality) => (
         <li>
-          <Icon name={quality.icon} size="24" />
-          <span>{quality.title}</span>
+          <span>{quality}</span>
         </li>
       ))
     }
   </ul>
-  <p>Designed for consistent, reliable results.</p>
 </div>
 
 <style>
@@ -61,15 +56,5 @@ const qualities = [
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.4;
-  }
-  .budibase-ai-process :global(svg) {
-    flex-shrink: 0;
-    color: var(--bb-brand-forest-green);
-  }
-  .budibase-ai-process p {
-    margin: 0;
-    color: var(--bb-text-body);
-    font-size: 1rem;
-    line-height: 1.5;
   }
 </style>

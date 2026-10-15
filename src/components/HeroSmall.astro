@@ -5,13 +5,7 @@ import EnterpriseLogoGrid from "./EnterpriseLogoGrid.astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
 type BadgeVariant =
-  | "celery"
-  | "light"
-  | "bright-blue"
-  | "bright-pink"
-  | "yellow"
-  | "bright-yellow"
-  | "bright-orange";
+  "olive" | "light" | "zen" | "pink" | "vivid-vargas" | "tangerine";
 
 interface Badge {
   label: string;
@@ -149,11 +143,11 @@ const isBrandDark = theme === "brand-dark";
 
   .hero-small--brand-dark {
     padding-block: clamp(2rem, 4vw, 3.5rem);
-    background: var(--bb-celery-1300);
+    background: var(--bb-olive);
   }
 
   .hero-small--brand-dark .hero-small__content {
-    background: var(--bb-celery-1300);
+    background: var(--bb-olive);
     color: var(--bb-white);
   }
 
@@ -174,15 +168,15 @@ const isBrandDark = theme === "brand-dark";
     background: var(--bb-background-base);
   }
 
-  .hero-small--forest-green,
-  .hero-small--forest-green .hero-small__content {
-    background: var(--bb-brand-forest-green);
+  .hero-small--olive,
+  .hero-small--olive .hero-small__content {
+    background: var(--bb-olive);
     color: var(--bb-text-on-base);
   }
 
-  .hero-small--forest-green .hero-small__content h1,
-  .hero-small--forest-green .hero-small__content p,
-  .hero-small--forest-green .hero-small__logos h2 {
+  .hero-small--olive .hero-small__content h1,
+  .hero-small--olive .hero-small__content p,
+  .hero-small--olive .hero-small__logos h2 {
     color: var(--bb-text-on-base) !important;
   }
 

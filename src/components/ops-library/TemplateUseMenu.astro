@@ -1,0 +1,174 @@
+---
+import Button from "@components/Button.astro";
+import Icon from "@components/Icon.astro";
+interface Props {
+  cloudImportUrl?: string;
+  selfHostedDownloadUrl?: string;
+  id: string;
+}
+const { cloudImportUrl, selfHostedDownloadUrl, id } = Astro.props;
+const options = [
+  {
+    label: "Open in Budibase Cloud",
+    href: cloudImportUrl,
+    icon: "Cloud",
+    cloud: true,
+  },
+  {
+    label: "Download and import locally",
+    href: selfHostedDownloadUrl,
+    icon: "DownloadSimple",
+    cloud: false,
+  },
+];
+---
+
+<div class="template-use" data-template-use>
+  <Button
+    label="Use this template"
+    variant="cta"
+    size="large"
+    icon="CaretDown"
+    iconPosition="end"
+    attributes={{
+      "data-template-use-trigger": "",
+      "aria-expanded": "false",
+      "aria-controls": id,
+    }}
+  />
+  <div id={id} class="template-use-panel" data-template-use-panel hidden>
+    <ul aria-label="Use this template options">
+      {
+        options.map((option) => (
+          <li>
+            {option.href ? (
+              <a
+                href={option.href}
+                target={option.cloud ? "_blank" : undefined}
+                rel={option.cloud ? "noopener noreferrer" : undefined}
+                download={option.cloud ? undefined : true}
+              >
+                <Icon name={option.icon} size="20" weight="fill" />
+                <span>{option.label}</span>
+              </a>
+            ) : (
+              <button type="button" disabled>
+                <Icon name={option.icon} size="20" weight="fill" />
+                <span>
+                  {option.label}
+                  <small>Coming soon</small>
+                </span>
+              </button>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+<script>
+  function initTemplateUseMenus() {
+    document
+      .querySelectorAll<HTMLElement>("[data-template-use]")
+      .forEach((root) => {
+        if (root.dataset.ready) return;
+        root.dataset.ready = "true";
+        const trigger = root.querySelector<HTMLButtonElement>(
+          "[data-template-use-trigger]",
+        )!;
+        const panel = root.querySelector<HTMLElement>(
+          "[data-template-use-panel]",
+        )!;
+        const close = (restoreFocus = false) => {
+          panel.hidden = true;
+          trigger.setAttribute("aria-expanded", "false");
+          if (restoreFocus) trigger.focus();
+        };
+        trigger.addEventListener("click", () => {
+          panel.hidden = !panel.hidden;
+          trigger.setAttribute("aria-expanded", String(!panel.hidden));
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && !panel.hidden) {
+            close(true);
+            event.preventDefault();
+          }
+        });
+        document.addEventListener("click", (event) => {
+          if (event.target instanceof Node && !root.contains(event.target))
+            close();
+        });
+        root.addEventListener("focusout", (event) => {
+          if (
+            event.relatedTarget instanceof Node &&
+            !root.contains(event.relatedTarget)
+          )
+            close();
+        });
+      });
+  }
+  initTemplateUseMenus();
+  document.addEventListener("astro:page-load", initTemplateUseMenus);
+</script>
+<style>
+  .template-use {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .template-use :global([data-template-use-trigger]:active) {
+    scale: none;
+  }
+  .template-use-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: min(340px, calc(100vw - 32px));
+    z-index: 5;
+    border: 1px solid var(--border-color);
+    background: var(--bg-1);
+    padding: 8px;
+  }
+  [hidden] {
+    display: none;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a,
+  li button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px;
+    text-align: left;
+    color: var(--text-primary);
+    text-decoration: none;
+    font: inherit;
+    font-size: 14px;
+  }
+  a:hover {
+    background: var(--bb-background-sand);
+  }
+  a:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: -2px;
+  }
+  button:disabled {
+    color: var(--text-secondary);
+    cursor: default;
+  }
+  small {
+    display: block;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  @media (max-width: 767px) {
+    .template-use-panel {
+      left: 0;
+      right: auto;
+    }
+  }
+</style>

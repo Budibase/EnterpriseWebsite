@@ -4,6 +4,7 @@ import {
   type NavDropdownMenu,
 } from "@components/navDropdownData";
 import MobileNavItem from "@components/MobileNavItem.astro";
+import PlatformGroupMark from "@components/ui/PlatformGroupMark.astro";
 
 interface Props {
   label: string;
@@ -40,7 +41,10 @@ const items = flattenMenuItems(menu);
           <MobileNavItem item={items[0]} grouped />
           {menu.columns.map((column) => (
             <li class="mobile-nav-group">
-              <h3 class="mobile-nav-group__heading">{column.heading}</h3>
+              <h3 class="mobile-nav-group__heading">
+                <PlatformGroupMark group={column.heading} />
+                {column.heading}
+              </h3>
               <ul class="mobile-nav-group__links" aria-label={column.heading}>
                 {column.items.map((item) => (
                   <MobileNavItem item={item} grouped />
@@ -77,6 +81,9 @@ const items = flattenMenuItems(menu);
     gap: 1.25rem;
   }
   .mobile-nav-group__heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin: 0 0 0.5rem 0.25rem;
     color: var(--text-secondary);
     font-size: 0.875rem;

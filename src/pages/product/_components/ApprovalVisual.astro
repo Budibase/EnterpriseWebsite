@@ -1,0 +1,419 @@
+---
+import Icon from "@components/Icon.astro";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+import SlackLogo from "@assets/logos/Slack.svg?url";
+
+interface Props {
+  variant: "overview" | "conditions" | "policy" | "tools" | "notifications";
+}
+const { variant } = Astro.props;
+// Illustrative approval configuration and tool results, not a customer example.
+const titles = {
+  overview: "Human approval",
+  conditions: "Approval conditions",
+  policy: "Approval policy",
+  tools: "Tool data",
+  notifications: "Approval notifications",
+};
+const policy = [
+  { label: "Who approves", value: "Finance approver", icon: "UserSwitch" },
+  { label: "Where", value: "Microsoft Teams", icon: "ChatCircle" },
+  { label: "Time to approve", value: "24 hours", icon: "Timer" },
+];
+---
+
+<div
+  class:list={["approval-visual", `approval-visual--${variant}`]}
+  role="img"
+  aria-label={`${titles[variant]} preview`}
+>
+  <div class="approval-visual__panel" aria-hidden="true">
+    <div class="approval-visual__heading">
+      <img
+        src="/brand/budibase-symbol-forest.svg"
+        width="16"
+        height="16"
+        alt=""
+      />{titles[variant]}
+    </div>
+    {
+      variant === "overview" && (
+        <>
+          <div class="approval-visual__action">
+            <>
+              <Icon name="PlugsConnected" size="18" />
+              <strong>Create purchase order</strong>
+            </>
+          </div>
+          <div class="approval-visual__condition-summary">
+            <>
+              <span>Approval condition</span>
+              <strong>Amount is greater than £5,000</strong>
+            </>
+          </div>
+          <div class="approval-visual__overview-policy">
+            {policy.map((field) => (
+              <div>
+                <span>{field.label}</span>
+                <strong>{field.value}</strong>
+              </div>
+            ))}
+          </div>
+          <div class="approval-visual__waiting">
+            <>
+              <Icon name="Timer" size="15" />
+              <span>Awaiting approval</span>
+            </>
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "conditions" && (
+        <>
+          <div class="approval-visual__section-label">
+            Require approval when
+          </div>
+          <div class="approval-visual__condition-fields">
+            <div>
+              <>
+                <span>Tool field</span>
+                <strong class="approval-visual__binding">
+                  <Icon name="PlugsConnected" size="15" />
+                  purchase_order.total
+                </strong>
+              </>
+            </div>
+            <div>
+              <>
+                <span>Condition</span>
+                <strong>
+                  is greater than
+                  <Icon name="CaretDown" size="14" />
+                </strong>
+              </>
+            </div>
+            <div>
+              <>
+                <span>Value</span>
+                <strong>5000</strong>
+              </>
+            </div>
+          </div>
+          <div class="approval-visual__rule-result">
+            <>
+              <Icon name="UserSwitch" size="17" />
+              <span>Human approval required</span>
+            </>
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "policy" && (
+        <>
+          <div class="approval-visual__section-label">Purchase approval</div>
+          <div class="approval-visual__policy-fields">
+            {policy.map((field) => (
+              <div>
+                <span>
+                  <Icon name={field.icon} size="17" />
+                  {field.label}
+                </span>
+                <strong>
+                  {field.value}
+                  <Icon name="CaretDown" size="14" />
+                </strong>
+              </div>
+            ))}
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "tools" && (
+        <>
+          <div class="approval-visual__tool">
+            <>
+              <Icon name="PlugsConnected" size="18" />
+              <strong>Get purchase order</strong>
+            </>
+          </div>
+          <div class="approval-visual__tool-field">
+            <>
+              <span>Supplier</span>
+              <strong>Northwind</strong>
+            </>
+          </div>
+          <div class="approval-visual__tool-field is-highlighted">
+            <>
+              <span>Total</span>
+              <strong>£6,250</strong>
+            </>
+          </div>
+          <div class="approval-visual__tool-field">
+            <>
+              <span>Currency</span>
+              <strong>GBP</strong>
+            </>
+          </div>
+          <div class="approval-visual__tool-binding">
+            <>
+              <Icon name="ArrowRight" size="15" />
+              <span>Use total in approval condition</span>
+            </>
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "notifications" && (
+        <>
+          <div class="approval-visual__channels">
+            <>
+              <span>
+                <img src={TeamsLogo} alt="" width="22" height="22" />
+                Teams
+              </span>
+              <span>
+                <img src={SlackLogo} alt="" width="22" height="22" />
+                Slack
+              </span>
+            </>
+          </div>
+          <div class="approval-visual__notification">
+            <>
+              <span class="approval-visual__notification-label">
+                Approval required
+              </span>
+              <strong>Purchase order · £6,250</strong>
+              <span>Review within 24 hours</span>
+              <div class="approval-visual__notification-actions">
+                <>
+                  <span>Approve</span>
+                  <span>Reject</span>
+                </>
+              </div>
+            </>
+          </div>
+        </>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .approval-visual {
+    width: 100%;
+    max-width: 34rem;
+    container-type: inline-size;
+    color: var(--bb-text-base);
+    line-height: 1.4;
+  }
+  .approval-visual__panel {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    font-size: clamp(10px, 3.3cqw, 15px);
+  }
+  .approval-visual--overview {
+    display: flex;
+    align-items: center;
+    max-width: none;
+    height: 100%;
+    background: var(--bb-background-base);
+  }
+  .approval-visual--overview .approval-visual__panel {
+    border: 0;
+    font-size: clamp(10px, 2.3cqw, 13px);
+  }
+  .approval-visual__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.85em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+    font-weight: 500;
+  }
+  .approval-visual strong {
+    font-weight: 500;
+  }
+  .approval-visual__action,
+  .approval-visual__tool {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 1em;
+    color: var(--bb-olive);
+  }
+  .approval-visual__condition-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+    margin: 0 1em;
+    padding: 0.8em;
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
+    border-left: 2px solid var(--bb-olive);
+  }
+  .approval-visual__condition-summary > span {
+    font-size: 0.85em;
+  }
+  .approval-visual__overview-policy {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75em;
+    padding: 1em;
+  }
+  .approval-visual__overview-policy > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+  }
+  .approval-visual__overview-policy > div > span {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .approval-visual__waiting {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.75em 1em;
+    background: var(--bb-background-sand);
+    color: var(--bb-olive);
+  }
+  .approval-visual__section-label {
+    padding: 1em;
+    color: var(--bb-olive);
+    font-weight: 500;
+  }
+  .approval-visual__condition-fields {
+    display: grid;
+    gap: 0.9em;
+    padding: 0 1em 1em;
+  }
+  .approval-visual__condition-fields > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+  }
+  .approval-visual__condition-fields > div > span {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .approval-visual__condition-fields strong {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+    min-width: 0;
+    padding: 0.65em;
+    border: 1px solid var(--bb-border-base);
+  }
+  .approval-visual__condition-fields .approval-visual__binding {
+    justify-content: flex-start;
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
+  }
+  .approval-visual__rule-result {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.85em 1em;
+    background: var(--bb-background-sand);
+    color: var(--bb-olive);
+  }
+  .approval-visual__policy-fields {
+    display: grid;
+    gap: 1em;
+    padding: 0 1em 1.25em;
+  }
+  .approval-visual__policy-fields > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: 1em;
+  }
+  .approval-visual__policy-fields > div > span {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--bb-text-subtle);
+  }
+  .approval-visual__policy-fields strong {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+    border: 1px solid var(--bb-border-base);
+    padding: 0.7em;
+  }
+  .approval-visual__tool-field {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 0.7em 1em;
+    border-top: 1px solid var(--bb-border-base);
+  }
+  .approval-visual__tool-field > span {
+    color: var(--bb-text-subtle);
+  }
+  .approval-visual__tool-field.is-highlighted {
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
+  }
+  .approval-visual__tool-binding {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.8em 1em;
+    border-top: 1px solid var(--bb-border-base);
+    color: var(--bb-olive);
+    font-size: 0.85em;
+  }
+  .approval-visual__channels {
+    display: flex;
+    gap: 1em;
+    padding: 0.85em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .approval-visual__channels > span {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+  .approval-visual__channels img {
+    width: 1.5em;
+    height: 1.5em;
+    object-fit: contain;
+  }
+  .approval-visual__notification {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    padding: 1em;
+  }
+  .approval-visual__notification > span {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .approval-visual__notification .approval-visual__notification-label {
+    color: var(--bb-olive);
+    font-weight: 500;
+  }
+  .approval-visual__notification-actions {
+    display: flex;
+    gap: 0.5em;
+    margin-top: 0.2em;
+  }
+  .approval-visual__notification-actions > span {
+    padding: 0.4em 0.8em;
+    border: 1px solid var(--bb-border-base);
+  }
+  .approval-visual__notification-actions > span:first-child {
+    background: var(--bb-olive);
+    color: var(--bb-lime-100);
+    border-color: var(--bb-olive);
+  }
+</style>

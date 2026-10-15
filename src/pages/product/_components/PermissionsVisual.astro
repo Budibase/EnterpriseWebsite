@@ -1,0 +1,433 @@
+---
+import Icon from "@components/Icon.astro";
+
+interface Props {
+  variant:
+    "overview" | "access" | "groups" | "roles" | "identity" | "onboarding";
+}
+const { variant } = Astro.props;
+// Illustrative access configuration, not a customer deployment or user count.
+const resources = [
+  { type: "Table", name: "Purchase orders", icon: "Table", role: "Approver" },
+  {
+    type: "API",
+    name: "Procurement API",
+    icon: "PlugsConnected",
+    role: "Approver",
+  },
+  {
+    type: "Automation",
+    name: "Supplier intake",
+    icon: "Lightning",
+    role: "Admin",
+  },
+  {
+    type: "Agent tool",
+    name: "Create purchase order",
+    icon: "Sparkle",
+    role: "Approver",
+  },
+  { type: "Screen", name: "Approval inbox", icon: "Browser", role: "Approver" },
+];
+const workspaces = [
+  { name: "Procurement", role: "Approver" },
+  { name: "Finance", role: "Viewer" },
+];
+const identity = [
+  { name: "SSO", status: "Connected" },
+  { name: "SAML", status: "Enabled" },
+  { name: "Active Directory", status: "Sync enabled" },
+];
+const titles = {
+  overview: "Permissions",
+  access: "Role requirements",
+  groups: "User groups",
+  roles: "Custom roles",
+  identity: "Identity systems",
+  onboarding: "Add users",
+};
+---
+
+<div
+  class:list={["permissions-visual", `permissions-visual--${variant}`]}
+  role="img"
+  aria-label={`${titles[variant]} preview`}
+>
+  <div class="permissions-visual__panel" aria-hidden="true">
+    <div class="permissions-visual__heading">
+      <img
+        src="/brand/budibase-symbol-forest.svg"
+        width="16"
+        height="16"
+        alt=""
+      />{titles[variant]}
+    </div>
+    {
+      (variant === "overview" || variant === "access") && (
+        <>
+          <div class="permissions-visual__table-heading">
+            <>
+              <span>Resource</span>
+              <span>Required role</span>
+            </>
+          </div>
+          {resources.map((resource) => (
+            <div class="permissions-visual__resource">
+              <span class="permissions-visual__resource-name">
+                <Icon name={resource.icon} size="17" />
+                <span>
+                  <strong>{resource.name}</strong>
+                  <small>{resource.type}</small>
+                </span>
+              </span>
+              <span class="permissions-visual__role">
+                {resource.role}
+                <Icon name="CaretDown" size="13" />
+              </span>
+            </div>
+          ))}
+        </>
+      )
+    }
+    {
+      variant === "groups" && (
+        <>
+          <div class="permissions-visual__group">
+            <>
+              <span class="permissions-visual__group-icon">
+                <Icon name="Users" size="24" />
+              </span>
+              <div>
+                <>
+                  <strong>Finance team</strong>
+                  <span>User group</span>
+                </>
+              </div>
+              <span class="permissions-visual__member-count">12 users</span>
+            </>
+          </div>
+          <div class="permissions-visual__section-label">Workspace access</div>
+          {workspaces.map((workspace) => (
+            <div class="permissions-visual__workspace">
+              <span>
+                <Icon name="SquaresFour" size="17" />
+                {workspace.name}
+              </span>
+              <span class="permissions-visual__role">
+                {workspace.role}
+                <Icon name="CaretDown" size="13" />
+              </span>
+            </div>
+          ))}
+          <div class="permissions-visual__group-note">
+            <>
+              <Icon name="CheckCircle" size="16" />
+              <span>Manage access for the whole group</span>
+            </>
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "roles" && (
+        <>
+          <div class="permissions-visual__custom-role">
+            <>
+              <Icon name="UserSwitch" size="20" />
+              <strong>Approver</strong>
+              <span>Custom role</span>
+            </>
+          </div>
+          <div class="permissions-visual__role-rule">
+            <>
+              <span>Purchase orders</span>
+              <strong>Read · Update</strong>
+            </>
+          </div>
+          <div class="permissions-visual__role-rule">
+            <>
+              <span>Approval inbox</span>
+              <strong>Access</strong>
+            </>
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "identity" && (
+        <div class="permissions-visual__identity">
+          {identity.map((system) => (
+            <div>
+              <span>
+                <Icon name="ShieldCheck" size="17" />
+                {system.name}
+              </span>
+              <span class="permissions-visual__connected">
+                <Icon name="CheckCircle" size="14" />
+                {system.status}
+              </span>
+            </div>
+          ))}
+        </div>
+      )
+    }
+    {
+      variant === "onboarding" && (
+        <>
+          <div class="permissions-visual__onboarding-option">
+            <>
+              <Icon name="EnvelopeOpen" size="20" />
+              <div>
+                <>
+                  <strong>Email invitation</strong>
+                  <span>Invite users to join</span>
+                </>
+              </div>
+              <Icon name="ArrowRight" size="15" />
+            </>
+          </div>
+          <div class="permissions-visual__onboarding-option">
+            <>
+              <Icon name="Keyhole" size="20" />
+              <div>
+                <>
+                  <strong>Generate password</strong>
+                  <span class="permissions-visual__password">••••••••••••</span>
+                </>
+              </div>
+              <Icon name="ArrowRight" size="15" />
+            </>
+          </div>
+        </>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .permissions-visual {
+    width: 100%;
+    max-width: 34rem;
+    container-type: inline-size;
+    color: var(--bb-text-base);
+    line-height: 1.4;
+  }
+  .permissions-visual__panel {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    font-size: clamp(10px, 3.3cqw, 15px);
+  }
+  .permissions-visual--overview {
+    display: flex;
+    align-items: center;
+    max-width: none;
+    height: 100%;
+    background: var(--bb-background-base);
+  }
+  .permissions-visual--overview .permissions-visual__panel {
+    border: 0;
+    font-size: clamp(9px, 2.2cqw, 12px);
+  }
+  .permissions-visual__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.85em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+    font-weight: 500;
+  }
+  .permissions-visual strong {
+    font-weight: 500;
+  }
+  .permissions-visual__table-heading,
+  .permissions-visual__resource {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 1em;
+    align-items: center;
+    padding: 0.7em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .permissions-visual__table-heading {
+    color: var(--bb-text-subtle);
+    background: var(--bb-background-surface);
+    font-size: 0.85em;
+  }
+  .permissions-visual__resource:last-child {
+    border: 0;
+  }
+  .permissions-visual__resource-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    min-width: 0;
+  }
+  .permissions-visual__resource-name :global(svg) {
+    color: var(--bb-olive);
+    flex: none;
+  }
+  .permissions-visual__resource-name > span {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
+  }
+  .permissions-visual__resource-name small {
+    color: var(--bb-text-subtle);
+    font-size: 0.75em;
+  }
+  .permissions-visual__role {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.4em 0.6em;
+    border: 1px solid var(--bb-border-base);
+  }
+  .permissions-visual__role :global(svg) {
+    flex: none;
+  }
+  .permissions-visual__group {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    padding: 1.25em 1em;
+  }
+  .permissions-visual__group-icon {
+    display: grid;
+    place-items: center;
+    padding: 0.65em;
+    color: var(--bb-olive);
+    background: var(--bb-lime-100);
+  }
+  .permissions-visual__group > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+  }
+  .permissions-visual__group > div > span,
+  .permissions-visual__member-count {
+    font-size: 0.85em;
+    color: var(--bb-text-subtle);
+  }
+  .permissions-visual__member-count {
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .permissions-visual__section-label {
+    padding: 0.65em 1em;
+    background: var(--bb-background-surface);
+    border-block: 1px solid var(--bb-border-base);
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .permissions-visual__workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 1em;
+    padding: 0.85em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .permissions-visual__workspace > span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .permissions-visual__group-note {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.85em 1em;
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
+    font-size: 0.85em;
+  }
+  .permissions-visual__custom-role {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 1em;
+    color: var(--bb-olive);
+  }
+  .permissions-visual__custom-role > span {
+    margin-left: auto;
+    padding: 0.2em 0.4em;
+    background: var(--bb-lime-100);
+    font-size: 0.75em;
+  }
+  .permissions-visual__role-rule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.65em;
+    padding: 0.85em 1em;
+    border-top: 1px solid var(--bb-border-base);
+    font-size: 0.9em;
+  }
+  .permissions-visual__role-rule strong {
+    color: var(--bb-olive);
+    white-space: nowrap;
+  }
+  .permissions-visual__identity {
+    padding-inline: 1em;
+  }
+  .permissions-visual__identity > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6em;
+    padding: 1em 0;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .permissions-visual__identity > div:last-child {
+    border: 0;
+  }
+  .permissions-visual__identity span {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+  .permissions-visual__identity :global(svg) {
+    flex: none;
+  }
+  .permissions-visual__connected {
+    color: var(--bb-olive);
+    font-size: 0.8em;
+  }
+  .permissions-visual__onboarding-option {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    padding: 1.2em 1em;
+  }
+  .permissions-visual__onboarding-option
+    + .permissions-visual__onboarding-option {
+    border-top: 1px solid var(--bb-border-base);
+  }
+  .permissions-visual__onboarding-option > :global(svg) {
+    flex: none;
+    color: var(--bb-olive);
+  }
+  .permissions-visual__onboarding-option > :global(svg:last-child) {
+    margin-left: auto;
+  }
+  .permissions-visual__onboarding-option > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+  }
+  .permissions-visual__onboarding-option > div > span {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .permissions-visual__password {
+    letter-spacing: 0.15em;
+  }
+  @container (max-width: 340px) {
+    .permissions-visual--overview .permissions-visual__resource {
+      padding-block: 0.25em;
+    }
+  }
+</style>

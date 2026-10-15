@@ -1,6 +1,14 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
 import PlatformLandingPage from "@components/PlatformLandingPage.astro";
+import AIModelsLandingPage from "./_components/AIModelsLandingPage.astro";
+import APIsLandingPage from "./_components/APIsLandingPage.astro";
+import DataLandingPage from "./_components/DataLandingPage.astro";
+import ActivityLandingPage from "./_components/ActivityLandingPage.astro";
+import HumanApprovalsLandingPage from "./_components/HumanApprovalsLandingPage.astro";
+import PermissionsLandingPage from "./_components/PermissionsLandingPage.astro";
+import KnowledgeLandingPage from "./_components/KnowledgeLandingPage.astro";
+import SelfHostingLandingPage from "./_components/SelfHostingLandingPage.astro";
 import {
   platformLandingPages,
   platformLandingSlugs,
@@ -40,9 +48,29 @@ const showGetStarted = getStartedSlugs.includes(page.slug);
   description={page.content.metaDescription}
   navTheme="default"
 >
-  <PlatformLandingPage
-    slug={page.slug}
-    content={page.content}
-    {showGetStarted}
-  />
+  {
+    page.slug === "ai-models" ? (
+      <AIModelsLandingPage content={page.content} />
+    ) : page.slug === "apis" ? (
+      <APIsLandingPage content={page.content} />
+    ) : page.slug === "data" ? (
+      <DataLandingPage content={page.content} />
+    ) : page.slug === "activity" ? (
+      <ActivityLandingPage content={page.content} />
+    ) : page.slug === "requests" ? (
+      <HumanApprovalsLandingPage content={page.content} />
+    ) : page.slug === "admin-security" ? (
+      <PermissionsLandingPage content={page.content} />
+    ) : page.slug === "knowledge" ? (
+      <KnowledgeLandingPage content={page.content} />
+    ) : page.slug === "self-host" ? (
+      <SelfHostingLandingPage content={page.content} />
+    ) : (
+      <PlatformLandingPage
+        slug={page.slug}
+        content={page.content}
+        {showGetStarted}
+      />
+    )
+  }
 </Layout>

@@ -96,3 +96,20 @@ test("knowledge is explicitly recorded rather than inferred from integration or 
     "GitHub",
   ]);
 });
+
+test("explicit agent inventory determines presence and the default AI requirement", () => {
+  const absent = getTemplateAssets({
+    tags: ["Agents"],
+    integrations: [],
+    assetsUsed: { agents: [] },
+  });
+  assert.equal(absent.agent, false);
+  assert.equal(absent.aiModelRequired, false);
+  const present = getTemplateAssets({
+    tags: [],
+    integrations: [],
+    assetsUsed: { agents: ["Access Request Agent"] },
+  });
+  assert.equal(present.agent, true);
+  assert.equal(present.aiModelRequired, true);
+});

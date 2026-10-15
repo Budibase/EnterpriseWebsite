@@ -6,6 +6,8 @@ import OpenRouterLogo from "@assets/logos/openrouter.svg?url";
 import GoogleLogo from "@assets/logos/Google.svg?url";
 import OktaLogo from "@assets/logos/okta.jpeg?url";
 import SlackLogo from "@assets/logos/Slack.svg?url";
+import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
 import JiraLogo from "@assets/logos/Jira.svg?url";
 import PostgresLogo from "@assets/logos/Postgres.svg?url";
 import MySQLLogo from "@assets/logos/MYSQL.svg?url";
@@ -535,7 +537,7 @@ export const connections = [
   {
     name: "Microsoft SharePoint",
     category: "Tools and APIs",
-    logo: undefined,
+    logo: SharePointLogo,
     alternateLogo: undefined,
   },
   {
@@ -619,7 +621,7 @@ export const connections = [
   {
     name: "Microsoft Teams",
     category: "Tools and APIs",
-    logo: undefined,
+    logo: TeamsLogo,
     alternateLogo: undefined,
   },
   {

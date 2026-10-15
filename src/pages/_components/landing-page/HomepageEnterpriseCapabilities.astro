@@ -67,7 +67,7 @@ const assuranceItems = [
     <Button
       label="Book a demo"
       url="/contact/"
-      variant="bright-on-dark"
+      variant="lime"
       size="large"
       icon="ArrowRight"
       iconPosition="end"
@@ -108,7 +108,8 @@ const assuranceItems = [
 
 <style>
   .homepage-enterprise-panel {
-    --homepage-enterprise-panel-surface: var(--bb-celery-1500);
+    --homepage-enterprise-panel-surface: var(--bb-background-dark-soft);
+    --button-bright-focus-offset: var(--homepage-enterprise-panel-surface);
     overflow: hidden;
     border: 1px solid
       var(--homepage-security-border, var(--bb-transparent-white-75));
@@ -163,7 +164,7 @@ const assuranceItems = [
     width: 0.5rem;
     height: 0.5rem;
     margin-bottom: 1.5rem;
-    background: var(--bb-celery-200);
+    background: var(--bb-lime);
   }
 
   .homepage-enterprise-panel__capability h3 {

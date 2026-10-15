@@ -17,63 +17,207 @@
     --radius-large: 0;
     --radius-x-large: 0;
     --radius-2x-large: 0;
-    --bb-gradient: linear-gradient(
-      to bottom right,
-      var(--bb-green-1000) 15%,
-      var(--bb-cinnamon-900) 100%
-    );
-    --bb-brand-forest-green: var(--bb-celery-1400);
-    --bb-brand-bright-green: var(--bb-celery-300);
-    --bb-brand-yellow: #ffbc0d;
-    --bb-bright-orange: var(--bb-orange-300);
-    --bb-bright-yellow: var(--bb-brand-yellow);
-    --bb-bright-blue: var(--bb-seafoam-300);
-    --bb-bright-pink: var(--bb-pink-300);
-    --bb-dark-purple: var(--bb-fuchsia-1600);
-    --bb-dark-gold: var(--bb-brown-1300);
-    --bb-dark-charcoal: var(--bb-silver-1500);
-    --bb-dark-maroon: var(--bb-red-1500);
-    --bb-brand: var(--bb-celery-1400);
-    --bb-brand-state: var(--bb-celery-1400);
+    /* Core Budibase palette. */
+    --bb-lime: var(--bb-lime-300);
+    --bb-olive: var(--bb-olive-1300);
+    --bb-coconut: #f7f5f2;
+    --bb-sand: #f4f2f0;
+    --bb-graphite: #1e1919;
     --bb-white: #ffffff;
     --bb-black: #000000;
-    --bb-text-base: var(--bb-gray-900);
-    --bb-text-body: var(--bb-gray-900);
-    --font-primary: var(--bb-celery-1400);
-    --bb-text-subtle: #717171;
-    --bb-text-muted: rgb(0 0 0 / 0.69);
-    --bb-text-on-base: #f8f8f8;
-    --bb-text-on-base-subtle: #e1e1e1;
-    --bb-text-on-base-secondary: rgb(225 225 225 / 0.8);
-    --bb-text-on-base-muted: rgb(255 255 255 / 0.39);
-    --bb-background-surface-base: #ffffff;
-    --bb-background-surface-subtle: #f8f8f8;
-    --bb-background-surface-raised: #f3f3f3;
-    --bb-background-sand: #f4f2f0;
-    --bb-background-sand-hover: #ece9e6;
+
+    /* Exact accent and grey anchors from https://brand.dropbox.com/color. */
+    --bb-azalea: #cd2f7b;
+    --bb-pink: #ffafa5;
+    --bb-crimson: #9b0032;
+    --bb-sunset: #fa551e;
+    --bb-rust: #be4b0a;
+    --bb-tangerine: #ff8c19;
+    --bb-gold: #9b6400;
+    --bb-vivid-vargas: #fad24b;
+    --bb-ocean: #007891;
+    --bb-zen: #14c8eb;
+    --bb-navy: #283750;
+    --bb-cloud: #b4c8e1;
+    --bb-plum: #78286e;
+    --bb-orchid: #c8aff0;
+
+    --bb-gray-50: #f7f6f5;
+    --bb-gray-100: #ebe9e6;
+    --bb-gray-150: #dfdcd8;
+    --bb-gray-200: #d3cec9;
+    --bb-gray-250: #c7c1bb;
+    --bb-gray-300: #bbb5ae;
+    --bb-gray-350: #afa8a0;
+    --bb-gray-400: #a49b93;
+    --bb-gray-450: #978f86;
+    --bb-gray-500: #8c8279;
+    --bb-gray-550: #7f776f;
+    --bb-gray-600: #736c64;
+    --bb-gray-650: #67615a;
+    --bb-gray-700: #5b5650;
+    --bb-gray-750: #4f4a46;
+    --bb-gray-800: #44403d;
+    --bb-gray-850: #393633;
+    --bb-gray-900: #2d2b29;
+    --bb-gray-950: #242321;
+    --bb-gray-1000: #1a1918;
+
+    /* Lime and Olive families, anchored on the selected brand palette. */
+    --bb-lime-100: #f1ffd6;
+    --bb-lime-200: #dfffa5;
+    --bb-lime-300: #a5ff00;
+    --bb-lime-400: #97ea00;
+    --bb-lime-500: #89d400;
+    --bb-lime-600: #79bc00;
+    --bb-lime-700: #6eaa00;
+    --bb-lime-800: #639900;
+    --bb-lime-900: #588800;
+    --bb-lime-1000: #4b7500;
+    --bb-lime-1100: #416500;
+    --bb-lime-1200: #355200;
+    --bb-lime-1300: #2b4300;
+    --bb-lime-1400: #223500;
+    --bb-lime-1500: #172400;
+    --bb-lime-1600: #0a1000;
+    --bb-olive-100: #f3fbe4;
+    --bb-olive-200: #e1f5ba;
+    --bb-olive-300: #c2ec75;
+    --bb-olive-400: #9bdd1f;
+    --bb-olive-500: #8ac51c;
+    --bb-olive-600: #78ab18;
+    --bb-olive-700: #6a9715;
+    --bb-olive-800: #5d8513;
+    --bb-olive-900: #537611;
+    --bb-olive-1000: #45620e;
+    --bb-olive-1100: #3b540c;
+    --bb-olive-1200: #2d4009;
+    --bb-olive-1300: #233207;
+    --bb-olive-1400: #1d2906;
+    --bb-olive-1500: #172105;
+    --bb-olive-1600: #080c02;
+
+    /* Pale accent surfaces derived from the named anchors. */
+    --bb-cloud-soft: color-mix(in srgb, var(--bb-cloud) 20%, var(--bb-coconut));
+    --bb-cloud-subtle: color-mix(
+      in srgb,
+      var(--bb-cloud) 10%,
+      var(--bb-coconut)
+    );
+    --bb-orchid-soft: color-mix(
+      in srgb,
+      var(--bb-orchid) 20%,
+      var(--bb-coconut)
+    );
+    --bb-orchid-subtle: color-mix(
+      in srgb,
+      var(--bb-orchid) 10%,
+      var(--bb-coconut)
+    );
+    --bb-pink-soft: color-mix(in srgb, var(--bb-pink) 20%, var(--bb-coconut));
+    --bb-sunset-soft: color-mix(
+      in srgb,
+      var(--bb-sunset) 20%,
+      var(--bb-coconut)
+    );
+    --bb-sunset-subtle: color-mix(
+      in srgb,
+      var(--bb-sunset) 10%,
+      var(--bb-coconut)
+    );
+    --bb-tangerine-soft: color-mix(
+      in srgb,
+      var(--bb-tangerine) 20%,
+      var(--bb-coconut)
+    );
+    --bb-tangerine-subtle: color-mix(
+      in srgb,
+      var(--bb-tangerine) 10%,
+      var(--bb-coconut)
+    );
+    --bb-vivid-vargas-soft: color-mix(
+      in srgb,
+      var(--bb-vivid-vargas) 20%,
+      var(--bb-coconut)
+    );
+    --bb-vivid-vargas-subtle: color-mix(
+      in srgb,
+      var(--bb-vivid-vargas) 10%,
+      var(--bb-coconut)
+    );
+    --bb-zen-soft: color-mix(in srgb, var(--bb-zen) 20%, var(--bb-coconut));
+    --bb-zen-subtle: color-mix(in srgb, var(--bb-zen) 10%, var(--bb-coconut));
+
+    /* Semantic colors and shared interaction states. */
+    --bb-gradient: linear-gradient(
+      to bottom right,
+      var(--bb-olive) 15%,
+      var(--bb-rust) 100%
+    );
+    --bb-brand: var(--bb-olive);
+    --bb-brand-state: var(--bb-olive-1400);
+    --font-primary: var(--bb-olive);
+    --bb-button-lime-hover: color-mix(
+      in srgb,
+      var(--bb-lime) 92%,
+      var(--bb-olive)
+    );
+    --bb-button-lime-active: color-mix(
+      in srgb,
+      var(--bb-lime) 84%,
+      var(--bb-olive)
+    );
+    --bb-button-cta-background: var(--bb-olive);
+    --bb-button-cta-hover: var(--bb-olive-1400);
+    --bb-button-cta-active: var(--bb-olive-1500);
+    --bb-text-base: var(--bb-graphite);
+    --bb-text-body: var(--bb-graphite);
+    --bb-text-subtle: var(--bb-gray-600);
+    --bb-text-muted: color-mix(in srgb, var(--bb-graphite) 69%, transparent);
+    --bb-text-on-base: var(--bb-coconut);
+    --bb-text-on-base-subtle: var(--bb-gray-150);
+    --bb-text-on-base-secondary: color-mix(
+      in srgb,
+      var(--bb-gray-150) 80%,
+      transparent
+    );
+    --bb-text-on-base-muted: color-mix(
+      in srgb,
+      var(--bb-coconut) 70%,
+      transparent
+    );
+    --bb-background-surface-base: var(--bb-white);
+    --bb-background-surface-subtle: var(--bb-coconut);
+    --bb-background-surface-raised: var(--bb-white);
+    --bb-background-product: var(--bb-white);
+    --bb-background-sand: var(--bb-coconut);
+    --bb-background-sand-hover: var(--bb-gray-100);
     --bb-background-component-base: color-mix(
       in srgb,
-      var(--bb-celery-1300) 8%,
+      var(--bb-olive) 8%,
       transparent
     );
     --bb-background-component-subtle: color-mix(
       in srgb,
-      var(--bb-celery-1300) 13%,
+      var(--bb-olive) 13%,
       transparent
     );
     --bb-background-component-raised: color-mix(
       in srgb,
-      var(--bb-celery-1300) 18%,
+      var(--bb-olive) 18%,
       transparent
     );
     --bb-background-base: var(--bb-background-surface-base);
     --bb-background-surface: var(--bb-background-surface-subtle);
     --bb-background-raised: var(--bb-background-component-base);
-    --bb-background-dark-base: var(--bb-brand-forest-green);
-    --bb-background-dark-raised: var(--bb-celery-1500);
-    --bb-border-base: #dadada;
-    --bb-border-bold: #8f8f8f;
-    --bb-border-subtle: rgb(0 0 0 / 8%);
+    --bb-background-dark-base: var(--bb-olive);
+    --bb-background-dark-raised: var(--bb-olive-1500);
+    --bb-background-dark-soft: var(--bb-olive);
+    --bb-border-base: var(--bb-gray-200);
+    --bb-border-color: var(--bb-border-base);
+    --bb-border-bold: var(--bb-gray-500);
+    --bb-border-subtle: color-mix(in srgb, var(--bb-graphite) 8%, transparent);
+
     --bb-transparent-white-25: rgb(255 255 255 / 0);
     --bb-transparent-white-50: rgb(255 255 255 / 0.04);
     --bb-transparent-white-75: rgb(255 255 255 / 0.07);
@@ -100,307 +244,6 @@
     --bb-transparent-black-800: rgb(0 0 0 / 0.84);
     --bb-transparent-black-900: rgb(0 0 0 / 0.93);
     --bb-transparent-black-1000: #000000;
-    --bb-gray-25: #ffffff;
-    --bb-gray-50: #f8f8f8;
-    --bb-gray-75: #f3f3f3;
-    --bb-gray-100: #e9e9e9;
-    --bb-gray-200: #e1e1e1;
-    --bb-gray-300: #dadada;
-    --bb-gray-400: #c6c6c6;
-    --bb-gray-500: #8f8f8f;
-    --bb-gray-600: #717171;
-    --bb-gray-700: #505050;
-    --bb-gray-800: #292929;
-    --bb-gray-900: #131313;
-    --bb-gray-1000: #000000;
-    --bb-blue-100: #f5f9ff;
-    --bb-blue-200: #e5f0fe;
-    --bb-blue-300: #cbe2fe;
-    --bb-blue-400: #accffd;
-    --bb-blue-500: #8eb9fc;
-    --bb-blue-600: #729efd;
-    --bb-blue-700: #5d89ff;
-    --bb-blue-800: #4b75ff;
-    --bb-blue-900: #3b63fb;
-    --bb-blue-1000: #274dea;
-    --bb-blue-1100: #1d3ecf;
-    --bb-blue-1200: #1532ad;
-    --bb-blue-1300: #10288c;
-    --bb-blue-1400: #0c1f69;
-    --bb-blue-1500: #0e1843;
-    --bb-blue-1600: #070b1e;
-    --bb-red-100: #fff6f5;
-    --bb-red-200: #ffebe8;
-    --bb-red-300: #ffd6d1;
-    --bb-red-400: #ffbcb4;
-    --bb-red-500: #ff9d91;
-    --bb-red-600: #ff7665;
-    --bb-red-700: #ff513d;
-    --bb-red-800: #f03823;
-    --bb-red-900: #d73220;
-    --bb-red-1000: #b72818;
-    --bb-red-1100: #9c2113;
-    --bb-red-1200: #811b0e;
-    --bb-red-1300: #68150a;
-    --bb-red-1400: #501006;
-    --bb-red-1500: #3b0b04;
-    --bb-red-1600: #1d0502;
-    --bb-orange-100: #fff6e7;
-    --bb-orange-200: #ffeccf;
-    --bb-orange-300: #ffda9e;
-    --bb-orange-400: #ffc15e;
-    --bb-orange-500: #ffa213;
-    --bb-orange-600: #fc7d00;
-    --bb-orange-700: #e86a00;
-    --bb-orange-800: #d45b00;
-    --bb-orange-900: #c24e00;
-    --bb-orange-1000: #a73e00;
-    --bb-orange-1100: #903300;
-    --bb-orange-1200: #762900;
-    --bb-orange-1300: #5f2000;
-    --bb-orange-1400: #491800;
-    --bb-orange-1500: #341200;
-    --bb-orange-1600: #190800;
-    --bb-yellow-100: #fff8cc;
-    --bb-yellow-200: #fff197;
-    --bb-yellow-300: #ffde2c;
-    --bb-yellow-400: #f5c700;
-    --bb-yellow-500: #e6af00;
-    --bb-yellow-600: #d29500;
-    --bb-yellow-700: #c18300;
-    --bb-yellow-800: #af7400;
-    --bb-yellow-900: #9e6600;
-    --bb-yellow-1000: #865500;
-    --bb-yellow-1100: #724800;
-    --bb-yellow-1200: #5d3b00;
-    --bb-yellow-1300: #4b2f00;
-    --bb-yellow-1400: #382300;
-    --bb-yellow-1500: #281900;
-    --bb-yellow-1600: #120b00;
-    --bb-chartreuse-100: #f6fbde;
-    --bb-chartreuse-200: #eaf6ad;
-    --bb-chartreuse-300: #d0ec46;
-    --bb-chartreuse-400: #b6db00;
-    --bb-chartreuse-500: #a3c400;
-    --bb-chartreuse-600: #8fac00;
-    --bb-chartreuse-700: #809900;
-    --bb-chartreuse-800: #728900;
-    --bb-chartreuse-900: #667a00;
-    --bb-chartreuse-1000: #566700;
-    --bb-chartreuse-1100: #495700;
-    --bb-chartreuse-1200: #3c4700;
-    --bb-chartreuse-1300: #2f3900;
-    --bb-chartreuse-1400: #232b00;
-    --bb-chartreuse-1500: #191e00;
-    --bb-chartreuse-1600: #0b0e00;
-    --bb-celery-100: #ebffdc;
-    --bb-celery-200: #c5ff9c;
-    --bb-celery-300: #9df75c;
-    --bb-celery-400: #81e43a;
-    --bb-celery-500: #6ece2a;
-    --bb-celery-600: #5db41f;
-    --bb-celery-700: #52a119;
-    --bb-celery-800: #489014;
-    --bb-celery-900: #408111;
-    --bb-celery-1000: #346d0c;
-    --bb-celery-1100: #2c5c09;
-    --bb-celery-1200: #234b06;
-    --bb-celery-1300: #1b3c03;
-    --bb-celery-1400: #163300;
-    --bb-celery-1500: #0c2100;
-    --bb-celery-1600: #040f00;
-    --bb-green-100: #edfcf1;
-    --bb-green-200: #d7f7e1;
-    --bb-green-300: #adeec5;
-    --bb-green-400: #6be3a2;
-    --bb-green-500: #2bd17d;
-    --bb-green-600: #12b867;
-    --bb-green-700: #0ba45d;
-    --bb-green-800: #079355;
-    --bb-green-900: #05834e;
-    --bb-green-1000: #036e45;
-    --bb-green-1100: #025d3c;
-    --bb-green-1200: #014c34;
-    --bb-green-1300: #003d2c;
-    --bb-green-1400: #002e22;
-    --bb-green-1500: #002119;
-    --bb-green-1600: #000f0c;
-    --bb-seafoam-100: #ebfbf6;
-    --bb-seafoam-200: #d3f6ea;
-    --bb-seafoam-300: #a9edd8;
-    --bb-seafoam-400: #5ce1c2;
-    --bb-seafoam-500: #10cfa9;
-    --bb-seafoam-600: #0db595;
-    --bb-seafoam-700: #0ba286;
-    --bb-seafoam-800: #099078;
-    --bb-seafoam-900: #07816d;
-    --bb-seafoam-1000: #056c5c;
-    --bb-seafoam-1100: #035c50;
-    --bb-seafoam-1200: #014b43;
-    --bb-seafoam-1300: #003c36;
-    --bb-seafoam-1400: #002e28;
-    --bb-seafoam-1500: #00211d;
-    --bb-seafoam-1600: #000f0e;
-    --bb-cyan-100: #eefafe;
-    --bb-cyan-200: #d9f4fd;
-    --bb-cyan-300: #b7e7fc;
-    --bb-cyan-400: #8ad5ff;
-    --bb-cyan-500: #5cc0ff;
-    --bb-cyan-600: #30a7fe;
-    --bb-cyan-700: #1d95e7;
-    --bb-cyan-800: #1286cd;
-    --bb-cyan-900: #0b78b3;
-    --bb-cyan-1000: #046691;
-    --bb-cyan-1100: #005779;
-    --bb-cyan-1200: #004762;
-    --bb-cyan-1300: #00394e;
-    --bb-cyan-1400: #002b3b;
-    --bb-cyan-1500: #001f2b;
-    --bb-cyan-1600: #000e14;
-    --bb-indigo-100: #f7f8ff;
-    --bb-indigo-200: #ebeeff;
-    --bb-indigo-300: #d8deff;
-    --bb-indigo-400: #c0c9ff;
-    --bb-indigo-500: #a7b2ff;
-    --bb-indigo-600: #9197fe;
-    --bb-indigo-700: #8480fe;
-    --bb-indigo-800: #7a6afd;
-    --bb-indigo-900: #7155fa;
-    --bb-indigo-1000: #6338ee;
-    --bb-indigo-1100: #5424db;
-    --bb-indigo-1200: #4513bf;
-    --bb-indigo-1300: #3706a0;
-    --bb-indigo-1400: #2a0081;
-    --bb-indigo-1500: #1f0062;
-    --bb-indigo-1600: #110036;
-    --bb-purple-100: #fbf7fe;
-    --bb-purple-200: #f4ebfc;
-    --bb-purple-300: #ebdaf9;
-    --bb-purple-400: #ddc1f6;
-    --bb-purple-500: #d0a7f3;
-    --bb-purple-600: #bf8aee;
-    --bb-purple-700: #b272eb;
-    --bb-purple-800: #a65ce7;
-    --bb-purple-900: #9a47e2;
-    --bb-purple-1000: #8628d9;
-    --bb-purple-1100: #730dcc;
-    --bb-purple-1200: #5d00b1;
-    --bb-purple-1300: #4b0090;
-    --bb-purple-1400: #3b006f;
-    --bb-purple-1500: #2c0054;
-    --bb-purple-1600: #17002d;
-    --bb-fuchsia-100: #fef6ff;
-    --bb-fuchsia-200: #fde9ff;
-    --bb-fuchsia-300: #fad3ff;
-    --bb-fuchsia-400: #f7b5ff;
-    --bb-fuchsia-500: #f393ff;
-    --bb-fuchsia-600: #ec69ff;
-    --bb-fuchsia-700: #df4df5;
-    --bb-fuchsia-800: #c844dc;
-    --bb-fuchsia-900: #b539c8;
-    --bb-fuchsia-1000: #9c28af;
-    --bb-fuchsia-1100: #871b9a;
-    --bb-fuchsia-1200: #710f83;
-    --bb-fuchsia-1300: #5c046d;
-    --bb-fuchsia-1400: #480058;
-    --bb-fuchsia-1500: #360042;
-    --bb-fuchsia-1600: #1d0023;
-    --bb-magenta-100: #fff5f8;
-    --bb-magenta-200: #ffe8f0;
-    --bb-magenta-300: #ffd5e3;
-    --bb-magenta-400: #ffb9d0;
-    --bb-magenta-500: #ff98bb;
-    --bb-magenta-600: #ff709f;
-    --bb-magenta-700: #ff4885;
-    --bb-magenta-800: #f02d6e;
-    --bb-magenta-900: #d92361;
-    --bb-magenta-1000: #ba1650;
-    --bb-magenta-1100: #a3053e;
-    --bb-magenta-1200: #880033;
-    --bb-magenta-1300: #6f0028;
-    --bb-magenta-1400: #56001e;
-    --bb-magenta-1500: #400016;
-    --bb-magenta-1600: #23000c;
-    --bb-pink-100: #fff6fc;
-    --bb-pink-200: #ffe8f7;
-    --bb-pink-300: #ffd3f0;
-    --bb-pink-400: #ffb5e6;
-    --bb-pink-500: #ff94db;
-    --bb-pink-600: #ff67cc;
-    --bb-pink-700: #f24cb8;
-    --bb-pink-800: #e434a3;
-    --bb-pink-900: #ce2a92;
-    --bb-pink-1000: #b01f7b;
-    --bb-pink-1100: #981668;
-    --bb-pink-1200: #800c55;
-    --bb-pink-1300: #690344;
-    --bb-pink-1400: #530035;
-    --bb-pink-1500: #3e0027;
-    --bb-pink-1600: #210015;
-    --bb-turquoise-100: #eefbfb;
-    --bb-turquoise-200: #d1f5f5;
-    --bb-turquoise-300: #a9eced;
-    --bb-turquoise-400: #6fdde4;
-    --bb-turquoise-500: #27cad8;
-    --bb-turquoise-600: #0fb1c0;
-    --bb-turquoise-700: #0c9eab;
-    --bb-turquoise-800: #0a8d99;
-    --bb-turquoise-900: #087e89;
-    --bb-turquoise-1000: #056b74;
-    --bb-turquoise-1100: #035a62;
-    --bb-turquoise-1200: #014a51;
-    --bb-turquoise-1300: #003b41;
-    --bb-turquoise-1400: #002c31;
-    --bb-turquoise-1500: #002023;
-    --bb-turquoise-1600: #000f11;
-    --bb-brown-100: #fcf7f2;
-    --bb-brown-200: #f7eee1;
-    --bb-brown-300: #efddc3;
-    --bb-brown-400: #e5c89d;
-    --bb-brown-500: #d6b17b;
-    --bb-brown-600: #be9b68;
-    --bb-brown-700: #ab8a5a;
-    --bb-brown-800: #9a7b4d;
-    --bb-brown-900: #8b6d42;
-    --bb-brown-1000: #775b32;
-    --bb-brown-1100: #674c23;
-    --bb-brown-1200: #583d15;
-    --bb-brown-1300: #463111;
-    --bb-brown-1400: #34250d;
-    --bb-brown-1500: #261a09;
-    --bb-brown-1600: #100c04;
-    --bb-silver-100: #f7f7f7;
-    --bb-silver-200: #efefef;
-    --bb-silver-300: #dfdfdf;
-    --bb-silver-400: #cccccc;
-    --bb-silver-500: #b7b7b7;
-    --bb-silver-600: #a0a0a0;
-    --bb-silver-700: #8f8f8f;
-    --bb-silver-800: #808080;
-    --bb-silver-900: #727272;
-    --bb-silver-1000: #606060;
-    --bb-silver-1100: #515151;
-    --bb-silver-1200: #424242;
-    --bb-silver-1300: #343434;
-    --bb-silver-1400: #272727;
-    --bb-silver-1500: #1c1c1c;
-    --bb-silver-1600: #0c0c0c;
-    --bb-cinnamon-100: #fdf7f3;
-    --bb-cinnamon-200: #f9ece5;
-    --bb-cinnamon-300: #f4dacb;
-    --bb-cinnamon-400: #edc4ac;
-    --bb-cinnamon-500: #e5aa88;
-    --bb-cinnamon-600: #d4916c;
-    --bb-cinnamon-700: #c67e58;
-    --bb-cinnamon-800: #b86d46;
-    --bb-cinnamon-900: #aa5e38;
-    --bb-cinnamon-1000: #934d2b;
-    --bb-cinnamon-1100: #803e20;
-    --bb-cinnamon-1200: #6e3015;
-    --bb-cinnamon-1300: #5c230b;
-    --bb-cinnamon-1400: #481906;
-    --bb-cinnamon-1500: #341204;
-    --bb-cinnamon-1600: #180802;
 
     /* Exported web token aliases */
     --bb-color__border__base: var(--bb-border-base);
@@ -417,6 +260,7 @@
     --font-mono:
       ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco, Consolas,
       "Liberation Mono", "Courier New", monospace;
+    --bb-font-mono: var(--font-mono);
 
     --bb-text-display-large-font-family:
       var(--font-tiktok-sans-condensed), var(--font-sans);
@@ -443,7 +287,7 @@
        weight, letter spacing, and casing. */
     --bb-text-heading-hero-font-size: 64px;
     --bb-text-heading-hero-line-height: 0.921875;
-    --bb-text-heading-section-font-size: 48px;
+    --bb-text-heading-section-font-size: 42px;
     --bb-text-heading-section-line-height: 1;
     --bb-text-heading-subsection-font-size: 30px;
     --bb-text-heading-subsection-line-height: 1.2;
@@ -466,41 +310,44 @@
     /* Core semantic RGB tokens (Tailwind-friendly) */
     --bg: 255 255 255;
     /* bb background/base */
-    --surface: 248 248 248;
+    --surface: 247 245 242;
     /* bb background/subtle */
-    --surface-2: 243 243 243;
+    --surface-2: 255 255 255;
     /* bb background/raised */
-    --border: 218 218 218;
+    --border: 211 206 201;
     /* bb border/base */
-    --border-strong: 143 143 143;
+    --border-strong: 140 130 121;
     /* bb border/bold */
 
-    --text: 19 19 19;
-    --text-article: 19 19 19;
-    /* bb gray-900 */
-    --text-muted: 113 113 113;
+    --text: 30 25 25;
+    --text-article: 30 25 25;
+    /* bb Graphite */
+    --text-muted: 115 108 100;
     /* bb text/subtle */
-    --text-subtle: 143 143 143;
+    --text-subtle: 115 108 100;
     /* bb border/bold */
 
     /* Brand */
-    --brand: 5 131 78; /* bb green-900 */
-    --brand-hover: 3 110 69; /* bb green-1000 */
-    --on-brand: 255 255 255;
+    --brand: 35 50 7; /* bb Olive */
+    --brand-hover: 29 41 6; /* bb Olive hover */
+    --on-brand: 247 245 242;
     /* bb white */
-    --primary: 5 131 78;
-    /* bb green-900 */
-    --primary-hover: 3 110 69;
-    /* bb green-1000 */
-    --on-primary: 255 255 255;
+    --primary: 35 50 7;
+    /* bb Olive */
+    --primary-hover: 29 41 6;
+    --primary-active: 23 33 5;
+    /* bb Olive hover */
+    --on-primary: 247 245 242;
     /* bb white */
 
-    /* Status (danger added properly) */
-    --danger: 255 81 61;
-    /* bb red-700 */
-    --ring: 5 131 78;
-    /* bb green-900 */
-    --manila: var(--bb-orange-200);
+    /* Accent and semantic status aliases. */
+    --accent: 165 255 0;
+    --success: 35 50 7;
+    --warning: 155 100 0;
+    --danger: 155 0 50;
+    /* bb Crimson */
+    --ring: 35 50 7;
+    /* bb Olive */
 
     /* Backwards-compatible aliases (keep your current API) */
     --bg-1: rgb(var(--bg));
@@ -509,13 +356,13 @@
     --text-primary: var(--font-primary);
     --text-secondary: rgb(var(--text-muted));
     --text-body: var(--bb-text-body);
-    --accent-grey: var(--bb-gray-500);
-    --accent-blue: var(--bb-brand);
-    --accent-orange: var(--bb-orange-600);
-    --accent-green: var(--bb-green-700);
-    --accent-purple: var(--bb-purple-800);
-    --accent-red: var(--bb-red-700);
-    --hero-demo-user-bubble: var(--bb-blue-200);
+    --accent-grey: var(--bb-gray-600);
+    --accent-blue: var(--bb-ocean);
+    --accent-orange: var(--bb-rust);
+    --accent-green: var(--bb-olive);
+    --accent-purple: var(--bb-plum);
+    --accent-red: var(--bb-crimson);
+    --hero-demo-user-bubble: var(--bb-cloud-soft);
     --border-color: rgb(var(--border) / 0.9);
     --site-nav-bar-height: 80px;
     --site-nav-height: var(--site-nav-bar-height);
@@ -535,7 +382,7 @@
     :root {
       --bb-text-heading-hero-font-size: 52px;
       --bb-text-heading-hero-line-height: 0.9615;
-      --bb-text-heading-section-font-size: 42px;
+      --bb-text-heading-section-font-size: 36px;
       --bb-text-heading-section-line-height: 1.0476;
       --bb-text-heading-subsection-font-size: 28px;
       --bb-text-heading-subsection-line-height: 1.2143;
@@ -552,9 +399,9 @@
       --bb-text-display-large-font-size: 48px;
       --bb-text-display-medium-font-size: 40px;
       --bb-text-display-small-font-size: 32px;
-      --bb-text-heading-hero-font-size: 40px;
+      --bb-text-heading-hero-font-size: clamp(52px, calc(14vw - 4px), 60px);
       --bb-text-heading-hero-line-height: 0.95;
-      --bb-text-heading-section-font-size: 36px;
+      --bb-text-heading-section-font-size: 30px;
       --bb-text-heading-section-line-height: 1.0556;
       --bb-text-heading-subsection-font-size: 26px;
       --bb-text-heading-subsection-line-height: 1.2308;
@@ -829,7 +676,7 @@ article strong {
 article a {
   font-weight: 400;
   border-color: transparent;
-  color: var(--bb-brand-forest-green) !important;
+  color: var(--bb-olive) !important;
   text-decoration: underline;
   text-decoration-color: currentColor;
   text-decoration-thickness: 2px;
@@ -840,7 +687,7 @@ article a {
 }
 
 article a:hover {
-  color: var(--bb-celery-1500) !important;
+  color: var(--bb-olive-1500) !important;
 }
 
 article blockquote {
@@ -884,6 +731,11 @@ article blockquote p {
   min-height: 2.25rem;
   padding: 0.45rem 0.75rem;
   border-radius: 0;
+}
+
+.nav-shell .desktop-nav-link:focus-visible {
+  outline: 2px solid rgb(var(--ring));
+  outline-offset: 2px;
 }
 
 .nav-shell .desktop-nav-link:hover,
@@ -1136,12 +988,12 @@ main ul article > a {
   padding-top: 0;
 }
 
-.page-section--forest-green {
-  background: var(--bb-brand-forest-green);
+.page-section--olive {
+  background: var(--bb-olive);
 }
 
 .page-section--dark {
-  background: var(--bb-gray-900);
+  background: var(--bb-graphite);
 }
 
 .page-section > .container,

@@ -1,0 +1,52 @@
+---
+import PurchaseApprovalsDemo from "@components/demos/PurchaseApprovalsDemo.astro";
+interface Props {
+  preview: {
+    layout?: "request" | "activity";
+    phone?: "teams" | "form" | "none";
+    form?: { title: string; fields: { label: string; value: string }[] };
+    agentName: string;
+    request: string;
+    response: string;
+    activity: string;
+  };
+  channels: string[];
+  operationsCenter?: boolean;
+}
+const { preview, channels } = Astro.props;
+const phone =
+  preview.phone ?? (channels.includes("Microsoft Teams") ? "teams" : "none");
+const layout = preview.layout ?? "activity";
+const phoneDescription =
+  phone === "teams"
+    ? " with a mobile Microsoft Teams conversation"
+    : phone === "form"
+      ? " with a mobile request form"
+      : "";
+---
+
+<figure class="template-preview">
+  <div
+    class="preview-request"
+    role="img"
+    aria-label={`${layout === "request" ? "Request inbox" : "Agent activity"}${phoneDescription} for ${preview.agentName}. ${preview.request} ${preview.response}`}
+  >
+    <PurchaseApprovalsDemo
+      templatePreview={preview}
+      templateTitle={preview.agentName.replace(/ agent$/i, "")}
+      templateLayout={layout}
+      templatePhone={phone}
+      templateForm={preview.form}
+    />
+  </div>
+</figure>
+<style>
+  .template-preview {
+    margin: 0;
+    min-width: 0;
+  }
+  .preview-request {
+    background: var(--bb-olive);
+    border: 1px solid var(--border-color);
+  }
+</style>

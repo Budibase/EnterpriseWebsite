@@ -102,19 +102,19 @@ Let’s jump in with a summary of what each platform offers.
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 
   .comparison-table .tag {
     margin: 0.1rem;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -245,7 +245,7 @@ Let’s break it down.
 
 ### User personas
 
-Of the two platforms, Retool is more explicitly optimized for professional developers. 
+Of the two platforms, Retool is more explicitly optimized for professional developers.
 
 While it’s undoubtedly one of the most popular solutions in its class for expediting internal tool development, some users complain that we need custom code for a relatively large number of common tasks compared to some of its competitors.
 
@@ -257,7 +257,7 @@ You might also like our round-up of the top [Retool alternatives](https://budiba
 
 Superblocks casts a slightly wider net in terms of target users. While it’s also an attractive offering for engineers, Superblocks is equally suited for a range of technical users, including designers and data scientists.
 
-So, in addition to front-end JavaScript, we can add custom React or server-side Python and NodeJS. 
+So, in addition to front-end JavaScript, we can add custom React or server-side Python and NodeJS.
 
 Design experiences are very similar in Superblocks in the sense that it also offers a grid-based drag-and-drop UI. However, this feels a little bit more imprecise than in Retool. On top of this, Superblocks only offers a few dozen native UI components, whereas Retool ships with 100+.
 
@@ -267,7 +267,7 @@ So, to achieve similar results, users might need to have a slightly higher level
 
 Retool and Superblocks are very similar in terms of their ideal use cases.
 
-Retool is tightly focused on internal tooling. For instance, admin panels, approval apps, workflow tools, dashboards, and other basic UIs for interacting with organizational data assets. 
+Retool is tightly focused on internal tooling. For instance, admin panels, approval apps, workflow tools, dashboards, and other basic UIs for interacting with organizational data assets.
 
 This is centered on a wide range of integration options for databases, API standards, and back-office tools. Retool also offers hundreds of templates for common internal tool use cases, making it relatively easy to get up and running.
 
@@ -285,7 +285,7 @@ On that note, let’s think about pricing in a little bit more detail. Like most
 
 However, pricing comparisons are always a little bit more complicated than they appear, with each vendor imposing extra limitations in terms of usage and features across their pricing tiers.
 
-Retool’s free tier enables us to build unlimited apps for up to five users, 500 monthly workflow runs, and 5GB of stored data. 
+Retool’s free tier enables us to build unlimited apps for up to five users, 500 monthly workflow runs, and 5GB of stored data.
 
 For unlimited cloud users and up to 5,000 workflow runs, we can upgrade to the Team or Business tier, billing at $10 per standard user and $5 per end user or $50 per standard user and $15 per end user, respectively.
 
@@ -295,7 +295,7 @@ Feature restrictions also heavily push users to higher pricing tiers. For instan
 
 ![Superblocks vs Retool](https://res.cloudinary.com/daog6scxm/image/upload/v1715251504/cms/superblocks-vs-retool/Superblocks_vs_Retool_1_xhhibc.webp "Superblocks vs Retool")
 
-Superblocks also offers a working free tier, but this is somewhat more restrictive, limiting us to five users and 100 monthly automation runs. 
+Superblocks also offers a working free tier, but this is somewhat more restrictive, limiting us to five users and 100 monthly automation runs.
 
 Besides this, their pricing model is a little bit simpler. There’s only one fixed pricing tier, Pro, billing at $49 per creator and $15 for end users. This is also limited to $1,000 automation runs per month, with an additional fee per 10,000 extra users.
 
@@ -313,9 +313,9 @@ We can break this down into a few key categories.
 
 ### Data
 
-First up, let’s think about what each offers in terms of data connectivity. 
+First up, let’s think about what each offers in terms of data connectivity.
 
-Retool’s internal database is built on top of PostgreSQL. This is managed by Retool for cloud users - but if you self-host, you’ll have to provide your own Postgres DB. 
+Retool’s internal database is built on top of PostgreSQL. This is managed by Retool for cloud users - but if you self-host, you’ll have to provide your own Postgres DB.
 
 This is a powerful solution, as we can combine spreadsheet-like interactions in end-user apps with custom queries on internally stored data. It also makes it relatively easy to migrate data to Retool.
 
@@ -363,7 +363,7 @@ Again, user experiences are generally quite developer-centric, assuming a certai
 
 ### Automation
 
-One area where Superblocks and Retool differ slightly more is building automations. 
+One area where Superblocks and Retool differ slightly more is building automations.
 
 In Retool, all automations are contained within the Workflows portion of the platform. This is a powerful flowchart editor where we can create relatively complex automation rules with custom code, branching logic, and looping actions diagrammatically.
 

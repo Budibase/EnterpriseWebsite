@@ -545,27 +545,27 @@ const builderSections = [
 <style>
   .app-demo {
     color-scheme: light;
-    --app-demo-bg-strong: var(--bb-gray-900);
+    --app-demo-bg-strong: var(--bb-graphite);
     --app-demo-bg-deep: var(--bb-gray-1000);
-    --app-demo-border: var(--bb-gray-800);
-    --app-demo-border-soft: var(--bb-gray-700);
+    --app-demo-border: var(--bb-gray-900);
+    --app-demo-border-soft: var(--bb-gray-750);
     --app-demo-workspace-bg: var(--bb-gray-100);
     --app-demo-surface: var(--bb-gray-50);
     --app-demo-surface-strong: var(--bb-gray-50);
-    --app-demo-slate-strong: var(--bb-gray-900);
-    --app-demo-slate-light: var(--bb-gray-700);
-    --app-demo-grey-900: var(--bb-gray-75);
-    --app-demo-grey-700: var(--bb-gray-500);
+    --app-demo-slate-strong: var(--bb-graphite);
+    --app-demo-slate-light: var(--bb-gray-750);
+    --app-demo-grey-900: var(--bb-sand);
+    --app-demo-grey-700: var(--bb-gray-450);
     --app-demo-grey-600: var(--bb-gray-600);
-    --app-demo-grey-400: var(--bb-gray-700);
-    --app-demo-cloud-light: var(--bb-gray-300);
-    --app-demo-nav-bg: var(--bb-brand-forest-green);
+    --app-demo-grey-400: var(--bb-gray-750);
+    --app-demo-cloud-light: var(--bb-gray-200);
+    --app-demo-nav-bg: var(--bb-olive);
     --app-demo-nav-active: var(--bb-background-dark-raised);
-    --app-demo-pill-high: var(--bb-red-700);
-    --app-demo-pill-medium: var(--bb-orange-700);
-    --app-demo-pill-low: var(--bb-blue-700);
-    --app-demo-clay-strong: var(--bb-orange-1000);
-    --app-demo-submit: var(--bb-blue-1000);
+    --app-demo-pill-high: var(--bb-crimson);
+    --app-demo-pill-medium: var(--bb-tangerine);
+    --app-demo-pill-low: var(--bb-cloud);
+    --app-demo-clay-strong: var(--bb-rust);
+    --app-demo-submit: var(--bb-navy);
     --app-demo-backdrop-image: none;
     font-family: var(--font-sans);
   }
@@ -585,7 +585,7 @@ const builderSections = [
     border-radius: 6px;
     background: var(--app-demo-bg-strong);
     box-shadow: 0 10px 30px
-      color-mix(in srgb, var(--bb-gray-900) 25%, transparent);
+      color-mix(in srgb, var(--bb-graphite) 25%, transparent);
   }
 
   .app-demo-screen {
@@ -647,7 +647,7 @@ const builderSections = [
     flex-shrink: 0;
     border: 0;
     border-radius: 100px;
-    background: var(--app-demo-grey-900);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-1000);
     font-family: var(--font-sans);
     font-size: 14px;
@@ -797,7 +797,7 @@ const builderSections = [
   }
 
   .app-demo-table-header {
-    color: var(--app-demo-grey-700);
+    color: var(--app-demo-grey-600);
     font-size: 13px;
     font-weight: 500;
     line-height: normal;
@@ -832,7 +832,7 @@ const builderSections = [
     align-items: center;
     width: 74px;
     border-radius: 13px;
-    color: var(--app-demo-grey-900);
+    color: var(--bb-graphite);
     font-size: 13px;
     font-weight: 500;
     line-height: 17px;
@@ -840,6 +840,7 @@ const builderSections = [
   }
 
   .app-demo-priority-pill.is-high {
+    color: var(--bb-white);
     background: var(--app-demo-pill-high);
   }
 
@@ -877,7 +878,7 @@ const builderSections = [
 
   .app-demo-builder-section-heading {
     margin: 0;
-    color: var(--app-demo-grey-700);
+    color: var(--app-demo-grey-700) !important;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
@@ -1014,9 +1015,8 @@ const builderSections = [
   .app-demo-publish:focus-visible,
   .app-demo-workspace-link:focus-visible,
   .app-demo-support-submit:focus-visible {
-    outline: 0;
-    box-shadow: 0 0 0 2px
-      color-mix(in srgb, var(--bb-brand-forest-green) 45%, transparent);
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
 
   @media (max-width: 1100px) {

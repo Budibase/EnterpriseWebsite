@@ -7,7 +7,7 @@ import SAPLogo from "@assets/logos/SAP.svg?url";
 import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
 import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
 import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
-import PurchaseApprovalsDemo from "./PurchaseApprovalsDemo.astro";
+import PurchaseApprovalsDemo from "@components/demos/PurchaseApprovalsDemo.astro";
 import FactoryInspectionsDemo from "./FactoryInspectionsDemo.astro";
 import IncidentManagementDemo from "./IncidentManagementDemo.astro";
 import KnowledgeAssistantDemo from "./KnowledgeAssistantDemo.astro";
@@ -46,7 +46,7 @@ const solutions: readonly Solution[] = [
   {
     id: "purchase-approvals",
     label: "Purchase approvals",
-    color: "var(--bb-celery-600)",
+    color: "var(--bb-olive-800)",
     overview:
       "Employees submit purchase requests with the items, supplier and cost. Requests are automatically routed to the right approvers based on your approval rules, with employees notified when more information is needed or a decision is made. Approved requests can then be passed to your purchasing system to create the PO.",
     assets: [
@@ -87,7 +87,7 @@ const solutions: readonly Solution[] = [
   {
     id: "factory-inspections",
     label: "Factory inspections",
-    color: "var(--bb-yellow-600)",
+    color: "var(--bb-gold)",
     overview:
       "Operators complete scheduled inspections with readings, photos and notes at the point of work. Failed checks create follow-up actions automatically, notify the right owner and remain visible until corrective work is complete.",
     assets: [
@@ -117,7 +117,7 @@ const solutions: readonly Solution[] = [
   {
     id: "incident-management",
     label: "Incident management",
-    color: "var(--bb-cyan-600)",
+    color: "var(--bb-ocean)",
     overview:
       "Teams report operational incidents in one place. Budibase captures severity and impact, routes each incident to the right responder and keeps investigation, remediation and closure visible to everyone involved.",
     assets: [
@@ -147,7 +147,7 @@ const solutions: readonly Solution[] = [
   {
     id: "asset-tracking",
     label: "Asset tracking",
-    color: "var(--bb-purple-600)",
+    color: "var(--bb-plum)",
     overview:
       "Give teams an asset register connected to your existing PostgreSQL database. Updates to equipment, ownership and location stay in the source data, with IT controlling access and automated reminders helping keep records accurate.",
     assets: [
@@ -172,7 +172,7 @@ const solutions: readonly Solution[] = [
   {
     id: "knowledge-assistant",
     label: "Knowledge assistant",
-    color: "var(--bb-orange-600)",
+    color: "var(--bb-rust)",
     overview:
       "Employees ask operational questions in plain language. The assistant searches approved company sources, returns grounded answers and routes uncertain or sensitive requests to a person for review.",
     assets: [
@@ -326,14 +326,14 @@ const sectionId = "homepage-operations-solutions";
 
                     <div class="operations-solutions-split__action-module">
                       <Button
-                        label="Start with this operation"
+                        label="Start with this process"
                         ariaLabel={`Use ${solution.label}`}
                         url="https://account.budibase.app/register"
-                        variant="primary"
+                        variant="lime"
                         size="medium"
                         icon="ArrowRight"
                         iconPosition="end"
-                        class="operations-solutions-split__action"
+                        class="operations-solutions-split__action button--cut-corner"
                       />
                     </div>
                   </div>
@@ -431,7 +431,7 @@ const sectionId = "homepage-operations-solutions";
   .operations-solutions-split__tab:focus-visible {
     position: relative;
     z-index: 3;
-    outline: 2px solid var(--bb-brand-forest-green);
+    outline: 2px solid var(--bb-olive);
     outline-offset: 2px;
   }
   .operations-solutions-split__tab.is-active {
@@ -590,7 +590,7 @@ const sectionId = "homepage-operations-solutions";
   .operations-solutions-split__demo-filler {
     width: 100%;
     aspect-ratio: 4 / 3;
-    background: var(--bb-brand-forest-green);
+    background: var(--bb-olive);
   }
 
   @media (max-width: 63.999rem) {

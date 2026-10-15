@@ -208,19 +208,19 @@ Here’s a summary of what each platform offers.
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 
   .comparison-table .tag {
     margin: 0.1rem;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -355,7 +355,7 @@ We also offer extensive workflow automation capabilities, including third-party 
 
 #### Pricing
 
-Budibase offers highly scalable pricing for teams of all sizes. You can build as many apps as you need for up to five authenticated users in the cloud or twenty if you self host - for free. 
+Budibase offers highly scalable pricing for teams of all sizes. You can build as many apps as you need for up to five authenticated users in the cloud or twenty if you self host - for free.
 
 Premium licenses bill at $5 per month for end users and $50 for app creators. This also introduces custom branding, reusable code snippets, Budibase AI, and more.
 
@@ -438,7 +438,7 @@ One of the areas where FreshDesk is strongest is UX. It’s an intuitive, modern
 
 Like Zendesk, it requires minimal configuration. Rather, it’s aimed at teams that need a working solution out-of-the-box.
 
-FreshDesk also offers great capabilities for teams that need to automate service workflows or integrate with their wider tool stack without necessarily having the IT resources to achieve this in more advanced platforms. 
+FreshDesk also offers great capabilities for teams that need to automate service workflows or integrate with their wider tool stack without necessarily having the IT resources to achieve this in more advanced platforms.
 
 #### Cons
 
@@ -481,13 +481,14 @@ Salesforce is also a wholly cloud-based solution, so it doesn’t support self-h
 
 #### Pricing
 
-Unlike some of the other platforms we’ve seen, there’s no free version of Service Cloud. Instead, paid licenses start from $25 per month. 
+Unlike some of the other platforms we’ve seen, there’s no free version of Service Cloud. Instead, paid licenses start from $25 per month.
 
-Novelly, Service Cloud offers three distinct enterprise tiers with fixed prices, ranging from $165 to $500 per user per month. 
+Novelly, Service Cloud offers three distinct enterprise tiers with fixed prices, ranging from $165 to $500 per user per month.
 
 We’ll need the most expensive of these to access the full complement of AI features as well as Salesforce Data Cloud.
 
 ### 6. Zoho Desk
+
 ![Zoho Desk](https://res.cloudinary.com/daog6scxm/image/upload/v1738939946/cms/alternatives/Zoho_Desk_k7c0rf.webp "Zoho Desk")
 
 (Zoho Website)

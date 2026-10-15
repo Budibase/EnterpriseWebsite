@@ -8,9 +8,16 @@ import { ClientRouter } from "astro:transitions";
 type NavTheme =
   "default" | "surface" | "brand-dark" | "video-overlay" | "immersive-overlay";
 
-const { enableTransitions = false, navTheme = "default" } = Astro.props as {
+const {
+  enableTransitions = false,
+  navTheme = "default",
+  navLogoSrc,
+  navDemoVariant,
+} = Astro.props as {
   enableTransitions?: boolean;
   navTheme?: NavTheme;
+  navLogoSrc?: string;
+  navDemoVariant?: "lime";
 };
 ---
 
@@ -28,7 +35,11 @@ const { enableTransitions = false, navTheme = "default" } = Astro.props as {
         <div id="hero" class="opacity: 1; transform: none;">
           <div class="text-base">
             <div class="relative flex min-h-screen flex-col">
-              <Nav theme={navTheme} />
+              <Nav
+                theme={navTheme}
+                logoSrc={navLogoSrc}
+                demoVariant={navDemoVariant}
+              />
               <div><slot /></div>
               <Footer />
             </div>

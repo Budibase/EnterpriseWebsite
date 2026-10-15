@@ -2,588 +2,415 @@ import type { PlatformLandingContent } from "./landingPageTypes";
 
 export const platformLandingPages = {
   "ai-models": {
-    title: "AI models — Budibase AI and bring your own models",
+    title: "AI models — Bring your own model or use Budibase AI",
     metaDescription:
-      "Connect Budibase AI or bring your own models to build agents, generate data, run agents in automations, and generate code with Budibase.",
+      "Connect Anthropic, Gemini, OpenAI, or Mistral directly, access more models through OpenRouter and Groq, or use Budibase AI. Power agents, automations, code, and data.",
     proof: "none",
     hero: {
       badge: "AI models",
-      headline: "Your choice of AI. More ways to build.",
+      headline: "Connect AI models to power your processes",
       subtitle:
-        "Use Budibase AI, our packaged model customized and evaluated for reliable results, or bring your own models. Give IT one foundation for building agents, generating data, running automations, and writing code.",
+        "Bring your own AI model or use Budibase AI. Put it to work across agents, automations, code, and data, with model choice in IT’s hands.",
       imageAlt:
-        "Budibase AI and your own models connect to Budibase to power agents, data generation, automations, and code generation",
+        "Bring your own model or use Budibase AI to power operational software",
     },
     features: [
       {
-        headline: "Budibase AI, customized for operational work",
-        body: "Budibase AI is our packaged model with additional customization for work in Budibase. Extensive testing and evaluation focus on consistent, reliable results across the tasks your team needs to deliver.",
+        headline: "Bring your own model",
+        body: "Connect directly to models from Anthropic, Gemini, OpenAI, and Mistral. Access more models through OpenRouter and Groq, using your own provider credentials.",
         bullets: [
           {
-            icon: "Sparkle",
-            text: "Start with a packaged model customized for the Budibase platform.",
+            icon: "PlugsConnected",
+            text: "Use the providers and models that fit your organization.",
           },
           {
-            icon: "CheckCircle",
-            text: "Use AI backed by extensive testing and evaluation.",
-          },
-          {
-            icon: "Wrench",
-            text: "Focus on the agents, data, and workflows your organization needs.",
+            icon: "Keyhole",
+            text: "Keep model choice aligned with your architecture and policies.",
           },
         ],
       },
       {
-        headline: "Bring the models that fit your organization",
-        body: "Connect your own model providers with your credentials and model configuration. Keep model selection with IT, aligned with your architecture, policies, and the work each model needs to perform.",
+        headline: "Or use Budibase AI",
+        body: "We test models, refine instructions, and evaluate results to give you the best possible AI experience in Budibase. Spend less time configuring AI and more time delivering the software your organization needs.",
         bullets: [
           {
-            icon: "PlugsConnected",
-            text: "Connect providers such as OpenAI, Anthropic, Google, and Mistral.",
+            icon: "Sparkle",
+            text: "Models tested for work in Budibase.",
           },
           {
-            icon: "Keyhole",
-            text: "Use custom provider connections for compatible model endpoints.",
-          },
-          {
-            icon: "Robot",
-            text: "Select a connected model when configuring each agent.",
+            icon: "Wrench",
+            text: "Instructions refined for the tasks you need to deliver.",
           },
         ],
       },
     ],
     cardCluster: {
-      title: "Connect a model. Put it to work.",
+      title: "One model. More ways to put it to work.",
       description:
-        "Use connected models across the software IT builds for business operations.",
-      columns: 4,
+        "Use your AI model across the software IT builds for business operations.",
+      columns: 3,
       responsiveLayout: "stack",
-      background: "surface",
       cards: [
         {
-          number: "01",
-          title: "Build agents",
+          title: "Power your agents",
           description:
-            "Create agents with instructions, knowledge, and tools to handle operational requests with human oversight.",
+            "Give agents a model to reason over requests, use connected tools, and act with human oversight.",
           link: "/product/agents/",
         },
         {
-          number: "02",
-          title: "Generate data",
+          title: "Add AI to automations",
           description:
-            "Describe what you need to generate Budibase tables, fields, and sample data for your workspace.",
-          link: "/product/data/",
-        },
-        {
-          number: "03",
-          title: "Use agents in automations",
-          description:
-            "Add an Agent node to an automation, pass in workflow context, and use its output in subsequent steps.",
+            "Summarize, classify, and generate content with AI steps in your existing workflows.",
           link: "/product/automations/",
         },
         {
-          number: "04",
           title: "Generate code",
           description:
-            "Describe the logic you need to generate JavaScript for bindings and automation steps. Review and adapt it before use.",
-          link: "/product/apps/",
+            "Describe the logic you need. Generate JavaScript, then review and adapt it for your apps and automations.",
+          link: "/product/functions/",
         },
       ],
     },
   },
   data: {
-    title: "Data tables",
+    title: "Data tables — SQL and BudibaseDB",
     metaDescription:
-      "Manage structured operational data that powers AI agents, workflows, and internal apps.",
+      "Connect, sync and view SQL data in Budibase, generate CRUD APIs and tools, or build tables with BudibaseDB. Control table access, secured views and dev/prod data.",
+    proof: "none",
     hero: {
-      headline: "Structure data for every operation",
+      headline: "Data to power your processes",
       subtitle:
-        "Store new data or connect PostgreSQL, MySQL, Google Sheets, and more. Work with data in a spreadsheet-style interface, create views, and run AI on rows.",
-      imageAlt: "Structured operational data in Budibase tables",
+        "Bring your SQL data into Budibase or build a table from scratch with BudibaseDB. Put it to work across apps, agents and automations, with control over access, views and data environments.",
+      imageAlt:
+        "Budibase data table showing operational access request records",
     },
     features: [
       {
-        headline: "Keep operational data clean and accessible",
-        body: "Give teams a familiar interface for managing the structured data behind apps, workflows, and agents.",
-        bullets: [
-          {
-            icon: "Table",
-            text: "Create built-in tables for operational records and requests.",
-          },
-          {
-            icon: "Browser",
-            text: "Work quickly through a familiar spreadsheet-style interface.",
-          },
-          {
-            icon: "CheckCircle",
-            text: "Apply validation rules that keep incoming data dependable.",
-          },
-        ],
+        headline: "First-class SQL support",
+        body: "Connect, sync and view your SQL data inside Budibase. Generate CRUD APIs and tools for apps, agents and automations, while keeping your existing database at the center.",
+        bullets: [],
       },
       {
-        headline: "Connect data without disrupting your stack",
-        body: "Use built-in tables or work directly with external databases while retaining the controls each operation needs.",
-        bullets: [
-          {
-            icon: "PlugsConnected",
-            text: "Connect PostgreSQL, MySQL, and other existing data sources.",
-          },
-          {
-            icon: "Code",
-            text: "Build queries visually or use SQL for flexible retrieval.",
-          },
-          {
-            icon: "ShieldCheck",
-            text: "Control table access with roles and review changes through audit history.",
-          },
-        ],
+        headline: "Build tables from scratch with BudibaseDB",
+        body: "Start with BudibaseDB when a process needs a new data table. Define fields, add records and build the data structure your apps, agents and automations need.",
+        bullets: [],
       },
     ],
     cardCluster: {
-      title: "Build a reliable data foundation",
+      title: "Your data. The right access.",
       description:
-        "Give every operational app, workflow, and agent structured data it can depend on.",
+        "Control who can use each table, what data they can see, and which environment they work in.",
+      columns: 3,
+      responsiveLayout: "stack",
       cards: [
         {
-          title: "Built-in database",
+          title: "Control table access",
           description:
-            "Create structured tables without provisioning another data service.",
+            "Use role-based access control to decide which users can access each table.",
         },
         {
-          title: "External data sources",
+          title: "Create secured views",
           description:
-            "Use existing databases without migrating operational data.",
+            "Create filtered views of your data and secure them by role, so users see the rows and fields they need.",
         },
         {
-          title: "Secure data access",
+          title: "Separate dev and prod data",
           description:
-            "Apply roles, validation, and audit history around critical records.",
+            "Build and test with development data, then run your processes against production data using separate data environments.",
         },
       ],
     },
   },
   requests: {
-    title: "Requests and Approvals",
+    title: "Human approvals — Keep people in control with Budibase",
     metaDescription:
-      "Collect, route, approve, and resolve operational requests with connected Budibase apps, agents, and automations.",
+      "Define when human approval is required, who approves, where they approve, and how long they have. Use tool data, notify Teams and Slack, and manage requests in the operations center.",
+    proof: "none",
     hero: {
-      headline: "Make every request easier to resolve",
+      headline: "Keep people in control of your processes",
       subtitle:
-        "Give employees a clear way to ask for help, then route, approve, and resolve each request through one connected operational workflow.",
-      imageAlt: "Operational request intake and approval interface",
+        "Define when approval is required and how it happens. Set the conditions, approvers, channels and time limits that keep your processes accountable.",
+      imageAlt:
+        "Human approval with a condition, approver, channel and time limit",
     },
     features: [
       {
-        headline: "Create one clear front door for requests",
-        body: "Replace scattered inboxes, messages, and spreadsheets with structured intake that gives teams the information they need.",
-        bullets: [
-          {
-            icon: "Browser",
-            text: "Create simple forms and apps for every request type.",
-          },
-          {
-            icon: "ChatCircle",
-            text: "Let employees submit requests through familiar channels.",
-          },
-          {
-            icon: "CheckCircle",
-            text: "Capture complete, consistent information from the start.",
-          },
-        ],
+        headline: "Define when approval is required",
+        body: "Set approval conditions around the actions that need human oversight. Use the data available to your process to decide when a person needs to review an action before it proceeds.",
+        bullets: [],
       },
       {
-        headline: "Automate approvals and next steps",
-        body: "Keep work moving with routing, decisions, and follow-up built directly into the request process.",
-        bullets: [
-          {
-            icon: "GitFork",
-            text: "Route each request using the rules that fit your operation.",
-          },
-          {
-            icon: "UserSwitch",
-            text: "Send approvals to the right owner with the right context.",
-          },
-          {
-            icon: "Lightning",
-            text: "Trigger fulfilment and notifications as soon as decisions are made.",
-          },
-        ],
+        headline: "Set the policy for every approval",
+        body: "Choose who approves, where they approve, and how long they have to make a decision. Make the approval process clear for the people responsible for it.",
+        bullets: [],
       },
     ],
     cardCluster: {
-      title: "Build request workflows for every team",
+      title: "Bring the right context to every decision",
       description:
-        "Standardise common requests while keeping each process flexible.",
+        "Connect tool data, notify approvers, and manage requests in one place.",
+      columns: 3,
+      responsiveLayout: "stack",
       cards: [
         {
-          title: "Access requests",
+          title: "Use data from tools",
           description:
-            "Collect access needs, route approvals, and record every decision.",
+            "Use data returned by tools in your approval conditions, so decisions reflect the action and its context.",
         },
         {
-          title: "Service requests",
+          title: "Notify Teams and Slack",
           description:
-            "Give employees a simple path from issue submission to resolution.",
+            "Send approval notifications to Microsoft Teams and Slack, where your approvers already work.",
         },
         {
-          title: "Purchase requests",
+          title: "Manage work in the operations center",
           description:
-            "Coordinate budgets, approvals, and purchasing from one workflow.",
+            "Manage requests and approvals in the operations center, with a clear view of the work waiting for a decision.",
         },
       ],
     },
   },
   activity: {
-    title: "Activity and Insights",
+    title: "Activity — Oversight across your Budibase workspaces",
     metaDescription:
-      "Track operational activity across Budibase workflows, agents, apps, and automations with clear, actionable visibility.",
+      "Gain oversight of every action across your Budibase workspaces. Follow agent requests in real time, surface errors, understand usage, and see totals at a glance.",
+    proof: "none",
     hero: {
-      headline: "See the work behind every operation",
+      headline: "See every action across your workspaces",
       subtitle:
-        "Track requests, decisions, agent actions, and automated steps so teams know what happened, what is moving, and what needs attention.",
-      imageAlt: "Operational activity and insights dashboard",
+        "Keep oversight of the work happening in Budibase. Review actions, follow live agent requests, and understand usage across your workspaces.",
+      imageAlt:
+        "Budibase activity overview showing actions, requests and errors",
     },
     features: [
       {
-        headline: "Bring operational activity into view",
-        body: "Give teams a shared understanding of work across connected apps, agents, and automations.",
-        bullets: [
-          {
-            icon: "Gauge",
-            text: "Follow work as it moves through each operational stage.",
-          },
-          {
-            icon: "Sparkle",
-            text: "Understand the actions agents take on behalf of your teams.",
-          },
-          {
-            icon: "Lightning",
-            text: "Review automated steps and the outcomes they produce.",
-          },
-        ],
+        headline: "An overview of every action",
+        body: "Gain oversight of every single action across your workspaces. See what happened, where it happened, and its status, so IT can keep track of the processes it runs.",
+        bullets: [],
       },
       {
-        headline: "Make follow-up predictable",
-        body: "Use clear activity history to investigate issues, improve processes, and keep important work on track.",
-        bullets: [
-          {
-            icon: "Timer",
-            text: "Spot work that is waiting, delayed, or ready for attention.",
-          },
-          {
-            icon: "Path",
-            text: "Trace decisions and actions across the complete workflow.",
-          },
-          {
-            icon: "CheckCircle",
-            text: "Keep a dependable record of completed operational work.",
-          },
-        ],
+        headline: "Follow agent requests in real time",
+        body: "View live requests as users interact with agents. Follow each request and its progress to understand what your agents are doing for the teams that rely on them.",
+        bullets: [],
       },
     ],
     cardCluster: {
-      title: "Insights for the work that matters",
+      title: "Know what needs your attention",
       description:
-        "Understand activity across people, agents, and automated processes.",
+        "Surface issues, understand how Budibase is used, and keep the totals in view.",
+      columns: 3,
+      responsiveLayout: "stack",
       cards: [
         {
-          title: "Workflow activity",
+          title: "Surface errors",
           description:
-            "See requests, decisions, and status changes in one clear history.",
+            "See failed actions and errors so you can identify the work that needs investigation.",
         },
         {
-          title: "Agent activity",
+          title: "Understand usage",
           description:
-            "Review the questions, actions, and outcomes handled by agents.",
+            "Understand activity across your workspaces and see where teams are putting Budibase to work.",
         },
         {
-          title: "Audit-ready history",
+          title: "See totals at a glance",
           description:
-            "Keep an accessible record for investigation and governance.",
+            "Use stat cards to get a quick overview of action, request and error totals.",
         },
       ],
     },
   },
   apis: {
-    title: "API Explorer",
+    title: "APIs — Connect your systems with Budibase",
     metaDescription:
-      "Explore, test, and reuse API calls so Budibase apps, agents, and automations can securely act across operational systems.",
+      "Connect any REST API with API Explorer, upload API specs, or start with 100+ OpenAPI templates. Control API access, pass values with bindings, and protect secrets.",
+    proof: "none",
     hero: {
-      headline: "Connect every operational system",
+      headline: "Connect APIs to power your processes",
       subtitle:
-        "Explore, test, and reuse API calls so apps, agents, and automations can take controlled action across your stack.",
-      imageAlt: "API connection configured for an operational workflow",
+        "Connect any REST API with our simple-to-use API Explorer. Upload your API specs or start with 100+ OpenAPI templates, then put your connections to work across apps, agents and automations.",
+      imageAlt:
+        "Budibase API Explorer configuring and testing a REST API request",
     },
     features: [
       {
-        headline: "Explore and test APIs in one place",
-        body: "Configure external services through one controlled explorer before using them in operational workflows.",
-        bullets: [
-          {
-            icon: "Code",
-            text: "Build and execute REST API requests from a unified interface.",
-          },
-          {
-            icon: "Keyhole",
-            text: "Keep authentication configuration with the connection that uses it.",
-          },
-          {
-            icon: "GitFork",
-            text: "Map request inputs and response outputs into structured data.",
-          },
-        ],
+        headline: "Connect to any REST API",
+        body: "Configure and test requests in our simple-to-use API Explorer. Upload your API specs to bring endpoints into Budibase, then reuse your connections across apps, agents and automations.",
+        bullets: [],
       },
       {
-        headline: "Reuse reliable actions across the platform",
-        body: "Define an API action once, then use it wherever operational work needs the same controlled connection.",
-        bullets: [
-          {
-            icon: "Path",
-            text: "Reuse API actions across apps, automations, and agents.",
-          },
-          {
-            icon: "Lightning",
-            text: "Use webhooks to start connected operational workflows.",
-          },
-          {
-            icon: "Gauge",
-            text: "Inspect execution history when connected work needs attention.",
-          },
-        ],
+        headline: "Start with 100+ OpenAPI templates",
+        body: "Quickly connect to the tools your organization already uses. Choose from 100+ OpenAPI spec templates, add your credentials, and start using API actions in your processes.",
+        bullets: [],
       },
     ],
     cardCluster: {
-      title: "Build reusable API connections",
+      title: "Connected systems. Controlled access.",
       description:
-        "Connect external systems once and make dependable actions available across the platform.",
+        "Give your APIs the right inputs, permissions and credentials for the work they need to do.",
+      columns: 3,
+      responsiveLayout: "stack",
       cards: [
         {
-          title: "REST API connector",
+          title: "Control API access",
           description:
-            "Configure requests to the external services your operation relies on.",
+            "Use role-based access control to decide which users can access each API.",
         },
         {
-          title: "Secure credentials",
+          title: "Pass values with bindings",
           description:
-            "Centralise authentication without exposing sensitive values.",
+            "Pass values from apps, agents and automations into API requests, so each call uses the right operational context.",
         },
         {
-          title: "Reusable API actions",
+          title: "Keep secrets out of sight",
           description:
-            "Use tested integrations throughout apps, agents, and automations.",
+            "Let builders configure and use API connections without seeing the environment variables that hold credentials and other sensitive values.",
         },
       ],
     },
   },
   knowledge: {
-    title: "Knowledge",
+    title: "Knowledge — Turn your knowledge into answers with Budibase",
     metaDescription:
-      "Ground Budibase agents in trusted operational knowledge with controlled retrieval and context aligned to each agent's role.",
+      "Give agents the knowledge they need with uploaded PDFs and SharePoint content. Get started out of the box with Budibase AI and see source references in answers.",
+    proof: "none",
     hero: {
-      headline: "Give every agent the right context",
+      headline: "Turn your knowledge into answers",
       subtitle:
-        "Connect trusted knowledge to agents so they can answer questions and support operational work with relevant context.",
-      imageAlt: "Agent instructions connected to operational knowledge",
+        "Let agents answer questions using your team's knowledge. Upload PDFs or connect SharePoint, get started with Budibase AI, and give users answers that reference their sources.",
+      imageAlt:
+        "Knowledge assistant answering a question with SharePoint and PDF source references",
     },
     features: [
       {
-        headline: "Connect the knowledge your teams rely on",
-        body: "Bring operational guidance and business context into the same controlled system as the agents that use it.",
-        bullets: [
-          {
-            icon: "Cube",
-            text: "Attach focused knowledge sources to the agents responsible for each process.",
-          },
-          {
-            icon: "Path",
-            text: "Retrieve relevant context as questions and requests arrive.",
-          },
-          {
-            icon: "UserSwitch",
-            text: "Align each agent's knowledge with its operational responsibility.",
-          },
-        ],
+        headline: "Give agents the knowledge they need",
+        body: "Let agents answer questions using the knowledge you upload.",
+        bullets: [],
       },
       {
-        headline: "Turn questions into accountable next steps",
-        body: "Help people find answers quickly while keeping agent behaviour aligned with approved operational context.",
-        bullets: [
-          {
-            icon: "ChatCircle",
-            text: "Answer everyday questions in the channels where work happens.",
-          },
-          {
-            icon: "Keyhole",
-            text: "Keep access to knowledge aligned with operational controls.",
-          },
-          {
-            icon: "CheckCircle",
-            text: "Use retrieved context to guide consistent actions and responses.",
-          },
-        ],
+        headline: "Get started without extra setup",
+        body: "Knowledge works out of the box when you use Budibase AI.",
+        bullets: [],
       },
     ],
     cardCluster: {
-      title: "Knowledge that works with your agents",
+      title: "Your content. Answers with context.",
       description:
-        "Ground agent behaviour in the information that matters to each operation.",
+        "Put your team's content to work and help users explore the sources behind each answer.",
+      columns: 3,
+      responsiveLayout: "stack",
       cards: [
         {
-          title: "Knowledge retrieval",
+          title: "Put your SharePoint knowledge to work",
           description:
-            "Find relevant context when an agent needs to answer or act.",
+            "Connect SharePoint so agents can answer questions using your team's content.",
         },
         {
-          title: "Focused sources",
+          title: "Turn PDFs into answers",
           description:
-            "Connect each agent to knowledge suited to its role and scope.",
+            "Upload PDFs to make their content available to your agents.",
         },
         {
-          title: "Context-aware answers",
+          title: "See where answers come from",
           description:
-            "Give teams useful responses grounded in operational information.",
+            "Answers reference their sources, helping users verify information and explore further.",
         },
       ],
     },
   },
   "self-host": {
-    title: "Self-hosting",
+    title: "Self-hosting — Deploy Budibase on your terms",
     metaDescription:
-      "Deploy Budibase on your own infrastructure with flexible self-hosting options for controlled and regulated environments.",
+      "Run Budibase with Docker or Kubernetes on your own domain. Keep control of your data and infrastructure, extend with plugins, and upgrade on your schedule.",
+    proof: "none",
     hero: {
       headline: "Deploy Budibase on your terms",
       subtitle:
-        "Run Budibase in the environment you control, close to the systems and data that support critical operations.",
-      imageAlt: "Secure self-hosted enterprise operations",
+        "Run apps, agents and automations on your own infrastructure. Choose where your data lives, fit your operational requirements, and upgrade when your team is ready.",
+      imageAlt:
+        "Budibase running on your infrastructure with Docker or Kubernetes and a custom domain",
     },
     features: [
       {
-        headline: "Run in the environment you control",
-        body: "Deploy Budibase across the infrastructure and network boundaries that fit your organisation.",
-        bullets: [
-          {
-            icon: "Cube",
-            text: "Use established container and orchestration workflows.",
-          },
-          {
-            icon: "CloudCheck",
-            text: "Run on-premise, in a private cloud, or in public cloud infrastructure.",
-          },
-          {
-            icon: "ShieldCheck",
-            text: "Support isolated operational environments where required.",
-          },
-        ],
+        headline: "Deploy on your own infrastructure",
+        body: "Run Budibase with Docker or Kubernetes and make it available on your own custom domain.",
+        bullets: [],
       },
       {
-        headline: "Keep critical systems close",
-        body: "Connect operational data, models, and services without moving them outside your chosen environment.",
-        bullets: [
-          {
-            icon: "Path",
-            text: "Reach internal systems through your existing network controls.",
-          },
-          {
-            icon: "Keyhole",
-            text: "Retain control over infrastructure, credentials, and operational data.",
-          },
-          {
-            icon: "Wrench",
-            text: "Manage deployment and updates through established practices.",
-          },
-        ],
+        headline: "Keep control of your data and infrastructure",
+        body: "Choose where your data lives and manage Budibase within your own security and operational requirements.",
+        bullets: [],
       },
     ],
     cardCluster: {
-      title: "Flexible deployment for enterprise operations",
+      title: "Self-hosting that fits your team",
       description:
-        "Choose the hosting model that aligns with your infrastructure and governance requirements.",
+        "Simplify setup, extend your platform, and keep upgrade control with your team.",
+      columns: 3,
+      responsiveLayout: "stack",
       cards: [
         {
-          title: "Container deployment",
+          title: "Simplify setup with the Budibase CLI",
           description:
-            "Run Budibase with the container tooling your platform teams use.",
+            "Set up and manage your self-hosted deployment from the command line.",
         },
         {
-          title: "Isolated environments",
+          title: "Extend Budibase to fit your systems",
           description:
-            "Support private networks and isolated operational workloads.",
+            "Use datasource and automation plugins to connect custom systems and add functionality.",
         },
         {
-          title: "Infrastructure control",
+          title: "Upgrade on your schedule",
           description:
-            "Keep deployment, data location, and operations in your hands.",
+            "Control which Budibase version you run and roll out updates when your team is ready.",
         },
       ],
     },
   },
   "admin-security": {
-    title: "Admin and Security",
+    title: "Permissions — Control access across Budibase",
     metaDescription:
-      "Manage identity, access, governance, and audit controls for secure enterprise operations with Budibase.",
+      "Protect tables, APIs, automations, agent tools and screens with granular roles. Manage groups across workspaces, connect identity systems, and onboard users quickly.",
+    proof: "none",
     hero: {
-      headline: "Control operations with confidence",
+      headline: "Control access across your processes",
       subtitle:
-        "Give administrators identity, access, and governance controls without slowing the teams responsible for operational work.",
-      imageAlt: "Enterprise administration and security controls",
+        "Give every user the access they need. Protect your resources with granular role requirements, and manage users and groups across your workspaces as your organization grows.",
+      imageAlt:
+        "Budibase role requirements for tables, APIs, automations, agent tools and screens",
     },
     features: [
       {
-        headline: "Centralise access and administration",
-        body: "Manage how people enter the platform, what they can use, and which operational resources they can access.",
-        bullets: [
-          {
-            icon: "UserSwitch",
-            text: "Organise users and groups around operational responsibilities.",
-          },
-          {
-            icon: "Keyhole",
-            text: "Apply role-based access controls across apps and data.",
-          },
-          {
-            icon: "ShieldCheck",
-            text: "Connect enterprise identity and sign-on processes.",
-          },
-        ],
+        headline: "Give every user the right level of access",
+        body: "Protect tables, APIs, automations, agent tools, and screens with granular role requirements.",
+        bullets: [],
       },
       {
-        headline: "Build governance into everyday work",
-        body: "Keep operational activity visible and controlled as more teams, workflows, and systems join the platform.",
-        bullets: [
-          {
-            icon: "Path",
-            text: "Maintain audit trails for user and system activity.",
-          },
-          {
-            icon: "CheckCircle",
-            text: "Standardise controls across critical operational workflows.",
-          },
-          {
-            icon: "Gauge",
-            text: "Scale administration without losing operational visibility.",
-          },
-        ],
+        headline: "Manage access as your organization grows",
+        body: "Organize users into groups and control access across workspaces without managing everyone individually.",
+        bullets: [],
       },
     ],
     cardCluster: {
-      title: "Enterprise controls built into the platform",
+      title: "Access that fits your organization",
       description:
-        "Manage identity, access, and accountability from one operational foundation.",
+        "Tailor roles, connect your identity systems, and get new users up and running.",
+      columns: 3,
+      responsiveLayout: "stack",
       cards: [
         {
-          title: "Role-based access",
+          title: "Match permissions to how your team works",
           description:
-            "Give users access to the data and tools required for their role.",
+            "Create custom roles that reflect your teams and responsibilities.",
         },
         {
-          title: "Identity and provisioning",
+          title: "Connect your existing identity systems",
           description:
-            "Connect sign-on and user management to enterprise identity systems.",
+            "Simplify sign-in and user management with SSO, SAML, and Active Directory sync.",
         },
         {
-          title: "Audit logging",
+          title: "Get new users up and running quickly",
           description:
-            "Review activity across users, resources, and operational workflows.",
+            "Onboard users through email invitations or generated passwords.",
         },
       ],
     },

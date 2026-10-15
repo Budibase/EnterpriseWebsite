@@ -1,6 +1,8 @@
 ---
+import { homepageFeatureMedia } from "../../../data/homepageFeatureMedia";
 import CardCluster from "@components/cards/CardCluster.astro";
 import TitleBlock from "@components/TitleBlock.astro";
+import PlatformGroupMark from "@components/ui/PlatformGroupMark.astro";
 import OnePlatformAgent from "@components/OnePlatformAgent.astro";
 import HomepageActionsDemo from "./HomepageActionsDemo.astro";
 import HomepageEquipmentInventoryDemo from "./HomepageEquipmentInventoryDemo.astro";
@@ -14,17 +16,12 @@ import RestApiLogo from "@assets/logos/rest-api.svg?url";
 import AnthropicLogo from "@assets/logos/anthropic.avif?url";
 import AzureOpenAILogo from "@assets/logos/azure-openai.svg?url";
 import OpenAILogo from "@assets/logos/openai.avif?url";
-import PostgresLogo from "@assets/logos/Postgres.svg?url";
-import MySQLLogo from "@assets/logos/MYSQL.svg?url";
-import MSSQLLogo from "@assets/logos/MSSQL.svg?url";
-import SAPLogo from "@assets/logos/SAP.svg?url";
 
 const productGroups = [
   {
     id: "connect",
     title: "Connect",
-    color: "var(--bb-cinnamon-600)",
-    imageBackground: "cinnamon-1300",
+    imageBackground: "rust",
     cards: [
       {
         title: "AI models",
@@ -57,12 +54,7 @@ const productGroups = [
         description:
           "Use built-in tables or connect directly to existing data sources.",
         imageAlt: "",
-        mediaBadges: [
-          { label: "Budibase Tables", icon: "/favicon.svg" },
-          { label: "PostgreSQL", icon: PostgresLogo },
-          { label: "MySQL", icon: MySQLLogo },
-          { label: "MSSQL", icon: MSSQLLogo },
-        ],
+        ...homepageFeatureMedia.data,
         link: "/product/data/",
       },
     ],
@@ -70,42 +62,14 @@ const productGroups = [
   {
     id: "automate",
     title: "Automate",
-    color: "var(--bb-celery-600)",
-    imageBackground: "celery-1300",
+    imageBackground: "olive",
     cards: [
       {
         title: "Agents",
         description:
           "Handle context-dependent work with agents grounded in your data and rules.",
         imageAlt: "",
-        mediaScene: {
-          type: "agent",
-          role: "You are the Purchase Requisition Agent.",
-          instructions: [
-            { text: "Identify the requester" },
-            { text: "Collect supplier and order details" },
-            {
-              text: "Validate with ",
-              binding: "sap.suppliers.read",
-              bindingBadge: true,
-              bindingIcon: SAPLogo,
-            },
-            {
-              text: "Create a draft with ",
-              binding: "sap.req.create",
-              bindingBadge: true,
-              bindingIcon: SAPLogo,
-            },
-            { text: "Present the draft for confirmation" },
-            { text: "Check whether approval is required" },
-            {
-              text: "Create the PO with ",
-              binding: "sap.po.create",
-              approval: true,
-            },
-            { text: "Return the PO number" },
-          ],
-        },
+        ...homepageFeatureMedia.agents,
         link: "/product/agents/",
       },
       {
@@ -113,14 +77,7 @@ const productGroups = [
         description:
           "Run predictable, event-driven workflows across your stack.",
         imageAlt: "",
-        mediaScene: {
-          type: "automation",
-          nodes: [
-            { label: "Request submitted", icon: "Lightning" },
-            { label: "Amount over £5k?", icon: "GitFork" },
-            { label: "Send for approval", icon: "CheckCircle" },
-          ],
-        },
+        ...homepageFeatureMedia.automations,
         link: "/product/automations/",
       },
       {
@@ -128,19 +85,7 @@ const productGroups = [
         description:
           "Build code-first automations with loops, reusable logic, and direct API access.",
         imageAlt: "",
-        mediaScene: {
-          type: "function",
-          name: "Function",
-          code: [
-            "async function sync(items) {",
-            "  for (const item of items) {",
-            "    await api.jira",
-            "      .create_issue(item)",
-            "  }",
-            "  return items.length",
-            "}",
-          ],
-        },
+        ...homepageFeatureMedia.functions,
         link: "/product/functions/",
       },
     ],
@@ -148,8 +93,7 @@ const productGroups = [
   {
     id: "interact",
     title: "Interact",
-    color: "var(--bb-cyan-600)",
-    imageBackground: "cyan-1300",
+    imageBackground: "ocean",
     cards: [
       {
         title: "Chat with agents",
@@ -180,8 +124,7 @@ const productGroups = [
   {
     id: "govern",
     title: "Govern",
-    color: "var(--bb-yellow-600)",
-    imageBackground: "yellow-1300",
+    imageBackground: "gold",
     cards: [
       {
         title: "Activity",
@@ -238,13 +181,10 @@ const productGroups = [
             <section
               class="homepage-product-group"
               aria-labelledby={titleId}
-              style={`--homepage-product-group-color: ${group.color};${itemBackgroundStyle}`}
+              style={itemBackgroundStyle}
             >
               <h3 id={titleId} class="homepage-product-group__label">
-                <span
-                  class="homepage-product-group__status"
-                  aria-hidden="true"
-                />
+                <PlatformGroupMark group={group.title} size={32} />
                 <span class="homepage-product-group__label-text">
                   {group.title}
                 </span>
@@ -317,8 +257,10 @@ const productGroups = [
     position: relative;
     z-index: 2;
     display: inline-flex;
-    width: 9rem;
-    height: 2.75rem;
+    width: max-content;
+    min-width: 11rem;
+    max-width: 100%;
+    height: 3.25rem;
     box-sizing: border-box;
     align-items: center;
     gap: 0.625rem;
@@ -334,14 +276,7 @@ const productGroups = [
     font-weight: 500;
     line-height: 1.0625;
     letter-spacing: normal;
-  }
-
-  .homepage-product-group__status {
-    width: 0.75rem;
-    height: 0.75rem;
-    flex: 0 0 0.75rem;
-    border-radius: 0;
-    background: var(--homepage-product-group-color);
+    white-space: nowrap;
   }
 
   .homepage-product-group__workspace {
@@ -355,6 +290,7 @@ const productGroups = [
   }
 
   :global(.homepage-product-group__cluster.card-cluster) {
+    --card-cluster-image-background: var(--bb-olive);
     --card-cluster-card-description: var(--text-secondary);
     background: transparent;
   }
@@ -377,7 +313,7 @@ const productGroups = [
   }
 
   :global(.homepage-product-group__cluster .card-cluster__card:hover) {
-    border-color: var(--bb-brand-forest-green);
+    border-color: var(--bb-olive);
     background: var(--bb-background-sand-hover);
   }
 

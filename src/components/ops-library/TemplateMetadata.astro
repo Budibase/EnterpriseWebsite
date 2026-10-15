@@ -1,0 +1,179 @@
+---
+import Icon from "@components/Icon.astro";
+import AssetTypeIcon from "@components/ui/AssetTypeIcon.astro";
+import TemplateSourceIcon from "@components/ui/TemplateSourceIcon.astro";
+import { getTemplateAssets } from "../../data/processTemplateAssets";
+import type { CollectionEntry } from "astro:content";
+interface Props {
+  data: CollectionEntry<"opsLibrary">["data"];
+}
+const { data } = Astro.props;
+const assets = getTemplateAssets(data);
+const groups = [
+  {
+    label: "Agent",
+    type: "Agent",
+    names: assets.agent ? (data.assetsUsed?.agents ?? ["Agent included"]) : [],
+  },
+  {
+    label: "Apps",
+    type: "App",
+    names: assets.app ? (data.assetsUsed?.apps ?? ["App included"]) : [],
+  },
+  {
+    label: "Automations",
+    type: "Automation",
+    names: assets.automation
+      ? (data.assetsUsed?.automations ?? ["Automation included"])
+      : [],
+  },
+  {
+    label: "Ops center",
+    type: "Operations center",
+    names: assets.operationsCenter ? ["Ops center included"] : [],
+  },
+  { label: "Data tables", type: "Table", names: data.assetsUsed?.tables ?? [] },
+  { label: "Knowledge", kind: "knowledge" as const, names: assets.knowledge },
+  { label: "Agent chat", kind: "channel" as const, names: assets.channels },
+  {
+    label: "Connections",
+    kind: "connection" as const,
+    names: assets.connections,
+  },
+].filter((group) => group.names.length > 0);
+const updated = data.lastUpdated.toLocaleDateString("en-GB", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<aside class="template-metadata" aria-label="Template details">
+  <h2>Template details</h2>
+  <dl>
+    {
+      data.owner && (
+        <div class="metadata-group">
+          <>
+            <dt>Owner</dt>
+            <dd>
+              {data.owner.href ? (
+                <a href={data.owner.href}>{data.owner.name}</a>
+              ) : (
+                <span>{data.owner.name}</span>
+              )}
+            </dd>
+          </>
+        </div>
+      )
+    }
+    {
+      groups.map((group) => (
+        <div class="metadata-group">
+          <>
+            <dt>{group.label}</dt>
+            <dd>
+              <ul>
+                {group.names.map((name) => (
+                  <li>
+                    {group.type ? (
+                      <AssetTypeIcon type={group.type} />
+                    ) : (
+                      <TemplateSourceIcon name={name} kind={group.kind} />
+                    )}
+                    <span>{name}</span>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </>
+        </div>
+      ))
+    }
+    <div class="metadata-group">
+      <dt>AI required</dt><dd class="ai-requirement">
+        <Icon
+          name={assets.aiModelRequired ? "CheckCircle" : "X"}
+          weight={assets.aiModelRequired ? "fill" : "regular"}
+          size="18"
+        /><span>{assets.aiModelRequired ? "Yes" : "No"}</span>
+      </dd>
+    </div>
+    <div class="metadata-group">
+      <dt>Updated</dt><dd>
+        <time datetime={data.lastUpdated.toISOString().slice(0, 10)}
+          >{updated}</time
+        >
+      </dd>
+    </div>
+  </dl>
+</aside>
+<style>
+  .template-metadata {
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    background: var(--bb-background-sand);
+  }
+  h2 {
+    margin: 0 0 40px;
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-primary);
+  }
+  dl,
+  dd {
+    margin: 0;
+  }
+  dl {
+    display: grid;
+    gap: 22px;
+  }
+  dt {
+    margin-bottom: 9px;
+    font-size: 12px;
+    color: var(--bb-gray-750);
+  }
+  dd {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    overflow-wrap: anywhere;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 9px;
+  }
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+  }
+  li > span {
+    padding-top: 2px;
+  }
+  a {
+    color: var(--text-primary);
+    text-underline-offset: 3px;
+  }
+  a:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 3px;
+  }
+  .ai-requirement {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    dl {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

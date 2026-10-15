@@ -1,0 +1,435 @@
+---
+import Icon from "@components/Icon.astro";
+
+interface Props {
+  variant: "overview" | "actions" | "requests" | "errors" | "usage" | "totals";
+}
+const { variant } = Astro.props;
+// Illustrative activity records and totals, not customer results or benchmarks.
+const actions = [
+  {
+    name: "Create purchase order",
+    workspace: "Procurement",
+    icon: "PlugsConnected",
+    status: "Completed",
+  },
+  {
+    name: "Look up employee",
+    workspace: "People",
+    icon: "Table",
+    status: "Completed",
+  },
+  {
+    name: "Create support ticket",
+    workspace: "IT support",
+    icon: "Lightning",
+    status: "Failed",
+  },
+  {
+    name: "Check supplier details",
+    workspace: "Procurement",
+    icon: "Sparkle",
+    status: "In progress",
+  },
+];
+const requests = [
+  {
+    agent: "IT assistant",
+    request: "Request access to GitHub",
+    status: "In progress",
+    time: "Just now",
+  },
+  {
+    agent: "Procurement agent",
+    request: "Find an approved supplier",
+    status: "Completed",
+    time: "1m ago",
+  },
+  {
+    agent: "HR assistant",
+    request: "Check the leave policy",
+    status: "Completed",
+    time: "2m ago",
+  },
+];
+const totals = [
+  { label: "Actions", value: "128" },
+  { label: "Requests", value: "24" },
+  { label: "Errors", value: "3" },
+];
+const usage = [
+  { label: "Procurement", value: 64 },
+  { label: "IT support", value: 40 },
+  { label: "People", value: 24 },
+];
+const titles = {
+  overview: "Activity",
+  actions: "Actions overview",
+  requests: "Agent requests",
+  errors: "Errors",
+  usage: "Workspace usage",
+  totals: "Activity totals",
+};
+---
+
+<div
+  class:list={["activity-visual", `activity-visual--${variant}`]}
+  role="img"
+  aria-label={`${titles[variant]} preview`}
+>
+  <div class="activity-visual__panel" aria-hidden="true">
+    <div class="activity-visual__heading">
+      <span class="activity-visual__title">
+        <img
+          src="/brand/budibase-symbol-forest.svg"
+          width="16"
+          height="16"
+          alt=""
+        />
+        {titles[variant]}
+      </span>
+      {
+        variant === "requests" ? (
+          <span class="activity-visual__live">
+            <i />
+            Live
+          </span>
+        ) : (
+          <span class="activity-visual__period">Today</span>
+        )
+      }
+    </div>
+    {
+      (variant === "overview" || variant === "totals") && (
+        <div class="activity-visual__stats">
+          {totals.map((stat) => (
+            <div>
+              <span>{stat.label}</span>
+              <strong>{stat.value}</strong>
+            </div>
+          ))}
+        </div>
+      )
+    }
+    {
+      (variant === "overview" || variant === "actions") && (
+        <>
+          <div class="activity-visual__table-heading">
+            <>
+              <span>Action</span>
+              <span>Workspace</span>
+              <span>Status</span>
+            </>
+          </div>
+          {actions.slice(0, variant === "overview" ? 3 : 4).map((action) => (
+            <div class="activity-visual__action">
+              <span class="activity-visual__action-name">
+                <Icon name={action.icon} size="15" />
+                <span>{action.name}</span>
+              </span>
+              <span>{action.workspace}</span>
+              <span
+                class:list={[
+                  "activity-visual__status",
+                  action.status === "Failed" && "is-error",
+                  action.status === "In progress" && "is-running",
+                ]}
+              >
+                {action.status}
+              </span>
+            </div>
+          ))}
+        </>
+      )
+    }
+    {
+      variant === "requests" && (
+        <div class="activity-visual__requests">
+          {requests.map((request) => (
+            <div class="activity-visual__request">
+              <div class="activity-visual__request-top">
+                <span>
+                  <Icon name="Sparkle" size="16" />
+                  {request.agent}
+                </span>
+                <small>{request.time}</small>
+              </div>
+              <p>{request.request}</p>
+              <span
+                class:list={[
+                  "activity-visual__status",
+                  request.status === "In progress" && "is-running",
+                ]}
+              >
+                {request.status}
+              </span>
+            </div>
+          ))}
+        </div>
+      )
+    }
+    {
+      variant === "errors" && (
+        <div class="activity-visual__error">
+          <span class="activity-visual__status is-error">
+            <Icon name="X" size="13" />
+            Failed
+          </span>
+          <strong>Create support ticket</strong>
+          <span class="activity-visual__muted">IT support · API action</span>
+          <div class="activity-visual__error-message">
+            <>
+              <code>401 Unauthorized</code>
+              <span>Authentication failed</span>
+            </>
+          </div>
+        </div>
+      )
+    }
+    {
+      variant === "usage" && (
+        <div class="activity-visual__usage">
+          <span class="activity-visual__muted">Actions by workspace</span>
+          {usage.map((workspace) => (
+            <div class="activity-visual__usage-row">
+              <div>
+                <span>{workspace.label}</span>
+                <strong>{workspace.value}</strong>
+              </div>
+              <div class="activity-visual__bar">
+                <span style={`width: ${(workspace.value / 64) * 100}%`} />
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    }
+    {
+      variant === "totals" && (
+        <div class="activity-visual__total-footer">
+          <>
+            <Icon name="Gauge" size="16" />
+            <span>Across your workspaces</span>
+          </>
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .activity-visual {
+    container-type: inline-size;
+    width: 100%;
+    max-width: 34rem;
+    color: var(--bb-text-base);
+    line-height: 1.4;
+  }
+  .activity-visual--overview {
+    max-width: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background: var(--bb-background-base);
+  }
+  .activity-visual__panel {
+    font-size: clamp(10px, 2.5cqw, 14px);
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+  }
+  .activity-visual--overview .activity-visual__panel {
+    border: 0;
+    font-size: clamp(9px, 2.2cqw, 12px);
+  }
+  .activity-visual__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .activity-visual__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-weight: 500;
+  }
+  .activity-visual__period,
+  .activity-visual__muted {
+    color: var(--bb-text-subtle);
+  }
+  .activity-visual__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65em;
+    padding: 1em;
+  }
+  .activity-visual__stats > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+    padding: 0.75em;
+    background: var(--bb-background-sand);
+  }
+  .activity-visual__stats span {
+    color: var(--bb-text-subtle);
+  }
+  .activity-visual__stats strong {
+    color: var(--bb-olive);
+    font-size: 1.8em;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+  .activity-visual__table-heading,
+  .activity-visual__action {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.85fr);
+    gap: 0.65em;
+    align-items: center;
+    padding: 0.9em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .activity-visual__table-heading {
+    background: var(--bb-background-surface);
+    color: var(--bb-text-subtle);
+  }
+  .activity-visual__action:last-child {
+    border-bottom: 0;
+  }
+  .activity-visual__action-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    min-width: 0;
+  }
+  .activity-visual__action-name :global(svg) {
+    flex: none;
+    color: var(--bb-olive);
+  }
+  .activity-visual__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    justify-self: start;
+    padding: 0.2em 0.4em;
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
+    white-space: nowrap;
+    font-size: 0.85em;
+  }
+  .activity-visual__status.is-running {
+    background: var(--bb-zen-subtle);
+    color: color-mix(in srgb, var(--bb-ocean) 90%, var(--bb-graphite));
+  }
+  .activity-visual__status.is-error {
+    background: var(--bb-sunset-subtle);
+    color: var(--bb-crimson);
+  }
+  .activity-visual__live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    color: var(--bb-olive);
+    font-size: 0.85em;
+  }
+  .activity-visual__live i {
+    width: 6px;
+    height: 6px;
+    background: var(--bb-olive);
+    border-radius: 50%;
+  }
+  .activity-visual__requests {
+    padding: 0 1em;
+  }
+  .activity-visual__request {
+    padding: 1em 0;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .activity-visual__request:last-child {
+    border: 0;
+  }
+  .activity-visual__request-top,
+  .activity-visual__request-top > span {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+  .activity-visual__request-top {
+    justify-content: space-between;
+  }
+  .activity-visual__request-top > span {
+    color: var(--bb-olive);
+    font-weight: 500;
+  }
+  .activity-visual__request-top small {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .activity-visual__request p {
+    margin: 0.45em 0 0.65em;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  .activity-visual__error {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65em;
+    padding: 1em;
+  }
+  .activity-visual__error > strong {
+    font-weight: 500;
+  }
+  .activity-visual__error-message {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+    width: 100%;
+    padding: 0.8em;
+    border-left: 2px solid var(--bb-crimson);
+    background: var(--bb-sunset-subtle);
+    color: var(--bb-crimson);
+  }
+  .activity-visual__error-message code {
+    font-size: 0.9em;
+  }
+  .activity-visual__usage {
+    display: grid;
+    gap: 1.1em;
+    padding: 1em;
+  }
+  .activity-visual__usage-row > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    margin-bottom: 0.45em;
+  }
+  .activity-visual__usage-row strong {
+    font-weight: 500;
+  }
+  .activity-visual__bar {
+    height: 0.65em;
+    background: var(--bb-background-sand);
+  }
+  .activity-visual__bar span {
+    display: block;
+    height: 100%;
+    background: var(--bb-olive);
+  }
+  .activity-visual__usage-row:nth-child(3) .activity-visual__bar span {
+    background: var(--bb-olive-900);
+  }
+  .activity-visual__usage-row:nth-child(4) .activity-visual__bar span {
+    background: var(--bb-lime);
+  }
+  .activity-visual__total-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.5em 1em 1em;
+    color: var(--bb-text-subtle);
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import SecurityVisual from "./SecurityVisual.astro";
+import {
+  securityLandingPage,
+  securityFaqs,
+} from "../../../data/securityLandingPage";
+
+const variants = ["iso", "iron-bank", "privacy"] as const;
+const cards = securityLandingPage.cardCluster.cards.map((card, index) => ({
+  ...card,
+  mediaDemo: SecurityVisual,
+  mediaDemoProps: { variant: variants[index] },
+}));
+---
+
+<div class="security-landing-page">
+  <GridLandingPage
+    slug="security"
+    content={securityLandingPage}
+    {cards}
+    faqs={securityFaqs}
+    heroAspectRatio="var(--security-hero-ratio, 3 / 2)"
+    featureActions={[
+      {
+        label: "Security details",
+        url: "#security-faq-title",
+        appearance: "button",
+      },
+      {
+        label: "Deployment details",
+        url: "/enterprise/",
+        appearance: "button",
+      },
+    ]}
+  >
+    <SecurityVisual slot="hero-media" variant="overview" />
+    <SecurityVisual slot="feature-0" variant="controls" />
+    <SecurityVisual slot="feature-1" variant="isolation" />
+  </GridLandingPage>
+</div>
+
+<style>
+  .security-landing-page :global(.grid-landing-uses .card-cluster__image-wrap) {
+    background: var(--bb-coconut);
+  }
+  @media (max-width: 599px) {
+    .security-landing-page {
+      --security-hero-ratio: 5 / 4;
+    }
+  }
+  :global(#security-faq-title) {
+    scroll-margin-top: 6rem;
+  }
+</style>

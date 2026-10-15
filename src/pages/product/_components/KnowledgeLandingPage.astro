@@ -1,0 +1,83 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import KnowledgeAssistantDemo from "../../_components/landing-page/KnowledgeAssistantDemo.astro";
+import KnowledgeVisual from "./KnowledgeVisual.astro";
+import type { PlatformLandingContent } from "../../../data/landingPageTypes";
+
+interface Props {
+  content: PlatformLandingContent;
+}
+const { content } = Astro.props;
+const variants = ["sharepoint", "pdf", "sources"] as const;
+const cards = content.cardCluster.cards.map((card, index) => ({
+  ...card,
+  mediaDemo: KnowledgeVisual,
+  mediaDemoProps: { variant: variants[index] },
+}));
+const faqs = [
+  {
+    question: "How do agents use uploaded knowledge?",
+    answer:
+      "Agents can use the knowledge you upload to answer questions about its content.",
+  },
+  {
+    question: "Do I need extra setup with Budibase AI?",
+    answer: "No. Knowledge works out of the box when you use Budibase AI.",
+  },
+  {
+    question: "Can I use our SharePoint content?",
+    answer:
+      "Yes. Connect SharePoint so agents can answer questions using your team's content.",
+  },
+  {
+    question: "Can I upload PDFs?",
+    answer: "Yes. Upload PDFs to make their content available to your agents.",
+  },
+  {
+    question: "Can users see the sources behind an answer?",
+    answer:
+      "Yes. Answers reference their sources, helping users verify information and explore further.",
+  },
+];
+---
+
+<div class="knowledge-landing-page">
+  <GridLandingPage
+    slug="knowledge"
+    {content}
+    {cards}
+    {faqs}
+    heroAspectRatio="var(--knowledge-hero-ratio, 3 / 2)"
+    featureActions={[
+      undefined,
+      {
+        label: "Explore Budibase AI",
+        url: "/product/ai-models/",
+        appearance: "button",
+      },
+    ]}
+  >
+    <KnowledgeVisual slot="hero-media" variant="overview" />
+    <div
+      slot="feature-0"
+      class="knowledge-assistant-preview"
+      role="img"
+      aria-label="Knowledge assistant in Microsoft Teams answering a question using SharePoint and PDF sources"
+    >
+      <KnowledgeAssistantDemo />
+    </div>
+    <KnowledgeVisual slot="feature-1" variant="ready" />
+  </GridLandingPage>
+</div>
+
+<style>
+  .knowledge-assistant-preview {
+    width: 100%;
+    max-width: 34rem;
+  }
+  @media (max-width: 599px) {
+    .knowledge-landing-page {
+      --knowledge-hero-ratio: 5 / 4;
+    }
+  }
+</style>

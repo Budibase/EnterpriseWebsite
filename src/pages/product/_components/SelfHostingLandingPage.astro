@@ -1,0 +1,77 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import SelfHostingVisual from "./SelfHostingVisual.astro";
+import type { PlatformLandingContent } from "../../../data/landingPageTypes";
+
+interface Props {
+  content: PlatformLandingContent;
+}
+const { content } = Astro.props;
+const variants = ["cli", "plugins", "upgrades"] as const;
+const cards = content.cardCluster.cards.map((card, index) => ({
+  ...card,
+  mediaDemo: SelfHostingVisual,
+  mediaDemoProps: { variant: variants[index] },
+}));
+const faqs = [
+  {
+    question: "How can I deploy Budibase on my own infrastructure?",
+    answer:
+      "Run Budibase with Docker or Kubernetes. Follow the self-hosting documentation to choose and configure your deployment.",
+  },
+  {
+    question: "Can I use my own custom domain?",
+    answer:
+      "Yes. Configure your self-hosted Budibase deployment to make it available on your own custom domain.",
+  },
+  {
+    question: "What does the Budibase CLI help me do?",
+    answer:
+      "Use the Budibase CLI to set up and manage a Docker Compose deployment from the command line.",
+  },
+  {
+    question: "Can I extend my self-hosted deployment?",
+    answer:
+      "Yes. Use datasource and automation plugins to connect custom systems and add functionality.",
+  },
+  {
+    question: "What does upgrade control mean?",
+    answer:
+      "Your team chooses which Budibase version to run and when to roll out updates, so upgrades fit your operational requirements.",
+  },
+];
+---
+
+<div class="self-hosting-landing-page">
+  <GridLandingPage
+    slug="self-host"
+    {content}
+    {cards}
+    {faqs}
+    heroAspectRatio="var(--self-hosting-hero-ratio, 3 / 2)"
+    featureActions={[
+      {
+        label: "Explore self-hosting docs",
+        url: "https://docs.budibase.com/docs/hosting-methods",
+        appearance: "button",
+      },
+      {
+        label: "Explore security controls",
+        url: "/security/",
+        appearance: "button",
+      },
+    ]}
+  >
+    <SelfHostingVisual slot="hero-media" variant="overview" />
+    <SelfHostingVisual slot="feature-0" variant="deployment" />
+    <SelfHostingVisual slot="feature-1" variant="ownership" />
+  </GridLandingPage>
+</div>
+
+<style>
+  @media (max-width: 599px) {
+    .self-hosting-landing-page {
+      --self-hosting-hero-ratio: 5 / 4;
+    }
+  }
+</style>

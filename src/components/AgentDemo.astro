@@ -344,17 +344,17 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
 
   .hero-demo-theme-light {
     color-scheme: light;
-    --text: 47 47 45;
-    --text-muted: 102 102 99;
-    --brand: 56 108 244;
+    --text: 30 25 25;
+    --text-muted: 115 108 100;
+    --brand: 40 55 80;
     --bg-1: var(--bb-background-base);
-    --bg-2: var(--bb-gray-75);
+    --bg-2: var(--bb-background-surface-subtle);
     --bg-3: var(--bb-gray-100);
     --text-primary: var(--bb-text-base);
     --text-secondary: var(--bb-text-subtle);
-    --text-body: var(--bb-gray-700);
+    --text-body: var(--bb-gray-750);
     --border-color: color-mix(in srgb, var(--bb-border-bold) 90%, transparent);
-    --hero-demo-user-bubble: var(--bb-blue-300);
+    --hero-demo-user-bubble: var(--bb-cloud);
   }
 
   .hero-demo-backdrop {
@@ -655,7 +655,7 @@ const id = `hero-demo-${Math.random().toString(36).slice(2, 8)}`;
     background-color: var(--bg-2);
     color: var(--text-primary);
     border-radius: 8px;
-    border: 0.5px solid var(--border-color) !important;
+    border: 0.5px solid var(--bb-border-bold) !important;
     outline: none;
     min-height: 60px;
   }

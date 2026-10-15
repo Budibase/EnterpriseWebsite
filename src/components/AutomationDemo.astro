@@ -172,10 +172,10 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     ]}
   >
     <div
-      class="automation-demo-shell w-full max-w-full overflow-hidden rounded-none border-[0.5px] border-[var(--bb-gray-800)] bg-[var(--bb-gray-1000)] shadow-[0px_10px_30px_rgb(var(--text)/0.25)]"
+      class="automation-demo-shell w-full max-w-full overflow-hidden rounded-none border-[0.5px] border-[var(--automation-demo-border)] bg-[var(--automation-demo-surface)] shadow-[0px_10px_30px_rgb(var(--text)/0.25)]"
     >
       <div
-        class="group relative flex h-7 items-center justify-between border-b-[0.5px] border-[var(--bb-gray-800)] px-2 bg-[var(--bb-gray-900)]"
+        class="group relative flex h-7 items-center justify-between border-b-[0.5px] border-[var(--automation-demo-border)] px-2 bg-[var(--automation-demo-panel)]"
       >
         <div class="flex items-center gap-1.5">
           <span
@@ -195,13 +195,13 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
             type="text"
             placeholder="budibase/automations"
             aria-label="Search"
-            class="h-5 w-full rounded-[4px] bg-[var(--bb-gray-1000)] px-2.5 text-[13px] text-[var(--bb-gray-75)] placeholder:text-[var(--bb-gray-500)] outline-none border-0"
+            class="h-5 w-full rounded-[4px] bg-[var(--automation-demo-surface)] px-2.5 text-[13px] text-[var(--automation-demo-text)] placeholder:text-[var(--automation-demo-muted)] outline-none border-0"
           />
         </div>
         <div class="-mr-1 flex items-center">
           <button
             type="button"
-            class="rounded px-2 py-1 text-[13px] text-[var(--bb-gray-500)] transition-opacity duration-200 hover:bg-[rgb(var(--text)/0.06)] cursor-pointer"
+            class="rounded px-2 py-1 text-[13px] text-[var(--automation-demo-muted)] transition-opacity duration-200 hover:bg-[rgb(var(--text)/0.06)] cursor-pointer"
           >
             Get Budibase
           </button>
@@ -382,14 +382,13 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
 
   .automation-demo-theme-light {
     color-scheme: light;
-    --text: 47 47 45;
-    --text-muted: 102 102 99;
-    --bb-gray-1000: var(--bb-gray-50);
-    --bb-gray-900: var(--bb-gray-75);
-    --bb-gray-800: var(--bb-gray-100);
-    --bb-gray-800: var(--bb-gray-300);
-    --bb-gray-500: var(--bb-gray-700);
-    --bb-gray-75: var(--bb-gray-900);
+    --automation-demo-surface: var(--bb-white);
+    --automation-demo-panel: var(--bb-background-surface-subtle);
+    --automation-demo-border: var(--bb-gray-200);
+    --automation-demo-muted: var(--bb-gray-750);
+    --automation-demo-text: var(--bb-graphite);
+    --text: 30 25 25;
+    --text-muted: 115 108 100;
   }
 
   .automation-demo-backdrop {
@@ -401,16 +400,16 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
 
   .automation-demo-shell {
     min-height: 520px;
-    background: var(--bb-gray-1000);
+    background: var(--automation-demo-surface);
   }
 
   .automation-demo-toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 0.5px solid var(--bb-gray-800);
+    border-bottom: 0.5px solid var(--automation-demo-border);
     padding: 6px 8px;
-    background: var(--bb-gray-900);
+    background: var(--automation-demo-panel);
   }
 
   .automation-demo-tabs {
@@ -423,7 +422,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     border: 0;
     border-radius: 6px;
     background: transparent;
-    color: var(--bb-gray-500);
+    color: var(--automation-demo-muted);
     font-size: 13px;
     line-height: 1;
     padding: 6px 8px;
@@ -431,8 +430,8 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   }
 
   .automation-demo-tab.is-active {
-    background: var(--bb-gray-800);
-    color: var(--bb-gray-75);
+    background: var(--automation-demo-border);
+    color: var(--automation-demo-text);
   }
 
   .automation-demo-body {
@@ -442,7 +441,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   }
 
   .automation-demo-canvas-shell {
-    border-right: 0.5px solid var(--bb-gray-800);
+    border-right: 0.5px solid var(--automation-demo-border);
   }
 
   .automation-demo-canvas {
@@ -456,7 +455,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     justify-content: center;
     overflow: auto;
     padding: 24px;
-    background: var(--bb-gray-900);
+    background: var(--automation-demo-panel);
   }
 
   .automation-demo-canvas::before {
@@ -468,7 +467,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     opacity: 0.74;
     background-image: radial-gradient(
       circle at center,
-      color-mix(in srgb, var(--bb-gray-800) 70%, transparent) 1px,
+      color-mix(in srgb, var(--automation-demo-border) 70%, transparent) 1px,
       transparent 1px
     );
     background-size: 18px 18px;
@@ -484,7 +483,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     opacity: 0;
     background-image: radial-gradient(
       circle at center,
-      color-mix(in srgb, var(--bb-gray-500) 42%, transparent) 1px,
+      color-mix(in srgb, var(--automation-demo-muted) 42%, transparent) 1px,
       transparent 1px
     );
     background-size: 18px 18px;
@@ -598,15 +597,17 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   }
 
   .automation-demo-status.is-trigger {
-    background: var(--bb-orange-700);
+    background: var(--bb-tangerine);
+    color: var(--bb-graphite);
   }
 
   .automation-demo-status.is-complete {
-    background: var(--bb-green-700);
+    background: var(--bb-lime);
+    color: var(--bb-graphite);
   }
 
   .automation-demo-status.is-running {
-    background: var(--bb-blue-800);
+    background: var(--bb-navy);
   }
 
   .automation-demo-status-dots {
@@ -653,10 +654,10 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     align-items: center;
     gap: 10px;
     border-radius: 6px;
-    border: 0.5px solid var(--bb-gray-800);
-    background: var(--bb-gray-800);
+    border: 0.5px solid var(--automation-demo-border);
+    background: var(--automation-demo-border);
     padding: 9px 12px;
-    color: var(--bb-gray-75);
+    color: var(--automation-demo-text);
   }
 
   .automation-demo-node-icon {
@@ -671,15 +672,17 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   }
 
   .automation-demo-node-icon-email {
-    background: var(--bb-green-700);
+    background: var(--bb-lime);
+    color: var(--bb-graphite);
   }
 
   .automation-demo-node-icon-agent {
-    background: var(--bb-blue-800);
+    background: var(--bb-navy);
   }
 
   .automation-demo-node-icon-alert {
-    background: var(--bb-gray-800);
+    background: var(--automation-demo-border);
+    color: var(--bb-graphite);
   }
 
   .automation-demo-node-label {
@@ -689,7 +692,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     text-overflow: ellipsis;
     font-size: 13px;
     line-height: 1.2;
-    color: var(--bb-gray-75);
+    color: var(--automation-demo-text);
   }
 
   .automation-demo-edge {
@@ -698,7 +701,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     margin: 0 6px;
     background-image: linear-gradient(
       to right,
-      var(--bb-blue-700) 50%,
+      var(--bb-cloud) 50%,
       transparent 0
     );
     background-size: 6px 1px;
@@ -711,12 +714,12 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     flex-direction: column;
     gap: 10px;
     padding: 12px;
-    background: var(--bb-gray-1000);
+    background: var(--automation-demo-surface);
   }
 
   .automation-demo-sidebar-heading {
     margin: 0;
-    color: var(--bb-gray-75);
+    color: var(--automation-demo-text);
     font-size: 13px;
     line-height: 1.2;
     font-weight: 500;
@@ -731,7 +734,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   .automation-demo-sidebar-title {
     margin: 4px 0 0;
     font-family: var(--font-sans);
-    color: var(--bb-gray-500);
+    color: var(--automation-demo-muted);
     font-size: 13px;
     line-height: 1.2;
     font-weight: 500;
@@ -752,17 +755,17 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     min-height: 30px;
     align-items: center;
     gap: 8px;
-    border: 0.5px solid var(--bb-gray-800);
+    border: 0.5px solid var(--automation-demo-border);
     border-radius: 6px;
-    background: var(--bb-gray-900);
-    color: var(--bb-gray-75);
+    background: var(--automation-demo-panel);
+    color: var(--automation-demo-text);
     padding: 6px 10px;
     text-align: left;
     cursor: pointer;
   }
 
   .automation-demo-sidebar-item:hover {
-    background: var(--bb-gray-800);
+    background: var(--automation-demo-border);
   }
 
   .automation-demo-sidebar-icon {
@@ -777,15 +780,16 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
   }
 
   .automation-demo-sidebar-icon-api {
-    background: var(--bb-blue-800);
+    background: var(--bb-navy);
   }
 
   .automation-demo-sidebar-icon-data {
-    background: var(--bb-green-700);
+    background: var(--bb-lime);
+    color: var(--bb-graphite);
   }
 
   .automation-demo-sidebar-icon-logic {
-    background: var(--bb-purple-800);
+    background: var(--bb-plum);
   }
 
   .automation-demo-sidebar-label {
@@ -811,7 +815,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     width: 12px;
     height: 12px;
     border-radius: 2px;
-    background: var(--bb-gray-800);
+    background: var(--automation-demo-border);
   }
 
   .automation-demo-sidebar-logo-block {
@@ -819,7 +823,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     width: 12px;
     height: 12px;
     border-radius: 2px;
-    background: var(--bb-gray-800);
+    background: var(--automation-demo-border);
   }
 
   @media (max-width: 1340px) {
@@ -839,7 +843,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
 
     .automation-demo-canvas-shell {
       border-right: 0;
-      border-bottom: 0.5px solid var(--bb-gray-800);
+      border-bottom: 0.5px solid var(--automation-demo-border);
     }
 
     .automation-demo-sidebar {
@@ -884,7 +888,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
       margin: 6px 0;
       background-image: linear-gradient(
         to bottom,
-        var(--bb-blue-700) 50%,
+        var(--bb-cloud) 50%,
         transparent 0
       );
       background-size: 1px 6px;

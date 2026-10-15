@@ -1,0 +1,36 @@
+---
+import BrandShape from "./BrandShape.astro";
+import {
+  navigationGroupShapes,
+  originalPlatformGroupShapes,
+  type BrandShapeId,
+} from "../../data/brandShapes";
+interface Props {
+  group: string;
+  size?: number;
+  inverted?: boolean;
+  variant?: "current" | "original";
+}
+const { group, size = 24, inverted = false, variant = "current" } = Astro.props;
+const mapping: Partial<Record<string, BrandShapeId>> =
+  variant === "original" ? originalPlatformGroupShapes : navigationGroupShapes;
+const name = mapping[group];
+---
+
+{
+  name && (
+    <span
+      class="platform-group-mark"
+      data-platform-group={group}
+      aria-hidden="true"
+    >
+      <BrandShape name={name} size={size} inverted={inverted} />
+    </span>
+  )
+}
+<style>
+  .platform-group-mark {
+    display: block;
+    flex-shrink: 0;
+  }
+</style>

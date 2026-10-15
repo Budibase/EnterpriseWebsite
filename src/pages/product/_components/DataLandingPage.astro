@@ -1,0 +1,139 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import OnePlatformData from "@components/OnePlatformData.astro";
+import APICapabilityVisual from "./APICapabilityVisual.astro";
+import DataCapabilityVisual from "./DataCapabilityVisual.astro";
+import { marketplaceConnections } from "../../../data/marketplaceConnections";
+import type { PlatformLandingContent } from "../../../data/landingPageTypes";
+interface Props {
+  content: PlatformLandingContent;
+}
+const { content } = Astro.props;
+const databaseNames = ["PostgreSQL", "MySQL", "MSSQL", "Oracle"];
+const databases = databaseNames.map((name) =>
+  marketplaceConnections.find((connection) => connection.name === name)!,
+);
+const cardMedia = [
+  {
+    mediaDemo: APICapabilityVisual,
+    mediaDemoProps: {
+      variant: "access",
+      title: "Table access",
+      resourceLabel: "Requests",
+    },
+  },
+  { mediaDemo: DataCapabilityVisual, mediaDemoProps: { variant: "views" } },
+  {
+    mediaDemo: DataCapabilityVisual,
+    mediaDemoProps: { variant: "environments" },
+  },
+];
+const cards = content.cardCluster.cards.map((card, index) => ({
+  ...card,
+  ...cardMedia[index],
+}));
+const faqs = [
+  {
+    question: "Can I use my existing SQL database?",
+    answer:
+      "Yes. Connect SQL databases such as PostgreSQL, MySQL, MSSQL and Oracle. Sync and view your data inside Budibase, and generate CRUD APIs and tools for your processes.",
+  },
+  {
+    question: "Can I create a table without an external database?",
+    answer:
+      "Yes. Use BudibaseDB to build a data table from scratch. Define fields and add records directly in Budibase.",
+  },
+  {
+    question: "How do I control who can access my data?",
+    answer:
+      "Use role-based access control for table access, and create secured, filtered views so users only access the data their role needs.",
+  },
+  {
+    question: "Can I work with separate dev and prod data?",
+    answer:
+      "Yes. Switch between dev and prod data environments. External tables use environment variables to connect to the corresponding data source; separate dev access requires those variables to be configured.",
+  },
+];
+---
+
+<GridLandingPage
+  slug="data"
+  {content}
+  {cards}
+  {faqs}
+  featureActions={[
+    {
+      label: "Explore database connections",
+      url: "/marketplace/connections/",
+      appearance: "button",
+    },
+  ]}
+>
+  <OnePlatformData slot="hero-media" presentation="framed" />
+  <div slot="feature-0" class="sql-connectors">
+    <ul>
+      {
+        databases.map((database) => (
+          <li>
+            <>
+              <img src={database.logo} alt="" width="32" height="32" />
+              <span>{database.name}</span>
+            </>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div slot="feature-1" class="data-table-builder">
+    <OnePlatformData presentation="framed" showFieldMenu />
+  </div>
+</GridLandingPage>
+
+<style>
+  .data-table-builder {
+    width: 100%;
+    max-width: 32rem;
+    height: 22rem;
+    border: 1px solid var(--bb-border-base);
+  }
+  .sql-connectors {
+    width: 100%;
+    max-width: 32rem;
+  }
+  .sql-connectors ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    padding: 0;
+    margin: 0 !important;
+    list-style: none;
+    background: var(--bb-border-base);
+    border: 1px solid var(--bb-border-base);
+  }
+  .sql-connectors li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    min-width: 0;
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .sql-connectors img {
+    flex: none;
+    object-fit: contain;
+  }
+  @media (max-width: 400px) {
+    .sql-connectors li {
+      gap: 0.5rem;
+      padding: 0.75rem;
+      font-size: 0.875rem;
+    }
+    .sql-connectors img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+</style>

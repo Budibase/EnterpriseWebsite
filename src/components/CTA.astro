@@ -7,6 +7,7 @@ interface Props {
   primaryLabel?: string;
   primaryHref?: string;
   ariaLabel?: string;
+  insetActions?: boolean;
 }
 
 const {
@@ -14,32 +15,43 @@ const {
   primaryLabel = "Request a Demo",
   primaryHref = "/contact/",
   ariaLabel = "Get started with Budibase",
+  insetActions = false,
 } = Astro.props;
 ---
 
 <section
-  class:list={["cta-section", { "cta-section--grid": variant === "grid" }]}
+  class:list={[
+    "cta-section",
+    {
+      "cta-section--grid": variant === "grid",
+      "cta-section--inset": insetActions,
+    },
+  ]}
   aria-label={ariaLabel}
 >
-  <a class="cta-action cta-action--demo" href={primaryHref}>
-    <span class="cta-action__label">{primaryLabel}</span>
-    <span class="cta-action__icon" aria-hidden="true">
-      <Icon name="ArrowRight" size="40" />
-    </span>
-  </a>
+  <div class="cta-cell">
+    <a class="cta-action cta-action--demo" href={primaryHref}>
+      <span class="cta-action__label">{primaryLabel}</span>
+      <span class="cta-action__icon" aria-hidden="true">
+        <Icon name="ArrowRight" size="40" />
+      </span>
+    </a>
+  </div>
 
-  <a
-    class="cta-action cta-action--build"
-    href="https://account.budibase.app/register"
-  >
-    <span class="cta-action__label">Start Building</span>
-    <span class="cta-action__icon" aria-hidden="true">
-      <Icon name="ArrowRight" size="40" />
-    </span>
-    <div class="cta-action__mosaic">
-      <BlockMosaic preset="hero" />
-    </div>
-  </a>
+  <div class="cta-cell">
+    <a
+      class="cta-action cta-action--build"
+      href="https://account.budibase.app/register"
+    >
+      <span class="cta-action__label">Start Building</span>
+      <span class="cta-action__icon" aria-hidden="true">
+        <Icon name="ArrowRight" size="40" />
+      </span>
+      <div class="cta-action__mosaic">
+        <BlockMosaic preset="hero" />
+      </div>
+    </a>
+  </div>
 </section>
 
 <style>
@@ -61,8 +73,32 @@ const {
     border-bottom: 1px solid var(--bb-border-base);
   }
 
-  .cta-section--grid .cta-action + .cta-action {
+  .cta-section--grid .cta-cell + .cta-cell {
     border-top: 1px solid var(--bb-border-base);
+  }
+
+  .cta-cell {
+    display: contents;
+  }
+
+  .cta-section--grid .cta-cell {
+    display: block;
+    min-width: 0;
+  }
+
+  .cta-section--grid .cta-action {
+    height: 100%;
+  }
+
+  .cta-section--inset .cta-cell {
+    display: block;
+    min-width: 0;
+    padding: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  .cta-section--inset .cta-action {
+    width: 100%;
+    height: 100%;
   }
 
   .cta-action {
@@ -74,6 +110,7 @@ const {
     min-height: clamp(9rem, 18vw, 12rem);
     padding: clamp(1.25rem, 2.5vw, 2rem);
     border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
     font-family: var(--font-heading-sans);
     font-size: var(--bb-text-heading-section-font-size);
     font-weight: 400;
@@ -83,13 +120,21 @@ const {
   }
 
   .cta-action--demo {
-    background: var(--bb-brand-bright-green);
+    background: var(--bb-lime);
     color: var(--bb-text-base) !important;
+  }
+
+  .cta-action--demo:hover {
+    background: var(--bb-button-lime-hover);
+  }
+
+  .cta-action--demo:active {
+    background: var(--bb-button-lime-active);
   }
 
   .cta-action--build {
     position: relative;
-    background: var(--bb-gray-900);
+    background: var(--bb-graphite);
     color: var(--bb-text-on-base) !important;
   }
 
@@ -145,7 +190,7 @@ const {
       gap: 0;
     }
 
-    .cta-section--grid .cta-action + .cta-action {
+    .cta-section--grid .cta-cell + .cta-cell {
       border-top: 0;
       border-left: 1px solid var(--bb-border-base);
     }

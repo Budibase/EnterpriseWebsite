@@ -32,11 +32,11 @@ Before diving into the 6 best open source form builders, let's understand what e
 
 Most of the open-source form software within this post accommodates both types of formats. Out of the box, an excellent open-source form builder should provide you with features such as:
 
-* Accessible components
-* Built-in validation
-* Design flexibility
-* Linked database
-* GUI
+- Accessible components
+- Built-in validation
+- Design flexibility
+- Linked database
+- GUI
 
 When selecting an open-source form builder, I suggest you think long and hard about your use case. Some form builders will come with additional features you simply do not need. Always pick the right tool for the job.
 
@@ -132,8 +132,8 @@ Here's a summary of what each one offers.
     font-size: 0.8rem;
     font-weight: 700;
     white-space: nowrap;
-    background: var(--bb-purple-100);
-    color: var(--bb-purple-1100);
+    background: var(--bb-orchid-subtle);
+    color: var(--bb-plum);
   }
 </style>
 
@@ -219,21 +219,20 @@ The design of the builder is superior to other builders on this list. It's not e
 
 #### Pros
 
-* Design
-* Accessibility
-* Flexibility
-* Simplest of all form builders to get started and use
-* Power to generate forms from a schema
-* Database attached
-* External database support
-* Optional self-hosting
+- Design
+- Accessibility
+- Flexibility
+- Simplest of all form builders to get started and use
+- Power to generate forms from a schema
+- Database attached
+- External database support
+- Optional self-hosting
 
 ### Conclusion
 
 If you are building a web app/internal tool, Budibase is the best option hands-down. It comes with a database and plugs into other databases, making it a complete form builder. Budibase is a powerful/flexible builder, precisely why it is not the best option if you have a pre-existing codebase to which you would like to add a form.
 
-
-***
+---
 
 ## Kinto form builder
 
@@ -249,7 +248,7 @@ Kinto is a unique project, and the form builder is very flexible in nature. I fe
 
 ### Ease of use - ⭐⭐
 
-The Kinto form builder requires you to set up a Kinto instance.  It also involves you knowing how to code. I expect this to be a blocker for many readers. They offer a sandbox that highlights the power of the builder.
+The Kinto form builder requires you to set up a Kinto instance. It also involves you knowing how to code. I expect this to be a blocker for many readers. They offer a sandbox that highlights the power of the builder.
 
 ### Functionality - ⭐⭐⭐⭐
 
@@ -261,14 +260,14 @@ The design is not very opinionated but functional. The forms outputted from Kint
 
 #### Pros
 
-* Sandbox
-* Performance
+- Sandbox
+- Performance
 
 #### Cons
 
-* Lack of database out of the box
-* Getting started proved to be a pain
-* React focused
+- Lack of database out of the box
+- Getting started proved to be a pain
+- React focused
 
 ### Conclusion
 
@@ -276,7 +275,7 @@ If you know how to code and React is a part of your tech stack, this is a great 
 
 [Kinto Github Link](https://github.com/Kinto/formbuilder)
 
-***
+---
 
 ## form.io
 
@@ -304,16 +303,16 @@ The platform's overall design is a little dated, and the inputs and forms availa
 
 #### Pros
 
-* Flexibility
-* Functionality
-* Conditional and logic functionality out of the box
-* Multi-tenancy
+- Flexibility
+- Functionality
+- Conditional and logic functionality out of the box
+- Multi-tenancy
 
 #### Cons
 
-* Design of the platform
-* Design of the form components
-* Enterprise feel
+- Design of the platform
+- Design of the form components
+- Enterprise feel
 
 ### Conclusion
 
@@ -321,7 +320,7 @@ If you are a developer, short of time, working in an enterprise org, I would def
 
 [Formio Github link](https://github.com/formio/formio)
 
-***
+---
 
 ## Alpaca
 
@@ -345,15 +344,15 @@ The components which come out of the box are basic HTML5 components with zero st
 
 #### Pros
 
-* Flexibility
-* Documentation
-* Lightweight
+- Flexibility
+- Documentation
+- Lightweight
 
 #### Cons
 
-* Design
-* You need to know how to code
-* Lack of database
+- Design
+- You need to know how to code
+- Lack of database
 
 ### Conclusion
 
@@ -361,7 +360,7 @@ Alpaca is a great option if you want to create a no-nonsense form. But, critical
 
 [Alpaca Github link](https://github.com/gitana/alpaca)
 
-***
+---
 
 ## Ohmyform
 
@@ -389,15 +388,15 @@ The early design signs are good. With a little polish, the team could be on to a
 
 #### Pros
 
-* Design
-* Stepped approach
+- Design
+- Stepped approach
 
 #### Cons
 
-* Project is young
-* Lack of documentation
-* No sandbox
-* Lack of functionality
+- Project is young
+- Lack of documentation
+- No sandbox
+- Lack of functionality
 
 ### Conclusion
 
@@ -405,9 +404,10 @@ It's too early to tell for OhMyForm, but the future is bright if they can delive
 
 [Ohmyform Github link](https://github.com/ohmyform/ohmyform)
 
-***
+---
 
 ## Formbricks
+
 _Great for experience management and product surveys_
 
 ![Formbricks open source form builder](https://res.cloudinary.com/daog6scxm/image/upload/v1743509994/cms/alternatives/Formbricks_kmgz1l.webp "Formbricks open source form builder")
@@ -415,52 +415,59 @@ _Great for experience management and product surveys_
 Formbricks is a slightly different proposition to some of the of the other open-source form builders we've seen so far, squarely targeting teams that need to securely gather feedback for experience management.
 
 We can output and analyze responses from both standalone and embedded surveys within emails, software products, or websites, with a huge amount of customization.
+
 ### Ease of use - ⭐⭐⭐
-Formbricks is comparatively easy to get up and running, including one-click deployments. The core survey builder UI is modern, but may feel a little bit difficult to navigate for more complex form use cases. For instance, we're locked into a multi-step format. 
+
+Formbricks is comparatively easy to get up and running, including one-click deployments. The core survey builder UI is modern, but may feel a little bit difficult to navigate for more complex form use cases. For instance, we're locked into a multi-step format.
 
 Conditional logic is implemented by skipping to specific questions based on previous inputs. This is great for fairly simple logic, but could get messy for highly dynamic form schemas.
 
 ### Functionality - ⭐⭐⭐
+
 From a functional perspective, Formbricks is a comparatively powerful platform. In addition to its core form builder UI, it stands out for capabilities around gathering and managing user data, including no-code and code based tools for creating custom events. It's also a highly security-focused platform, with full GDPR and CCPA compliance.
 
 ### Design - ⭐⭐⭐
+
 Formbricks surveys are some of the more modern, sleek designs of the platforms we've seen today. As we said earlier though, this is quite opinionated, providing a multi-step experience with a single question per card. However, we do have extensive tools to style and theme our forms, including color schemes and component roundness.
 
 #### Pros
-* Customer experience capabilities
-* Security and compliance
-* No-code and code-based customization
-* Embedded and standalone surveys
+
+- Customer experience capabilities
+- Security and compliance
+- No-code and code-based customization
+- Embedded and standalone surveys
 
 #### Cons
-* Opinioned design
-* Difficult to track and manage complex form logic
-* Some coding knowledge may be useful
+
+- Opinioned design
+- Difficult to track and manage complex form logic
+- Some coding knowledge may be useful
 
 ### Conclusion
+
 Formbricks is a great option if you want to build performant, secure surveys, especially within websites, software products, or email campaigns. However, you might want to look elsewhere for other form building use cases, such as general data collection and entry, ticketing, or request management.
 
 ## What is the best free online form builder?
 
 The 6 best open-source form builders today are:
 
-* Budibase.
-* Kinto form builder.
-* Form.io.
-* Alpaca.
-* Ohmyform.
-* Formbricks.
+- Budibase.
+- Kinto form builder.
+- Form.io.
+- Alpaca.
+- Ohmyform.
+- Formbricks.
 
 But if you want to pick the best online form builder, it really depends on what kind of features you are looking for.
 
 Here are some other features that you might want to consider:
 
-* Offline form builder.
-* Mobile form builder.
-* Self-hosted form builder.
-* Form builder API.
+- Offline form builder.
+- Mobile form builder.
+- Self-hosted form builder.
+- Form builder API.
 
-You might also want to consider free versions of closed source tools - particularly if you're considering open-source options for cost reasons. 
+You might also want to consider free versions of closed source tools - particularly if you're considering open-source options for cost reasons.
 
 Most SaaS form builders also offer a free tier of their product, although the limitations that are applied to these can vary. For instance, [JotForm, TypeForm, and FormStack](https://budibase.com/blog/alternatives/forms/) are all stand-alone COTS form builders that offer free tiers.
 

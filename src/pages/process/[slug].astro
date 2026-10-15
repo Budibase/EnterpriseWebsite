@@ -1,339 +1,214 @@
 ---
-import Layout from "../../layouts/MainLayout.astro";
-import AccessRequestPrompt from "@components/AccessRequestPrompt.astro";
-import AgentDetailHero from "@components/ops-library/AgentDetailHero.astro";
-import AgentPromptPanel from "@components/ops-library/AgentPromptPanel.astro";
-import AgentPromptModal from "@components/ops-library/AgentPromptModal.astro";
-import AgentAssetsRail from "@components/ops-library/AgentAssetsRail.astro";
+import Layout from "../../layouts/MarketplaceLayout.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import Link from "@components/Link.astro";
+import TemplateUseMenu from "@components/ops-library/TemplateUseMenu.astro";
+import TemplateAgentPreview from "@components/ops-library/TemplateAgentPreview.astro";
+import TemplateMetadata from "@components/ops-library/TemplateMetadata.astro";
 import RelatedAgentsSection from "@components/ops-library/RelatedAgentsSection.astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import { getOpsLibraryCards } from "../../data/opsLibraryCardData";
-import OpsBookADemoButton from "./_components/OpsBookADemoButton.astro";
-
-const ASSET_GROUP_ORDER = [
-  { key: "tables", label: "Data tables" },
-  { key: "automations", label: "Automations" },
-  { key: "tools", label: "Tools" },
-  { key: "aiModel", label: "AI model" },
-  { key: "apps", label: "Apps" },
-] as const;
-
-type AssetKey = (typeof ASSET_GROUP_ORDER)[number]["key"];
-
-type AssetBuckets = {
-  tables?: string[];
-  automations?: string[];
-  tools?: string[];
-  aiModel?: string[];
-  apps?: string[];
-};
-
-type ResolvedAssetBuckets = Record<AssetKey, string[]>;
-
-type DetailViewModel = {
-  title: string;
-  outcome: string;
-  slug: string;
-  pageTitle: string;
-  heroPrompt: string;
-  promptCardStyle: "default" | "snippet";
-  usePromptCardExperience: boolean;
-  useDefaultPromptCard: boolean;
-  assetsUsed: ResolvedAssetBuckets;
-};
-
-type RelatedAgent = {
-  slug: string;
-  name: string;
-  description: string;
-  department: string;
-  linkUrl: string;
-};
+import { getTemplateAssets } from "../../data/processTemplateAssets";
 
 export async function getStaticPaths() {
-  const opsLibraryEntries = await getCollection("opsLibrary");
-
-  return opsLibraryEntries.map((entry) => ({
+  const entries = await getCollection("opsLibrary");
+  return entries.map((entry) => ({
     params: { slug: entry.data.slug ?? entry.id },
     props: { entry },
   }));
 }
-
-const uniqueStrings = (items: Array<string | undefined | null>) =>
-  Array.from(
-    new Set(
-      items
-        .map((item) => item?.trim())
-        .filter((item): item is string => Boolean(item)),
-    ),
-  );
-
-const mergeAssetsWithFallback = (
-  explicitAssets: AssetBuckets | undefined,
-  fallbackAssets: AssetBuckets,
-): ResolvedAssetBuckets => {
-  const merged = {} as ResolvedAssetBuckets;
-
-  for (const group of ASSET_GROUP_ORDER) {
-    const explicitItems = explicitAssets?.[group.key] ?? [];
-    const fallbackItems = fallbackAssets[group.key] ?? [];
-    merged[group.key] = uniqueStrings(
-      explicitItems.length > 0 ? explicitItems : fallbackItems,
-    );
-  }
-
-  return merged;
-};
-
-const buildOpsLibraryPromptFallback = (
-  entry: CollectionEntry<"opsLibrary">,
-) => {
-  const assists = entry.data.aiAssists.slice(0, 3).join(", ");
-  const humanChecks = entry.data.humansDecide.slice(0, 3).join(", ");
-
-  return [
-    `You are orchestrating the \"${entry.data.title}\" workflow for ${entry.data.role}.`,
-    `Goal: ${entry.data.outcome}`,
-    assists
-      ? `AI assistance: ${assists}.`
-      : "AI assistance: classify, summarize, and route work.",
-    humanChecks
-      ? `Human decision points: ${humanChecks}.`
-      : "Human decision points: exceptions and final approvals.",
-    "Keep outputs clear, auditable, and policy-aligned.",
-  ].join("\n");
-};
-
-const buildOpsLibraryFallbackAssets = (
-  entry: CollectionEntry<"opsLibrary">,
-): AssetBuckets => {
-  const slug = entry.data.slug ?? entry.id;
-  const dataTableSignals = entry.data.integrations.filter((integration) =>
-    /(database|erp|hris|accounting|file storage)/i.test(integration),
-  );
-
-  return {
-    tables: uniqueStrings([
-      slug === "access-request" ? "Access Requests" : undefined,
-      slug === "access-request" ? "Decisions" : undefined,
-      ...dataTableSignals.map((signal) => `${signal} records`),
-      entry.data.tags.includes("Human-in-the-loop")
-        ? "Decision audit log"
-        : undefined,
-    ]),
-    automations: uniqueStrings([
-      ...entry.data.steps
-        .filter((step) => !step.humanDecision)
-        .slice(0, 4)
-        .map((step) => step.title),
-      entry.data.tags.includes("Automations")
-        ? "Event-based workflow routing"
-        : undefined,
-    ]),
-    tools: uniqueStrings(entry.data.integrations),
-    aiModel: uniqueStrings([
-      slug === "access-request" ? "Ministral-8B-2512" : undefined,
-      slug === "access-request" ? "mistralai/mistral-embed-2312" : undefined,
-      slug !== "access-request" ? "Configurable LLM provider" : undefined,
-    ]),
-    apps: uniqueStrings([
-      entry.data.tags.includes("Apps") ? "Budibase app interface" : undefined,
-      entry.data.tags.includes("Chat") ? "Chat request channel" : undefined,
-      "Admin review workspace",
-    ]),
-  };
-};
 const { entry } = Astro.props as { entry: CollectionEntry<"opsLibrary"> };
-const slug = entry.data.slug ?? entry.id;
-const explicitPrompt = entry.data.heroPrompt?.trim() ?? "";
-const rendered = await render(entry);
-const OpsLibraryContent = rendered.Content;
-const promptCardStyle = entry.data.promptCardStyle ?? "default";
-const usePromptCardExperience = promptCardStyle === "snippet";
-const useDefaultPromptCard =
-  usePromptCardExperience && slug === "access-request" && !explicitPrompt;
-
-const detail: DetailViewModel = {
-  title: entry.data.title,
-  outcome: entry.data.outcome,
-  slug,
-  pageTitle: `${entry.data.title} | Process templates | Budibase`,
-  heroPrompt: explicitPrompt || buildOpsLibraryPromptFallback(entry),
-  promptCardStyle,
-  usePromptCardExperience,
-  useDefaultPromptCard,
-  assetsUsed: mergeAssetsWithFallback(
-    entry.data.assetsUsed,
-    buildOpsLibraryFallbackAssets(entry),
-  ),
-};
-
-const assetGroups = ASSET_GROUP_ORDER.map((group) => ({
-  label: group.label,
-  items: detail.assetsUsed[group.key],
-}));
-
-const allAgentCards = await getOpsLibraryCards();
-const currentAgentCard = allAgentCards.find(
-  (card) => card.slug === detail.slug,
-);
-const relatedAgents: RelatedAgent[] = allAgentCards
-  .filter((card) => card.slug !== detail.slug)
+const data = entry.data;
+const { Content } = await render(entry);
+const assets = getTemplateAssets(data);
+const cards = await getOpsLibraryCards();
+const current = cards.find((card) => card.slug === data.slug);
+const related = cards
+  .filter((card) => card.slug !== data.slug)
   .sort((a, b) => {
-    const aSameDepartment = currentAgentCard
-      ? a.departmentId === currentAgentCard.departmentId
-      : false;
-    const bSameDepartment = currentAgentCard
-      ? b.departmentId === currentAgentCard.departmentId
-      : false;
-
-    if (aSameDepartment !== bSameDepartment) {
-      return aSameDepartment ? -1 : 1;
-    }
-
-    return a.name.localeCompare(b.name);
+    const aSame = a.departmentId === current?.departmentId;
+    const bSame = b.departmentId === current?.departmentId;
+    return Number(bSame) - Number(aSame) || a.name.localeCompare(b.name);
   })
-  .slice(0, 3)
-  .map((card) => ({
-    slug: card.slug,
-    name: card.name,
-    description: card.description,
-    department: card.department,
-    linkUrl: card.linkUrl,
-  }));
+  .slice(0, 3);
 ---
 
-<Layout
-  title={detail.pageTitle}
-  description={detail.outcome}
-  canonicalURL={new URL(Astro.url.pathname, Astro.site)}
->
-  <div class="learn-detail-shell">
-    <main class="side-rail-main-inner agent-detail-main pb-20">
-      <AgentDetailHero title={detail.title} outcome={detail.outcome}>
-        <div class="flex flex-col gap-4 items-center">
-          <OpsBookADemoButton opSlug={detail.slug} variant="cta" size="large" />
-          {
-            detail.usePromptCardExperience ? (
-              <AccessRequestPrompt
-                collapsible
-                collapsedHeight={260}
-                promptText={
-                  detail.useDefaultPromptCard ? undefined : detail.heroPrompt
-                }
-                agentTitle={detail.title}
-                toolsUsed={detail.assetsUsed.tools}
-              />
-            ) : (
-              <AgentPromptPanel
-                prompt={detail.heroPrompt}
-                agentTitle={detail.title}
-                toolsUsed={detail.assetsUsed.tools}
-              />
-            )
-          }
-        </div>
-      </AgentDetailHero>
-
-      <section class="agent-detail-content-grid">
-        <article class="ops-library-article agent-detail-article">
-          <OpsLibraryContent />
-        </article>
-
-        <AgentAssetsRail groups={assetGroups} />
-      </section>
-
-      <RelatedAgentsSection cards={relatedAgents} />
-    </main>
+<Layout active="Templates" title={data.title} description={data.outcome}>
+  <div class="template-back">
+    <Link
+      label="Back to templates"
+      url="/marketplace/templates/"
+      appearance="quiet"
+      size="small"
+    />
   </div>
-
-  <AgentPromptModal
-    agentTitle={detail.title}
-    toolsUsed={detail.assetsUsed.tools}
-    promptText={detail.useDefaultPromptCard ? undefined : detail.heroPrompt}
-    useDefaultPrompt={detail.useDefaultPromptCard}
-    promptCardStyle={detail.promptCardStyle}
-  />
-
-  <style>
-    .learn-detail-shell {
-      width: 100%;
-    }
-
-    .agent-detail-main {
-      width: min(100%, 82rem);
-      margin-inline: auto;
-      padding-top: 0;
-    }
-
-    .agent-detail-content-grid {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .agent-detail-article {
-      background: var(--bg-1);
-      border-radius: 0;
-      padding: 1rem;
-      min-width: 0;
-    }
-
-    .ops-library-article :where(h2, h3, h4) {
-      scroll-margin-top: calc(var(--site-nav-height) + 24px);
-    }
-
-    .ops-library-article :global(h2#overview) {
-      margin-top: 0 !important;
-    }
-
-    @media (min-width: 768px) {
-      .agent-detail-article {
-        padding: 1.2rem 1.35rem;
+  <header class="template-heading">
+    <TitleBlock
+      variant="section"
+      title={data.title}
+      description={data.outcome}
+      titleId="template-title"
+    />
+    <TemplateUseMenu
+      id={`use-template-${data.slug}`}
+      cloudImportUrl={data.cloudImportUrl}
+      selfHostedDownloadUrl={data.selfHostedDownloadUrl}
+    />
+  </header>
+  <section class="template-detail" aria-labelledby="template-title">
+    <div class="template-detail-preview">
+      {
+        assets.agent && data.agentPreview && (
+          <TemplateAgentPreview
+            preview={data.agentPreview}
+            channels={assets.channels}
+            operationsCenter={assets.operationsCenter}
+          />
+        )
       }
-    }
-
-    @media (min-width: 1024px) {
-      .agent-detail-content-grid {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
-        align-items: start;
-      }
-
-      .agent-detail-article {
-        padding: 1.25rem 1.5rem;
-      }
-    }
-  </style>
-
-  <script>
-    (() => {
-      const markerPattern = /\s*\{#([A-Za-z0-9_-]+)\}\s*$/;
-
-      const normalizeHeadingIds = () => {
-        const article = document.querySelector("article.ops-library-article");
-        if (!article) return;
-        const headings = Array.from(article.querySelectorAll("h2, h3, h4"));
-
-        headings.forEach((heading) => {
-          const text = (heading.textContent || "").trim();
-          const markerMatch = text.match(markerPattern);
-          if (!markerMatch) return;
-
-          const targetId = markerMatch[1];
-          const cleanText = text.replace(markerPattern, "").trim();
-          if (cleanText) heading.textContent = cleanText;
-          if (targetId) heading.id = targetId;
-        });
-      };
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", normalizeHeadingIds, {
-          once: true,
-        });
-      } else {
-        normalizeHeadingIds();
-      }
-
-      document.addEventListener("astro:after-swap", normalizeHeadingIds);
-    })();
-  </script>
+    </div>
+    <div class="template-detail-body">
+      <div class="template-detail-metadata">
+        <TemplateMetadata data={data} />
+      </div>
+      <article class="template-readme" aria-label="Template README">
+        <Content />
+      </article>
+    </div>
+  </section>
+  <RelatedAgentsSection cards={related} />
 </Layout>
+<style>
+  .template-back {
+    margin-bottom: 24px;
+  }
+  .template-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: flex-start;
+    margin-bottom: 36px;
+  }
+  .template-heading > :global(div:first-child) {
+    min-width: 0;
+    max-width: 800px;
+  }
+  .template-heading :global(.title-block__description) {
+    font-size: 18px;
+    max-width: 68ch;
+    text-wrap: pretty;
+  }
+  .template-detail-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    grid-template-areas: "readme metadata";
+    width: 100%;
+    max-width: 1120px;
+    margin: 40px auto 0;
+    align-items: start;
+    column-gap: 80px;
+    row-gap: 40px;
+  }
+  .template-detail-preview {
+    min-width: 0;
+  }
+  .template-detail-metadata {
+    grid-area: metadata;
+    min-width: 0;
+  }
+  .template-readme {
+    grid-area: readme;
+    min-width: 0;
+    color: var(--bb-text-body);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .template-readme :global(h2),
+  .template-readme :global(h3),
+  .template-readme :global(h4) {
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    letter-spacing: normal;
+    line-height: 1.25;
+    scroll-margin-top: calc(var(--site-nav-height) + 24px);
+  }
+  .template-readme :global(h2) {
+    margin: 40px 0 18px;
+    font-size: 28px;
+  }
+  .template-readme :global(h2:first-child) {
+    margin-top: 0;
+  }
+  .template-readme :global(h3) {
+    font-size: 22px;
+    margin: 32px 0 16px;
+  }
+  .template-readme :global(h4) {
+    font-size: 18px;
+    margin: 24px 0 12px;
+  }
+  .template-readme :global(p) {
+    margin: 0 0 18px;
+  }
+  .template-readme :global(ul),
+  .template-readme :global(ol) {
+    margin: 16px 0 24px;
+    padding-left: 24px;
+  }
+  .template-readme :global(li) {
+    margin-block: 6px;
+  }
+  .template-readme :global(pre) {
+    max-width: 100%;
+    overflow: auto;
+    padding: 20px;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-block: 24px;
+  }
+  .template-readme :global(code) {
+    overflow-wrap: anywhere;
+    font-size: 0.88em;
+  }
+  .template-readme :global(pre code) {
+    overflow-wrap: normal;
+    font-size: inherit;
+  }
+  .template-readme :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+  .template-readme :global(a) {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .template-readme :global(a:focus-visible) {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 3px;
+  }
+  @media (max-width: 1023px) {
+    .template-detail-body {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "readme" "metadata";
+      gap: 32px;
+    }
+  }
+  @media (max-width: 767px) {
+    .template-heading {
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .template-heading :global(.title-block__description) {
+      font-size: 16px;
+    }
+    .template-readme {
+      font-size: 15px;
+    }
+    .template-readme :global(h2) {
+      font-size: 24px;
+    }
+  }
+</style>

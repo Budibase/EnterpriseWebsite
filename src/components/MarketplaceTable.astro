@@ -1,6 +1,7 @@
 ---
 import Icon from "@components/Icon.astro";
 import AssetTypeIcon from "@components/ui/AssetTypeIcon.astro";
+import BrandShape from "@components/ui/BrandShape.astro";
 import Link from "@components/Link.astro";
 import MagnifyingGlass from "phosphor-astro/MagnifyingGlass.astro";
 export interface Cell {
@@ -58,17 +59,6 @@ const {
 } = Astro.props;
 const id = `marketplace-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 const Description = descriptionLayout === "inline" ? "span" : "p";
-const logoFallbackColors = [
-  "--bb-brand-bright-green",
-  "--bb-celery-200",
-  "--bb-brand-yellow",
-  "--bb-blue-400",
-  "--bb-brand-forest-green",
-  "--bb-background-sand",
-  "--bb-fuchsia-1300",
-  "--bb-red-500",
-  "--bb-purple-400",
-];
 ---
 
 <section
@@ -213,7 +203,7 @@ const logoFallbackColors = [
                           "catalogue-logo--dark": row.logoBackground === "dark",
                           "catalogue-logo--transparent":
                             row.logoBackground === "transparent",
-                          "catalogue-logo--mosaic": !row.logo,
+                          "catalogue-logo--shape": !row.logo,
                         },
                       ]}
                       aria-hidden="true"
@@ -221,9 +211,7 @@ const logoFallbackColors = [
                       {row.logo ? (
                         <img src={row.logo} alt="" width="30" height="30" />
                       ) : (
-                        logoFallbackColors.map((color) => (
-                          <span style={`background: var(${color})`} />
-                        ))
+                        <BrandShape name="circle-square" size={42} />
                       )}
                     </span>
                   ) : row.logo ? (
@@ -462,7 +450,7 @@ const logoFallbackColors = [
     padding: 3px;
     max-width: 100%;
     overflow-x: auto;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--bb-border-bold);
   }
   .catalogue-switcher button {
     min-height: 34px;
@@ -485,7 +473,7 @@ const logoFallbackColors = [
     gap: 10px;
     height: 44px;
     padding-inline: 12px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--bb-border-bold);
     color: var(--text-secondary);
     background: var(--bg-1);
   }
@@ -510,7 +498,7 @@ const logoFallbackColors = [
     appearance: none;
     padding: 0 36px 0 12px;
     background: var(--bg-1);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--bb-border-bold);
     font: inherit;
     font-size: 14px;
     color: var(--text-primary);
@@ -590,7 +578,7 @@ const logoFallbackColors = [
     background: var(--bb-background-sand);
   }
   .catalogue-logo--dark {
-    background: var(--bb-brand-forest-green);
+    background: var(--bb-olive);
   }
   .catalogue-logo--transparent {
     background: transparent;
@@ -599,14 +587,10 @@ const logoFallbackColors = [
     width: 30px;
     height: 30px;
   }
-  .catalogue-logo--mosaic {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(3, minmax(0, 1fr));
-  }
-  .catalogue-logo--mosaic span {
-    width: 100%;
-    height: 100%;
+  .catalogue-logo--shape {
+    --brand-shape-background: var(--bb-olive);
+    --brand-shape-foreground: var(--bb-lime);
+    background: var(--bb-olive);
   }
   .catalogue-icon {
     display: flex;

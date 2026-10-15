@@ -1,0 +1,67 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import PermissionsVisual from "./PermissionsVisual.astro";
+import type { PlatformLandingContent } from "../../../data/landingPageTypes";
+
+interface Props {
+  content: PlatformLandingContent;
+}
+const { content } = Astro.props;
+const variants = ["roles", "identity", "onboarding"] as const;
+const cards = content.cardCluster.cards.map((card, index) => ({
+  ...card,
+  mediaDemo: PermissionsVisual,
+  mediaDemoProps: { variant: variants[index] },
+}));
+const faqs = [
+  {
+    question: "Which resources can I protect with role requirements?",
+    answer:
+      "Apply granular role requirements to tables, APIs, automations, agent tools and screens, so users have the right level of access to the resources they need.",
+  },
+  {
+    question: "How do groups help me manage access?",
+    answer:
+      "Organize users into groups and control their access across workspaces. Manage access for the group rather than updating each user individually.",
+  },
+  {
+    question: "Can I create roles for my own teams?",
+    answer:
+      "Yes. Create custom roles that reflect your teams and responsibilities, then use those roles to manage access.",
+  },
+  {
+    question: "Can I connect our existing identity systems?",
+    answer:
+      "Yes. Simplify sign-in and user management with SSO, SAML and Active Directory sync.",
+  },
+  {
+    question: "How can I onboard new users?",
+    answer: "Invite users by email or onboard them with generated passwords.",
+  },
+];
+---
+
+<div class="permissions-landing-page">
+  <GridLandingPage
+    slug="permissions"
+    {content}
+    {cards}
+    {faqs}
+    heroAspectRatio="var(--permissions-hero-ratio, 3 / 2)"
+  >
+    <PermissionsVisual slot="hero-media" variant="overview" />
+    <PermissionsVisual slot="feature-0" variant="access" />
+    <PermissionsVisual slot="feature-1" variant="groups" />
+  </GridLandingPage>
+</div>
+
+<style>
+  .permissions-landing-page {
+    --grid-landing-hero-background: var(--bb-olive-1100);
+  }
+  @media (max-width: 599px) {
+    .permissions-landing-page {
+      --permissions-hero-ratio: 5 / 4;
+    }
+  }
+</style>

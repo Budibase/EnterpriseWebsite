@@ -1,0 +1,195 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import { homepageFeatureMedia } from "../../../data/homepageFeatureMedia";
+import BudibaseAIProcess from "./BudibaseAIProcess.astro";
+import HeroPlaceholder from "@assets/images/platform/AgentInstructions.png?url";
+import type { PlatformLandingContent } from "../../../data/landingPageTypes";
+import AnthropicLogo from "@assets/logos/anthropic.avif?url";
+import GeminiLogo from "@assets/logos/Google.svg?url";
+import OpenAILogo from "@assets/logos/openai.avif?url";
+import MistralLogo from "@assets/logos/Mistral.svg?url";
+import OpenRouterLogo from "@assets/logos/openrouter.svg?url";
+import GroqLogo from "@assets/logos/groq.png?url";
+
+interface Props {
+  content: PlatformLandingContent;
+}
+
+const { content } = Astro.props;
+const directProviders = [
+  { name: "Anthropic", logo: AnthropicLogo },
+  { name: "Gemini", logo: GeminiLogo },
+  { name: "OpenAI", logo: OpenAILogo },
+  { name: "Mistral", logo: MistralLogo },
+];
+const gateways = [
+  { name: "OpenRouter", logo: OpenRouterLogo },
+  { name: "Groq", logo: GroqLogo },
+];
+const useMedia = [
+  homepageFeatureMedia.agents,
+  homepageFeatureMedia.automations,
+  homepageFeatureMedia.functions,
+];
+const useCards = content.cardCluster.cards.map((use, index) => ({
+  ...use,
+  ...useMedia[index],
+}));
+const faqs = [
+  {
+    question: "Which AI models can I connect?",
+    answer:
+      "Connect directly to models from Anthropic, Gemini, OpenAI, and Mistral. Use OpenRouter and Groq to access more models, with your own provider credentials.",
+  },
+  {
+    question: "What is Budibase AI?",
+    answer:
+      "Budibase AI is the ready-to-use option for AI in Budibase. We test models, refine instructions, and evaluate results for the tasks you need to deliver.",
+  },
+  {
+    question: "What can I use my AI model for?",
+    answer:
+      "Use your model to power agents, add AI steps to automations, generate JavaScript, and generate tables, fields, and sample data.",
+  },
+  {
+    question: "Can I review what AI generates?",
+    answer:
+      "Yes. Review and adapt generated code and data before using them. Configure agents with instructions, connected tools, and human oversight for the work they need to perform.",
+  },
+];
+---
+
+<GridLandingPage
+  slug="ai-models"
+  {content}
+  cards={useCards}
+  {faqs}
+  featureActions={[
+    { label: "Explore connections", url: "/marketplace/connections/" },
+  ]}
+>
+  <img
+    slot="hero-media"
+    class="ai-models-hero-image"
+    src={HeroPlaceholder}
+    alt="Budibase AI model and agent instructions — temporary hero image"
+    width="3312"
+    height="1976"
+    fetchpriority="high"
+  />
+  <div slot="feature-0" class="ai-models-providers">
+    <div class="provider-panel">
+      <p class="provider-panel__label">Connect directly</p>
+      <ul class="provider-panel__grid">
+        {
+          directProviders.map((provider) => (
+            <li>
+              <img src={provider.logo} alt="" width="32" height="32" />
+              <span>{provider.name}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="provider-panel__label">Access more models through</p>
+      <ul class="provider-panel__grid provider-panel__grid--gateways">
+        {
+          gateways.map((provider) => (
+            <li>
+              <img src={provider.logo} alt="" width="32" height="32" />
+              <span>{provider.name}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div slot="feature-1" class="ai-models-process"><BudibaseAIProcess /></div>
+</GridLandingPage>
+<style>
+  .ai-models-providers,
+  .ai-models-process {
+    width: 100%;
+    max-width: 32rem;
+  }
+  .ai-models-hero-image {
+    /* Frame only the editor from the existing screenshot; the hero supplies
+       the background separately so it can change without altering product UI. */
+    position: absolute;
+    top: -7.8%;
+    left: -10%;
+    display: block;
+    width: 120%;
+    max-width: none;
+    height: auto;
+  }
+
+  .provider-panel {
+    width: 100%;
+    max-width: 32rem;
+  }
+
+  .provider-panel__label {
+    margin: 0 0 0.75rem;
+    color: var(--bb-text-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .provider-panel__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    padding: 0;
+    margin: 0 0 1.5rem !important;
+    list-style: none;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-border-base);
+  }
+
+  .provider-panel__grid--gateways {
+    margin-bottom: 0 !important;
+  }
+
+  .provider-panel__grid li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: 1rem;
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .provider-panel__grid img {
+    flex: none;
+    object-fit: contain;
+  }
+
+  .ai-models-process :global(.budibase-ai-process) {
+    width: 100%;
+    max-width: 32rem;
+    padding: 1.5rem;
+    background: var(--bb-background-base);
+    border-color: var(--bb-border-base);
+  }
+
+  .ai-models-process :global(.budibase-ai-process ul) {
+    margin-block: 1.25rem !important;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 400px) {
+    .provider-panel__grid li {
+      gap: 0.5rem;
+      padding: 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .provider-panel__grid img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+</style>

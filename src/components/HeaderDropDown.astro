@@ -2,6 +2,7 @@
 import FeatureBadge from "@components/FeatureBadge.astro";
 import Icon from "@components/Icon.astro";
 import NavStatusLight from "@components/ui/NavStatusLight.astro";
+import PlatformGroupMark from "@components/ui/PlatformGroupMark.astro";
 import type { NavDropdownMenu } from "@components/navDropdownData";
 
 interface Props {
@@ -61,6 +62,7 @@ const columnCount = menu.columns.reduce(
               >
                 {!isCompact && (
                   <h2 class="header-dropdown-column__heading">
+                    <PlatformGroupMark group={column.heading} />
                     {column.heading}
                   </h2>
                 )}
@@ -83,7 +85,7 @@ const columnCount = menu.columns.reduce(
                             class="header-dropdown-link header-dropdown-link--disabled"
                           >
                             <span class="header-dropdown-link__label">
-                              <NavStatusLight href={href} />
+                              <NavStatusLight />
                               {label}
                               {badge && <FeatureBadge label={badge} />}
                             </span>
@@ -107,7 +109,7 @@ const columnCount = menu.columns.reduce(
                             class="header-dropdown-link"
                           >
                             <span class="header-dropdown-link__label">
-                              <NavStatusLight href={href} />
+                              <NavStatusLight />
                               {label}
                               {badge && <FeatureBadge label={badge} />}
                               <span
@@ -155,9 +157,8 @@ const columnCount = menu.columns.reduce(
             data-astro-prefetch={menu.footerLink.prefetch ? "" : undefined}
           >
             <span class="header-dropdown-link__label">
-              <NavStatusLight href={menu.footerLink.href} />
+              <NavStatusLight />
               {menu.footerLink.label}
-              <Icon name="ArrowRight" size="18" />
             </span>
             <span class="header-dropdown-link__description">
               {menu.footerLink.description}
@@ -180,11 +181,8 @@ const columnCount = menu.columns.reduce(
                 data-astro-prefetch={item.prefetch ? "" : undefined}
               >
                 <span class="header-dropdown-link__label">
-                  <NavStatusLight href={item.href} />
+                  <NavStatusLight />
                   {item.label}
-                  <span aria-hidden="true">
-                    <Icon name="ArrowRight" size="18" />
-                  </span>
                 </span>
               </a>
             ))}
@@ -252,6 +250,7 @@ const columnCount = menu.columns.reduce(
     opacity: 0;
     pointer-events: none;
     transform: translateY(-0.5rem);
+    filter: drop-shadow(0 0.75rem 1rem var(--bb-transparent-black-100));
     transition:
       opacity 150ms ease,
       transform 150ms ease,
@@ -290,9 +289,9 @@ const columnCount = menu.columns.reduce(
     overflow-y: auto;
     overscroll-behavior: contain;
     border: 1px solid var(--bb-border-subtle);
-    border-radius: 4px;
+    border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
     background: var(--bb-background-surface-base);
-    box-shadow: 0 0.75rem 2rem var(--bb-transparent-black-100);
   }
 
   .header-dropdown-panel__inner {
@@ -326,6 +325,9 @@ const columnCount = menu.columns.reduce(
   }
 
   .header-dropdown-column__heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin: 0 0 1.5rem;
     color: var(--bb-text-subtle);
     font-size: 0.875rem;
@@ -352,7 +354,7 @@ const columnCount = menu.columns.reduce(
     min-width: 0;
     flex-direction: column;
     gap: 0.125rem;
-    color: var(--bb-brand-forest-green);
+    color: var(--bb-olive);
     text-decoration: none;
     white-space: normal;
   }
@@ -374,7 +376,7 @@ const columnCount = menu.columns.reduce(
     min-width: 0;
     align-items: center;
     gap: 0.5rem;
-    color: var(--bb-brand-forest-green);
+    color: var(--bb-olive);
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.35;
@@ -386,7 +388,7 @@ const columnCount = menu.columns.reduce(
   .header-dropdown-footer-link:hover .header-dropdown-link__label,
   .header-dropdown-footer-link:focus-visible .header-dropdown-link__label,
   .header-dropdown-footer:hover .header-dropdown-link__label {
-    color: var(--bb-celery-900);
+    color: var(--bb-olive-900);
   }
 
   .header-dropdown-link__description {
@@ -420,7 +422,7 @@ const columnCount = menu.columns.reduce(
   .header-dropdown-link__label :global(.feature-badge) {
     min-height: 1.25rem;
     padding: 0.1875rem 0.4375rem;
-    color: var(--text-secondary);
+    color: var(--bb-gray-650);
     font-size: 0.6875rem;
     line-height: 1;
   }
@@ -453,10 +455,6 @@ const columnCount = menu.columns.reduce(
   .header-dropdown-footer-link {
     padding-block: 0.25rem;
     text-decoration: none;
-  }
-
-  .header-dropdown-footer-link .header-dropdown-link__label > span {
-    display: inline-flex;
   }
 
   @media (min-width: 1024px) and (max-width: 1279px) {

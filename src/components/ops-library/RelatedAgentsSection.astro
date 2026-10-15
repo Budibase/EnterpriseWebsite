@@ -18,8 +18,13 @@ const cardsToRender = cards.slice(0, 3);
 
 {
   cardsToRender.length > 0 && (
-    <section class="related-agents-section" aria-labelledby="related-agents-heading">
-      <h2 id="related-agents-heading" class="related-agents-heading">Related agents</h2>
+    <section
+      class="related-agents-section"
+      aria-labelledby="related-agents-heading"
+    >
+      <h2 id="related-agents-heading" class="related-agents-heading">
+        Related templates
+      </h2>
 
       <ul class="related-agents-grid">
         {cardsToRender.map((card) => (

@@ -20,8 +20,25 @@ responsive behavior, and interaction patterns remain consistent.
   component in this directory.
 
 Navigation dropdown links use `ui/NavStatusLight.astro` for their decorative
-8px square palette markers. `getNavStatusColor` in `navDropdownData.ts` keeps
-each destination's marker color consistent across desktop and mobile menus.
+8px square markers, all using `--bb-olive-1000` across desktop and mobile
+menus. Dropdown column headings use the stored geometric shapes through
+`PlatformGroupMark` and `navigationGroupShapes`.
+
+## Palette roles
+
+Use `--bb-lime` (`#A5FF00`) for bright actions and `--bb-olive` (`#233207`)
+for the dark brand anchor, headings, and links. The current light-surface trial uses white
+for page backgrounds, raised surfaces, and product interfaces, with Coconut
+for cards and supporting panels. Sand remains an additional warm neutral. Body text uses Graphite, subtle
+text uses grey 600, decorative borders use grey 200, and control boundaries
+use grey 500. Keep semantic aliases in components rather than duplicating
+primitive values or overriding the global grey scale inside demos.
+
+The fourteen flat accents and twenty warm greys in `global.css` match the
+approved Dropbox suite. Pale accent panels mix 10% or 20% of a light accent
+with Coconut; pair them with the corresponding dark accent, darkening the
+text when needed for AA contrast. Use white on dark accent fills. Meaningful
+icons and focus indicators need at least 3:1 contrast.
 
 ## Core components
 
@@ -29,11 +46,34 @@ each destination's marker color consistent across desktop and mobile menus.
 
 Use `src/layouts/MainLayout.astro` for navigation, document metadata, global
 styles, and the footer. Do not create page-specific copies of the site shell.
+Its optional `navLogoSrc` and `navDemoVariant="lime"` props let a page
+provide a logo and select the lime demo button in desktop and mobile
+navigation.
+
+`src/data/brandAssets.ts` owns the shared lime logo used by the homepage
+navigation and global footer. The footer uses Olive with Lime
+headings and Coconut links; homepage demo backdrops also use olive 1300.
 
 ### Buttons and links
 
+- The Lime color family lives in `global.css` as `--bb-lime-100` through
+  `--bb-lime-1600`. `--bb-lime` aliases lime 300 (`#A5FF00`).
+- When paired with another action, place **Book a demo** first in markup and
+  visual order in page sections. The main navigation is the exception:
+  **Try Budibase** comes before **Book a demo**.
 - Use `src/components/Button.astro` for styled actions. It can render either an
   anchor or a button and supports the production variants and sizes.
+  All variants include a 10px top-right corner cut; outlined variants trace
+  the diagonal edge automatically.
+  Secondary and outline buttons use white backgrounds, dark text, and
+  `--bb-border-bold` outlines, including the cut corner. Their hover surface
+  uses the shared light-surface token, including on dark page sections.
+- Use `variant="lime"` for the explicit `#A5FF00` action style. The `primary`,
+  `cta-on-base`, and `bright-on-dark` variants also use Lime defaults and the
+  shared olive-mixed interaction states. The homepage navigation, hero, and
+  solutions select the explicit variant.
+- The `cta` variant uses `--bb-button-cta-background`, mapped to olive-1300,
+  with light text and olive-1400/1500 hover and pressed tokens.
 - Use `src/components/Link.astro` for inline or quiet links that should not look
   like buttons.
 - Use a small wrapper around `Button` when an action needs additional behavior,
@@ -59,10 +99,11 @@ copying its typography into a page.
 Shared landing-page headings use semantic size roles rather than component-
 specific values:
 
-- `heading-hero` for page and product heroes: 40px mobile, 52px tablet, and
-  64px desktop.
-- `heading-section` for major content sections and CTAs: 36px mobile, 42px
-  tablet, and 48px desktop.
+- `heading-hero` for page and product heroes: 52–60px mobile, 52px tablet, and
+  64px desktop. Mobile heroes use `clamp(52px, calc(14vw - 4px), 60px)`; `TitleBlock`
+  uses the full semantic size, and the homepage follows the same token.
+- `heading-section` for major content sections and CTAs: 30px mobile, 36px
+  tablet, and 42px desktop.
 - `heading-subsection` for supporting groups and stat headings: 26px mobile,
   28px tablet, and 30px desktop.
 - `heading-card` for card and compact feature titles: 18px at every breakpoint.
@@ -78,7 +119,7 @@ in sentence case for content sections. The `section` variant uses the semantic
 500 and natural letter spacing for all `h2`, `h3`, and `h4` headings.
 
 Use `--bb-text-body` for paragraphs and descriptive copy on light surfaces. It
-maps to Spectrum gray 900. Keep headings on their role-specific heading or
+maps to Graphite. Keep headings on their role-specific heading or
 brand token, and use the appropriate `--bb-text-on-base*` token on dark
 surfaces.
 
@@ -108,17 +149,56 @@ responsive layout.
 
 ### Asset symbols
 
+`src/data/brandShapes.ts` is the registry for reusable geometric designs.
+Render one with `ui/BrandShape.astro`, for example
+`<BrandShape name="paired-switchers" size={32} />`. All designs share a 32 × 32
+viewBox and use olive-1300 and lime tokens. Optional
+`--brand-shape-background` and `--brand-shape-foreground` variables can adapt
+the palette. Keep the default decorative treatment beside visible text; use
+`decorative={false}` and a label when the shape conveys information on its own.
+The default shape palette uses `--bb-olive-1300` for backgrounds and
+`--bb-lime` (`#A5FF00`) for foreground fills and outlines.
+The homepage announcement overrides this pair with Tangerine/Rust, Cloud/Navy,
+and Lime/Olive.
+Pass `inverted` to `BrandShape` or `PlatformGroupMark` to swap the background
+and foreground colors, including any custom palette overrides. For example:
+`<BrandShape name="four-point-spark" size={32} inverted />`.
+The registry retains current marks, original alternatives, and geometric
+studies in the project source; it has no public gallery or navigation entry.
+Additional studies include `forward-chevrons`, `overlapping-orbits`,
+`converging-rays`, `striped-orbit`, `four-point-spark`, and `cellular-field`.
+Use the fine rays, striped orbit, and cellular field at larger decorative sizes.
+Pricing plan titles use dedicated 32px inverted `BrandShape` marks:
+`community-foundation`, `enterprise-framework`, and `cloud-current`.
+
+Use `ui/PlatformGroupMark.astro` for the Connect, Automate, Interact, and Govern
+group headings. It provides four decorative geometric marks with the shared
+olive-1300 background and lime shapes: 24px beside navigation labels and 32px beside homepage group
+labels. Desktop and mobile navigation share the same marks. Keep the visible
+text label alongside each mark; these do not replace asset or integration icons.
+Connect uses joined blocks, Automate uses four diagonal arrow-like tiles,
+Interact uses two opposing toggle shapes, and Govern uses a simple circle.
+This component selects from the registry; `variant="original"` restores the
+earlier group design without duplicating SVG markup.
+
 Use `ui/AssetTypeIcon.astro` for the homepage solution switcher, template
 comparison symbols, and plugin directory icons. Plugin components use App,
 datasources use Table, and automation plugins use Automation. It owns the 22px square container, 14px filled icon, black
-icon color, and shared type palette: Agent cyan, App orange, Automation purple,
-Operations center green, Table yellow, and Function chartreuse. Parent markup
-provides accessible labels and any focus or tooltip behavior.
+foreground colors, and shared type palette: Agent/Zen, App/Tangerine,
+Automation/Orchid, Operations center/Olive, Table/Vivid Vargas, and Function/Lime.
+Light fills use Graphite icons and Olive uses Coconut icons. Parent markup
+provides accessible labels and any focus or tooltip behavior. Navigation link
+lights use olive 1000; group shapes and missing partner-logo marks use the
+Olive/Lime pair. Decorative mosaics use the named supporting accents.
 
 ### Heroes
 
+- `HomepageContent.astro` owns the production homepage composition, including
+  its original hero video, solution demos, product cards, and closing CTA.
+
 - Use `src/components/BlockMosaic.astro` for static, decorative solid-color
-  mosaics. The `marketplace` preset retains the varied rectangular composition;
+  mosaics. The `marketplace` preset retains the varied rectangular composition
+  with Cloud, Zen, and Navy blues and restrained Lime and Olive accents;
   the `hero` preset uses three columns of two blocks with varied heights. Parent
   wrappers control sizing and placement; the component owns the shared palette.
 
@@ -139,9 +219,49 @@ this treatment consistent across both shared landing-page compositions.
   body content and the standard compact product header.
 - Use `ProductLandingPage.astro` for Apps, Agents, Automations, and Functions.
   It combines `HeroLarge` with the canonical `ProductDetailBody` composition.
-- Use `PlatformLandingPage.astro` for AI models, Data tables, Requests and Approvals, Activity
-  and Insights, Knowledge, Admin and Security, Self-hosting, and API Explorer.
-  It combines `HeroSmall` with `ProductDetailBody`.
+- Use `GridLandingPage.astro` for the approved compact lined landing-page
+  template: split hero, olive/lime block background, outlined logo
+  row, alternating feature rows, white use-case cards, flush bordered FAQ, inset
+  grid CTA, and product navigation. Page content, media, card scenes, feature
+  links, and FAQs are supplied separately. Custom demos use named media slots.
+  See [the template guide](grid-landing-page.md) for its contract and adoption.
+- `product/_components/AIModelsLandingPage.astro` is the reference adapter. It
+  supplies the AI providers, process panel, screenshot crop, FAQs, and three
+  homepage card scenes; the shared template owns layout and spacing.
+- `product/_components/APIsLandingPage.astro` also uses the template. It supplies
+  the existing API Explorer video, OpenAPI template logos, specification import
+  illustration, and three example visuals for API access, bindings, and secrets
+  through the page-scoped `APICapabilityVisual.astro`.
+- `product/_components/DataLandingPage.astro` uses the same template for SQL and
+  BudibaseDB. Its hero reuses `OnePlatformData` with `presentation="framed"`;
+  the default presentation remains the scenic homepage composition. The
+  table-builder row reuses `OnePlatformData` with `showFieldMenu`, replacing its
+  Status column with a plus and a field-type menu. The adapter configures the
+  shared access visual with a table name and uses `DataCapabilityVisual` for
+  secured views and data environments.
+- `product/_components/ActivityLandingPage.astro` uses the template for actions
+  across workspaces and live agent requests. `ActivityVisual` supplies its
+  dashboard, request list, error, usage, and totals illustrations.
+- `product/_components/HumanApprovalsLandingPage.astro` uses the template for
+  approval conditions and policies. `ApprovalVisual` illustrates tool data,
+  approvers, channels, time limits, and notifications. The operations-center
+  card reuses the homepage `OperationsCenterDemo` with `compact` enabled.
+- `product/_components/PermissionsLandingPage.astro` uses the template for
+  granular resource access and group access across workspaces. Its page-scoped
+  `PermissionsVisual` supplies role requirements, groups, custom roles,
+  identity systems, and onboarding illustrations.
+- `product/_components/KnowledgeLandingPage.astro` uses the template for uploaded
+  knowledge and Budibase AI. Its first feature reuses `KnowledgeAssistantDemo`
+  from the homepage. `KnowledgeVisual` supplies an answer with source references,
+  the Budibase AI setup panel, SharePoint, PDFs, and sources.
+- `product/_components/SelfHostingLandingPage.astro` uses the grid template for
+  deployment and data ownership. `SelfHostingVisual` supplies Docker/Kubernetes,
+  custom domain, CLI, plugin, and upgrade-control illustrations. Use “upgrade
+  control” for choosing releases and rollout timing.
+- `/security/` uses `security/_components/SecurityLandingPage.astro` with the
+  shared grid template. `securityLandingPage.ts` supplies HTML and negotiated
+  Markdown from the same copy. `SecurityVisual` supplies conceptual controls,
+  isolated deployment, and evidence panels; assurance cards link to their sources.
 - Use `ProductDetailBody.astro` when a Product or Platform page needs the
 - standard card overview, two feature sections, stats, and canonical
   product footer. The overview supports configurable columns and responsive
@@ -176,6 +296,10 @@ layout behavior from the current URL.
 - `FeatureSection.astro`, `StatSection.astro`, and the page-scoped
   `EnterpriseSection.astro` are the main reusable content sections.
 - `CTA.astro` is the full-width closing call to action.
+  Its demo action uses brand lime and the shared lime hover and pressed colors.
+  Both actions use the same 10px top-right corner cut as the navigation buttons.
+  Use `insetActions` with the grid variant to pad each action inside its lined
+  grid cell.
 - `ContactSalesCTA.astro` is the smaller inline sales call to action. The two CTA
   components have different layout roles and should not be combined into one
   highly conditional component.
@@ -184,7 +308,7 @@ layout behavior from the current URL.
 
 - `MarketplaceLayout.astro` preserves the global navigation and provides the
   Marketplace title, secondary navigation, and community links.
-- The page-scoped `MarketplacePromotion.astro` supports the forest-green welcome
+- The page-scoped `MarketplacePromotion.astro` supports the olive welcome
   banner and future image or process promotions. Configure it through
   `marketplacePromotion` in `src/data/marketplaceHomepage.ts`; `variant: "welcome"`
   selects the decorative block mosaic. Eyebrow and action fields are optional.
@@ -194,6 +318,26 @@ layout behavior from the current URL.
 - `MarketplaceTable.astro` provides searchable, filterable directories for
   Connections, Plugins, Partners, and contribution paths. Connection rows use
   stable IDs for links from the Marketplace homepage.
+- Individual template details use `MarketplaceLayout` with Templates selected,
+  `TemplateUseMenu` for Cloud import/self-host downloads, `TemplateAgentPreview`
+  for a static illustrative product preview, and `TemplateMetadata` for the
+  documented inventory beside the description below the full-width preview.
+  Request previews reuse the shared `demos/PurchaseApprovalsDemo` inbox and
+  mobile Teams composition with static template text; the homepage retains
+  its default animated purchase example. Preview copy and the request/activity
+  layout belong to each template's frontmatter.
+  Template request previews use a centered, bounded composition with 12px
+  content, 10px supporting labels, an 18px inbox heading, and 16px interface
+  icons. Below 900px of available space, show the selected phone alone;
+  do not shrink the two interfaces or their text to fit. Keep these rules
+  scoped to the template variant so homepage sizing stays independent.
+  Preview phones are optional: `agentPreview.phone` selects Teams chat, a
+  documented form, or no phone. Desktop-only previews remain visible at every
+  width. Request and background activity layouts share the same composition
+  and type scale; form copy belongs in `agentPreview.form`.
+  Missing destinations remain disabled; no signup/contact substitutes are used.
+  `TemplateSourceIcon` shares integration artwork between the directory and
+  detail metadata. Template pages contain no prompt cards or system prompts.
 - `ProcessDirectory.astro` provides the Templates directory at
   `/marketplace/templates/`; individual templates remain at `/process/[slug]/`.
   It compares individual asset types with blank cells for absent assets,
@@ -209,8 +353,9 @@ layout behavior from the current URL.
   Partner logos use 42px square containers and contained 30px symbols; profiles
   can select a dark logo background for light artwork. Store official asset
   sources in `src/assets/images/partners/SOURCES.md`.
-  Missing partner logos use a decorative 3 × 3 color mosaic filling the 42px
-  container, rather than invented partner artwork.
+  Missing partner logos use the existing `circle-square` BrandShape as an
+  abstract person mark, filling the 42px container with Olive and Lime.
+  Keep this fallback decorative; the adjacent partner name supplies identity.
 
 ## Blog and customer archives
 

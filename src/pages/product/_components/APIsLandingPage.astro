@@ -1,0 +1,167 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import APICapabilityVisual from "./APICapabilityVisual.astro";
+import ExplorerVideo from "@assets/videos/api-explorer.webm?url";
+import { marketplaceConnections } from "../../../data/marketplaceConnections";
+import type { PlatformLandingContent } from "../../../data/landingPageTypes";
+
+interface Props {
+  content: PlatformLandingContent;
+}
+const { content } = Astro.props;
+const templateNames = [
+  "ServiceNow",
+  "Jira",
+  "Microsoft SharePoint",
+  "Nextcloud",
+  "HubSpot",
+  "GitHub",
+];
+const templates = templateNames.map((name) =>
+  marketplaceConnections.find((connection) => connection.name === name)!,
+);
+const variants = ["access", "bindings", "secrets"] as const;
+const cards = content.cardCluster.cards.map((card, index) => ({
+  ...card,
+  mediaDemo: APICapabilityVisual,
+  mediaDemoProps: { variant: variants[index] },
+}));
+const faqs = [
+  {
+    question: "Can I connect to any REST API?",
+    answer:
+      "Yes. Use API Explorer to configure and test REST API requests, then use your connections across Budibase apps, agents and automations.",
+  },
+  {
+    question: "Can I upload an API specification?",
+    answer:
+      "Yes. Upload your API specs to bring endpoints into API Explorer. You can also start with one of 100+ OpenAPI spec templates.",
+  },
+  {
+    question: "How do I control access to APIs?",
+    answer:
+      "Use role-based access control to decide which users can access each API. Bindings let apps, agents and automations pass the values a request needs.",
+  },
+  {
+    question: "Can builders use credentials without seeing them?",
+    answer:
+      "Yes. Store sensitive values in environment variables so builders can configure and use API connections without seeing the underlying secrets.",
+  },
+];
+---
+
+<GridLandingPage
+  slug="apis"
+  {content}
+  {cards}
+  {faqs}
+  heroAspectRatio="2 / 1"
+  featureActions={[
+    undefined,
+    {
+      label: "Explore API templates",
+      url: "/marketplace/connections/",
+      appearance: "button",
+    },
+  ]}
+>
+  <video
+    slot="hero-media"
+    class="api-explorer-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-label={content.hero.imageAlt}
+    width="1000"
+    height="500"
+  >
+    <source src={ExplorerVideo} type="video/webm" />
+  </video>
+  <APICapabilityVisual slot="feature-0" variant="spec" />
+  <div slot="feature-1" class="api-templates">
+    <ul class="api-templates__grid">
+      {
+        templates.map((template) => (
+          <li>
+            <>
+              <img src={template.logo} alt="" width="32" height="32" />
+              <span>
+                {template.name === "Microsoft SharePoint"
+                  ? "SharePoint"
+                  : template.name}
+              </span>
+            </>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</GridLandingPage>
+
+<style>
+  .api-explorer-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .api-templates {
+    width: 100%;
+    max-width: 32rem;
+  }
+  .api-templates__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0 !important;
+    padding: 0;
+    list-style: none;
+    background: var(--bb-border-base);
+    border: 1px solid var(--bb-border-base);
+  }
+  .api-templates__grid li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: 1rem;
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .api-templates__grid img {
+    flex: none;
+    object-fit: contain;
+  }
+  @media (max-width: 400px) {
+    .api-templates__grid li {
+      gap: 0.5rem;
+      padding: 0.75rem;
+      font-size: 0.875rem;
+    }
+    .api-templates__grid img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+</style>
+
+<script>
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const video = document.querySelector<HTMLVideoElement>(".api-explorer-video");
+  const syncPlayback = () => {
+    if (!video) return;
+    if (reducedMotion.matches) {
+      video.pause();
+      video.currentTime = Math.min(4, video.duration || 4);
+    } else {
+      void video.play().catch(() => {});
+    }
+  };
+  video?.addEventListener("loadedmetadata", syncPlayback);
+  reducedMotion.addEventListener("change", syncPlayback);
+  syncPlayback();
+</script>

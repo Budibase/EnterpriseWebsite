@@ -3,7 +3,7 @@ import Button from "@components/Button.astro";
 import HeaderDropDown from "@components/HeaderDropDown.astro";
 import MobileNavAccordion from "@components/MobileNavAccordion.astro";
 import { navDropdownMenus } from "@components/navDropdownData";
-import navLogoOnDark from "@assets/budibase_celery200.svg?url";
+import { budibaseLimeLogoUrl } from "../data/brandAssets";
 
 const navLogoSrc = "/budibase-nav.svg";
 type NavTheme =
@@ -11,15 +11,18 @@ type NavTheme =
 
 interface Props {
   theme?: NavTheme;
+  logoSrc?: string;
+  demoVariant?: "lime";
 }
 
-const { theme = "default" } = Astro.props as Props;
+const { theme = "default", logoSrc, demoVariant } = Astro.props as Props;
 const isSurface = theme === "surface";
 const isBrandDark = theme === "brand-dark";
 const isVideoOverlay = theme === "video-overlay";
 const isImmersiveOverlay = theme === "immersive-overlay";
 const usesDarkControls = isBrandDark || isImmersiveOverlay;
-const desktopNavLogoSrc = usesDarkControls ? navLogoOnDark : navLogoSrc;
+const desktopNavLogoSrc =
+  logoSrc ?? (usesDarkControls ? budibaseLimeLogoUrl : navLogoSrc);
 const [platformNavMenu, solutionsNavMenu, resourcesNavMenu] = navDropdownMenus;
 const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 ---
@@ -105,7 +108,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         ></a
       >
 
-      <div class="hidden lg:flex items-center gap-2 lg:gap-3">
+      <div class="hidden lg:flex items-center gap-2 whitespace-nowrap lg:gap-3">
         <a
           href="https://account.budibase.app/auth/login"
           target="_blank"
@@ -120,17 +123,17 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
           size="medium"
           target="_blank"
           class={!usesDarkControls
-            ? "hover:!text-[var(--bb-brand-forest-green)]"
-            : undefined}
+            ? "button--cut-corner button--cut-corner-outline hover:!text-[var(--bb-olive)]"
+            : "button--cut-corner button--cut-corner-outline"}
         />
         <Button
           label="Book a demo"
           url="/contact/"
-          variant={usesDarkControls ? "bright-on-dark" : "cta"}
+          variant={demoVariant ?? (usesDarkControls ? "bright-on-dark" : "cta")}
           size="medium"
           icon="ArrowRight"
           iconPosition="end"
-          class="!gap-[16px]"
+          class="button--cut-corner !gap-[16px] !pr-[16px]"
         />
       </div>
 
@@ -247,7 +250,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       <Button
         label="Book a demo"
         url="/contact/"
-        variant="cta"
+        variant={demoVariant ?? "cta"}
         size="medium"
         icon="ArrowRight"
         iconPosition="end"
@@ -545,6 +548,14 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     text-shadow: 0 0.0625rem 0.5rem var(--bb-transparent-black-500);
   }
 
+  .nav-shell:is(.nav-shell--immersive-overlay, .nav-shell--brand-dark)
+    .desktop-nav-link:focus-visible,
+  .nav-shell:is(.nav-shell--immersive-overlay, .nav-shell--brand-dark)
+    :global([data-header-dropdown-trigger]:focus-visible) {
+    outline: 2px solid var(--bb-lime);
+    outline-offset: 2px;
+  }
+
   .nav-shell.nav-shell--immersive-overlay .desktop-nav-link:hover,
   .nav-shell.nav-shell--immersive-overlay .desktop-nav-link:focus-visible,
   .nav-shell.nav-shell--immersive-overlay
@@ -569,7 +580,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 
   .nav-shell.nav-shell--immersive-overlay .nav-github-link:focus-visible,
   .nav-shell.nav-shell--immersive-overlay .mobile-menu-trigger:focus-visible {
-    outline: 2px solid var(--bb-celery-200);
+    outline: 2px solid var(--bb-lime);
     outline-offset: 2px;
   }
 
@@ -590,11 +601,11 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     border: 1px solid var(--bb-transparent-black-100);
     border-radius: 0.375rem;
     background: var(--bb-background-base);
-    box-shadow: 0 0.5rem 1.5rem rgb(5 41 37 / 0.16);
+    box-shadow: 0 0.5rem 1.5rem rgb(35 50 7 / 0.16);
   }
 
   .nav-shell.nav-shell--brand-dark {
-    background-color: var(--bb-celery-1300) !important;
+    background-color: var(--bb-olive) !important;
     color: var(--bb-white);
   }
 
@@ -629,7 +640,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 
   .nav-shell.nav-shell--brand-dark .nav-github-link:focus-visible,
   .nav-shell.nav-shell--brand-dark .mobile-menu-trigger:focus-visible {
-    outline: 2px solid var(--bb-celery-200);
+    outline: 2px solid var(--bb-lime);
     outline-offset: 2px;
   }
 

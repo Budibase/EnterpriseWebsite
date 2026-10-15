@@ -138,6 +138,7 @@ const caseStudies = defineCollection({
 });
 
 const assetsUsedSchema = z.object({
+  agents: z.array(z.string()).optional(),
   tables: z.array(z.string()).optional(),
   automations: z.array(z.string()).optional(),
   tools: z.array(z.string()).optional(),
@@ -176,8 +177,35 @@ const opsLibrary = defineCollection({
         href: z.string().optional(),
       })
       .optional(),
-    promptCardStyle: z.enum(["default", "snippet"]).optional(),
-    heroPrompt: z.string().optional(),
+    owner: z
+      .object({ name: z.string(), href: z.string().optional() })
+      .optional(),
+    cloudImportUrl: z.url({ protocol: /^https?$/ }).optional(),
+    selfHostedDownloadUrl: z
+      .string()
+      .refine(
+        (value) =>
+          (value.startsWith("/") && !value.startsWith("//")) ||
+          /^https?:\/\//.test(value),
+        "Use a site-relative path or an HTTP(S) URL",
+      )
+      .optional(),
+    agentPreview: z
+      .object({
+        layout: z.enum(["request", "activity"]).optional(),
+        phone: z.enum(["teams", "form", "none"]).optional(),
+        form: z
+          .object({
+            title: z.string(),
+            fields: z.array(z.object({ label: z.string(), value: z.string() })),
+          })
+          .optional(),
+        agentName: z.string(),
+        request: z.string(),
+        response: z.string(),
+        activity: z.string(),
+      })
+      .optional(),
     assetsUsed: assetsUsedSchema.optional(),
     aiModelRequired: z.boolean().optional(),
     tags: z.array(z.string()),

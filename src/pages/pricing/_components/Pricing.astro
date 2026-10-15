@@ -6,7 +6,7 @@ import TitleBlock from "@components/TitleBlock.astro";
 import EnterpriseLogoGrid from "@components/EnterpriseLogoGrid.astro";
 import Plus from "phosphor-astro/Plus.astro";
 import { cloudPackages } from "./cloudPackages";
-import PricingPlanDots from "./PricingPlanDots.astro";
+import BrandShape from "@components/ui/BrandShape.astro";
 
 type FaqItem = {
   id?: string;
@@ -32,7 +32,7 @@ const selfHostedEnterprisePlanFeatures = [
 const selfHostedCards = [
   {
     title: "Community",
-    dotRows: 1 as const,
+    shape: "community-foundation" as const,
     price: "$0",
     description:
       "Access a complete operations platform that you can run on your own infrastructure.",
@@ -44,13 +44,13 @@ const selfHostedCards = [
   },
   {
     title: "Enterprise",
-    dotRows: 3 as const,
+    shape: "enterprise-framework" as const,
     price: "Custom",
     description:
       "Design a custom package with enhanced governance, security, and support.",
     buttonLabel: "Contact sales",
     buttonHref: "/contact",
-    buttonVariant: "cta" as const,
+    buttonVariant: "bright-on-dark" as const,
     features: selfHostedEnterprisePlanFeatures,
   },
 ];
@@ -217,7 +217,7 @@ const faqItems: FaqItem[] = [
         <TitleBlock
           variant="hero"
           titleId="pricing-heading"
-          title="Budibase Pricing"
+          title="Pricing"
           containerClass="pricing-hero__title-block"
           titleClass="pricing-hero__title"
           descriptionAlign="center"
@@ -238,11 +238,17 @@ const faqItems: FaqItem[] = [
             <div class="pricing-self-host-grid">
               {
                 selfHostedCards.map((card) => (
-                  <article class="pricing-plan-card">
+                  <article
+                    class:list={[
+                      "pricing-plan-card",
+                      card.title === "Enterprise" &&
+                        "pricing-plan-card--enterprise",
+                    ]}
+                  >
                     <div class="pricing-plan-card__intro">
                       <div class="pricing-plan-card__title-row">
                         <h3>{card.title}</h3>
-                        <PricingPlanDots rows={card.dotRows} />
+                        <BrandShape name={card.shape} size={32} inverted />
                       </div>
                       <p class="pricing-plan-card__price">{card.price}</p>
                       <p class="pricing-plan-card__description">
@@ -292,7 +298,7 @@ const faqItems: FaqItem[] = [
                 <div class="pricing-plan-card__intro">
                   <div class="pricing-plan-card__title-row">
                     <h3>Cloud</h3>
-                    <PricingPlanDots rows={2} />
+                    <BrandShape name="cloud-current" size={32} inverted />
                   </div>
                   <p class="pricing-plan-card__price">
                     From ${formatCloudNumber(defaultCloudPackage.pricePerMonth)} /
@@ -533,7 +539,7 @@ const faqItems: FaqItem[] = [
 
   .pricing-plan-group__header h2 {
     margin: 0;
-    color: var(--bb-text-base);
+    color: var(--bb-olive);
     font-family: var(--font-sans);
     font-size: clamp(1.75rem, 2.5vw, 2.25rem);
     font-weight: 600;
@@ -575,9 +581,30 @@ const faqItems: FaqItem[] = [
     text-align: left;
   }
 
+  .pricing-plan-card--enterprise {
+    --pricing-grid-line: var(--bb-transparent-white-200);
+    --button-bright-focus-offset: var(--bb-background-dark-soft);
+    background: var(--bb-background-dark-soft);
+    color: var(--bb-text-on-base);
+  }
+
+  .pricing-plan-card--enterprise h3,
+  .pricing-plan-card--enterprise .pricing-plan-card__features li {
+    color: var(--bb-text-on-base) !important;
+  }
+
+  .pricing-plan-card--enterprise .pricing-plan-card__price,
+  .pricing-plan-card--enterprise .pricing-plan-card__description {
+    color: var(--bb-text-on-base-subtle) !important;
+  }
+
+  .pricing-plan-card--enterprise .pricing-plan-card__feature-icon {
+    color: var(--bb-lime);
+  }
+
   .pricing-plan-card h3 {
     margin: 0;
-    color: var(--bb-text-base);
+    color: var(--bb-olive);
     font-family: var(--font-sans);
     font-size: 1.5rem;
     font-weight: 500;
@@ -620,7 +647,7 @@ const faqItems: FaqItem[] = [
     min-height: 2rem;
     align-items: center;
     justify-content: center;
-    color: var(--bb-brand-forest-green);
+    color: var(--bb-olive);
     font-size: 1rem;
     font-weight: 600;
     text-decoration: underline;
@@ -628,7 +655,7 @@ const faqItems: FaqItem[] = [
   }
 
   .pricing-plan-card__secondary-link:focus-visible {
-    outline: 2px solid var(--bb-brand-forest-green);
+    outline: 2px solid var(--bb-olive);
     outline-offset: 3px;
   }
 
@@ -663,7 +690,7 @@ const faqItems: FaqItem[] = [
     align-items: center;
     justify-content: center;
     margin-top: 0.125rem;
-    color: var(--bb-brand-forest-green);
+    color: var(--bb-olive);
   }
 
   .pricing-plan-card__features li.pricing-plan-card__feature--linked {
@@ -690,7 +717,7 @@ const faqItems: FaqItem[] = [
   }
 
   .pricing-plan-card__faq-link:focus-visible {
-    outline: 2px solid var(--bb-brand-forest-green);
+    outline: 2px solid var(--bb-olive);
     outline-offset: 2px;
   }
 
@@ -714,7 +741,7 @@ const faqItems: FaqItem[] = [
 
   .pricing-special-package-section__heading {
     margin: 0 auto 0.5rem;
-    color: var(--bb-text-base);
+    color: var(--bb-olive);
     font-family: var(--font-sans);
     font-size: 1.5rem;
     font-weight: 600;

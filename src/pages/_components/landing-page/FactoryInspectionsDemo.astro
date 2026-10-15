@@ -23,7 +23,8 @@ import Icon from "@components/Icon.astro";
             <Icon name="Plus" />
           </div>
           <div class="inspection-records__tabs">
-            <span class="inspection-records__tab inspection-records__tab--active"
+            <span
+              class="inspection-records__tab inspection-records__tab--active"
               >All inspections <span class="inspection-records__count">24</span
               ></span
             >
@@ -178,7 +179,7 @@ import Icon from "@components/Icon.astro";
     width: 100%;
     overflow: hidden;
     border: 1px solid var(--bb-border-base);
-    background: var(--bb-brand-forest-green);
+    background: var(--bb-olive);
     color: var(--bb-text-base);
     font-family: var(--font-sans);
     pointer-events: none;
@@ -213,7 +214,7 @@ import Icon from "@components/Icon.astro";
     justify-content: space-between;
     padding-inline: 2cqw;
     border-bottom: 1px solid var(--desktop-outline);
-    background: var(--bb-brand-forest-green);
+    background: var(--bb-olive);
     color: var(--bb-text-on-base-subtle);
   }
   .inspection-desktop__dots {
@@ -240,7 +241,7 @@ import Icon from "@components/Icon.astro";
     gap: 3.5cqw;
     padding-top: 2cqw;
     border-right: 1px solid var(--desktop-outline);
-    color: rgb(255 255 255 / 0.5);
+    color: var(--bb-text-on-base-muted);
   }
   .inspection-records {
     flex: 1;
@@ -339,11 +340,11 @@ import Icon from "@components/Icon.astro";
     white-space: nowrap;
   }
   .inspection-records__status--action {
-    background: var(--bb-yellow-300);
+    background: var(--bb-vivid-vargas);
     color: var(--bb-text-base);
   }
   .inspection-records__status--passed {
-    background: var(--bb-celery-300);
+    background: var(--bb-lime);
     color: var(--bb-text-base);
   }
   .inspection-tablet {
@@ -475,13 +476,13 @@ import Icon from "@components/Icon.astro";
     font-weight: 500;
   }
   .inspection-form__choice--pass {
-    border-color: var(--bb-celery-300);
-    background: var(--bb-celery-300);
+    border-color: var(--bb-lime);
+    background: var(--bb-lime);
     color: var(--bb-text-base);
   }
   .inspection-form__choice--fail {
-    border-color: var(--bb-yellow-300);
-    background: var(--bb-yellow-300);
+    border-color: var(--bb-vivid-vargas);
+    background: var(--bb-vivid-vargas);
     color: var(--bb-text-base);
   }
   .inspection-form__reading {

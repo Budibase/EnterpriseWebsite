@@ -5,13 +5,40 @@ interface Props {
   type: string;
 }
 
-const presets: Record<string, { icon: string; background: string }> = {
-  Agent: { icon: "Sparkle", background: "--bb-cyan-300" },
-  App: { icon: "AppWindow", background: "--bb-orange-300" },
-  Automation: { icon: "Lightning", background: "--bb-purple-300" },
-  Table: { icon: "Table", background: "--bb-yellow-300" },
-  "Operations center": { icon: "SquaresFour", background: "--bb-celery-300" },
-  Function: { icon: "Code", background: "--bb-chartreuse-300" },
+const presets: Record<
+  string,
+  { icon: string; background: string; foreground: string }
+> = {
+  Agent: {
+    icon: "Sparkle",
+    background: "--bb-zen",
+    foreground: "--bb-graphite",
+  },
+  App: {
+    icon: "AppWindow",
+    background: "--bb-tangerine",
+    foreground: "--bb-graphite",
+  },
+  Automation: {
+    icon: "Lightning",
+    background: "--bb-orchid",
+    foreground: "--bb-graphite",
+  },
+  Table: {
+    icon: "Table",
+    background: "--bb-vivid-vargas",
+    foreground: "--bb-graphite",
+  },
+  "Operations center": {
+    icon: "SquaresFour",
+    background: "--bb-olive",
+    foreground: "--bb-coconut",
+  },
+  Function: {
+    icon: "Code",
+    background: "--bb-lime",
+    foreground: "--bb-graphite",
+  },
 };
 const { type } = Astro.props;
 const preset = presets[type === "Ops center" ? "Operations center" : type];
@@ -21,7 +48,7 @@ const preset = presets[type === "Ops center" ? "Operations center" : type];
   preset && (
     <span
       class="asset-type-icon"
-      style={`--asset-color: var(${preset.background})`}
+      style={`--asset-color: var(${preset.background}); --asset-foreground: var(${preset.foreground})`}
       aria-hidden="true"
       data-asset-type={type}
     >
@@ -40,7 +67,7 @@ const preset = presets[type === "Ops center" ? "Operations center" : type];
     justify-content: center;
     overflow: hidden;
     background: var(--asset-color);
-    color: var(--bb-black);
+    color: var(--asset-foreground);
   }
   .asset-type-icon :global(svg) {
     width: 0.875rem;

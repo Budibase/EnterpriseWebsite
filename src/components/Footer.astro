@@ -1,5 +1,5 @@
 ---
-import footerLogoUrl from "@assets/budibase_celery200.svg?url";
+import { budibaseLimeLogoUrl } from "../data/brandAssets";
 import Check from "phosphor-astro/CheckCircle.astro";
 import GlobeSimple from "phosphor-astro/GlobeSimple.astro";
 import Certificate from "phosphor-astro/Certificate.astro";
@@ -193,7 +193,7 @@ const currentYear = new Date().getFullYear();
                             {link.badge && (
                               <FeatureBadge
                                 label={link.badge}
-                                variant="celery"
+                                variant="olive"
                               />
                             )}
                           </Link>
@@ -212,7 +212,7 @@ const currentYear = new Date().getFullYear();
     <div class="footer-bottom">
       <div class="footer-brand-row">
         <a href="/" class="footer-brand-link" aria-label="Budibase home">
-          <img src={footerLogoUrl} alt="Budibase" loading="lazy" />
+          <img src={budibaseLimeLogoUrl} alt="Budibase" loading="lazy" />
         </a>
 
         <nav class="footer-social" aria-label="Social links">
@@ -321,13 +321,8 @@ const currentYear = new Date().getFullYear();
     width: 100%;
     margin-top: auto;
     overflow: hidden;
-    color: var(--bb-text-on-base);
-    background:
-      linear-gradient(
-        var(--bb-transparent-white-100),
-        var(--bb-transparent-white-100)
-      ),
-      var(--bb-background-dark-raised);
+    color: var(--bb-lime);
+    background: var(--bb-olive);
   }
 
   .footer-shell {
@@ -379,7 +374,7 @@ const currentYear = new Date().getFullYear();
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    color: var(--bb-celery-100);
+    color: var(--bb-lime);
     font-size: 1.25rem;
     font-weight: 600;
     letter-spacing: 0;
@@ -418,7 +413,7 @@ const currentYear = new Date().getFullYear();
 
   .footer-column p {
     margin: 0;
-    color: var(--bb-text-on-base) !important;
+    color: var(--bb-lime) !important;
     font-size: 18px;
     font-weight: 600;
     line-height: 1.3;
@@ -426,7 +421,7 @@ const currentYear = new Date().getFullYear();
   }
 
   .footer-link-group__title {
-    color: var(--bb-text-on-base) !important;
+    color: var(--bb-lime) !important;
     font-size: 18px;
     font-weight: 600;
     line-height: 1.3;
@@ -446,7 +441,7 @@ const currentYear = new Date().getFullYear();
   .footer-legal a:focus-visible,
   .footer-social a:focus-visible,
   .footer-brand-link:focus-visible {
-    outline: 2px solid var(--bb-brand-bright-green);
+    outline: 2px solid var(--bb-lime);
     outline-offset: 4px;
     border-radius: 4px;
   }
@@ -456,7 +451,7 @@ const currentYear = new Date().getFullYear();
     flex-direction: column;
     gap: 1.5rem;
     padding: 2rem clamp(1rem, 2.5vw, 2rem);
-    color: var(--bb-text-on-base-muted);
+    color: var(--bb-lime);
     font-size: 0.875rem;
   }
 
@@ -487,7 +482,7 @@ const currentYear = new Date().getFullYear();
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--bb-celery-100);
+    color: var(--bb-coconut);
     text-decoration: none;
     transition:
       color 150ms ease,
@@ -495,21 +490,22 @@ const currentYear = new Date().getFullYear();
   }
 
   .footer-social a:hover {
-    color: var(--bb-brand-bright-green);
+    color: var(--bb-coconut);
+    opacity: 0.9;
   }
 
   .footer-certification {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    color: var(--bb-celery-100);
+    color: var(--bb-lime);
     font-size: 18px;
   }
 
   .footer-check-icon {
     width: 1rem;
     height: 1rem;
-    color: var(--bb-brand-bright-green);
+    color: currentColor;
   }
 
   @media (min-width: 768px) {
@@ -539,7 +535,16 @@ const currentYear = new Date().getFullYear();
     }
   }
 
+  .footer-nav :global(.alink.secondary.quiet),
+  .footer-nav :global(.alink.secondary.quiet:hover),
+  .footer-legal :global(.alink.secondary.quiet),
+  .footer-legal :global(.alink.secondary.quiet:hover) {
+    color: var(--bb-coconut);
+  }
+
   .footer-nav :global(.feature-badge) {
+    background: var(--bb-olive-1200) !important;
+    color: var(--bb-coconut) !important;
     min-height: 1.25rem;
     padding: 0.1875rem 0.4375rem;
     font-size: 0.6875rem;

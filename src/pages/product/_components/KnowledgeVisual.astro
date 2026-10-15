@@ -1,0 +1,420 @@
+---
+import Icon from "@components/Icon.astro";
+import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+
+interface Props {
+  variant: "overview" | "ready" | "sharepoint" | "pdf" | "sources";
+}
+const { variant } = Astro.props;
+// Illustrative knowledge content and citations, not customer data or a live answer.
+const titles = {
+  overview: "Knowledge assistant",
+  ready: "Budibase AI",
+  sharepoint: "SharePoint knowledge",
+  pdf: "Uploaded knowledge",
+  sources: "Answer sources",
+};
+---
+
+<div
+  class:list={["knowledge-visual", `knowledge-visual--${variant}`]}
+  role="img"
+  aria-label={`${titles[variant]} preview`}
+>
+  <div class="knowledge-visual__panel" aria-hidden="true">
+    <div class="knowledge-visual__heading">
+      <img
+        src="/brand/budibase-symbol-forest.svg"
+        width="16"
+        height="16"
+        alt=""
+      />{titles[variant]}
+    </div>
+    {
+      variant === "overview" && (
+        <>
+          <div class="knowledge-visual__question">
+            Where can I find the inspection checklist?
+          </div>
+          <div class="knowledge-visual__answer">
+            <>
+              <span class="knowledge-visual__author">
+                <Icon name="Sparkle" size="16" />
+                Knowledge assistant
+              </span>
+              <p>
+                The checklist is in the Operations handbook. The PDF covers the
+                pre-start checks.
+              </p>
+            </>
+          </div>
+        </>
+      )
+    }
+    {
+      (variant === "overview" || variant === "sources") && (
+        <>
+          <div class="knowledge-visual__source-label">Sources</div>
+          <div class="knowledge-visual__source">
+            <>
+              <img src={SharePointLogo} width="22" height="22" alt="" />
+              <span>
+                <>
+                  <strong>Operations handbook</strong>
+                  <small>SharePoint</small>
+                </>
+              </span>
+              <Icon name="ArrowUpRight" size="14" />
+            </>
+          </div>
+          <div class="knowledge-visual__source">
+            <>
+              <Icon name="FilePdf" size="22" />
+              <span>
+                <>
+                  <strong>Safety procedures.pdf</strong>
+                  <small>PDF · Page 4</small>
+                </>
+              </span>
+              <Icon name="ArrowUpRight" size="14" />
+            </>
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "ready" && (
+        <>
+          <div class="knowledge-visual__model">
+            <>
+              <span>AI model</span>
+              <strong>
+                <img
+                  src="/brand/budibase-symbol-forest.svg"
+                  width="18"
+                  height="18"
+                  alt=""
+                />
+                Budibase AI
+                <Icon name="CheckCircle" size="18" />
+              </strong>
+            </>
+          </div>
+          <div class="knowledge-visual__ready">
+            <>
+              <Icon name="BookOpen" size="25" />
+              <div>
+                <>
+                  <strong>Knowledge</strong>
+                  <span>Ready to use</span>
+                </>
+              </div>
+              <Icon name="CheckCircle" size="20" />
+            </>
+          </div>
+          <div class="knowledge-visual__steps">
+            <>
+              <span>Upload knowledge</span>
+              <Icon name="ArrowRight" size="14" />
+              <span>Ask your agent</span>
+            </>
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "sharepoint" && (
+        <>
+          <div class="knowledge-visual__connection">
+            <>
+              <img src={SharePointLogo} width="32" height="32" alt="" />
+              <div>
+                <>
+                  <strong>SharePoint</strong>
+                  <span>Operations team</span>
+                </>
+              </div>
+              <Icon name="CheckCircle" size="17" />
+            </>
+          </div>
+          <div class="knowledge-visual__document">
+            <>
+              <Icon name="BookOpen" size="18" />
+              <span>Operations handbook</span>
+            </>
+          </div>
+          <div class="knowledge-visual__document">
+            <>
+              <Icon name="FilePdf" size="18" />
+              <span>Safety procedures</span>
+            </>
+          </div>
+          <div class="knowledge-visual__available">
+            <>
+              <Icon name="Sparkle" size="15" />
+              <span>Knowledge for your agent</span>
+            </>
+          </div>
+        </>
+      )
+    }
+    {
+      variant === "pdf" && (
+        <>
+          <div class="knowledge-visual__upload">
+            <>
+              <Icon name="FilePdf" size="28" />
+              <div>
+                <>
+                  <strong>Safety procedures.pdf</strong>
+                  <span>PDF · Uploaded</span>
+                </>
+              </div>
+              <Icon name="CheckCircle" size="17" />
+            </>
+          </div>
+          <div class="knowledge-visual__pdf-lines">
+            <>
+              <i />
+              <i />
+              <i />
+            </>
+          </div>
+          <div class="knowledge-visual__available">
+            <>
+              <Icon name="Sparkle" size="15" />
+              <span>Available to your agent</span>
+            </>
+          </div>
+        </>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .knowledge-visual {
+    width: 100%;
+    max-width: 34rem;
+    container-type: inline-size;
+    color: var(--bb-text-base);
+    line-height: 1.4;
+  }
+  .knowledge-visual__panel {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    font-size: clamp(10px, 3.3cqw, 15px);
+  }
+  .knowledge-visual--overview {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    max-width: none;
+    background: var(--bb-background-base);
+  }
+  .knowledge-visual--overview .knowledge-visual__panel {
+    border: 0;
+    font-size: clamp(9px, 2.2cqw, 12px);
+  }
+  .knowledge-visual strong {
+    font-weight: 500;
+  }
+  .knowledge-visual__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.85em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+    font-weight: 500;
+  }
+  .knowledge-visual__question {
+    margin: 1em 1em 0 2em;
+    padding: 0.8em;
+    background: var(--bb-background-sand);
+  }
+  .knowledge-visual__answer {
+    padding: 1em 1em 0.5em;
+  }
+  .knowledge-visual__author {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    color: var(--bb-olive);
+    font-weight: 500;
+  }
+  .knowledge-visual__answer p {
+    margin: 0.6em 0 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  .knowledge-visual__source-label {
+    padding: 0.6em 1em;
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .knowledge-visual__source {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    padding: 0.7em 1em;
+    border-top: 1px solid var(--bb-border-base);
+  }
+  .knowledge-visual__source > span {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+    min-width: 0;
+  }
+  .knowledge-visual__source small {
+    font-size: 0.8em;
+    color: var(--bb-text-subtle);
+  }
+  .knowledge-visual__source > img {
+    flex: none;
+    width: 1.5em;
+    height: 1.5em;
+    object-fit: contain;
+  }
+  .knowledge-visual__source > :global(svg) {
+    color: var(--bb-olive);
+    flex: none;
+  }
+  .knowledge-visual__source > :global(svg:last-child) {
+    margin-left: auto;
+  }
+  .knowledge-visual__model {
+    display: grid;
+    gap: 0.4em;
+    padding: 1.25em 1em;
+  }
+  .knowledge-visual__model > span {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+  }
+  .knowledge-visual__model strong {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.8em;
+    border: 1px solid var(--bb-border-base);
+  }
+  .knowledge-visual__model strong > :global(svg) {
+    margin-left: auto;
+    color: var(--bb-olive);
+  }
+  .knowledge-visual__ready {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    margin: 0 1em 1em;
+    padding: 1em;
+    color: var(--bb-olive);
+    background: var(--bb-lime-100);
+  }
+  .knowledge-visual__ready > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+  }
+  .knowledge-visual__ready > div > span {
+    font-size: 0.85em;
+  }
+  .knowledge-visual__ready > :global(svg:last-child) {
+    margin-left: auto;
+  }
+  .knowledge-visual__steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65em;
+    padding: 0.85em 1em;
+    background: var(--bb-background-sand);
+    color: var(--bb-text-subtle);
+    font-size: 0.9em;
+  }
+  .knowledge-visual__connection,
+  .knowledge-visual__upload {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    padding: 1em;
+  }
+  .knowledge-visual__connection > img {
+    flex: none;
+    width: 2.4em;
+    height: 2.4em;
+    object-fit: contain;
+  }
+  .knowledge-visual__connection > div,
+  .knowledge-visual__upload > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    min-width: 0;
+  }
+  .knowledge-visual__connection > div > span,
+  .knowledge-visual__upload > div > span {
+    font-size: 0.85em;
+    color: var(--bb-text-subtle);
+  }
+  .knowledge-visual__connection > :global(svg),
+  .knowledge-visual__upload > :global(svg:last-child) {
+    margin-left: auto;
+    color: var(--bb-olive);
+    flex: none;
+  }
+  .knowledge-visual__upload > :global(svg:first-child) {
+    color: var(--bb-olive);
+    flex: none;
+  }
+  .knowledge-visual__document {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.8em 1em;
+    border-top: 1px solid var(--bb-border-base);
+  }
+  .knowledge-visual__document :global(svg) {
+    color: var(--bb-olive);
+    flex: none;
+  }
+  .knowledge-visual__available {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.75em 1em;
+    border-top: 1px solid var(--bb-border-base);
+    color: var(--bb-olive);
+    background: var(--bb-lime-100);
+    font-size: 0.85em;
+  }
+  .knowledge-visual__pdf-lines {
+    display: grid;
+    gap: 0.65em;
+    padding: 0.2em 1em 1em;
+  }
+  .knowledge-visual__pdf-lines i {
+    display: block;
+    height: 0.35em;
+    background: var(--bb-border-base);
+  }
+  .knowledge-visual__pdf-lines i:last-child {
+    width: 65%;
+  }
+  @container (max-width: 340px) {
+    .knowledge-visual--overview .knowledge-visual__heading {
+      padding-block: 0.65em;
+    }
+    .knowledge-visual--overview .knowledge-visual__question {
+      padding: 0.6em;
+    }
+    .knowledge-visual--overview .knowledge-visual__answer {
+      padding-block: 0.7em 0.3em;
+    }
+    .knowledge-visual--overview .knowledge-visual__source {
+      padding-block: 0.4em;
+    }
+  }
+</style>

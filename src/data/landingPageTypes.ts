@@ -25,7 +25,7 @@ export interface ProductDetailContent {
     cards: readonly ProductDetailCard[];
     columns?: 2 | 3 | 4 | 5;
     responsiveLayout?: "scroll" | "stack";
-    background?: "forest-green" | "surface";
+    background?: "olive" | "surface";
   };
 }
 

@@ -1,8 +1,17 @@
 ---
-import BudibaseSymbol from "@assets/BBSymbol.svg?url";
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+const BudibaseSymbol = "/brand/budibase-symbol-forest.svg";
 ---
 
-<div class="homepage-operations-center">
+<div
+  class:list={[
+    "homepage-operations-center",
+    compact && "homepage-operations-center--compact",
+  ]}
+>
   <div class="homepage-operations-center__header">
     <span
       class="homepage-operations-center__symbol"
@@ -19,7 +28,7 @@ import BudibaseSymbol from "@assets/BBSymbol.svg?url";
   <div class="homepage-operations-center__body">
     <div class="homepage-operations-center__heading">
       <strong>My requests</strong>
-      <span>4 requests</span>
+      <span>{compact ? "3 requests" : "4 requests"}</span>
     </div>
 
     <div class="homepage-operations-center__request">
@@ -55,16 +64,18 @@ import BudibaseSymbol from "@assets/BBSymbol.svg?url";
       </span>
     </div>
 
-    <div class="homepage-operations-center__request">
-      <span class="homepage-operations-center__request-copy">
-        <strong>Supplier onboarding</strong>
-      </span>
-      <span
-        class="homepage-operations-center__status homepage-operations-center__status--review"
-      >
-        In review
-      </span>
-    </div>
+    {
+      !compact && (
+        <div class="homepage-operations-center__request">
+          <span class="homepage-operations-center__request-copy">
+            <strong>Supplier onboarding</strong>
+          </span>
+          <span class="homepage-operations-center__status homepage-operations-center__status--review">
+            In review
+          </span>
+        </div>
+      )
+    }
   </div>
 </div>
 
@@ -84,7 +95,7 @@ import BudibaseSymbol from "@assets/BBSymbol.svg?url";
     min-height: 2.625rem;
     align-items: center;
     gap: 0.5rem;
-    background: var(--bb-brand-forest-green);
+    background: var(--bb-plum);
     padding-inline: 0.75rem;
     color: var(--bb-text-on-base);
     font-size: 1rem;
@@ -123,7 +134,7 @@ import BudibaseSymbol from "@assets/BBSymbol.svg?url";
   }
 
   .homepage-operations-center__tabs .homepage-operations-center__tab--active {
-    border-bottom-color: var(--bb-cyan-900);
+    border-bottom-color: var(--bb-ocean);
     color: var(--bb-text-base);
     font-weight: 500;
   }
@@ -188,20 +199,67 @@ import BudibaseSymbol from "@assets/BBSymbol.svg?url";
   }
 
   .homepage-operations-center__status--review {
-    background: var(--bb-yellow-200);
+    background: var(--bb-vivid-vargas);
   }
 
   .homepage-operations-center__status--complete {
-    background: var(--bb-celery-200);
+    background: var(--bb-lime);
   }
 
   .homepage-operations-center__status--progress {
-    background: var(--bb-cyan-200);
+    background: var(--bb-zen);
   }
 
   @media (max-width: 1199px) {
-    :global(.card-cluster__image-wrap:has(.homepage-operations-center)) {
+    :global(
+      .card-cluster__image-wrap:has(
+        .homepage-operations-center:not(.homepage-operations-center--compact)
+      )
+    ) {
       min-height: 20rem !important;
     }
+  }
+
+  .homepage-operations-center--compact {
+    height: auto;
+    font-size: clamp(9px, 4.5cqw, 13px);
+  }
+  .homepage-operations-center--compact .homepage-operations-center__header {
+    min-height: 2.625em;
+    padding-inline: 0.75em;
+    font-size: 1em;
+  }
+  .homepage-operations-center--compact .homepage-operations-center__tabs {
+    gap: 0.625em;
+    padding-inline: 0.75em;
+    font-size: 0.875em;
+  }
+  .homepage-operations-center--compact .homepage-operations-center__tabs span {
+    min-height: 2.125em;
+  }
+  .homepage-operations-center--compact .homepage-operations-center__body {
+    padding: 0.75em;
+  }
+  .homepage-operations-center--compact .homepage-operations-center__heading {
+    margin-bottom: 0.375em;
+    font-size: 0.875em;
+  }
+  .homepage-operations-center--compact
+    .homepage-operations-center__heading
+    span {
+    font-size: inherit;
+  }
+  .homepage-operations-center--compact .homepage-operations-center__request {
+    min-height: 2.375em;
+    padding: 0.375em 0.5em;
+    gap: 0.5em;
+  }
+  .homepage-operations-center--compact
+    .homepage-operations-center__request-copy {
+    font-size: 0.875em;
+  }
+  .homepage-operations-center--compact .homepage-operations-center__status {
+    padding: 0.25em 0.375em;
+    font-size: 0.875em;
   }
 </style>

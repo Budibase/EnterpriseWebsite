@@ -5,17 +5,19 @@ import Icon from "@components/Icon.astro";
 // Props:
 // - label: string (required)
 // - url?: string (if provided, renders an anchor)
-// - variant?: 'primary' | 'secondary' | 'cta' | 'cta-on-base' | 'outline-on-base' | 'bright-on-dark' | 'outline-on-dark' | 'large' (defaults to 'primary')
+// - variant?: 'primary' | 'lime' | 'secondary' | 'cta' | 'cta-on-base' | 'outline-on-base' | 'bright-on-dark' | 'outline-on-dark' | 'large' (defaults to 'primary')
 // - type?: 'button' | 'submit' | 'reset' (button only)
 // - class?: string (additional classes)
 // - size?: 'small' | 'medium' | 'large' | 'extra-large' (defaults to 'medium')
 // - icon?: string (optional icon name to display beside the label)
 // - iconPosition?: 'start' | 'end' (defaults to 'start')
 // - iconSize?: string (optional icon size in pixels, overrides default size-based calculation)
+// - iconDivider?: boolean (places an end icon in a square compartment with a divider)
 // - attributes?: additional HTML attributes for specialized wrappers
 
 type Variant =
   | "primary"
+  | "lime"
   | "secondary"
   | "cta"
   | "cta-on-base"
@@ -36,6 +38,7 @@ interface Props {
   icon?: string;
   iconPosition?: "start" | "end";
   iconSize?: string;
+  iconDivider?: boolean;
   target?: string;
   rel?: string;
   attributes?: Record<string, string | boolean | undefined>;
@@ -43,18 +46,19 @@ interface Props {
 
 const variantClasses = {
   primary:
-    "bg-[var(--bb-brand-bright-green)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-brand-bright-green)] ",
+    "bg-[var(--bb-lime)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)] ",
+  lime: "border-0 bg-[var(--bb-lime)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)] focus-visible:ring-[var(--bb-lime)] focus-visible:ring-offset-[var(--button-bright-focus-offset,var(--bb-background-surface-base))]",
   secondary:
-    "border bg-white !text-[var(--bb-text-base)] hover:bg-[var(--bb-background-surface)] hover:!text-brand",
-  cta: "bg-[var(--bb-celery-1200)] !text-[var(--bb-celery-100)] hover:bg-[var(--bb-celery-1400)] active:bg-[var(--bb-celery-1400)] ",
+    "border bg-[var(--bb-white)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-background-surface)] hover:!text-brand",
+  cta: "bg-[var(--bb-button-cta-background)] !text-[var(--bb-text-on-base)] hover:bg-[var(--bb-button-cta-hover)] active:bg-[var(--bb-button-cta-active)] ",
   "cta-on-base":
-    "border-transparent bg-[var(--bb-brand-bright-green)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-brand-bright-green)]",
+    "border-transparent bg-[var(--bb-lime)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)]",
   "outline-on-base":
-    "border border-[var(--bb-brand-bright-green)] bg-transparent !text-[var(--bb-brand-bright-green)] hover:border-[var(--bb-brand-bright-green)] hover:bg-[var(--bb-transparent-white-75)] hover:!text-[var(--bb-celery-100)]",
+    "border bg-[var(--bb-white)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-background-surface)] hover:!text-brand focus-visible:ring-[var(--bb-olive)] focus-visible:ring-offset-[var(--bb-olive)]",
   "bright-on-dark":
-    "border-0 bg-[var(--bb-celery-200)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-celery-300)] active:bg-[var(--bb-celery-400)] focus-visible:ring-[var(--bb-celery-200)] focus-visible:ring-offset-[var(--bb-celery-1300)]",
+    "border-0 bg-[var(--button-bright-background,var(--bb-lime))] !text-[var(--bb-text-base)] hover:bg-[var(--button-bright-hover,var(--bb-button-lime-hover))] active:bg-[var(--button-bright-active,var(--bb-button-lime-active))] focus-visible:ring-[var(--button-bright-background,var(--bb-lime))] focus-visible:ring-offset-[var(--button-bright-focus-offset,var(--bb-olive))]",
   "outline-on-dark":
-    "border border-[var(--bb-white)] bg-transparent !text-[var(--bb-white)] hover:bg-[var(--bb-transparent-white-100)] hover:!text-[var(--bb-white)] active:bg-[var(--bb-transparent-white-200)] focus-visible:ring-[var(--bb-white)] focus-visible:ring-offset-[var(--bb-celery-1300)]",
+    "border bg-[var(--bb-white)] !text-[var(--bb-text-base)] hover:bg-[var(--bb-background-surface)] hover:!text-brand active:bg-[var(--bb-sand)] focus-visible:ring-[var(--bb-white)] focus-visible:ring-offset-[var(--bb-olive)]",
   large: "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-hover ",
 };
 
@@ -93,6 +97,7 @@ const {
   icon,
   iconPosition = "start",
   iconSize: providedIconSize,
+  iconDivider = false,
   target,
   rel,
   attributes = {},
@@ -103,10 +108,15 @@ const iconSize = icon
   : undefined;
 const classes = [
   baseClasses,
+  "button--cut-corner",
+  variant === "secondary" && "button--secondary",
+  ["secondary", "outline-on-base", "outline-on-dark"].includes(variant) &&
+    "button--cut-corner-outline",
   variantClasses[variant],
   sizeClasses[normalizedSize],
   gapClasses[normalizedSize],
   className,
+  iconDivider && iconPosition === "end" && icon && "button--divided-icon",
 ]
   .filter(Boolean)
   .join(" ");
@@ -129,9 +139,16 @@ const computedRel =
         <Icon name={icon} size={iconSize} />
       )}
       {label}
-      {iconPosition === "end" && icon && iconSize && (
-        <Icon name={icon} size={iconSize} />
-      )}
+      {iconPosition === "end" &&
+        icon &&
+        iconSize &&
+        (iconDivider ? (
+          <span class="button__icon-compartment" aria-hidden="true">
+            <Icon name={icon} size={iconSize} />
+          </span>
+        ) : (
+          <Icon name={icon} size={iconSize} />
+        ))}
     </a>
   ) : (
     <button type={type} class={classes} aria-label={ariaLabel} {...attributes}>
@@ -139,9 +156,75 @@ const computedRel =
         <Icon name={icon} size={iconSize} />
       )}
       {label}
-      {iconPosition === "end" && icon && iconSize && (
-        <Icon name={icon} size={iconSize} />
-      )}
+      {iconPosition === "end" &&
+        icon &&
+        iconSize &&
+        (iconDivider ? (
+          <span class="button__icon-compartment" aria-hidden="true">
+            <Icon name={icon} size={iconSize} />
+          </span>
+        ) : (
+          <Icon name={icon} size={iconSize} />
+        ))}
     </button>
   )
 }
+
+<style>
+  .button--cut-corner {
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+
+  .button--cut-corner:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -4px;
+  }
+
+  .button--cut-corner-outline {
+    --button-outline-color: var(--bb-border-bold);
+    position: relative;
+    border: 0;
+  }
+
+  .button--cut-corner-outline::after {
+    position: absolute;
+    inset: 0;
+    background: var(--button-outline-color, currentColor);
+    /* Trace the whole outline so the diagonal joins both edges cleanly. */
+    clip-path: polygon(
+      evenodd,
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      0 100%,
+      0 0,
+      1px 1px,
+      1px calc(100% - 1px),
+      calc(100% - 1px) calc(100% - 1px),
+      calc(100% - 1px) 10.414px,
+      calc(100% - 10.414px) 1px,
+      1px 1px
+    );
+    content: "";
+    pointer-events: none;
+  }
+
+  .button--divided-icon {
+    --button-compartment-size: 3rem;
+    height: var(--button-compartment-size);
+    gap: 2rem;
+    padding: 0 0 0 1.375rem;
+  }
+
+  .button__icon-compartment {
+    display: flex;
+    flex: 0 0 var(--button-compartment-size);
+    align-items: center;
+    justify-content: center;
+    width: var(--button-compartment-size);
+    height: 100%;
+    margin-left: auto;
+    border-left: 1px solid currentColor;
+  }
+</style>

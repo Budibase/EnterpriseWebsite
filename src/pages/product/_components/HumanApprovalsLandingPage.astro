@@ -1,0 +1,64 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import OperationsCenterDemo from "@components/demos/OperationsCenterDemo.astro";
+import ApprovalVisual from "./ApprovalVisual.astro";
+import type { PlatformLandingContent } from "../../../data/landingPageTypes";
+
+interface Props {
+  content: PlatformLandingContent;
+}
+const { content } = Astro.props;
+const media = [
+  { mediaDemo: ApprovalVisual, mediaDemoProps: { variant: "tools" } },
+  { mediaDemo: ApprovalVisual, mediaDemoProps: { variant: "notifications" } },
+  { mediaDemo: OperationsCenterDemo, mediaDemoProps: { compact: true } },
+];
+const cards = content.cardCluster.cards.map((card, index) => ({
+  ...card,
+  ...media[index],
+}));
+const faqs = [
+  {
+    question: "How do I decide when approval is required?",
+    answer:
+      "Define approval conditions for the actions that need review. Conditions can use data from your process, including data returned by tools.",
+  },
+  {
+    question: "What does an approval policy control?",
+    answer:
+      "An approval policy sets who approves, where they approve, and how long they have to make a decision.",
+  },
+  {
+    question: "Can approvers receive notifications in Teams and Slack?",
+    answer:
+      "Yes. Send approval notifications to Microsoft Teams and Slack to bring requests to the people responsible for reviewing them.",
+  },
+  {
+    question: "Where can I manage requests and approvals?",
+    answer:
+      "Use the operations center to manage requests and approvals and see the work waiting for a decision.",
+  },
+];
+---
+
+<div class="human-approvals-landing-page">
+  <GridLandingPage
+    slug="human-approvals"
+    {content}
+    {cards}
+    {faqs}
+    heroAspectRatio="var(--approval-hero-ratio, 3 / 2)"
+  >
+    <ApprovalVisual slot="hero-media" variant="overview" />
+    <ApprovalVisual slot="feature-0" variant="conditions" />
+    <ApprovalVisual slot="feature-1" variant="policy" />
+  </GridLandingPage>
+</div>
+
+<style>
+  @media (max-width: 599px) {
+    .human-approvals-landing-page {
+      --approval-hero-ratio: 5 / 4;
+    }
+  }
+</style>

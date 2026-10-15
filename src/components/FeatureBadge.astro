@@ -2,13 +2,7 @@
 import Icon from "@components/Icon.astro";
 
 type Variant =
-  | "celery"
-  | "light"
-  | "bright-blue"
-  | "bright-pink"
-  | "yellow"
-  | "bright-yellow"
-  | "bright-orange";
+  "olive" | "light" | "zen" | "pink" | "vivid-vargas" | "tangerine";
 
 interface Props {
   label: string;
@@ -85,30 +79,29 @@ const className = `feature-badge feature-badge--${variant}`;
     outline-offset: 3px;
   }
 
-  .feature-badge--celery {
-    background-color: var(--bb-celery-1200) !important;
-    color: var(--bb-celery-200) !important;
+  .feature-badge--olive {
+    background-color: var(--bb-olive-1200) !important;
+    color: var(--bb-lime) !important;
   }
 
-  .feature-badge--celery :global(svg) {
+  .feature-badge--olive :global(svg) {
     color: currentColor;
     fill: currentColor;
   }
   .feature-badge--light {
     background: var(--bb-background-raised);
   }
-  .feature-badge--bright-blue {
-    background: var(--bb-bright-blue);
+  .feature-badge--zen {
+    background: var(--bb-zen);
   }
-  .feature-badge--bright-pink {
-    background: var(--bb-bright-pink);
+  .feature-badge--pink {
+    background: var(--bb-pink);
   }
-  .feature-badge--yellow,
-  .feature-badge--bright-yellow {
-    color: var(--bb-brand-forest-green);
-    background: var(--bb-brand-yellow);
+  .feature-badge--vivid-vargas {
+    color: var(--bb-olive);
+    background: var(--bb-vivid-vargas);
   }
-  .feature-badge--bright-orange {
-    background: var(--bb-bright-orange);
+  .feature-badge--tangerine {
+    background: var(--bb-tangerine);
   }
 </style>

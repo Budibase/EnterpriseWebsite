@@ -1,7 +1,7 @@
 # Budibase brand and GTM direction
 
 **Status:** Working source of truth  
-**Last updated:** 9 October 2026
+**Last updated:** 15 October 2026
 
 Use this document to guide Budibase website design, customer-facing copy,
 campaigns, presentations, customer stories, sales enablement, product launches,
@@ -578,25 +578,46 @@ capabilities. Conservative styling alone is not evidence of maturity.
 
 ### Color
 
-- Keep forest green, bright green, and yellow (`#FFBC0D`) as the core brand
-  palette, with forest green as the primary brand anchor.
-- Use Spectrum gray 900 for paragraphs and descriptive copy on light surfaces;
-  reserve forest green for headings and brand emphasis. Use the appropriate
-  light text token on dark surfaces.
-- Use bright celery to signal action, progress, connection, and successful
-  states.
-- Do not use bright green as a full FeatureSection background. Use neutral
-  light surfaces or forest green for section-level contrast.
-- Use yellow to call attention to proof, selected or current states, and human
-  review or approval checkpoints. Pair it with forest-green or similarly dark
-  text; do not use it as a generic warning color.
-- Give supporting colors semantic roles such as apps, agents, automations,
-  data, alerts, approvals, people, or systems.
-- Avoid rainbow palettes without meaning, novelty gradients, and excessive
-  variation across adjacent sections.
+- Use five core colors: Lime (`--bb-lime`, `#A5FF00`), Olive (`--bb-olive`,
+  `#233207`), Coconut (`--bb-coconut`, `#F7F5F2`), Sand (`--bb-sand`, `#F4F2F0`),
+  and Graphite (`--bb-graphite`, `#1E1919`). Keep Olive as the primary dark brand
+  anchor and Lime for action, progress, connection, and successful states.
+- Keep the names **Lime** and **Olive**. “Electric green” describes Lime's vivid
+  character rather than a separate color or token.
+- Retain the Lime and Olive 100–1600 families for pale treatments and interaction
+  states. Their core aliases reference lime 300 and olive 1300 respectively.
+- The current website trial uses white for light marketing surfaces, raised
+  panels, and product interfaces, with Coconut for cards and supporting panels.
+  Sand remains an additional warm neutral. Body copy uses
+  Graphite, brand headings and links use Olive, subtle text uses grey 600,
+  decorative borders use grey 200, and strong control boundaries use grey 500.
+- Use the exact named accents and 50–1000 warm-grey scale from
+  [Dropbox's color suite](https://brand.dropbox.com/color). Accent pairs are
+  Azalea/Pink, Crimson/Sunset, Rust/Tangerine, Gold/Vivid Vargas, Ocean/Zen,
+  Navy/Cloud, and Plum/Orchid. Do not import Dropbox Blue, Canopy, or Dropbox Lime.
+  Named anchors are exact; pale supporting surfaces may mix a light accent at
+  10% or 20% with Coconut. Choose readable foregrounds rather than assuming every
+  accent supports the same text color.
+- Shared shapes pair Olive backgrounds with Lime foregrounds and reverse this
+  for inverted marks. The homepage announcement retains three distinct pairs:
+  Tangerine/Rust, Cloud/Navy, and Lime/Olive. Navigation status lights use olive 1000. Asset symbols use Agent/Zen, App/Tangerine, Automation/Orchid, Operations
+  center/Olive, Table/Vivid Vargas, and Function/Lime, with Graphite foregrounds
+  on light fills and Coconut on Olive.
+- The global footer uses Olive with Lime headings and Coconut links.
+- Buttons share Lime interaction tokens, while dark CTA buttons use Olive.
+  Secondary and outlined actions use white backgrounds with dark text and
+  grey control borders, including Try Budibase on dark navigation surfaces.
+  Use Vivid Vargas and Gold for proof, selection, attention, and human review;
+  use Crimson for danger. Do not use Lime as a full FeatureSection background.
+- Keep accents meaningful to the operational story. Avoid rainbow palettes
+  without meaning, novelty gradients, and excessive variation across sections.
 
 ### Typography
 
+- Set shared section headings to 42px desktop, 36px tablet, and 30px mobile.
+- Give mobile hero titles stronger scale with the shared fluid 52–60px hero
+  token. Apply it to the homepage and shared hero components; retain the
+  established tablet and desktop sizes.
 - Use TikTok Sans Condensed Black at its native `900` weight for major
   statements, category claims, titles, and headings that should feel
   unmistakably Budibase.
@@ -613,9 +634,19 @@ capabilities. Conservative styling alone is not evidence of maturity.
 
 ### Layout
 
+- Place **Book a demo** first whenever it appears alongside other action
+  buttons in page sections. Trial and signup actions follow. In the main
+  navigation, place **Try Budibase** before **Book a demo**.
+- Use the shared 10px top-right corner cut for all styled action buttons,
+  including outlined buttons. Preserve an outline along the diagonal edge.
+  Use the base border token for secondary actions on light backgrounds.
 - Use clear grids, strong alignment, generous but controlled space, and modular
   compositions.
-- Use light hero surfaces on product and platform pages. Retain forest green
+- Use the approved AI models landing page as the reusable compact lined
+  template for APIs, Data tables, Knowledge, Activity, Human approvals, and
+  Permissions, Security and compliance, and Self-hosting. Preserve its composition while supplying page-specific copy,
+  product visuals, and FAQs.
+- Use light hero surfaces on product and platform pages. Retain olive
   in typography, actions, diagrams, and purposeful section contrasts.
 - Balance major brand statements with denser product, architecture, and
   evidence sections.
@@ -623,16 +654,12 @@ capabilities. Conservative styling alone is not evidence of maturity.
   soft consumer-SaaS appearance.
 - Use square status lights throughout the homepage, including section markers
   and status indicators in its product demonstrations.
-- Give desktop and mobile navigation dropdown links 8px square markers in
-  varied existing palette colors, keeping colors consistent for each destination.
-- Place a three-column grid of varied palette-color 8px squares opposite each
-  pricing plan title: one row for Community, three for Enterprise, two for Cloud.
-  Squares touch, and each square within a plan's grid uses a visibly distinct
-  color. Use contrasting hues and lightness at 8px rather than similar shades.
-  Include the brand bright-green token in every plan's grid, and use existing
-  `global.css` color tokens for all squares.
-  Place bright green in the center column and the center row where possible;
-  use the lower of the two middle rows for Cloud.
+- Give desktop and mobile navigation dropdown links uniform olive-1000 8px
+  square lights. Place decorative geometric marks alongside column headings
+  using olive-1300 backgrounds and lime foregrounds.
+- Place a shared 32px geometric shape opposite each pricing plan title:
+  community foundation for Community, enterprise framework for Enterprise,
+  and cloud current for Cloud. Use the inverted lime/olive-1300 palette.
 
 ### Imagery and product presentation
 
@@ -760,22 +787,22 @@ early.
 
 Marketplace is the primary directory for reusable process templates,
 connections, community plugins, and approved partners. It retains the main
-website navigation and adds its own Home, Templates, Connections, Plugins,
-and Partners navigation, with contribution and forum links. Directory URLs
+website navigation and adds its own Home, Templates, Connections, Partners,
+and Plugins navigation, with contribution and forum links. Directory URLs
 live under `/marketplace/`; individual process templates retain `/process/`
 URLs. Public partner listings must use approved profiles rather than examples.
 When a partner has no verified logo, use a decorative 42px square of nine
 touching blocks in a 3 × 3 grid, using existing Budibase color tokens.
 
-The Marketplace homepage opens with a forest-green welcome banner, sentence-case
+The Marketplace homepage opens with an olive welcome banner, sentence-case
 TikTok Sans, and light text. A static mosaic of three touching columns of varied
-rectangular blocks sits on the right, using bright green, pale green, yellow,
-and sand with occasional blue and coral accents. Keep the desktop banner
+rectangular blocks sits on the right, emphasizing Cloud, Zen, and Navy blues
+with restrained Lime and Olive, yellow, sand, and coral accents. Keep the desktop banner
 approximately 300px tall. On mobile the mosaic sits below the copy. The directory
 cards provide the next action without a banner button.
 
-All mosaic blocks use solid fills. Larger blocks include dark forest green,
-bright green, and dark purple, with occasional pink, lavender, and peach accents
+All mosaic blocks use solid fills. Larger Marketplace blocks use Navy, Zen,
+and Azalea, with occasional pink, lavender, and peach accents
 among the smaller blocks.
 
 ### Campaigns and product launches
@@ -858,6 +885,213 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 - What quantitative outcomes can Budibase substantiate consistently?
 
 ## Decision log
+
+### 15 October 2026
+
+- Selected the winning color pairing from the office comparison: Lime
+  `#A5FF00` and Olive `#233207`. Retained the Lime/Olive names, refreshed their
+  shade families and interaction states, and applied the palette across the
+  website and owned logo/favicon exports. Removed the temporary homepage and
+  pricing palette previews after adoption. Supporting accents and warm neutrals
+  retain their approved values.
+
+- Applied the shared feature-page template to Self-hosting. Use “upgrade
+  control” for choosing Budibase releases and rollout timing, keeping this
+  benefit distinct from Git and application versioning.
+
+- Extended the compact lined landing-page template to Security and compliance.
+  Lead with sensitive-data controls and air-gapped deployment, with evidence
+  links for ISO 27001 information security management, Iron Bank container
+  availability, and data protection commitments. Keep certification and
+  deployment claims specific rather than implying blanket customer compliance.
+
+### 14 October 2026
+
+- Replaced missing partner-logo mosaics with the existing circle-and-square
+  shape as an abstract person mark in Olive and Lime. Partner names provide
+  identity; approved partner artwork remains the preferred logo.
+
+- Set secondary and outlined buttons to white backgrounds with dark text,
+  including Try Budibase on dark navigation and hero surfaces.
+
+- Increased Cloud, Zen, and Navy in the Marketplace header mosaic and reduced
+  green and olive blocks, retaining the Olive banner and Lime highlights.
+
+- Set footer links to Coconut, retaining Lime headings and the Lime logo.
+
+- Trialled white page backgrounds with Coconut cards and supporting panels in
+  place of the previous Coconut/Sand pairing. Retained the named palette values
+  and the dark brand colors.
+
+- Adopted the Lime, Olive, Coconut, Sand, and Graphite core palette. Migrated
+  owned website colors and logo exports to the new anchors, replaced the older
+  accent families with fourteen exact Dropbox accents and its warm-grey scale,
+  and retained the multicolored homepage announcement with the new pairs.
+  Coconut is the default light page background; Sand retains `#F4F2F0`.
+
+- Adjusted footer links from olive 100 to olive 200 after visual review.
+
+- Refined footer links to olive 100 while retaining lime headings and the
+  lime logo. Changed the shared closing CTA's demo action to brand lime.
+
+- Standardized homepage demo backdrops on olive 1300. Set global footer text
+  and links to brand lime and reused the homepage navigation's lime logo.
+
+- Named the yellow-green accent Lime and added its 100–1600 family, anchored on
+  lime 300 (`#D9F02A`). Replaced the previous palette, token names, and button
+  variant with lime throughout source and documentation. Function asset symbols
+  now use lime 500; olive and homepage announcement palettes retain their colors.
+
+- Mapped `--bb-background-dark-soft` directly to olive 1300, replacing the
+  earlier celery-1500 and white mix across its shared surface consumers.
+
+- Changed navigation dropdown status lights to olive 1000. Added a shared
+  lime Button variant for the homepage navigation, hero, and solutions,
+  replacing page-specific color overrides. Mapped the dark CTA button's
+  background to olive 1300 and its hover/pressed states to olive 1400/1500.
+
+- Restored the homepage announcement's orange, cyan, and celery shape variants.
+  Set the homepage navigation's Book a demo action to the shared `#D9F02A`
+  lime accent on desktop and in the mobile menu.
+
+- Refined the shared lime accent to `#D9F02A`, replacing `#EFF02A`.
+  Applied it to geometric shapes, the homepage hero demo action, and the
+  matching homepage navigation logo, retaining olive 1300 as the dark pair.
+
+- Adopted `#EFF02A` lime and olive 1300 (`#283916`) for shared geometric
+  shapes, including navigation, homepage group marks, and pricing symbols.
+  Replaced the homepage announcement's mixed accents with the inverted pair
+  and connected the hero demo button to the shared lime token, with
+  olive-based hover and pressed states.
+
+- Increased the shared product landing-page hero height by 60px with balanced
+  vertical padding across desktop and stacked layouts.
+
+- Lightened secondary button outlines on light backgrounds with the shared
+  base border token, including Try Budibase in navigation and page heroes.
+  The subtle token was too faint on visual review.
+
+- Reduced shared section-heading sizes by 6px after reviewing the API landing
+  page: 42px desktop, 36px tablet, and 30px mobile. Hero and card sizes stay
+  at their established scale.
+
+- Approved the AI models landing-page design as a reusable template for APIs,
+  Data tables, Knowledge, Activity, Human approvals, and Permissions. Extracted
+  its composition into GridLandingPage while retaining AI-specific content
+  in the reference adapter. Other page migrations remain separate work.
+
+### 13 October 2026
+
+- Made the main navigation an exception to the demo-first action order:
+  Try Budibase precedes Book a demo; page sections retain Book a demo first.
+
+- Reduced the mobile hero scale by 4px after visual review, settling on a
+  shared fluid 52–60px range for the homepage and page/product heroes.
+
+- Increased mobile hero titles to a shared fluid 56–64px scale across the
+  homepage and product/page heroes. Removed the smaller mobile TitleBlock
+  calculation and aligned the homepage with the shared token.
+
+- Established Book a demo as the first button in paired calls to action.
+  Applied the order to the AI models hero and shared desktop navigation;
+  product heroes and mobile navigation already lead with the demo action.
+
+- Applied the shared 10px top-right corner cut to every styled Button variant,
+  with a traced diagonal outline for outlined actions. The AI models hero
+  follows the light navigation's action treatment: outlined Try Budibase and
+  forest-green Book a demo.
+
+- Replaced pricing plan color-block grids with distinct shared geometric
+  shapes designed for each plan: community foundation, enterprise framework,
+  and cloud current. Use 32px marks and the inverted celery-200/soft-dark palette.
+  Community uses one inset square, Enterprise uses three touching bars of
+  increasing height, and Cloud uses overlapping small and large circles.
+
+- Set the homepage Budibase 4.0 announcement artwork to three touching 24px
+  Automate, Interact, and Govern (circle) marks in one row, with orange-400,
+  cyan-400, and celery-200 backgrounds and matching 1300 foregrounds. The topographic texture was too
+  detailed for this small placement.
+  Wrap the announcement in a white-transparency-300 outline with the shared
+  10px top-right corner cut, 4px padding, and 12px right padding.
+
+- Emphasized the Resources dropdown footer with a celery-300 background and
+  the Marketplace geometric mark beside “Explore Marketplace.” Subsequently
+  restored the sand background and celery-1000 status symbol.
+
+- Matched desktop navigation dropdown containers to the buttons with a 10px
+  diagonal cut at the top-right corner. Applied the same cut to both actions
+  in the shared CTA section.
+
+- Set main navigation status symbols to `--bb-celery-1000` across desktop and
+  mobile menus.
+
+- Set shared geometric shape backgrounds to `--bb-background-dark-soft` and
+  foreground fills and outlines to `--bb-celery-200`.
+
+- Unified dropdown link status lights in brand bright green and extended the
+  stored geometric marks to dropdown column headings. Keep lights beside links
+  and shapes beside group labels, consistently across desktop and mobile.
+
+- Stored reusable geometric shapes in the project source, preserving earlier
+  group marks alongside current designs and geometric studies. Platform group
+  assignments select named shapes from this collection. Keep it as a source
+  asset collection rather than a public website gallery.
+
+- Refined the platform group marks: four diagonal arrow-like tiles for
+  Automate, opposing toggle shapes for Interact, and a simple circle for Govern.
+  Retained joined blocks for Connect and the soft-dark/bright-green palette.
+
+- Adopted four compact geometric marks for Connect, Automate, Interact, and
+  Govern, beside group labels in navigation and the homepage. Use a shared
+  two-color soft-dark-background/bright-green palette and combinations of squares, bars, and
+  circles, while retaining descriptive text labels and product-specific icons.
+
+- Deepened the decorative blocks, status markers, and asset icon backgrounds
+  across navigation, the homepage, and Marketplace by two palette steps for a
+  more restrained presentation. Retained readable status text on dark surfaces.
+
+- Made template preview phones optional: use a documented request form or
+  Teams agent conversation where relevant, and a centered desktop alone for
+  background workflows. Preserve a shared composition and interface type scale.
+
+- Reset template previews around a centered, bounded product composition and
+  a consistent interface type scale. Keep text readable rather than scaling
+  each element with the viewport. Show the phone alone when there is
+  insufficient width for both interfaces; retain the homepage demo treatment.
+
+- Saved the shared hero, regulated enterprises, and footer surface as
+  `--bb-background-dark-soft`:
+  celery 1500 mixed with 11% white in sRGB, approximately `#27391C`.
+- Restored celery as the active green family for brand surfaces and actions:
+  the shared bright-green token uses celery 300, and the homepage hero matches
+  the footer's celery 1500 with an 11% white overlay and celery 200/300/400
+  button states. Retained the Olive palette
+  for supporting use and future experiments.
+- Mapped the shared brand bright-green token to olive 300 (`#BBEE88`) for a
+  warmer, more muted accent across existing components.
+- Added Olive as a supporting 100–1600 color family between celery and
+  lime, with reduced saturation and olive 1100 anchored on `#3F5B1E`.
+  Named it for its hue, consistent with the existing palette families.
+
+### 12 October 2026
+
+- Refined template details into descriptive overviews rather than long builder
+  guides. Placed documented metadata beside the main description below the
+  full-width preview.
+- Reused the homepage Operations center request inbox and mobile Teams visual
+  for request-led template previews, with interchangeable template text.
+- Simplified the template dropdown: filled symbols, no shadow or explanatory
+  paragraph, and the label “Download and import locally.”
+
+- Replaced prompt-led process pages with Marketplace template details: a title,
+  Use this template dropdown, static illustrative agent preview, README, and
+  documented metadata. Retained individual `/process/[slug]/` URLs.
+- Removed system prompts and prompt-copy experiences from the template guides.
+  Credited the existing collection to Budibase and preserved useful setup docs.
+- Used the Purchase approvals visual language for reusable forest-green agent
+  previews, with per-template copy and only documented channel/asset branding.
+- Kept Cloud import and self-host download options unavailable until real
+  destinations are supplied; did not imply working imports or downloads.
 
 ### 9 October 2026
 

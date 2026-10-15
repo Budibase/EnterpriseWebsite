@@ -3,6 +3,7 @@ export interface TemplateAssetData {
   integrations: string[];
   aiModelRequired?: boolean;
   assetsUsed?: {
+    agents?: string[];
     apps?: string[];
     automations?: string[];
     functions?: string[];
@@ -47,7 +48,10 @@ export function getTemplateAssets(data: TemplateAssetData) {
   ];
   const separateSources = new Set([...knowledge, ...channels]);
   return {
-    agent: tags.includes("agents"),
+    agent:
+      declared?.agents !== undefined
+        ? declared.agents.length > 0
+        : tags.includes("agents"),
     app:
       declared?.apps !== undefined
         ? declared.apps.length > 0
@@ -66,6 +70,9 @@ export function getTemplateAssets(data: TemplateAssetData) {
     connections: integrations.filter((name) => !separateSources.has(name)),
     aiModelRequired:
       data.aiModelRequired ??
-      (tags.includes("agents") || Boolean(declared?.aiModel?.length)),
+      ((declared?.agents !== undefined
+        ? declared.agents.length > 0
+        : tags.includes("agents")) ||
+        Boolean(declared?.aiModel?.length)),
   };
 }

@@ -1,5 +1,6 @@
 ---
 import Icon from "@components/Icon.astro";
+import PlatformGroupMark from "@components/ui/PlatformGroupMark.astro";
 import Link from "@components/Link.astro";
 import TitleBlock from "@components/TitleBlock.astro";
 import FeatureBadge from "@components/FeatureBadge.astro";
@@ -13,7 +14,7 @@ const preferredLabel =
   currentPath === "/product/agents"
     ? "Agents"
     : currentPath === "/product/requests"
-      ? "Operations center"
+      ? "Human approvals"
       : undefined;
 const currentItem = items.find(
   (item) =>
@@ -44,6 +45,7 @@ const currentItem = items.find(
               aria-label={column.heading}
             >
               <h3 class="product-feature-nav__group-heading">
+                <PlatformGroupMark group={column.heading} />
                 {column.heading}
               </h3>
               <ul>
@@ -125,7 +127,7 @@ const currentItem = items.find(
 
   :global(.product-feature-nav__title) {
     margin: 0;
-    color: var(--bb-brand-forest-green);
+    color: var(--bb-olive);
     text-align: center;
   }
 
@@ -144,6 +146,9 @@ const currentItem = items.find(
   }
 
   .product-feature-nav__group-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin: 0 0 1rem;
     color: var(--text-secondary);
     font-size: 0.875rem;
@@ -179,8 +184,8 @@ const currentItem = items.find(
     justify-content: center;
     padding: 4px;
     border-radius: 0;
-    background: var(--bb-celery-200);
-    color: var(--bb-brand-forest-green);
+    background: var(--bb-lime);
+    color: var(--bb-olive);
   }
 
   .product-feature-nav__footer-links {
@@ -200,7 +205,7 @@ const currentItem = items.find(
   .product-feature-nav :global(.feature-badge) {
     min-height: 1.25rem;
     padding: 0.1875rem 0.4375rem;
-    color: var(--text-secondary);
+    color: var(--bb-gray-650);
     font-size: 0.6875rem;
     line-height: 1;
     flex-shrink: 0;

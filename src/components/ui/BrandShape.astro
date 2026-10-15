@@ -1,0 +1,71 @@
+---
+import {
+  brandShapes,
+  type BrandShapeId,
+  type ShapeLayer,
+} from "../../data/brandShapes";
+interface Props {
+  name: BrandShapeId;
+  size?: number;
+  inverted?: boolean;
+  decorative?: boolean;
+  label?: string;
+}
+const {
+  name,
+  size = 32,
+  inverted = false,
+  decorative = true,
+  label,
+} = Astro.props;
+const shape = brandShapes[name];
+const layers: readonly ShapeLayer[] = shape.layers;
+---
+
+<svg
+  class:list={["brand-shape", inverted && "brand-shape--inverted"]}
+  data-brand-shape={name}
+  viewBox="0 0 32 32"
+  width={size}
+  height={size}
+  aria-hidden={decorative ? "true" : undefined}
+  aria-label={decorative ? undefined : (label ?? shape.title)}
+  role={decorative ? undefined : "img"}
+  focusable="false"
+>
+  <path d="M0 0h32v32H0Z" class="shape-background"></path>
+  {
+    layers.map((layer) => (
+      <path
+        d={layer.d}
+        class:list={[
+          layer.tone === "background" ? "shape-background" : "shape-foreground",
+          layer.outline && "shape-outline",
+        ]}
+      />
+    ))
+  }
+</svg>
+<style>
+  .brand-shape {
+    --shape-background: var(--brand-shape-background, var(--bb-olive));
+    --shape-foreground: var(--brand-shape-foreground, var(--bb-lime));
+    display: block;
+    flex-shrink: 0;
+  }
+  .brand-shape--inverted {
+    --shape-background: var(--brand-shape-foreground, var(--bb-lime));
+    --shape-foreground: var(--brand-shape-background, var(--bb-olive));
+  }
+  .shape-background {
+    fill: var(--shape-background);
+  }
+  .shape-foreground {
+    fill: var(--shape-foreground);
+  }
+  .shape-outline {
+    fill: none;
+    stroke: var(--shape-foreground);
+    stroke-width: 2;
+  }
+</style>

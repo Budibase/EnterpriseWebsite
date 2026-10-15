@@ -1,0 +1,134 @@
+---
+import Icon from "@components/Icon.astro";
+interface Props {
+  variant: "views" | "environments";
+}
+const { variant } = Astro.props;
+---
+
+<div class:list={["data-visual", `data-visual--${variant}`]}>
+  <div class="data-visual__heading">
+    {variant === "views" ? "Secured view" : "Data environments"}
+  </div>
+  {
+    variant === "views" ? (
+      <>
+        <div class="data-visual__name">
+          <>
+            <Icon name="ShieldCheck" size="18" />
+            <strong>My requests</strong>
+          </>
+        </div>
+        <div class="data-visual__row">
+          <>
+            <span>Role</span>
+            <span>Power</span>
+          </>
+        </div>
+        <div class="data-visual__filter">
+          <>
+            <span>Requester</span>
+            <span>is</span>
+            <strong>Current user</strong>
+          </>
+        </div>
+        <div class="data-visual__row">
+          <>
+            <span>Rows</span>
+            <span>Requested by me</span>
+          </>
+        </div>
+      </>
+    ) : (
+      <>
+        <div class="data-visual__environment-tabs">
+          <>
+            <span class="is-active">Dev</span>
+            <span>Prod</span>
+          </>
+        </div>
+        <div class="data-visual__row">
+          <>
+            <span>Dev</span>
+            <span>Test records</span>
+          </>
+        </div>
+        <div class="data-visual__row">
+          <>
+            <span>Prod</span>
+            <span>Live records</span>
+          </>
+        </div>
+      </>
+    )
+  }
+</div>
+
+<style>
+  .data-visual {
+    width: 100%;
+    max-width: 32rem;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+    font-size: clamp(11px, 3.7cqw, 15px);
+    line-height: 1.4;
+  }
+  .data-visual__heading {
+    padding: 0.75em 1em;
+    background: var(--bb-background-sand);
+    border-bottom: 1px solid var(--bb-border-base);
+    font-weight: 500;
+  }
+  .data-visual__name {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.8em 1em;
+    color: var(--bb-olive);
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .data-visual strong {
+    font-weight: 500;
+  }
+  .data-visual__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75em;
+    padding: 0.75em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .data-visual__row:last-child {
+    border-bottom: 0;
+  }
+  .data-visual__filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.3em;
+    padding: 0.9em 1em;
+    background: var(--bb-lime-100);
+    border-bottom: 1px solid var(--bb-border-base);
+    color: var(--bb-olive);
+    font-size: 0.9em;
+  }
+  .data-visual__environment-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+    padding: 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .data-visual__environment-tabs span {
+    display: block;
+    padding: 0.4em;
+    border: 1px solid var(--bb-border-base);
+    text-align: center;
+  }
+  .data-visual__environment-tabs .is-active {
+    border-color: var(--bb-olive);
+    background: var(--bb-lime);
+    color: var(--bb-olive);
+  }
+</style>

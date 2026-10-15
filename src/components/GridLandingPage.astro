@@ -1,0 +1,589 @@
+---
+import type { ComponentProps } from "astro/types";
+import Button from "@components/Button.astro";
+import CardCluster from "@components/cards/CardCluster.astro";
+import CTA from "@components/CTA.astro";
+import EnterpriseLogoGrid from "@components/EnterpriseLogoGrid.astro";
+import Icon from "@components/Icon.astro";
+import Link from "@components/Link.astro";
+import ProductFeatureNav from "@components/ProductFeatureNav.astro";
+import SectionBlock from "@components/SectionBlock.astro";
+import TitleBlock from "@components/TitleBlock.astro";
+import type {
+  PlatformLandingContent,
+  ProductDetailMedia,
+} from "../data/landingPageTypes";
+
+interface Props {
+  slug: string;
+  content: PlatformLandingContent;
+  heroImage?: string;
+  heroAspectRatio?: string;
+  featureMedia?: readonly ProductDetailMedia[];
+  featureActions?: readonly (
+    { label: string; url: string; appearance?: "link" | "button" } | undefined
+  )[];
+  cards?: ComponentProps<typeof CardCluster>["cards"];
+  faqs?: readonly { question: string; answer: string }[];
+  faqTitle?: string;
+}
+const {
+  slug,
+  content,
+  heroImage,
+  heroAspectRatio = "2760 / 1710",
+  featureMedia = [],
+  featureActions = [],
+  cards = content.cardCluster.cards,
+  faqs = [],
+  faqTitle = "You have questions. We have answers.",
+} = Astro.props;
+const columns = content.cardCluster.columns ?? 3;
+---
+
+<div class="grid-landing-page">
+  <header class="grid-landing-hero page-section page-section--hero">
+    <div class="grid-landing-hero__content">
+      <TitleBlock
+        variant="hero"
+        title={content.hero.headline}
+        description={content.hero.subtitle}
+        containerClass="grid-landing-hero__copy"
+        titleClass="grid-landing-hero__title"
+        descriptionClass="grid-landing-hero__subtitle"
+      />
+      <div class="grid-landing-hero__actions">
+        <Button
+          label="Book a demo"
+          url="/contact/"
+          variant="cta"
+          size="large"
+        />
+        <Button
+          label="Try Budibase"
+          url="https://account.budibase.app/register"
+          variant="secondary"
+          size="large"
+        />
+      </div>
+    </div>
+    <div class="grid-landing-hero-media">
+      <div class="grid-landing-hero-blocks" aria-hidden="true">
+        {[0, 8, 16, 24].map((step) => <span style={`--step: ${step}%`} />)}
+      </div>
+      <div
+        class="grid-landing-hero-preview"
+        style={`aspect-ratio: ${heroAspectRatio}`}
+      >
+        <slot name="hero-media">
+          {
+            heroImage && (
+              <img
+                class="grid-landing-hero-image"
+                src={heroImage}
+                alt={content.hero.imageAlt}
+                fetchpriority="high"
+              />
+            )
+          }
+        </slot>
+      </div>
+    </div>
+  </header>
+  <div class="grid-landing-grid">
+    <section
+      class="grid-landing-customer-logos"
+      aria-label="Budibase customers"
+    >
+      <EnterpriseLogoGrid placement="outline-row" />
+    </section>
+    {
+      content.features.map((feature, index) => {
+        const media = featureMedia[index];
+        const Demo = media?.demo;
+        const action = featureActions[index];
+        const titleId = `${slug}-feature-${index}-title`;
+        return (
+          <section
+            class:list={[
+              "grid-landing-feature",
+              index % 2 === 1 && "grid-landing-feature--reversed",
+            ]}
+            aria-labelledby={titleId}
+          >
+            <div class="grid-landing-feature__copy">
+              <TitleBlock
+                variant="section"
+                title={feature.headline}
+                titleId={titleId}
+                description={feature.body}
+              />
+              {action?.appearance === "button" ? (
+                <Button
+                  label={action.label}
+                  url={action.url}
+                  variant="cta"
+                  size="medium"
+                  icon="ArrowRight"
+                  iconPosition="end"
+                />
+              ) : (
+                action && (
+                  <Link
+                    label={action.label}
+                    url={action.url}
+                    appearance="quiet"
+                    weight="medium"
+                  >
+                    <Icon name="ArrowRight" size="18" />
+                  </Link>
+                )
+              )}
+            </div>
+            <div class="grid-landing-feature__media">
+              <slot name={`feature-${index}`}>
+                {Demo ? (
+                  <Demo {...media.demoProps} />
+                ) : media?.video ? (
+                  <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    poster={media.image}
+                    aria-label={media.imageAlt ?? feature.headline}
+                  >
+                    <source
+                      src={media.video}
+                      type={media.videoType ?? "video/webm"}
+                    />
+                  </video>
+                ) : (
+                  media?.image && (
+                    <img
+                      src={media.image}
+                      alt={media.imageAlt ?? feature.headline}
+                      loading="lazy"
+                    />
+                  )
+                )}
+              </slot>
+            </div>
+          </section>
+        );
+      })
+    }
+    <section
+      class="grid-landing-uses"
+      aria-label={content.cardCluster.title}
+      style={`--grid-landing-columns: ${columns}`}
+    >
+      <SectionBlock
+        title={content.cardCluster.title}
+        description={content.cardCluster.description}
+        align="center"
+        maxWidth="3xl"
+        spacing="compact"
+        containerClass="grid-landing-uses__intro"
+        descriptionClass="grid-landing-uses__description"
+      />
+      <CardCluster
+        columns={columns}
+        cards={cards}
+        CardBackgroundColor="olive"
+        Variant="white"
+        responsiveLayout="stack"
+        imageAspectRatio="4/3"
+        imagePresentation="solid"
+        showArrowButton={cards.some((card) => card.link)}
+        class="grid-landing-uses__cards"
+      />
+    </section>
+    {
+      faqs.length > 0 && (
+        <section class="grid-landing-faq" aria-labelledby={`${slug}-faq-title`}>
+          <TitleBlock
+            variant="section"
+            title={faqTitle}
+            titleId={`${slug}-faq-title`}
+            containerClass="grid-landing-faq__heading"
+          />
+          <div class="grid-landing-faq__items">
+            {faqs.map((faq, index) => (
+              <details name={`${slug}-faq`} open={index === 0}>
+                <summary>
+                  <h3>{faq.question}</h3>
+                  <span class="grid-landing-faq__toggle" aria-hidden="true" />
+                </summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )
+    }
+    <CTA variant="grid" primaryLabel="Book a demo" insetActions />
+  </div>
+  <div class="page-section grid-landing-platform-nav">
+    <ProductFeatureNav />
+  </div>
+</div>
+<style>
+  .grid-landing-page {
+    color: var(--bb-olive);
+    background: var(--bb-background-base);
+  }
+
+  .grid-landing-hero {
+    --grid-landing-hero-extra-padding: 15px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: var(--site-container-max);
+    margin-inline: auto;
+    padding: 0;
+    border-block: 1px solid var(--bb-border-base);
+    border-inline: 1px solid var(--bb-border-base);
+    text-align: left;
+  }
+
+  .grid-landing-hero__content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    padding-block: calc(
+      clamp(2rem, 4vw, 3.5rem) + var(--grid-landing-hero-extra-padding)
+    );
+  }
+
+  :global(.grid-landing-hero__copy) {
+    width: 100%;
+    max-width: 48rem;
+  }
+
+  .grid-landing-hero :global(.grid-landing-hero__subtitle) {
+    max-width: 48rem;
+  }
+
+  .grid-landing-page :global(.grid-landing-hero__title) {
+    color: var(--bb-olive);
+    transform-origin: left center;
+  }
+
+  .grid-landing-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .grid-landing-grid {
+    max-width: var(--site-container-max);
+    margin-inline: auto;
+    border-inline: 1px solid var(--bb-border-base);
+  }
+
+  .grid-landing-hero-media {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    padding-block: calc(
+      clamp(1.5rem, 3vw, 2.5rem) + var(--grid-landing-hero-extra-padding)
+    );
+    border-top: 1px solid var(--bb-border-base);
+    background: var(--grid-landing-hero-background, var(--bb-olive));
+  }
+
+  .grid-landing-hero-blocks {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .grid-landing-hero-blocks span {
+    background: linear-gradient(
+      to bottom,
+      transparent 0 calc(4% + var(--step)),
+      var(--bb-lime) calc(4% + var(--step)) calc(16% + var(--step)),
+      transparent calc(16% + var(--step)) calc(54% + var(--step)),
+      var(--bb-lime) calc(54% + var(--step)) calc(66% + var(--step)),
+      transparent calc(66% + var(--step)) 100%
+    );
+  }
+
+  .grid-landing-hero-preview {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: min(100%, 56rem);
+    aspect-ratio: 2760 / 1710;
+    overflow: hidden;
+    background: var(--bb-gray-1000);
+  }
+
+  .grid-landing-customer-logos {
+    min-width: 0;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+
+  .grid-landing-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+
+  .grid-landing-feature__copy,
+  .grid-landing-feature__media {
+    min-width: 0;
+    padding: clamp(1.5rem, 3.5vw, 3rem);
+  }
+
+  .grid-landing-feature__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+
+  .grid-landing-feature__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bb-background-sand);
+    border-top: 1px solid var(--bb-border-base);
+  }
+
+  :global(.grid-landing-uses__intro) {
+    padding: clamp(2rem, 4vw, 3rem) var(--site-content-inset);
+  }
+
+  .grid-landing-uses :global(.grid-landing-uses__description) {
+    margin-top: 1.5rem;
+  }
+
+  .grid-landing-faq {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+
+  .grid-landing-faq :global(.grid-landing-faq__heading) {
+    align-self: center;
+    padding: clamp(1.5rem, 3.5vw, 3rem);
+  }
+
+  .grid-landing-faq__items {
+    min-width: 0;
+    color: var(--bb-text-base);
+  }
+
+  .grid-landing-faq details {
+    padding-inline: clamp(1rem, 2vw, 1.5rem);
+    border: 1px solid var(--bb-border-base);
+    border-right: 0;
+    border-radius: 0;
+    scroll-margin-top: 6rem;
+  }
+
+  .grid-landing-faq details + details {
+    border-top: 0;
+  }
+
+  .grid-landing-faq details:last-child {
+    border-bottom: 0;
+  }
+
+  .grid-landing-faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4rem;
+    padding-block: 1.25rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .grid-landing-faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .grid-landing-faq summary:hover {
+    color: var(--bb-olive-1000);
+  }
+
+  .grid-landing-faq summary:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .grid-landing-faq h3 {
+    margin: 0;
+    color: inherit;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .grid-landing-faq__toggle {
+    position: relative;
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    transition: transform 200ms ease-out;
+  }
+
+  .grid-landing-faq__toggle::before,
+  .grid-landing-faq__toggle::after {
+    position: absolute;
+    top: calc(50% - 1px);
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    content: "";
+  }
+
+  .grid-landing-faq__toggle::after {
+    transform: rotate(90deg);
+  }
+
+  .grid-landing-faq details[open] .grid-landing-faq__toggle {
+    transform: rotate(45deg);
+  }
+
+  .grid-landing-faq details p {
+    margin: 0;
+    padding: 0 2rem 1.5rem 0;
+    color: var(--bb-text-body);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .grid-landing-faq h3 {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .grid-landing-faq__toggle {
+      transition: none;
+    }
+  }
+
+  .grid-landing-uses :global(.grid-landing-uses__cards) {
+    --card-cluster-image-background: var(--bb-background-dark-soft);
+    --card-cluster-media-badge-background: var(--bb-background-base);
+    --card-cluster-automation-node-background: var(--bb-background-base);
+  }
+
+  .grid-landing-uses :global(.card-cluster__container) {
+    padding-inline: 0;
+  }
+
+  .grid-landing-uses :global(.card-cluster__grid) {
+    gap: 1px;
+    border-block: 1px solid var(--bb-border-base);
+    background: var(--bb-border-base);
+  }
+
+  .grid-landing-uses :global(.card-cluster__card) {
+    padding: 1.5rem;
+    background: var(--bb-background-base);
+  }
+
+  .grid-landing-uses :global(.card-cluster__image-wrap) {
+    border-radius: 0;
+  }
+
+  .grid-landing-uses :global(.card-cluster__content) {
+    padding-bottom: 0;
+  }
+
+  .grid-landing-uses :global(.card-cluster__card-title) {
+    color: var(--bb-olive);
+    font-weight: 500;
+  }
+
+  .grid-landing-uses :global(.card-cluster__card:focus-within) {
+    outline-offset: -3px;
+  }
+
+  .grid-landing-platform-nav {
+    padding-block: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .grid-landing-uses :global(.card-cluster__grid) {
+      grid-template-columns: repeat(
+        var(--grid-landing-columns, 3),
+        minmax(0, 1fr)
+      );
+    }
+  }
+
+  @media (min-width: 960px) {
+    .grid-landing-hero {
+      --grid-landing-hero-extra-padding: 30px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-landing-hero-media {
+      border-top: 0;
+      border-left: 1px solid var(--bb-border-base);
+    }
+
+    .grid-landing-faq {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    }
+
+    .grid-landing-faq details:first-child {
+      border-top: 0;
+    }
+    .grid-landing-feature {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-landing-feature__media {
+      border-top: 0;
+      border-left: 1px solid var(--bb-border-base);
+    }
+
+    .grid-landing-feature--reversed .grid-landing-feature__media {
+      order: -1;
+      border-left: 0;
+      border-right: 1px solid var(--bb-border-base);
+    }
+  }
+
+  @media (max-width: 959px) {
+    .grid-landing-faq details {
+      border-left: 0;
+    }
+  }
+
+  .grid-landing-hero-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .grid-landing-feature__media img,
+  .grid-landing-feature__media video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

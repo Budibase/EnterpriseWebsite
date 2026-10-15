@@ -1,75 +1,14 @@
 ---
 import Layout from "../layouts/MainLayout.astro";
-import Hero from "./_components/landing-page/HomepageHero.astro";
-import HomepageCustomerLogoRow from "./_components/landing-page/HomepageCustomerLogoRow.astro";
-import HomepageProducts from "./_components/landing-page/HomepageProducts.astro";
-import HomepageSecuritySection from "./_components/landing-page/HomepageSecuritySection.astro";
-import HomepageUseCases from "./_components/landing-page/HomepageUseCases.astro";
-import CustomerStoriesFeature from "./_components/landing-page/CustomerStoriesFeature.astro";
-import CTA from "@components/CTA.astro";
-import Divider from "@components/ui/Divider.astro";
+import HomepageContent from "./_components/landing-page/HomepageContent.astro";
+import { budibaseLimeLogoUrl } from "../data/brandAssets";
 ---
 
 <Layout
   rawTitle="Budibase | Agents, Workflows & Internal Tools Made Easy"
   navTheme="immersive-overlay"
+  navDemoVariant="lime"
+  navLogoSrc={budibaseLimeLogoUrl}
 >
-  <div class="homepage-layout">
-    <div class="page-section page-section--hero">
-      <Hero />
-    </div>
-    <div
-      class="page-section page-section--logos homepage-customer-logo-card-section"
-    >
-      <HomepageCustomerLogoRow variant="cards" />
-    </div>
-    <div class="page-section homepage-use-cases-section">
-      <HomepageUseCases />
-    </div>
-    <Divider />
-    <div class="page-section homepage-products-section">
-      <HomepageProducts />
-    </div>
-    <HomepageSecuritySection />
-    <div class="page-section">
-      <CustomerStoriesFeature />
-    </div>
-    <div class="page-section page-section--no-top homepage-cta-section">
-      <Divider />
-      <CTA />
-    </div>
-  </div>
+  <HomepageContent />
 </Layout>
-
-<style>
-  :global(html) {
-    overflow-x: clip;
-  }
-
-  :global(body .nav-shell.nav-shell--immersive-overlay .nav-shell__inner) {
-    max-width: var(--site-container-max) !important;
-  }
-
-  .homepage-layout {
-    overflow-x: clip;
-  }
-
-  .homepage-layout > .page-section--hero {
-    padding-bottom: 0;
-  }
-
-  .homepage-customer-logo-card-section {
-    background: var(--bb-background-base);
-    padding-top: clamp(0.5rem, 1.25vw, 1rem);
-  }
-
-  .homepage-products-section,
-  .homepage-use-cases-section {
-    background: var(--bb-background-base);
-  }
-
-  .homepage-use-cases-section :global(.multi-feature-section) {
-    --multi-feature-background: transparent;
-    background: transparent;
-  }
-</style>

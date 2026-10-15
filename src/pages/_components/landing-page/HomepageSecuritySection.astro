@@ -91,7 +91,7 @@ const switcherFeatures = securityFeatures.map((feature) => ({
 <style>
   .homepage-security {
     overflow: hidden;
-    background: var(--bb-celery-1500);
+    background: var(--bb-background-dark-soft);
     color: var(--bb-text-on-base);
   }
 
@@ -109,8 +109,8 @@ const switcherFeatures = securityFeatures.map((feature) => ({
     --multi-feature-text: var(--bb-text-on-base);
     --multi-feature-text-subtle: var(--bb-text-on-base-subtle);
     --multi-feature-hover: var(--bb-white);
-    --multi-feature-active: var(--bb-celery-200) !important;
-    --multi-feature-focus: var(--bb-celery-200);
+    --multi-feature-active: var(--bb-lime) !important;
+    --multi-feature-focus: var(--bb-lime);
     --multi-feature-indicator-background: var(--bb-white);
     margin-top: clamp(2rem, 4vw, 3.5rem);
     background: transparent;
@@ -147,7 +147,7 @@ const switcherFeatures = securityFeatures.map((feature) => ({
       .multi-feature-section__item.is-active
       .multi-feature-section__trigger
   ) {
-    color: var(--bb-celery-200) !important;
+    color: var(--bb-lime) !important;
     font-weight: 500;
   }
 
@@ -162,7 +162,7 @@ const switcherFeatures = securityFeatures.map((feature) => ({
       .multi-feature-section__item.is-active
       .multi-feature-section__indicator
   ) {
-    background: var(--bb-celery-200) !important;
+    background: var(--bb-lime) !important;
   }
 
   :global(
@@ -173,7 +173,7 @@ const switcherFeatures = securityFeatures.map((feature) => ({
     .homepage-security__feature-switcher
       .multi-feature-section__indicator::after
   ) {
-    background: var(--bb-celery-1500);
+    background: var(--bb-background-dark-soft);
   }
 
   :global(

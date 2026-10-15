@@ -37,26 +37,18 @@ type CardBackgroundColor =
   | "white"
   | "surface"
   | "raised"
-  | "celery-200"
-  | "celery-900"
-  | "celery-1200"
-  | "celery-1300"
-  | "purple-200"
-  | "purple-900"
-  | "purple-1200"
-  | "fuchsia-1200"
-  | "cinnamon-1200"
-  | "cinnamon-1300"
-  | "cyan-200"
-  | "cyan-900"
-  | "cyan-1200"
-  | "cyan-1300"
-  | "yellow-200"
-  | "yellow-900"
-  | "yellow-1200"
-  | "yellow-1300"
-  | "bright-green"
-  | "forest-green";
+  | "lime"
+  | "olive-900"
+  | "olive-1200"
+  | "olive"
+  | "orchid-soft"
+  | "plum"
+  | "azalea"
+  | "rust"
+  | "zen-soft"
+  | "ocean"
+  | "vivid-vargas-soft"
+  | "gold";
 
 interface Card {
   title: string;
@@ -130,7 +122,7 @@ const defaultCards: readonly Card[] = [
 const {
   columns = 3,
   Variant = "white",
-  CardBackgroundColor = "forest-green",
+  CardBackgroundColor = "olive",
   CardTitleTag: cardTitleTag = "h3",
   SectionTitle,
   SectionDescription,
@@ -388,13 +380,13 @@ const tokenizeFunctionCodeLine = (line: string) =>
   .card-cluster {
     --card-cluster-section-background: transparent;
     --card-cluster-card-background: var(--bb-background-base);
-    --card-cluster-image-background: var(--bb-brand-forest-green);
+    --card-cluster-image-background: var(--bb-olive);
     --card-cluster-card-border: var(--bb-border-subtle);
     --card-cluster-card-text: var(--bb-text-base);
     --card-cluster-card-description: var(--bb-text-body);
-    --card-cluster-scene-accent-subtle: var(--bb-cinnamon-200);
-    --card-cluster-scene-accent-strong: var(--bb-cinnamon-1200);
-    --card-cluster-scene-accent-code: var(--bb-cinnamon-400);
+    --card-cluster-scene-accent-subtle: var(--bb-tangerine-soft);
+    --card-cluster-scene-accent-strong: var(--bb-rust);
+    --card-cluster-scene-accent-code: var(--bb-tangerine);
     width: 100%;
     background: var(--card-cluster-section-background);
   }
@@ -424,87 +416,55 @@ const tokenizeFunctionCodeLine = (line: string) =>
     --card-cluster-image-background: var(--bb-background-raised);
   }
 
-  .card-cluster--cards-celery-200 {
-    --card-cluster-image-background: var(--bb-celery-200);
+  .card-cluster--cards-lime {
+    --card-cluster-image-background: var(--bb-lime);
   }
 
-  .card-cluster--cards-celery-900 {
-    --card-cluster-image-background: var(--bb-celery-900);
+  .card-cluster--cards-olive-900 {
+    --card-cluster-image-background: var(--bb-olive-900);
   }
 
-  .card-cluster--cards-celery-1200 {
-    --card-cluster-image-background: var(--bb-celery-1200);
+  .card-cluster--cards-olive-1200 {
+    --card-cluster-image-background: var(--bb-olive-1200);
   }
 
-  .card-cluster--cards-celery-1300 {
-    --card-cluster-image-background: var(--bb-celery-1300);
-    --card-cluster-scene-accent-subtle: var(--bb-celery-200);
-    --card-cluster-scene-accent-strong: var(--bb-celery-1200);
-    --card-cluster-scene-accent-code: var(--bb-celery-200);
+  .card-cluster--cards-olive {
+    --card-cluster-image-background: var(--bb-olive);
+    --card-cluster-scene-accent-subtle: var(--bb-lime);
+    --card-cluster-scene-accent-strong: var(--bb-olive-1200);
+    --card-cluster-scene-accent-code: var(--bb-lime);
   }
 
-  .card-cluster--cards-purple-200 {
-    --card-cluster-image-background: var(--bb-purple-200);
+  .card-cluster--cards-orchid-soft {
+    --card-cluster-image-background: var(--bb-orchid-soft);
   }
 
-  .card-cluster--cards-purple-900 {
-    --card-cluster-image-background: var(--bb-purple-900);
+  .card-cluster--cards-plum {
+    --card-cluster-image-background: var(--bb-plum);
   }
 
-  .card-cluster--cards-purple-1200 {
-    --card-cluster-image-background: var(--bb-purple-1200);
+  .card-cluster--cards-azalea {
+    --card-cluster-image-background: var(--bb-azalea);
   }
 
-  .card-cluster--cards-fuchsia-1200 {
-    --card-cluster-image-background: var(--bb-fuchsia-1200);
+  .card-cluster--cards-rust {
+    --card-cluster-image-background: var(--bb-rust);
   }
 
-  .card-cluster--cards-cinnamon-1200 {
-    --card-cluster-image-background: var(--bb-cinnamon-1200);
+  .card-cluster--cards-zen-soft {
+    --card-cluster-image-background: var(--bb-zen-soft);
   }
 
-  .card-cluster--cards-cinnamon-1300 {
-    --card-cluster-image-background: var(--bb-cinnamon-1300);
+  .card-cluster--cards-ocean {
+    --card-cluster-image-background: var(--bb-ocean);
   }
 
-  .card-cluster--cards-cyan-200 {
-    --card-cluster-image-background: var(--bb-cyan-200);
+  .card-cluster--cards-vivid-vargas-soft {
+    --card-cluster-image-background: var(--bb-vivid-vargas-soft);
   }
 
-  .card-cluster--cards-cyan-900 {
-    --card-cluster-image-background: var(--bb-cyan-900);
-  }
-
-  .card-cluster--cards-cyan-1200 {
-    --card-cluster-image-background: var(--bb-cyan-1200);
-  }
-
-  .card-cluster--cards-cyan-1300 {
-    --card-cluster-image-background: var(--bb-cyan-1300);
-  }
-
-  .card-cluster--cards-yellow-200 {
-    --card-cluster-image-background: var(--bb-yellow-200);
-  }
-
-  .card-cluster--cards-yellow-900 {
-    --card-cluster-image-background: var(--bb-yellow-900);
-  }
-
-  .card-cluster--cards-yellow-1200 {
-    --card-cluster-image-background: var(--bb-yellow-1200);
-  }
-
-  .card-cluster--cards-yellow-1300 {
-    --card-cluster-image-background: var(--bb-yellow-1300);
-  }
-
-  .card-cluster--cards-bright-green {
-    --card-cluster-image-background: var(--bb-brand-bright-green);
-  }
-
-  .card-cluster--cards-forest-green {
-    --card-cluster-image-background: var(--bb-brand-forest-green);
+  .card-cluster--cards-gold {
+    --card-cluster-image-background: var(--bb-gold);
   }
 
   .card-cluster__container {
@@ -566,7 +526,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
   }
 
   .card-cluster__card:focus-within {
-    outline: 2px solid var(--bb-brand-bright-green);
+    outline: 2px solid var(--bb-lime);
     outline-offset: 3px;
   }
 
@@ -775,7 +735,11 @@ const tokenizeFunctionCodeLine = (line: string) =>
   }
 
   .card-cluster__agent-instructions li.card-cluster__agent-section {
-    color: var(--bb-orange-900) !important;
+    color: color-mix(
+      in srgb,
+      var(--bb-rust) 80%,
+      var(--bb-graphite)
+    ) !important;
     font-weight: 600;
   }
 
@@ -785,7 +749,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
   }
 
   .card-cluster__tool-binding {
-    color: var(--bb-orange-1000);
+    color: color-mix(in srgb, var(--bb-rust) 80%, var(--bb-graphite));
   }
 
   .card-cluster__tool-binding--badged {
@@ -794,12 +758,15 @@ const tokenizeFunctionCodeLine = (line: string) =>
     gap: 3px;
     border: 1px solid var(--bb-border-base);
     background-color: transparent;
-    background-image: linear-gradient(var(--bb-cyan-100), var(--bb-cyan-100));
+    background-image: linear-gradient(
+      var(--bb-zen-subtle),
+      var(--bb-zen-subtle)
+    );
     background-position: left center;
     background-repeat: no-repeat;
     background-size: 0% 100%;
     padding: 1px 3px;
-    color: var(--bb-cyan-1000);
+    color: color-mix(in srgb, var(--bb-ocean) 80%, var(--bb-graphite));
     line-height: 1;
     vertical-align: baseline;
   }
@@ -818,7 +785,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
 
   .card-cluster__approval-marker {
     margin-left: 0.125rem;
-    color: var(--bb-orange-1000);
+    color: color-mix(in srgb, var(--bb-rust) 80%, var(--bb-graphite));
   }
 
   @keyframes card-cluster-binding-fill {
@@ -914,8 +881,8 @@ const tokenizeFunctionCodeLine = (line: string) =>
   }
 
   .card-cluster__function-code {
-    border-color: var(--bb-celery-1600);
-    background: var(--bb-celery-1600);
+    border-color: var(--bb-olive-1600);
+    background: var(--bb-olive-1600);
     color: var(--bb-text-on-base-subtle);
   }
 
@@ -941,7 +908,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
   }
 
   .card-cluster__function-token--keyword {
-    color: var(--bb-orange-300);
+    color: var(--card-cluster-scene-accent-code);
   }
 
   .card-cluster__function-token--function {
@@ -949,7 +916,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
   }
 
   .card-cluster__function-token--api {
-    color: var(--bb-celery-200);
+    color: var(--bb-lime);
   }
 
   .card-cluster__card-number {
@@ -998,7 +965,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
     justify-content: center;
     border: 1px solid var(--bb-border-base);
     background: var(--bb-background-base);
-    color: var(--bb-brand-forest-green);
+    color: var(--bb-olive);
     transition:
       background-color 180ms ease,
       color 180ms ease,
@@ -1007,8 +974,8 @@ const tokenizeFunctionCodeLine = (line: string) =>
 
   .card-cluster__card:hover .card-cluster__arrow,
   .card-cluster__card:focus-within .card-cluster__arrow {
-    border-color: var(--bb-brand-forest-green);
-    background: var(--bb-brand-forest-green);
+    border-color: var(--bb-olive);
+    background: var(--bb-olive);
     color: var(--bb-text-on-base);
   }
 

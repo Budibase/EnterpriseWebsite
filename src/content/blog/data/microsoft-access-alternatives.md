@@ -23,14 +23,13 @@ But, today we’re exploring some more modern alternatives. Specifically, we’l
 - [Why would you want a Microsoft Access Alternative?](#why-would-you-want-a-microsoft-access-alternative)
 - [11 Microsoft Access alternatives for 2026](#11-microsoft-access-alternatives)
 
-
 Let’s kick off with a little bit of background.
 
 ## **What is Microsoft Access?**
 
 Launched way, way back in 1992, Access is basically a database management system, with its own graphical user interface and built-in functionality for developing front-ends, such as tables, forms, and reports with your data.
 
-More specifically, Access is an RDBMS that stores data in its own proprietary file format based on the *Access Database Engine*. Like the rest of Microsoft Office, objects stored in Access are supported by the *Visual Basic Application Language (VBA)*.
+More specifically, Access is an RDBMS that stores data in its own proprietary file format based on the _Access Database Engine_. Like the rest of Microsoft Office, objects stored in Access are supported by the _Visual Basic Application Language (VBA)_.
 
 This can be used to call built-in operations from the Windows operating system.
 
@@ -44,9 +43,9 @@ But, Access also provides basic functionality for building UIs - especially thin
 
 Access can also be used as a multi-user database, although we can’t achieve as sleek an experience as with some newer alternatives - or tools that support MySQL, Postgresql, or other SQL databases.
 
-Historically, a big selling point for Access was the relative ease of automating data operations using *macros* - using either VBA or point-and-click actions.
+Historically, a big selling point for Access was the relative ease of automating data operations using _macros_ - using either VBA or point-and-click actions.
 
-Access also gained popularity for enabling users to leverage *database templates*, helping them get up and running for specific use cases quickly. It’s also well regarded in terms of scalability - both for end users and datasets.
+Access also gained popularity for enabling users to leverage _database templates_, helping them get up and running for specific use cases quickly. It’s also well regarded in terms of scalability - both for end users and datasets.
 
 ### **Who uses Access?**
 
@@ -58,7 +57,7 @@ One reason is simply Access’s ubiquity. In large organizations, getting new to
 
 In other cases, Access is popular among organizations that are already heavily embedded in the Microsoft ecosystem - especially Sharepoint, Dynamics, or other related tools.
 
-However, this isn’t the whole picture. 
+However, this isn’t the whole picture.
 
 Another key use case is scenarios where we might ordinarily use Excel, but we need more advanced functionality.
 
@@ -93,7 +92,7 @@ Now, we already know that different companies can use Microsoft Access in slight
 
 Therefore, we can reasonably conclude that the best replacement for Access will vary from one company to the next.
 
-Therefore, there are actually a couple of different approaches we could take to picking an alternative. On the one hand, we could aim for a straight, like-for-like swap - by choosing a tool from another vendor that *basically* does the same thing as Access.
+Therefore, there are actually a couple of different approaches we could take to picking an alternative. On the one hand, we could aim for a straight, like-for-like swap - by choosing a tool from another vendor that _basically_ does the same thing as Access.
 
 Or, we might opt for a solution that addresses the same underlying pain points, but differs in terms of the approach to solving these problems - and therefore the specific functionality on offer.
 
@@ -190,12 +189,12 @@ Here's a summary of what each one offers.
   }
 
   .comparison-table .yes {
-    background: var(--bb-green-100);
-    color: var(--bb-green-900);
+    background: var(--bb-lime-100);
+    color: var(--bb-olive);
   }
 
   .comparison-table .no {
-    background: var(--bb-gray-75);
+    background: var(--bb-background-surface-subtle);
     color: var(--bb-gray-700);
   }
 </style>
@@ -365,8 +364,6 @@ Here's a summary of what each one offers.
   </table>
 </div>
 
-
-
 Let's check them out in more detail.
 
 ### Budibase
@@ -398,9 +395,9 @@ Apache’s OpenOffice Base is an open-source, free Microsoft Access alternative.
 
 It’s built around the HSQL database engine - but also offers native support for flat files, as well as major DBMSs like Postgres and MySQL.
 
-Obviously, Base is *explicitly* aimed at being an Access alternative, but we can’t reasonably expect the same levels of integration with other Microsoft tools - including support for native OS functions.
+Obviously, Base is _explicitly_ aimed at being an Access alternative, but we can’t reasonably expect the same levels of integration with other Microsoft tools - including support for native OS functions.
 
-However, the biggest downside to Apache’s offering is probably its UI. It’s perfectly functional, but it won’t win any design prizes. In fact, these days, it looks pretty dated. 
+However, the biggest downside to Apache’s offering is probably its UI. It’s perfectly functional, but it won’t win any design prizes. In fact, these days, it looks pretty dated.
 
 ### LibreOffice Base
 
@@ -434,7 +431,7 @@ NeonDB is a slightly different prospect again. It’s an open-source, scalable, 
 
 (NeonDB)
 
-However, one thing sets NeonDB apart from other database tools - *branching*. Neon branches are writable, enabling us to experiment without impacting the main branch, create instant backups, manage integrations, and much, much more.
+However, one thing sets NeonDB apart from other database tools - _branching_. Neon branches are writable, enabling us to experiment without impacting the main branch, create instant backups, manage integrations, and much, much more.
 
 NeonDB also offers huge integrability via its API, enabling us to connect to all sorts of external tools for retrieving data, managing business processes, and building front-end interfaces.
 
