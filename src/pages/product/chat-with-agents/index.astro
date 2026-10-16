@@ -1,0 +1,32 @@
+---
+export const prerender = false;
+import Layout from "../../../layouts/MainLayout.astro";
+import ChatWithAgentsLandingPage from "../_components/ChatWithAgentsLandingPage.astro";
+import {
+  chatWithAgentsLandingPage,
+  chatWithAgentsFaqs,
+} from "../../../data/chatWithAgentsLandingPage";
+import { productLandingMarkdown } from "../../../data/productLandingMarkdown";
+
+const accept = Astro.request.headers.get("accept") ?? "";
+Astro.response.headers.set("Vary", "Accept");
+if (accept.includes("text/markdown")) {
+  return new Response(
+    await productLandingMarkdown(chatWithAgentsLandingPage, chatWithAgentsFaqs),
+    {
+      headers: {
+        "Content-Type": "text/markdown; charset=utf-8",
+        Vary: "Accept",
+      },
+    },
+  );
+}
+---
+
+<Layout
+  title={chatWithAgentsLandingPage.title}
+  description={chatWithAgentsLandingPage.metaDescription}
+  navTheme="default"
+>
+  <ChatWithAgentsLandingPage />
+</Layout>

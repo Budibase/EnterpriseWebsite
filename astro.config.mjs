@@ -109,5 +109,13 @@ export default defineConfig({
     configPath: "./wrangler.jsonc",
     imageService: "passthrough",
   }),
-  integrations: [sitemap(), mdx()],
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !["/homepage-nav", "/pricing-nav"].includes(
+          new URL(page).pathname.replace(/\/$/, ""),
+        ),
+    }),
+    mdx(),
+  ],
 });

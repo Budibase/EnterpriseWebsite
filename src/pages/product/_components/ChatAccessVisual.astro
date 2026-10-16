@@ -1,0 +1,79 @@
+---
+import Icon from "@components/Icon.astro";
+import SlackLogo from "@assets/logos/Slack.svg?url";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+---
+
+<div
+  class="chat-access"
+  role="img"
+  aria-label="Slack and Teams members linked to Budibase users with role requirements for agent tools"
+>
+  <div aria-hidden="true">
+    <div class="chat-access__header">Linked Budibase users</div>
+    {
+      [
+        { name: "Slack member", logo: SlackLogo },
+        { name: "Teams member", logo: TeamsLogo },
+      ].map((member) => (
+        <div class="chat-access__member">
+          <>
+            <img src={member.logo} width="18" height="18" alt="" />
+            <span>{member.name}</span>
+            <Icon name="ArrowRight" size="14" />
+            <span>Budibase user</span>
+          </>
+        </div>
+      ))
+    }
+    <div class="chat-access__policy">
+      <span>Agent tool</span><strong>Create purchase order</strong><span
+        >Required role</span
+      ><strong>Approver <Icon name="CaretDown" size="13" /></strong>
+    </div>
+  </div>
+</div>
+<style>
+  .chat-access {
+    width: 100%;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+    color: var(--bb-text-base);
+    font-size: clamp(10px, 3.5cqw, 13px);
+  }
+  .chat-access__header {
+    padding: 0.875em 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+    background: var(--bb-coconut);
+    font-weight: 400;
+  }
+  .chat-access__member {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+    padding: 1em;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .chat-access__member img {
+    flex: none;
+    object-fit: contain;
+  }
+  .chat-access__policy {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75em;
+    align-items: center;
+    padding: 1em;
+  }
+  .chat-access__policy > span {
+    color: var(--bb-text-subtle);
+  }
+  .chat-access__policy strong {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: inherit;
+    font-weight: 400;
+  }
+</style>

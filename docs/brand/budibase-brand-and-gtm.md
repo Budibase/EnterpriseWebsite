@@ -599,8 +599,10 @@ capabilities. Conservative styling alone is not evidence of maturity.
   10% or 20% with Coconut. Choose readable foregrounds rather than assuming every
   accent supports the same text color.
 - Shared shapes pair Olive backgrounds with Lime foregrounds and reverse this
-  for inverted marks. The homepage announcement retains three distinct pairs:
-  Tangerine/Rust, Cloud/Navy, and Lime/Olive. Navigation status lights use olive 1000. Asset symbols use Agent/Zen, App/Tangerine, Automation/Orchid, Operations
+  for inverted marks. The homepage announcement is trialling bright backgrounds with dark shapes:
+  Orange (`#FF5E00`)/Umber (`#38271C`), Cyan (`#20DFF0`)/Petrol (`#233438`), and
+  Violet (`#B89AFF`)/muted Plum (`#2E2B35`). These are page-scoped trial values; the existing
+  global accent anchors remain unchanged. Navigation status lights use olive 1000. Asset symbols use Agent/Zen, App/Tangerine, Automation/Orchid, Operations
   center/Olive, Table/Vivid Vargas, and Function/Lime, with Graphite foregrounds
   on light fills and Coconut on Olive.
 - The global footer uses Olive with Lime headings and Coconut links.
@@ -643,15 +645,24 @@ capabilities. Conservative styling alone is not evidence of maturity.
 - Highlight the homepage's “MOVE FASTER.” line with a tight Lime background,
   Olive text, and the same 10px top-right corner cut as the buttons.
 - Style action-button labels in uppercase Text at weight `500`, with bold
-  arrows. Desktop navigation buttons are 38px tall with 16px arrows; retain
+  arrows. Desktop navigation buttons are 32px tall with 14px labels and 16px arrows; retain
   at least 44px touch targets in mobile navigation.
 - Retain monospace for code. Technical identifiers may use tabular numerals
   and a slashed zero; do not request stylistic sets from a previous typeface.
 - Reserve the strongest uppercase treatment for hero statements and actions.
   Keep supporting copy readable and layouts focused on operational meaning.
+- Set navigation dropdown group headers in uppercase on desktop and mobile.
 
 ### Layout
 
+- Use the full-width grid navigation across the website: 56px tall on
+  tablet/desktop and 48px below 768px, with separate link/action cells, 14px
+  top-level labels, no dropdown carets, and no GitHub counter. Below 1200px,
+  use the mobile accordion menu. Keep the same geometry across color themes:
+  white with Olive controls on light pages, transparent with white links and
+  Lime logo/demo action over the homepage hero. Compact nav arrow tiles are
+  20px with 6px vertical and 8px right insets. Preserve the previous header in
+  NavLegacy for comparison or rollback.
 - Place **Book a demo** first whenever it appears alongside other action
   buttons in page sections. Trial and signup actions follow. In the main
   navigation, place **Try Budibase** before **Book a demo**.
@@ -909,6 +920,29 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 ## Decision log
 
 ### 16 October 2026
+
+- Adopted the compact full-width grid navigation site-wide after the homepage
+  and pricing trials. Kept the homepage's transparent/Lime treatment and white
+  light-page navigation with Olive controls. Standardized the bar at 56px
+  desktop/48px mobile, 14px labels, 32px desktop buttons and 20px arrow tiles
+  offset 2px left. Removed the GitHub counter and top-level carets. Preserved
+  the original header as NavLegacy and redirected the preview URLs to the
+  homepage and pricing.
+
+- Extended the Apps/Agents vertical landing-page layout to Automations, Chat
+  with agents, and Operations center. Chat and Operations center have dedicated
+  routes; Human approvals retains `/product/requests/`. Use governed workflow
+  orchestration, controlled channel access, and a central user workspace as
+  their distinct benefit stories.
+
+- Began a homepage announcement-shape trial of bright Orange/Umber,
+  Cyan/Petrol and Violet/muted Plum, matching the reviewed palette preview.
+  Kept bright backgrounds with dark shapes, the three existing designs, and
+  the hero’s Lime/Olive treatment;
+  the trial does not replace the global accent suite.
+
+- Capitalized navigation dropdown group headers on desktop and mobile while
+  keeping individual navigation links in their existing case.
 
 - Reserved the website Button component for marketing CTAs. Product demos
   use native, pill-shaped controls with sentence-case labels; removed the

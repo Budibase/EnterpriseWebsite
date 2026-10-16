@@ -1,0 +1,333 @@
+---
+import Icon from "@components/Icon.astro";
+import OperationsCenterDemo from "@components/demos/OperationsCenterDemo.astro";
+interface Props {
+  variant: "overview" | "apps" | "branding" | "devices";
+}
+const { variant } = Astro.props;
+const apps = [
+  {
+    name: "IT support",
+    detail: "Get help from your IT team",
+    icon: "Headset",
+    tone: "zen",
+  },
+  {
+    name: "Equipment requests",
+    detail: "Request the tools you need",
+    icon: "Monitor",
+    tone: "tangerine",
+  },
+  {
+    name: "Purchase requests",
+    detail: "Start a purchase request",
+    icon: "Cube",
+    tone: "orchid",
+  },
+];
+---
+
+<div
+  class:list={["operations-visual", `operations-visual--${variant}`]}
+  role="img"
+  aria-label={{
+    overview: "Operations center with apps, services, and personal requests",
+    apps: "Central app and service directory",
+    branding: "Operations center branding settings for an organization",
+    devices: "Mobile operations center showing request progress",
+  }[variant]}
+>
+  <div class="operations-visual__content" aria-hidden="true">
+    {
+      variant === "devices" ? (
+        <div class="operations-visual__phone">
+          <>
+            <div class="operations-visual__speaker" />
+            <OperationsCenterDemo compact />
+          </>
+        </div>
+      ) : variant === "branding" ? (
+        <div class="operations-visual__branding">
+          <strong>Your organization. Your workspace.</strong>
+          <div>
+            <>
+              <span>Workspace logo</span>
+              <img
+                src="/brand/budibase-symbol-forest.svg"
+                alt=""
+                width="28"
+                height="28"
+              />
+            </>
+          </div>
+          <div>
+            <>
+              <span>Brand color</span>
+              <span class="operations-visual__swatch" />
+            </>
+          </div>
+          <div>
+            <>
+              <span>Workspace name</span>
+              <strong>Your organization</strong>
+            </>
+          </div>
+        </div>
+      ) : (
+        <>
+          <header class="operations-visual__header">
+            <>
+              <img
+                src="/brand/budibase-symbol-forest.svg"
+                alt=""
+                width="24"
+                height="24"
+              />
+              <strong>Your workspace</strong>
+              <span>Operations center</span>
+            </>
+          </header>
+          <div class="operations-visual__nav">
+            <>
+              <span class="is-active">Apps and services</span>
+              <span>My requests</span>
+              <span>My approvals</span>
+            </>
+          </div>
+          <div class="operations-visual__body">
+            <div class="operations-visual__apps">
+              <>
+                <h3>How can we help?</h3>
+                <p>Find the right app or service to get started.</p>
+                <div class="operations-visual__tiles">
+                  {apps.map((app) => (
+                    <div class="operations-visual__tile">
+                      <span
+                        class="operations-visual__app-icon"
+                        style={`--app-color: var(--bb-${app.tone})`}
+                      >
+                        <Icon name={app.icon} size="24" />
+                      </span>
+                      <strong>{app.name}</strong>
+                      <small>{app.detail}</small>
+                      <span class="operations-visual__open">
+                        Open <Icon name="ArrowUpRight" size="14" />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            </div>
+            {variant === "overview" && (
+              <div class="operations-visual__requests">
+                <OperationsCenterDemo compact />
+              </div>
+            )}
+          </div>
+        </>
+      )
+    }
+  </div>
+</div>
+<style>
+  .operations-visual {
+    width: 100%;
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+  }
+  .operations-visual__content {
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+  }
+  .operations-visual__header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .operations-visual__header strong {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+  .operations-visual__header > span {
+    margin-left: auto;
+    color: var(--bb-text-subtle);
+    font-size: 0.75rem;
+  }
+  .operations-visual__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--bb-border-base);
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    color: var(--bb-text-subtle);
+  }
+  .operations-visual__nav .is-active {
+    color: var(--bb-olive);
+    font-weight: 400;
+  }
+  .operations-visual__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    padding: clamp(1.25rem, 3vw, 3rem);
+  }
+  .operations-visual__apps {
+    min-width: 0;
+  }
+  .operations-visual__apps h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  .operations-visual__apps > p {
+    margin: 0.75rem 0 1.5rem;
+    font-size: 0.875rem;
+  }
+  .operations-visual__tiles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .operations-visual__tile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.875rem;
+    min-width: 0;
+    padding: 1.25rem;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-coconut);
+  }
+  .operations-visual__app-icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: none;
+    background: var(--app-color);
+    color: var(--bb-graphite);
+  }
+  .operations-visual__tile strong {
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+  .operations-visual__tile small {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--bb-text-subtle);
+  }
+  .operations-visual__open {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--bb-olive);
+  }
+  .operations-visual__requests {
+    min-width: 0;
+    border: 1px solid var(--bb-border-base);
+  }
+  .operations-visual--apps .operations-visual__tiles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .operations-visual--apps .operations-visual__tile {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.5rem 1rem;
+  }
+  .operations-visual--apps .operations-visual__app-icon {
+    grid-row: span 2;
+  }
+  .operations-visual--apps .operations-visual__open {
+    display: none;
+  }
+  .operations-visual--apps .operations-visual__header > span,
+  .operations-visual--apps .operations-visual__nav {
+    display: none;
+  }
+  .operations-visual__branding {
+    display: grid;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+  .operations-visual__branding > strong {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .operations-visual__branding > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid var(--bb-border-base);
+    padding-top: 1.25rem;
+    font-size: 0.75rem;
+  }
+  .operations-visual__branding > div strong {
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+  .operations-visual__swatch {
+    width: 3.5rem;
+    height: 1.5rem;
+    background: var(--bb-olive);
+  }
+  .operations-visual--devices .operations-visual__content {
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    background: transparent;
+    border: 0;
+  }
+  .operations-visual__phone {
+    width: 180px;
+    max-width: 100%;
+    padding: 6px;
+    border: 5px solid var(--bb-graphite);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--bb-background-base);
+  }
+  .operations-visual__speaker {
+    width: 40%;
+    height: 4px;
+    border-radius: 3px;
+    background: var(--bb-graphite);
+    margin: 0 auto 8px;
+  }
+  .operations-visual__phone :global(.homepage-operations-center__header) {
+    font-size: 0.75rem;
+    padding-inline: 0.5rem;
+  }
+  .operations-visual__phone :global(.homepage-operations-center__heading span) {
+    display: none;
+  }
+  @media (min-width: 1100px) {
+    .operations-visual--overview .operations-visual__body {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 767px) {
+    .operations-visual__tiles {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .operations-visual__tile {
+      gap: 0.5rem;
+    }
+    .operations-visual__tile small,
+    .operations-visual__open {
+      display: none;
+    }
+    .operations-visual__body {
+      gap: 1.25rem;
+    }
+  }
+</style>

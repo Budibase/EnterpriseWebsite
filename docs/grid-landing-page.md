@@ -28,8 +28,8 @@ The hero adds 60px of vertical breathing room across desktop and stacked
 layouts, with content-driven height.
 For media-led product pages, `heroLayout="stacked"` centers the copy and
 actions above full-width media with no flanking layout columns. Apps is the
-first adapter; Agents uses the same variant. Automations, Operations center, and Chat with agents
-can adopt this variant as their content is prepared. The split variant remains
+first adapter; Agents, Automations, Operations center, and Chat with agents
+use the same variant. The split variant remains
 the default for existing feature pages.
 
 ## Page inputs
@@ -51,7 +51,7 @@ Use named slots `hero-media`, `feature-0`, and `feature-1` for custom product
 visuals. The AI models adapter demonstrates all three. The screenshot crop is
 AI-specific and stays in that adapter; other screenshots render uncropped.
 Use the optional `before-faq` slot for an additional page-owned section, such as
-the shared Apps and Agents marketplace showcase. Omitting it leaves the standard layout unchanged.
+the shared product marketplace showcase. Omitting it leaves the standard layout unchanged.
 
 Content remains in `src/data/platformLandingPages.ts`. Keep visual assets,
 demo configuration, FAQ answers, and custom media styling in the page adapter.
@@ -83,18 +83,21 @@ import ApiVideo from "@assets/videos/api-explorer.webm?url";
 Add the adapter to the existing product route when adopting the template.
 Leave `MainLayout` responsible for navigation and page metadata.
 
-| Page                    | Existing route/data key                       |
-| ----------------------- | --------------------------------------------- |
-| APIs                    | `/product/apis/` / `apis`                     |
-| Data tables             | `/product/data/` / `data`                     |
-| Knowledge               | `/product/knowledge/` / `knowledge`           |
-| Activity                | `/product/activity/` / `activity`             |
-| Human approvals         | `/product/requests/` / `requests`             |
-| Permissions             | `/product/admin-security/` / `admin-security` |
-| Security and compliance | `/security/` / `securityLandingPage.ts`       |
-| Self-hosting            | `/product/self-host/` / `self-host`           |
-| Apps                    | `/product/apps/` / `appsLandingPage.ts`       |
-| Agents                  | `/product/agents/` / `agentsLandingPage.ts`   |
+| Page                    | Existing route/data key                                          |
+| ----------------------- | ---------------------------------------------------------------- |
+| APIs                    | `/product/apis/` / `apis`                                        |
+| Data tables             | `/product/data/` / `data`                                        |
+| Knowledge               | `/product/knowledge/` / `knowledge`                              |
+| Activity                | `/product/activity/` / `activity`                                |
+| Human approvals         | `/product/requests/` / `requests`                                |
+| Permissions             | `/product/admin-security/` / `admin-security`                    |
+| Security and compliance | `/security/` / `securityLandingPage.ts`                          |
+| Self-hosting            | `/product/self-host/` / `self-host`                              |
+| Apps                    | `/product/apps/` / `appsLandingPage.ts`                          |
+| Agents                  | `/product/agents/` / `agentsLandingPage.ts`                      |
+| Automations             | `/product/automations/` / `automationsLandingPage.ts`            |
+| Chat with agents        | `/product/chat-with-agents/` / `chatWithAgentsLandingPage.ts`    |
+| Operations center       | `/product/operations-center/` / `operationsCenterLandingPage.ts` |
 
 AI models, APIs, Data tables, Knowledge, Activity, Human approvals, and Permissions use the
 extracted template. The API

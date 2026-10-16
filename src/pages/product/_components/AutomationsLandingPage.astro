@@ -1,0 +1,56 @@
+---
+import AutomationDemo from "@components/AutomationDemo.astro";
+import GridLandingPage from "@components/GridLandingPage.astro";
+import ProductDemoFrame from "@components/ProductDemoFrame.astro";
+import ProductMarketplaceSection from "@components/ProductMarketplaceSection.astro";
+import HumanApprovalsDemo from "@components/demos/HumanApprovalsDemo.astro";
+import AutomationProcessVisual from "./AutomationProcessVisual.astro";
+import {
+  automationsLandingPage,
+  automationsFaqs,
+} from "../../../data/automationsLandingPage";
+import { homepageFeatureMedia } from "../../../data/homepageFeatureMedia";
+const media = [
+  { mediaDemo: HumanApprovalsDemo },
+  homepageFeatureMedia.apis,
+  homepageFeatureMedia.functions,
+];
+const cards = automationsLandingPage.cardCluster.cards.map((card, index) => ({
+  ...card,
+  ...media[index],
+}));
+---
+
+<div class="automations-landing-page">
+  <GridLandingPage
+    slug="automations"
+    content={automationsLandingPage}
+    {cards}
+    faqs={automationsFaqs}
+    heroLayout="stacked"
+    heroAspectRatio="auto"
+  >
+    <ProductDemoFrame slot="hero-media"
+      ><AutomationDemo
+        breakout={false}
+        showBackground={false}
+        class="automations-hero-demo"
+      /></ProductDemoFrame
+    >
+    <AutomationProcessVisual slot="feature-0" variant="workflow" />
+    <AutomationProcessVisual slot="feature-1" variant="orchestration" />
+    <ProductMarketplaceSection slot="before-faq" idPrefix="automations" />
+  </GridLandingPage>
+</div>
+<style>
+  :global(.automations-hero-demo .automation-demo-backdrop),
+  :global(.automations-hero-demo .automation-demo-shell) {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  @media (max-width: 1179px) {
+    :global(.automations-hero-demo .automation-demo-sidebar) {
+      display: none;
+    }
+  }
+</style>

@@ -364,7 +364,7 @@
     --accent-red: var(--bb-crimson);
     --hero-demo-user-bubble: var(--bb-cloud-soft);
     --border-color: rgb(var(--border) / 0.9);
-    --site-nav-bar-height: 80px;
+    --site-nav-bar-height: 56px;
     --site-nav-height: var(--site-nav-bar-height);
     --section-gap-sm: var(--spacing-section-gap-sm);
     --section-gap-md: var(--spacing-section-gap-md);
@@ -391,7 +391,7 @@
 
   @media (max-width: 767px) {
     :root {
-      --site-nav-bar-height: 64px;
+      --site-nav-bar-height: 48px;
       --radius-small: 0;
       --radius-medium: 0;
       --radius-large: 0;

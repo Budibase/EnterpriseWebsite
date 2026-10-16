@@ -112,7 +112,7 @@ export const platformDropdownMenu: NavDropdownMenu = {
       heading: "Interact",
       items: [
         {
-          href: "/product/agents/",
+          href: "/product/chat-with-agents/",
           label: "Chat with agents",
           description: "Use Slack or Teams.",
           prefetch: true,
@@ -126,7 +126,7 @@ export const platformDropdownMenu: NavDropdownMenu = {
           icon: "AppWindow",
         },
         {
-          href: "/product/requests/",
+          href: "/product/operations-center/",
           label: "Operations center",
           description: "Track requests and tasks.",
           prefetch: true,

@@ -9,10 +9,6 @@ import HomepageEquipmentInventoryDemo from "./HomepageEquipmentInventoryDemo.ast
 import HomepageHumanApprovalsDemo from "@components/demos/HumanApprovalsDemo.astro";
 import HomepageOperationsCenterDemo from "@components/demos/OperationsCenterDemo.astro";
 import HomepagePermissionsDemo from "./HomepagePermissionsDemo.astro";
-import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
-import JiraLogo from "@assets/logos/Jira.svg?url";
-import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
-import RestApiLogo from "@assets/logos/rest-api.svg?url";
 import AnthropicLogo from "@assets/logos/anthropic.avif?url";
 import AzureOpenAILogo from "@assets/logos/azure-openai.svg?url";
 import OpenAILogo from "@assets/logos/openai.avif?url";
@@ -41,12 +37,7 @@ const productGroups = [
         description:
           "Connect and reuse actions across the systems your operations depend on.",
         imageAlt: "",
-        mediaBadges: [
-          { label: "SharePoint", icon: SharePointLogo },
-          { label: "Jira", icon: JiraLogo },
-          { label: "ServiceNow", icon: ServiceNowLogo },
-          { label: "Custom REST API", icon: RestApiLogo },
-        ],
+        ...homepageFeatureMedia.apis,
         link: "/product/apis/",
       },
       {
@@ -102,7 +93,7 @@ const productGroups = [
         imageAlt: "",
         mediaDemo: OnePlatformAgent,
         mediaDemoProps: { embedded: true },
-        link: "/product/agents/",
+        link: "/product/chat-with-agents/",
       },
       {
         title: "Apps",
@@ -117,7 +108,7 @@ const productGroups = [
           "Open your apps, follow requests, and complete tasks in one place.",
         imageAlt: "",
         mediaDemo: HomepageOperationsCenterDemo,
-        link: "/product/requests/",
+        link: "/product/operations-center/",
       },
     ],
   },

@@ -1,0 +1,211 @@
+---
+import Icon from "@components/Icon.astro";
+import SlackLogo from "@assets/logos/Slack.svg?url";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+interface Props {
+  variant?: "conversations" | "alerts";
+}
+const { variant = "conversations" } = Astro.props;
+const channels = [
+  {
+    name: "Slack",
+    logo: SlackLogo,
+    request: "I need access to the finance dashboard.",
+    response:
+      "I’ve created your access request and sent it to your manager for review.",
+    item: "Finance dashboard access",
+  },
+  {
+    name: "Microsoft Teams",
+    logo: TeamsLogo,
+    request: "Can I request a replacement monitor?",
+    response:
+      "Your equipment request is ready for review. I’ll keep you updated here.",
+    item: "Replacement monitor",
+  },
+];
+---
+
+<div
+  class:list={[
+    "chat-channel-demo",
+    variant === "alerts" && "chat-channel-demo--alerts",
+  ]}
+  role="img"
+  aria-label={variant === "alerts"
+    ? "Request updates and approval alerts in Slack and Microsoft Teams"
+    : "Employees requesting access and equipment through agents in Slack and Microsoft Teams"}
+>
+  {
+    channels.map((channel) => (
+      <div class="chat-channel-demo__panel" aria-hidden="true">
+        <div class="chat-channel-demo__header">
+          <>
+            <img src={channel.logo} alt="" width="24" height="24" />
+            <strong>{channel.name}</strong>
+            <span>IT services</span>
+          </>
+        </div>
+        <div class="chat-channel-demo__body">
+          {variant === "conversations" ? (
+            <>
+              <p class="chat-channel-demo__user">{channel.request}</p>
+              <div class="chat-channel-demo__agent">
+                <img
+                  src="/brand/budibase-symbol-forest.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+                <strong>IT assistant</strong>
+              </div>
+              <p>{channel.response}</p>
+              <div class="chat-channel-demo__request">
+                <span>Request created</span>
+                <strong>{channel.item}</strong>
+                <small>Awaiting approval</small>
+              </div>
+            </>
+          ) : (
+            <>
+              <div class="chat-channel-demo__agent">
+                <Icon name="EnvelopeOpen" size="20" />
+                <strong>Approval needed</strong>
+              </div>
+              <div class="chat-channel-demo__request">
+                <span>Assigned to you</span>
+                <strong>{channel.item}</strong>
+                <small>Review the request and provide a decision.</small>
+              </div>
+              <div class="chat-channel-demo__actions">
+                <span>
+                  Review request <Icon name="ArrowRight" size="14" />
+                </span>
+              </div>
+              <div class="chat-channel-demo__update">
+                <Icon name="CheckCircle" size="18" />
+                <span>Request updates delivered here</span>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    ))
+  }
+</div>
+<style>
+  .chat-channel-demo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    width: 100%;
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+  }
+  .chat-channel-demo__panel {
+    min-width: 0;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+  }
+  .chat-channel-demo__header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--bb-border-base);
+    background: var(--bb-coconut);
+  }
+  .chat-channel-demo__header strong {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+  .chat-channel-demo__header > span {
+    margin-left: auto;
+    color: var(--bb-text-subtle);
+    font-size: 0.75rem;
+  }
+  .chat-channel-demo__header img {
+    object-fit: contain;
+  }
+  .chat-channel-demo__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: clamp(1rem, 2.5vw, 2rem);
+    min-height: 21rem;
+  }
+  .chat-channel-demo p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+  .chat-channel-demo__user {
+    align-self: flex-end;
+    max-width: 88%;
+    background: var(--bb-cloud);
+    padding: 0.75rem 1rem;
+  }
+  .chat-channel-demo__agent {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+  }
+  .chat-channel-demo__agent strong {
+    font-weight: 400;
+  }
+  .chat-channel-demo__request {
+    display: grid;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-coconut);
+  }
+  .chat-channel-demo__request > span,
+  .chat-channel-demo__request small {
+    font-size: 0.75rem;
+    color: var(--bb-text-subtle);
+  }
+  .chat-channel-demo__request strong {
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+  .chat-channel-demo__actions > span {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--bb-olive);
+    color: var(--bb-coconut);
+    font-size: 0.75rem;
+  }
+  .chat-channel-demo__update {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--bb-olive);
+  }
+  .chat-channel-demo--alerts {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 32rem;
+  }
+  .chat-channel-demo--alerts .chat-channel-demo__body {
+    min-height: 0;
+    padding: 1rem;
+  }
+  .chat-channel-demo--alerts .chat-channel-demo__panel:last-child {
+    display: none;
+  }
+  @media (max-width: 639px) {
+    .chat-channel-demo {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .chat-channel-demo__body {
+      min-height: 0;
+    }
+  }
+</style>

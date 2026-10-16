@@ -11,11 +11,13 @@ type NavTheme =
 const {
   enableTransitions = false,
   navTheme = "default",
+  navLayout = "grid",
   navLogoSrc,
   navDemoVariant,
 } = Astro.props as {
   enableTransitions?: boolean;
   navTheme?: NavTheme;
+  navLayout?: "default" | "grid";
   navLogoSrc?: string;
   navDemoVariant?: "lime";
 };
@@ -37,6 +39,7 @@ const {
             <div class="relative flex min-h-screen flex-col">
               <Nav
                 theme={navTheme}
+                layout={navLayout}
                 logoSrc={navLogoSrc}
                 demoVariant={navDemoVariant}
               />
@@ -62,7 +65,7 @@ const {
       const navHeight =
         Number.isFinite(measuredHeight) && measuredHeight > 0
           ? Math.min(measuredHeight, 96)
-          : 80;
+          : 56;
       root.style.setProperty("--site-nav-height", `${navHeight}px`);
     };
 

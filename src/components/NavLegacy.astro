@@ -1,0 +1,696 @@
+---
+import Button from "@components/Button.astro";
+import HeaderDropDown from "@components/HeaderDropDown.astro";
+import MobileNavAccordion from "@components/MobileNavAccordion.astro";
+import { navDropdownMenus } from "@components/navDropdownData";
+import { budibaseLimeLogoUrl } from "../data/brandAssets";
+
+const navLogoSrc = "/budibase-nav.svg";
+type NavTheme =
+  "default" | "surface" | "brand-dark" | "video-overlay" | "immersive-overlay";
+
+interface Props {
+  theme?: NavTheme;
+  logoSrc?: string;
+  demoVariant?: "lime";
+}
+
+const { theme = "default", logoSrc, demoVariant } = Astro.props as Props;
+const isSurface = theme === "surface";
+const isBrandDark = theme === "brand-dark";
+const isVideoOverlay = theme === "video-overlay";
+const isImmersiveOverlay = theme === "immersive-overlay";
+const usesDarkControls = isBrandDark || isImmersiveOverlay;
+const desktopNavLogoSrc =
+  logoSrc ?? (usesDarkControls ? budibaseLimeLogoUrl : navLogoSrc);
+const [platformNavMenu, solutionsNavMenu, resourcesNavMenu] = navDropdownMenus;
+const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
+---
+
+<nav
+  id="site-nav"
+  class:list={[
+    "nav-shell nav-shell--legacy relative z-50 w-full bg-1 transition-colors duration-150",
+    isSurface && "nav-shell--surface",
+    isBrandDark && "nav-shell--brand-dark",
+    isVideoOverlay && "nav-shell--video-overlay",
+    isImmersiveOverlay && "nav-shell--immersive-overlay",
+  ]}
+>
+  <div
+    class="nav-shell__inner relative z-10 mx-auto grid h-[var(--site-nav-bar-height)] w-full max-w-[var(--site-container-max)] grid-cols-[1fr_auto_auto] items-center px-2 md:px-3 lg:grid-cols-[auto_1fr_auto] lg:gap-6 lg:px-0"
+  >
+    <a
+      href="/"
+      aria-label="Budibase home"
+      class="z-10 shrink-0 flex items-center"
+      data-astro-prefetch
+    >
+      <div class="relative w-[140px] flex items-center">
+        <img
+          src={desktopNavLogoSrc}
+          alt="Budibase logo"
+          width="140"
+          height="21"
+          class="block hover:cursor-pointer"
+        />
+      </div>
+    </a>
+
+    <div
+      class="z-10 hidden items-center gap-1 justify-self-start whitespace-nowrap lg:flex"
+      data-desktop-nav-list
+    >
+      <HeaderDropDown
+        label={platformNavMenu.label}
+        menu={platformNavMenu.menu}
+      />
+      <HeaderDropDown
+        label={solutionsNavMenu.label}
+        menu={solutionsNavMenu.menu}
+      />
+      <HeaderDropDown
+        label={resourcesNavMenu.label}
+        menu={resourcesNavMenu.menu}
+      />
+      <a
+        target="_self"
+        href="/pricing/"
+        class="desktop-nav-link inline-flex min-h-9 items-center rounded-full px-3 py-[0.45rem] text-sm font-normal nav-link transition-colors"
+        data-astro-prefetch
+      >
+        Pricing
+      </a>
+    </div>
+
+    <div
+      class="z-10 flex items-center gap-2 justify-self-end lg:col-start-3 lg:gap-3"
+    >
+      <a
+        href="https://github.com/budibase/budibase"
+        target="_blank"
+        class="nav-github-link relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm transition-all hover:bg-stone-200 border-transparent text-xs hidden xl:flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+        ><span class="truncate"
+          ><span
+            class="flex text-sm font-normal items-center gap-0.5 nav-link transition-colors"
+            ><svg
+              class="w-5 h-5"
+              viewBox="0 0 17 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              ><path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M8.5 2.22168C5.23312 2.22168 2.58496 4.87398 2.58496 8.14677C2.58496 10.7642 4.27962 12.9853 6.63026 13.7684C6.92601 13.8228 7.03366 13.6401 7.03366 13.4827C7.03366 13.3425 7.02893 12.9693 7.02597 12.4754C5.38041 12.8333 5.0332 11.681 5.0332 11.681C4.76465 10.996 4.37663 10.8139 4.37663 10.8139C3.83954 10.4471 4.41744 10.4542 4.41744 10.4542C5.01072 10.4956 5.32303 11.0647 5.32303 11.0647C5.85065 11.9697 6.70774 11.7082 7.04431 11.5568C7.09873 11.1741 7.25134 10.9132 7.42051 10.7654C6.10737 10.6157 4.72621 10.107 4.72621 7.83683C4.72621 7.19031 4.95689 6.66092 5.33486 6.24686C5.27394 6.09721 5.07105 5.49447 5.39283 4.67938C5.39283 4.67938 5.88969 4.51967 7.01947 5.28626C7.502 5.15466 7.99985 5.08763 8.5 5.08692C9.00278 5.08929 9.50851 5.15495 9.98113 5.28626C11.1103 4.51967 11.606 4.67879 11.606 4.67879C11.9289 5.49447 11.7255 6.09721 11.6651 6.24686C12.0437 6.66092 12.2732 7.19031 12.2732 7.83683C12.2732 10.1129 10.8897 10.6139 9.5724 10.7606C9.78475 10.9434 9.97344 11.3048 9.97344 11.8579C9.97344 12.6493 9.96634 13.2887 9.96634 13.4827C9.96634 13.6413 10.0728 13.8258 10.3733 13.7678C11.5512 13.3728 12.5751 12.6175 13.3003 11.6089C14.0256 10.6002 14.4155 9.38912 14.415 8.14677C14.415 4.87398 11.7663 2.22168 8.5 2.22168Z"
+                fill="currentColor"></path>
+            </svg>28.5K</span
+          ></span
+        ></a
+      >
+
+      <div class="hidden lg:flex items-center gap-2 whitespace-nowrap lg:gap-3">
+        <a
+          href="https://account.budibase.app/auth/login"
+          target="_blank"
+          class="text-sm font-normal nav-link transition-colors"
+        >
+          Log in
+        </a>
+        <Button
+          label="Try Budibase"
+          url="https://account.budibase.app/register"
+          variant={usesDarkControls ? "outline-on-dark" : "secondary"}
+          size="medium"
+          icon="ArrowRight"
+          iconSize="16"
+          iconPosition="end"
+          target="_blank"
+          class={!usesDarkControls
+            ? "button--cut-corner button--cut-corner-outline !gap-[16px] !pr-[16px] hover:!text-[var(--bb-olive)]"
+            : "button--cut-corner button--cut-corner-outline !gap-[16px] !pr-[16px]"}
+        />
+        <Button
+          label="Book a demo"
+          url="/contact/"
+          variant={demoVariant ??
+            (usesDarkControls ? "bright-on-dark" : "olive")}
+          size="medium"
+          icon="ArrowRight"
+          iconSize="16"
+          iconPosition="end"
+          class="button--cut-corner !gap-[16px] !pr-[16px]"
+        />
+      </div>
+
+      <button
+        id="mobile-menu-button"
+        class="mobile-menu-trigger lg:hidden p-2 text-stone-800 hover:bg-stone-200 rounded transition-colors"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+      >
+        <svg
+          id="menu-icon"
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg
+          id="close-icon"
+          class="w-6 h-6 hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div
+  id="mobile-menu"
+  class="mobile-nav-overlay hidden lg:hidden"
+  aria-hidden="true"
+>
+  <div id="main-menu-view" class="mobile-nav-panel">
+    <div class="mobile-nav-header">
+      <a
+        href="/"
+        aria-label="Budibase home"
+        class="mobile-nav-logo"
+        data-astro-prefetch
+      >
+        <div class="relative w-[120px] flex items-center">
+          <img
+            src={navLogoSrc}
+            alt="Budibase logo"
+            width="120"
+            height="18"
+            class="block"
+          />
+        </div>
+      </a>
+      <button
+        id="close-menu-button"
+        class="mobile-nav-close-button"
+        aria-label="Close menu"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="mobile-nav-scroll">
+      <ul class="mobile-nav-list">
+        {
+          mobileNavMenus.map(({ label, menu }) => (
+            <MobileNavAccordion label={label} menu={menu} />
+          ))
+        }
+        <li class="mobile-nav-item">
+          <a
+            href="/pricing/"
+            class="mobile-nav-row font-normal nav-link transition-colors"
+            data-astro-prefetch
+          >
+            Pricing
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="mobile-nav-actions">
+      <a
+        href="https://account.budibase.app/auth/login"
+        target="_blank"
+        class="mobile-nav-row font-normal nav-link transition-colors"
+      >
+        Log in
+      </a>
+      <Button
+        label="Book a demo"
+        url="/contact/"
+        variant={demoVariant ?? "olive"}
+        size="medium"
+        icon="ArrowRight"
+        iconSize="16"
+        iconPosition="end"
+        class="mobile-nav-action-button !gap-[16px]"
+      />
+    </div>
+  </div>
+</div>
+
+<script>
+  declare global {
+    interface Window {
+      __budibaseHeaderDropdownsBound?: boolean;
+      __siteMobileNavBound?: boolean;
+    }
+  }
+
+  (function () {
+    function initHeaderDropdowns() {
+      if (window.__budibaseHeaderDropdownsBound) return;
+      window.__budibaseHeaderDropdownsBound = true;
+
+      const rootSelector = "[data-header-dropdown-root]";
+      const triggerSelector = "[data-header-dropdown-trigger]";
+      const desktopBreakpoint = window.matchMedia("(min-width: 1024px)");
+
+      function positionDropdown(root: HTMLElement) {
+        const panel = root.querySelector("[data-header-dropdown-menu]");
+        if (!panel) return;
+
+        root.style.setProperty("--dropdown-offset-x", "0px");
+        // Use the layout position, independent of the opening animation.
+        const top = root.getBoundingClientRect().bottom + 8;
+        root.style.setProperty(
+          "--dropdown-max-height",
+          `${Math.max(0, window.innerHeight - top - 16)}px`,
+        );
+        const bounds = panel.getBoundingClientRect();
+        const viewportWidth = document.documentElement.clientWidth;
+        const left = Math.max(
+          16,
+          Math.min(bounds.left, viewportWidth - bounds.width - 16),
+        );
+        root.style.setProperty(
+          "--dropdown-offset-x",
+          `${left - bounds.left}px`,
+        );
+      }
+
+      function closeDropdown(root: HTMLElement, focusTrigger = false) {
+        root.removeAttribute("data-open");
+
+        const trigger = root.querySelector<HTMLElement>(triggerSelector);
+        trigger?.setAttribute("aria-expanded", "false");
+
+        if (focusTrigger) {
+          trigger?.focus();
+        }
+      }
+
+      function openDropdown(root: HTMLElement) {
+        document
+          .querySelectorAll<HTMLElement>(`${rootSelector}[data-open="true"]`)
+          .forEach((openRoot) => {
+            if (openRoot !== root) {
+              closeDropdown(openRoot);
+            }
+          });
+
+        root.setAttribute("data-open", "true");
+        positionDropdown(root);
+        root
+          .querySelector(triggerSelector)
+          ?.setAttribute("aria-expanded", "true");
+      }
+
+      function closeAllDropdowns(exceptRoot: HTMLElement | null = null) {
+        document
+          .querySelectorAll<HTMLElement>(`${rootSelector}[data-open="true"]`)
+          .forEach((openRoot) => {
+            if (openRoot !== exceptRoot) {
+              closeDropdown(openRoot);
+            }
+          });
+      }
+
+      document.addEventListener("focusin", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const focusedRoot = target?.closest(rootSelector);
+        const openRoot = document.querySelector<HTMLElement>(
+          `${rootSelector}[data-open="true"]`,
+        );
+
+        if (openRoot && openRoot !== focusedRoot) {
+          closeDropdown(openRoot);
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const trigger = target?.closest(triggerSelector);
+
+        if (trigger) {
+          event.preventDefault();
+          const root = trigger.closest<HTMLElement>(rootSelector);
+
+          if (root) {
+            if (root.hasAttribute("data-open")) {
+              closeDropdown(root);
+            } else {
+              openDropdown(root);
+            }
+          }
+
+          return;
+        }
+
+        if (!target?.closest(rootSelector)) {
+          closeAllDropdowns();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") {
+          return;
+        }
+
+        const openRoot = document.querySelector<HTMLElement>(
+          `${rootSelector}[data-open="true"]`,
+        );
+
+        if (openRoot) {
+          closeDropdown(openRoot, true);
+        }
+      });
+
+      const handleDesktopBreakpointChange = () => {
+        if (!desktopBreakpoint.matches) {
+          closeAllDropdowns();
+        }
+      };
+
+      window.addEventListener("resize", () => {
+        document
+          .querySelectorAll<HTMLElement>(`${rootSelector}[data-open="true"]`)
+          .forEach(positionDropdown);
+      });
+
+      if (desktopBreakpoint.addEventListener) {
+        desktopBreakpoint.addEventListener(
+          "change",
+          handleDesktopBreakpointChange,
+        );
+      } else {
+        desktopBreakpoint.addListener(handleDesktopBreakpointChange);
+      }
+    }
+
+    initHeaderDropdowns();
+
+    if (window.__siteMobileNavBound) return;
+    window.__siteMobileNavBound = true;
+
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeMenuButton = document.getElementById("close-menu-button");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+    const desktopBreakpoint = window.matchMedia("(min-width: 1024px)");
+    let previousBodyOverflow = "";
+
+    function isMenuOpen() {
+      return !mobileMenu?.classList.contains("hidden");
+    }
+
+    function openMenu() {
+      if (!mobileMenu || isMenuOpen()) return;
+
+      previousBodyOverflow = document.body.style.overflow;
+      mobileMenu?.classList.remove("hidden");
+      mobileMenuButton?.setAttribute("aria-expanded", "true");
+      mobileMenu?.setAttribute("aria-hidden", "false");
+      menuIcon?.classList.add("hidden");
+      closeIcon?.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      if (!mobileMenu || !isMenuOpen()) return;
+
+      mobileMenu?.classList.add("hidden");
+      mobileMenuButton?.setAttribute("aria-expanded", "false");
+      mobileMenu?.setAttribute("aria-hidden", "true");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+      document.body.style.overflow = previousBodyOverflow;
+      mobileMenu
+        ?.querySelectorAll("[data-mobile-nav-accordion][open]")
+        .forEach((accordion) => accordion.removeAttribute("open"));
+    }
+
+    mobileMenuButton?.addEventListener("click", () => {
+      if (isMenuOpen()) {
+        closeMenu();
+        return;
+      }
+
+      openMenu();
+    });
+    closeMenuButton?.addEventListener("click", () => {
+      closeMenu();
+      mobileMenuButton?.focus();
+    });
+    mobileMenu?.addEventListener("click", (e) => {
+      if (e.target === mobileMenu) {
+        closeMenu();
+      }
+    });
+    mobileMenu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isMenuOpen()) {
+        closeMenu();
+        mobileMenuButton?.focus();
+      }
+    });
+
+    const handleResize = () => {
+      if (desktopBreakpoint.matches) {
+        closeMenu();
+      }
+    };
+
+    if (desktopBreakpoint.addEventListener) {
+      desktopBreakpoint.addEventListener("change", handleResize);
+    } else {
+      desktopBreakpoint.addListener(handleResize);
+    }
+  })();
+</script>
+
+<style>
+  /* Preserved pre-grid navigation; render this instead of Nav, never alongside it. */
+  .nav-shell--legacy {
+    --site-nav-bar-height: 80px;
+  }
+
+  @media (max-width: 767px) {
+    .nav-shell--legacy {
+      --site-nav-bar-height: 64px;
+    }
+  }
+
+  .mobile-nav-panel {
+    height: 100dvh;
+    min-height: 0;
+  }
+
+  .mobile-nav-header,
+  .mobile-nav-actions {
+    flex-shrink: 0;
+  }
+
+  .mobile-nav-scroll {
+    overscroll-behavior: contain;
+  }
+
+  .nav-shell.nav-shell--surface {
+    background-color: var(--bb-background-surface) !important;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay {
+    position: absolute !important;
+    inset: 0 0 auto;
+    background: transparent !important;
+    color: var(--bb-white);
+  }
+
+  .nav-shell.nav-shell--immersive-overlay
+    .nav-shell__inner
+    > div:last-child
+    > a,
+  .nav-shell.nav-shell--immersive-overlay
+    .nav-shell__inner
+    > div:last-child
+    :global(a),
+  .nav-shell.nav-shell--immersive-overlay
+    .nav-shell__inner
+    :global(a[role="button"]) {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay :global(.nav-link) {
+    color: var(--bb-white) !important;
+    text-shadow: 0 0.0625rem 0.5rem var(--bb-transparent-black-500);
+  }
+
+  .nav-shell:is(.nav-shell--immersive-overlay, .nav-shell--brand-dark)
+    .desktop-nav-link:focus-visible,
+  .nav-shell:is(.nav-shell--immersive-overlay, .nav-shell--brand-dark)
+    :global([data-header-dropdown-trigger]:focus-visible) {
+    outline: 2px solid var(--bb-lime);
+    outline-offset: 2px;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay .desktop-nav-link:hover,
+  .nav-shell.nav-shell--immersive-overlay .desktop-nav-link:focus-visible,
+  .nav-shell.nav-shell--immersive-overlay
+    :global(.header-dropdown [data-header-dropdown-trigger]:hover),
+  .nav-shell.nav-shell--immersive-overlay
+    :global(.header-dropdown [data-header-dropdown-trigger]:focus-visible) {
+    background: transparent;
+    color: var(--bb-white) !important;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay
+    :global(.header-dropdown[data-open="true"] [data-header-dropdown-trigger]) {
+    background: transparent;
+    color: var(--bb-white) !important;
+    text-shadow: none;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay .nav-github-link:hover,
+  .nav-shell.nav-shell--immersive-overlay .mobile-menu-trigger:hover {
+    background: var(--bb-transparent-white-200);
+  }
+
+  .nav-shell.nav-shell--immersive-overlay .nav-github-link:focus-visible,
+  .nav-shell.nav-shell--immersive-overlay .mobile-menu-trigger:focus-visible {
+    outline: 2px solid var(--bb-lime);
+    outline-offset: 2px;
+  }
+
+  .nav-shell.nav-shell--immersive-overlay .mobile-menu-trigger {
+    color: var(--bb-white);
+  }
+
+  .nav-shell.nav-shell--video-overlay {
+    position: absolute !important;
+    inset: 0 0 auto;
+    padding: 0.75rem 0.75rem 0;
+    background: transparent !important;
+  }
+
+  .nav-shell.nav-shell--video-overlay .nav-shell__inner {
+    height: 3.75rem;
+    padding-inline: 1.5rem !important;
+    border: 1px solid var(--bb-transparent-black-100);
+    border-radius: 0.375rem;
+    background: var(--bb-background-base);
+    box-shadow: 0 0.5rem 1.5rem rgb(35 50 7 / 0.16);
+  }
+
+  .nav-shell.nav-shell--brand-dark {
+    background-color: var(--bb-olive) !important;
+    color: var(--bb-white);
+  }
+
+  .nav-shell.nav-shell--brand-dark :global(.nav-link) {
+    color: var(--bb-white) !important;
+  }
+
+  .nav-shell.nav-shell--brand-dark :global(.nav-link:hover),
+  .nav-shell.nav-shell--brand-dark :global(.nav-link:focus-visible) {
+    color: var(--bb-white) !important;
+  }
+
+  .nav-shell.nav-shell--brand-dark .desktop-nav-link:hover,
+  .nav-shell.nav-shell--brand-dark .desktop-nav-link:focus-visible,
+  .nav-shell.nav-shell--brand-dark
+    :global(.header-dropdown [data-header-dropdown-trigger]:hover),
+  .nav-shell.nav-shell--brand-dark
+    :global(.header-dropdown [data-header-dropdown-trigger]:focus-visible) {
+    background: transparent;
+    color: var(--bb-white) !important;
+  }
+
+  .nav-shell.nav-shell--brand-dark
+    :global(.header-dropdown[data-open="true"] [data-header-dropdown-trigger]) {
+    background: transparent;
+    color: var(--bb-white) !important;
+  }
+
+  .nav-shell.nav-shell--brand-dark .nav-github-link:hover {
+    background: var(--bb-transparent-white-100);
+  }
+
+  .nav-shell.nav-shell--brand-dark .nav-github-link:focus-visible,
+  .nav-shell.nav-shell--brand-dark .mobile-menu-trigger:focus-visible {
+    outline: 2px solid var(--bb-lime);
+    outline-offset: 2px;
+  }
+
+  .nav-shell.nav-shell--brand-dark .mobile-menu-trigger {
+    color: var(--bb-white);
+  }
+
+  .nav-shell.nav-shell--brand-dark .mobile-menu-trigger:hover {
+    background: var(--bb-transparent-white-100);
+  }
+
+  @media (min-width: 1024px) {
+    :global(#site-nav .button--cut-corner) {
+      --button-min-height: 2.375rem;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1199px) {
+    .nav-shell__inner {
+      column-gap: 1rem;
+    }
+
+    :global(#site-nav [data-desktop-nav-list] :is(a, button)) {
+      padding-inline: 0.5rem;
+    }
+
+    :global(#site-nav .button--cut-corner) {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .nav-shell.nav-shell--video-overlay {
+      padding: 0.5rem 0.5rem 0;
+    }
+
+    .nav-shell.nav-shell--video-overlay .nav-shell__inner {
+      height: 3.5rem;
+      padding-inline: 0.875rem !important;
+    }
+  }
+</style>

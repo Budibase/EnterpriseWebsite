@@ -1,0 +1,148 @@
+---
+import Icon from "@components/Icon.astro";
+interface Props {
+  variant: "workflow" | "orchestration";
+}
+const { variant } = Astro.props;
+const steps =
+  variant === "workflow"
+    ? [
+        {
+          label: "Webhook received",
+          detail: "Start from a system event",
+          icon: "Lightning",
+          tone: "zen",
+        },
+        {
+          label: "Check conditions",
+          detail: "Apply your process rules",
+          icon: "GitFork",
+          tone: "orchid",
+        },
+        {
+          label: "Run JavaScript",
+          detail: "Transform and validate data",
+          icon: "Code",
+          tone: "lime",
+        },
+        {
+          label: "Update your system",
+          detail: "Call a connected API",
+          icon: "PlugsConnected",
+          tone: "tangerine",
+        },
+      ]
+    : [
+        {
+          label: "Request received",
+          detail: "A new purchase request",
+          icon: "EnvelopeOpen",
+          tone: "zen",
+        },
+        {
+          label: "Agent gathers context",
+          detail: "Check supplier and order details",
+          icon: "Sparkle",
+          tone: "orchid",
+        },
+        {
+          label: "Human approval",
+          detail: "Apply the approval policy",
+          icon: "UserSwitch",
+          tone: "vivid-vargas",
+        },
+        {
+          label: "Create purchase order",
+          detail: "Complete the system action",
+          icon: "PlugsConnected",
+          tone: "tangerine",
+        },
+      ];
+---
+
+<div
+  class="automation-process"
+  role="img"
+  aria-label={variant === "workflow"
+    ? "Visual workflow with a trigger, conditions, JavaScript, and API action"
+    : "Governed process coordinating a request, agent reasoning, human approval, and a system action"}
+>
+  <ol aria-hidden="true">
+    {
+      steps.map((step) => (
+        <li>
+          <>
+            <span
+              class="automation-process__icon"
+              style={`--node-color: var(--bb-${step.tone})`}
+            >
+              <Icon name={step.icon} size="20" />
+            </span>
+            <span>
+              <>
+                <strong>{step.label}</strong>
+                <small>{step.detail}</small>
+              </>
+            </span>
+          </>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+<style>
+  .automation-process {
+    width: 100%;
+    max-width: 30rem;
+    padding: 1.5rem;
+    background: var(--bb-graphite);
+    color: var(--bb-text-on-base);
+  }
+  .automation-process ol {
+    display: grid;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .automation-process li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--bb-transparent-white-200);
+    background: var(--bb-gray-900);
+  }
+  .automation-process li + li::before {
+    content: "";
+    position: absolute;
+    left: 2.25rem;
+    bottom: 100%;
+    height: calc(1.5rem + 1px);
+    border-left: 1px dashed var(--bb-transparent-white-700);
+  }
+  .automation-process__icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: none;
+    color: var(--bb-graphite);
+    background: var(--node-color);
+  }
+  .automation-process strong,
+  .automation-process small {
+    display: block;
+  }
+  .automation-process strong {
+    color: var(--bb-coconut);
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+  .automation-process small {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--bb-text-on-base-secondary);
+  }
+</style>

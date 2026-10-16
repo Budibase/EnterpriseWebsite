@@ -1,0 +1,27 @@
+---
+interface Props {
+  background?: "lime" | "olive";
+}
+const { background = "lime" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "product-demo-frame",
+    background === "olive" && "product-demo-frame--olive",
+  ]}
+>
+  <slot />
+</div>
+<style>
+  .product-demo-frame {
+    width: 100%;
+    min-width: 0;
+    padding: clamp(0.5rem, 1.5vw, 1.25rem);
+    background: var(--bb-lime);
+    text-align: left;
+  }
+  .product-demo-frame--olive {
+    background: var(--bb-olive);
+  }
+</style>

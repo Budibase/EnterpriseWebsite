@@ -11,11 +11,18 @@ type NavTheme =
 
 interface Props {
   theme?: NavTheme;
+  layout?: "default" | "grid";
   logoSrc?: string;
   demoVariant?: "lime";
 }
 
-const { theme = "default", logoSrc, demoVariant } = Astro.props as Props;
+const {
+  theme = "default",
+  layout = "grid",
+  logoSrc,
+  demoVariant,
+} = Astro.props as Props;
+const isGrid = layout === "grid";
 const isSurface = theme === "surface";
 const isBrandDark = theme === "brand-dark";
 const isVideoOverlay = theme === "video-overlay";
@@ -29,8 +36,10 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 
 <nav
   id="site-nav"
+  data-desktop-breakpoint={isGrid ? "1200" : "1024"}
   class:list={[
     "nav-shell relative z-50 w-full bg-1 transition-colors duration-150",
+    isGrid && "nav-shell--grid",
     isSurface && "nav-shell--surface",
     isBrandDark && "nav-shell--brand-dark",
     isVideoOverlay && "nav-shell--video-overlay",
@@ -43,7 +52,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     <a
       href="/"
       aria-label="Budibase home"
-      class="z-10 shrink-0 flex items-center"
+      class="nav-shell__logo z-10 shrink-0 flex items-center"
       data-astro-prefetch
     >
       <div class="relative w-[140px] flex items-center">
@@ -83,63 +92,78 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       </a>
     </div>
 
-    <div
-      class="z-10 flex items-center gap-2 justify-self-end lg:col-start-3 lg:gap-3"
-    >
-      <a
-        href="https://github.com/budibase/budibase"
-        target="_blank"
-        class="nav-github-link relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm transition-all hover:bg-stone-200 border-transparent text-xs hidden xl:flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-        ><span class="truncate"
-          ><span
-            class="flex text-sm font-normal items-center gap-0.5 nav-link transition-colors"
-            ><svg
-              class="w-5 h-5"
-              viewBox="0 0 17 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M8.5 2.22168C5.23312 2.22168 2.58496 4.87398 2.58496 8.14677C2.58496 10.7642 4.27962 12.9853 6.63026 13.7684C6.92601 13.8228 7.03366 13.6401 7.03366 13.4827C7.03366 13.3425 7.02893 12.9693 7.02597 12.4754C5.38041 12.8333 5.0332 11.681 5.0332 11.681C4.76465 10.996 4.37663 10.8139 4.37663 10.8139C3.83954 10.4471 4.41744 10.4542 4.41744 10.4542C5.01072 10.4956 5.32303 11.0647 5.32303 11.0647C5.85065 11.9697 6.70774 11.7082 7.04431 11.5568C7.09873 11.1741 7.25134 10.9132 7.42051 10.7654C6.10737 10.6157 4.72621 10.107 4.72621 7.83683C4.72621 7.19031 4.95689 6.66092 5.33486 6.24686C5.27394 6.09721 5.07105 5.49447 5.39283 4.67938C5.39283 4.67938 5.88969 4.51967 7.01947 5.28626C7.502 5.15466 7.99985 5.08763 8.5 5.08692C9.00278 5.08929 9.50851 5.15495 9.98113 5.28626C11.1103 4.51967 11.606 4.67879 11.606 4.67879C11.9289 5.49447 11.7255 6.09721 11.6651 6.24686C12.0437 6.66092 12.2732 7.19031 12.2732 7.83683C12.2732 10.1129 10.8897 10.6139 9.5724 10.7606C9.78475 10.9434 9.97344 11.3048 9.97344 11.8579C9.97344 12.6493 9.96634 13.2887 9.96634 13.4827C9.96634 13.6413 10.0728 13.8258 10.3733 13.7678C11.5512 13.3728 12.5751 12.6175 13.3003 11.6089C14.0256 10.6002 14.4155 9.38912 14.415 8.14677C14.415 4.87398 11.7663 2.22168 8.5 2.22168Z"
-                fill="currentColor"></path>
-            </svg>28.5K</span
-          ></span
-        ></a
-      >
+    {isGrid && <div class="nav-grid-spacer" aria-hidden="true" />}
 
-      <div class="hidden lg:flex items-center gap-2 whitespace-nowrap lg:gap-3">
+    <div
+      class="nav-shell__actions z-10 flex items-center gap-2 justify-self-end lg:col-start-3 lg:gap-3"
+    >
+      {
+        !isGrid && (
+          <a
+            href="https://github.com/budibase/budibase"
+            target="_blank"
+            class="nav-github-link relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm transition-all hover:bg-stone-200 border-transparent text-xs hidden xl:flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+          >
+            <span class="truncate">
+              <span class="flex text-sm font-normal items-center gap-0.5 nav-link transition-colors">
+                <svg
+                  class="w-5 h-5"
+                  viewBox="0 0 17 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M8.5 2.22168C5.23312 2.22168 2.58496 4.87398 2.58496 8.14677C2.58496 10.7642 4.27962 12.9853 6.63026 13.7684C6.92601 13.8228 7.03366 13.6401 7.03366 13.4827C7.03366 13.3425 7.02893 12.9693 7.02597 12.4754C5.38041 12.8333 5.0332 11.681 5.0332 11.681C4.76465 10.996 4.37663 10.8139 4.37663 10.8139C3.83954 10.4471 4.41744 10.4542 4.41744 10.4542C5.01072 10.4956 5.32303 11.0647 5.32303 11.0647C5.85065 11.9697 6.70774 11.7082 7.04431 11.5568C7.09873 11.1741 7.25134 10.9132 7.42051 10.7654C6.10737 10.6157 4.72621 10.107 4.72621 7.83683C4.72621 7.19031 4.95689 6.66092 5.33486 6.24686C5.27394 6.09721 5.07105 5.49447 5.39283 4.67938C5.39283 4.67938 5.88969 4.51967 7.01947 5.28626C7.502 5.15466 7.99985 5.08763 8.5 5.08692C9.00278 5.08929 9.50851 5.15495 9.98113 5.28626C11.1103 4.51967 11.606 4.67879 11.606 4.67879C11.9289 5.49447 11.7255 6.09721 11.6651 6.24686C12.0437 6.66092 12.2732 7.19031 12.2732 7.83683C12.2732 10.1129 10.8897 10.6139 9.5724 10.7606C9.78475 10.9434 9.97344 11.3048 9.97344 11.8579C9.97344 12.6493 9.96634 13.2887 9.96634 13.4827C9.96634 13.6413 10.0728 13.8258 10.3733 13.7678C11.5512 13.3728 12.5751 12.6175 13.3003 11.6089C14.0256 10.6002 14.4155 9.38912 14.415 8.14677C14.415 4.87398 11.7663 2.22168 8.5 2.22168Z"
+                    fill="currentColor"
+                  />
+                </svg>
+                28.5K
+              </span>
+            </span>
+          </a>
+        )
+      }
+
+      <div
+        class="nav-shell__account-actions hidden lg:flex items-center gap-2 whitespace-nowrap lg:gap-3"
+      >
         <a
           href="https://account.budibase.app/auth/login"
           target="_blank"
-          class="text-sm font-normal nav-link transition-colors"
+          class="nav-shell__login text-sm font-normal nav-link transition-colors"
         >
           Log in
         </a>
-        <Button
-          label="Try Budibase"
-          url="https://account.budibase.app/register"
-          variant={usesDarkControls ? "outline-on-dark" : "secondary"}
-          size="medium"
-          icon="ArrowRight"
-          iconSize="16"
-          iconPosition="end"
-          target="_blank"
-          class={!usesDarkControls
-            ? "button--cut-corner button--cut-corner-outline !gap-[16px] !pr-[16px] hover:!text-[var(--bb-olive)]"
-            : "button--cut-corner button--cut-corner-outline !gap-[16px] !pr-[16px]"}
-        />
-        <Button
-          label="Book a demo"
-          url="/contact/"
-          variant={demoVariant ??
-            (usesDarkControls ? "bright-on-dark" : "olive")}
-          size="medium"
-          icon="ArrowRight"
-          iconSize="16"
-          iconPosition="end"
-          class="button--cut-corner !gap-[16px] !pr-[16px]"
-        />
+        <div class="nav-shell__button-cell">
+          <Button
+            label="Try Budibase"
+            url="https://account.budibase.app/register"
+            variant={usesDarkControls ? "outline-on-dark" : "secondary"}
+            size="medium"
+            icon="ArrowRight"
+            iconSize="16"
+            iconPosition="end"
+            target="_blank"
+            class={!usesDarkControls
+              ? "button--cut-corner button--cut-corner-outline !gap-[16px] !pr-[16px] hover:!text-[var(--bb-olive)]"
+              : "button--cut-corner button--cut-corner-outline !gap-[16px] !pr-[16px]"}
+          />
+        </div>
+        <div class="nav-shell__button-cell">
+          <Button
+            label="Book a demo"
+            url="/contact/"
+            variant={demoVariant ??
+              (usesDarkControls ? "bright-on-dark" : "olive")}
+            size="medium"
+            icon="ArrowRight"
+            iconSize="16"
+            iconPosition="end"
+            class="button--cut-corner !gap-[16px] !pr-[16px]"
+          />
+        </div>
       </div>
 
       <button
@@ -183,7 +207,10 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 
 <div
   id="mobile-menu"
-  class="mobile-nav-overlay hidden lg:hidden"
+  class:list={[
+    "mobile-nav-overlay hidden lg:hidden",
+    isGrid && "mobile-nav-overlay--grid",
+  ]}
   aria-hidden="true"
 >
   <div id="main-menu-view" class="mobile-nav-panel">
@@ -275,13 +302,15 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
   }
 
   (function () {
+    const desktopMediaQuery = `(min-width: ${document.getElementById("site-nav")?.dataset.desktopBreakpoint ?? "1024"}px)`;
+
     function initHeaderDropdowns() {
       if (window.__budibaseHeaderDropdownsBound) return;
       window.__budibaseHeaderDropdownsBound = true;
 
       const rootSelector = "[data-header-dropdown-root]";
       const triggerSelector = "[data-header-dropdown-trigger]";
-      const desktopBreakpoint = window.matchMedia("(min-width: 1024px)");
+      const desktopBreakpoint = window.matchMedia(desktopMediaQuery);
 
       function positionDropdown(root: HTMLElement) {
         const panel = root.querySelector("[data-header-dropdown-menu]");
@@ -427,7 +456,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     const closeMenuButton = document.getElementById("close-menu-button");
     const menuIcon = document.getElementById("menu-icon");
     const closeIcon = document.getElementById("close-icon");
-    const desktopBreakpoint = window.matchMedia("(min-width: 1024px)");
+    const desktopBreakpoint = window.matchMedia(desktopMediaQuery);
     let previousBodyOverflow = "";
 
     function isMenuOpen() {
@@ -680,6 +709,192 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     .nav-shell.nav-shell--video-overlay .nav-shell__inner {
       height: 3.5rem;
       padding-inline: 0.875rem !important;
+    }
+  }
+  /* Shared full-width grid navigation. */
+  .nav-shell__button-cell {
+    display: contents;
+  }
+
+  .nav-shell.nav-shell--grid {
+    --site-nav-bar-height: 3.5rem;
+    --nav-grid-foreground: var(--bb-olive);
+    --nav-grid-divider: var(--bb-gray-200);
+    --nav-grid-hover: var(--bb-coconut);
+    --nav-grid-focus: var(--bb-olive);
+    --text-primary: var(--nav-grid-foreground);
+    background: var(--bb-white) !important;
+    border-bottom: 1px solid var(--nav-grid-divider);
+  }
+
+  .nav-shell.nav-shell--grid:is(
+      .nav-shell--brand-dark,
+      .nav-shell--immersive-overlay
+    ) {
+    --nav-grid-foreground: var(--bb-white);
+    --nav-grid-divider: var(--bb-transparent-white-200);
+    --nav-grid-hover: var(--bb-transparent-white-100);
+    --nav-grid-focus: var(--bb-lime);
+    background: var(--bb-olive) !important;
+  }
+
+  .nav-shell.nav-shell--grid.nav-shell--immersive-overlay {
+    background: transparent !important;
+  }
+
+  .nav-shell--grid :global([data-header-dropdown-trigger]),
+  .nav-shell--grid .desktop-nav-link,
+  .nav-shell--grid .nav-shell__login {
+    font-size: 0.875rem;
+  }
+
+  .nav-shell--grid :global(.header-dropdown-trigger__caret) {
+    display: none;
+  }
+
+  :global(#site-nav.nav-shell--grid .button--cut-corner) {
+    --button-min-height: 2rem;
+    height: 2rem;
+    padding-block: 0;
+    font-size: 0.875rem;
+    line-height: 1.2;
+  }
+
+  :global(#site-nav.nav-shell--grid .button__arrow-tile) {
+    padding: 2px;
+  }
+
+  :global(#site-nav.nav-shell--grid .button__arrow-frame) {
+    right: 2px;
+  }
+
+  .nav-shell--grid .nav-shell__inner {
+    max-width: none;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0;
+    align-items: stretch;
+    height: calc(var(--site-nav-bar-height) - 1px);
+    padding-inline: 0 !important;
+  }
+
+  .nav-shell--grid .nav-shell__logo {
+    padding-inline: 1.25rem;
+    border-right: 1px solid var(--nav-grid-divider);
+  }
+
+  .nav-shell--grid .nav-grid-spacer {
+    grid-column: 2;
+  }
+
+  .nav-shell--grid .nav-shell__actions {
+    grid-column: 3;
+    align-items: stretch;
+  }
+
+  .nav-shell--grid .mobile-menu-trigger {
+    display: flex;
+    width: var(--site-nav-bar-height);
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-left: 1px solid var(--nav-grid-divider);
+    border-radius: 0;
+    color: var(--nav-grid-foreground);
+  }
+
+  .nav-shell--grid .mobile-menu-trigger:hover {
+    background: var(--nav-grid-hover);
+  }
+
+  .nav-shell--grid .nav-shell__logo:focus-visible,
+  .nav-shell--grid .mobile-menu-trigger:focus-visible,
+  .nav-shell--grid .nav-shell__login:focus-visible,
+  .nav-shell--grid .desktop-nav-link:focus-visible,
+  .nav-shell--grid :global([data-header-dropdown-trigger]:focus-visible) {
+    outline: 2px solid var(--nav-grid-focus);
+    outline-offset: -4px;
+  }
+
+  @media (max-width: 767px) {
+    .nav-shell.nav-shell--grid {
+      --site-nav-bar-height: 3rem;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .nav-shell--grid [data-desktop-nav-list],
+    .nav-shell--grid .nav-shell__account-actions {
+      display: none;
+    }
+
+    .mobile-nav-overlay--grid:not(.hidden) {
+      display: block;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .nav-shell--grid .nav-shell__inner {
+      grid-template-columns:
+        auto auto auto auto auto minmax(0, 1fr)
+        auto auto auto;
+    }
+
+    .nav-shell--grid [data-desktop-nav-list],
+    .nav-shell--grid .nav-shell__actions,
+    .nav-shell--grid .nav-shell__account-actions {
+      display: contents;
+    }
+
+    .nav-shell--grid .nav-grid-spacer {
+      grid-column: auto;
+    }
+
+    .nav-shell--grid :global([data-header-dropdown-root]),
+    .nav-shell--grid .desktop-nav-link {
+      height: 100%;
+      margin-block: 0;
+      padding-block: 0;
+      border-right: 1px solid var(--nav-grid-divider);
+    }
+
+    .nav-shell--grid :global([data-header-dropdown-trigger]),
+    .nav-shell--grid .desktop-nav-link,
+    .nav-shell--grid .nav-shell__login {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+      border-radius: 0;
+      color: var(--nav-grid-foreground) !important;
+    }
+
+    .nav-shell--grid :global([data-header-dropdown-trigger]:hover),
+    .nav-shell--grid
+      :global(
+        [data-header-dropdown-root][data-open="true"]
+          [data-header-dropdown-trigger]
+      ),
+    .nav-shell--grid .desktop-nav-link:hover,
+    .nav-shell--grid .nav-shell__login:hover {
+      background: var(--nav-grid-hover);
+    }
+
+    .nav-shell--grid .nav-shell__login,
+    .nav-shell--grid .nav-shell__button-cell {
+      border-left: 1px solid var(--nav-grid-divider);
+    }
+
+    .nav-shell--grid .nav-shell__button-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .nav-shell--grid .mobile-menu-trigger,
+    .mobile-nav-overlay--grid {
+      display: none;
     }
   }
 </style>

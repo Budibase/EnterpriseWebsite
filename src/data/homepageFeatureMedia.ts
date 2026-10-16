@@ -2,9 +2,21 @@ import PostgresLogo from "@assets/logos/Postgres.svg?url";
 import MySQLLogo from "@assets/logos/MYSQL.svg?url";
 import MSSQLLogo from "@assets/logos/MSSQL.svg?url";
 import SAPLogo from "@assets/logos/SAP.svg?url";
+import SharePointLogo from "@assets/logos/microsoft-sharepoint.svg?url";
+import JiraLogo from "@assets/logos/Jira.svg?url";
+import ServiceNowLogo from "@assets/logos/servicenow.svg?url";
+import RestApiLogo from "@assets/logos/rest-api.svg?url";
 
 // Shared feature visuals used by the homepage and product landing pages.
 export const homepageFeatureMedia = {
+  apis: {
+    mediaBadges: [
+      { label: "SharePoint", icon: SharePointLogo },
+      { label: "Jira", icon: JiraLogo },
+      { label: "ServiceNow", icon: ServiceNowLogo },
+      { label: "Custom REST API", icon: RestApiLogo },
+    ],
+  },
   agents: {
     mediaScene: {
       type: "agent",

@@ -1,0 +1,54 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import ProductDemoFrame from "@components/ProductDemoFrame.astro";
+import ProductMarketplaceSection from "@components/ProductMarketplaceSection.astro";
+import OperationsCenterDemo from "@components/demos/OperationsCenterDemo.astro";
+import HumanApprovalsDemo from "@components/demos/HumanApprovalsDemo.astro";
+import OperationsCenterVisual from "./OperationsCenterVisual.astro";
+import {
+  operationsCenterLandingPage,
+  operationsCenterFaqs,
+} from "../../../data/operationsCenterLandingPage";
+const media = [
+  { mediaDemo: HumanApprovalsDemo },
+  {
+    mediaDemo: OperationsCenterVisual,
+    mediaDemoProps: { variant: "branding" },
+  },
+  { mediaDemo: OperationsCenterVisual, mediaDemoProps: { variant: "devices" } },
+];
+const cards = operationsCenterLandingPage.cardCluster.cards.map(
+  (card, index) => ({ ...card, ...media[index] }),
+);
+---
+
+<GridLandingPage
+  slug="operations-center"
+  content={operationsCenterLandingPage}
+  {cards}
+  faqs={operationsCenterFaqs}
+  heroLayout="stacked"
+  heroAspectRatio="auto"
+>
+  <ProductDemoFrame slot="hero-media"
+    ><OperationsCenterVisual variant="overview" /></ProductDemoFrame
+  >
+  <OperationsCenterVisual slot="feature-0" variant="apps" />
+  <div
+    slot="feature-1"
+    class="operations-requests-preview"
+    role="img"
+    aria-label="Operations center showing personal requests and their progress"
+  >
+    <OperationsCenterDemo />
+  </div>
+  <ProductMarketplaceSection slot="before-faq" idPrefix="operations-center" />
+</GridLandingPage>
+<style>
+  .operations-requests-preview {
+    width: 100%;
+    max-width: 34rem;
+    min-height: 19rem;
+    border: 1px solid var(--bb-border-base);
+  }
+</style>

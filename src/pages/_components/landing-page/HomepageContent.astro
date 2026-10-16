@@ -40,7 +40,11 @@ import Divider from "@components/ui/Divider.astro";
     overflow-x: clip;
   }
 
-  :global(body .nav-shell.nav-shell--immersive-overlay .nav-shell__inner) {
+  :global(
+    body
+      .nav-shell.nav-shell--immersive-overlay:not(.nav-shell--grid)
+      .nav-shell__inner
+  ) {
     max-width: var(--site-container-max) !important;
   }
 

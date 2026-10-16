@@ -25,17 +25,17 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
             style="display: grid; grid-template-columns: repeat(3, 24px); grid-template-rows: 24px; gap: 0; flex: 0 0 72px;"
           >
             <span
-              style="--brand-shape-background: var(--bb-tangerine); --brand-shape-foreground: var(--bb-rust);"
+              style="--brand-shape-background: var(--homepage-accent-orange); --brand-shape-foreground: var(--homepage-accent-umber);"
             >
               <PlatformGroupMark group="Automate" size={24} />
             </span>
             <span
-              style="--brand-shape-background: var(--bb-cloud); --brand-shape-foreground: var(--bb-navy);"
+              style="--brand-shape-background: var(--homepage-accent-cyan); --brand-shape-foreground: var(--homepage-accent-petrol);"
             >
               <PlatformGroupMark group="Interact" size={24} />
             </span>
             <span
-              style="--brand-shape-background: var(--bb-lime); --brand-shape-foreground: var(--bb-olive);"
+              style="--brand-shape-background: var(--homepage-accent-violet); --brand-shape-foreground: var(--homepage-accent-plum);"
             >
               <PlatformGroupMark group="Govern" size={24} />
             </span>
@@ -85,6 +85,13 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
 
 <style>
   .homepage-hero {
+    /* Scoped accent trial for the announcement artwork. */
+    --homepage-accent-orange: #ff5e00;
+    --homepage-accent-umber: #38271c;
+    --homepage-accent-cyan: #20dff0;
+    --homepage-accent-petrol: #233438;
+    --homepage-accent-violet: #b89aff;
+    --homepage-accent-plum: #2e2b35;
     --homepage-site-gutter: max(
       var(--site-content-inset),
       calc((100vw - var(--site-container-max)) / 2 + var(--site-content-inset))
@@ -103,7 +110,10 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
     display: flex;
     min-width: 0;
     align-items: stretch;
-    padding: calc(var(--site-nav-height) + clamp(2rem, 4vh, 3rem))
+    padding: calc(
+        var(--homepage-hero-nav-offset, var(--site-nav-height)) +
+          clamp(2rem, 4vh, 3rem)
+      )
       clamp(1rem, 2vw, 2rem) clamp(3.5rem, 7vh, 5rem)
       var(--homepage-site-gutter);
     background: var(--homepage-hero-background);
@@ -260,7 +270,10 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
 
     .homepage-hero__copy-panel {
       min-height: clamp(30.5rem, calc(58svh + 2.5rem), 36.5rem);
-      padding: calc(var(--site-nav-height) + clamp(2rem, 5vw, 3rem))
+      padding: calc(
+          var(--homepage-hero-nav-offset, var(--site-nav-height)) +
+            clamp(2rem, 5vw, 3rem)
+        )
         var(--site-content-inset) 6rem;
     }
 
@@ -294,7 +307,9 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
 
     .homepage-hero__copy-panel {
       min-height: 0;
-      padding-top: calc(var(--site-nav-height) + 2rem);
+      padding-top: calc(
+        var(--homepage-hero-nav-offset, var(--site-nav-height)) + 2rem
+      );
       padding-bottom: 5rem;
     }
 

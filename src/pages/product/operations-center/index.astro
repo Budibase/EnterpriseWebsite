@@ -1,0 +1,35 @@
+---
+export const prerender = false;
+import Layout from "../../../layouts/MainLayout.astro";
+import OperationsCenterLandingPage from "../_components/OperationsCenterLandingPage.astro";
+import {
+  operationsCenterLandingPage,
+  operationsCenterFaqs,
+} from "../../../data/operationsCenterLandingPage";
+import { productLandingMarkdown } from "../../../data/productLandingMarkdown";
+
+const accept = Astro.request.headers.get("accept") ?? "";
+Astro.response.headers.set("Vary", "Accept");
+if (accept.includes("text/markdown")) {
+  return new Response(
+    await productLandingMarkdown(
+      operationsCenterLandingPage,
+      operationsCenterFaqs,
+    ),
+    {
+      headers: {
+        "Content-Type": "text/markdown; charset=utf-8",
+        Vary: "Accept",
+      },
+    },
+  );
+}
+---
+
+<Layout
+  title={operationsCenterLandingPage.title}
+  description={operationsCenterLandingPage.metaDescription}
+  navTheme="default"
+>
+  <OperationsCenterLandingPage />
+</Layout>

@@ -1,0 +1,50 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import ProductDemoFrame from "@components/ProductDemoFrame.astro";
+import ProductMarketplaceSection from "@components/ProductMarketplaceSection.astro";
+import OnePlatformAgent from "@components/OnePlatformAgent.astro";
+import OperationsCenterDemo from "@components/demos/OperationsCenterDemo.astro";
+import ChatChannelDemo from "./ChatChannelDemo.astro";
+import KnowledgeVisual from "./KnowledgeVisual.astro";
+import ChatAccessVisual from "./ChatAccessVisual.astro";
+import KnowledgeAssistantDemo from "../../_components/landing-page/KnowledgeAssistantDemo.astro";
+import {
+  chatWithAgentsLandingPage,
+  chatWithAgentsFaqs,
+} from "../../../data/chatWithAgentsLandingPage";
+const media = [
+  { mediaDemo: KnowledgeVisual, mediaDemoProps: { variant: "sources" } },
+  { mediaDemo: ChatAccessVisual },
+  { mediaDemo: OperationsCenterDemo, mediaDemoProps: { compact: true } },
+];
+const cards = chatWithAgentsLandingPage.cardCluster.cards.map(
+  (card, index) => ({ ...card, ...media[index] }),
+);
+---
+
+<GridLandingPage
+  slug="chat-with-agents"
+  content={chatWithAgentsLandingPage}
+  {cards}
+  faqs={chatWithAgentsFaqs}
+  heroLayout="stacked"
+  heroAspectRatio="auto"
+>
+  <ProductDemoFrame slot="hero-media" background="olive">
+    <div role="img" aria-label={chatWithAgentsLandingPage.hero.imageAlt}>
+      <KnowledgeAssistantDemo />
+    </div>
+  </ProductDemoFrame>
+  <div slot="feature-0" class="chat-request-preview">
+    <OnePlatformAgent embedded />
+  </div>
+  <ChatChannelDemo slot="feature-1" variant="alerts" />
+  <ProductMarketplaceSection slot="before-faq" idPrefix="chat-with-agents" />
+</GridLandingPage>
+<style>
+  .chat-request-preview {
+    width: 100%;
+    max-width: 34rem;
+    aspect-ratio: 4 / 3;
+  }
+</style>

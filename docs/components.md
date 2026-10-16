@@ -48,9 +48,25 @@ Use `src/layouts/MainLayout.astro` for navigation, document metadata, global
 styles, and the footer. Do not create page-specific copies of the site shell.
 Its optional `navLogoSrc` and `navDemoVariant="lime"` props let a page
 provide a logo and select the lime demo button in desktop and mobile
-navigation. Dark and light nav themes share the same container width, horizontal
-insets and bar height: 80px on tablet/desktop, 64px below 768px. Keep theme
-changes to color/position so navigation elements do not shift between pages.
+navigation. MainLayout and Nav default to the full-width grid: 56px tall on
+tablet/desktop and 48px below 768px, with 14px top-level labels and button text,
+32px desktop buttons, separate link/action cells, no dropdown carets, and no
+GitHub counter. The grid switches to the mobile accordion menu below 1200px.
+Light pages use white with Olive controls. The homepage retains its transparent
+overlay, white links, Lime logo/demo action and white secondary action. Geometry
+stays consistent across themes. Shared navigation-height tokens match the grid
+before JavaScript measures the rendered height.
+
+Arrow tiles are 20px, inset 6px vertically and 8px from the right inside the
+32px buttons, keeping the icon notch clear of the outer button notch. The
+homepage retains the hero's overlay-nav spacing. Former `/homepage-nav/` and
+`/pricing-nav/` previews redirect to their adopted pages.
+
+`src/components/NavLegacy.astro` preserves the previous navigation as a separate
+component, including the GitHub counter, dropdown carets, 1024px mobile breakpoint,
+80px desktop/64px mobile bar and 38px desktop buttons. Import it in place of Nav
+when needed; do not render both headers together because they share element IDs
+and interaction handlers. It continues to use the shared menu data and buttons.
 
 `src/data/brandAssets.ts` owns the shared lime logo used by the homepage
 navigation and global footer. The footer uses Olive with Lime
@@ -87,7 +103,7 @@ sentence-case labels and compact product-interface sizing. Do not import
   the shared Lime hover and pressed tokens. All action labels use uppercase
   Stack Sans Text at weight 500. Regular right/up-right arrows resolve to their
   bold Phosphor variants; other icon choices retain their existing behavior.
-  Desktop nav buttons are 38px tall with 16px arrows; mobile targets remain 44px.
+  Desktop nav buttons are 32px tall with 16px arrows; mobile menu targets remain at least 44px.
   Trailing right/up-right arrows sit in a
   small tile with a 4px top-right notch: Olive with Coconut arrows, or
   white with Olive arrows on Olive buttons. The tile has equal top, bottom and right insets,
@@ -189,8 +205,10 @@ the palette. Keep the default decorative treatment beside visible text; use
 `decorative={false}` and a label when the shape conveys information on its own.
 The default shape palette uses `--bb-olive-1300` for backgrounds and
 `--bb-lime` (`#A5FF00`) for foreground fills and outlines.
-The homepage announcement overrides this pair with Tangerine/Rust, Cloud/Navy,
-and Lime/Olive.
+The homepage announcement currently trials bright backgrounds with dark shapes:
+Orange (`#FF5E00`)/Umber (`#38271C`), Cyan (`#20DFF0`)/Petrol (`#233438`), and
+Violet (`#B89AFF`)/muted Plum (`#2E2B35`). Keep these overrides scoped to `HomepageHero` while
+the palette is being reviewed.
 Pass `inverted` to `BrandShape` or `PlatformGroupMark` to swap the background
 and foreground colors, including any custom palette overrides. For example:
 `<BrandShape name="four-point-spark" size={32} inverted />`.
@@ -256,8 +274,7 @@ this treatment consistent across both shared landing-page compositions.
 
 - Use `src/components/ProductPageLayout.astro` for product pages with bespoke
   body content and the standard compact product header.
-- Use `ProductLandingPage.astro` for Automations and Functions until
-  their individual layout migrations.
+- Use `ProductLandingPage.astro` for Functions until its layout migration.
   It combines `HeroLarge` with the canonical `ProductDetailBody` composition.
 - Use `GridLandingPage.astro` for the approved compact lined landing-page
   template: split hero, olive/lime block background, outlined logo
@@ -280,6 +297,21 @@ this treatment consistent across both shared landing-page compositions.
   for requests, and `ApprovalVisual` for deterministic approval conditions and
   policies. Secondary cards use existing model, tool, and channel logos.
   `agentsLandingPage.ts` supplies the HTML and negotiated Markdown copy.
+- Automations, Chat with agents, and Operations center use the same stacked
+  `GridLandingPage` composition with `ProductDemoFrame`, customer logos, two
+  main benefits, three cards, the shared marketplace showcase, and FAQs.
+  Their page adapters live in `product/_components/`. Automations reuses
+  `AutomationDemo` and the homepage Human approvals, API, and Function visuals.
+  `homepageFeatureMedia.apis` owns the shared API logo configuration.
+  Chat with agents reuses the homepage solution's `KnowledgeAssistantDemo` in its hero.
+  `ChatChannelDemo` illustrates channel alerts; `ChatAccessVisual`
+  shows channel members linked to Budibase identities and tool role requirements.
+  `OperationsCenterVisual` illustrates the app directory, branding, and mobile
+  experience alongside the existing request and approval demos.
+  These illustrative interfaces use example process data, not customer evidence.
+  New pages use `productLandingMarkdown.ts` to keep negotiated Markdown aligned
+  with their page data. Dedicated routes are `/product/chat-with-agents/` and
+  `/product/operations-center/`; `/product/requests/` remains Human approvals.
 - `product/_components/AIModelsLandingPage.astro` is the reference adapter. It
   supplies the AI providers, process panel, screenshot crop, FAQs, and three
   homepage card scenes; the shared template owns layout and spacing.
