@@ -6,16 +6,21 @@ import Icon from "@components/Icon.astro";
 import {
   productMarketplaceIntro,
   getProductMarketplaceCards,
+  type MarketplaceSelection,
 } from "../data/productMarketplace";
 
 interface Props {
   idPrefix: string;
   description?: string;
+  listings?: MarketplaceSelection;
 }
-const { idPrefix, description = productMarketplaceIntro.description } =
-  Astro.props;
+const {
+  idPrefix,
+  description = productMarketplaceIntro.description,
+  listings,
+} = Astro.props;
 const titleId = `${idPrefix}-marketplace-title`;
-const cards = await getProductMarketplaceCards();
+const cards = await getProductMarketplaceCards(listings);
 ---
 
 <section class="product-marketplace" aria-labelledby={titleId}>
@@ -115,6 +120,23 @@ const cards = await getProductMarketplaceCards();
                 loading="lazy"
               />
             )}
+            {card.preview === "template" && (
+              <div class="marketplace-mini-panel marketplace-mini-template">
+                <div class="marketplace-mini-heading">
+                  <Icon name="GitFork" size="18" />
+                  <span>Workflow template</span>
+                </div>
+                {card.steps?.map((step, index) => (
+                  <div class="marketplace-mini-row">
+                    <span class="marketplace-mini-step">{index + 1}</span>
+                    <span>{step}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {card.preview === "plugin" && (
+              <Icon name="PlugsConnected" size="56" />
+            )}
           </div>
         </Card>
       ))
@@ -123,6 +145,20 @@ const cards = await getProductMarketplaceCards();
 </section>
 
 <style>
+  .marketplace-mini-template .marketplace-mini-row {
+    justify-content: flex-start;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+  }
+  .marketplace-mini-step {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--bb-coconut);
+    border: 1px solid var(--bb-border-base);
+  }
   .product-marketplace {
     border-bottom: 1px solid var(--bb-border-base);
   }

@@ -10,19 +10,19 @@ import {
 export function getStaticPaths() {
   return solutionSlugs.map((slug) => ({
     params: { slug },
-    props: { content: solutionLandingPages[slug] },
+    props: { slug, content: solutionLandingPages[slug] },
   }));
 }
 
-const { content } = Astro.props as { content: SolutionLandingContent };
+const { slug, content } = Astro.props as {
+  slug: string;
+  content: SolutionLandingContent;
+};
 ---
 
 <Layout
   rawTitle={`${content.title} | Budibase`}
   description={content.metaDescription}
 >
-  <SolutionLandingPage
-    content={content}
-    proofStyle={content.proofStyle ?? "homepage"}
-  />
+  <SolutionLandingPage {slug} {content} />
 </Layout>

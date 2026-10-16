@@ -627,7 +627,9 @@ capabilities. Conservative styling alone is not evidence of maturity.
 ### Typography
 
 - Use self-hosted **Stack Sans Notch** for page titles, H1s, and the large
-  closing CTA actions. These display statements remain uppercase at weight `700`.
+  closing CTA actions. These display statements remain uppercase at weight `700`,
+  except the Start Building closing action, which uses `500` and no decorative
+  block mosaic.
 - Use **Stack Sans Text** for H2–H6 headings, section and card titles, labels,
   buttons, body copy, navigation, descriptions, technical values, and product
   interfaces. The large closing CTA actions use Notch; keep supporting headings
@@ -681,6 +683,17 @@ capabilities. Conservative styling alone is not evidence of maturity.
   same lined feature-page style with a vertical hero: centered title,
   description and actions above a wide visual, without flanking layout columns.
   Follow with customer logos, two main benefits, three secondary cards, and FAQ.
+- Solution pages and Enterprise use the same compact lined platform template:
+  vertical demonstration-led heroes for use cases, split heroes for industries
+  and Enterprise, outlined customer logos, two main benefits, three supporting
+  cards, four marketplace cards, bordered FAQs, and the shared closing actions.
+  Use existing operational demos and Olive surrounds for vertical heroes.
+  Industry heroes use the existing industry photo behind their operational
+  demos; keep product interfaces legible and the photo decorative. Enterprise
+  retains its existing demo surround.
+  Keep the logo row generic; do not imply industry-specific customer endorsement
+  or partner specialization. Replace separate proof grids and generic photography
+  with relevant product workflows and controls.
 - Balance major brand statements with denser product, architecture, and
   evidence sections.
 - Use rounded cards and pills only where they have a functional reason. Avoid a
@@ -690,6 +703,8 @@ capabilities. Conservative styling alone is not evidence of maturity.
 - Give desktop and mobile navigation dropdown links uniform olive-1000 8px
   square lights. Place decorative geometric marks alongside column headings
   using olive-1300 backgrounds and lime foregrounds.
+  Apply the same square link lights and uppercase group labels to Explore the
+  platform navigation on product and platform pages.
 - Place a shared 32px geometric shape opposite each pricing plan title:
   community foundation for Community, enterprise framework for Enterprise,
   and cloud current for Cloud. Use the inverted lime/olive-1300 palette.
@@ -827,7 +842,8 @@ URLs. Public partner listings must use approved profiles rather than examples.
 When a partner has no verified logo, use a decorative 42px square of nine
 touching blocks in a 3 × 3 grid, using existing Budibase color tokens.
 
-The Marketplace homepage opens with an olive welcome banner, sentence-case
+Marketplace pages use a Coconut title and secondary-navigation header with Olive
+text. The Marketplace homepage has an olive welcome banner, sentence-case
 Stack Sans Text, and light text. A static mosaic of three touching columns of varied
 rectangular blocks sits on the right, emphasizing Cloud, Zen, and Navy blues
 with restrained Lime and Olive, yellow, sand, and coral accents. Keep the desktop banner
@@ -920,6 +936,34 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 ## Decision log
 
 ### 16 October 2026
+
+- Added the existing industry photo as the hero demo backdrop on Public sector,
+  Finance, Utilities, and Manufacturing. Kept operational demos in front of the
+  photo and retained the existing use-case and Enterprise surrounds.
+
+- Aligned all eight solution pages and Enterprise with `GridLandingPage` through
+  the existing solution adapter. Retained their URLs, metadata, and two main
+  narratives; added three supporting benefits, five FAQs, and three relevant
+  existing templates plus the Teiva Systems partner listing per page.
+- Kept marketplace product-page defaults unchanged while enabling explicit
+  four-listing selections and generic previews derived from template content.
+
+- Matched Explore the platform navigation to the Platform dropdown with
+  uppercase group labels and Olive-1000 square lights in place of link icons.
+
+- Set the Marketplace title and secondary-navigation header to Coconut with
+  Olive text. Start Building retains its Graphite background and lighter label.
+
+- Removed the block mosaic from the Start Building closing CTA and reduced
+  its label to Stack Sans Notch `500`. Retained the demo action at `700`.
+
+- Restored the Lime/Olive Marketplace header after comparing it with Orange.
+
+- Trialled vivid Orange (`#FF5E00`) with Graphite text for the Marketplace
+  header after the Lime version. Keep the orange override local to this layout.
+
+- Set the shared Marketplace title and secondary-navigation header to Lime
+  with Olive text, retaining its existing layout and welcome banner.
 
 - Adopted the compact full-width grid navigation site-wide after the homepage
   and pricing trials. Kept the homepage's transparent/Lime treatment and white

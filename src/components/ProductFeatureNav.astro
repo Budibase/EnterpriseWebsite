@@ -1,5 +1,5 @@
 ---
-import Icon from "@components/Icon.astro";
+import NavStatusLight from "@components/ui/NavStatusLight.astro";
 import PlatformGroupMark from "@components/ui/PlatformGroupMark.astro";
 import Link from "@components/Link.astro";
 import TitleBlock from "@components/TitleBlock.astro";
@@ -62,15 +62,9 @@ const currentItem = items.find(
                         ariaCurrent={isCurrent ? "page" : undefined}
                         prefetch={item.prefetch}
                       >
-                        {item.icon && (
-                          <span
-                            slot="leading"
-                            class="product-feature-nav__icon"
-                            aria-hidden="true"
-                          >
-                            <Icon name={item.icon} size="16" weight="fill" />
-                          </span>
-                        )}
+                        <Fragment slot="leading">
+                          <NavStatusLight />
+                        </Fragment>
                         {item.badge && <FeatureBadge label={item.badge} />}
                       </Link>
                     </li>
@@ -95,9 +89,9 @@ const currentItem = items.find(
                 currentPath === normalizePath(item.href) ? "page" : undefined
               }
             >
-              <span aria-hidden="true">
-                <Icon name="ArrowRight" size="16" />
-              </span>
+              <Fragment slot="leading">
+                <NavStatusLight />
+              </Fragment>
             </Link>
           ))
         }
@@ -154,6 +148,7 @@ const currentItem = items.find(
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1.4;
+    text-transform: uppercase;
   }
 
   .product-feature-nav__group ul {
@@ -171,21 +166,11 @@ const currentItem = items.find(
 
   :global(.product-feature-nav__link) {
     justify-content: flex-start;
+    gap: 0.5rem;
     width: 100%;
     min-width: 0;
     min-height: 44px;
     overflow-wrap: anywhere;
-  }
-
-  .product-feature-nav__icon {
-    display: inline-flex;
-    flex: 0 0 auto;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-    border-radius: 0;
-    background: var(--bb-lime);
-    color: var(--bb-olive);
   }
 
   .product-feature-nav__footer-links {
@@ -200,6 +185,7 @@ const currentItem = items.find(
 
   :global(.product-feature-nav__footer-link) {
     min-height: 44px;
+    gap: 0.5rem;
   }
 
   .product-feature-nav :global(.feature-badge) {

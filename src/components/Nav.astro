@@ -318,7 +318,8 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 
         root.style.setProperty("--dropdown-offset-x", "0px");
         // Use the layout position, independent of the opening animation.
-        const top = root.getBoundingClientRect().bottom + 8;
+        const dropdownGap = root.closest(".nav-shell--grid") ? 0 : 8;
+        const top = root.getBoundingClientRect().bottom + dropdownGap;
         root.style.setProperty(
           "--dropdown-max-height",
           `${Math.max(0, window.innerHeight - top - 16)}px`,
@@ -750,6 +751,20 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 
   .nav-shell--grid :global(.header-dropdown-trigger__caret) {
     display: none;
+  }
+
+  .nav-shell--grid :global([data-header-dropdown-menu]) {
+    top: 100%;
+  }
+
+  .nav-shell--grid :global([data-header-dropdown-menu]),
+  .nav-shell--grid
+    :global(
+      [data-header-dropdown-root][data-open="true"] [data-header-dropdown-menu]
+    ) {
+    transform: none;
+    animation: none;
+    transition: none;
   }
 
   :global(#site-nav.nav-shell--grid .button--cut-corner) {

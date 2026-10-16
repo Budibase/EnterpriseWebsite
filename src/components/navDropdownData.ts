@@ -112,18 +112,18 @@ export const platformDropdownMenu: NavDropdownMenu = {
       heading: "Interact",
       items: [
         {
-          href: "/product/chat-with-agents/",
-          label: "Chat with agents",
-          description: "Use Slack or Teams.",
-          prefetch: true,
-          icon: "ChatCircle",
-        },
-        {
           href: "/product/apps/",
           label: "Apps",
           description: "Build custom interfaces.",
           prefetch: true,
           icon: "AppWindow",
+        },
+        {
+          href: "/product/chat-with-agents/",
+          label: "Chat with agents",
+          description: "Use Slack or Teams.",
+          prefetch: true,
+          icon: "ChatCircle",
         },
         {
           href: "/product/operations-center/",
@@ -354,12 +354,6 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
           prefetch: true,
         },
         {
-          href: "https://github.com/Budibase/budibase/releases",
-          label: "Changelog",
-          target: "_blank",
-          rel: "noopener noreferrer",
-        },
-        {
           href: "https://github.com/Budibase/budibase/discussions",
           label: "Community forum",
           target: "_blank",
@@ -375,12 +369,6 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
     {
       heading: "Company",
       items: [
-        {
-          href: "https://github.com/orgs/Budibase/projects/15/views/7",
-          label: "Roadmap",
-          target: "_blank",
-          rel: "noopener noreferrer",
-        },
         {
           href: "/about/",
           label: "About",

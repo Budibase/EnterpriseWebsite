@@ -1,195 +1,47 @@
 ---
-import CTA from "@components/CTA.astro";
-import Card from "@components/cards/Card.astro";
-import SectionBlock from "@components/SectionBlock.astro";
-import FourColumnFeatureGrid from "@components/cards/FourColumnFeatureGrid.astro";
-import FeatureSection from "@components/FeatureSection.astro";
-import HeroSmall from "@components/HeroSmall.astro";
-import StatSection from "@components/StatSection.astro";
+import GridLandingPage from "@components/GridLandingPage.astro";
+import ProductDemoFrame from "@components/ProductDemoFrame.astro";
+import ProductMarketplaceSection from "@components/ProductMarketplaceSection.astro";
 import type { SolutionLandingContent } from "../data/solutionLandingPages";
-import EnterpriseSection from "../pages/_components/landing-page/EnterpriseSection.astro";
-import HomepageProofSection from "../pages/_components/landing-page/HomepageProofSection.astro";
-import HeroImage from "@assets/images/solutions/industry-hero.png?url";
-import FirstFeatureImage from "@assets/images/feature-sections/critical-operations.png?url";
-import SecondFeatureImage from "@assets/images/feature-sections/regulated-enterprises.png?url";
 
 interface Props {
+  slug: string;
   content: SolutionLandingContent;
-  proofStyle?: "compact" | "homepage" | "none";
 }
-
-const { content, proofStyle = "compact" } = Astro.props as Props;
-const usesHomepageProof = proofStyle === "homepage";
-
-const featureImages = [
-  {
-    src: FirstFeatureImage,
-    alt: "Person working on a laptop",
-  },
-  {
-    src: SecondFeatureImage,
-    alt: "Abstract landscape illustration",
-  },
-] as const;
+const { slug, content } = Astro.props;
+const HeroDemo = content.hero.media.demo;
+const featureMedia = content.features.map((feature) => ({
+  ...feature.media,
+  image: feature.media.image ?? "",
+}));
 ---
 
-<div class="solution-landing-page">
-  <div class="page-section page-section--hero">
-    <HeroSmall
-      class="hero-small--white"
-      image={content.hero.media?.image ?? HeroImage}
-      imageAlt={content.hero.media?.imageAlt ??
-        "Modern office building exterior"}
-      mediaFit={content.hero.media ? "contain" : "cover"}
-      mediaDemo={content.hero.media?.demo}
-      mediaDemoProps={content.hero.media?.demoProps}
-      badge={{
-        icon: content.hero.badgeIcon,
-        iconWeight: content.hero.badgeIconWeight,
-        label: content.hero.badgeLabel,
-        variant: "light",
-      }}
-      title={content.hero.headline}
-      subtitle={content.hero.subtitle}
-      action={{ label: "Book a demo", href: "/contact/" }}
-      logosHeading={proofStyle === "compact"
-        ? content.hero.logosHeading
-        : undefined}
-    />
+<GridLandingPage
+  slug={`solution-${slug}`}
+  {content}
+  {featureMedia}
+  heroLayout={content.heroLayout}
+  heroBackgroundImage={content.hero.backgroundImage}
+  heroAspectRatio="auto"
+  faqs={content.faqs}
+>
+  <div slot="hero-media" role="img" aria-label={content.hero.imageAlt}>
+    <ProductDemoFrame
+      background={content.hero.backgroundImage ? "transparent" : "olive"}
+    >
+      {
+        HeroDemo ? (
+          <HeroDemo {...content.hero.media.demoProps} />
+        ) : (
+          <img src={content.hero.media.image} alt="" fetchpriority="high" />
+        )
+      }
+    </ProductDemoFrame>
   </div>
-
-  {
-    usesHomepageProof && (
-      <div class="page-section solution-proof-section">
-        <HomepageProofSection />
-      </div>
-    )
-  }
-
-  {
-    content.features.map((feature, index) => (
-      <div class="page-section page-section--no-top">
-        <FeatureSection
-          variant={feature.variant}
-          image={
-            feature.media?.demo
-              ? undefined
-              : (feature.media?.image ?? featureImages[index].src)
-          }
-          imageAlt={feature.media?.imageAlt ?? featureImages[index].alt}
-          demo={feature.media?.demo}
-          demoProps={feature.media?.demoProps}
-          mediaFit={feature.media ? "contain" : "cover"}
-          headline={feature.headline}
-          body={feature.body}
-          bullets={feature.bullets}
-        />
-      </div>
-    ))
-  }
-
-  {
-    proofStyle === "compact" && (
-      <div class="page-section page-section--no-top">
-        <StatSection variant="olive" />
-      </div>
-    )
-  }
-
-  {
-    content.examples && (
-      <div class="page-section page-section--no-top">
-        <div class="solution-examples">
-          <SectionBlock
-            title="Start with a working example"
-            description="Explore these configurable starting points from the Marketplace. Adapt the data, integrations, and approval rules to your organisation."
-            maxWidth="3xl"
-          >
-            <div class="solution-examples__grid">
-              {content.examples.map((example) => (
-                <Card
-                  label={example.title}
-                  description={example.description}
-                  linkUrl={example.link}
-                  openInNewTab={false}
-                  linkAppearance="quiet"
-                />
-              ))}
-            </div>
-          </SectionBlock>
-        </div>
-      </div>
-    )
-  }
-
-  <div class="page-section page-section--no-top">
-    {
-      content.examples ? (
-        <FourColumnFeatureGrid
-          title="Keep control with IT."
-          subtitle="Build each workflow around your organisation’s requirements."
-          features={[
-            {
-              iconName: "ShieldCheck",
-              title: "Control access",
-              description:
-                "Apply platform roles and permissions to the apps and data your teams use.",
-            },
-            {
-              iconName: "UserSwitch",
-              title: "Require human decisions",
-              description:
-                "Add approval steps where access, exceptions, or consequential actions need review.",
-            },
-            {
-              iconName: "CloudCheck",
-              title: "Choose your deployment",
-              description:
-                "Run in Budibase Cloud or self-host within your own infrastructure.",
-            },
-            {
-              iconName: "PlugsConnected",
-              title: "Work with your systems",
-              description:
-                "Connect existing databases and APIs while IT manages credentials and permitted actions.",
-            },
-          ]}
-        />
-      ) : (
-        <EnterpriseSection variant="security" />
-      )
-    }
-  </div>
-
-  <div class="page-section page-section--no-top">
-    <CTA />
-  </div>
-</div>
-
-<style>
-  .solution-examples {
-    width: min(
-      calc(100% - 2 * var(--site-content-inset)),
-      var(--site-container-max)
-    );
-    margin-inline: auto;
-  }
-  .solution-examples__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
-  }
-  .solution-examples__grid :global(.card-link),
-  .solution-examples__grid :global(.card) {
-    height: 100%;
-  }
-  @media (min-width: 768px) {
-    .solution-examples__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  .solution-proof-section {
-    background: var(--bb-background-base);
-  }
-</style>
+  <ProductMarketplaceSection
+    slot="before-faq"
+    idPrefix={`solution-${slug}`}
+    description="Start with a workflow template, adapt it to your systems and controls, or explore the Budibase partner network for delivery support."
+    listings={content.marketplace}
+  />
+</GridLandingPage>

@@ -1,6 +1,6 @@
 ---
 interface Props {
-  background?: "lime" | "olive";
+  background?: "lime" | "olive" | "transparent";
 }
 const { background = "lime" } = Astro.props;
 ---
@@ -9,6 +9,7 @@ const { background = "lime" } = Astro.props;
   class:list={[
     "product-demo-frame",
     background === "olive" && "product-demo-frame--olive",
+    background === "transparent" && "product-demo-frame--transparent",
   ]}
 >
   <slot />
@@ -23,5 +24,8 @@ const { background = "lime" } = Astro.props;
   }
   .product-demo-frame--olive {
     background: var(--bb-olive);
+  }
+  .product-demo-frame--transparent {
+    background: transparent;
   }
 </style>

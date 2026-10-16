@@ -24,6 +24,9 @@ illustrations use the named accent pairs from `global.css`; pale fills mix
 10% or 20% of their light accent with Coconut. Reuse the shared interaction,
 border, and text tokens, and keep text contrast at WCAG AA.
 
+The hero shares the navigation's bottom border as its top edge; do not add a
+second top border. Retain its side and bottom borders for the lined grid.
+
 The hero adds 60px of vertical breathing room across desktop and stacked
 layouts, with content-driven height.
 For media-led product pages, `heroLayout="stacked"` centers the copy and
@@ -53,9 +56,40 @@ AI-specific and stays in that adapter; other screenshots render uncropped.
 Use the optional `before-faq` slot for an additional page-owned section, such as
 the shared product marketplace showcase. Omitting it leaves the standard layout unchanged.
 
-Content remains in `src/data/platformLandingPages.ts`. Keep visual assets,
+Platform content remains in `src/data/platformLandingPages.ts`. Keep visual assets,
 demo configuration, FAQ answers, and custom media styling in the page adapter.
 Do not copy the template or reuse AI model claims on unrelated pages.
+
+## Solution-page adapter
+
+`SolutionLandingPage.astro` adapts this same template for eight `/solutions/`
+pages and `/enterprise/`. Its required `slug` comes from either route entry
+point and prefixes heading and accordion IDs with `solution-`.
+
+Use cases (Requests and approvals, Case management, Data collection and review,
+and Knowledge assistants) use stacked heroes and Olive `ProductDemoFrame`
+surrounds. Public sector, Finance, Utilities, Manufacturing, and Enterprise use
+split heroes. Public sector, Finance, Utilities, and Manufacturing set
+`hero.backgroundImage` to the existing industry photo, shown as a decorative
+cover backdrop behind the hero demo. The shared adapter passes this through
+`heroBackgroundImage` and uses a transparent demo frame. Enterprise and use-case
+surrounds retain their existing treatment. Industry feature rows pair the
+corresponding demo with resource permissions.
+
+`solutionLandingPages.ts` and `useCaseLandingPages.ts` supply each page's hero
+orientation and media, two main benefits, exactly three supporting cards,
+four marketplace listing references, and five FAQs. Preserve route metadata
+and the two main narratives when changing presentation. The complete order is
+hero, outlined customer logos, two benefits, three supporting cards, marketplace,
+bordered FAQs, shared CTA, and platform navigation.
+
+`ProductMarketplaceSection` accepts `listings`, a four-item tuple of existing
+`template`, `plugin`, or `partner` references. Template and partner IDs are
+content-entry IDs; plugin IDs are existing listing names. Omission retains the
+product-page defaults. Listings resolve centrally and missing entries fail the
+build. Generic template previews use their first three workflow step titles.
+Solution pages select three relevant templates and the existing Teiva Systems
+listing, without implying industry specialization.
 
 ## Adoption example
 

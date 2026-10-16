@@ -18,6 +18,7 @@ interface Props {
   slug: string;
   content: PlatformLandingContent;
   heroImage?: string;
+  heroBackgroundImage?: string;
   heroAspectRatio?: string;
   heroLayout?: "split" | "stacked";
   featureMedia?: readonly ProductDetailMedia[];
@@ -32,6 +33,7 @@ const {
   slug,
   content,
   heroImage,
+  heroBackgroundImage,
   heroAspectRatio = "2760 / 1710",
   heroLayout = "split",
   featureMedia = [],
@@ -78,10 +80,29 @@ const columns = content.cardCluster.columns ?? 3;
         />
       </div>
     </div>
-    <div class="grid-landing-hero-media">
-      <div class="grid-landing-hero-blocks" aria-hidden="true">
-        {[0, 8, 16, 24].map((step) => <span style={`--step: ${step}%`} />)}
-      </div>
+    <div
+      class:list={[
+        "grid-landing-hero-media",
+        heroBackgroundImage && "grid-landing-hero-media--photo",
+      ]}
+    >
+      {
+        heroBackgroundImage ? (
+          <img
+            class="grid-landing-hero-backdrop"
+            src={heroBackgroundImage}
+            alt=""
+            aria-hidden="true"
+            fetchpriority="high"
+          />
+        ) : (
+          <div class="grid-landing-hero-blocks" aria-hidden="true">
+            {[0, 8, 16, 24].map((step) => (
+              <span style={`--step: ${step}%`} />
+            ))}
+          </div>
+        )
+      }
       <div
         class="grid-landing-hero-preview"
         style={`aspect-ratio: ${heroAspectRatio}`}
@@ -253,7 +274,7 @@ const columns = content.cardCluster.columns ?? 3;
     max-width: var(--site-container-max);
     margin-inline: auto;
     padding: 0;
-    border-block: 1px solid var(--bb-border-base);
+    border-bottom: 1px solid var(--bb-border-base);
     border-inline: 1px solid var(--bb-border-base);
     text-align: left;
   }
@@ -319,6 +340,20 @@ const columns = content.cardCluster.columns ?? 3;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     overflow: hidden;
     pointer-events: none;
+  }
+
+  .grid-landing-hero-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+  }
+
+  .grid-landing-hero-media--photo .grid-landing-hero-preview {
+    background: transparent;
   }
 
   .grid-landing-hero-blocks span {

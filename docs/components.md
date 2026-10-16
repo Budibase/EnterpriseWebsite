@@ -52,6 +52,9 @@ navigation. MainLayout and Nav default to the full-width grid: 56px tall on
 tablet/desktop and 48px below 768px, with 14px top-level labels and button text,
 32px desktop buttons, separate link/action cells, no dropdown carets, and no
 GitHub counter. The grid switches to the mobile accordion menu below 1200px.
+Desktop dropdown top borders meet the navigation's bottom border without a gap.
+Match Camunda's immediate desktop dropdown opening/closing, without a container
+fade or slide; retain the subtle color transitions on links.
 Light pages use white with Olive controls. The homepage retains its transparent
 overlay, white links, Lime logo/demo action and white secondary action. Geometry
 stays consistent across themes. Shared navigation-height tokens match the grid
@@ -163,7 +166,8 @@ Stack Sans Text is used for
 H2–H6 headings, section/card titles, labels, buttons, body copy and navigation.
 Use weight 300 for regular copy, 400 for supporting headings, labels and
 navigation, and 500 for standard action-button labels. Closing CTA actions
-use Notch at 700.
+use Notch at 700, except Start Building at 500. Its Graphite action has no
+decorative block mosaic.
 Outside action buttons, former 500 roles use 400 and former 400 roles use 300. Keep existing
 semibold/bold emphasis and 700 hero headlines. Tailwind classes express their
 actual weights: `font-light` is 300 and `font-normal` is 400.
@@ -291,7 +295,12 @@ this treatment consistent across both shared landing-page compositions.
   `ProductMarketplaceSection.astro` adds four linked template, plugin, and partner
   cards above its FAQ through the `before-faq` slot. It is shared with Agents;
   listings resolve from `productMarketplace.ts` and existing Marketplace data.
-  Its small interface illustrations are decorative.
+  Its small interface illustrations are decorative. Pass an optional `listings`
+  tuple of exactly four `{ type, id }` references to select existing templates,
+  plugins, or partners. Omitting it preserves the product-page selection.
+  Titles, links, descriptions, and partner logos resolve from marketplace data;
+  templates without a bespoke illustration use a preview of their first three
+  workflow steps.
 - `product/_components/AgentsLandingPage.astro` uses the same stacked hero and
   lined body as Apps. It reuses `AgentDemo` without a backdrop, `OnePlatformAgent`
   for requests, and `ApprovalVisual` for deterministic approval conditions and
@@ -366,9 +375,11 @@ layout behavior from the current URL.
 - `ProductDetailBody.astro` is the shared Product and Platform body composition. It
   owns the card overview, feature sections, stats, page-section wrappers, and
   `ProductPageFooter`. Its sequence is overview, detail, proof, and next action.
-- `ProductFeatureNav.astro` reads labels, destinations, grouping, prefetch
-  behavior, and icons from the platform dropdown data so both navigation
-  surfaces stay in sync.
+- `ProductFeatureNav.astro` reads labels, destinations, grouping, and prefetch
+  behavior from the platform dropdown data so both navigation
+  surfaces stay in sync. Its Explore the platform section uses uppercase group
+  labels with geometric group marks and shared 8px Olive-1000 `NavStatusLight`
+  squares before every link, including footer links, matching the dropdown.
 - `ProductLandingPage.astro` composes `HeroLarge` with `ProductDetailBody.astro`
   for the four primary product surfaces.
 - `PlatformLandingPage.astro` composes `HeroSmall` with
@@ -378,8 +389,19 @@ layout behavior from the current URL.
   viewport and must retain a static fallback for reduced-motion and
   no-JavaScript users. Use contained media sizing when cropping would obscure
   product UI.
-- `SolutionLandingPage.astro` provides the corresponding solution-page
-  composition.
+- `SolutionLandingPage.astro` is a thin `GridLandingPage` adapter for all eight
+  `/solutions/` routes and `/enterprise/`. Both route entry points pass a unique
+  slug. Use cases have stacked heroes with Olive demo surrounds; industries and
+  Enterprise use split heroes. Industry hero demos use the existing industry
+  photo through `hero.backgroundImage`; `GridLandingPage.heroBackgroundImage`
+  replaces the decorative blocks with a cover image behind the demo, and
+  `ProductDemoFrame` uses its transparent background variant. Use cases and
+  Enterprise retain their existing surrounds. Content in `solutionLandingPages.ts` and
+  `useCaseLandingPages.ts` supplies two main benefits, three supporting cards,
+  four marketplace references, and five FAQs. The adapter uses the approved
+  outlined customer row without implying industry-specific endorsements, then
+  closes with the shared CTA and platform navigation. Do not reintroduce legacy
+  badges, standalone generic photography, separate statistics, or extra enterprise grids.
 - `FeatureSection.astro`, `StatSection.astro`, and the page-scoped
   `EnterpriseSection.astro` are the main reusable content sections.
 - `CTA.astro` is the full-width closing call to action.
@@ -394,7 +416,8 @@ layout behavior from the current URL.
 ## Marketplace directories
 
 - `MarketplaceLayout.astro` preserves the global navigation and provides the
-  Marketplace title, secondary navigation, and community links.
+  Marketplace title, secondary navigation, and community links. Its shared
+  header uses Coconut with Olive text across Marketplace pages.
 - The page-scoped `MarketplacePromotion.astro` supports the olive welcome
   banner and future image or process promotions. Configure it through
   `marketplacePromotion` in `src/data/marketplaceHomepage.ts`; `variant: "welcome"`
