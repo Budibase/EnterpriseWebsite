@@ -72,14 +72,13 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.local(),
-      name: "TikTok Sans",
-      cssVariable: "--font-tiktok-sans",
+      name: "Stack Sans Text",
+      cssVariable: "--font-stack-sans-text",
       options: {
         variants: [
           {
-            src: ["./src/assets/fonts/TikTokSans-Variable.ttf"],
-            weight: "300 900",
-            stretch: "75% 150%",
+            src: ["./public/fonts/stack-sans/StackSansText-Variable.ttf"],
+            weight: "200 700",
             style: "normal",
           },
         ],
@@ -87,13 +86,13 @@ export default defineConfig({
     },
     {
       provider: fontProviders.local(),
-      name: "TikTok Sans Condensed",
-      cssVariable: "--font-tiktok-sans-condensed",
+      name: "Stack Sans Notch",
+      cssVariable: "--font-stack-sans-notch",
       options: {
         variants: [
           {
-            src: ["./src/assets/fonts/TikTokSans-CondensedBlack.ttf"],
-            weight: 900,
+            src: ["./public/fonts/stack-sans/StackSansNotch-Variable.ttf"],
+            weight: "200 700",
             style: "normal",
           },
         ],

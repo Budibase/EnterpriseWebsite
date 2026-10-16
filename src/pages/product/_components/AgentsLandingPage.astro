@@ -1,0 +1,108 @@
+---
+import AgentDemo from "@components/AgentDemo.astro";
+import GridLandingPage from "@components/GridLandingPage.astro";
+import OnePlatformAgent from "@components/OnePlatformAgent.astro";
+import ProductMarketplaceSection from "@components/ProductMarketplaceSection.astro";
+import ApprovalVisual from "./ApprovalVisual.astro";
+import {
+  agentsLandingPage,
+  agentsFaqs,
+  agentsMarketplaceIntro,
+} from "../../../data/agentsLandingPage";
+import { marketplaceConnections } from "../../../data/marketplaceConnections";
+import SlackLogo from "@assets/logos/Slack.svg?url";
+import TeamsLogo from "@assets/logos/microsoft-teams.svg?url";
+
+function connectionBadges(names: string[]) {
+  return names.map((name) => {
+    const connection = marketplaceConnections.find(
+      (item) => item.name === name,
+    );
+    if (!connection) throw new Error(`Missing agent connection: ${name}`);
+    return {
+      label: name === "Google" ? "Gemini" : name,
+      icon: connection.logo,
+    };
+  });
+}
+const media = [
+  connectionBadges(["Anthropic", "Google", "OpenAI", "Mistral"]),
+  connectionBadges(["Jira", "ServiceNow", "PostgreSQL", "GitHub"]),
+  [
+    { label: "Slack", icon: SlackLogo },
+    { label: "Microsoft Teams", icon: TeamsLogo },
+  ],
+];
+const cards = agentsLandingPage.cardCluster.cards.map((card, index) => ({
+  ...card,
+  mediaBadges: media[index],
+}));
+---
+
+<div class="agents-landing-page">
+  <GridLandingPage
+    slug="agents"
+    content={agentsLandingPage}
+    {cards}
+    faqs={agentsFaqs}
+    heroLayout="stacked"
+    heroAspectRatio="auto"
+    featureActions={[
+      undefined,
+      {
+        label: "Explore human approvals",
+        url: "/product/requests/",
+        appearance: "button",
+      },
+    ]}
+  >
+    <div slot="hero-media" class="agents-hero-media">
+      <AgentDemo showBackground={false} />
+    </div>
+    <div slot="feature-0" class="agents-request-preview">
+      <OnePlatformAgent embedded />
+    </div>
+    <ApprovalVisual slot="feature-1" variant="overview" />
+    <ProductMarketplaceSection
+      slot="before-faq"
+      idPrefix="agents"
+      description={agentsMarketplaceIntro.description}
+    />
+  </GridLandingPage>
+</div>
+
+<style>
+  .agents-hero-media {
+    padding: clamp(0.5rem, 1.5vw, 1.25rem);
+    background: var(--bb-lime);
+    text-align: left;
+  }
+  .agents-hero-media :global(.hero-demo-backdrop),
+  .agents-hero-media :global(.hero-demo-shell) {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .agents-request-preview {
+    width: 100%;
+    max-width: 34rem;
+    aspect-ratio: 4 / 3;
+  }
+  .agents-landing-page :global(.card-cluster__media-badges) {
+    gap: 0.75rem;
+    padding: 1.25rem;
+  }
+  .agents-landing-page :global(.card-cluster__media-badge) {
+    max-width: 100%;
+  }
+  @media (min-width: 768px) and (max-width: 1100px) {
+    .agents-hero-media :global(.hero-demo-content) {
+      flex-direction: row;
+    }
+    .agents-hero-media :global(.hero-demo-left) {
+      width: 55%;
+    }
+    .agents-hero-media :global(.hero-demo-right) {
+      width: 45%;
+    }
+  }
+</style>

@@ -48,13 +48,20 @@ Use `src/layouts/MainLayout.astro` for navigation, document metadata, global
 styles, and the footer. Do not create page-specific copies of the site shell.
 Its optional `navLogoSrc` and `navDemoVariant="lime"` props let a page
 provide a logo and select the lime demo button in desktop and mobile
-navigation.
+navigation. Dark and light nav themes share the same container width, horizontal
+insets and bar height: 80px on tablet/desktop, 64px below 768px. Keep theme
+changes to color/position so navigation elements do not shift between pages.
 
 `src/data/brandAssets.ts` owns the shared lime logo used by the homepage
 navigation and global footer. The footer uses Olive with Lime
 headings and Coconut links; homepage demo backdrops also use olive 1300.
 
 ### Buttons and links
+
+The website `Button` component is for marketing CTAs. Inside product demos,
+use native buttons (or anchors for navigation) with normal pill shapes,
+sentence-case labels and compact product-interface sizing. Do not import
+`Button` or apply its notches, uppercase labels or arrow tiles inside demos.
 
 - The Lime color family lives in `global.css` as `--bb-lime-100` through
   `--bb-lime-1600`. `--bb-lime` aliases lime 300 (`#A5FF00`).
@@ -66,14 +73,26 @@ headings and Coconut links; homepage demo backdrops also use olive 1300.
   All variants include a 10px top-right corner cut; outlined variants trace
   the diagonal edge automatically.
   Secondary and outline buttons use white backgrounds, dark text, and
-  `--bb-border-bold` outlines, including the cut corner. Their hover surface
+  `--bb-button-border` (grey 800) outlines, including the cut corner. Their hover surface
   uses the shared light-surface token, including on dark page sections.
 - Use `variant="lime"` for the explicit `#A5FF00` action style. The `primary`,
   `cta-on-base`, and `bright-on-dark` variants also use Lime defaults and the
-  shared olive-mixed interaction states. The homepage navigation, hero, and
+  shared olive-mixed interaction states. Primary labels use Olive. The homepage navigation, hero, and
   solutions select the explicit variant.
-- The `cta` variant uses `--bb-button-cta-background`, mapped to olive-1300,
-  with light text and olive-1400/1500 hover and pressed tokens.
+- Use `variant="olive"` for the Cloud pricing trial button and Book a demo
+  in light-page navigation. It uses Olive, Coconut text, and Olive 1400/1500
+  interaction states. The dark homepage navigation keeps its Lime demo button.
+- The `cta` and legacy `large` variants retain their APIs and now use the same
+  full-Lime treatment as other primary actions. CTA interaction aliases point to
+  the shared Lime hover and pressed tokens. All action labels use uppercase
+  Stack Sans Text at weight 500. Regular right/up-right arrows resolve to their
+  bold Phosphor variants; other icon choices retain their existing behavior.
+  Desktop nav buttons are 38px tall with 16px arrows; mobile targets remain 44px.
+  Trailing right/up-right arrows sit in a
+  small tile with a 4px top-right notch: Olive with Coconut arrows, or
+  white with Olive arrows on Olive buttons. The tile has equal top, bottom and right insets,
+  centered within a square frame at the button’s right edge. Other icons keep
+  their existing treatment.
 - Use `src/components/Link.astro` for inline or quiet links that should not look
   like buttons.
 - Use a small wrapper around `Button` when an action needs additional behavior,
@@ -99,9 +118,9 @@ copying its typography into a page.
 Shared landing-page headings use semantic size roles rather than component-
 specific values:
 
-- `heading-hero` for page and product heroes: 52–60px mobile, 52px tablet, and
-  64px desktop. Mobile heroes use `clamp(52px, calc(14vw - 4px), 60px)`; `TitleBlock`
-  uses the full semantic size, and the homepage follows the same token.
+- `heading-hero` for page and product heroes: 36–48px mobile, 52px tablet, and
+  64px desktop. Mobile heroes use `clamp(36px, 10vw, 48px)`. The split homepage
+  uses its approved fluid 36–52px desktop treatment to retain the authored lines.
 - `heading-section` for major content sections and CTAs: 30px mobile, 36px
   tablet, and 42px desktop.
 - `heading-subsection` for supporting groups and stat headings: 26px mobile,
@@ -110,23 +129,33 @@ specific values:
 
 The tokens control hierarchy through size and line height. Components retain
 their role-appropriate typeface, weight, letter spacing, and casing so the
-condensed display face remains reserved for decisive brand moments.
+notched display face remains reserved for decisive brand moments.
 
-`TitleBlock` has two variants: `hero` uses TikTok Sans Condensed Black in
-uppercase for page-level statements, while `section` uses variable TikTok Sans
+`TitleBlock` has two variants: `hero` uses Stack Sans Notch at weight 700 in
+uppercase for page-level statements, while `section` uses Stack Sans Text
 in sentence case for content sections. The `section` variant uses the semantic
-`heading-section` scale at weight 500 with natural letter spacing. Use weight
-500 and natural letter spacing for all `h2`, `h3`, and `h4` headings.
+`heading-section` scale at weight 400 with natural letter spacing. Use weight
+400 and natural letter spacing for all `h2`, `h3`, and `h4` headings.
 
 Use `--bb-text-body` for paragraphs and descriptive copy on light surfaces. It
 maps to Graphite. Keep headings on their role-specific heading or
 brand token, and use the appropriate `--bb-text-on-base*` token on dark
 surfaces.
 
-Use the `technical-identifier` class for identifiers that benefit from clearly
-distinguished `I`, `l`, and `0` glyphs. It enables TikTok Sans stylistic set
-`ss06` alongside tabular numerals and a slashed zero. Do not enable stylistic
-sets globally for ordinary marketing copy.
+Use Stack Sans Notch for page titles, H1s, and the large closing CTA actions.
+Stack Sans Text is used for
+H2–H6 headings, section/card titles, labels, buttons, body copy and navigation.
+Use weight 300 for regular copy, 400 for supporting headings, labels and
+navigation, and 500 for standard action-button labels. Closing CTA actions
+use Notch at 700.
+Outside action buttons, former 500 roles use 400 and former 400 roles use 300. Keep existing
+semibold/bold emphasis and 700 hero headlines. Tailwind classes express their
+actual weights: `font-light` is 300 and `font-normal` is 400.
+Use `--font-display-sans` for page titles and `--font-heading-sans` for
+supporting headings. Use `--font-label` or `brand-label` for labels. The latter
+two roles resolve to Text, including named label/title classes across demos.
+Use `technical-identifier` for tabular numerals and a slashed zero. Do not carry
+over stylistic-set requests from a previous font.
 
 ### Cards
 
@@ -134,6 +163,8 @@ sets globally for ordinary marketing copy.
 - Use `src/components/cards/CardCluster.astro` for a responsive collection of
   simple cards supplied as data. `CardCluster` controls the grid; it is not an
   alternative implementation of `Card`.
+  The homepage platform section adds a 5px top-right notch to its card arrows,
+  including the diagonal outline. Keep this treatment scoped to that section.
 - Use `src/components/cards/FourColumnFeatureGrid.astro` for its specific
   feature-grid presentation.
 
@@ -193,6 +224,14 @@ Olive/Lime pair. Decorative mosaics use the named supporting accents.
 
 ### Heroes
 
+Platform/product landing-page hero and feature buttons use trailing bold arrow
+tiles through `Button`, including both Book a demo and Try Budibase. The large
+closing CTA actions use the same notched, contrasting arrow-tile treatment.
+
+- The homepage hero keeps “Make critical work” above “move faster.” The latter
+  uses a tightly padded Lime highlight, Olive text, and a 10px top-right cut.
+  Keep this page-owned treatment in `HomepageHero.astro`.
+
 - `HomepageContent.astro` owns the production homepage composition, including
   its original hero video, solution demos, product cards, and closing CTA.
 
@@ -217,7 +256,8 @@ this treatment consistent across both shared landing-page compositions.
 
 - Use `src/components/ProductPageLayout.astro` for product pages with bespoke
   body content and the standard compact product header.
-- Use `ProductLandingPage.astro` for Apps, Agents, Automations, and Functions.
+- Use `ProductLandingPage.astro` for Automations and Functions until
+  their individual layout migrations.
   It combines `HeroLarge` with the canonical `ProductDetailBody` composition.
 - Use `GridLandingPage.astro` for the approved compact lined landing-page
   template: split hero, olive/lime block background, outlined logo
@@ -225,6 +265,21 @@ this treatment consistent across both shared landing-page compositions.
   grid CTA, and product navigation. Page content, media, card scenes, feature
   links, and FAQs are supplied separately. Custom demos use named media slots.
   See [the template guide](grid-landing-page.md) for its contract and adoption.
+- `product/_components/AppsLandingPage.astro` uses `GridLandingPage` with
+  `heroLayout="stacked"`: centered title, description and actions, then media
+  spanning the full hero width. It reuses `AppDemo` without a backdrop or
+  breakout. Mobile omits the demo's builder/sidebar to keep the app in view.
+  Feature graphics are provisional; layout, copy and FAQs are shared-template
+  content. The Apps route preserves its negotiated Markdown response.
+  `ProductMarketplaceSection.astro` adds four linked template, plugin, and partner
+  cards above its FAQ through the `before-faq` slot. It is shared with Agents;
+  listings resolve from `productMarketplace.ts` and existing Marketplace data.
+  Its small interface illustrations are decorative.
+- `product/_components/AgentsLandingPage.astro` uses the same stacked hero and
+  lined body as Apps. It reuses `AgentDemo` without a backdrop, `OnePlatformAgent`
+  for requests, and `ApprovalVisual` for deterministic approval conditions and
+  policies. Secondary cards use existing model, tool, and channel logos.
+  `agentsLandingPage.ts` supplies the HTML and negotiated Markdown copy.
 - `product/_components/AIModelsLandingPage.astro` is the reference adapter. It
   supplies the AI providers, process panel, screenshot crop, FAQs, and three
   homepage card scenes; the shared template owns layout and spacing.

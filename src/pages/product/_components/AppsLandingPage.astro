@@ -1,0 +1,56 @@
+---
+import AppDemo from "@components/AppDemo.astro";
+import GridLandingPage from "@components/GridLandingPage.astro";
+import PermissionsVisual from "./PermissionsVisual.astro";
+import ProductMarketplaceSection from "@components/ProductMarketplaceSection.astro";
+import AppFeatureOneImage from "@assets/images/apps/cards/1.png?url";
+import AppFeatureTwoImage from "@assets/images/apps/cards/2.png?url";
+import AppFeatureThreeImage from "@assets/images/apps/cards/3.png?url";
+import { appsLandingPage, appsFaqs } from "../../../data/appsLandingPage";
+
+// Existing visuals are provisional and can be swapped without changing layout.
+const images = [AppFeatureOneImage, AppFeatureTwoImage, AppFeatureThreeImage];
+const cards = appsLandingPage.cardCluster.cards.map((card, index) => ({
+  ...card,
+  image: images[index],
+  imageAlt: card.title,
+}));
+---
+
+<GridLandingPage
+  slug="apps"
+  content={appsLandingPage}
+  {cards}
+  faqs={appsFaqs}
+  heroLayout="stacked"
+  heroAspectRatio="auto"
+  featureMedia={[{ image: AppFeatureOneImage }]}
+>
+  <div slot="hero-media" class="apps-hero-media">
+    <AppDemo breakout={false} showBackground={false} class="apps-hero-demo" />
+  </div>
+  <PermissionsVisual slot="feature-1" variant="access" />
+  <ProductMarketplaceSection slot="before-faq" idPrefix="apps" />
+</GridLandingPage>
+
+<style>
+  .apps-hero-media {
+    padding: clamp(0.5rem, 1.5vw, 1.25rem);
+    background: var(--bb-lime);
+  }
+  :global(.apps-hero-demo .app-demo-backdrop),
+  :global(.apps-hero-demo .app-demo-shell) {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  @media (max-width: 1024px) {
+    :global(.apps-hero-demo .app-demo-builder) {
+      display: none;
+    }
+  }
+  @media (max-width: 768px) {
+    :global(.apps-hero-demo .app-demo-workspace-nav) {
+      display: none;
+    }
+  }
+</style>

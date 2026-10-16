@@ -51,7 +51,10 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
         <TitleBlock
           variant="hero"
           titleId="homepage-hero-title"
-          titleLines={[{ text: "Make critical work move faster." }]}
+          titleLines={[
+            { text: "Make critical work " },
+            { text: "move faster.", className: "homepage-hero__highlight" },
+          ]}
           containerClass="homepage-hero__title-block"
           titleClass="homepage-hero__title"
         />
@@ -186,7 +189,23 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
     max-width: 40rem;
     margin: 0;
     color: var(--bb-white) !important;
-    font-size: var(--bb-text-heading-hero-font-size);
+    font-size: clamp(2.25rem, 3.6vw, 3.25rem);
+  }
+
+  :global(.homepage-hero__highlight) {
+    width: fit-content;
+    padding: 0.04em max(0.12em, 10px) 0.08em 0.12em;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+    background: var(--bb-lime);
+    color: var(--bb-olive);
+  }
+
+  .homepage-hero__announcement {
+    font-family: var(--font-label);
+  }
+
+  .homepage-hero__actions :global(.button--cut-corner) {
+    --button-min-height: 3.25rem;
   }
 
   .homepage-hero__description {
@@ -229,6 +248,10 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
   }
 
   @media (max-width: 1023px) {
+    :global(.homepage-hero__title.hero-title) {
+      font-size: var(--bb-text-heading-hero-font-size);
+    }
+
     .homepage-hero {
       min-height: 0;
       grid-template-columns: minmax(0, 1fr);
@@ -265,8 +288,8 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
   }
 
   @media (max-width: 767px) {
-    :global(.homepage-hero__title.hero-title) {
-      font-size: var(--bb-text-heading-hero-font-size);
+    :global(.homepage-hero__title.hero-title > span) {
+      display: block;
     }
 
     .homepage-hero__copy-panel {

@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import Button from "@components/Button.astro";
 import Icon from "@components/Icon.astro";
 import BackgroundAutomation from "@assets/images/automations/BackgroundAutomation.png";
 import SlackLogo from "@assets/logos/Slack.svg";
@@ -227,12 +226,9 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
             aria-selected="false">Logs</button
           >
         </div>
-        <Button
-          label="Test automation"
-          size="small"
-          variant="primary"
-          class="automation-demo-run-button !text-[13px] !px-2 !py-[3px] !gap-1"
-        />
+        <button type="button" class="automation-demo-run-button">
+          Test automation
+        </button>
       </div>
 
       <div class="automation-demo-body">
@@ -410,6 +406,31 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     border-bottom: 0.5px solid var(--automation-demo-border);
     padding: 6px 8px;
     background: var(--automation-demo-panel);
+  }
+
+  .automation-demo-run-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-height: 28px;
+    padding: 4px 12px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--bb-lime);
+    color: var(--bb-olive);
+    font: 400 13px/1.4 var(--font-sans);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .automation-demo-run-button:hover {
+    background: var(--bb-lime-400);
+  }
+
+  .automation-demo-run-button:focus-visible {
+    outline: 2px solid var(--bb-olive);
+    outline-offset: 2px;
   }
 
   .automation-demo-tabs {
@@ -722,7 +743,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     color: var(--automation-demo-text);
     font-size: 13px;
     line-height: 1.2;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   .automation-demo-sidebar-section {
@@ -737,7 +758,7 @@ const sidebarIconClassMap: Record<SidebarTone, string> = {
     color: var(--automation-demo-muted);
     font-size: 13px;
     line-height: 1.2;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   .automation-demo-sidebar-list {

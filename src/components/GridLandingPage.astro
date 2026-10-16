@@ -19,6 +19,7 @@ interface Props {
   content: PlatformLandingContent;
   heroImage?: string;
   heroAspectRatio?: string;
+  heroLayout?: "split" | "stacked";
   featureMedia?: readonly ProductDetailMedia[];
   featureActions?: readonly (
     { label: string; url: string; appearance?: "link" | "button" } | undefined
@@ -32,6 +33,7 @@ const {
   content,
   heroImage,
   heroAspectRatio = "2760 / 1710",
+  heroLayout = "split",
   featureMedia = [],
   featureActions = [],
   cards = content.cardCluster.cards,
@@ -42,7 +44,12 @@ const columns = content.cardCluster.columns ?? 3;
 ---
 
 <div class="grid-landing-page">
-  <header class="grid-landing-hero page-section page-section--hero">
+  <header
+    class:list={[
+      "grid-landing-hero page-section page-section--hero",
+      heroLayout === "stacked" && "grid-landing-hero--stacked",
+    ]}
+  >
     <div class="grid-landing-hero__content">
       <TitleBlock
         variant="hero"
@@ -58,12 +65,16 @@ const columns = content.cardCluster.columns ?? 3;
           url="/contact/"
           variant="cta"
           size="large"
+          icon="ArrowRight"
+          iconPosition="end"
         />
         <Button
           label="Try Budibase"
           url="https://account.budibase.app/register"
           variant="secondary"
           size="large"
+          icon="ArrowRight"
+          iconPosition="end"
         />
       </div>
     </div>
@@ -199,6 +210,7 @@ const columns = content.cardCluster.columns ?? 3;
         class="grid-landing-uses__cards"
       />
     </section>
+    <slot name="before-faq" />
     {
       faqs.length > 0 && (
         <section class="grid-landing-faq" aria-labelledby={`${slug}-faq-title`}>
@@ -433,7 +445,7 @@ const columns = content.cardCluster.columns ?? 3;
     margin: 0;
     color: inherit;
     font-size: 1.125rem;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.4;
   }
 
@@ -514,7 +526,7 @@ const columns = content.cardCluster.columns ?? 3;
 
   .grid-landing-uses :global(.card-cluster__card-title) {
     color: var(--bb-olive);
-    font-weight: 500;
+    font-weight: 400;
   }
 
   .grid-landing-uses :global(.card-cluster__card:focus-within) {
@@ -579,6 +591,49 @@ const columns = content.cardCluster.columns ?? 3;
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+
+  .grid-landing-hero--stacked {
+    grid-template-columns: minmax(0, 1fr);
+    text-align: center;
+  }
+
+  .grid-landing-hero--stacked .grid-landing-hero__content {
+    align-items: center;
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+
+  .grid-landing-hero--stacked :global(.grid-landing-hero__copy) {
+    max-width: 64rem;
+  }
+
+  .grid-landing-hero--stacked :global(.grid-landing-hero__title) {
+    font-size: var(--bb-text-heading-hero-font-size);
+    transform-origin: center;
+  }
+
+  .grid-landing-hero--stacked :global(.grid-landing-hero__subtitle) {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  .grid-landing-hero--stacked .grid-landing-hero__actions {
+    justify-content: center;
+  }
+
+  .grid-landing-hero--stacked .grid-landing-hero-media {
+    padding: 0;
+    border-left: 0;
+    border-top: 1px solid var(--bb-border-base);
+  }
+
+  .grid-landing-hero--stacked .grid-landing-hero-blocks {
+    display: none;
+  }
+
+  .grid-landing-hero--stacked .grid-landing-hero-preview {
+    width: 100%;
+    background: var(--bb-background-base);
   }
   .grid-landing-feature__media img,
   .grid-landing-feature__media video {

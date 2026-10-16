@@ -9,6 +9,13 @@ lime blocks, outlined customer logos, alternating feature rows, white
 use-case cards with 4:3 media, bordered FAQ, padded grid CTAs, and platform
 navigation. It uses the shared typography and cut-corner buttons. Page
 sections lead with Book a demo, followed by Try Budibase.
+Page titles/H1s use Stack Sans Notch, with uppercase weight-700 heroes;
+H2–H6 headings, labels, buttons, body copy and navigation use Stack Sans Text.
+Shared primary actions use full Lime fills, uppercase Text labels and bold arrows.
+Both hero actions and feature buttons show the shared notched arrow tile;
+the closing CTA uses the same treatment at its larger scale. Secondary buttons use
+white fills and grey-800 outlines. Keep native font widths and the shared
+responsive type scale.
 Use the canonical Olive (`#233207`) and Lime (`#A5FF00`) tokens for the hero
 and actions, white for
 light page sections and product interfaces, Coconut for supporting panels,
@@ -19,6 +26,11 @@ border, and text tokens, and keep text contrast at WCAG AA.
 
 The hero adds 60px of vertical breathing room across desktop and stacked
 layouts, with content-driven height.
+For media-led product pages, `heroLayout="stacked"` centers the copy and
+actions above full-width media with no flanking layout columns. Apps is the
+first adapter; Agents uses the same variant. Automations, Operations center, and Chat with agents
+can adopt this variant as their content is prepared. The split variant remains
+the default for existing feature pages.
 
 ## Page inputs
 
@@ -28,6 +40,7 @@ layouts, with content-driven height.
 | `content`         | Existing `PlatformLandingContent`: hero, two feature rows, and card copy.                                                                                     |
 | `heroImage`       | Product screenshot when a custom hero slot is not needed.                                                                                                     |
 | `heroAspectRatio` | Preview frame ratio; defaults to the AI models ratio, `2760 / 1710`.                                                                                          |
+| `heroLayout`      | `split` by default; `stacked` centers the copy above full-width media. Use `heroAspectRatio="auto"` for naturally sized demos.                                |
 | `featureMedia`    | Images, videos, or Astro demos, in feature-row order.                                                                                                         |
 | `featureActions`  | Optional `{ label, url, appearance }` actions for each feature row. Use `appearance: "button"` for the shared cut-corner button; the default is a quiet link. |
 | `cards`           | CardCluster cards, including page-specific screenshots, demos, or media scenes; defaults to the content cards.                                                |
@@ -37,6 +50,8 @@ layouts, with content-driven height.
 Use named slots `hero-media`, `feature-0`, and `feature-1` for custom product
 visuals. The AI models adapter demonstrates all three. The screenshot crop is
 AI-specific and stays in that adapter; other screenshots render uncropped.
+Use the optional `before-faq` slot for an additional page-owned section, such as
+the shared Apps and Agents marketplace showcase. Omitting it leaves the standard layout unchanged.
 
 Content remains in `src/data/platformLandingPages.ts`. Keep visual assets,
 demo configuration, FAQ answers, and custom media styling in the page adapter.
@@ -78,6 +93,8 @@ Leave `MainLayout` responsible for navigation and page metadata.
 | Permissions             | `/product/admin-security/` / `admin-security` |
 | Security and compliance | `/security/` / `securityLandingPage.ts`       |
 | Self-hosting            | `/product/self-host/` / `self-host`           |
+| Apps                    | `/product/apps/` / `appsLandingPage.ts`       |
+| Agents                  | `/product/agents/` / `agentsLandingPage.ts`   |
 
 AI models, APIs, Data tables, Knowledge, Activity, Human approvals, and Permissions use the
 extracted template. The API
@@ -104,6 +121,9 @@ the same content. Security details jump to the controls FAQ on the current page.
 `SelfHostingLandingPage.astro` supplies Docker/Kubernetes deployment, custom
 domains, data ownership, CLI, plugins, and upgrade control. Upgrade control
 describes choosing the Budibase release and rollout timing.
+`AppsLandingPage.astro` uses the stacked hero with the existing interactive
+app-builder demo, two main benefits, three secondary cards, and FAQs. Its
+content also supplies the Apps route's Markdown response.
 For each adoption,
 check desktop, tablet, and mobile layout, correct screenshot framing, relevant
 card visuals, FAQ keyboard behavior, and the standard build.

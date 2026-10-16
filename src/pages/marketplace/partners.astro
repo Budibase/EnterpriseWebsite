@@ -11,9 +11,10 @@ import {
   partnerJoinUrl,
 } from "../../data/partnerDirectory";
 const partners = await getCollection("partners");
-const rows: Row[] = partners.map(({ data }) => {
+const rows: Row[] = partners.map(({ id, data }) => {
   const tier = data.type === "Technology" ? "NA" : (data.tier ?? "—");
   return {
+    id: `partner-${id}`,
     name: data.name,
     href: data.website,
     target: "_blank",

@@ -2,178 +2,55 @@
 export const prerender = false;
 
 import Layout from "../../../layouts/MainLayout.astro";
-import AppDemoBackground from "@assets/images/backgrounds/app-demo-bg.jpg?url";
-import AppDemo from "@components/AppDemo.astro";
-import ProductLandingPage from "@components/ProductLandingPage.astro";
-import AppFeatureOneImage from "@assets/images/apps/cards/1.png?url";
-import AppFeatureTwoImage from "@assets/images/apps/cards/2.png?url";
-import type { ProductDetailContent } from "../../../data/landingPageTypes";
-
-const pageTitle = "Build internal tools\nin minutes";
-const pageDescription =
-  "Create apps for approvals, operations, and internal requests without engineering resources. Connect your data and give your team simple tools that keep work moving.";
-
-const bodyContent = {
-  features: [
-    {
-      headline: "Turn messy processes into simple apps",
-      body: "Growing businesses run on requests, approvals, and internal processes, but too often those live in spreadsheets, inboxes, or Slack threads. Within Budibase, you can turn those processes into simple internal apps your team can rely on.",
-      bullets: [
-        {
-          icon: "Browser",
-          text: "Collect complete, consistent requests with purpose-built forms.",
-        },
-        {
-          icon: "Path",
-          text: "Track work through structured, connected workflows.",
-        },
-        {
-          icon: "Users",
-          text: "Give teams one place to manage operations without engineering support.",
-        },
-      ],
-    },
-    {
-      headline: "Production-ready apps without the overhead",
-      body: "Budibase empowers teams to ship production-ready apps in the cloud or on their own infrastructure, with no auth to stand up or code-base to maintain.",
-      bullets: [
-        {
-          icon: "ShieldCheck",
-          text: "Control access with customizable role-based permissions.",
-        },
-        {
-          icon: "Keyhole",
-          text: "Connect enterprise identity providers with single sign-on.",
-        },
-        {
-          icon: "UserSwitch",
-          text: "Use built-in authentication and user management from day one.",
-        },
-      ],
-    },
-  ],
-  cardCluster: {
-    title: "Build apps quickly with powerful tools",
-    description:
-      "Budibase gives you everything you need to create internal tools without heavy engineering.",
-    cards: [
-      {
-        title: "Drag-and-drop builder",
-        description: "Create forms, dashboards, and workflows visually.",
-      },
-      {
-        title: "Connect your data",
-        description: "Use Postgres, MySQL, REST APIs, Sheets, and more.",
-      },
-      {
-        title: "Customizable with code",
-        description:
-          "Add JavaScript and CSS when your use case needs more control.",
-      },
-    ],
-  },
-} satisfies ProductDetailContent;
+import AppsLandingPage from "../_components/AppsLandingPage.astro";
+import { appsLandingPage, appsFaqs } from "../../../data/appsLandingPage";
+import {
+  productMarketplaceIntro,
+  getProductMarketplaceCards,
+} from "../../../data/productMarketplace";
 
 const accept = Astro.request.headers.get("accept") ?? "";
 Astro.response.headers.set("Vary", "Accept");
 
 if (accept.includes("text/markdown")) {
-  return new Response(
-    `# Build internal tools in minutes
-
-Create apps for approvals, operations, and internal requests without engineering resources. Connect your data and give your team simple tools that keep work moving.
-
-
-## Turn messy processes into simple apps
-
-Growing businesses run on requests, approvals, and internal processes, but too often those live in spreadsheets, inboxes, or Slack threads. Within Budibase, you can turn those processes into simple internal apps your team can rely on.
-
-- Collect requests with forms
-- Track work in structured workflows
-- Give teams one place to manage operations with no engineering required
-
-
-## Build apps quickly with powerful tools
-
-Budibase gives you everything you need to create internal tools without heavy engineering.
-
-### Drag-and-drop builder
-
-Create forms, dashboards, and workflows visually.
-
-### Connect your data
-
-Use Postgres, MySQL, REST APIs, Sheets, and more.
-
-
-### User permissions built in
-
-Control who can submit, approve, or manage data.
-
-### Responsive layouts
-
-Create app experiences that work across desktop and mobile screens.
-
-### Generate apps from data with 1 click
-
-Turn Data Tables and external databases into working apps instantly.
-
-### Embed workflows and operational actions
-
-Run workflows and operational actions directly inside your app experiences.
-
-
-## Production-ready apps without the overhead
-
-Budibase empowers teams to ship production-ready apps in the cloud or on their own infrastructure, with no auth to stand up or code-base to maintain.
-
-- Customizable RBAC
-- SSO
-- Auth & user management
-
-
-## Data collection your way
-
-Budibase offers customizable data collection UIs for any data source or API.
-
-- Create forms on top of your database
-- Multi-step forms
-- Validation
-- Highly customizable
-
-## Simple by default, customizable with code
-
-Budibase Apps offer custom JavaScript and CSS for advanced use cases.
-
-- Optional JavaScript: Add logic to components or transform data
-- Live Evaluation: See the output of your code in real time
-- Reusable Snippets: Write code once and apply it anywhere
-- AI Code Generation: Use Budibase AI to generate custom JavaScript from natural language instructions
-`,
-    {
-      headers: {
-        "Content-Type": "text/markdown; charset=utf-8",
-        Vary: "Accept",
-      },
-    },
-  );
+  const content = appsLandingPage;
+  const marketplaceCards = await getProductMarketplaceCards();
+  const markdown = [
+    `# ${content.hero.headline}`,
+    content.hero.subtitle,
+    ...content.features.flatMap((feature) => [
+      `## ${feature.headline}`,
+      feature.body,
+    ]),
+    `## ${content.cardCluster.title}`,
+    content.cardCluster.description,
+    ...content.cardCluster.cards.flatMap((card) => [
+      `### ${card.title}`,
+      card.description,
+    ]),
+    `## ${productMarketplaceIntro.title}`,
+    productMarketplaceIntro.description,
+    ...marketplaceCards.flatMap((card) => [
+      `### ${card.title} (${card.type})`,
+      card.description,
+      `[Explore ${card.title}](${card.href})`,
+    ]),
+    "[Explore the marketplace](/marketplace/)",
+    "## Frequently asked questions",
+    ...appsFaqs.flatMap((faq) => [`### ${faq.question}`, faq.answer]),
+    "[Book a demo](https://budibase.com/contact/)",
+    "[Try Budibase](https://account.budibase.app/register)",
+  ].join("\n\n");
+  return new Response(markdown, {
+    headers: { "Content-Type": "text/markdown; charset=utf-8", Vary: "Accept" },
+  });
 }
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <ProductLandingPage
-    title="Build internal tools in minutes"
-    description={pageDescription}
-    demo={AppDemo}
-    demoProps={{ breakout: false }}
-    backgroundImage={AppDemoBackground}
-    {bodyContent}
-    featureImages={[AppFeatureOneImage, AppFeatureTwoImage]}
-  />
+<Layout
+  title={appsLandingPage.title}
+  description={appsLandingPage.metaDescription}
+  navTheme="default"
+>
+  <AppsLandingPage />
 </Layout>
-
-<style>
-  :global(#site-nav.nav-shell) {
-    background-color: var(--bg-1) !important;
-  }
-</style>

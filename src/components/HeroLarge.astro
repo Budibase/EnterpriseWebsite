@@ -79,6 +79,8 @@ const Demo = demo;
             url={action.href}
             variant={isBrandDark ? "bright-on-dark" : "cta"}
             size="large"
+            icon="ArrowRight"
+            iconPosition="end"
             target={action.target}
             rel={action.rel}
           />
@@ -87,6 +89,8 @@ const Demo = demo;
             url={secondaryAction.href}
             variant={isBrandDark ? "outline-on-dark" : "secondary"}
             size="large"
+            icon="ArrowRight"
+            iconPosition="end"
             target={secondaryAction.target}
             rel={secondaryAction.rel}
           />
@@ -198,7 +202,6 @@ const Demo = demo;
     letter-spacing: var(--bb-text-display-large-letter-spacing);
     text-transform: var(--bb-text-display-large-text-transform);
     text-wrap: balance;
-    transform: scaleX(0.86);
     transform-origin: center;
   }
 

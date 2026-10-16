@@ -167,9 +167,10 @@
       var(--bb-lime) 84%,
       var(--bb-olive)
     );
-    --bb-button-cta-background: var(--bb-olive);
-    --bb-button-cta-hover: var(--bb-olive-1400);
-    --bb-button-cta-active: var(--bb-olive-1500);
+    --bb-button-cta-background: var(--bb-lime);
+    --bb-button-cta-hover: var(--bb-button-lime-hover);
+    --bb-button-cta-active: var(--bb-button-lime-active);
+    --bb-button-border: var(--bb-gray-800);
     --bb-text-base: var(--bb-graphite);
     --bb-text-body: var(--bb-graphite);
     --bb-text-subtle: var(--bb-gray-600);
@@ -254,32 +255,31 @@
     --bb-color__text__subtle: var(--bb-text-subtle);
 
     --font-sans:
-      var(--font-tiktok-sans), "Apple Color Emoji", "Segoe UI Emoji",
+      var(--font-stack-sans-text), "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-    --font-heading-sans: var(--font-tiktok-sans), var(--font-sans);
+    --font-display-sans: var(--font-stack-sans-notch), var(--font-sans);
+    --font-heading-sans: var(--font-sans);
+    --font-label: var(--font-sans);
     --font-mono:
       ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco, Consolas,
       "Liberation Mono", "Courier New", monospace;
     --bb-font-mono: var(--font-mono);
 
-    --bb-text-display-large-font-family:
-      var(--font-tiktok-sans-condensed), var(--font-sans);
+    --bb-text-display-large-font-family: var(--font-display-sans);
     --bb-text-display-large-font-size: 90px;
-    --bb-text-display-large-font-weight: 900;
+    --bb-text-display-large-font-weight: 700;
     --bb-text-display-large-line-height: 0.85;
     --bb-text-display-large-letter-spacing: -0.01em;
     --bb-text-display-large-text-transform: uppercase;
-    --bb-text-display-medium-font-family:
-      var(--font-tiktok-sans-condensed), var(--font-sans);
+    --bb-text-display-medium-font-family: var(--font-display-sans);
     --bb-text-display-medium-font-size: 64px;
-    --bb-text-display-medium-font-weight: 900;
+    --bb-text-display-medium-font-weight: 700;
     --bb-text-display-medium-line-height: 0.85;
     --bb-text-display-medium-letter-spacing: -0.01em;
     --bb-text-display-medium-text-transform: uppercase;
-    --bb-text-display-small-font-family:
-      var(--font-tiktok-sans-condensed), var(--font-sans);
+    --bb-text-display-small-font-family: var(--font-display-sans);
     --bb-text-display-small-font-size: 40px;
-    --bb-text-display-small-font-weight: 900;
+    --bb-text-display-small-font-weight: 700;
     --bb-text-display-small-line-height: 0.85;
     --bb-text-display-small-letter-spacing: -0.01em;
     --bb-text-display-small-text-transform: uppercase;
@@ -295,16 +295,16 @@
     --bb-text-heading-card-line-height: 1.2222;
 
     --bb-text-copy-lead-font-size: 1.25rem;
-    --bb-text-copy-lead-font-weight: 400;
+    --bb-text-copy-lead-font-weight: 300;
     --bb-text-copy-lead-line-height: 1.5;
     --bb-text-copy-body-font-size: 1.125rem;
-    --bb-text-copy-body-font-weight: 400;
+    --bb-text-copy-body-font-weight: 300;
     --bb-text-copy-body-line-height: 1.5556;
     --bb-text-copy-compact-font-size: 1rem;
-    --bb-text-copy-compact-font-weight: 400;
+    --bb-text-copy-compact-font-weight: 300;
     --bb-text-copy-compact-line-height: 1.5;
     --bb-text-copy-caption-font-size: 0.875rem;
-    --bb-text-copy-caption-font-weight: 400;
+    --bb-text-copy-caption-font-weight: 300;
     --bb-text-copy-caption-line-height: 1.4286;
 
     /* Core semantic RGB tokens (Tailwind-friendly) */
@@ -391,6 +391,7 @@
 
   @media (max-width: 767px) {
     :root {
+      --site-nav-bar-height: 64px;
       --radius-small: 0;
       --radius-medium: 0;
       --radius-large: 0;
@@ -399,8 +400,8 @@
       --bb-text-display-large-font-size: 48px;
       --bb-text-display-medium-font-size: 40px;
       --bb-text-display-small-font-size: 32px;
-      --bb-text-heading-hero-font-size: clamp(52px, calc(14vw - 4px), 60px);
-      --bb-text-heading-hero-line-height: 0.95;
+      --bb-text-heading-hero-font-size: clamp(36px, 10vw, 48px);
+      --bb-text-heading-hero-line-height: 1.05;
       --bb-text-heading-section-font-size: 30px;
       --bb-text-heading-section-line-height: 1.0556;
       --bb-text-heading-subsection-font-size: 26px;
@@ -435,6 +436,7 @@
 }
 
 html {
+  font-weight: 300;
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
@@ -456,13 +458,43 @@ body {
   background-color: var(--bg-1);
 }
 
+/* Reserve Notch for page titles. Section headings, labels and controls share
+   the Text face used by body copy and navigation. */
+body :is(h2, h3, h4, h5, h6, .h2, .section-title) {
+  font-family: var(--font-heading-sans) !important;
+}
+
+body
+  :is(
+    label,
+    button,
+    [role="tab"],
+    .brand-label,
+    [class*="__label"],
+    [class$="__title"],
+    [class$="-label"],
+    [class$="-title"]
+  ) {
+  font-family: var(--font-label) !important;
+}
+
+body
+  #site-nav
+  :is(a:not(.button--cut-corner), a:not(.button--cut-corner) *, .nav-link) {
+  font-family: var(--font-sans) !important;
+}
+
+/* Keep page titles in Notch even when they also use a named title class. */
+body :is(h1, .h1) {
+  font-family: var(--font-display-sans) !important;
+}
+
 time,
 .operational-data {
   font-variant-numeric: tabular-nums;
 }
 
 .technical-identifier {
-  font-feature-settings: "ss06" 1;
   font-variant-numeric: tabular-nums slashed-zero;
 }
 
@@ -532,7 +564,7 @@ li,
 ol {
   font-family: var(--font-sans);
   color: var(--text-secondary) !important;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.35;
   letter-spacing: 0 !important;
   margin: 0 !important;
@@ -544,7 +576,7 @@ h1,
   color: var(--text-primary);
   font-size: 38px;
   letter-spacing: -1px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -553,7 +585,7 @@ h2,
   font-family: var(--font-sans);
   color: var(--text-primary);
   font-size: 26px;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   line-height: 1.25;
   letter-spacing: normal !important;
 }
@@ -562,7 +594,7 @@ h3 {
   font-family: var(--font-sans);
   color: var(--text-primary);
   font-size: 22px;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   line-height: 1.25;
   letter-spacing: normal !important;
 }
@@ -571,7 +603,7 @@ h4 {
   font-family: var(--font-sans);
   color: var(--text-primary);
   font-size: 18px;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   line-height: 1.2;
   letter-spacing: normal !important;
 }
@@ -580,7 +612,7 @@ h5 {
   font-family: var(--font-sans);
   color: var(--text-primary);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.15px !important;
 }
@@ -589,7 +621,7 @@ p {
   font-family: var(--font-sans);
   color: var(--bb-text-body) !important;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.35;
   letter-spacing: 0 !important;
 }
@@ -601,7 +633,7 @@ article h5,
 article h6 {
   font-family: var(--font-sans);
   color: var(--text-primary) !important;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.2;
   text-wrap: pretty;
   letter-spacing: -0.15px !important;
@@ -633,7 +665,7 @@ article h5,
 article h6 {
   font-family: var(--font-sans);
   color: var(--text-primary) !important;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.2;
   text-wrap: pretty;
   letter-spacing: -0.15px !important;
@@ -643,13 +675,13 @@ article h6 {
 article h2,
 article h3,
 article h4 {
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   letter-spacing: normal !important;
 }
 article p {
   font-family: var(--font-sans);
   color: var(--bb-text-body) !important;
-  font-weight: 400;
+  font-weight: 300;
   text-wrap: pretty;
   margin-bottom: calc(1rem * 1.4);
   font-size: 1rem;
@@ -670,11 +702,11 @@ article ol {
   list-style: disc !important;
 }
 article strong {
-  font-weight: 500;
+  font-weight: 400;
   color: var(--text-primary) !important;
 }
 article a {
-  font-weight: 400;
+  font-weight: 300;
   border-color: transparent;
   color: var(--bb-olive) !important;
   text-decoration: underline;
@@ -708,7 +740,7 @@ article blockquote p {
 .nav-shell .nav-link {
   color: var(--text-primary);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.25rem;
 }
 
@@ -718,7 +750,7 @@ article blockquote p {
 
 .nav-shell .header-dropdown [data-header-dropdown-trigger] {
   color: var(--text-primary) !important;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .nav-shell .header-dropdown .header-dropdown-panel {
@@ -906,7 +938,7 @@ article blockquote p {
 .nav-shell .mobile-nav-sub-link.nav-link,
 .mobile-nav-sub-link-disabled {
   color: var(--text-secondary) !important;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .nav-shell .mobile-nav-sub-link.nav-link:hover {

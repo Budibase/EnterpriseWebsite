@@ -86,6 +86,8 @@ const isBrandDark = theme === "brand-dark";
                   rel={action.rel}
                   variant={isBrandDark ? "bright-on-dark" : "cta"}
                   size="extra-large"
+                  icon="ArrowRight"
+                  iconPosition="end"
                 />
               )}
               {secondaryAction && (
@@ -96,6 +98,8 @@ const isBrandDark = theme === "brand-dark";
                   rel={secondaryAction.rel}
                   variant={isBrandDark ? "outline-on-dark" : "secondary"}
                   size="extra-large"
+                  icon="ArrowRight"
+                  iconPosition="end"
                 />
               )}
             </div>
@@ -272,7 +276,7 @@ const isBrandDark = theme === "brand-dark";
   .hero-small__logos h2 {
     font-family: var(--font-sans);
     font-size: var(--bb-text-heading-subsection-font-size);
-    font-weight: 500;
+    font-weight: 400;
     line-height: var(--bb-text-heading-subsection-line-height);
     letter-spacing: normal;
     text-align: center;

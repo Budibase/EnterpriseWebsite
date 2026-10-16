@@ -33,7 +33,7 @@ const {
     <a class="cta-action cta-action--demo" href={primaryHref}>
       <span class="cta-action__label">{primaryLabel}</span>
       <span class="cta-action__icon" aria-hidden="true">
-        <Icon name="ArrowRight" size="40" />
+        <Icon name="ArrowRightBold" size="40" />
       </span>
     </a>
   </div>
@@ -45,7 +45,7 @@ const {
     >
       <span class="cta-action__label">Start Building</span>
       <span class="cta-action__icon" aria-hidden="true">
-        <Icon name="ArrowRight" size="40" />
+        <Icon name="ArrowRightBold" size="40" />
       </span>
       <div class="cta-action__mosaic">
         <BlockMosaic preset="hero" />
@@ -102,6 +102,7 @@ const {
   }
 
   .cta-action {
+    --font-label: var(--font-display-sans);
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -111,11 +112,11 @@ const {
     padding: clamp(1.25rem, 2.5vw, 2rem);
     border-radius: 0;
     clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
-    font-family: var(--font-heading-sans);
+    font-family: var(--font-display-sans);
     font-size: var(--bb-text-heading-section-font-size);
-    font-weight: 400;
+    font-weight: var(--bb-text-display-small-font-weight);
     line-height: var(--bb-text-heading-section-line-height);
-    letter-spacing: -0.025em;
+    letter-spacing: var(--bb-text-display-small-letter-spacing);
     text-decoration: none !important;
   }
 
@@ -156,11 +157,24 @@ const {
 
   .cta-action__label {
     min-width: 0;
+    text-transform: uppercase;
   }
 
   .cta-action__icon {
+    display: inline-flex;
     flex: none;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: var(--bb-olive);
+    color: var(--bb-coconut);
     line-height: 0;
+    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%);
+  }
+
+  .cta-action--build .cta-action__icon {
+    background: var(--bb-white);
+    color: var(--bb-olive);
   }
 
   .cta-action__icon :global(svg) {

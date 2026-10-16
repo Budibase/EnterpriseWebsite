@@ -1,7 +1,7 @@
 # Budibase brand and GTM direction
 
 **Status:** Working source of truth  
-**Last updated:** 15 October 2026
+**Last updated:** 16 October 2026
 
 Use this document to guide Budibase website design, customer-facing copy,
 campaigns, presentations, customer stories, sales enablement, product launches,
@@ -537,7 +537,7 @@ well-structured technical information. The experience should feel engineered.
 
 ### Bold, never noisy
 
-Use large condensed typography and strong brand color for decisive moments.
+Use bold notched typography and strong brand color for decisive moments.
 Create emphasis through scale and restraint. Decorative variety must not
 compete with meaning.
 
@@ -604,9 +604,19 @@ capabilities. Conservative styling alone is not evidence of maturity.
   center/Olive, Table/Vivid Vargas, and Function/Lime, with Graphite foregrounds
   on light fills and Coconut on Olive.
 - The global footer uses Olive with Lime headings and Coconut links.
-- Buttons share Lime interaction tokens, while dark CTA buttons use Olive.
-  Secondary and outlined actions use white backgrounds with dark text and
-  grey control borders, including Try Budibase on dark navigation surfaces.
+- Primary buttons generally use full Lime fills with Olive text
+  and shared Lime interaction tokens. The Cloud pricing trial button and
+  Book a demo in light-page navigation use Olive with Coconut text and
+  darker Olive interaction states. Dark homepage navigation retains Lime. Secondary and outlined actions use white
+  fills, Olive text, and grey-800 outlines, including Try Budibase on dark
+  navigation surfaces. Keep the 10px cut corner and use bold arrow icons.
+  Trailing arrows sit in small tiles with a 4px top-right notch: Olive with
+  Coconut arrows, or white with Olive arrows on Olive buttons. Standard
+  buttons keep equal top, bottom and right tile insets. Apply this treatment
+  to platform landing-page hero, feature and closing CTAs. Product-demo
+  controls use native pill-shaped buttons with sentence-case labels and
+  compact interface sizing; keep website button notches and arrow tiles
+  outside the product interfaces.
   Use Vivid Vargas and Gold for proof, selection, attention, and human review;
   use Crimson for danger. Do not use Lime as a full FeatureSection background.
 - Keep accents meaningful to the operational story. Avoid rainbow palettes
@@ -614,23 +624,31 @@ capabilities. Conservative styling alone is not evidence of maturity.
 
 ### Typography
 
-- Set shared section headings to 42px desktop, 36px tablet, and 30px mobile.
-- Give mobile hero titles stronger scale with the shared fluid 52–60px hero
-  token. Apply it to the homepage and shared hero components; retain the
-  established tablet and desktop sizes.
-- Use TikTok Sans Condensed Black at its native `900` weight for major
-  statements, category claims, titles, and headings that should feel
-  unmistakably Budibase.
-- Use variable TikTok Sans for large sentence-case section headings, body copy,
-  explanation, evidence, technical detail, navigation, controls, and interface
-  content.
-- Set `h2`, `h3`, and `h4` headings in variable TikTok Sans at weight `500`
-  with natural letter spacing.
-- Keep TikTok Sans's default forms for marketing copy. Use its `ss06`
-  disambiguation forms selectively for technical identifiers where a seriffed
-  `I`, tailed `l`, and slashed `0` improve recognition.
-- Do not turn every heading into an oversized all-caps statement. Contrast is
-  what gives the display typography authority.
+- Use self-hosted **Stack Sans Notch** for page titles, H1s, and the large
+  closing CTA actions. These display statements remain uppercase at weight `700`.
+- Use **Stack Sans Text** for H2–H6 headings, section and card titles, labels,
+  buttons, body copy, navigation, descriptions, technical values, and product
+  interfaces. The large closing CTA actions use Notch; keep supporting headings
+  in sentence case.
+- Use weight `300` for regular body copy and supporting text, and `400` for
+  navigation, section headings, and supporting labels. Action-button labels
+  use `500`. The heavier Stack Sans
+  forms replace the previous `400`/`500` roles with `300`/`400` respectively;
+  retain existing semibold and bold emphasis, including `700` hero headlines.
+- Use each face at its native width. Do not horizontally compress headlines.
+- Keep shared section sizes at 42px desktop, 36px tablet, and 30px mobile.
+  Shared hero tokens use 64px desktop, 52px tablet, and a fluid 36–48px mobile
+  scale. The split homepage hero uses a fluid 36–52px desktop size to keep
+  “Make critical work” above “move faster.” within its copy column.
+- Highlight the homepage's “MOVE FASTER.” line with a tight Lime background,
+  Olive text, and the same 10px top-right corner cut as the buttons.
+- Style action-button labels in uppercase Text at weight `500`, with bold
+  arrows. Desktop navigation buttons are 38px tall with 16px arrows; retain
+  at least 44px touch targets in mobile navigation.
+- Retain monospace for code. Technical identifiers may use tabular numerals
+  and a slashed zero; do not request stylistic sets from a previous typeface.
+- Reserve the strongest uppercase treatment for hero statements and actions.
+  Keep supporting copy readable and layouts focused on operational meaning.
 
 ### Layout
 
@@ -639,7 +657,7 @@ capabilities. Conservative styling alone is not evidence of maturity.
   navigation, place **Try Budibase** before **Book a demo**.
 - Use the shared 10px top-right corner cut for all styled action buttons,
   including outlined buttons. Preserve an outline along the diagonal edge.
-  Use the base border token for secondary actions on light backgrounds.
+  Use the dedicated grey-800 button-border token for secondary actions.
 - Use clear grids, strong alignment, generous but controlled space, and modular
   compositions.
 - Use the approved AI models landing page as the reusable compact lined
@@ -648,6 +666,10 @@ capabilities. Conservative styling alone is not evidence of maturity.
   product visuals, and FAQs.
 - Use light hero surfaces on product and platform pages. Retain olive
   in typography, actions, diagrams, and purposeful section contrasts.
+- Apps, Agents, Automations, Operations center, and Chat with agents use the
+  same lined feature-page style with a vertical hero: centered title,
+  description and actions above a wide visual, without flanking layout columns.
+  Follow with customer logos, two main benefits, three secondary cards, and FAQ.
 - Balance major brand statements with denser product, architecture, and
   evidence sections.
 - Use rounded cards and pills only where they have a functional reason. Avoid a
@@ -795,7 +817,7 @@ When a partner has no verified logo, use a decorative 42px square of nine
 touching blocks in a 3 × 3 grid, using existing Budibase color tokens.
 
 The Marketplace homepage opens with an olive welcome banner, sentence-case
-TikTok Sans, and light text. A static mosaic of three touching columns of varied
+Stack Sans Text, and light text. A static mosaic of three touching columns of varied
 rectangular blocks sits on the right, emphasizing Cloud, Zen, and Navy blues
 with restrained Lime and Olive, yellow, sand, and coral accents. Keep the desktop banner
 approximately 300px tall. On mobile the mosaic sits below the copy. The directory
@@ -885,6 +907,57 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 - What quantitative outcomes can Budibase substantiate consistently?
 
 ## Decision log
+
+### 16 October 2026
+
+- Reserved the website Button component for marketing CTAs. Product demos
+  use native, pill-shaped controls with sentence-case labels; removed the
+  website buttons from Add tools and Test automation while keeping their
+  destinations and demo interactions.
+
+- Applied the notched arrow-tile treatment consistently to platform and
+  product landing-page CTAs, including both hero actions and the large
+  closing CTA cards. Retained current colors, typography and destinations.
+
+- Applied the Apps vertical landing-page layout to Agents, leading with request
+  handling and deterministic human approvals. Supporting benefits cover model
+  choice, connected tools, and Slack/Teams deployment. Both pages share the
+  marketplace showcase above their FAQs.
+
+- Set the large closing CTA actions to Stack Sans Notch `700`, matching the
+  display treatment while keeping standard buttons in Stack Sans Text `500`.
+
+- Restored Olive backgrounds with Coconut labels for the Cloud pricing trial
+  action and Book a demo in light-page navigation. Applied the explicit Olive
+  button variant so other button colors stay unchanged.
+
+- Increased action-button labels to Stack Sans Text `500` for stronger visual
+  emphasis, including the closing CTA actions. Kept body copy at `300`,
+  supporting headings/navigation at `400`, and hero titles at `700`.
+
+- Restricted Notch to page titles and H1s. Switched section headings (H2–H6),
+  labels, buttons and other supporting typography to Stack Sans Text, while
+  retaining the lighter weight system and bold uppercase hero titles.
+
+- Lightened the Stack Sans system after reviewing the site-wide rollout:
+  previous weight `500` roles now use `400`, and previous `400` roles use
+  `300`, including inherited body text. Kept semibold/bold emphasis and
+  uppercase hero headlines at `700`. Font specimens retain their literal
+  weight labels.
+
+- Adopted the approved homepage typography comparison across the website:
+  Stack Sans Notch for headlines and labels, Stack Sans Text for body copy and
+  navigation links, uppercase Notch 700 heroes, and the tightly highlighted
+  Lime/Olive “MOVE FASTER.” line on the homepage. Removed the comparison route
+  and obsolete font assets after adoption.
+- Chose full-Lime primary buttons and white secondary buttons over the split
+  colored-arrow experiment. Retained uppercase labels, bold arrows, grey-800
+  secondary outlines, 38px desktop navigation buttons, and 16px nav arrows.
+
+- Approved a vertical hero variant for Apps, Agents, Automations, Operations
+  center, and Chat with agents. Apps is the first implementation, reusing the
+  full-width app-builder demo and the shared feature-page body. Later page
+  migrations remain separate work.
 
 ### 15 October 2026
 
