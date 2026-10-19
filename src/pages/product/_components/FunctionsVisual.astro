@@ -1,0 +1,541 @@
+---
+import Icon from "@components/Icon.astro";
+import AssetTypeIcon from "@components/ui/AssetTypeIcon.astro";
+
+interface Props {
+  variant: "overview" | "editor" | "ai" | "versions" | "debugging" | "triggers";
+}
+const { variant } = Astro.props;
+const labels = {
+  overview:
+    "Function editor with JavaScript, an AI prompt, and structured output",
+  editor:
+    "JavaScript function calculating a purchase total and approval requirement",
+  ai: "AI prompt generating the logic for a purchase request function",
+  versions: "Function version history with current and previous versions",
+  debugging: "Copying function code into a personal AI assistant for debugging",
+  triggers:
+    "CRON, webhook, and data triggers connected to a function through an automation",
+};
+// Illustrative code and configurations, not a live function execution or customer result.
+const code = [
+  "async function prepareRequest(request) {",
+  "  const total = request.items.reduce(",
+  "    (sum, item) =>",
+  "      sum + item.quantity * item.price,",
+  "    0",
+  "  );",
+  "",
+  "  return {",
+  "    ...request,",
+  "    total,",
+  "    requiresApproval: total > 5000",
+  "  };",
+  "}",
+];
+const tokens =
+  /\b(async|function|const|return|true|prepareRequest|requiresApproval)\b/g;
+const prompt =
+  "Calculate the total from each item's quantity and price. Flag requests over £5,000 for approval.";
+---
+
+<div
+  class:list={["functions-visual", `functions-visual--${variant}`]}
+  role="img"
+  aria-label={labels[variant]}
+>
+  <div class="functions-visual__panel" aria-hidden="true">
+    <div class="functions-visual__heading">
+      <span
+        ><AssetTypeIcon type="Function" />{
+          variant === "versions"
+            ? "Function versions"
+            : variant === "debugging"
+              ? "Debug your function"
+              : variant === "triggers"
+                ? "Automation triggers"
+                : "Functions"
+        }</span
+      >
+      <span class="functions-visual__language">JavaScript</span>
+    </div>
+    {
+      (variant === "overview" || variant === "editor") && (
+        <div class="functions-visual__workspace">
+          {variant === "overview" && (
+            <aside class="functions-visual__sidebar">
+              <span>Workspace functions</span>
+              <strong>
+                <Icon name="Code" size="16" />
+                Prepare request
+              </strong>
+              <span>
+                <Icon name="Code" size="16" />
+                Format records
+              </span>
+              <span>
+                <Icon name="Code" size="16" />
+                Validate supplier
+              </span>
+            </aside>
+          )}
+          <div class="functions-visual__editor">
+            <div class="functions-visual__file">
+              <span>
+                <Icon name="Code" size="16" />
+                prepareRequest.js
+              </span>
+              <span class="functions-visual__version">v3</span>
+            </div>
+            <ol class="functions-visual__code">
+              {code.map((line) => (
+                <li>
+                  <code>
+                    {line.split(tokens).map((token) => (
+                      <span
+                        class:list={[
+                          /^(async|function|const|return|true)$/.test(token) &&
+                            "functions-visual__keyword",
+                          /^(prepareRequest|requiresApproval)$/.test(token) &&
+                            "functions-visual__identifier",
+                        ]}
+                      >
+                        {token || " "}
+                      </span>
+                    ))}
+                  </code>
+                </li>
+              ))}
+            </ol>
+            <div class="functions-visual__output">
+              <span>Output</span>
+              <code>{'{ "total": 6240, "requiresApproval": true }'}</code>
+            </div>
+          </div>
+          {variant === "overview" && (
+            <aside class="functions-visual__assistant">
+              <span class="functions-visual__assistant-title">
+                <Icon name="Sparkle" size="18" />
+                Generate with AI
+              </span>
+              <p>{prompt}</p>
+              <div class="functions-visual__response">
+                <Icon name="CheckCircle" size="18" />
+                <span>Function generated</span>
+              </div>
+              <span>Review the code and test it with your data.</span>
+            </aside>
+          )}
+        </div>
+      )
+    }
+    {
+      variant === "ai" && (
+        <div class="functions-visual__generation">
+          <span class="functions-visual__assistant-title">
+            <Icon name="Sparkle" size="20" />
+            Describe your function
+          </span>
+          <p>{prompt}</p>
+          <div class="functions-visual__generation-arrow">
+            <Icon name="CaretDown" size="20" />
+          </div>
+          <div class="functions-visual__generated">
+            <span>
+              <AssetTypeIcon type="Function" />
+              prepareRequest.js
+            </span>
+            <code>{"return { total, requiresApproval: total > 5000 };"}</code>
+          </div>
+          <span class="functions-visual__review">
+            <Icon name="CheckCircle" size="18" />
+            Ready to review and test
+          </span>
+        </div>
+      )
+    }
+    {
+      variant === "versions" && (
+        <div class="functions-visual__versions">
+          <strong>prepareRequest.js</strong>
+          {[
+            { version: "v3", label: "Add approval threshold", current: true },
+            { version: "v2", label: "Calculate line item totals" },
+            { version: "v1", label: "Initial function" },
+          ].map((item) => (
+            <div class="functions-visual__version-row">
+              <span>{item.version}</span>
+              <span>{item.label}</span>
+              {item.current && <small>Current</small>}
+            </div>
+          ))}
+        </div>
+      )
+    }
+    {
+      variant === "debugging" && (
+        <div class="functions-visual__debugging">
+          <div class="functions-visual__copy">
+            <>
+              <Icon name="Copy" size="18" />
+              <span>Copy code and error</span>
+            </>
+          </div>
+          <div class="functions-visual__handoff">
+            <Icon name="CaretDown" size="18" />
+          </div>
+          <div class="functions-visual__personal-agent">
+            <span>
+              <Icon name="ChatCircle" size="18" />
+              Your AI assistant
+            </span>
+            <code>{"const items = request.items ?? [];"}</code>
+          </div>
+        </div>
+      )
+    }
+    {
+      variant === "triggers" && (
+        <div class="functions-visual__triggers">
+          <div class="functions-visual__trigger-list">
+            {[
+              { icon: "Timer", label: "CRON schedule" },
+              { icon: "PlugsConnected", label: "Webhook" },
+              { icon: "Table", label: "Data change" },
+            ].map((trigger) => (
+              <span>
+                <Icon name={trigger.icon} size="18" />
+                {trigger.label}
+              </span>
+            ))}
+          </div>
+          <div class="functions-visual__connector">
+            <Icon name="CaretDown" size="20" />
+          </div>
+          <div class="functions-visual__function-node">
+            <>
+              <AssetTypeIcon type="Function" />
+              <span>Run function</span>
+            </>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .functions-visual {
+    width: 100%;
+    min-width: 0;
+    container-type: inline-size;
+    color: var(--bb-text-base);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+  }
+  .functions-visual__panel {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-background-base);
+  }
+  .functions-visual__heading,
+  .functions-visual__heading > span,
+  .functions-visual__file,
+  .functions-visual__file > span,
+  .functions-visual__assistant-title,
+  .functions-visual__response,
+  .functions-visual__review,
+  .functions-visual__generated > span,
+  .functions-visual__copy,
+  .functions-visual__personal-agent > span,
+  .functions-visual__trigger-list > span,
+  .functions-visual__function-node {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+  .functions-visual__heading {
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1em 1.25em;
+    border-bottom: 1px solid var(--bb-border-base);
+    font-weight: 400;
+  }
+  .functions-visual__language {
+    color: var(--bb-text-subtle);
+    font-size: 0.85em;
+    font-weight: 300;
+  }
+  .functions-visual__workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .functions-visual--overview .functions-visual__workspace {
+    grid-template-columns: 190px minmax(0, 1fr) 260px;
+  }
+  .functions-visual__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+    padding: 1.25em 1em;
+    border-right: 1px solid var(--bb-border-base);
+    background: var(--bb-coconut);
+  }
+  .functions-visual__sidebar > span,
+  .functions-visual__sidebar strong {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 0.9em;
+  }
+  .functions-visual__sidebar strong {
+    font-weight: 400;
+    color: var(--bb-olive);
+  }
+  .functions-visual__editor {
+    min-width: 0;
+  }
+  .functions-visual__file {
+    justify-content: space-between;
+    padding: 0.8em 1.25em;
+    background: var(--bb-coconut);
+    border-bottom: 1px solid var(--bb-border-base);
+  }
+  .functions-visual__version {
+    padding: 0.1em 0.5em;
+    color: var(--bb-olive);
+    background: var(--bb-lime);
+    font-size: 0.85em;
+  }
+  .functions-visual__code {
+    list-style: none;
+    margin: 0;
+    padding: 1.25em;
+    background: var(--bb-graphite);
+    color: var(--bb-coconut);
+    font-size: clamp(11px, 1.65cqw, 15px);
+    line-height: 1.8;
+    counter-reset: function-line;
+  }
+  .functions-visual__code li {
+    display: grid;
+    grid-template-columns: 1.5em minmax(0, 1fr);
+    gap: 1em;
+    counter-increment: function-line;
+  }
+  .functions-visual__code,
+  .functions-visual__code li {
+    color: var(--bb-coconut) !important;
+  }
+  .functions-visual__code li::before {
+    content: counter(function-line);
+    color: var(--bb-gray-400);
+    text-align: right;
+    font-family: var(--font-mono);
+  }
+  .functions-visual__code code {
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .functions-visual__keyword {
+    color: var(--bb-orchid);
+  }
+  .functions-visual__identifier {
+    color: var(--bb-lime);
+  }
+  .functions-visual__output {
+    display: grid;
+    gap: 0.5em;
+    padding: 1em 1.25em;
+    background: var(--bb-coconut);
+    border-top: 1px solid var(--bb-border-base);
+  }
+  .functions-visual__output > span,
+  .functions-visual__assistant-title {
+    font-weight: 400;
+  }
+  .functions-visual__output code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    overflow-wrap: anywhere;
+  }
+  .functions-visual__assistant {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    padding: 1.5em;
+    border-left: 1px solid var(--bb-border-base);
+  }
+  .functions-visual__assistant p,
+  .functions-visual__generation > p,
+  .functions-visual__personal-agent p {
+    margin: 0;
+    padding: 1em;
+    background: var(--bb-coconut);
+    font-size: inherit;
+    line-height: 1.6;
+  }
+  .functions-visual__response {
+    color: var(--bb-olive);
+    font-weight: 400;
+  }
+  .functions-visual__assistant > span:last-child {
+    color: var(--bb-text-subtle);
+    font-size: 0.9em;
+  }
+  .functions-visual__generation {
+    display: grid;
+    gap: 1.25em;
+    padding: 1.5em;
+  }
+  .functions-visual__generation-arrow,
+  .functions-visual__handoff,
+  .functions-visual__connector {
+    display: flex;
+    justify-content: center;
+    color: var(--bb-olive);
+  }
+  .functions-visual__generated {
+    display: grid;
+    gap: 1em;
+    padding: 1.25em;
+    background: var(--bb-graphite);
+    color: var(--bb-coconut);
+  }
+  .functions-visual__generated code,
+  .functions-visual__personal-agent code {
+    display: block;
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-size: 0.9em;
+  }
+  .functions-visual__review {
+    color: var(--bb-olive);
+    font-size: 0.95em;
+  }
+  .functions-visual__versions {
+    padding: 0.75em;
+  }
+  .functions-visual__versions > strong {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+  }
+  .functions-visual__version-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    padding: 0.6em 0;
+    border-top: 1px solid var(--bb-border-base);
+  }
+  .functions-visual__version-row > span:first-child {
+    padding: 0.15em 0.4em;
+    background: var(--bb-coconut);
+    font-family: var(--font-mono);
+  }
+  .functions-visual__version-row > span:nth-child(2) {
+    flex: 1;
+    min-width: 0;
+  }
+  .functions-visual__version-row small {
+    padding: 0.15em 0.4em;
+    background: var(--bb-lime);
+    color: var(--bb-olive);
+  }
+  .functions-visual__debugging {
+    display: grid;
+    gap: 0.4em;
+    padding: 0.75em;
+  }
+  .functions-visual__copy {
+    padding: 0.5em;
+    background: var(--bb-coconut);
+  }
+  .functions-visual__personal-agent {
+    display: grid;
+    gap: 0.5em;
+  }
+  .functions-visual__personal-agent > span {
+    font-weight: 400;
+  }
+  .functions-visual__personal-agent p {
+    padding: 0.75em;
+  }
+  .functions-visual__personal-agent code {
+    padding: 0.5em;
+    background: var(--bb-graphite);
+    color: var(--bb-coconut);
+  }
+  .functions-visual__triggers {
+    display: grid;
+    gap: 0.4em;
+    padding: 0.75em;
+  }
+  .functions-visual__trigger-list {
+    display: grid;
+    gap: 0.35em;
+  }
+  .functions-visual__trigger-list > span {
+    padding: 0.25em 0.6em;
+    background: var(--bb-coconut);
+  }
+  .functions-visual__function-node {
+    padding: 0.5em;
+    border: 1px solid var(--bb-border-base);
+  }
+  .functions-visual--versions,
+  .functions-visual--debugging,
+  .functions-visual--triggers {
+    font-size: clamp(10px, 3cqw, 14px);
+  }
+  .functions-visual:is(
+      .functions-visual--versions,
+      .functions-visual--debugging,
+      .functions-visual--triggers
+    )
+    .functions-visual__heading {
+    padding: 0.75em;
+  }
+  .functions-visual:is(
+      .functions-visual--versions,
+      .functions-visual--debugging,
+      .functions-visual--triggers
+    )
+    :global(svg) {
+    width: 1.25em;
+    height: 1.25em;
+  }
+  .functions-visual:is(
+      .functions-visual--versions,
+      .functions-visual--debugging,
+      .functions-visual--triggers
+    )
+    :global(.asset-type-icon) {
+    width: 1.5em;
+    height: 1.5em;
+    flex-basis: 1.5em;
+  }
+  @container (max-width: 900px) {
+    .functions-visual--overview .functions-visual__workspace {
+      grid-template-columns: minmax(0, 1fr) 230px;
+    }
+    .functions-visual__sidebar {
+      display: none;
+    }
+  }
+  @container (max-width: 600px) {
+    .functions-visual--overview .functions-visual__workspace {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .functions-visual__assistant {
+      border-left: 0;
+      border-top: 1px solid var(--bb-border-base);
+      gap: 0.8em;
+    }
+  }
+</style>

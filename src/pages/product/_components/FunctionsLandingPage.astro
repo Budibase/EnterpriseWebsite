@@ -1,0 +1,33 @@
+---
+import GridLandingPage from "@components/GridLandingPage.astro";
+import ProductDemoFrame from "@components/ProductDemoFrame.astro";
+import ProductMarketplaceSection from "@components/ProductMarketplaceSection.astro";
+import FunctionsVisual from "./FunctionsVisual.astro";
+import {
+  functionsLandingPage,
+  functionsFaqs,
+} from "../../../data/functionsLandingPage";
+
+const variants = ["versions", "debugging", "triggers"] as const;
+const cards = functionsLandingPage.cardCluster.cards.map((card, index) => ({
+  ...card,
+  mediaDemo: FunctionsVisual,
+  mediaDemoProps: { variant: variants[index] },
+}));
+---
+
+<GridLandingPage
+  slug="functions"
+  content={functionsLandingPage}
+  {cards}
+  faqs={functionsFaqs}
+  heroLayout="stacked"
+  heroAspectRatio="auto"
+>
+  <ProductDemoFrame slot="hero-media" background="olive">
+    <FunctionsVisual variant="overview" />
+  </ProductDemoFrame>
+  <FunctionsVisual slot="feature-0" variant="editor" />
+  <FunctionsVisual slot="feature-1" variant="ai" />
+  <ProductMarketplaceSection slot="before-faq" idPrefix="functions" />
+</GridLandingPage>

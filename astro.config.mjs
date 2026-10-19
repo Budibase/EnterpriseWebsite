@@ -72,6 +72,20 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.local(),
+      name: "Stack Sans Headline",
+      cssVariable: "--font-stack-sans-headline",
+      options: {
+        variants: [
+          {
+            src: ["./public/fonts/stack-sans/StackSansHeadline-Variable.ttf"],
+            weight: "200 700",
+            style: "normal",
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
       name: "Stack Sans Text",
       cssVariable: "--font-stack-sans-text",
       options: {

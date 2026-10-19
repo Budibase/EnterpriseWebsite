@@ -380,10 +380,6 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
           target: "_blank",
           rel: "noopener noreferrer",
         },
-        {
-          href: "/events/",
-          label: "Events",
-        },
       ],
     },
   ],

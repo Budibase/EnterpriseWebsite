@@ -10,7 +10,12 @@ const rows = marketplaceConnections.map((connection) => ({
   name: connection.name,
   description: connection.description,
   logo: connection.logo,
-  icon: connection.logo ? undefined : "Sparkle",
+  icon:
+    connection.name === "PDF"
+      ? "FilePdf"
+      : connection.logo
+        ? undefined
+        : "Sparkle",
   id: connection.anchor,
   facets: { category: [connection.category] },
   cells: [{ text: connection.category }],

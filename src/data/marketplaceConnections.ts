@@ -7,15 +7,11 @@ export const marketplaceConnectionCategories = [
   "Knowledge bases",
 ] as const;
 
-const knowledgeSources = new Set([
-  "Confluence",
-  "Notion",
-  "Microsoft SharePoint",
-  "Nextcloud",
-]);
+const knowledgeSources = new Set(["Microsoft SharePoint", "PDF"]);
 const apiDataSources = new Set(["Amazon S3", "Google Sheets"]);
 
 const descriptions: Record<string, string> = {
+  PDF: "Uploaded PDF documents",
   Anthropic: "Claude AI models",
   "Azure OpenAI": "AI models hosted on Azure",
   Google: "Gemini AI models",
@@ -129,7 +125,15 @@ const descriptions: Record<string, string> = {
   PGVector: "Vector search for PostgreSQL",
 };
 
-export const marketplaceConnections = connections
+export const marketplaceConnections = [
+  ...connections,
+  {
+    name: "PDF",
+    category: "Knowledge bases",
+    logo: undefined,
+    alternateLogo: undefined,
+  },
+]
   .filter((connection) => connection.category !== "Deployment options")
   .map((connection) => {
     const category = knowledgeSources.has(connection.name)

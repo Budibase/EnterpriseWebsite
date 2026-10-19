@@ -9,7 +9,7 @@ lime blocks, outlined customer logos, alternating feature rows, white
 use-case cards with 4:3 media, bordered FAQ, padded grid CTAs, and platform
 navigation. It uses the shared typography and cut-corner buttons. Page
 sections lead with Book a demo, followed by Try Budibase.
-Page titles/H1s use Stack Sans Notch, with uppercase weight-700 heroes;
+Page titles/H1s use Stack Sans Headline, retaining uppercase weight-700 heroes;
 H2–H6 headings, labels, buttons, body copy and navigation use Stack Sans Text.
 Shared primary actions use full Lime fills, uppercase Text labels and bold arrows.
 Both hero actions and feature buttons show the shared notched arrow tile;
@@ -164,3 +164,14 @@ content also supplies the Apps route's Markdown response.
 For each adoption,
 check desktop, tablet, and mobile layout, correct screenshot framing, relevant
 card visuals, FAQ keyboard behavior, and the standard build.
+
+## Functions
+
+`product/_components/FunctionsLandingPage.astro` uses the same vertical hero as
+Apps, with an Olive demo surround, outlined logos, two benefit rows, three
+supporting cards, the shared marketplace, five bordered FAQs, and the standard
+closing actions and platform navigation. `functionsLandingPage.ts` owns the
+copy for JavaScript flexibility, AI generation, function versioning, personal
+AI-assisted debugging, and automation triggers. Its static `FunctionsVisual`
+previews remain page-owned; they do not execute code or send it to an AI service.
+The route remains `/product/functions/` and retains its Markdown response.

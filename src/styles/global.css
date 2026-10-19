@@ -214,7 +214,7 @@
     --bb-background-dark-base: var(--bb-olive);
     --bb-background-dark-raised: var(--bb-olive-1500);
     --bb-background-dark-soft: var(--bb-olive);
-    --bb-border-base: var(--bb-gray-200);
+    --bb-border-base: var(--bb-gray-100);
     --bb-border-color: var(--bb-border-base);
     --bb-border-bold: var(--bb-gray-500);
     --bb-border-subtle: color-mix(in srgb, var(--bb-graphite) 8%, transparent);
@@ -257,7 +257,8 @@
     --font-sans:
       var(--font-stack-sans-text), "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-    --font-display-sans: var(--font-stack-sans-notch), var(--font-sans);
+    --font-display-sans: var(--font-stack-sans-headline), var(--font-sans);
+    --font-headline: var(--font-display-sans);
     --font-heading-sans: var(--font-sans);
     --font-label: var(--font-sans);
     --font-mono:
@@ -458,8 +459,7 @@ body {
   background-color: var(--bg-1);
 }
 
-/* Reserve Notch for page titles. Section headings, labels and controls share
-   the Text face used by body copy and navigation. */
+/* Headline supplies titles and display actions; Text supports sections and copy. */
 body :is(h2, h3, h4, h5, h6, .h2, .section-title) {
   font-family: var(--font-heading-sans) !important;
 }
@@ -484,9 +484,9 @@ body
   font-family: var(--font-sans) !important;
 }
 
-/* Keep page titles in Notch even when they also use a named title class. */
+/* Keep page headlines consistent across named title classes. */
 body :is(h1, .h1) {
-  font-family: var(--font-display-sans) !important;
+  font-family: var(--font-headline) !important;
 }
 
 time,

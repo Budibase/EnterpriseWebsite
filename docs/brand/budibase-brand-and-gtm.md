@@ -1,7 +1,7 @@
 # Budibase brand and GTM direction
 
 **Status:** Working source of truth  
-**Last updated:** 16 October 2026
+**Last updated:** 19 October 2026
 
 Use this document to guide Budibase website design, customer-facing copy,
 campaigns, presentations, customer stories, sales enablement, product launches,
@@ -590,7 +590,7 @@ capabilities. Conservative styling alone is not evidence of maturity.
   panels, and product interfaces, with Coconut for cards and supporting panels.
   Sand remains an additional warm neutral. Body copy uses
   Graphite, brand headings and links use Olive, subtle text uses grey 600,
-  decorative borders use grey 200, and strong control boundaries use grey 500.
+  decorative borders use grey 100, and strong control boundaries use grey 500.
 - Use the exact named accents and 50–1000 warm-grey scale from
   [Dropbox's color suite](https://brand.dropbox.com/color). Accent pairs are
   Azalea/Pink, Crimson/Sunset, Rust/Tangerine, Gold/Vivid Vargas, Ocean/Zen,
@@ -626,13 +626,14 @@ capabilities. Conservative styling alone is not evidence of maturity.
 
 ### Typography
 
-- Use self-hosted **Stack Sans Notch** for page titles, H1s, and the large
-  closing CTA actions. These display statements remain uppercase at weight `700`,
+- Use self-hosted **Stack Sans Headline** for page titles and H1s,
+  retaining existing wording, size, weight, casing, and spacing. Use **Stack Sans
+  Headline** for the large closing CTA actions. These display statements remain uppercase at weight `700`,
   except the Start Building closing action, which uses `500` and no decorative
   block mosaic.
 - Use **Stack Sans Text** for H2–H6 headings, section and card titles, labels,
   buttons, body copy, navigation, descriptions, technical values, and product
-  interfaces. The large closing CTA actions use Notch; keep supporting headings
+  interfaces. The large closing CTA actions use Headline; keep supporting headings
   in sentence case.
 - Use weight `300` for regular body copy and supporting text, and `400` for
   navigation, section headings, and supporting labels. Action-button labels
@@ -679,7 +680,7 @@ capabilities. Conservative styling alone is not evidence of maturity.
   product visuals, and FAQs.
 - Use light hero surfaces on product and platform pages. Retain olive
   in typography, actions, diagrams, and purposeful section contrasts.
-- Apps, Agents, Automations, Operations center, and Chat with agents use the
+- Apps, Agents, Automations, Functions, Operations center, and Chat with agents use the
   same lined feature-page style with a vertical hero: centered title,
   description and actions above a wide visual, without flanking layout columns.
   Follow with customer logos, two main benefits, three secondary cards, and FAQ.
@@ -935,7 +936,46 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 
 ## Decision log
 
+### 19 October 2026
+
+- Lightened shared decorative borders and light-page grid lines to grey 100,
+  including navigation dividers. Retained translucent white lines on dark surfaces.
+
+- Applied the Apps-style vertical grid template to Functions. Lead with custom
+  JavaScript and AI-generated functions, supported by function versions,
+  debugging through the user's own AI assistant, and automation triggers.
+  Keep function versioning distinct from Git or platform release governance;
+  copying code to a personal assistant is not a built-in debugging integration.
+
 ### 16 October 2026
+
+- Chose Stack Sans Headline and Stack Sans Text after comparing Hubot/Mona.
+  Restored the Stack-specific weights: body 300, supporting headings and
+  navigation 400, standard buttons 500, and uppercase hero headlines 700.
+  Removed the rejected Hubot/Mona trial assets and variation overrides.
+
+- Selected Stack Sans Headline for titles/H1s and the large closing CTA actions,
+  replacing the Space Grotesk headline comparison and remaining Notch display
+  usage. Retained uppercase heroes at 700, existing sizing, and Stack Sans Text
+  for supporting headings, body copy, navigation and controls. Kept prior weights.
+
+- Rejected the full Space Grotesk family trial and restored Stack Sans Text
+  for body, supporting headings, navigation and buttons at their prior weights.
+  Retained Space Grotesk solely for the existing uppercase headline trial.
+
+- Replaced the rejected IBM Plex Sans Condensed headline trial with self-hosted
+  Space Grotesk. Preserved headline sizes, weights, casing, and the remaining
+  typography; removed the unused IBM trial font files.
+
+- Continued the headline comparison with self-hosted IBM Plex Sans Condensed
+  for page titles and H1s, replacing the Stack Sans Text trial. Preserved
+  existing sizes, weights, casing, colors, supporting typography, and closing
+  CTA styling. Included the unmodified fonts and their SIL Open Font License.
+
+- Began a Stack Sans Text trial for page titles and H1s after feedback that
+  repeated notched letterforms felt uneasy. Changed only the headline family;
+  retained existing content, sizes, weights, casing, colors, and button/closing
+  CTA styling. Updated the brand-page headline specimen to show the trial.
 
 - Added the existing industry photo as the hero demo backdrop on Public sector,
   Finance, Utilities, and Manufacturing. Kept operational demos in front of the

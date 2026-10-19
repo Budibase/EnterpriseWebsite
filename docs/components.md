@@ -30,7 +30,7 @@ Use `--bb-lime` (`#A5FF00`) for bright actions and `--bb-olive` (`#233207`)
 for the dark brand anchor, headings, and links. The current light-surface trial uses white
 for page backgrounds, raised surfaces, and product interfaces, with Coconut
 for cards and supporting panels. Sand remains an additional warm neutral. Body text uses Graphite, subtle
-text uses grey 600, decorative borders use grey 200, and control boundaries
+text uses grey 600, decorative borders use grey 100, and control boundaries
 use grey 500. Keep semantic aliases in components rather than duplicating
 primitive values or overriding the global grey scale inside demos.
 
@@ -148,9 +148,9 @@ specific values:
 
 The tokens control hierarchy through size and line height. Components retain
 their role-appropriate typeface, weight, letter spacing, and casing so the
-notched display face remains reserved for decisive brand moments.
+display face remains reserved for decisive brand moments.
 
-`TitleBlock` has two variants: `hero` uses Stack Sans Notch at weight 700 in
+`TitleBlock` has two variants: `hero` uses Stack Sans Headline at weight 700 in
 uppercase for page-level statements, while `section` uses Stack Sans Text
 in sentence case for content sections. The `section` variant uses the semantic
 `heading-section` scale at weight 400 with natural letter spacing. Use weight
@@ -161,18 +161,21 @@ maps to Graphite. Keep headings on their role-specific heading or
 brand token, and use the appropriate `--bb-text-on-base*` token on dark
 surfaces.
 
-Use Stack Sans Notch for page titles, H1s, and the large closing CTA actions.
+Page titles and H1s use Stack Sans Headline without changing their
+existing size, weight, casing, spacing, or content. Use Stack Sans Headline for
+the large closing CTA actions.
 Stack Sans Text is used for
 H2–H6 headings, section/card titles, labels, buttons, body copy and navigation.
 Use weight 300 for regular copy, 400 for supporting headings, labels and
 navigation, and 500 for standard action-button labels. Closing CTA actions
-use Notch at 700, except Start Building at 500. Its Graphite action has no
+use Headline at 700, except Start Building at 500. Its Graphite action has no
 decorative block mosaic.
 Outside action buttons, former 500 roles use 400 and former 400 roles use 300. Keep existing
 semibold/bold emphasis and 700 hero headlines. Tailwind classes express their
 actual weights: `font-light` is 300 and `font-normal` is 400.
-Use `--font-display-sans` for page titles and `--font-heading-sans` for
-supporting headings. Use `--font-label` or `brand-label` for labels. The latter
+The global H1 rule resolves to `--font-headline`;
+`--font-display-sans` also resolves to Headline for the large closing CTA actions. Use
+`--font-heading-sans` for supporting headings and `--font-label` or `brand-label` for labels. The latter
 two roles resolve to Text, including named label/title classes across demos.
 Use `technical-identifier` for tabular numerals and a slashed zero. Do not carry
 over stylistic-set requests from a previous font.
@@ -278,8 +281,6 @@ this treatment consistent across both shared landing-page compositions.
 
 - Use `src/components/ProductPageLayout.astro` for product pages with bespoke
   body content and the standard compact product header.
-- Use `ProductLandingPage.astro` for Functions until its layout migration.
-  It combines `HeroLarge` with the canonical `ProductDetailBody` composition.
 - Use `GridLandingPage.astro` for the approved compact lined landing-page
   template: split hero, olive/lime block background, outlined logo
   row, alternating feature rows, white use-case cards, flush bordered FAQ, inset
@@ -301,6 +302,14 @@ this treatment consistent across both shared landing-page compositions.
   Titles, links, descriptions, and partner logos resolve from marketplace data;
   templates without a bespoke illustration use a preview of their first three
   workflow steps.
+- `product/_components/FunctionsLandingPage.astro` uses the Apps-style stacked
+  `GridLandingPage` composition with an Olive `ProductDemoFrame`. Its page-owned
+  `FunctionsVisual` illustrates JavaScript, AI generation, function versions,
+  copying code into a personal AI assistant, and automation triggers. These are
+  static conceptual previews, not a live editor or a direct debugging integration.
+  `functionsLandingPage.ts` supplies the two main benefits, three supporting
+  cards, and five FAQs. The existing `/product/functions/` route uses
+  `productLandingMarkdown.ts` to keep its negotiated Markdown response aligned.
 - `product/_components/AgentsLandingPage.astro` uses the same stacked hero and
   lined body as Apps. It reuses `AgentDemo` without a backdrop, `OnePlatformAgent`
   for requests, and `ApprovalVisual` for deterministic approval conditions and
