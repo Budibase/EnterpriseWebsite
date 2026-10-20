@@ -68,7 +68,7 @@ const hasBeforeTitle = Astro.slots.has("before-title");
       underline={linkUnderline}
     >
       <div
-        class={`card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 hover:bg-stone-200!  p-4 rounded-none ${className}`}
+        class={`card w-full max-w-full min-w-0 bg-secondary ease-in-out duration-50 p-4 rounded-none ${className}`}
       >
         <div class={`card-content ${cardContentClass}`}>
           {showTagAtTop && (
@@ -182,6 +182,7 @@ const hasBeforeTitle = Astro.slots.has("before-title");
 
 <style>
   .card {
+    background: var(--bb-background-card);
     border: 1px solid var(--border);
     min-width: 0;
     overflow: hidden;

@@ -39,7 +39,7 @@ if (accept.includes("text/markdown")) {
     "[Explore the marketplace](/marketplace/)",
     "## Frequently asked questions",
     ...agentsFaqs.flatMap((faq) => [`### ${faq.question}`, faq.answer]),
-    "[Book a demo](https://budibase.com/contact/)",
+    "[Talk to sales](https://budibase.com/contact/)",
     "[Try Budibase](https://account.budibase.app/register)",
   ].join("\n\n");
   return new Response(markdown, {

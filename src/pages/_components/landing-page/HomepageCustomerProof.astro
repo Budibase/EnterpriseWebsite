@@ -1,0 +1,149 @@
+---
+const customerProof = [
+  {
+    stat: "$3.2m",
+    headline: "Projected savings",
+    description: "Reworld · Reducing manual data entry",
+    url: "/customers/reworld/",
+  },
+  {
+    stat: "100k+",
+    headline: "Users supported",
+    description: "Bulgarian Government · Refugee response",
+    url: "/customers/bulgarian-government/",
+  },
+  {
+    stat: "1 day",
+    headline: "To build an app's first draft",
+    description: "Basque Country Water Network · Previously weeks",
+    url: "/customers/pays-basque/",
+  },
+] as const;
+---
+
+<section class="homepage-customer-proof" aria-label="Customer outcomes">
+  <ul class="homepage-customer-proof__grid">
+    {
+      customerProof.map((proof) => (
+        <li>
+          <a class="homepage-customer-proof__card" href={proof.url}>
+            <p class="homepage-customer-proof__stat">{proof.stat}</p>
+            <h2 class="homepage-customer-proof__headline">{proof.headline}</h2>
+            <p class="homepage-customer-proof__description">
+              {proof.description}
+            </p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .homepage-customer-proof {
+    width: min(100%, var(--site-container-max));
+    margin: 1rem auto 0;
+    padding-inline: var(--site-content-inset);
+  }
+
+  .homepage-customer-proof__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .homepage-customer-proof__grid > li {
+    min-width: 0;
+  }
+
+  .homepage-customer-proof__card {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 0;
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+    color: var(--bb-olive);
+    text-decoration: none;
+  }
+
+  .homepage-customer-proof__card::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: var(--bb-background-surface-raised);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .homepage-customer-proof__card::before {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    margin-bottom: 1.5rem;
+    background: var(--bb-lime);
+    content: "";
+  }
+
+  .homepage-customer-proof__grid
+    > li:nth-child(2)
+    .homepage-customer-proof__card::before {
+    background: var(--bb-orange);
+  }
+
+  .homepage-customer-proof__grid
+    > li:nth-child(3)
+    .homepage-customer-proof__card::before {
+    background: var(--bb-teal);
+  }
+
+  .homepage-customer-proof__card:hover {
+    color: var(--bb-olive);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .homepage-customer-proof__card:focus-visible {
+    outline: 2px solid var(--bb-olive);
+    outline-offset: 4px;
+  }
+
+  .homepage-customer-proof__stat {
+    margin: 0 0 1rem;
+    color: var(--bb-olive) !important;
+    font-family: var(--font-heading-sans);
+    font-size: clamp(3rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.045em !important;
+    font-variant-numeric: lining-nums proportional-nums;
+  }
+
+  .homepage-customer-proof__headline {
+    margin: 0 0 0.5rem;
+    color: var(--bb-olive);
+    font-size: var(--bb-text-heading-card-font-size);
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: normal;
+  }
+
+  .homepage-customer-proof__description {
+    margin: auto 0 0;
+    color: var(--bb-text-subtle) !important;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 767px) {
+    .homepage-customer-proof__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

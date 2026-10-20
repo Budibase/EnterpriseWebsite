@@ -65,7 +65,9 @@ const isRampShowcase = variant === "ramp-showcase";
         <div class="homepage-proof__stats">
           {homepageProofStats.map((stat) => (
             <div class="homepage-proof__stat">
-              <p class="homepage-proof__stat-value">{stat.value}</p>
+              <p class="homepage-proof__stat-value operational-data">
+                {stat.value}
+              </p>
               <p class="homepage-proof__stat-description">{stat.description}</p>
             </div>
           ))}
@@ -122,8 +124,8 @@ const isRampShowcase = variant === "ramp-showcase";
   }
 
   .homepage-proof__logos :global(.enterprise-logo-grid__cell) {
-    border-color: var(--bb-border-subtle);
-    background: var(--bb-background-sand);
+    border: 0;
+    background: var(--bb-background-card);
   }
 
   .homepage-proof__logos :global(.enterprise-logo-grid__image),

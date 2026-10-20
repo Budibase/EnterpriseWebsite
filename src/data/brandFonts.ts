@@ -1,9 +1,9 @@
-import textUrl from "../assets/fonts/budibase-text.woff2?url";
+import textUrl from "../assets/fonts/budibase-geist.woff2?url";
 
 export const brandFonts = [
   {
-    key: "inter",
-    family: "Budibase Text",
+    key: "geist",
+    family: "Budibase Geist",
     url: textUrl,
     weights: "400 700",
     preload: true,

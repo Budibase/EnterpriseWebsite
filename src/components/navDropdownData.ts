@@ -1,7 +1,5 @@
-import platformCardImage from "../assets/images/navigation/platform-card.webp?url";
 import resourcesCardImage from "../assets/images/navigation/resources-card.webp?url";
 import solutionsCardImage from "../assets/images/navigation/solutions-card.webp?url";
-import companyCardImage from "../assets/images/homepage/platform/bg.png?url";
 
 export interface NavDropdownItem {
   href: string;
@@ -26,8 +24,9 @@ export interface NavFeaturedCard {
   title: string;
   description: string;
   ctaLabel: string;
-  image: string;
+  image?: string;
   imageTint?: boolean;
+  presentation?: "platform";
 }
 
 export interface NavDropdownMenu {
@@ -41,48 +40,15 @@ export interface NavDropdownMenu {
 export const platformDropdownMenu: NavDropdownMenu = {
   featuredCard: {
     href: "/platform/",
-    title: "Platform",
-    description: "Explore the Budibase platform.",
-    ctaLabel: "View overview",
-    image: platformCardImage,
+    title: "Explore platform",
+    description: "Modernize processes",
+    ctaLabel: "Explore platform",
+    presentation: "platform",
   },
   groupMobileColumns: true,
   columns: [
     {
-      heading: "Connect",
-      items: [
-        {
-          href: "/product/ai-models/",
-          label: "AI models",
-          description: "Choose your models.",
-          prefetch: true,
-          icon: "StarFour",
-        },
-        {
-          href: "/product/apis/",
-          label: "APIs",
-          description: "Connect system actions.",
-          prefetch: true,
-          icon: "Code",
-        },
-        {
-          href: "/product/data/",
-          label: "Data",
-          description: "Connect and store data.",
-          prefetch: true,
-          icon: "Table",
-        },
-        {
-          href: "/product/knowledge/",
-          label: "Knowledge",
-          description: "Ground agents in knowledge.",
-          prefetch: true,
-          icon: "BookOpen",
-        },
-      ],
-    },
-    {
-      heading: "Automate",
+      heading: "Products",
       items: [
         {
           href: "/product/agents/",
@@ -92,11 +58,44 @@ export const platformDropdownMenu: NavDropdownMenu = {
           icon: "Robot",
         },
         {
+          href: "/product/apps/",
+          label: "Apps",
+          description: "Build custom interfaces.",
+          prefetch: true,
+          icon: "AppWindow",
+        },
+        {
           href: "/product/automations/",
           label: "Automations",
           description: "Run event-driven workflows.",
           prefetch: true,
           icon: "Lightning",
+        },
+        {
+          href: "/product/requests/",
+          label: "Requests and approvals",
+          description: "Review consequential actions.",
+          prefetch: true,
+          icon: "UserSwitch",
+        },
+      ],
+    },
+    {
+      heading: "Capabilities",
+      items: [
+        {
+          href: "/marketplace/connections/",
+          label: "Integrations",
+          description: "Connect your existing systems.",
+          prefetch: true,
+          icon: "PlugsConnected",
+        },
+        {
+          href: "/product/data/",
+          label: "Data tables",
+          description: "Connect and store data.",
+          prefetch: true,
+          icon: "Table",
         },
         {
           href: "/product/functions/",
@@ -106,37 +105,25 @@ export const platformDropdownMenu: NavDropdownMenu = {
           badge: "Alpha",
           icon: "Function",
         },
-      ],
-    },
-    {
-      heading: "Interact",
-      items: [
         {
-          href: "/product/apps/",
-          label: "Apps",
-          description: "Build custom interfaces.",
+          href: "/product/apis/",
+          label: "API explorer",
+          description: "Configure and test API actions.",
           prefetch: true,
-          icon: "AppWindow",
-        },
-        {
-          href: "/product/chat-with-agents/",
-          label: "Chat with agents",
-          description: "Use Slack or Teams.",
-          prefetch: true,
-          icon: "ChatCircle",
-        },
-        {
-          href: "/product/operations-center/",
-          label: "Operations center",
-          description: "Track requests and tasks.",
-          prefetch: true,
-          icon: "EnvelopeOpen",
+          icon: "Code",
         },
       ],
     },
     {
-      heading: "Govern",
+      heading: "Evaluate and deploy",
       items: [
+        {
+          href: "/product/admin-security/",
+          label: "Enterprise overview",
+          description: "Control access and actions.",
+          prefetch: true,
+          icon: "Keyhole",
+        },
         {
           href: "/product/activity/",
           label: "Activity",
@@ -145,40 +132,23 @@ export const platformDropdownMenu: NavDropdownMenu = {
           icon: "Gauge",
         },
         {
-          href: "/product/requests/",
-          label: "Human approvals",
-          description: "Review consequential actions.",
+          href: "/security/",
+          label: "Security & governance",
+          description: "Explore security and controls.",
           prefetch: true,
-          icon: "UserSwitch",
+          icon: "ShieldCheck",
         },
         {
-          href: "/product/admin-security/",
-          label: "Permissions",
-          description: "Control access and actions.",
+          href: "/product/self-host/",
+          label: "Self-hosting & deployment",
+          description: "Deploy on your terms.",
           prefetch: true,
-          icon: "Keyhole",
+          icon: "CloudCheck",
         },
       ],
     },
   ],
   footerLinks: [
-    {
-      href: "/marketplace/connections/",
-      label: "Connections",
-      prefetch: true,
-    },
-    {
-      href: "/security/",
-      label: "Security & compliance",
-      prefetch: true,
-      icon: "ShieldCheck",
-    },
-    {
-      href: "/product/self-host/",
-      label: "Self-hosting",
-      prefetch: true,
-      icon: "CloudCheck",
-    },
     {
       href: "https://github.com/orgs/Budibase/projects/15/views/7",
       label: "Roadmap",
@@ -325,6 +295,7 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
     {
       heading: "Marketplace",
       items: [
+        { href: "/marketplace/", label: "Marketplace", prefetch: true },
         { href: "/marketplace/templates/", label: "Templates", prefetch: true },
         {
           href: "/marketplace/connections/",
@@ -366,76 +337,6 @@ export const resourcesDropdownMenu: NavDropdownMenu = {
         },
       ],
     },
-    {
-      heading: "Company",
-      items: [
-        {
-          href: "/about/",
-          label: "About",
-          prefetch: true,
-        },
-        {
-          href: "https://budibase.bamboohr.com/careers/",
-          label: "Jobs",
-          target: "_blank",
-          rel: "noopener noreferrer",
-        },
-      ],
-    },
-  ],
-  footerLinks: [
-    {
-      href: "/marketplace/",
-      label: "Explore Marketplace",
-      prefetch: true,
-    },
-  ],
-};
-
-export const companyDropdownMenu: NavDropdownMenu = {
-  featuredCard: {
-    href: "/customers/",
-    title: "Company",
-    description: "Meet the Budibase team.",
-    ctaLabel: "Meet Budibase",
-    image: companyCardImage,
-  },
-  columns: [
-    {
-      heading: "Company",
-      items: [
-        {
-          href: "/customers/",
-          label: "Customers",
-          description: "Explore customer stories.",
-          prefetch: true,
-        },
-        {
-          href: "/marketplace/partners/",
-          label: "Partners",
-          description: "Find a delivery partner.",
-          prefetch: true,
-        },
-        {
-          href: "/enterprise/",
-          label: "Enterprise",
-          description: "Enterprise controls and support.",
-          prefetch: true,
-        },
-        {
-          href: "/security/",
-          label: "Security",
-          description: "Explore Budibase security practices.",
-          prefetch: true,
-        },
-        {
-          href: "/contact/",
-          label: "Contact",
-          description: "Talk to our team.",
-          prefetch: true,
-        },
-      ],
-    },
   ],
 };
 
@@ -452,19 +353,21 @@ export const navDropdownMenus = [
     label: "Resources",
     menu: resourcesDropdownMenu,
   },
-  {
-    label: "Company",
-    menu: companyDropdownMenu,
-  },
 ];
 
 export const flattenMenuItems = (menu: NavDropdownMenu): NavDropdownItem[] => [
-  {
-    href: menu.featuredCard.href,
-    label: menu.featuredCard.title,
-    description: menu.featuredCard.description,
-    prefetch: menu.featuredCard.href.startsWith("/"),
-  },
+  ...(menu.columns.some((column) =>
+    column.items.some((item) => item.href === menu.featuredCard.href),
+  )
+    ? []
+    : [
+        {
+          href: menu.featuredCard.href,
+          label: menu.featuredCard.title,
+          description: menu.featuredCard.description,
+          prefetch: menu.featuredCard.href.startsWith("/"),
+        },
+      ]),
   ...menu.columns.flatMap((column) => column.items),
   ...(menu.footerLink ? [menu.footerLink] : []),
   ...(menu.footerLinks ?? []),

@@ -20,28 +20,24 @@
     /* Core Budibase palette. */
     --bb-lime: var(--bb-lime-300);
     --bb-olive: var(--bb-olive-1300);
-    --bb-coconut: #f7f5f2;
-    --bb-sand: #f4f2f0;
+    --bb-coconut: #f7f7f4;
+    --bb-oat: #ebe9e4;
+    --bb-sand: var(--bb-oat);
     --bb-graphite: #1e1919;
     --bb-white: #ffffff;
     --bb-black: #000000;
 
-    /* Exact accent and grey anchors from https://brand.dropbox.com/color. */
-    --bb-azalea: #cd2f7b;
-    --bb-pink: #ffafa5;
-    --bb-crimson: #9b0032;
-    --bb-sunset: #fa551e;
-    --bb-rust: #be4b0a;
-    --bb-tangerine: #ff8c19;
-    --bb-gold: #9b6400;
-    --bb-vivid-vargas: #fad24b;
-    --bb-ocean: #007891;
-    --bb-zen: #14c8eb;
-    --bb-navy: #283750;
-    --bb-cloud: #b4c8e1;
-    --bb-plum: #78286e;
-    --bb-orchid: #c8aff0;
+    --bb-orange: #fe6b1b;
+    --bb-teal: #016b83;
 
+    /* Supporting illustration accents and functional error color. */
+    --bb-pink: #ffafa5;
+    --bb-orchid: #c8aff0;
+    --bb-aubergine: #78286e;
+    --bb-cloud: #b4c8e1;
+    --bb-danger: #9b0032;
+
+    /* Warm-grey scale. */
     --bb-gray-50: #f7f6f5;
     --bb-gray-100: #ebe9e6;
     --bb-gray-150: #dfdcd8;
@@ -97,62 +93,41 @@
     --bb-olive-1500: #172105;
     --bb-olive-1600: #080c02;
 
-    /* Pale accent surfaces derived from the named anchors. */
-    --bb-cloud-soft: color-mix(in srgb, var(--bb-cloud) 20%, var(--bb-coconut));
-    --bb-cloud-subtle: color-mix(
+    /* Derived fills and readable warm text; these are not extra accent anchors. */
+    --bb-orange-strong: color-mix(
       in srgb,
-      var(--bb-cloud) 10%,
+      var(--bb-orange) 45%,
+      var(--bb-graphite)
+    );
+    --bb-orange-tint: color-mix(
+      in srgb,
+      var(--bb-orange) 30%,
       var(--bb-coconut)
     );
-    --bb-orchid-soft: color-mix(
+    --bb-orange-soft: color-mix(
       in srgb,
-      var(--bb-orchid) 20%,
+      var(--bb-orange) 10%,
       var(--bb-coconut)
     );
-    --bb-orchid-subtle: color-mix(
+    --bb-orange-subtle: color-mix(
       in srgb,
-      var(--bb-orchid) 10%,
+      var(--bb-orange) 5%,
       var(--bb-coconut)
     );
-    --bb-pink-soft: color-mix(in srgb, var(--bb-pink) 20%, var(--bb-coconut));
-    --bb-sunset-soft: color-mix(
+    --bb-teal-tint: color-mix(in srgb, var(--bb-teal) 15%, var(--bb-coconut));
+    --bb-teal-soft: color-mix(in srgb, var(--bb-teal) 10%, var(--bb-coconut));
+    --bb-teal-subtle: color-mix(in srgb, var(--bb-teal) 5%, var(--bb-coconut));
+    --bb-danger-soft: color-mix(
       in srgb,
-      var(--bb-sunset) 20%,
+      var(--bb-danger) 10%,
       var(--bb-coconut)
     );
-    --bb-sunset-subtle: color-mix(
-      in srgb,
-      var(--bb-sunset) 10%,
-      var(--bb-coconut)
-    );
-    --bb-tangerine-soft: color-mix(
-      in srgb,
-      var(--bb-tangerine) 20%,
-      var(--bb-coconut)
-    );
-    --bb-tangerine-subtle: color-mix(
-      in srgb,
-      var(--bb-tangerine) 10%,
-      var(--bb-coconut)
-    );
-    --bb-vivid-vargas-soft: color-mix(
-      in srgb,
-      var(--bb-vivid-vargas) 20%,
-      var(--bb-coconut)
-    );
-    --bb-vivid-vargas-subtle: color-mix(
-      in srgb,
-      var(--bb-vivid-vargas) 10%,
-      var(--bb-coconut)
-    );
-    --bb-zen-soft: color-mix(in srgb, var(--bb-zen) 20%, var(--bb-coconut));
-    --bb-zen-subtle: color-mix(in srgb, var(--bb-zen) 10%, var(--bb-coconut));
 
     /* Semantic colors and shared interaction states. */
     --bb-gradient: linear-gradient(
       to bottom right,
       var(--bb-olive) 15%,
-      var(--bb-rust) 100%
+      var(--bb-orange-strong) 100%
     );
     --bb-brand: var(--bb-olive);
     --bb-brand-state: var(--bb-olive-1400);
@@ -173,7 +148,7 @@
     --bb-button-border: var(--bb-gray-800);
     --bb-text-base: var(--bb-graphite);
     --bb-text-body: var(--bb-graphite);
-    --bb-text-subtle: var(--bb-gray-600);
+    --bb-text-subtle: var(--bb-gray-650);
     --bb-text-muted: color-mix(in srgb, var(--bb-graphite) 69%, transparent);
     --bb-text-on-base: var(--bb-coconut);
     --bb-text-on-base-subtle: var(--bb-gray-150);
@@ -187,11 +162,14 @@
       var(--bb-coconut) 70%,
       transparent
     );
-    --bb-background-surface-base: var(--bb-white);
-    --bb-background-surface-subtle: var(--bb-coconut);
+    --bb-background-surface-base: var(--bb-coconut);
+    --bb-background-surface-subtle: var(--bb-sand);
     --bb-background-surface-raised: var(--bb-white);
     --bb-background-product: var(--bb-white);
-    --bb-background-sand: var(--bb-coconut);
+    --bb-background-card: var(--bb-oat);
+    --bb-background-feature-card: var(--bb-coconut);
+    --bb-text-card-subtle: var(--bb-gray-700);
+    --bb-background-sand: var(--bb-sand);
     --bb-background-sand-hover: var(--bb-gray-100);
     --bb-background-component-base: color-mix(
       in srgb,
@@ -255,8 +233,8 @@
     --bb-color__text__subtle: var(--bb-text-subtle);
 
     --font-sans:
-      "Budibase Text", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-      "Noto Color Emoji", sans-serif;
+      "Budibase Geist", "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
     --font-display-sans: var(--font-sans);
     --font-display: var(--font-display-sans);
     --font-headline: var(--font-display-sans);
@@ -310,9 +288,9 @@
     --bb-text-copy-caption-line-height: 1.4286;
 
     /* Core semantic RGB tokens (Tailwind-friendly) */
-    --bg: 255 255 255;
+    --bg: 247 247 244;
     /* bb background/base */
-    --surface: 247 245 242;
+    --surface: 235 233 228;
     /* bb background/subtle */
     --surface-2: 255 255 255;
     /* bb background/raised */
@@ -324,30 +302,30 @@
     --text: 30 25 25;
     --text-article: 30 25 25;
     /* bb Graphite */
-    --text-muted: 115 108 100;
+    --text-muted: 103 97 90;
     /* bb text/subtle */
-    --text-subtle: 115 108 100;
+    --text-subtle: 103 97 90;
     /* bb border/bold */
 
     /* Brand */
     --brand: 35 50 7; /* bb Olive */
     --brand-hover: 29 41 6; /* bb Olive hover */
-    --on-brand: 247 245 242;
+    --on-brand: 247 247 244;
     /* bb white */
     --primary: 35 50 7;
     /* bb Olive */
     --primary-hover: 29 41 6;
     --primary-active: 23 33 5;
     /* bb Olive hover */
-    --on-primary: 247 245 242;
+    --on-primary: 247 247 244;
     /* bb white */
 
     /* Accent and semantic status aliases. */
     --accent: 165 255 0;
     --success: 35 50 7;
-    --warning: 155 100 0;
+    --warning: 131 62 26;
     --danger: 155 0 50;
-    /* bb Crimson */
+    /* Semantic error red */
     --ring: 35 50 7;
     /* bb Olive */
 
@@ -359,12 +337,12 @@
     --text-secondary: rgb(var(--text-muted));
     --text-body: var(--bb-text-body);
     --accent-grey: var(--bb-gray-600);
-    --accent-blue: var(--bb-ocean);
-    --accent-orange: var(--bb-rust);
+    --accent-blue: var(--bb-teal);
+    --accent-orange: var(--bb-orange-strong);
     --accent-green: var(--bb-olive);
-    --accent-purple: var(--bb-plum);
-    --accent-red: var(--bb-crimson);
-    --hero-demo-user-bubble: var(--bb-cloud-soft);
+    --accent-purple: var(--bb-teal);
+    --accent-red: var(--bb-danger);
+    --hero-demo-user-bubble: var(--bb-teal-soft);
     --border-color: rgb(var(--border) / 0.9);
     --site-nav-bar-height: 56px;
     --site-nav-height: var(--site-nav-bar-height);
@@ -450,8 +428,7 @@ html {
   text-rendering: optimizeLegibility;
   font-feature-settings:
     "liga" 1,
-    "calt" 1,
-    "ss07" 1;
+    "ss09" 1;
   font-variant-numeric: normal;
 }
 
@@ -459,12 +436,6 @@ body {
   margin: 0;
   line-height: inherit;
   background-color: var(--bg-1);
-}
-
-/* Inter's display optical size gives headings their large-text detailing. */
-body :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .section-title) {
-  font-optical-sizing: none;
-  font-variation-settings: "opsz" 32;
 }
 
 body :is(h2, h3, h4, h5, h6, .h2, .section-title) {
@@ -510,12 +481,17 @@ body :is(h1, .h1) {
 }
 
 time,
+table,
 .operational-data {
   font-variant-numeric: tabular-nums;
 }
 
 .technical-identifier {
-  font-variant-numeric: tabular-nums slashed-zero;
+  /* Geist's ss09 alternates operate on proportional zero/one glyphs. */
+  font-variant-numeric: proportional-nums;
+  font-feature-settings:
+    "liga" 1,
+    "ss09" 1;
 }
 
 /* Code blocks should use the same surface as selected tabs */

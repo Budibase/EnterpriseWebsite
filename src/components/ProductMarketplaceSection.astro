@@ -183,7 +183,7 @@ const cards = await getProductMarketplaceCards(listings);
   .product-marketplace__cards :global(.product-marketplace__card) {
     padding: 0;
     border: 0;
-    background: var(--bb-coconut);
+    background: var(--bb-background-card);
   }
   .product-marketplace__cards :global(.product-marketplace__card-content) {
     height: 100%;
@@ -239,8 +239,8 @@ const cards = await getProductMarketplaceCards(listings);
     color: var(--bb-graphite);
   }
   .product-marketplace__type--partner {
-    background: var(--bb-cloud);
-    color: var(--bb-navy);
+    background: var(--bb-teal-tint);
+    color: var(--bb-teal);
   }
   .product-marketplace__preview {
     display: flex;
@@ -252,10 +252,10 @@ const cards = await getProductMarketplaceCards(listings);
     background: color-mix(in srgb, var(--bb-lime) 15%, var(--bb-coconut));
   }
   .product-marketplace__preview--access {
-    background: color-mix(in srgb, var(--bb-zen) 20%, var(--bb-coconut));
+    background: var(--bb-cloud);
   }
   .product-marketplace__preview--kanban {
-    background: color-mix(in srgb, var(--bb-orchid) 20%, var(--bb-coconut));
+    background: var(--bb-orchid);
   }
   .product-marketplace__preview--partner {
     background: var(--bb-background-base);

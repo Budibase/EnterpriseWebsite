@@ -1,0 +1,160 @@
+---
+import BrandShape from "@components/ui/BrandShape.astro";
+import type { NavFeaturedCard } from "@components/navDropdownData";
+
+interface Props {
+  card: NavFeaturedCard;
+}
+
+const { card } = Astro.props;
+// A fixed field that becomes denser on hover or keyboard focus.
+const pixels = Array.from({ length: 22 * 9 }, (_, index) => {
+  const column = index % 22;
+  const row = Math.floor(index / 22);
+  const score = (column * 7 + row * 11) % 19;
+  return {
+    x: column * 10,
+    y: 170 + row * 10,
+    visible: score < row + 1,
+    visibleOnHover: score < row + 6,
+  };
+}).filter((pixel) => pixel.visibleOnHover);
+---
+
+<a
+  class="platform-nav-card"
+  href={card.href}
+  data-astro-prefetch
+  aria-label={card.title}
+>
+  <span class="platform-nav-card__panel">
+    <svg
+      class="platform-nav-card__pixels"
+      viewBox="0 0 220 260"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <pattern
+          id="platform-nav-pixel-grid"
+          width="10"
+          height="10"
+          patternUnits="userSpaceOnUse"
+        >
+          <rect width="6" height="6" class="platform-nav-card__pixel"></rect>
+        </pattern>
+      </defs>
+      <rect width="220" height="260" fill="url(#platform-nav-pixel-grid)"
+      ></rect>
+      {
+        pixels.map(({ x, y, visible }) => (
+          <rect
+            x={x}
+            y={y}
+            width="6"
+            height="6"
+            class:list={[
+              "platform-nav-card__pixel--lit",
+              !visible && "platform-nav-card__pixel--extra",
+            ]}
+          />
+        ))
+      }
+    </svg>
+    <span class="platform-nav-card__headline">{card.description}</span>
+  </span>
+  <span class="platform-nav-card__footer">
+    <BrandShape name="forward-chevrons" size={40} inverted />
+    <span class="platform-nav-card__title">{card.title}</span>
+  </span>
+</a>
+
+<style>
+  .platform-nav-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    margin-inline-end: 1rem;
+    padding: 0;
+    border: 1px solid var(--bb-border-base);
+    background: var(--bb-coconut);
+    color: var(--bb-olive);
+    text-decoration: none;
+    white-space: normal;
+  }
+
+  .platform-nav-card:focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 4px;
+  }
+
+  .platform-nav-card__panel {
+    display: block;
+    position: relative;
+    min-height: 15rem;
+    flex: 1;
+    overflow: hidden;
+    padding: 1rem;
+    background: var(--bb-graphite);
+    color: var(--bb-coconut);
+  }
+
+  .platform-nav-card__pixels {
+    position: absolute;
+    inset: 0.75rem;
+    width: calc(100% - 1.5rem);
+    height: calc(100% - 1.5rem);
+  }
+
+  .platform-nav-card__pixel {
+    fill: var(--bb-gray-900);
+  }
+
+  .platform-nav-card__pixel--lit {
+    fill: var(--bb-orange);
+  }
+
+  .platform-nav-card__pixel--extra {
+    opacity: 0;
+  }
+
+  .platform-nav-card:is(:hover, :focus-visible) .platform-nav-card__pixel--lit {
+    fill: var(--bb-lime);
+  }
+
+  .platform-nav-card:is(:hover, :focus-visible)
+    .platform-nav-card__pixel--extra {
+    opacity: 1;
+  }
+
+  .platform-nav-card__headline {
+    position: relative;
+    display: block;
+    max-width: 8em;
+    font-size: 1.875rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  .platform-nav-card__footer {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.625rem;
+    padding: 1rem;
+  }
+
+  .platform-nav-card__title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+
+  .platform-nav-card:is(:hover, :focus-visible) .platform-nav-card__title {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>

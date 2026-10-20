@@ -1,6 +1,11 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
-import { coreColors, accentColors, greyColors } from "../../data/brandPalette";
+import {
+  coreColors,
+  accentColors,
+  neutralColors,
+  greyColors,
+} from "../../data/brandPalette";
 import Icon from "@components/Icon.astro";
 import TitleBlock from "@components/TitleBlock.astro";
 
@@ -45,7 +50,8 @@ const logos = [
 
 const colorGroups = [
   { title: "Core", colors: coreColors },
-  { title: "Accents", colors: accentColors },
+  { title: "Supporting accents", colors: accentColors },
+  { title: "Neutrals", colors: neutralColors },
   { title: "Greys", colors: greyColors },
 ];
 ---
@@ -208,7 +214,7 @@ const colorGroups = [
           <article class="brand-type-card brand-type-card--display">
             <div class="brand-type-meta">
               <span>Headlines</span>
-              <strong>Inter Display</strong>
+              <strong>Geist</strong>
             </div>
             <p class="brand-type-specimen">Build and run more.</p>
             <div class="brand-type-details">
@@ -222,7 +228,7 @@ const colorGroups = [
           <article class="brand-type-card brand-type-card--body">
             <div class="brand-type-meta">
               <span>Content system</span>
-              <strong>Inter</strong>
+              <strong>Geist</strong>
             </div>
             <p class="brand-type-body-sample">
               Budibase gives enterprise IT the leverage to deliver more, without
@@ -230,7 +236,7 @@ const colorGroups = [
             </p>
             <div
               class="brand-type-weight-samples"
-              aria-label="Inter weight range"
+              aria-label="Geist weight range"
             >
               <span style="font-weight: 400">400 Regular</span>
               <span style="font-weight: 500">500 Medium</span>
@@ -432,7 +438,7 @@ const colorGroups = [
   .brand-type-card {
     overflow: hidden;
     border: 1px solid var(--bb-border-base);
-    background: var(--bb-background-surface-base);
+    background: var(--bb-background-card);
   }
 
   .brand-logo-card--lime .brand-logo-preview {
@@ -519,7 +525,7 @@ const colorGroups = [
     flex-direction: column;
     padding: 0;
     border: 1px solid var(--bb-border-base);
-    background: var(--bb-background-surface-base);
+    background: var(--bb-background-card);
     color: var(--bb-text-base);
     font: inherit;
     text-align: left;
@@ -619,7 +625,7 @@ const colorGroups = [
   }
 
   .brand-type-card--body {
-    background: var(--bb-background-surface-raised);
+    background: var(--bb-background-card);
   }
 
   .brand-type-meta {
@@ -649,8 +655,6 @@ const colorGroups = [
     margin: 0;
     color: var(--bb-lime) !important;
     font-family: var(--font-headline);
-    font-optical-sizing: none;
-    font-variation-settings: "opsz" 32;
     font-size: clamp(3rem, 7vw, 6.25rem);
     font-weight: 700;
     letter-spacing: -0.02em;

@@ -191,7 +191,7 @@ const productGroups = [
                   imageAspectRatio="4/3"
                   imagePresentation="solid"
                   showArrowButton={true}
-                  class="homepage-product-group__cluster"
+                  class="homepage-product-group__cluster card-cluster--feature"
                 />
               </div>
             </section>
@@ -282,7 +282,7 @@ const productGroups = [
 
   :global(.homepage-product-group__cluster.card-cluster) {
     --card-cluster-image-background: var(--bb-olive);
-    --card-cluster-card-description: var(--text-secondary);
+    --card-cluster-card-description: var(--bb-text-card-subtle);
     background: transparent;
   }
 
@@ -297,15 +297,13 @@ const productGroups = [
 
   :global(.homepage-product-group__cluster .card-cluster__card) {
     border: 1px solid var(--bb-border-base);
-    background: var(--bb-background-base);
-    transition:
-      border-color 180ms ease,
-      background-color 180ms ease;
+    background: var(--card-cluster-card-background);
+    transition: border-color 180ms ease;
   }
 
-  :global(.homepage-product-group__cluster .card-cluster__card:hover) {
+  :global(.homepage-product-group__cluster .card-cluster__card:hover),
+  :global(.homepage-product-group__cluster .card-cluster__card:focus-within) {
     border-color: var(--bb-olive);
-    background: var(--bb-background-sand-hover);
   }
 
   :global(.homepage-product-group__cluster .card-cluster__image-wrap) {
@@ -318,7 +316,7 @@ const productGroups = [
   }
 
   :global(.homepage-product-group__cluster .card-cluster__content p) {
-    color: var(--text-secondary) !important;
+    color: var(--bb-text-card-subtle) !important;
   }
 
   :global(.homepage-product-group__cluster .card-cluster__arrow) {

@@ -114,6 +114,10 @@ const toneClass = tone === "on-dark" ? "four-column-feature-grid--on-dark" : "";
   }
 
   .four-column-feature-grid__card {
+    background: var(
+      --four-column-feature-grid-card-background,
+      var(--bb-background-feature-card)
+    );
     display: flex;
     min-width: 0;
     flex-direction: column;

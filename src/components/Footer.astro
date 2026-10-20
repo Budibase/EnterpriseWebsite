@@ -7,7 +7,6 @@ import Icon from "@components/Icon.astro";
 import Link from "@components/Link.astro";
 import FeatureBadge from "@components/FeatureBadge.astro";
 import {
-  companyDropdownMenu,
   platformDropdownMenu,
   resourcesDropdownMenu,
   solutionsDropdownMenu,
@@ -49,19 +48,20 @@ const makeMenuColumn = (
   groups: [{ links: [overview] }, ...groups],
 });
 
-const resourcesCompanyItems =
-  resourcesDropdownMenu.columns.find((column) => column.heading === "Company")
-    ?.items ?? [];
-
-const companyFooterLinks = [
-  ...resourcesCompanyItems,
-  ...companyDropdownMenu.columns[0].items.filter(
-    (item) =>
-      !resourcesCompanyItems.some(
-        (companyItem) => companyItem.href === item.href,
-      ),
-  ),
-].map(toFooterLink);
+const companyFooterLinks: FooterLink[] = [
+  { label: "About", url: "/about/" },
+  {
+    label: "Jobs",
+    url: "https://budibase.bamboohr.com/careers/",
+    target: "_blank",
+    rel: "noopener noreferrer",
+  },
+  { label: "Customers", url: "/customers/" },
+  { label: "Partners", url: "/marketplace/partners/" },
+  { label: "Enterprise", url: "/enterprise/" },
+  { label: "Security", url: "/security/" },
+  { label: "Contact", url: "/contact/" },
+];
 
 const footerColumns: FooterColumn[] = [
   makeMenuColumn(
@@ -73,7 +73,17 @@ const footerColumns: FooterColumn[] = [
     [
       ...platformDropdownMenu.columns.map((column) => ({
         title: column.heading,
-        links: column.items.map(toFooterLink),
+        links: [
+          ...column.items.map(toFooterLink),
+          ...(column.heading === "Products"
+            ? [
+                {
+                  label: "Operations center",
+                  url: "/product/operations-center/",
+                },
+              ]
+            : []),
+        ],
       })),
       ...(platformDropdownMenu.footerLinks?.length
         ? [{ links: platformDropdownMenu.footerLinks.map(toFooterLink) }]
@@ -115,29 +125,18 @@ const footerColumns: FooterColumn[] = [
             url: "https://account.budibase.app/auth/login",
             target: "_blank",
           },
-          { label: "Book a demo", url: "/contact/" },
+          { label: "Talk to sales", url: "/contact/" },
         ],
       },
     ],
   },
-  makeMenuColumn(
-    "Resources",
-    {
-      label: resourcesDropdownMenu.featuredCard.title,
-      url: resourcesDropdownMenu.featuredCard.href,
-    },
-    [
-      ...resourcesDropdownMenu.columns
-        .filter((column) => column.heading !== "Company")
-        .map((column) => ({
-          title: column.heading,
-          links: column.items.map(toFooterLink),
-        })),
-      ...(resourcesDropdownMenu.footerLinks?.length
-        ? [{ links: resourcesDropdownMenu.footerLinks.map(toFooterLink) }]
-        : []),
-    ],
-  ),
+  {
+    title: "Resources",
+    groups: resourcesDropdownMenu.columns.map((column) => ({
+      title: column.heading,
+      links: column.items.map(toFooterLink),
+    })),
+  },
   {
     title: "Company",
     groups: [

@@ -24,21 +24,62 @@ Navigation dropdown links use `ui/NavStatusLight.astro` for their decorative
 menus. Dropdown column headings use the stored geometric shapes through
 `PlatformGroupMark` and `navigationGroupShapes`.
 
+The Platform dropdown has four desktop columns: an unlabelled
+`PlatformNavCard`, then Products, Capabilities, and Evaluate and deploy.
+Its desktop panel is 76rem wide, capped at the viewport minus 2rem, with equal
+grid tracks and an extra 1rem of space after the featured card.
+Set `featuredCard.presentation="platform"` in the shared menu data to enable
+the card; other dropdowns retain their existing layouts. The card uses a
+Graphite pixel field with grey squares, bright Orange highlights from
+`--bb-orange`, and the headline “Modernize processes.”
+Hover and keyboard focus turn the highlighted squares Lime and reveal more
+squares and underline the label. The pattern changes instantly.
+The upper panel sits flush with the card edges; the padded lower row has a 40px
+inverted forward-chevrons shape beside “Explore platform,” with no trailing
+arrow. It links to `/platform/`.
+The three group headings use arrow tiles, joined blocks, and the circle,
+respectively. Roadmap and Changelog remain in the bottom strip.
+Mobile uses a compact Explore platform link above the same three groups.
+Product-page platform navigation and the global footer share these links;
+the product-page navigation uses three columns on desktop.
+Operations center is temporarily omitted from desktop, mobile, and product-page
+navigation; `Footer.astro` retains it as a footer-only link under Products.
+
+Resources has three dropdown groups: Build, Marketplace, and Explore. The
+Marketplace group starts with the Marketplace overview link. About and Jobs
+belong only to the footer's Company column; there is no Company dropdown or
+Company group in Resources. Mobile omits a separate overview link when the
+same destination already appears in a group.
+
 ## Palette roles
 
-Use `--bb-lime` (`#A5FF00`) for bright actions and `--bb-olive` (`#233207`)
-for the dark brand anchor, headings, and links. The current light-surface trial uses white
-for page backgrounds, raised surfaces, and product interfaces, with Coconut
-for cards and supporting panels. Sand remains an additional warm neutral. Body text uses Graphite, subtle
-text uses grey 600, decorative borders use grey 100, and control boundaries
-use grey 500. Keep semantic aliases in components rather than duplicating
-primitive values or overriding the global grey scale inside demos.
+The five core brand colors are Lime (`--bb-lime`, `#A5FF00`), Olive
+(`--bb-olive`, `#233207`), Orange (`--bb-orange`, `#FE6B1B`), Teal
+(`--bb-teal`, `#016B83`), and Coconut (`--bb-coconut`, `#F7F7F4`). Lime and
+Olive carry the identity, Orange supplies emphasis, Teal provides calmer
+contrast, and Coconut is the main marketing canvas.
 
-The fourteen flat accents and twenty warm greys in `global.css` match the
-approved Dropbox suite. Pale accent panels mix 10% or 20% of a light accent
-with Coconut; pair them with the corresponding dark accent, darkening the
-text when needed for AA contrast. Use white on dark accent fills. Meaningful
-icons and focus indicators need at least 3:1 contrast.
+The supporting accents are Pink (`--bb-pink`, `#FFAFA5`), Orchid (`--bb-orchid`,
+`#C8AFF0`), and Cloud (`--bb-cloud`, `#B4C8E1`), used selectively for illustration
+fills and details. Aubergine (`--bb-aubergine`, `#78286E`) identifies Operations
+center in asset symbols and interface demo accents, using Coconut foregrounds.
+Public names use only the color name. The full Spectrum
+palette and its utilities are no longer part of the active site.
+
+Oat (`--bb-oat`, `#EBE9E4`) is the shared neutral for listings, company logo
+tiles, panels, and supporting section backgrounds. The legacy `--bb-sand`
+token aliases Oat. It replaces the previous separate Sand
+and warm-grey card background roles.
+Graphite is for body text; all twenty warm greys remain unchanged.
+Subtle text uses grey 650 for contrast on Oat, decorative borders grey 100,
+and control boundaries grey 500. Raised surfaces and product interfaces retain white.
+
+Orange and Teal tint fills use 30% and 15% of their anchors with Coconut;
+soft and subtle fills use 10% and 5%. `--bb-orange-strong` mixes 45% Orange
+with Graphite for text on pale fills. Use Graphite on Orange, Pink, Orchid,
+and Cloud, and Coconut on Teal. `--bb-danger` preserves functional error red.
+Meaningful icons and focus indicators need at least 3:1 contrast; text must
+meet AA on its actual surface. Keep semantic aliases in components.
 
 ## Core components
 
@@ -55,7 +96,7 @@ GitHub counter. The grid switches to the mobile accordion menu below 1200px.
 Desktop dropdown top borders meet the navigation's bottom border without a gap.
 Match Camunda's immediate desktop dropdown opening/closing, without a container
 fade or slide; retain the subtle color transitions on links.
-Light pages use white with Olive controls. The homepage retains its transparent
+Light pages use Coconut with Olive controls. The homepage retains its transparent
 overlay, white links, Lime logo/demo action and white secondary action. Geometry
 stays consistent across themes. Shared navigation-height tokens match the grid
 before JavaScript measures the rendered height.
@@ -83,9 +124,9 @@ sentence-case labels and compact product-interface sizing. Do not import
 
 - The Lime color family lives in `global.css` as `--bb-lime-100` through
   `--bb-lime-1600`. `--bb-lime` aliases lime 300 (`#A5FF00`).
-- When paired with another action, place **Book a demo** first in markup and
+- When paired with another action, place **Talk to sales** first in markup and
   visual order in page sections. The main navigation is the exception:
-  **Try Budibase** comes before **Book a demo**.
+  **Try Budibase** comes before **Talk to sales**.
 - Use `src/components/Button.astro` for styled actions. It can render either an
   anchor or a button and supports the production variants and sizes.
   All variants include a 10px top-right corner cut; outlined variants trace
@@ -97,24 +138,24 @@ sentence-case labels and compact product-interface sizing. Do not import
   `cta-on-base`, and `bright-on-dark` variants also use Lime defaults and the
   shared olive-mixed interaction states. Primary labels use Olive. The homepage navigation, hero, and
   solutions select the explicit variant.
-- Use `variant="olive"` for the Cloud pricing trial button and Book a demo
+- Use `variant="olive"` for the Cloud pricing trial button and Talk to sales
   in light-page navigation and primary actions in light landing-page heroes. It uses Olive, Coconut text, and Olive 1400/1500
   interaction states. The dark homepage navigation keeps its Lime demo button.
 - The `cta` and legacy `large` variants retain their APIs and now use the same
   full-Lime treatment as other primary actions. CTA interaction aliases point to
   the shared Lime hover and pressed tokens. All action labels use sentence-case
-  Inter at weight 500. Regular right/up-right arrows resolve to their
+  Geist at weight 500. Regular right/up-right arrows resolve to their
   bold Phosphor variants; other icon choices retain their existing behavior.
   Desktop nav buttons are 32px tall; mobile menu targets remain at least 44px.
   In the current arrow trial, primary page actions show a plain right/up-right
-  arrow in the label color, except hero “Book a demo” buttons, which keep
+  arrow in the label color, except hero “Talk to sales” buttons, which keep
   their square marker without an arrow. Navigation and secondary/outlined actions omit
   directional arrows. Functional icons such as download or dropdown indicators
-  retain their behavior. The large closing demo action uses a plain arrow;
-  Start Building is label only. Keep the outer 10px cut corner.
-- Shared buttons labeled “Try Budibase” or “Book a demo” show a static 7px
+  retain their behavior. Both large closing CTA actions use plain arrows
+  in the label color. The large closing CTA cards use a 24px top-right cut corner.
+- Shared buttons labeled “Try Budibase” or “Talk to sales” show a static 7px
   decorative square before the label, with a 7px gap. Try Budibase uses
-  Tangerine; Book a demo matches the label (Graphite on Lime, Olive on white)
+  Orange; Talk to sales matches the label (Graphite on Lime, Olive on white)
   and uses Lime on Olive fills.
   These markers are hidden from assistive technology and do not represent live status.
   Every button with a marker adds 2px to its size's normal right padding;
@@ -158,8 +199,8 @@ The tokens control hierarchy through size and line height. Components retain
 their role-appropriate typeface, weight, letter spacing, and casing so the
 display face remains reserved for decisive brand moments.
 
-`TitleBlock` has two variants: `hero` uses Inter Display at weight 700 in
-uppercase for page-level statements, while `section` uses Inter
+`TitleBlock` has two variants: `hero` uses Geist at weight 700 in
+uppercase for page-level statements, while `section` uses Geist
 in sentence case for content sections. The `section` variant uses the semantic
 `heading-section` scale at weight 500 with natural letter spacing. Use weight
 500 and natural letter spacing for all `h2`, `h3`, and `h4` headings.
@@ -169,31 +210,52 @@ maps to Graphite. Keep headings on their role-specific heading or
 brand token, and use the appropriate `--bb-text-on-base*` token on dark
 surfaces.
 
-Page titles and H1s use Inter Display at normal width without changing their
+Page titles and H1s use Geist at normal width without changing their
 existing size, weight, casing, spacing, or content.
 The Budibase logo wordmark uses TikTok Sans; use the supplied logo assets
 rather than recreating it with live text. The Budibase product UI uses Inter.
-Inter is used for
+Geist is used for
 H2–H6 headings, section/card titles, labels, buttons, body copy and navigation.
 Use weight 400 for regular copy, 500 for supporting headings, labels and
 navigation, and 500 for standard action-button labels. Closing CTA actions
-use Inter at 700, except Start Building at 500. Its Graphite action has no
+use Geist at 400. Its Graphite action has no
 decorative block mosaic. Retain existing semibold/bold emphasis and 700 hero
 headlines. Tailwind classes express their actual weights.
 The global H1 rule resolves to `--font-headline`; `--font-display-sans`
-resolves to Inter, as does the legacy `--font-display` alias. Closing CTA actions use `--font-sans` (Inter), including
+resolves to Geist, as does the legacy `--font-display` alias. Closing CTA actions use `--font-sans` (Geist), including
 their scoped `--font-label` alias. Use `--font-heading-sans`
 for supporting headings and `--font-label` or `brand-label` for labels; these
-resolve to Inter. H1–H6 and shared heading classes use display optical size
-(`opsz` 32). Square punctuation (`ss07`) is enabled throughout alongside
-ligatures and contextual alternates. `BrandFonts.astro` supplies one self-hosted,
-preloaded Inter WOFF2 file through `Head.astro`. Use native width without
+resolve to Geist. Geist has no optical-size axis. Enable ligatures and alternate
+numbers (`ss09`) globally; do not carry over Inter's `opsz` or `ss07` settings.
+Use Geist's default R and G throughout, including headings and the brand display
+specimen. Keep the alternate-letter features `ss04` and `ss06` disabled.
+`BrandFonts.astro` supplies one self-hosted,
+preloaded Geist WOFF2 file through `Head.astro`. Use native width without
 horizontal transforms. See `src/assets/fonts/README.md` for
 coverage, licenses and regeneration.
-Use `technical-identifier` for tabular numerals and a slashed zero. Do not carry
-over stylistic-set requests from a previous font.
+Use `operational-data` for tabular figures in prices, stats and other comparable
+values; times and tables also use tabular figures. `technical-identifier` uses
+proportional figures and `ss09` for a slashed zero and alternate one. In this
+Geist release, `ss09` does not alter the tabular zero/one, so do not combine
+tabular figures with identifiers when the slashed zero is needed.
+The homepage customer-proof cards use proportional lining figures, so Geist's
+alternate one and slashed zero remain visible in their display numbers.
 
 ### Cards
+
+Light feature card bodies use `--bb-background-feature-card` (Coconut,
+`#F7F7F4`). Apply `card-cluster--feature` to feature collections; regular
+listing cards retain `--bb-background-card` (Oat, `#EBE9E4`). This distinction
+keeps feature surfaces independent of listings and logo tiles.
+The homepage Apps equipment-inventory demo also uses Coconut for its screen,
+table, and alert panel; its surrounding workspace uses Oat.
+
+Keep card backgrounds unchanged on hover and focus; use borders, underlines,
+and visible focus outlines for feedback. Use `--bb-text-card-subtle` (grey 700)
+for card secondary copy. Pricing retains Coconut for neutral plan cards and
+Oat for special packages. Keep colored and dark variants explicit, and retain
+white product interface surfaces. Company logo tiles use Oat with no tile borders or grid separators; logo
+rows with transparent backgrounds retain that treatment.
 
 - Use `src/components/cards/Card.astro` for a single general-purpose card.
 - Use `src/components/cards/CardCluster.astro` for a responsive collection of
@@ -225,10 +287,9 @@ the palette. Keep the default decorative treatment beside visible text; use
 `decorative={false}` and a label when the shape conveys information on its own.
 The default shape palette uses `--bb-olive-1300` for backgrounds and
 `--bb-lime` (`#A5FF00`) for foreground fills and outlines.
-The homepage announcement currently trials bright backgrounds with dark shapes:
-Orange (`#FF5E00`)/Umber (`#38271C`), Cyan (`#20DFF0`)/Petrol (`#233438`), and
-Violet (`#B89AFF`)/muted Plum (`#2E2B35`). Keep these overrides scoped to `HomepageHero` while
-the palette is being reviewed.
+The homepage announcement uses bright backgrounds with dark shapes:
+Orange/dark Orange for Automate, light Teal/Teal for Interact, and Lime/Olive for
+Govern. Each tile has a distinct background pairing.
 Pass `inverted` to `BrandShape` or `PlatformGroupMark` to swap the background
 and foreground colors, including any custom palette overrides. For example:
 `<BrandShape name="four-point-spark" size={32} inverted />`.
@@ -252,10 +313,10 @@ earlier group design without duplicating SVG markup.
 
 Use `ui/AssetTypeIcon.astro` for the homepage solution switcher, template
 comparison symbols, and plugin directory icons. Plugin components use App,
-datasources use Table, and automation plugins use Automation. It owns the 22px square container, 14px filled icon, black
-foreground colors, and shared type palette: Agent/Zen, App/Tangerine,
-Automation/Orchid, Operations center/Olive, Table/Vivid Vargas, and Function/Lime.
-Light fills use Graphite icons and Olive uses Coconut icons. Parent markup
+datasources use Table, and automation plugins use Automation. It owns the 22px square container, 14px filled icon,
+foreground colors, and shared type palette: Agent/Teal, App/Orange,
+Automation/Orchid, Operations center/Aubergine, Table/Cloud, and Function/Lime.
+Teal and Aubergine use Coconut icons; the other fills use Graphite. Parent markup
 provides accessible labels and any focus or tooltip behavior. Navigation link
 lights use olive 1000; group shapes and missing partner-logo marks use the
 Olive/Lime pair. Decorative mosaics use the named supporting accents.
@@ -263,7 +324,7 @@ Olive/Lime pair. Decorative mosaics use the named supporting accents.
 ### Heroes
 
 Platform/product landing-page hero and feature buttons use trailing bold arrow
-tiles through `Button`, including both Book a demo and Try Budibase. The large
+tiles through `Button`, including both Talk to sales and Try Budibase. The large
 closing demo action uses a plain arrow; secondary actions use labels only.
 
 - The homepage hero keeps “Make critical work” above “move faster.” The latter
@@ -272,10 +333,15 @@ closing demo action uses a plain arrow; secondary actions use labels only.
 
 - `HomepageContent.astro` owns the production homepage composition, including
   its original hero video, solution demos, product cards, and closing CTA.
+  `HomepageCustomerProof.astro` places three linked customer outcome cards
+  directly beneath the logo strip, with an equal-width desktop grid and a
+  single-column mobile layout. Keep projected savings and first-draft delivery
+  qualifiers alongside their statistics.
 
 - Use `src/components/BlockMosaic.astro` for static, decorative solid-color
   mosaics. The `marketplace` preset retains the varied rectangular composition
-  with Cloud, Zen, and Navy blues and restrained Lime and Olive accents;
+  with Teal and Orange, selective Pink, Orchid, and Cloud fills, Oat, and
+  restrained Lime and Olive;
   the `hero` preset uses three columns of two blocks with varied heights. Parent
   wrappers control sizing and placement; the component owns the shared palette.
 
@@ -295,8 +361,8 @@ this treatment consistent across both shared landing-page compositions.
 - Use `src/components/ProductPageLayout.astro` for product pages with bespoke
   body content and the standard compact product header.
 - Use `GridLandingPage.astro` for the approved compact lined landing-page
-  template: split hero, olive/lime block background, outlined logo
-  row, alternating feature rows, white use-case cards, flush bordered FAQ, inset
+  template: split hero, olive/lime block background, borderless logo
+  row, alternating feature rows, neutral use-case cards, flush bordered FAQ, inset
   grid CTA, and product navigation. Page content, media, card scenes, feature
   links, and FAQs are supplied separately. Custom demos use named media slots.
   See [the template guide](grid-landing-page.md) for its contract and adoption.
@@ -422,14 +488,15 @@ layout behavior from the current URL.
   Enterprise retain their existing surrounds. Content in `solutionLandingPages.ts` and
   `useCaseLandingPages.ts` supplies two main benefits, three supporting cards,
   four marketplace references, and five FAQs. The adapter uses the approved
-  outlined customer row without implying industry-specific endorsements, then
+  borderless customer row without implying industry-specific endorsements, then
   closes with the shared CTA and platform navigation. Do not reintroduce legacy
   badges, standalone generic photography, separate statistics, or extra enterprise grids.
 - `FeatureSection.astro`, `StatSection.astro`, and the page-scoped
   `EnterpriseSection.astro` are the main reusable content sections.
 - `CTA.astro` is the full-width closing call to action.
   Its demo action uses brand lime and the shared lime hover and pressed colors.
-  Both actions use the same 10px top-right corner cut as the navigation buttons.
+  Both large actions use a 24px top-right corner cut; navigation buttons retain
+  their 10px cut.
   Use `insetActions` with the grid variant to pad each action inside its lined
   grid cell.
 - `ContactSalesCTA.astro` is the smaller inline sales call to action. The two CTA

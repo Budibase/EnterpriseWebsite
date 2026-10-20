@@ -63,7 +63,7 @@ const columns = content.cardCluster.columns ?? 3;
       />
       <div class="grid-landing-hero__actions">
         <Button
-          label="Book a demo"
+          label="Talk to sales"
           url="/contact/"
           variant="olive"
           size="large"
@@ -226,7 +226,7 @@ const columns = content.cardCluster.columns ?? 3;
         imageAspectRatio="4/3"
         imagePresentation="solid"
         showArrowButton={cards.some((card) => card.link)}
-        class="grid-landing-uses__cards"
+        class="grid-landing-uses__cards card-cluster--feature"
       />
     </section>
     <slot name="before-faq" />
@@ -253,7 +253,7 @@ const columns = content.cardCluster.columns ?? 3;
         </section>
       )
     }
-    <CTA variant="grid" primaryLabel="Book a demo" insetActions />
+    <CTA variant="grid" primaryLabel="Talk to sales" insetActions />
   </div>
   <div class="page-section grid-landing-platform-nav">
     <ProductFeatureNav />
@@ -546,7 +546,7 @@ const columns = content.cardCluster.columns ?? 3;
 
   .grid-landing-uses :global(.card-cluster__card) {
     padding: 1.5rem;
-    background: var(--bb-background-base);
+    background: var(--bb-background-feature-card);
   }
 
   .grid-landing-uses :global(.card-cluster__image-wrap) {

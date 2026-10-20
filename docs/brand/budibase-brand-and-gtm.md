@@ -578,61 +578,78 @@ capabilities. Conservative styling alone is not evidence of maturity.
 
 ### Color
 
-- Use five core colors: Lime (`--bb-lime`, `#A5FF00`), Olive (`--bb-olive`,
-  `#233207`), Coconut (`--bb-coconut`, `#F7F5F2`), Sand (`--bb-sand`, `#F4F2F0`),
-  and Graphite (`--bb-graphite`, `#1E1919`). Keep Olive as the primary dark brand
-  anchor and Lime for action, progress, connection, and successful states.
-- Keep the names **Lime** and **Olive**. “Electric green” describes Lime's vivid
-  character rather than a separate color or token.
+- Use five core brand colors: Lime (`--bb-lime`, `#A5FF00`), Olive
+  (`--bb-olive`, `#233207`), Orange (`--bb-orange`, `#FE6B1B`), Teal
+  (`--bb-teal`, `#016B83`), and Coconut (`--bb-coconut`, `#F7F7F4`).
+  Lime and Olive carry the primary identity. Orange adds bright emphasis;
+  Teal provides calmer contrast; Coconut is the main warm-white canvas.
 - Retain the Lime and Olive 100–1600 families for pale treatments and interaction
   states. Their core aliases reference lime 300 and olive 1300 respectively.
-- The current website trial uses white for light marketing surfaces, raised
-  panels, and product interfaces, with Coconut for cards and supporting panels.
-  Sand remains an additional warm neutral. Body copy uses
-  Graphite, brand headings and links use Olive, subtle text uses grey 600,
-  decorative borders use grey 100, and strong control boundaries use grey 500.
-- Use the exact named accents and 50–1000 warm-grey scale from
-  [Dropbox's color suite](https://brand.dropbox.com/color). Accent pairs are
-  Azalea/Pink, Crimson/Sunset, Rust/Tangerine, Gold/Vivid Vargas, Ocean/Zen,
-  Navy/Cloud, and Plum/Orchid. Do not import Dropbox Blue, Canopy, or Dropbox Lime.
-  Named anchors are exact; pale supporting surfaces may mix a light accent at
-  10% or 20% with Coconut. Choose readable foregrounds rather than assuming every
-  accent supports the same text color.
+- Use Oat (`--bb-oat`, `#EBE9E4`) as the single supporting neutral for
+  sections, panels, listings, and company logo tiles. This replaces the former
+  Sand `#F2F1ED` and warm grey `#DFDCD8` background roles. The legacy
+  `--bb-sand` token aliases Oat; `--bb-background-card` also references Oat.
+- Use Coconut (`--bb-background-feature-card`, `#F7F7F4`) for light feature
+  card bodies on the homepage and product, solution, and platform pages.
+  Keep their colored illustration panels and explicit dark variants.
+  The homepage Apps equipment-inventory demo uses Coconut screen surfaces,
+  including its table and alert panel, within the Oat workspace.
+- Keep Graphite (`--bb-graphite`, `#1E1919`) for body text and the exact 50–1000
+  warm-grey scale for text, borders, and interface structure. Raised surfaces
+  and product interfaces retain white. Subtle text uses grey 650 for readable
+  contrast on Oat, decorative borders grey 100, and control boundaries grey 500.
+- Card fills stay unchanged on hover and keyboard focus. Card secondary text
+  uses grey 700 (`--bb-text-card-subtle`); use borders, underlines, and visible
+  focus outlines for feedback. Pricing retains Coconut for light plan cards,
+  Oat for special packages and supporting panels, and its colored variants.
+  Customer logo tiles and rows have no surrounding borders or grid
+  separators. Transparent logo rows stay transparent.
+- Use Pink (`--bb-pink`, `#FFAFA5`), Orchid (`--bb-orchid`, `#C8AFF0`), and Cloud
+  (`--bb-cloud`, `#B4C8E1`) selectively for illustration fills and supporting
+  details. Use these plain color names throughout public brand materials.
+  Aubergine (`--bb-aubergine`, `#78286E`) identifies Operations center in asset
+  symbols and interface demo accents, with Coconut foregrounds. The full
+  Spectrum palette is not part of the active website system.
+- Supporting Orange and Teal fills may mix with Coconut. Orange tint uses 30%,
+  Teal tint 15%, soft fills 10%, and subtle fills 5%. Dark Orange text uses 45%
+  Orange mixed with Graphite. Use Graphite on Orange, Pink, Orchid, and Cloud;
+  use Coconut on Teal. Keep error red (`--bb-danger`, `#9B0032`) for semantic
+  danger. Coral, Mint, Ink, and the pale green `#F2F8F3` are not active colors.
 - Shared shapes pair Olive backgrounds with Lime foregrounds and reverse this
-  for inverted marks. The homepage announcement uses the exact shared Dropbox
-  accents: Tangerine backgrounds with Rust shapes, Zen backgrounds with Ocean
-  shapes, and Orchid backgrounds with Plum shapes. Navigation status lights use
-  olive 1000. Asset symbols use Agent/Zen, App/Tangerine, Automation/Orchid, Operations
-  center/Olive, Table/Vivid Vargas, and Function/Lime, with Graphite foregrounds
-  on light fills and Coconut on Olive.
+  for inverted marks. The homepage announcement uses bright backgrounds and
+  dark shapes: Orange/dark Orange for Automate, light Teal/Teal for Interact, and
+  Lime/Olive for Govern. Each tile has a distinct background pairing. Navigation status lights
+  use olive 1000. Asset symbols use Agent/Teal, App/Orange, Automation/Orchid,
+  Operations center/Aubergine, Table/Cloud, and Function/Lime. Teal and Aubergine use
+  Coconut foregrounds; the other fills use Graphite.
 - The global footer uses Olive with Lime headings and Coconut links.
 - Primary buttons generally use full Lime fills with Graphite text
   and shared Lime interaction tokens. The Cloud pricing trial button and
-  Book a demo in light-page navigation, and primary actions in light landing-page
+  Talk to sales in light-page navigation, and primary actions in light landing-page
   heroes use Olive with Coconut text and
   darker Olive interaction states. Dark homepage navigation retains Lime. Secondary and outlined actions use white
   fills, Olive text, and grey-800 outlines, including Try Budibase on dark
   navigation surfaces. Keep the 10px cut corner and use bold arrow icons.
   The current arrow trial uses plain arrows in the label color for primary
-  page actions and the closing demo CTA. Hero Book a demo buttons retain
-  their square marker without a trailing arrow. Navigation, secondary actions and
-  the closing Start Building action omit directional arrows. Shared Try Budibase
-  and Book a demo buttons have static 7px square markers before their labels:
-  Tangerine for Try Budibase, Graphite for Book a demo on Lime (Lime on Olive
+  page actions and the closing demo CTA. Hero Talk to sales buttons retain
+  their square marker without a trailing arrow. Navigation and secondary actions
+  omit directional arrows. Both closing CTA actions use plain arrows in the label
+  color. Shared Try Budibase
+  and Talk to sales buttons have static 7px square markers before their labels:
+  Orange for Try Budibase, Graphite for Talk to sales on Lime (Lime on Olive
   fills and Olive on white). Keep functional icons
   such as download and dropdown indicators. Product-demo controls retain
   native pill shapes, sentence-case labels and compact interface sizing.
-  Use Vivid Vargas and Gold for proof, selection, attention, and human review;
-  use Crimson for danger. Do not use Lime as a full FeatureSection background.
+  Use pale Orange with dark Orange text for proof, selection, attention, and
+  human review; use the semantic danger token for errors. Do not use Lime as a full FeatureSection background.
 - Keep accents meaningful to the operational story. Avoid rainbow palettes
   without meaning, novelty gradients, and excessive variation across sections.
 
 ### Typography
 
-**Official typography, 20 October 2026:** Use **Inter throughout the website**,
-with its display optical size for headings and square punctuation throughout.
-This supersedes the previous Encode Sans with Inter pairing and connects the
-website typography to the product UI. One self-hosted, optimized variable WOFF2
+**Official typography, 20 October 2026:** Use **Geist throughout the website**,
+with alternate numbers in text and tabular figures for prices, stats and data.
+This supersedes the previous Inter typography. One self-hosted, optimized variable WOFF2
 file supplies all website text roles. Temporary font comparison pages and
 unused font assets have been removed.
 
@@ -641,23 +658,30 @@ wordmark uses **TikTok Sans**, and the Budibase product UI uses **Inter**.
 Continue using the supplied logo assets rather than recreating the wordmark
 with live text.
 
-- Use self-hosted **Inter Display** for page titles and H1s,
+- Use self-hosted **Geist** for page titles and H1s,
   retaining existing wording, size, weight, casing, and spacing. These page
   titles remain uppercase at weight `700`.
-- Use **Inter** for H2–H6 headings, section and card titles, labels,
+- Use **Geist** for H2–H6 headings, section and card titles, labels,
   buttons, body copy, navigation, descriptions, technical values, and product
   interfaces, including the large closing CTA actions. Closing CTA actions
-  use sentence case: the demo action at `700` and Start building at `500`.
+  use sentence case at weight `400`, with plain trailing arrows on both actions.
   Keep supporting headings in sentence case.
 - Use weight `400` for regular body copy and supporting text, and `500` for
   navigation, section headings, and supporting labels. Action-button labels
   use `500`. Retain existing semibold and bold emphasis, including `700` hero
   headlines. These replace the lighter weights used for Stack Sans.
-- Use the existing Inter variable font's `opsz` axis at `32` for H1–H6 and
-  shared heading classes. Keep body copy, navigation and buttons at their
-  existing optical sizing. Use Inter at normal width without horizontal scaling.
-- Enable square punctuation (`ss07`) throughout, retaining standard letterforms,
-  ligatures and contextual alternates. No additional font download is required.
+- Use Geist at native width. It has no optical-size axis; remove Inter's
+  `opsz` setting and square punctuation feature (`ss07`, which means alternate
+  arrows in Geist).
+- Use Geist's default R and G throughout, including headings and the brand
+  display specimen. Keep `ss04` and `ss06` disabled and retain the default
+  square punctuation.
+- Enable Geist's alternate numbers (`ss09`) throughout for its alternative one
+  and slashed zero. Apply tabular figures (`tnum`) to prices, stats, times and
+  tables so digits align. Technical identifiers use proportional figures with
+  `ss09`: this Geist release's tabular zero/one do not receive those alternates.
+  The homepage proof cards below the customer logos also use proportional lining
+  figures so their display numbers retain the alternate one and slashed zero.
 - Keep shared section sizes at 42px desktop, 36px tablet, and 30px mobile.
   Shared landing-page hero tokens use 56px desktop, 46px tablet, and a fluid 32–42px mobile
   scale. The split homepage hero uses a fluid 34–48px desktop size, 48px tablet
@@ -665,11 +689,11 @@ with live text.
   “Make critical work” above “move faster.” within its copy column.
 - Highlight the homepage's “MOVE FASTER.” line with a tight Lime background,
   Olive text, and the same 10px top-right corner cut as the buttons.
-- Style action-button labels in sentence-case Inter at weight `500`, with bold
+- Style action-button labels in sentence-case Geist at weight `500`, with bold
   arrows. Desktop navigation buttons are 32px tall with 14px labels; retain
   at least 44px touch targets in mobile navigation.
-- Retain monospace for code. Technical identifiers may use tabular numerals
-  and a slashed zero; do not request stylistic sets from a previous typeface.
+- Retain system monospace for code. Use only the feature tags supported by
+  the loaded Geist release; do not carry over another font's stylistic sets.
 - Reserve the strongest uppercase treatment for hero statements and actions.
   Keep supporting copy readable and layouts focused on operational meaning.
 - Set navigation dropdown group headers in uppercase on desktop and mobile.
@@ -680,14 +704,15 @@ with live text.
   tablet/desktop and 48px below 768px, with separate link/action cells, 14px
   top-level labels, no dropdown carets, and no GitHub counter. Below 1200px,
   use the mobile accordion menu. Keep the same geometry across color themes:
-  white with Olive controls on light pages, transparent with white links and
+  Coconut with Olive controls on light pages, transparent with white links and
   Lime logo/demo action over the homepage hero. Navigation buttons omit directional arrows and use small square CTA markers in the current trial. Preserve the previous header in
   NavLegacy for comparison or rollback.
-- Place **Book a demo** first whenever it appears alongside other action
+- Place **Talk to sales** first whenever it appears alongside other action
   buttons in page sections. Trial and signup actions follow. In the main
-  navigation, place **Try Budibase** before **Book a demo**.
-- Use the shared 10px top-right corner cut for all styled action buttons,
-  including outlined buttons. Preserve an outline along the diagonal edge.
+  navigation, place **Try Budibase** before **Talk to sales**.
+- Use the shared 10px top-right corner cut for styled action buttons, including
+  outlined buttons. The two large closing CTA cards use a larger 24px cut.
+  Preserve an outline along the diagonal edge of outlined buttons.
   Use the dedicated grey-800 button-border token for secondary actions.
 - Use clear grids, strong alignment, generous but controlled space, and modular
   compositions.
@@ -705,7 +730,7 @@ with live text.
   Follow with customer logos, two main benefits, three secondary cards, and FAQ.
 - Solution pages and Enterprise use the same compact lined platform template:
   vertical demonstration-led heroes for use cases, split heroes for industries
-  and Enterprise, outlined customer logos, two main benefits, three supporting
+  and Enterprise, borderless customer logos, two main benefits, three supporting
   cards, four marketplace cards, bordered FAQs, and the shared closing actions.
   Use existing operational demos and Olive surrounds for vertical heroes.
   Industry heroes use the existing industry photo behind their operational
@@ -725,6 +750,18 @@ with live text.
   using olive-1300 backgrounds and lime foregrounds.
   Apply the same square link lights and uppercase group labels to Explore the
   platform navigation on product and platform pages.
+- Organize Platform navigation into Products, Capabilities, and Evaluate and
+  deploy, preceded on desktop by an Explore platform card. The card uses
+  “Modernize processes,” a Graphite decorative pixel grid with grey squares and
+  bright Orange highlights, and an inverted
+  forward-chevrons shape on a Coconut base with square corners. Hover and
+  keyboard focus turn the highlighted squares Lime, add more of them, and
+  underline the label. The card has no trailing arrow. Group marks
+  are arrow tiles, joined blocks, and the circle, respectively. Keep Roadmap
+  and Changelog in the bottom strip. Mobile, product-page navigation, and the
+  footer share the same links; mobile uses a compact overview link.
+  Operations center is temporarily shown only in the global footer's Products
+  group, rather than in desktop, mobile, or product-page navigation.
 - Place a shared 32px geometric shape opposite each pricing plan title:
   community foundation for Community, enterprise framework for Enterprise,
   and cloud current for Cloud. Use the inverted lime/olive-1300 palette.
@@ -859,20 +896,23 @@ website navigation and adds its own Home, Templates, Connections, Partners,
 and Plugins navigation, with contribution and forum links. Directory URLs
 live under `/marketplace/`; individual process templates retain `/process/`
 URLs. Public partner listings must use approved profiles rather than examples.
+The Resources dropdown groups links under Build, Marketplace, and Explore;
+the Marketplace overview appears in its Marketplace group. About and Jobs
+are footer-only Company links; there is no Company dropdown panel.
 When a partner has no verified logo, use a decorative 42px square of nine
 touching blocks in a 3 × 3 grid, using existing Budibase color tokens.
 
-Marketplace pages use a Coconut title and secondary-navigation header with Olive
+Marketplace pages use an Oat title and secondary-navigation header with Olive
 text. The Marketplace homepage has an olive welcome banner, sentence-case
-Inter, and light text. A static mosaic of three touching columns of varied
-rectangular blocks sits on the right, emphasizing Cloud, Zen, and Navy blues
-with restrained Lime and Olive, yellow, sand, and coral accents. Keep the desktop banner
+Geist, and light text. A static mosaic of three touching columns of varied
+rectangular blocks sits on the right, using Teal and Orange with selective
+Pink, Orchid, Cloud, Oat, and restrained Lime and Olive. Keep the desktop banner
 approximately 300px tall. On mobile the mosaic sits below the copy. The directory
 cards provide the next action without a banner button.
 
-All mosaic blocks use solid fills. Larger Marketplace blocks use Navy, Zen,
-and Azalea, with occasional pink, lavender, and peach accents
-among the smaller blocks.
+All mosaic blocks use solid fills. Teal and Orange supply the main contrast,
+with Pink, Orchid, and Cloud used selectively. Alternate them with Oat, Lime,
+and Olive to keep adjacent blocks distinct.
 
 ### Campaigns and product launches
 
@@ -956,6 +996,158 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 ## Decision log
 
 ### 20 October 2026
+
+- Restored Geist's default R and G after reviewing the headline alternates.
+  Retained the alternate number features and default square punctuation.
+
+- Changed the main sales CTA from “Book a demo” to “Talk to sales” across
+  navigation, page heroes, shared closing actions, and footer links. Retained
+  existing destinations, visual treatments, and action ordering.
+
+- Enabled Geist's alternate capital R (`ss04`) and G (`ss06`) on H1–H6 and shared
+  heading treatments, preserving the existing numeric features and default
+  square punctuation. Standard text and action labels retain their letterforms.
+
+- Increased the top-right corner cut on both large closing CTA cards from 10px
+  to 24px, retaining their existing size, typography, colors and arrows.
+
+- Changed the homepage customer-proof card numbers from tabular to proportional
+  lining figures so Geist's alternate one and slashed zero appear in the display
+  stats. Prices, tables and other comparable data retain tabular figures.
+
+- Replaced Inter with Geist across the website at the existing sizes and
+  weights. Used the full official v1.8.1 release, retaining alternate numbers
+  (`ss09`) and tabular figures (`tnum`) in one optimized WOFF2. Enabled alternates
+  throughout and tabular figures for prices, stats, times and tables; technical
+  identifiers retain proportional alternates for the slashed zero. Removed
+  Inter-specific optical sizing and square punctuation, while retaining the
+  supplied logo assets and system monospace for code.
+
+- Removed borders and grid separators around customer logo tiles and rows.
+  Retained Oat fills, transparent variants, logo artwork, and existing spacing.
+
+- Changed the homepage Apps equipment-inventory demo screen, table, and alert
+  panel from Oat to Coconut. Retained the Teal header, quantity-status colors,
+  and Oat around the feature cards.
+
+- Added Aubergine (`#78286E`, the saved deep-purple accent) to the active
+  supporting palette for Operations center. Applied it to asset symbols,
+  request-inbox headers and active tabs, and the dedicated product visuals.
+  Retained Coconut foregrounds on Aubergine.
+
+- Moved the Marketplace overview into the Resources dropdown's Marketplace
+  group and removed its Company panel. About and Jobs remain in the global
+  footer's Company column, alongside the existing company links.
+
+- Set light feature card bodies to Coconut (`#F7F7F4`) using a dedicated
+  feature-card surface and an explicit CardCluster feature class. Retained
+  `#EBE9E4` for supporting panels, company logo tiles, and listings, naming
+  that shared neutral Oat. Kept pricing treatments and fixed card fills on
+  hover/focus.
+
+- Merged the former Sand and warm-grey card background roles into Sand
+  `#EBE9E4`, a shade between `#F2F1ED` and `#DFDCD8` and closer to the former
+  Sand. Supporting sections, panels, content cards, and company logo tiles
+  now share this color. Retained Coconut for main backgrounds and light
+  pricing cards, fixed card fills on hover/focus, and the original grey scale.
+  Set general secondary text to grey 650 to retain contrast on the new Sand.
+
+- Removed the Explore platform card's trailing arrow and restored its label
+  underline on hover and keyboard focus, retaining the denser Lime pixel field.
+
+- Aligned company logo tiles with the selected warm grey 150 card background
+  (`#DFDCD8`), superseding the Sand exception. Retained transparent logo rows
+  and the restored pricing backgrounds; card fills stay fixed on hover/focus.
+
+- Replaced the Explore platform card's hover underline with a denser field of
+  Lime squares, shared by keyboard focus. Its default highlights remain Orange.
+
+- Removed card background changes on hover and focus, retaining visible focus
+  outlines and border feedback. Restored pricing cards to their prior Coconut,
+  Sand, and colored treatments; the deeper content-card grey excludes pricing.
+
+- Selected the deeper warm grey 150 (`#DFDCD8`) for content card backgrounds,
+  with grey 200 (`#D3CEC9`) for hover and focus fills. Retained Sand on company
+  logo tiles and grey 700 for readable card secondary text.
+
+- Restored customer logo tile backgrounds to Sand after clarifying that the
+  stronger neutral card fill applies to content cards, not company logos.
+
+- Strengthened neutral marketing cards across the site with warm grey 100 fills
+  and grey 150 interaction states. Set card secondary text to grey 700 and
+  use Olive focus outlines on light cards. Retained Coconut page backgrounds,
+  Sand supporting sections, and existing colored and dark cards.
+
+- Set the Explore platform card's highlighted grid squares to the shared
+  bright Orange token (`--bb-orange`), retaining the Graphite background and
+  dark grey base grid.
+
+- Changed the Explore platform card's upper panel to Graphite with dark grey
+  grid squares and lighter grey accent squares. Retained the Coconut headline
+  and base, and the Lime/Olive forward-chevrons shape below.
+
+- Restructured Platform navigation around an Explore platform card and three
+  groups: Products, Capabilities, and Evaluate and deploy. Products includes
+  Agents, Apps, Automations, Requests and approvals, and Operations center.
+  Capabilities includes Integrations, Data tables, Functions, and API explorer.
+  Evaluate and deploy includes Enterprise overview (the existing Permissions
+  page), Activity, Security & governance, and Self-hosting & deployment.
+  Retained Roadmap and Changelog below the columns and synchronized mobile,
+  product-page navigation, and the footer. The card adapts the supplied grid
+  reference to Olive/Lime, Coconut, Inter, and square corners without metrics.
+
+- Replaced the announcement's Graphite shape on Orange with the existing dark
+  Orange (`--bb-orange-strong`) shade, keeping the bright Orange background.
+
+- Gave each homepage announcement tile a distinct pairing: Orange/Graphite,
+  light Teal/Teal, and Lime/Olive. Orange appears once, and all three retain
+  bright backgrounds with dark foreground shapes.
+
+- Set announcement tiles to bright backgrounds with dark foreground shapes:
+  Orange/Graphite for Automate and Govern, and light Teal/Teal for Interact,
+  using the existing Teal tint token. Retained the 24px designs and layout.
+
+- Set the homepage announcement artwork to the core Orange and Teal colors:
+  Orange shapes on Graphite for Automate and Govern, and Teal shapes on Coconut
+  for Interact. Retained the three designs and 24px sizing.
+
+- Increased the homepage announcement artwork's contrast against Olive by
+  using Pink, Cloud, and Orchid shapes on Graphite backgrounds. Kept the
+  existing three designs, 24px sizing, and shared palette anchors.
+
+- Committed to Lime, Olive, Orange, Teal, and Coconut as the five core brand
+  colors. Selected Pink `#FFAFA5`, Orchid `#C8AFF0`, and Cloud `#B4C8E1` as the
+  limited supporting illustration palette, using plain color names in public
+  materials. Retained Sand, Graphite, the warm greys, and semantic error red.
+- Removed the full Spectrum palette and its website swatch browser after
+  review. Replaced the Coral/Mint/pale-Pink trial throughout current artwork
+  and supporting components with the selected accents. Renamed the muted
+  blue/teal anchor to Teal without changing its `#016B83` value.
+
+- Kept the selected brand colors and restored the original eighteen Spectrum
+  shade families as an extended palette: sixteen original values per family,
+  288 shades in total. Kept the unnumbered brand anchors, warm greys, neutral
+  backgrounds, and current component styling intact. Added expandable,
+  copyable Spectrum palettes to the brand page and dedicated Spectrum utilities
+  for implementation flexibility.
+
+- Expanded the supporting palette after reviewing the two-accent version.
+  Added Coral `#FF4F40`, Mint `#BBF6E2`, and Pink `#FFD7F0` from the supplied
+  candidates to restore variety in illustrations and supporting panels. Orange
+  and Blue remain the main accents. Applied the expanded palette to mosaics,
+  asset symbols, announcement artwork, and supporting card illustrations.
+  Retained Olive, Lime, the warm greys, and the two neutral backgrounds.
+
+- Reduced both large closing CTA labels to Inter `400` and restored the plain
+  trailing arrow on Start building, matching the demo action.
+
+- Adopted a focused supporting palette of Orange `#FE6B1B` and Blue `#016B83`,
+  replacing the fourteen Dropbox accents throughout website illustrations,
+  asset symbols, demos, and brand swatches. Retained the Dropbox warm-grey
+  scale, Lime, Olive, Graphite, and semantic error red.
+- Selected Coconut `#F7F7F4` for main marketing backgrounds and Sand `#F2F1ED`
+  for supporting backgrounds. Raised surfaces and product interfaces remain
+  white. Kept `#F2F8F3` as an unadopted pale-green candidate.
 
 - Retired the homepage announcement's custom Orange/Umber, Cyan/Petrol, and
   Violet/muted Plum trial. Restored the exact shared Dropbox accents using

@@ -10,16 +10,8 @@ const normalizePath = (path: string) =>
   path.length > 1 ? path.replace(/\/+$/, "") : path;
 const currentPath = normalizePath(Astro.url.pathname);
 const items = platformDropdownMenu.columns.flatMap((column) => column.items);
-const preferredLabel =
-  currentPath === "/product/agents"
-    ? "Agents"
-    : currentPath === "/product/requests"
-      ? "Human approvals"
-      : undefined;
 const currentItem = items.find(
-  (item) =>
-    currentPath === normalizePath(item.href) &&
-    (!preferredLabel || item.label === preferredLabel),
+  (item) => currentPath === normalizePath(item.href),
 );
 ---
 
@@ -206,7 +198,7 @@ const currentItem = items.find(
 
   @media (min-width: 1024px) {
     .product-feature-nav__columns {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       column-gap: 1rem;
     }
   }

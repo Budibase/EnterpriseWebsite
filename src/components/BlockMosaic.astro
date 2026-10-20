@@ -7,55 +7,55 @@ const { preset = "marketplace" } = Astro.props;
 // Each column totals 100 units. Different boundaries make one connected mosaic.
 const marketplaceColumns = [
   [
-    [8, "cloud"],
+    [8, "teal-tint"],
     [12, "lime"],
     [5, "pink"],
-    [12, "vivid-vargas"],
-    [8, "navy"],
-    [6, "sunset"],
-    [24, "azalea"],
-    [7, "azalea"],
-    [9, "zen"],
+    [12, "orchid"],
+    [8, "olive"],
+    [6, "orange"],
+    [24, "teal"],
+    [7, "sand"],
+    [9, "cloud"],
     [9, "olive"],
   ],
   [
-    [10, "vivid-vargas"],
-    [6, "orchid"],
-    [12, "navy"],
-    [8, "cloud"],
+    [10, "orange"],
+    [6, "pink"],
+    [12, "teal"],
+    [8, "sand"],
     [9, "cloud"],
-    [23, "zen"],
-    [5, "vivid-vargas"],
+    [23, "teal"],
+    [5, "lime"],
     [11, "sand"],
-    [7, "lime"],
-    [9, "cloud"],
+    [7, "orange"],
+    [9, "teal-tint"],
   ],
   [
-    [6, "navy"],
+    [6, "teal"],
     [14, "cloud"],
-    [7, "tangerine"],
+    [7, "orange"],
     [9, "sand"],
-    [5, "vivid-vargas"],
-    [12, "sunset"],
-    [9, "cloud"],
-    [8, "lime"],
-    [24, "navy"],
-    [6, "vivid-vargas"],
+    [5, "lime"],
+    [12, "pink"],
+    [9, "teal"],
+    [8, "olive"],
+    [24, "teal"],
+    [6, "orchid"],
   ],
 ] as const;
 
 const heroColumns = [
   [
-    [6, "vivid-vargas"],
-    [4, "cloud"],
+    [6, "orange"],
+    [4, "teal-tint"],
   ],
   [
     [3, "lime-soft"],
     [7, "lime"],
   ],
   [
-    [2, "azalea"],
-    [8, "sunset"],
+    [2, "teal"],
+    [8, "orange-tint"],
   ],
 ] as const;
 const columns = preset === "hero" ? heroColumns : marketplaceColumns;
@@ -108,34 +108,28 @@ const columns = preset === "hero" ? heroColumns : marketplaceColumns;
   .mosaic-block--olive-deep {
     background: var(--bb-olive-1600);
   }
-  .mosaic-block--vivid-vargas {
-    background: var(--bb-vivid-vargas);
+  .mosaic-block--orange {
+    background: var(--bb-orange);
+  }
+  .mosaic-block--orange-tint {
+    background: var(--bb-orange-tint);
+  }
+  .mosaic-block--teal {
+    background: var(--bb-teal);
+  }
+  .mosaic-block--teal-tint {
+    background: var(--bb-teal-tint);
   }
   .mosaic-block--sand {
     background: var(--bb-background-sand);
   }
-  .mosaic-block--cloud {
-    background: var(--bb-cloud);
-  }
-  .mosaic-block--zen {
-    background: var(--bb-zen);
-  }
-  .mosaic-block--navy {
-    background: var(--bb-navy);
-  }
-  .mosaic-block--sunset {
-    background: var(--bb-sunset);
-  }
-  .mosaic-block--pink {
-    background: var(--bb-pink);
-  }
-  .mosaic-block--azalea {
-    background: var(--bb-azalea);
-  }
   .mosaic-block--orchid {
     background: var(--bb-orchid);
   }
-  .mosaic-block--tangerine {
-    background: var(--bb-tangerine);
+  .mosaic-block--cloud {
+    background: var(--bb-cloud);
+  }
+  .mosaic-block--pink {
+    background: var(--bb-pink);
   }
 </style>

@@ -382,27 +382,33 @@ const tokenizeFunctionCodeLine = (line: string) =>
 <style>
   .card-cluster {
     --card-cluster-section-background: transparent;
-    --card-cluster-card-background: var(--bb-background-base);
+    --card-cluster-card-background: var(--bb-background-card);
     --card-cluster-image-background: var(--bb-olive);
     --card-cluster-card-border: var(--bb-border-subtle);
+    --card-cluster-card-focus: var(--bb-olive);
     --card-cluster-card-text: var(--bb-text-base);
     --card-cluster-card-description: var(--bb-text-body);
-    --card-cluster-scene-accent-subtle: var(--bb-tangerine-soft);
-    --card-cluster-scene-accent-strong: var(--bb-rust);
-    --card-cluster-scene-accent-code: var(--bb-tangerine);
+    --card-cluster-scene-accent-subtle: var(--bb-orange-soft);
+    --card-cluster-scene-accent-strong: var(--bb-orange-strong);
+    --card-cluster-scene-accent-code: var(--bb-orange);
     width: 100%;
     background: var(--card-cluster-section-background);
   }
 
   .card-cluster--light {
     --card-cluster-section-background: var(--bb-background-surface);
-    --card-cluster-card-background: var(--bb-background-surface);
+    --card-cluster-card-background: var(--bb-background-card);
+  }
+
+  .card-cluster--feature {
+    --card-cluster-card-background: var(--bb-background-feature-card);
   }
 
   .card-cluster--dark {
     --card-cluster-section-background: transparent;
     --card-cluster-card-background: var(--bb-transparent-white-50);
     --card-cluster-card-border: var(--bb-transparent-white-75);
+    --card-cluster-card-focus: var(--bb-lime);
     --card-cluster-card-text: var(--bb-text-on-base);
     --card-cluster-card-description: var(--bb-text-on-base-subtle);
   }
@@ -439,35 +445,35 @@ const tokenizeFunctionCodeLine = (line: string) =>
   }
 
   .card-cluster--cards-orchid-soft {
-    --card-cluster-image-background: var(--bb-orchid-soft);
+    --card-cluster-image-background: var(--bb-orchid);
   }
 
   .card-cluster--cards-plum {
-    --card-cluster-image-background: var(--bb-plum);
+    --card-cluster-image-background: var(--bb-teal);
   }
 
   .card-cluster--cards-azalea {
-    --card-cluster-image-background: var(--bb-azalea);
+    --card-cluster-image-background: var(--bb-teal);
   }
 
   .card-cluster--cards-rust {
-    --card-cluster-image-background: var(--bb-rust);
+    --card-cluster-image-background: var(--bb-orange-strong);
   }
 
   .card-cluster--cards-zen-soft {
-    --card-cluster-image-background: var(--bb-zen-soft);
+    --card-cluster-image-background: var(--bb-cloud);
   }
 
   .card-cluster--cards-ocean {
-    --card-cluster-image-background: var(--bb-ocean);
+    --card-cluster-image-background: var(--bb-teal);
   }
 
   .card-cluster--cards-vivid-vargas-soft {
-    --card-cluster-image-background: var(--bb-vivid-vargas-soft);
+    --card-cluster-image-background: var(--bb-orange-soft);
   }
 
   .card-cluster--cards-gold {
-    --card-cluster-image-background: var(--bb-gold);
+    --card-cluster-image-background: var(--bb-orange-strong);
   }
 
   .card-cluster__container {
@@ -529,7 +535,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
   }
 
   .card-cluster__card:focus-within {
-    outline: 2px solid var(--bb-lime);
+    outline: 2px solid var(--card-cluster-card-focus);
     outline-offset: 3px;
   }
 
@@ -740,7 +746,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
   .card-cluster__agent-instructions li.card-cluster__agent-section {
     color: color-mix(
       in srgb,
-      var(--bb-rust) 80%,
+      var(--bb-orange-strong) 80%,
       var(--bb-graphite)
     ) !important;
     font-weight: 600;
@@ -752,7 +758,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
   }
 
   .card-cluster__tool-binding {
-    color: color-mix(in srgb, var(--bb-rust) 80%, var(--bb-graphite));
+    color: color-mix(in srgb, var(--bb-orange-strong) 80%, var(--bb-graphite));
   }
 
   .card-cluster__tool-binding--badged {
@@ -762,14 +768,14 @@ const tokenizeFunctionCodeLine = (line: string) =>
     border: 1px solid var(--bb-border-base);
     background-color: transparent;
     background-image: linear-gradient(
-      var(--bb-zen-subtle),
-      var(--bb-zen-subtle)
+      var(--bb-teal-subtle),
+      var(--bb-teal-subtle)
     );
     background-position: left center;
     background-repeat: no-repeat;
     background-size: 0% 100%;
     padding: 1px 3px;
-    color: color-mix(in srgb, var(--bb-ocean) 80%, var(--bb-graphite));
+    color: color-mix(in srgb, var(--bb-teal) 80%, var(--bb-graphite));
     line-height: 1;
     vertical-align: baseline;
   }
@@ -788,7 +794,7 @@ const tokenizeFunctionCodeLine = (line: string) =>
 
   .card-cluster__approval-marker {
     margin-left: 0.125rem;
-    color: color-mix(in srgb, var(--bb-rust) 80%, var(--bb-graphite));
+    color: color-mix(in srgb, var(--bb-orange-strong) 80%, var(--bb-graphite));
   }
 
   @keyframes card-cluster-binding-fill {

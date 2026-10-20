@@ -3,6 +3,7 @@ import FeatureBadge from "@components/FeatureBadge.astro";
 import Icon from "@components/Icon.astro";
 import NavStatusLight from "@components/ui/NavStatusLight.astro";
 import PlatformGroupMark from "@components/ui/PlatformGroupMark.astro";
+import PlatformNavCard from "@components/PlatformNavCard.astro";
 import type { NavDropdownMenu } from "@components/navDropdownData";
 
 interface Props {
@@ -12,16 +13,18 @@ interface Props {
 
 const { label, menu } = Astro.props;
 const dropdownId = `header-dropdown-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
-const isCompact = menu.columns.length === 1;
+const hasFeaturedCard = menu.featuredCard.presentation === "platform";
+const isCompact = menu.columns.length === 1 && !hasFeaturedCard;
 const columnCount = menu.columns.reduce(
   (count, column) => count + (column.columnSpan ?? 1),
-  0,
+  hasFeaturedCard ? 1 : 0,
 );
 ---
 
 <div
   class:list={[
     "header-dropdown",
+    hasFeaturedCard && "header-dropdown--featured",
     isCompact && "header-dropdown--compact",
     columnCount === 4 && "header-dropdown--four-columns",
   ]}
@@ -51,6 +54,7 @@ const columnCount = menu.columns.reduce(
     <div class="header-dropdown-panel__shell">
       <div class="header-dropdown-panel__inner">
         <div class="header-dropdown-columns">
+          {hasFeaturedCard && <PlatformNavCard card={menu.featuredCard} />}
           {
             menu.columns.map((column) => (
               <section
@@ -313,6 +317,15 @@ const columnCount = menu.columns.reduce(
 
   .header-dropdown--four-columns .header-dropdown-panel {
     max-width: min(69rem, calc(100vw - 2rem));
+  }
+
+  .header-dropdown--featured .header-dropdown-panel {
+    width: 76rem;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .header-dropdown--featured .header-dropdown-column {
+    width: auto;
   }
 
   .header-dropdown-columns {

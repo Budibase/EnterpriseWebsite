@@ -11,7 +11,7 @@ interface Props {
 
 const {
   variant = "default",
-  primaryLabel = "Request a demo",
+  primaryLabel = "Talk to sales",
   primaryHref = "/contact/",
   ariaLabel = "Get started with Budibase",
   insetActions = false,
@@ -43,6 +43,9 @@ const {
       href="https://account.budibase.app/register"
     >
       <span class="cta-action__label">Start building</span>
+      <span class="cta-action__icon" aria-hidden="true">
+        <Icon name="ArrowRightBold" size="40" />
+      </span>
     </a>
   </div>
 </section>
@@ -104,10 +107,10 @@ const {
     min-height: clamp(9rem, 18vw, 12rem);
     padding: clamp(1.25rem, 2.5vw, 2rem);
     border-radius: 0;
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
     font-family: var(--font-sans);
     font-size: var(--bb-text-heading-section-font-size);
-    font-weight: var(--bb-text-display-small-font-weight);
+    font-weight: 400;
     line-height: var(--bb-text-heading-section-line-height);
     letter-spacing: var(--bb-text-display-small-letter-spacing);
     text-decoration: none !important;
@@ -130,7 +133,6 @@ const {
     position: relative;
     background: var(--bb-graphite);
     color: var(--bb-text-on-base) !important;
-    font-weight: 500;
   }
 
   .cta-action:focus-visible {
@@ -140,6 +142,7 @@ const {
 
   .cta-action__label {
     min-width: 0;
+    font-weight: inherit;
     text-transform: none;
   }
 

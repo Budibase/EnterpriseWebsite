@@ -18,21 +18,69 @@ export const coreColors: readonly BrandColor[] = [
     name: "Olive",
     token: "--bb-olive",
     value: "#233207",
-    role: "Brand anchor, headings, and dark surfaces",
+    role: "Primary brand anchor, headings, and dark surfaces",
+    tone: "dark",
+  },
+  {
+    name: "Orange",
+    token: "--bb-orange",
+    value: "#FE6B1B",
+    role: "Bright emphasis and operational illustrations",
+    tone: "light",
+  },
+  {
+    name: "Teal",
+    token: "--bb-teal",
+    value: "#016B83",
+    role: "Calm contrast, diagrams, and supporting interfaces",
     tone: "dark",
   },
   {
     name: "Coconut",
     token: "--bb-coconut",
-    value: "#F7F5F2",
-    role: "Cards and supporting panels",
+    value: "#F7F7F4",
+    role: "Main marketing backgrounds",
+    tone: "light",
+  },
+];
+
+export const accentColors: readonly BrandColor[] = [
+  {
+    name: "Aubergine",
+    token: "--bb-aubergine",
+    value: "#78286E",
+    role: "Operations center icons and interface accents",
+    tone: "dark",
+  },
+  {
+    name: "Pink",
+    token: "--bb-pink",
+    value: "#FFAFA5",
+    role: "Occasional warm illustration fills",
     tone: "light",
   },
   {
-    name: "Sand",
-    token: "--bb-sand",
-    value: "#F4F2F0",
-    role: "Additional warm neutral",
+    name: "Orchid",
+    token: "--bb-orchid",
+    value: "#C8AFF0",
+    role: "Occasional violet illustration fills",
+    tone: "light",
+  },
+  {
+    name: "Cloud",
+    token: "--bb-cloud",
+    value: "#B4C8E1",
+    role: "Occasional cool illustration fills",
+    tone: "light",
+  },
+];
+
+export const neutralColors: readonly BrandColor[] = [
+  {
+    name: "Oat",
+    token: "--bb-oat",
+    value: "#EBE9E4",
+    role: "Logo tiles, listings, supporting panels, and section backgrounds",
     tone: "light",
   },
   {
@@ -41,107 +89,6 @@ export const coreColors: readonly BrandColor[] = [
     value: "#1E1919",
     role: "Body text and neutral emphasis",
     tone: "dark",
-  },
-];
-
-export const accentColors: readonly BrandColor[] = [
-  {
-    name: "Azalea",
-    token: "--bb-azalea",
-    value: "#CD2F7B",
-    role: "Supporting accents and operational illustrations",
-    tone: "dark",
-  },
-  {
-    name: "Pink",
-    token: "--bb-pink",
-    value: "#FFAFA5",
-    role: "Supporting accents and operational illustrations",
-    tone: "light",
-  },
-  {
-    name: "Crimson",
-    token: "--bb-crimson",
-    value: "#9B0032",
-    role: "Supporting accents and operational illustrations",
-    tone: "dark",
-  },
-  {
-    name: "Sunset",
-    token: "--bb-sunset",
-    value: "#FA551E",
-    role: "Supporting accents and operational illustrations",
-    tone: "light",
-  },
-  {
-    name: "Rust",
-    token: "--bb-rust",
-    value: "#BE4B0A",
-    role: "Supporting accents and operational illustrations",
-    tone: "dark",
-  },
-  {
-    name: "Tangerine",
-    token: "--bb-tangerine",
-    value: "#FF8C19",
-    role: "Supporting accents and operational illustrations",
-    tone: "light",
-  },
-  {
-    name: "Gold",
-    token: "--bb-gold",
-    value: "#9B6400",
-    role: "Supporting accents and operational illustrations",
-    tone: "dark",
-  },
-  {
-    name: "Vivid Vargas",
-    token: "--bb-vivid-vargas",
-    value: "#FAD24B",
-    role: "Supporting accents and operational illustrations",
-    tone: "light",
-  },
-  {
-    name: "Ocean",
-    token: "--bb-ocean",
-    value: "#007891",
-    role: "Supporting accents and operational illustrations",
-    tone: "dark",
-  },
-  {
-    name: "Zen",
-    token: "--bb-zen",
-    value: "#14C8EB",
-    role: "Supporting accents and operational illustrations",
-    tone: "light",
-  },
-  {
-    name: "Navy",
-    token: "--bb-navy",
-    value: "#283750",
-    role: "Supporting accents and operational illustrations",
-    tone: "dark",
-  },
-  {
-    name: "Cloud",
-    token: "--bb-cloud",
-    value: "#B4C8E1",
-    role: "Supporting accents and operational illustrations",
-    tone: "light",
-  },
-  {
-    name: "Plum",
-    token: "--bb-plum",
-    value: "#78286E",
-    role: "Supporting accents and operational illustrations",
-    tone: "dark",
-  },
-  {
-    name: "Orchid",
-    token: "--bb-orchid",
-    value: "#C8AFF0",
-    role: "Supporting accents and operational illustrations",
-    tone: "light",
   },
 ];
 
@@ -164,7 +111,7 @@ export const greyColors: readonly BrandColor[] = [
     name: "Grey 150",
     token: "--bb-gray-150",
     value: "#DFDCD8",
-    role: "Neutral surfaces, text, and borders",
+    role: "Secondary text on dark backgrounds and borders",
     tone: "light",
   },
   {

@@ -250,7 +250,9 @@ const faqItems: FaqItem[] = [
                         <h3>{card.title}</h3>
                         <BrandShape name={card.shape} size={32} inverted />
                       </div>
-                      <p class="pricing-plan-card__price">{card.price}</p>
+                      <p class="pricing-plan-card__price operational-data">
+                        {card.price}
+                      </p>
                       <p class="pricing-plan-card__description">
                         {card.description}
                       </p>
@@ -300,7 +302,7 @@ const faqItems: FaqItem[] = [
                     <h3>Cloud</h3>
                     <BrandShape name="cloud-current" size={32} inverted />
                   </div>
-                  <p class="pricing-plan-card__price">
+                  <p class="pricing-plan-card__price operational-data">
                     From ${formatCloudNumber(defaultCloudPackage.pricePerMonth)} /
                     month
                   </p>

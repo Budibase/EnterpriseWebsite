@@ -289,7 +289,7 @@ const showHostingSection = hostingItems.length > 0;
   <div class="body">
     <div class="header-prices">
       <div class="prices">
-        <p class="price-line">
+        <p class="price-line operational-data">
           <span
             class="amount !text-2xl text-primary"
             data-annual-price={typeof initialAnnualPrice === "number"
@@ -312,7 +312,7 @@ const showHostingSection = hostingItems.length > 0;
         </p>
         {
           userPrice !== undefined && (
-            <p class="price-line">
+            <p class="price-line operational-data">
               <span
                 class="amount !text-2xl text-primary"
                 data-base-price={
@@ -635,9 +635,9 @@ const showHostingSection = hostingItems.length > 0;
   }
 
   .pricing-card--self-host-enterprise {
-    background: var(--bb-ocean);
-    border-color: var(--bb-ocean);
-    color: var(--bb-zen-subtle);
+    background: var(--bb-teal);
+    border-color: var(--bb-teal);
+    color: var(--bb-teal-subtle);
   }
 
   @media (min-width: 640px) {
@@ -689,7 +689,7 @@ const showHostingSection = hostingItems.length > 0;
   }
 
   .pricing-card--self-host-enterprise h3 {
-    color: var(--bb-zen-subtle) !important;
+    color: var(--bb-teal-subtle) !important;
   }
 
   .pricing-card__badge {
@@ -712,8 +712,8 @@ const showHostingSection = hostingItems.length > 0;
   }
 
   .pricing-card--self-host-enterprise .pricing-card__badge {
-    background: var(--bb-ocean);
-    color: var(--bb-zen-subtle);
+    background: var(--bb-teal);
+    color: var(--bb-teal-subtle);
   }
 
   .pricing-card__intro {
@@ -729,7 +729,7 @@ const showHostingSection = hostingItems.length > 0;
   }
 
   .pricing-card--self-host-enterprise .pricing-card__intro {
-    color: var(--bb-zen-subtle) !important;
+    color: var(--bb-teal-subtle) !important;
   }
 
   .body {
@@ -875,7 +875,7 @@ const showHostingSection = hostingItems.length > 0;
   }
 
   .pricing-card--self-host-enterprise .cta {
-    border-color: var(--bb-ocean);
+    border-color: var(--bb-teal);
   }
 
   .cta :global(a),
@@ -894,13 +894,13 @@ const showHostingSection = hostingItems.length > 0;
   .pricing-card--self-host-enterprise .cta :global(.pricing-card__button) {
     border-color: transparent;
     background: var(--bb-gray-50);
-    color: var(--bb-ocean);
+    color: var(--bb-teal);
   }
 
   .pricing-card--self-host-enterprise
     .cta
     :global(.pricing-card__button:hover) {
-    background: var(--bb-zen-subtle);
+    background: var(--bb-teal-subtle);
   }
 
   .addons-section {
@@ -958,8 +958,8 @@ const showHostingSection = hostingItems.length > 0;
   .pricing-card--self-host-enterprise .feature-text,
   .pricing-card--self-host-enterprise .addons-label,
   .pricing-card--self-host-enterprise .addon-line {
-    color: var(--bb-zen-subtle) !important;
-    fill: var(--bb-zen-subtle) !important;
+    color: var(--bb-teal-subtle) !important;
+    fill: var(--bb-teal-subtle) !important;
   }
 
   .unit-text {

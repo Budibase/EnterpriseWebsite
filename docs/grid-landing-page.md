@@ -5,26 +5,33 @@ AI models landing page. `src/pages/product/_components/AIModelsLandingPage.astro
 is the working reference adapter.
 
 The template owns the split hero, olive background with staggered
-lime blocks, outlined customer logos, alternating feature rows, white
+lime blocks, borderless customer logos, alternating feature rows, neutral
 use-case cards with 4:3 media, bordered FAQ, padded grid CTAs, and platform
 navigation. It uses the shared typography and cut-corner buttons. Page
-sections lead with Book a demo, followed by Try Budibase.
-Page titles/H1s use Inter Display at native width, retaining uppercase weight-700 heroes;
-H2–H6 headings, labels, buttons, body copy and navigation use Inter.
-Headings use display optical size (`opsz` 32), with square punctuation throughout.
-Shared primary actions use full Lime fills, sentence-case Inter labels and bold arrows.
-Hero Book a demo actions use a square marker without an arrow. Other primary
+sections lead with Talk to sales, followed by Try Budibase.
+Page titles/H1s use Geist at native width, retaining uppercase weight-700 heroes;
+H2–H6 headings, labels, buttons, body copy and navigation use Geist.
+Use alternate numbers (`ss09`) and tabular figures for numeric data.
+Shared primary actions use full Lime fills, sentence-case Geist labels and bold arrows.
+Hero Talk to sales actions use a square marker without an arrow. Other primary
 hero and feature actions show plain arrows in the current trial;
 secondary actions use labels only. The closing demo CTA also uses a plain arrow. Secondary buttons use
 white fills and grey-800 outlines. Keep native font widths and the shared
 responsive type scale.
 Use the canonical Olive (`#233207`) and Lime (`#A5FF00`) tokens for the hero
-and actions, white for
-light page sections and product interfaces, Coconut for supporting panels,
-and Graphite for body text. Brand headings and links use Olive. Supporting
-illustrations use the named accent pairs from `global.css`; pale fills mix
-10% or 20% of their light accent with Coconut. Reuse the shared interaction,
-border, and text tokens, and keep text contrast at WCAG AA.
+and actions, Coconut (`#F7F7F4`) for light marketing backgrounds and feature
+card bodies, Oat (`#EBE9E4`) for supporting panels, and white for product
+interfaces and raised surfaces. Feature cards use
+`--bb-background-feature-card` with `card-cluster--feature`; secondary copy
+uses grey 700. Card backgrounds stay unchanged on hover and focus; retain
+visible focus outlines and border feedback. Graphite is for body text;
+brand headings and links use Olive.
+Supporting illustrations use Orange (`#FE6B1B`) and Teal (`#016B83`), with
+Pink (`#FFAFA5`), Orchid (`#C8AFF0`), and Cloud (`#B4C8E1`) used selectively.
+Use Graphite on Orange and the supporting fills, and Coconut on Teal. Reuse
+shared interaction, border, and text tokens, and keep text contrast at WCAG AA.
+The five core colors guide page identity; the supporting accents provide
+controlled variety. The full Spectrum palette is no longer active.
 
 The hero shares the navigation's bottom border as its top edge; do not add a
 second top border. Retain its side and bottom borders for the lined grid.
@@ -47,7 +54,7 @@ the default for existing feature pages.
 | `content`         | Existing `PlatformLandingContent`: hero, two feature rows, and card copy.                                                                                     |
 | `heroImage`       | Product screenshot when a custom hero slot is not needed.                                                                                                     |
 | `heroAspectRatio` | Preview frame ratio; defaults to the AI models ratio, `2760 / 1710`.                                                                                          |
-| `heroLayout`      | `split` by default; `stacked` centers the copy above media with bordered desktop side panels. Use `heroAspectRatio="auto"` for naturally sized demos.        |
+| `heroLayout`      | `split` by default; `stacked` centers the copy above media with bordered desktop side panels. Use `heroAspectRatio="auto"` for naturally sized demos.         |
 | `featureMedia`    | Images, videos, or Astro demos, in feature-row order.                                                                                                         |
 | `featureActions`  | Optional `{ label, url, appearance }` actions for each feature row. Use `appearance: "button"` for the shared cut-corner button; the default is a quiet link. |
 | `cards`           | CardCluster cards, including page-specific screenshots, demos, or media scenes; defaults to the content cards.                                                |
@@ -84,7 +91,7 @@ corresponding demo with resource permissions.
 orientation and media, two main benefits, exactly three supporting cards,
 four marketplace listing references, and five FAQs. Preserve route metadata
 and the two main narratives when changing presentation. The complete order is
-hero, outlined customer logos, two benefits, three supporting cards, marketplace,
+hero, borderless customer logos, two benefits, three supporting cards, marketplace,
 bordered FAQs, shared CTA, and platform navigation.
 
 `ProductMarketplaceSection` accepts `listings`, a four-item tuple of existing
@@ -172,7 +179,7 @@ card visuals, FAQ keyboard behavior, and the standard build.
 ## Functions
 
 `product/_components/FunctionsLandingPage.astro` uses the same vertical hero as
-Apps, with an Olive demo surround, outlined logos, two benefit rows, three
+Apps, with an Olive demo surround, borderless logos, two benefit rows, three
 supporting cards, the shared marketplace, five bordered FAQs, and the standard
 closing actions and platform navigation. `functionsLandingPage.ts` owns the
 copy for JavaScript flexibility, AI generation, function versioning, personal

@@ -400,8 +400,6 @@ const isLogoRow = isCardRow || isOutlineRow;
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: var(--logo-grid-row-gap) var(--logo-grid-column-gap);
     width: 100%;
-    border-top: 1px solid var(--bb-border-subtle);
-    border-left: 1px solid var(--bb-border-subtle);
   }
 
   :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
@@ -419,9 +417,9 @@ const isLogoRow = isCardRow || isOutlineRow;
     height: auto;
     aspect-ratio: 3.4 / 2;
     padding: clamp(0.75rem, 1.2vw, 1.25rem);
-    border: 1px solid var(--bb-border-subtle);
+    border: 0;
     border-radius: 0;
-    background: var(--bb-background-sand);
+    background: var(--bb-background-card);
     scroll-snap-align: start;
   }
 
@@ -434,12 +432,6 @@ const isLogoRow = isCardRow || isOutlineRow;
     border-radius: 0;
     background: transparent;
     scroll-snap-align: start;
-  }
-
-  .enterprise-logo-grid--outline-row
-    .enterprise-logo-grid__cell
-    + .enterprise-logo-grid__cell {
-    border-left: 1px solid var(--pricing-grid-line, var(--bb-border-base));
   }
 
   :is(.enterprise-logo-grid--card-row, .enterprise-logo-grid--outline-row)
@@ -510,10 +502,8 @@ const isLogoRow = isCardRow || isOutlineRow;
     width: 100%;
     height: var(--logo-grid-cell-height);
     border: 0;
-    border-right: 1px solid var(--bb-border-subtle);
-    border-bottom: 1px solid var(--bb-border-subtle);
     padding: clamp(0.75rem, 1.3vw, 1.25rem);
-    background: var(--bb-background-sand);
+    background: var(--bb-background-card);
   }
 
   .enterprise-logo-grid--showcase .enterprise-logo-grid__image,
@@ -573,8 +563,8 @@ const isLogoRow = isCardRow || isOutlineRow;
     height: var(--logo-grid-cell-height);
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--bb-white);
-    background: var(--bb-background-surface-subtle);
+    border: 0;
+    background: var(--bb-background-card);
   }
 
   .enterprise-logo-grid__cell--empty {

@@ -4,6 +4,7 @@ import CTA from "@components/CTA.astro";
 import HeroLarge from "@components/HeroLarge.astro";
 import MultiFeatureSection from "@components/MultiFeatureSection.astro";
 import CardCluster from "@components/cards/CardCluster.astro";
+import HomepageProducts from "../_components/landing-page/HomepageProducts.astro";
 import PlatformArchitectureDiagram from "./_components/PlatformArchitectureDiagram.astro";
 import PlatformUseCaseDiagram from "./_components/PlatformUseCaseDiagram.astro";
 
@@ -182,7 +183,7 @@ const platformFoundation = [
       theme="surface"
       title="Processes, securely modernised"
       description="Run operations with solutions as dynamic and unique as your organization. Deploy fast and scale globally with a secure, governed, composable platform."
-      action={{ label: "Book a demo", href: "/contact/" }}
+      action={{ label: "Talk to sales", href: "/contact/" }}
       secondaryAction={{
         label: "Get started",
         href: "https://account.budibase.app/register",
@@ -190,6 +191,10 @@ const platformFoundation = [
         rel: "noopener noreferrer",
       }}
     />
+
+    <div class="page-section">
+      <HomepageProducts />
+    </div>
 
     <div class="page-section platform-overview__scenario-section">
       <MultiFeatureSection
@@ -204,6 +209,7 @@ const platformFoundation = [
 
     <div class="page-section page-section--no-top">
       <CardCluster
+        class="card-cluster--feature"
         columns={4}
         Variant="white"
         CardBackgroundColor="lime"
@@ -216,6 +222,7 @@ const platformFoundation = [
 
     <div class="page-section">
       <CardCluster
+        class="card-cluster--feature"
         columns={4}
         Variant="white"
         CardBackgroundColor="lime"
@@ -233,12 +240,11 @@ const platformFoundation = [
 </Layout>
 
 <style>
-  :global(.platform-overview) {
-    background: var(--bb-background-surface);
-  }
-
-  :global(.platform-overview__scenario-section) {
-    background: var(--bb-background-surface);
+  :global(.platform-overview),
+  :global(.platform-overview .hero-large--surface),
+  :global(.platform-overview__scenario-section),
+  :global(.platform-overview .multi-feature-section--light) {
+    background: var(--bb-background-base);
   }
 
   :global(.platform-overview .hero-large .hero-large__media),

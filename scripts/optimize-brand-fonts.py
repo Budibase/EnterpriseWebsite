@@ -1,4 +1,4 @@
-"""Build the official Inter font.
+"""Build the official Geist font.
 
 Requires fonttools[woff]==4.60.1 and brotli==1.2.0.
 Run from any directory; original fonts and their licenses remain in public/.
@@ -70,5 +70,5 @@ def build(source, filename, family, axes):
 
 
 if __name__ == "__main__":
-    build("inter/Inter-Variable.ttf", "budibase-text.woff2",
-          "Budibase Text", {"wght": (400, 700)})
+    build("geist/Geist-Variable.ttf", "budibase-geist.woff2",
+          "Budibase Geist", {"wght": (400, 700)})

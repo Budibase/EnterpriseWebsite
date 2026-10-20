@@ -277,6 +277,9 @@ export const platformGroupShapes = {
 
 export const navigationGroupShapes = {
   ...platformGroupShapes,
+  Products: "arrow-tiles",
+  Capabilities: "joined-blocks",
+  "Evaluate and deploy": "circle",
   "Use cases": "offset-squares",
   Industries: "corner-circle",
   Build: "step-bars",
