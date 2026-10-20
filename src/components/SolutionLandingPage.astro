@@ -26,17 +26,22 @@ const featureMedia = content.features.map((feature) => ({
   faqs={content.faqs}
 >
   <div slot="hero-media" role="img" aria-label={content.hero.imageAlt}>
-    <ProductDemoFrame
-      background={content.hero.backgroundImage ? "transparent" : "olive"}
-    >
-      {
-        HeroDemo ? (
+    {
+      HeroDemo ? (
+        <ProductDemoFrame
+          background={content.hero.backgroundImage ? "transparent" : "olive"}
+        >
           <HeroDemo {...content.hero.media.demoProps} />
-        ) : (
-          <img src={content.hero.media.image} alt="" fetchpriority="high" />
-        )
-      }
-    </ProductDemoFrame>
+        </ProductDemoFrame>
+      ) : (
+        <img
+          class="solution-hero-image"
+          src={content.hero.media.image}
+          alt=""
+          fetchpriority="high"
+        />
+      )
+    }
   </div>
   <ProductMarketplaceSection
     slot="before-faq"
@@ -45,3 +50,11 @@ const featureMedia = content.features.map((feature) => ({
     listings={content.marketplace}
   />
 </GridLandingPage>
+
+<style>
+  .solution-hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

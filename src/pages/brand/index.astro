@@ -208,7 +208,7 @@ const colorGroups = [
           <article class="brand-type-card brand-type-card--display">
             <div class="brand-type-meta">
               <span>Headlines</span>
-              <strong>Stack Sans Headline</strong>
+              <strong>Inter Display</strong>
             </div>
             <p class="brand-type-specimen">Build and run more.</p>
             <div class="brand-type-details">
@@ -222,7 +222,7 @@ const colorGroups = [
           <article class="brand-type-card brand-type-card--body">
             <div class="brand-type-meta">
               <span>Content system</span>
-              <strong>Stack Sans Text</strong>
+              <strong>Inter</strong>
             </div>
             <p class="brand-type-body-sample">
               Budibase gives enterprise IT the leverage to deliver more, without
@@ -230,9 +230,8 @@ const colorGroups = [
             </p>
             <div
               class="brand-type-weight-samples"
-              aria-label="Stack Sans Text weight range"
+              aria-label="Inter weight range"
             >
-              <span style="font-weight: 300">300 Light</span>
               <span style="font-weight: 400">400 Regular</span>
               <span style="font-weight: 500">500 Medium</span>
               <span style="font-weight: 600">600 Semibold</span>
@@ -650,6 +649,8 @@ const colorGroups = [
     margin: 0;
     color: var(--bb-lime) !important;
     font-family: var(--font-headline);
+    font-optical-sizing: none;
+    font-variation-settings: "opsz" 32;
     font-size: clamp(3rem, 7vw, 6.25rem);
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -676,7 +677,7 @@ const colorGroups = [
     color: var(--bb-text-body) !important;
     font-family: var(--font-sans);
     font-size: clamp(1.35rem, 2.6vw, 2rem);
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: -0.035em !important;
     line-height: 1.25;
   }

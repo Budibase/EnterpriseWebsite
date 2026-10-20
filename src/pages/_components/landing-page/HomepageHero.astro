@@ -25,17 +25,17 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
             style="display: grid; grid-template-columns: repeat(3, 24px); grid-template-rows: 24px; gap: 0; flex: 0 0 72px;"
           >
             <span
-              style="--brand-shape-background: var(--homepage-accent-orange); --brand-shape-foreground: var(--homepage-accent-umber);"
+              style="--brand-shape-background: var(--bb-tangerine); --brand-shape-foreground: var(--bb-rust);"
             >
               <PlatformGroupMark group="Automate" size={24} />
             </span>
             <span
-              style="--brand-shape-background: var(--homepage-accent-cyan); --brand-shape-foreground: var(--homepage-accent-petrol);"
+              style="--brand-shape-background: var(--bb-zen); --brand-shape-foreground: var(--bb-ocean);"
             >
               <PlatformGroupMark group="Interact" size={24} />
             </span>
             <span
-              style="--brand-shape-background: var(--homepage-accent-violet); --brand-shape-foreground: var(--homepage-accent-plum);"
+              style="--brand-shape-background: var(--bb-orchid); --brand-shape-foreground: var(--bb-plum);"
             >
               <PlatformGroupMark group="Govern" size={24} />
             </span>
@@ -69,9 +69,7 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
             url="/contact/"
             variant="lime"
             size="large"
-            icon="ArrowRight"
-            iconPosition="end"
-            class="button--cut-corner !gap-[16px] !pr-[19px]"
+            class="button--cut-corner"
           />
         </div>
       </div>
@@ -85,13 +83,6 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
 
 <style>
   .homepage-hero {
-    /* Scoped accent trial for the announcement artwork. */
-    --homepage-accent-orange: #ff5e00;
-    --homepage-accent-umber: #38271c;
-    --homepage-accent-cyan: #20dff0;
-    --homepage-accent-petrol: #233438;
-    --homepage-accent-violet: #b89aff;
-    --homepage-accent-plum: #2e2b35;
     --homepage-site-gutter: max(
       var(--site-content-inset),
       calc((100vw - var(--site-container-max)) / 2 + var(--site-content-inset))
@@ -199,7 +190,7 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
     max-width: 40rem;
     margin: 0;
     color: var(--bb-white) !important;
-    font-size: clamp(2.25rem, 3.6vw, 3.25rem);
+    font-size: clamp(2.125rem, 3.3vw, 3rem);
   }
 
   :global(.homepage-hero__highlight) {
@@ -215,7 +206,7 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
   }
 
   .homepage-hero__actions :global(.button--cut-corner) {
-    --button-min-height: 3.25rem;
+    --button-min-height: 3rem;
   }
 
   .homepage-hero__description {
@@ -259,7 +250,7 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
 
   @media (max-width: 1023px) {
     :global(.homepage-hero__title.hero-title) {
-      font-size: var(--bb-text-heading-hero-font-size);
+      font-size: 48px;
     }
 
     .homepage-hero {
@@ -301,6 +292,10 @@ import HomepageVideoSequence from "./HomepageVideoSequence.astro";
   }
 
   @media (max-width: 767px) {
+    :global(.homepage-hero__title.hero-title) {
+      font-size: clamp(32px, 9vw, 44px);
+    }
+
     :global(.homepage-hero__title.hero-title > span) {
       display: block;
     }

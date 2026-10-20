@@ -1,7 +1,7 @@
 # Budibase brand and GTM direction
 
 **Status:** Working source of truth  
-**Last updated:** 19 October 2026
+**Last updated:** 20 October 2026
 
 Use this document to guide Budibase website design, customer-facing copy,
 campaigns, presentations, customer stories, sales enablement, product launches,
@@ -537,7 +537,7 @@ well-structured technical information. The experience should feel engineered.
 
 ### Bold, never noisy
 
-Use bold notched typography and strong brand color for decisive moments.
+Use bold display typography and strong brand color for decisive moments.
 Create emphasis through scale and restraint. Decorative variety must not
 compete with meaning.
 
@@ -599,26 +599,29 @@ capabilities. Conservative styling alone is not evidence of maturity.
   10% or 20% with Coconut. Choose readable foregrounds rather than assuming every
   accent supports the same text color.
 - Shared shapes pair Olive backgrounds with Lime foregrounds and reverse this
-  for inverted marks. The homepage announcement is trialling bright backgrounds with dark shapes:
-  Orange (`#FF5E00`)/Umber (`#38271C`), Cyan (`#20DFF0`)/Petrol (`#233438`), and
-  Violet (`#B89AFF`)/muted Plum (`#2E2B35`). These are page-scoped trial values; the existing
-  global accent anchors remain unchanged. Navigation status lights use olive 1000. Asset symbols use Agent/Zen, App/Tangerine, Automation/Orchid, Operations
+  for inverted marks. The homepage announcement uses the exact shared Dropbox
+  accents: Tangerine backgrounds with Rust shapes, Zen backgrounds with Ocean
+  shapes, and Orchid backgrounds with Plum shapes. Navigation status lights use
+  olive 1000. Asset symbols use Agent/Zen, App/Tangerine, Automation/Orchid, Operations
   center/Olive, Table/Vivid Vargas, and Function/Lime, with Graphite foregrounds
   on light fills and Coconut on Olive.
 - The global footer uses Olive with Lime headings and Coconut links.
-- Primary buttons generally use full Lime fills with Olive text
+- Primary buttons generally use full Lime fills with Graphite text
   and shared Lime interaction tokens. The Cloud pricing trial button and
-  Book a demo in light-page navigation use Olive with Coconut text and
+  Book a demo in light-page navigation, and primary actions in light landing-page
+  heroes use Olive with Coconut text and
   darker Olive interaction states. Dark homepage navigation retains Lime. Secondary and outlined actions use white
   fills, Olive text, and grey-800 outlines, including Try Budibase on dark
   navigation surfaces. Keep the 10px cut corner and use bold arrow icons.
-  Trailing arrows sit in small tiles with a 4px top-right notch: Olive with
-  Coconut arrows, or white with Olive arrows on Olive buttons. Standard
-  buttons keep equal top, bottom and right tile insets. Apply this treatment
-  to platform landing-page hero, feature and closing CTAs. Product-demo
-  controls use native pill-shaped buttons with sentence-case labels and
-  compact interface sizing; keep website button notches and arrow tiles
-  outside the product interfaces.
+  The current arrow trial uses plain arrows in the label color for primary
+  page actions and the closing demo CTA. Hero Book a demo buttons retain
+  their square marker without a trailing arrow. Navigation, secondary actions and
+  the closing Start Building action omit directional arrows. Shared Try Budibase
+  and Book a demo buttons have static 7px square markers before their labels:
+  Tangerine for Try Budibase, Graphite for Book a demo on Lime (Lime on Olive
+  fills and Olive on white). Keep functional icons
+  such as download and dropdown indicators. Product-demo controls retain
+  native pill shapes, sentence-case labels and compact interface sizing.
   Use Vivid Vargas and Gold for proof, selection, attention, and human review;
   use Crimson for danger. Do not use Lime as a full FeatureSection background.
 - Keep accents meaningful to the operational story. Avoid rainbow palettes
@@ -626,29 +629,44 @@ capabilities. Conservative styling alone is not evidence of maturity.
 
 ### Typography
 
-- Use self-hosted **Stack Sans Headline** for page titles and H1s,
-  retaining existing wording, size, weight, casing, and spacing. Use **Stack Sans
-  Headline** for the large closing CTA actions. These display statements remain uppercase at weight `700`,
-  except the Start Building closing action, which uses `500` and no decorative
-  block mosaic.
-- Use **Stack Sans Text** for H2–H6 headings, section and card titles, labels,
+**Official typography, 20 October 2026:** Use **Inter throughout the website**,
+with its display optical size for headings and square punctuation throughout.
+This supersedes the previous Encode Sans with Inter pairing and connects the
+website typography to the product UI. One self-hosted, optimized variable WOFF2
+file supplies all website text roles. Temporary font comparison pages and
+unused font assets have been removed.
+
+**Brand and product context, confirmed 20 October 2026:** The Budibase logo
+wordmark uses **TikTok Sans**, and the Budibase product UI uses **Inter**.
+Continue using the supplied logo assets rather than recreating the wordmark
+with live text.
+
+- Use self-hosted **Inter Display** for page titles and H1s,
+  retaining existing wording, size, weight, casing, and spacing. These page
+  titles remain uppercase at weight `700`.
+- Use **Inter** for H2–H6 headings, section and card titles, labels,
   buttons, body copy, navigation, descriptions, technical values, and product
-  interfaces. The large closing CTA actions use Headline; keep supporting headings
-  in sentence case.
-- Use weight `300` for regular body copy and supporting text, and `400` for
+  interfaces, including the large closing CTA actions. Closing CTA actions
+  use sentence case: the demo action at `700` and Start building at `500`.
+  Keep supporting headings in sentence case.
+- Use weight `400` for regular body copy and supporting text, and `500` for
   navigation, section headings, and supporting labels. Action-button labels
-  use `500`. The heavier Stack Sans
-  forms replace the previous `400`/`500` roles with `300`/`400` respectively;
-  retain existing semibold and bold emphasis, including `700` hero headlines.
-- Use each face at its native width. Do not horizontally compress headlines.
+  use `500`. Retain existing semibold and bold emphasis, including `700` hero
+  headlines. These replace the lighter weights used for Stack Sans.
+- Use the existing Inter variable font's `opsz` axis at `32` for H1–H6 and
+  shared heading classes. Keep body copy, navigation and buttons at their
+  existing optical sizing. Use Inter at normal width without horizontal scaling.
+- Enable square punctuation (`ss07`) throughout, retaining standard letterforms,
+  ligatures and contextual alternates. No additional font download is required.
 - Keep shared section sizes at 42px desktop, 36px tablet, and 30px mobile.
-  Shared hero tokens use 64px desktop, 52px tablet, and a fluid 36–48px mobile
-  scale. The split homepage hero uses a fluid 36–52px desktop size to keep
+  Shared landing-page hero tokens use 56px desktop, 46px tablet, and a fluid 32–42px mobile
+  scale. The split homepage hero uses a fluid 34–48px desktop size, 48px tablet
+  and 32–44px mobile size to keep
   “Make critical work” above “move faster.” within its copy column.
 - Highlight the homepage's “MOVE FASTER.” line with a tight Lime background,
   Olive text, and the same 10px top-right corner cut as the buttons.
-- Style action-button labels in uppercase Text at weight `500`, with bold
-  arrows. Desktop navigation buttons are 32px tall with 14px labels and 16px arrows; retain
+- Style action-button labels in sentence-case Inter at weight `500`, with bold
+  arrows. Desktop navigation buttons are 32px tall with 14px labels; retain
   at least 44px touch targets in mobile navigation.
 - Retain monospace for code. Technical identifiers may use tabular numerals
   and a slashed zero; do not request stylistic sets from a previous typeface.
@@ -663,8 +681,7 @@ capabilities. Conservative styling alone is not evidence of maturity.
   top-level labels, no dropdown carets, and no GitHub counter. Below 1200px,
   use the mobile accordion menu. Keep the same geometry across color themes:
   white with Olive controls on light pages, transparent with white links and
-  Lime logo/demo action over the homepage hero. Compact nav arrow tiles are
-  20px with 6px vertical and 8px right insets. Preserve the previous header in
+  Lime logo/demo action over the homepage hero. Navigation buttons omit directional arrows and use small square CTA markers in the current trial. Preserve the previous header in
   NavLegacy for comparison or rollback.
 - Place **Book a demo** first whenever it appears alongside other action
   buttons in page sections. Trial and signup actions follow. In the main
@@ -682,7 +699,9 @@ capabilities. Conservative styling alone is not evidence of maturity.
   in typography, actions, diagrams, and purposeful section contrasts.
 - Apps, Agents, Automations, Functions, Operations center, and Chat with agents use the
   same lined feature-page style with a vertical hero: centered title,
-  description and actions above a wide visual, without flanking layout columns.
+  description and actions above a centered visual with empty, bordered side
+  panels on desktop, following the supplied Airtable reference. The graphic
+  occupies approximately 81.8% of the row; below 960px it fills the row for readability.
   Follow with customer logos, two main benefits, three secondary cards, and FAQ.
 - Solution pages and Enterprise use the same compact lined platform template:
   vertical demonstration-led heroes for use cases, split heroes for industries
@@ -845,7 +864,7 @@ touching blocks in a 3 × 3 grid, using existing Budibase color tokens.
 
 Marketplace pages use a Coconut title and secondary-navigation header with Olive
 text. The Marketplace homepage has an olive welcome banner, sentence-case
-Stack Sans Text, and light text. A static mosaic of three touching columns of varied
+Inter, and light text. A static mosaic of three touching columns of varied
 rectangular blocks sits on the right, emphasizing Cloud, Zen, and Navy blues
 with restrained Lime and Olive, yellow, sand, and coral accents. Keep the desktop banner
 approximately 300px tall. On mobile the mosaic sits below the copy. The directory
@@ -936,7 +955,133 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 
 ## Decision log
 
+### 20 October 2026
+
+- Retired the homepage announcement's custom Orange/Umber, Cyan/Petrol, and
+  Violet/muted Plum trial. Restored the exact shared Dropbox accents using
+  Tangerine/Rust, Zen/Ocean, and Orchid/Plum for backgrounds/shapes. Retained
+  the existing Dropbox warm-grey scale, Lime/Olive core colors, and approved
+  pale supporting surfaces.
+
+- Confirmed Inter after reviewing Lato. Restored Inter across all website text
+  roles, with display optical size for headings and square punctuation throughout.
+  Retained the reduced homepage headline size and removed Lato trial assets.
+
+- Started a site-wide Lato trial in place of Inter, using self-hosted regular,
+  medium, semibold and bold files at the existing sizes and weights. Disabled
+  Inter-specific optical sizing and square punctuation for the trial; retained
+  Inter assets for rollback and its status as the approved baseline.
+
+- Reduced the homepage headline to 34–48px desktop, 48px tablet and 32–44px
+  mobile, retaining Inter Display at weight 700 and the existing Lime highlight.
+
+- Removed the temporary font comparison pages and unused font assets, including
+  Encode Sans, the TikTok Sans trial, and older static Inter and legacy font
+  files. Retained the optimized Inter font, its original source and licence,
+  and the supplied vector logo assets.
+
+- Adopted Inter throughout the website, with display optical size (`opsz` 32)
+  for headings and square punctuation (`ss07`) throughout. Retained existing
+  sizes, weights, casing and colors, the supplied TikTok Sans logo assets, and
+  monospace for code. Removed Encode Sans from the shared font load; it remains
+  available only on its comparison page.
+
+- Recorded the user-confirmed typography context: the logo wordmark uses
+  TikTok Sans and the product UI uses Inter. Added Inter to the current
+  headline comparison alongside TikTok Sans and Encode Sans with Inter;
+  the official website pairing remains unchanged.
+
+- Changed both large closing CTA actions to Inter, including their label spans.
+  Retained existing sizes, weights, sentence case and colors.
+
 ### 19 October 2026
+
+- Retained Encode Sans with Inter after reviewing Plus Jakarta Sans, TikTok
+  Sans and Titillium Web. Removed their temporary test pages and font assets.
+
+- Reduced vertical hero side panels to approximately 9.1% of the row each,
+  giving the center graphic 81.8% of the desktop row.
+
+- Reduced vertical hero side panels to 10% of the row each, giving the center
+  graphic 80% of the desktop row.
+
+- Further narrowed vertical hero side panels to one ninth of the row each,
+  giving the center graphic seven ninths of the desktop row.
+
+- Narrowed vertical hero side panels again to one eighth of the row each,
+  giving the center graphic three quarters of the desktop row.
+
+- Narrowed vertical hero side panels to one seventh of the row each, giving
+  the center graphic five sevenths while retaining the mobile layout.
+
+- Applied the extra 2px right padding to every shared button with a square
+  status marker, using each button size's normal padding as the base.
+
+- Reduced shared marketing button labels from Inter semibold (`600`) to medium
+  (`500`) across navigation, heroes, and page actions.
+
+- Added empty bordered side panels around vertical landing-page hero graphics,
+  using the supplied Airtable reference. Keep the center graphic at two thirds
+  of the desktop row and full width below 960px; retain Budibase styling.
+
+- Set primary buttons in light landing-page heroes to Olive with Coconut text
+  and shared Olive interaction states. Dark heroes retain their Lime actions.
+
+- Retained borderless Lime buttons after reviewing an Olive outline trial.
+
+- Retained 32px desktop main-navigation buttons after reviewing a 34px trial.
+
+- Changed the square marker on Lime buttons to Graphite to strengthen its
+  contrast and match the label.
+
+- Changed Lime button labels from Olive to Graphite (`--bb-graphite`).
+
+- Trialled sentence case for shared marketing buttons and closing CTA labels,
+  retaining existing fonts, weights, square markers and proper-name casing.
+
+- Tightened the gap between shared CTA square markers and labels to 7px.
+
+- Adjusted the shared CTA square markers to 7px after reviewing the 6px size.
+
+- Reduced the shared CTA square markers from 8px to 6px for a subtler accent.
+
+- Removed trailing arrows from hero Book a demo buttons, retaining the square
+  marker and Inter label. Other primary actions and closing CTA arrows remain.
+
+- Trialled static 8px square markers before shared Try Budibase and Book a demo
+  button labels. Try Budibase uses Tangerine; Book a demo uses Olive or Lime
+  according to its fill. These decorative markers do not imply live availability.
+
+- Trialled simpler marketing arrows: plain arrows for primary page actions,
+  with no arrows on navigation or secondary actions. Removed the inner arrow
+  tiles while retaining the outer cut corner, Inter labels and existing colors.
+
+- Restored Inter at weight 600 for marketing button labels after reviewing the
+  Encode Sans button trial. Retained uppercase casing.
+
+- Trialled Encode Sans at 90% width for shared marketing button labels, keeping
+  uppercase casing and weight 600. Body copy, navigation links and product
+  interface controls retain Inter.
+
+- Reduced platform, product and solution landing-page title sizes: shared hero
+  tokens now use 56px desktop, 46px tablet and 32–42px mobile. Retained the
+  compact split-hero offset and the homepage’s independently sized headline.
+
+- Removed the temporary font comparison pages and unused trial fonts after the
+  official rollout. Retained Encode Sans and Inter source files and licenses
+  for reproducible optimized font generation.
+
+- Made Encode Sans at 90% native width and Inter the official fonts across the
+  website. Applied the approved weights to shared typography, navigation,
+  buttons and body copy, and updated the brand specimens. Production pages load
+  only the two optimized WOFF2 fonts; Stack Sans remains in its comparison page.
+
+- Selected Encode Sans at 90% native width for uppercase headlines, paired with
+  Inter for supporting text, after a team vote on the homepage comparisons.
+  Funnel Display with Funnel Sans placed second. Retained the approved trial
+  weights: headline 700, body 400, supporting headings/navigation 500, and
+  buttons 600. Recorded this as the chosen direction; site-wide rollout remains
+  pending and the comparison pages remain available.
 
 - Lightened shared decorative borders and light-page grid lines to grey 100,
   including navigation dividers. Retained translucent white lines on dark surfaces.

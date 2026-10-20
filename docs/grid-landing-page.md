@@ -9,11 +9,13 @@ lime blocks, outlined customer logos, alternating feature rows, white
 use-case cards with 4:3 media, bordered FAQ, padded grid CTAs, and platform
 navigation. It uses the shared typography and cut-corner buttons. Page
 sections lead with Book a demo, followed by Try Budibase.
-Page titles/H1s use Stack Sans Headline, retaining uppercase weight-700 heroes;
-H2–H6 headings, labels, buttons, body copy and navigation use Stack Sans Text.
-Shared primary actions use full Lime fills, uppercase Text labels and bold arrows.
-Both hero actions and feature buttons show the shared notched arrow tile;
-the closing CTA uses the same treatment at its larger scale. Secondary buttons use
+Page titles/H1s use Inter Display at native width, retaining uppercase weight-700 heroes;
+H2–H6 headings, labels, buttons, body copy and navigation use Inter.
+Headings use display optical size (`opsz` 32), with square punctuation throughout.
+Shared primary actions use full Lime fills, sentence-case Inter labels and bold arrows.
+Hero Book a demo actions use a square marker without an arrow. Other primary
+hero and feature actions show plain arrows in the current trial;
+secondary actions use labels only. The closing demo CTA also uses a plain arrow. Secondary buttons use
 white fills and grey-800 outlines. Keep native font widths and the shared
 responsive type scale.
 Use the canonical Olive (`#233207`) and Lime (`#A5FF00`) tokens for the hero
@@ -30,7 +32,9 @@ second top border. Retain its side and bottom borders for the lined grid.
 The hero adds 60px of vertical breathing room across desktop and stacked
 layouts, with content-driven height.
 For media-led product pages, `heroLayout="stacked"` centers the copy and
-actions above full-width media with no flanking layout columns. Apps is the
+actions above media flanked by empty bordered panels at desktop widths. The
+media occupies approximately 81.8% of the row, with 9.1% on each side; below 960px
+the panels disappear and media fills the row. Apps is the
 first adapter; Agents, Automations, Operations center, and Chat with agents
 use the same variant. The split variant remains
 the default for existing feature pages.
@@ -43,7 +47,7 @@ the default for existing feature pages.
 | `content`         | Existing `PlatformLandingContent`: hero, two feature rows, and card copy.                                                                                     |
 | `heroImage`       | Product screenshot when a custom hero slot is not needed.                                                                                                     |
 | `heroAspectRatio` | Preview frame ratio; defaults to the AI models ratio, `2760 / 1710`.                                                                                          |
-| `heroLayout`      | `split` by default; `stacked` centers the copy above full-width media. Use `heroAspectRatio="auto"` for naturally sized demos.                                |
+| `heroLayout`      | `split` by default; `stacked` centers the copy above media with bordered desktop side panels. Use `heroAspectRatio="auto"` for naturally sized demos.        |
 | `featureMedia`    | Images, videos, or Astro demos, in feature-row order.                                                                                                         |
 | `featureActions`  | Optional `{ label, url, appearance }` actions for each feature row. Use `appearance: "button"` for the shared cut-corner button; the default is a quiet link. |
 | `cards`           | CardCluster cards, including page-specific screenshots, demos, or media scenes; defaults to the content cards.                                                |

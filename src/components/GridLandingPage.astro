@@ -65,10 +65,8 @@ const columns = content.cardCluster.columns ?? 3;
         <Button
           label="Book a demo"
           url="/contact/"
-          variant="cta"
+          variant="olive"
           size="large"
-          icon="ArrowRight"
-          iconPosition="end"
         />
         <Button
           label="Try Budibase"
@@ -669,6 +667,25 @@ const columns = content.cardCluster.columns ?? 3;
   .grid-landing-hero--stacked .grid-landing-hero-preview {
     width: 100%;
     background: var(--bb-background-base);
+  }
+
+  @media (min-width: 960px) {
+    .grid-landing-hero--stacked .grid-landing-hero-media {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 9fr) minmax(0, 1fr);
+      align-items: stretch;
+      background: var(--bb-background-base);
+    }
+
+    .grid-landing-hero--stacked .grid-landing-hero-media::before,
+    .grid-landing-hero--stacked .grid-landing-hero-media::after {
+      content: "";
+    }
+
+    .grid-landing-hero--stacked .grid-landing-hero-preview {
+      min-width: 0;
+      border-inline: 1px solid var(--bb-border-base);
+    }
   }
   .grid-landing-feature__media img,
   .grid-landing-feature__media video {

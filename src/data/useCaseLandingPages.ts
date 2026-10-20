@@ -4,7 +4,7 @@ import OperationsCenterDemo from "../components/demos/OperationsCenterDemo.astro
 import HumanApprovalsDemo from "../components/demos/HumanApprovalsDemo.astro";
 import PurchaseApprovalsDemo from "../components/demos/PurchaseApprovalsDemo.astro";
 import OnePlatformData from "../components/OnePlatformData.astro";
-import IncidentManagementDemo from "../pages/_components/landing-page/IncidentManagementDemo.astro";
+import CaseManagementHero from "../assets/images/solutions/case-management-hero.png?url";
 import FactoryInspectionsDemo from "../pages/_components/landing-page/FactoryInspectionsDemo.astro";
 import KnowledgeAssistantDemo from "../pages/_components/landing-page/KnowledgeAssistantDemo.astro";
 import ApprovalVisual from "../pages/product/_components/ApprovalVisual.astro";
@@ -141,11 +141,11 @@ export const useCaseLandingPages = {
       subtitle:
         "Bring case details, owners, and follow-up into one connected workflow. IT gives teams purpose-built tools to manage exceptions, incidents, and service work within your existing controls.",
       imageAlt:
-        "Incident management showing a reported equipment issue and coordinated follow-up",
+        "Budibase approval screen for a production admin access request on a monitor against an orange background",
       media: {
-        demo: IncidentManagementDemo,
+        image: CaseManagementHero,
         imageAlt:
-          "Incident management showing a reported equipment issue and coordinated follow-up",
+          "Budibase approval screen for a production admin access request on a monitor against an orange background",
       },
     },
     features: [

@@ -48,8 +48,8 @@ export const securityLandingPage = {
       {
         title: "Support your GDPR obligations",
         description:
-          "Maintain control over personal data with flexible hosting and documented data protection commitments.",
-        link: "/terms/",
+          "Self-host to keep personal data within your infrastructure. Review the terms for self-hosted deployments.",
+        link: "/terms-self-host/",
       },
     ],
   },
@@ -79,6 +79,6 @@ export const securityFaqs = [
   {
     question: "How does Budibase support our GDPR obligations?",
     answer:
-      "Flexible hosting helps you maintain control over personal data. Our terms document data protection commitments and responsibilities; follow the data protection terms above to review them.",
+      "Self-hosting lets you keep personal data within infrastructure you manage. The self-hosted terms linked above apply to those deployments. Budibase Cloud has separate terms, available in the footer, including restrictions on processing sensitive information. Review the terms for your chosen deployment as part of your data protection assessment.",
   },
 ] as const;

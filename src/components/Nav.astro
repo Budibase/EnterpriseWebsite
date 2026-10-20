@@ -55,13 +55,13 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       class="nav-shell__logo z-10 shrink-0 flex items-center"
       data-astro-prefetch
     >
-      <div class="relative w-[140px] flex items-center">
+      <div class="relative flex items-center">
         <img
           src={desktopNavLogoSrc}
           alt="Budibase logo"
-          width="140"
-          height="21"
-          class="block hover:cursor-pointer"
+          width="136"
+          height="20"
+          class="nav-shell__logo-image block hover:cursor-pointer"
         />
       </div>
     </a>
@@ -85,7 +85,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       <a
         target="_self"
         href="/pricing/"
-        class="desktop-nav-link inline-flex min-h-9 items-center rounded-full px-3 py-[0.45rem] text-sm font-normal nav-link transition-colors"
+        class="desktop-nav-link inline-flex min-h-9 items-center rounded-full px-3 py-[0.45rem] text-sm font-medium nav-link transition-colors"
         data-astro-prefetch
       >
         Pricing
@@ -105,7 +105,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
             class="nav-github-link relative justify-center items-center px-1.5 text-center ease-out duration-150 rounded-sm transition-all hover:bg-stone-200 border-transparent text-xs hidden xl:flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           >
             <span class="truncate">
-              <span class="flex text-sm font-normal items-center gap-0.5 nav-link transition-colors">
+              <span class="flex text-sm font-medium items-center gap-0.5 nav-link transition-colors">
                 <svg
                   class="w-5 h-5"
                   viewBox="0 0 17 16"
@@ -132,7 +132,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         <a
           href="https://account.budibase.app/auth/login"
           target="_blank"
-          class="nav-shell__login text-sm font-normal nav-link transition-colors"
+          class="nav-shell__login text-sm font-medium nav-link transition-colors"
         >
           Log in
         </a>
@@ -142,13 +142,10 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
             url="https://account.budibase.app/register"
             variant={usesDarkControls ? "outline-on-dark" : "secondary"}
             size="medium"
-            icon="ArrowRight"
-            iconSize="16"
-            iconPosition="end"
             target="_blank"
             class={!usesDarkControls
-              ? "button--cut-corner button--cut-corner-outline !gap-[16px] !pr-[16px] hover:!text-[var(--bb-olive)]"
-              : "button--cut-corner button--cut-corner-outline !gap-[16px] !pr-[16px]"}
+              ? "button--cut-corner button--cut-corner-outline hover:!text-[var(--bb-olive)]"
+              : "button--cut-corner button--cut-corner-outline"}
           />
         </div>
         <div class="nav-shell__button-cell">
@@ -158,10 +155,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
             variant={demoVariant ??
               (usesDarkControls ? "bright-on-dark" : "olive")}
             size="medium"
-            icon="ArrowRight"
-            iconSize="16"
-            iconPosition="end"
-            class="button--cut-corner !gap-[16px] !pr-[16px]"
+            class="button--cut-corner"
           />
         </div>
       </div>
@@ -262,7 +256,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         <li class="mobile-nav-item">
           <a
             href="/pricing/"
-            class="mobile-nav-row font-normal nav-link transition-colors"
+            class="mobile-nav-row font-medium nav-link transition-colors"
             data-astro-prefetch
           >
             Pricing
@@ -275,7 +269,7 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
       <a
         href="https://account.budibase.app/auth/login"
         target="_blank"
-        class="mobile-nav-row font-normal nav-link transition-colors"
+        class="mobile-nav-row font-medium nav-link transition-colors"
       >
         Log in
       </a>
@@ -284,9 +278,6 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
         url="/contact/"
         variant={demoVariant ?? "olive"}
         size="medium"
-        icon="ArrowRight"
-        iconSize="16"
-        iconPosition="end"
         class="mobile-nav-action-button !gap-[16px]"
       />
     </div>
@@ -533,6 +524,11 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
 </script>
 
 <style>
+  .nav-shell__logo-image {
+    height: 20px;
+    width: auto;
+  }
+
   .mobile-nav-panel {
     height: 100dvh;
     min-height: 0;
@@ -773,14 +769,6 @@ const mobileNavMenus = [platformNavMenu, solutionsNavMenu, resourcesNavMenu];
     padding-block: 0;
     font-size: 0.875rem;
     line-height: 1.2;
-  }
-
-  :global(#site-nav.nav-shell--grid .button__arrow-tile) {
-    padding: 2px;
-  }
-
-  :global(#site-nav.nav-shell--grid .button__arrow-frame) {
-    right: 2px;
   }
 
   .nav-shell--grid .nav-shell__inner {

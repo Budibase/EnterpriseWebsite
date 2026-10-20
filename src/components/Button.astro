@@ -47,23 +47,23 @@ interface Props {
 
 const variantClasses = {
   primary:
-    "bg-[var(--bb-lime)] !text-[var(--bb-olive)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)] ",
-  lime: "border-0 bg-[var(--bb-lime)] !text-[var(--bb-olive)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)] focus-visible:ring-[var(--bb-lime)] focus-visible:ring-offset-[var(--button-bright-focus-offset,var(--bb-background-surface-base))]",
+    "bg-[var(--bb-lime)] !text-[var(--bb-graphite)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)] ",
+  lime: "border-0 bg-[var(--bb-lime)] !text-[var(--bb-graphite)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)] focus-visible:ring-[var(--bb-lime)] focus-visible:ring-offset-[var(--button-bright-focus-offset,var(--bb-background-surface-base))]",
   olive:
     "bg-[var(--bb-olive)] !text-[var(--bb-text-on-base)] hover:bg-[var(--bb-olive-1400)] active:bg-[var(--bb-olive-1500)] focus-visible:ring-[var(--bb-olive)]",
   secondary:
     "border bg-[var(--bb-white)] !text-[var(--bb-olive)] hover:bg-[var(--bb-background-surface)] hover:!text-brand",
-  cta: "bg-[var(--bb-button-cta-background)] !text-[var(--bb-olive)] hover:bg-[var(--bb-button-cta-hover)] active:bg-[var(--bb-button-cta-active)] ",
+  cta: "bg-[var(--bb-button-cta-background)] !text-[var(--bb-graphite)] hover:bg-[var(--bb-button-cta-hover)] active:bg-[var(--bb-button-cta-active)] ",
   "cta-on-base":
-    "border-transparent bg-[var(--bb-lime)] !text-[var(--bb-olive)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)]",
+    "border-transparent bg-[var(--bb-lime)] !text-[var(--bb-graphite)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)]",
   "outline-on-base":
     "border bg-[var(--bb-white)] !text-[var(--bb-olive)] hover:bg-[var(--bb-background-surface)] hover:!text-brand focus-visible:ring-[var(--bb-olive)] focus-visible:ring-offset-[var(--bb-olive)]",
   "bright-on-dark":
-    "border-0 bg-[var(--button-bright-background,var(--bb-lime))] !text-[var(--bb-olive)] hover:bg-[var(--button-bright-hover,var(--bb-button-lime-hover))] active:bg-[var(--button-bright-active,var(--bb-button-lime-active))] focus-visible:ring-[var(--button-bright-background,var(--bb-lime))] focus-visible:ring-offset-[var(--button-bright-focus-offset,var(--bb-olive))]",
+    "border-0 bg-[var(--button-bright-background,var(--bb-lime))] !text-[var(--bb-graphite)] hover:bg-[var(--button-bright-hover,var(--bb-button-lime-hover))] active:bg-[var(--button-bright-active,var(--bb-button-lime-active))] focus-visible:ring-[var(--button-bright-background,var(--bb-lime))] focus-visible:ring-offset-[var(--button-bright-focus-offset,var(--bb-olive))]",
   "outline-on-dark":
     "border bg-[var(--bb-white)] !text-[var(--bb-olive)] hover:bg-[var(--bb-background-surface)] hover:!text-brand active:bg-[var(--bb-sand)] focus-visible:ring-[var(--bb-white)] focus-visible:ring-offset-[var(--bb-olive)]",
   large:
-    "bg-[var(--bb-lime)] !text-[var(--bb-olive)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)]",
+    "bg-[var(--bb-lime)] !text-[var(--bb-graphite)] hover:bg-[var(--bb-button-lime-hover)] active:bg-[var(--bb-button-lime-active)]",
 };
 
 const sizeClasses = {
@@ -78,6 +78,13 @@ const gapClasses = {
   medium: "gap-1.5",
   large: "gap-2",
   "extra-large": "gap-2.5",
+};
+
+const statusPaddingClasses = {
+  small: "[--button-status-padding-right:14px]",
+  medium: "[--button-status-padding-right:20px]",
+  large: "[--button-status-padding-right:24px]",
+  "extra-large": "[--button-status-padding-right:26px]",
 };
 
 const iconSizes = {
@@ -107,24 +114,37 @@ const {
   attributes = {},
 } = Astro.props as Props;
 const normalizedSize = size === "sm" ? "small" : size;
+const actionLabel = label.trim().toLowerCase();
+const statusLight =
+  actionLabel === "try budibase"
+    ? "orange"
+    : actionLabel === "book a demo"
+      ? "green"
+      : undefined;
 const resolvedIcon =
   icon === "ArrowRight"
     ? "ArrowRightBold"
     : icon === "ArrowUpRight"
       ? "ArrowUpRightBold"
       : icon;
-const iconSize = icon
+const isDirectionalArrow =
+  resolvedIcon === "ArrowRightBold" || resolvedIcon === "ArrowUpRightBold";
+const isSecondary = [
+  "secondary",
+  "outline-on-base",
+  "outline-on-dark",
+].includes(variant);
+const showIcon = Boolean(icon) && !(isDirectionalArrow && isSecondary);
+const iconSize = showIcon
   ? (providedIconSize ?? iconSizes[normalizedSize])
   : undefined;
-const hasArrowTile =
-  resolvedIcon === "ArrowRightBold" || resolvedIcon === "ArrowUpRightBold";
+const hasDividedIcon = iconDivider && !isDirectionalArrow && showIcon;
 const classes = [
   baseClasses,
   "button--cut-corner",
-  hasArrowTile &&
-    iconPosition === "end" &&
-    !iconDivider &&
-    "button--has-arrow-tile",
+  statusLight && "button--status-light",
+  statusLight && statusPaddingClasses[normalizedSize],
+  variant === "olive" && "button--dark-fill",
   variant === "secondary" && "button--secondary",
   ["secondary", "outline-on-base", "outline-on-dark"].includes(variant) &&
     "button--cut-corner-outline",
@@ -132,7 +152,7 @@ const classes = [
   sizeClasses[normalizedSize],
   gapClasses[normalizedSize],
   className,
-  iconDivider && iconPosition === "end" && icon && "button--divided-icon",
+  hasDividedIcon && iconPosition === "end" && "button--divided-icon",
 ]
   .filter(Boolean)
   .join(" ");
@@ -151,6 +171,12 @@ const computedRel =
       rel={computedRel}
       {...attributes}
     >
+      {statusLight && (
+        <span
+          class={`button__status-light button__status-light--${statusLight}`}
+          aria-hidden="true"
+        />
+      )}
       {iconPosition === "start" && icon && iconSize && (
         <Icon name={resolvedIcon!} size={iconSize} />
       )}
@@ -158,26 +184,9 @@ const computedRel =
       {iconPosition === "end" &&
         icon &&
         iconSize &&
-        (iconDivider ? (
+        (hasDividedIcon ? (
           <span class="button__icon-compartment" aria-hidden="true">
             <Icon name={resolvedIcon!} size={iconSize} />
-          </span>
-        ) : hasArrowTile ? (
-          <span
-            class="button__arrow-slot"
-            style={`--button-arrow-size: ${Number(iconSize) + 8}px`}
-            aria-hidden="true"
-          >
-            <span class="button__arrow-frame">
-              <span
-                class:list={[
-                  "button__arrow-tile",
-                  variant === "olive" && "button__arrow-tile--on-olive",
-                ]}
-              >
-                <Icon name={resolvedIcon!} size={iconSize} />
-              </span>
-            </span>
           </span>
         ) : (
           <Icon name={resolvedIcon!} size={iconSize} />
@@ -185,6 +194,12 @@ const computedRel =
     </a>
   ) : (
     <button type={type} class={classes} aria-label={ariaLabel} {...attributes}>
+      {statusLight && (
+        <span
+          class={`button__status-light button__status-light--${statusLight}`}
+          aria-hidden="true"
+        />
+      )}
       {iconPosition === "start" && icon && iconSize && (
         <Icon name={resolvedIcon!} size={iconSize} />
       )}
@@ -192,26 +207,9 @@ const computedRel =
       {iconPosition === "end" &&
         icon &&
         iconSize &&
-        (iconDivider ? (
+        (hasDividedIcon ? (
           <span class="button__icon-compartment" aria-hidden="true">
             <Icon name={resolvedIcon!} size={iconSize} />
-          </span>
-        ) : hasArrowTile ? (
-          <span
-            class="button__arrow-slot"
-            style={`--button-arrow-size: ${Number(iconSize) + 8}px`}
-            aria-hidden="true"
-          >
-            <span class="button__arrow-frame">
-              <span
-                class:list={[
-                  "button__arrow-tile",
-                  variant === "olive" && "button__arrow-tile--on-olive",
-                ]}
-              >
-                <Icon name={resolvedIcon!} size={iconSize} />
-              </span>
-            </span>
           </span>
         ) : (
           <Icon name={resolvedIcon!} size={iconSize} />
@@ -221,11 +219,32 @@ const computedRel =
 }
 
 <style>
+  .button--status-light {
+    gap: 7px;
+    padding-right: var(--button-status-padding-right);
+  }
+
+  .button__status-light {
+    display: inline-block;
+    flex: 0 0 7px;
+    width: 7px;
+    height: 7px;
+    background: currentColor;
+  }
+
+  .button--dark-fill .button__status-light {
+    background: var(--bb-lime);
+  }
+
+  .button__status-light.button__status-light--orange {
+    background: var(--bb-tangerine);
+  }
+
   .button--cut-corner {
     min-height: var(--button-min-height, 2.75rem);
     max-width: 100%;
     font-family: var(--font-label);
-    text-transform: uppercase;
+    text-transform: none;
     clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
   }
 
@@ -262,44 +281,6 @@ const computedRel =
     );
     content: "";
     pointer-events: none;
-  }
-
-  .button--has-arrow-tile {
-    position: relative;
-  }
-
-  /* Reserve the icon's original space so the label and button width stay put. */
-  .button__arrow-slot {
-    flex: 0 0 var(--button-arrow-size);
-    width: var(--button-arrow-size);
-    height: var(--button-arrow-size);
-  }
-
-  /* A square as tall as the button centers the tile with identical insets. */
-  .button__arrow-frame {
-    position: absolute;
-    inset-block: 0;
-    right: 0;
-    aspect-ratio: 1;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-  }
-
-  .button__arrow-tile {
-    display: inline-flex;
-    flex: 0 0 auto;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-    background: var(--bb-olive);
-    color: var(--bb-coconut);
-    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%);
-  }
-
-  .button__arrow-tile--on-olive {
-    background: var(--bb-white);
-    color: var(--bb-olive);
   }
 
   .button--divided-icon {

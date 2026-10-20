@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath } from "node:url";
 import { URL } from "node:url";
@@ -68,51 +68,6 @@ export default defineConfig({
       },
     },
   },
-
-  fonts: [
-    {
-      provider: fontProviders.local(),
-      name: "Stack Sans Headline",
-      cssVariable: "--font-stack-sans-headline",
-      options: {
-        variants: [
-          {
-            src: ["./public/fonts/stack-sans/StackSansHeadline-Variable.ttf"],
-            weight: "200 700",
-            style: "normal",
-          },
-        ],
-      },
-    },
-    {
-      provider: fontProviders.local(),
-      name: "Stack Sans Text",
-      cssVariable: "--font-stack-sans-text",
-      options: {
-        variants: [
-          {
-            src: ["./public/fonts/stack-sans/StackSansText-Variable.ttf"],
-            weight: "200 700",
-            style: "normal",
-          },
-        ],
-      },
-    },
-    {
-      provider: fontProviders.local(),
-      name: "Stack Sans Notch",
-      cssVariable: "--font-stack-sans-notch",
-      options: {
-        variants: [
-          {
-            src: ["./public/fonts/stack-sans/StackSansNotch-Variable.ttf"],
-            weight: "200 700",
-            style: "normal",
-          },
-        ],
-      },
-    },
-  ],
 
   experimental: {
     clientPrerender: true,

@@ -1,5 +1,5 @@
 ---
-import { Font } from "astro:assets";
+import BrandFonts from "./BrandFonts.astro";
 import Favicon from "./Favicon.astro";
 import SEO from "./SEO.astro";
 import { resolveImageReference } from "../lib/imageReference";
@@ -265,8 +265,7 @@ function smartypants(text: string, _mode?: number): string {
   /* Intentionally left blank */
 </style>
 
-<Font cssVariable="--font-stack-sans-text" preload />
-<Font cssVariable="--font-stack-sans-headline" preload />
+<BrandFonts />
 
 <!-- Low Priority Global Metadata -->
 <Favicon />

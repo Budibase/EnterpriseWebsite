@@ -11,7 +11,7 @@ interface Props {
 
 const {
   variant = "default",
-  primaryLabel = "Request a Demo",
+  primaryLabel = "Request a demo",
   primaryHref = "/contact/",
   ariaLabel = "Get started with Budibase",
   insetActions = false,
@@ -42,10 +42,7 @@ const {
       class="cta-action cta-action--build"
       href="https://account.budibase.app/register"
     >
-      <span class="cta-action__label">Start Building</span>
-      <span class="cta-action__icon" aria-hidden="true">
-        <Icon name="ArrowRightBold" size="40" />
-      </span>
+      <span class="cta-action__label">Start building</span>
     </a>
   </div>
 </section>
@@ -98,7 +95,7 @@ const {
   }
 
   .cta-action {
-    --font-label: var(--font-display-sans);
+    --font-label: var(--font-sans);
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -108,7 +105,7 @@ const {
     padding: clamp(1.25rem, 2.5vw, 2rem);
     border-radius: 0;
     clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
-    font-family: var(--font-display-sans);
+    font-family: var(--font-sans);
     font-size: var(--bb-text-heading-section-font-size);
     font-weight: var(--bb-text-display-small-font-weight);
     line-height: var(--bb-text-heading-section-line-height);
@@ -143,7 +140,7 @@ const {
 
   .cta-action__label {
     min-width: 0;
-    text-transform: uppercase;
+    text-transform: none;
   }
 
   .cta-action__icon {
@@ -151,16 +148,8 @@ const {
     flex: none;
     align-items: center;
     justify-content: center;
-    padding: 8px;
-    background: var(--bb-olive);
-    color: var(--bb-coconut);
+    color: currentColor;
     line-height: 0;
-    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%);
-  }
-
-  .cta-action--build .cta-action__icon {
-    background: var(--bb-white);
-    color: var(--bb-olive);
   }
 
   .cta-action__icon :global(svg) {

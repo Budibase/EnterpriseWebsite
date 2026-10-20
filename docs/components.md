@@ -60,8 +60,7 @@ overlay, white links, Lime logo/demo action and white secondary action. Geometry
 stays consistent across themes. Shared navigation-height tokens match the grid
 before JavaScript measures the rendered height.
 
-Arrow tiles are 20px, inset 6px vertically and 8px from the right inside the
-32px buttons, keeping the icon notch clear of the outer button notch. The
+Navigation buttons omit directional arrows in the current trial. The
 homepage retains the hero's overlay-nav spacing. Former `/homepage-nav/` and
 `/pricing-nav/` previews redirect to their adopted pages.
 
@@ -80,7 +79,7 @@ headings and Coconut links; homepage demo backdrops also use olive 1300.
 The website `Button` component is for marketing CTAs. Inside product demos,
 use native buttons (or anchors for navigation) with normal pill shapes,
 sentence-case labels and compact product-interface sizing. Do not import
-`Button` or apply its notches, uppercase labels or arrow tiles inside demos.
+`Button` or apply its notches or decorative markers inside demos.
 
 - The Lime color family lives in `global.css` as `--bb-lime-100` through
   `--bb-lime-1600`. `--bb-lime` aliases lime 300 (`#A5FF00`).
@@ -99,19 +98,27 @@ sentence-case labels and compact product-interface sizing. Do not import
   shared olive-mixed interaction states. Primary labels use Olive. The homepage navigation, hero, and
   solutions select the explicit variant.
 - Use `variant="olive"` for the Cloud pricing trial button and Book a demo
-  in light-page navigation. It uses Olive, Coconut text, and Olive 1400/1500
+  in light-page navigation and primary actions in light landing-page heroes. It uses Olive, Coconut text, and Olive 1400/1500
   interaction states. The dark homepage navigation keeps its Lime demo button.
 - The `cta` and legacy `large` variants retain their APIs and now use the same
   full-Lime treatment as other primary actions. CTA interaction aliases point to
-  the shared Lime hover and pressed tokens. All action labels use uppercase
-  Stack Sans Text at weight 500. Regular right/up-right arrows resolve to their
+  the shared Lime hover and pressed tokens. All action labels use sentence-case
+  Inter at weight 500. Regular right/up-right arrows resolve to their
   bold Phosphor variants; other icon choices retain their existing behavior.
-  Desktop nav buttons are 32px tall with 16px arrows; mobile menu targets remain at least 44px.
-  Trailing right/up-right arrows sit in a
-  small tile with a 4px top-right notch: Olive with Coconut arrows, or
-  white with Olive arrows on Olive buttons. The tile has equal top, bottom and right insets,
-  centered within a square frame at the button’s right edge. Other icons keep
-  their existing treatment.
+  Desktop nav buttons are 32px tall; mobile menu targets remain at least 44px.
+  In the current arrow trial, primary page actions show a plain right/up-right
+  arrow in the label color, except hero “Book a demo” buttons, which keep
+  their square marker without an arrow. Navigation and secondary/outlined actions omit
+  directional arrows. Functional icons such as download or dropdown indicators
+  retain their behavior. The large closing demo action uses a plain arrow;
+  Start Building is label only. Keep the outer 10px cut corner.
+- Shared buttons labeled “Try Budibase” or “Book a demo” show a static 7px
+  decorative square before the label, with a 7px gap. Try Budibase uses
+  Tangerine; Book a demo matches the label (Graphite on Lime, Olive on white)
+  and uses Lime on Olive fills.
+  These markers are hidden from assistive technology and do not represent live status.
+  Every button with a marker adds 2px to its size's normal right padding;
+  this spacing is owned by `Button`, including navigation and hero actions.
 - Use `src/components/Link.astro` for inline or quiet links that should not look
   like buttons.
 - Use a small wrapper around `Button` when an action needs additional behavior,
@@ -137,9 +144,10 @@ copying its typography into a page.
 Shared landing-page headings use semantic size roles rather than component-
 specific values:
 
-- `heading-hero` for page and product heroes: 36–48px mobile, 52px tablet, and
-  64px desktop. Mobile heroes use `clamp(36px, 10vw, 48px)`. The split homepage
-  uses its approved fluid 36–52px desktop treatment to retain the authored lines.
+- `heading-hero` for page and product heroes: 32–42px mobile, 46px tablet, and
+  56px desktop. Mobile heroes use `clamp(32px, 8.75vw, 42px)`. Compact split
+  heroes retain TitleBlock’s 14px reduction above mobile. The homepage keeps its
+  own 34–48px desktop, 48px tablet and 32–44px mobile treatment.
 - `heading-section` for major content sections and CTAs: 30px mobile, 36px
   tablet, and 42px desktop.
 - `heading-subsection` for supporting groups and stat headings: 26px mobile,
@@ -150,33 +158,38 @@ The tokens control hierarchy through size and line height. Components retain
 their role-appropriate typeface, weight, letter spacing, and casing so the
 display face remains reserved for decisive brand moments.
 
-`TitleBlock` has two variants: `hero` uses Stack Sans Headline at weight 700 in
-uppercase for page-level statements, while `section` uses Stack Sans Text
+`TitleBlock` has two variants: `hero` uses Inter Display at weight 700 in
+uppercase for page-level statements, while `section` uses Inter
 in sentence case for content sections. The `section` variant uses the semantic
-`heading-section` scale at weight 400 with natural letter spacing. Use weight
-400 and natural letter spacing for all `h2`, `h3`, and `h4` headings.
+`heading-section` scale at weight 500 with natural letter spacing. Use weight
+500 and natural letter spacing for all `h2`, `h3`, and `h4` headings.
 
 Use `--bb-text-body` for paragraphs and descriptive copy on light surfaces. It
 maps to Graphite. Keep headings on their role-specific heading or
 brand token, and use the appropriate `--bb-text-on-base*` token on dark
 surfaces.
 
-Page titles and H1s use Stack Sans Headline without changing their
-existing size, weight, casing, spacing, or content. Use Stack Sans Headline for
-the large closing CTA actions.
-Stack Sans Text is used for
+Page titles and H1s use Inter Display at normal width without changing their
+existing size, weight, casing, spacing, or content.
+The Budibase logo wordmark uses TikTok Sans; use the supplied logo assets
+rather than recreating it with live text. The Budibase product UI uses Inter.
+Inter is used for
 H2–H6 headings, section/card titles, labels, buttons, body copy and navigation.
-Use weight 300 for regular copy, 400 for supporting headings, labels and
+Use weight 400 for regular copy, 500 for supporting headings, labels and
 navigation, and 500 for standard action-button labels. Closing CTA actions
-use Headline at 700, except Start Building at 500. Its Graphite action has no
-decorative block mosaic.
-Outside action buttons, former 500 roles use 400 and former 400 roles use 300. Keep existing
-semibold/bold emphasis and 700 hero headlines. Tailwind classes express their
-actual weights: `font-light` is 300 and `font-normal` is 400.
-The global H1 rule resolves to `--font-headline`;
-`--font-display-sans` also resolves to Headline for the large closing CTA actions. Use
-`--font-heading-sans` for supporting headings and `--font-label` or `brand-label` for labels. The latter
-two roles resolve to Text, including named label/title classes across demos.
+use Inter at 700, except Start Building at 500. Its Graphite action has no
+decorative block mosaic. Retain existing semibold/bold emphasis and 700 hero
+headlines. Tailwind classes express their actual weights.
+The global H1 rule resolves to `--font-headline`; `--font-display-sans`
+resolves to Inter, as does the legacy `--font-display` alias. Closing CTA actions use `--font-sans` (Inter), including
+their scoped `--font-label` alias. Use `--font-heading-sans`
+for supporting headings and `--font-label` or `brand-label` for labels; these
+resolve to Inter. H1–H6 and shared heading classes use display optical size
+(`opsz` 32). Square punctuation (`ss07`) is enabled throughout alongside
+ligatures and contextual alternates. `BrandFonts.astro` supplies one self-hosted,
+preloaded Inter WOFF2 file through `Head.astro`. Use native width without
+horizontal transforms. See `src/assets/fonts/README.md` for
+coverage, licenses and regeneration.
 Use `technical-identifier` for tabular numerals and a slashed zero. Do not carry
 over stylistic-set requests from a previous font.
 
@@ -251,7 +264,7 @@ Olive/Lime pair. Decorative mosaics use the named supporting accents.
 
 Platform/product landing-page hero and feature buttons use trailing bold arrow
 tiles through `Button`, including both Book a demo and Try Budibase. The large
-closing CTA actions use the same notched, contrasting arrow-tile treatment.
+closing demo action uses a plain arrow; secondary actions use labels only.
 
 - The homepage hero keeps “Make critical work” above “move faster.” The latter
   uses a tightly padded Lime highlight, Olive text, and a 10px top-right cut.
@@ -289,7 +302,8 @@ this treatment consistent across both shared landing-page compositions.
   See [the template guide](grid-landing-page.md) for its contract and adoption.
 - `product/_components/AppsLandingPage.astro` uses `GridLandingPage` with
   `heroLayout="stacked"`: centered title, description and actions, then media
-  spanning the full hero width. It reuses `AppDemo` without a backdrop or
+  centered between empty bordered side panels on desktop and spanning the full
+  hero width below 960px. It reuses `AppDemo` without a backdrop or
   breakout. Mobile omits the demo's builder/sidebar to keep the app in view.
   Feature graphics are provisional; layout, copy and FAQs are shared-template
   content. The Apps route preserves its negotiated Markdown response.

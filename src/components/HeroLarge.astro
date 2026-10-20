@@ -77,9 +77,11 @@ const Demo = demo;
           <Button
             label={action.label}
             url={action.href}
-            variant={isBrandDark ? "bright-on-dark" : "cta"}
+            variant={isBrandDark ? "bright-on-dark" : "olive"}
             size="large"
-            icon="ArrowRight"
+            icon={action.label.trim().toLowerCase() === "book a demo"
+              ? undefined
+              : "ArrowRight"}
             iconPosition="end"
             target={action.target}
             rel={action.rel}
