@@ -1,7 +1,7 @@
 # Budibase brand and GTM direction
 
 **Status:** Working source of truth  
-**Last updated:** 20 October 2026
+**Last updated:** 22 October 2026
 
 Use this document to guide Budibase website design, customer-facing copy,
 campaigns, presentations, customer stories, sales enablement, product launches,
@@ -625,18 +625,18 @@ capabilities. Conservative styling alone is not evidence of maturity.
 - The global footer uses Olive with Lime headings and Coconut links.
 - Primary buttons generally use full Lime fills with Graphite text
   and shared Lime interaction tokens. The Cloud pricing trial button and
-  Talk to sales in light-page navigation, and primary actions in light landing-page
+  Contact sales in light-page navigation, and primary actions in light landing-page
   heroes use Olive with Coconut text and
   darker Olive interaction states. Dark homepage navigation retains Lime. Secondary and outlined actions use white
   fills, Olive text, and grey-800 outlines, including Try Budibase on dark
   navigation surfaces. Keep the 10px cut corner and use bold arrow icons.
   The current arrow trial uses plain arrows in the label color for primary
-  page actions and the closing demo CTA. Hero Talk to sales buttons retain
+  page actions and the closing demo CTA. Hero Contact sales buttons retain
   their square marker without a trailing arrow. Navigation and secondary actions
   omit directional arrows. Both closing CTA actions use plain arrows in the label
   color. Shared Try Budibase
-  and Talk to sales buttons have static 7px square markers before their labels:
-  Orange for Try Budibase, Graphite for Talk to sales on Lime (Lime on Olive
+  and Contact sales buttons have static 7px square markers before their labels:
+  Orange for Try Budibase, Graphite for Contact sales on Lime (Lime on Olive
   fills and Olive on white). Keep functional icons
   such as download and dropdown indicators. Product-demo controls retain
   native pill shapes, sentence-case labels and compact interface sizing.
@@ -707,17 +707,30 @@ with live text.
   Coconut with Olive controls on light pages, transparent with white links and
   Lime logo/demo action over the homepage hero. Navigation buttons omit directional arrows and use small square CTA markers in the current trial. Preserve the previous header in
   NavLegacy for comparison or rollback.
-- Place **Talk to sales** first whenever it appears alongside other action
+- Place **Contact sales** first whenever it appears alongside other action
   buttons in page sections. Trial and signup actions follow. In the main
-  navigation, place **Try Budibase** before **Talk to sales**.
+  navigation, place **Try Budibase** before **Contact sales**.
 - Use the shared 10px top-right corner cut for styled action buttons, including
   outlined buttons. The two large closing CTA cards use a larger 24px cut.
   Preserve an outline along the diagonal edge of outlined buttons.
   Use the dedicated grey-800 button-border token for secondary actions.
 - Use clear grids, strong alignment, generous but controlled space, and modular
   compositions.
+- The Platform overview uses a Zed-inspired technical drawing treatment: a
+  continuous bordered content frame, enclosed section and card grids, small
+  solid intersection squares without borders (Coconut on Platform;
+  Orange on Activity),
+  edge ruler ticks, faint grain, and a fading hero grid.
+  Apply this treatment to `/platform/` and `/product/activity/`, with Coconut, Olive, and Geist;
+  retain legible product diagrams and static decorative details.
+  The Platform overview opens with the approved square-field animation above
+  its hero title, using mostly Olive, then Teal, Orange, and Lime.
+  Retain the technical frame and product demo below the title and actions.
+  Activity keeps its existing content and section order, with a Graphite hero
+  title and a full-width
+  inset demo on a neutral surface, replacing its former Lime surround and side panels.
 - Use the approved AI models landing page as the reusable compact lined
-  template for APIs, Data tables, Knowledge, Activity, Human approvals, and
+  template for APIs, Data tables, Knowledge, Human approvals, and
   Permissions, Security and compliance, and Self-hosting. Preserve its composition while supplying page-specific copy,
   product visuals, and FAQs.
 - Use light hero surfaces on product and platform pages. Retain olive
@@ -785,6 +798,14 @@ substitute for showing the system working.
 
 Use motion to explain cause and effect. Avoid decorative motion that makes the
 platform feel less predictable or controlled.
+The Platform hero's square field is an approved decorative exception, based on
+the Craft, engineered reference. Keep its crisp grid, controlled drift, and
+ordered brand palette. Keep its background transparent so the page surface and
+grain show through, with no playback controls. Provide a reduced-motion still state, and stop
+rendering while it is off-screen or the browser tab is hidden.
+Use a small, soft arrow-shaped fireball brush for pointer trails, preserving
+the original heat blending, color transitions, and decay. Keep circular ripples
+on double-click. Avoid the oversized, solid logo stencil from the first trial.
 
 ## Reference brands
 
@@ -940,6 +961,18 @@ without an expanding custom-software or SaaS burden.
 
 ## Recommended homepage narrative
 
+The homepage introduces the core product after customer proof and before use
+cases, using a numbered, scroll-driven overview in this order: Apps, Agents,
+Automations, Requests & approvals. Sticky navigation automatically follows the
+visual in view; clicking a label jumps to that product. Give roughly three
+quarters of the desktop width to the graphics, with a narrow column for the
+active product label, short headline, and product link, without per-product
+description paragraphs. Mobile uses sticky horizontal navigation with stacked
+headlines, links, and graphics. Lead with Requests & approvals as the recognizable
+job; its product page can introduce Operations center as the workspace for
+tracking requests and completing approvals. Product imagery is temporarily represented by labeled placeholders
+while the structure and content are reviewed.
+
 1. Give enterprise IT the leverage to deliver more.
 2. Establish the category: the open-source platform for enterprise operations.
 3. Show one consequential request moving from intake to completed action.
@@ -995,7 +1028,103 @@ Maintain these as explicit questions until decisions or evidence resolve them:
 
 ## Decision log
 
+### 22 October 2026
+
+- Removed description paragraphs from the homepage product overview. Retain
+  each product's label, short headline, link, and large graphic.
+
+- Corrected the homepage product overview to change the active product as
+  visitors scroll, with clickable anchor navigation. Enlarged the graphic
+  column to roughly 78% of the desktop grid and narrowed the supporting copy.
+  Mobile uses a sticky horizontal product navigation above stacked scenes.
+
+- Retried the Platform pointer arrow as a small 9 × 7-cell heat brush with
+  a soft halo, retaining the original fireball's additive color blending and
+  fading trail. Kept the circular double-click ripple. This replaces the
+  oversized, persistent solid-arrow approach from the earlier trial.
+
+- Added the homepage core product section after customer proof and before use
+  cases, using a compact explanation-and-image switcher inspired by the
+  Airtable and Retool references. Ordered Apps, Agents, Automations, then
+  Requests & approvals. Lead with the request and approval job, with Operations
+  center supporting it as the user workspace. Use temporary local placeholder
+  images while reviewing the structure and content.
+
+- Restored the Platform square field's original round fireball brush and
+  circular double-click ripple after reviewing the oversized logo-arrow trial.
+  Retained the Olive-led palette, transparent background, and existing motion.
+
+- Replaced the Platform square field's round pointer brush and circular
+  double-click ripple with pixel stencils of the original Budibase logo arrow.
+  Keep its right-facing outline, grid alignment, fading trail, and brand palette.
+
+- Replaced Graphite in the Platform square field with Olive. Its first two
+  bands now share Olive, followed by Teal, Orange, and Lime.
+
+- Made the Platform square field transparent so its empty cells and gutters
+  blend into the page surface and grain. Removed the pause button; retained
+  reduced-motion still rendering and off-screen suspension.
+
+- Added the Craft, engineered-inspired square-field animation above the
+  Platform hero title. Recreated its canvas grid, layered wave field, color
+  thresholds, grain, entrance, and ragged fade with Graphite, Olive, Teal,
+  Orange, and Lime. Kept the title, actions, and activity demo below the
+  animation. The reusable component includes pointer trails, a pause control,
+  a still fallback, reduced-motion handling, and off-screen suspension.
+
+### 21 October 2026
+
+- Set all Activity grid intersection squares to Orange, simplifying the
+  previous Olive, Lime, and Orange treatment.
+
+- Refined Activity's grid intersection squares to Olive, Lime, and Orange,
+  replacing the Teal and Orchid accents.
+
+- Set the Activity landing-page hero title to Graphite using the shared brand token.
+
+- Gave Activity's small grid intersection squares distinct Orange, Teal,
+  Lime, and Orchid fills. Retained the shared 6px size and borderless treatment.
+
+- Extended the Platform overview's technical drawing treatment to Activity:
+  continuous rails, fading hero grid, grid spacers, intersection marks, ruler
+  ticks, and subtle grain. Kept all Activity content and demo interactions,
+  and replaced the Lime demo surround and side panels with a full-width,
+  neutral inset matching the Platform hero.
+
+- Removed the grouped Connect, Automate, Interact, and Govern overview from
+  `/platform/`. Keep the two illustrated grids, with the 2×2 product section
+  titled “One platform for every operation.” followed by the six-card shared
+  foundation. The homepage retains its grouped overview.
+
+- Changed Activity to the shared vertical hero used by Agents, with centered
+  copy and actions above the Platform hero's interactive activity demo.
+  Reuse the same dark interface and sample records within a Lime surround,
+  with bordered side panels on desktop and a full-width preview below 960px.
+
 ### 20 October 2026
+
+- Changed the Platform overview's shared foundation to nine illustrated cards
+  in a 3×3 grid, reusing existing product visuals with generous demo spacing.
+  Included the existing AI models capability as the ninth card.
+
+- Removed the “See how the platform works in practice” scenario accordion
+  from the Platform overview. Product groups lead directly into the 2×2
+  product feature cards and shared foundation.
+
+- Changed the main sales CTA from “Talk to sales” to “Contact sales” across
+  navigation, page heroes, shared closing actions, footer links, and the
+  Enterprise pricing plan. Retained destinations, styling, and action ordering.
+
+- Refined the Platform overview's technical drawing treatment with solid square
+  intersection markers in the shared Coconut token, without
+  borders, and restrained multiply-blended grain at 3% opacity on
+  the light surface. Keep the texture subordinate to content and grid lines.
+
+- Applied the Zed-inspired technical drawing treatment to the Platform
+  overview. Enclosed the hero, product groups, operational scenarios,
+  capability collections, and closing actions within a continuous lined grid,
+  with subtle grain, fading graph-paper detail, ruler ticks, and intersection
+  markers. Retained Budibase's palette, typography, content, and product demos.
 
 - Restored Geist's default R and G after reviewing the headline alternates.
   Retained the alternate number features and default square punctuation.

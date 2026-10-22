@@ -9,6 +9,8 @@ import Link from "@components/Link.astro";
 import ProductFeatureNav from "@components/ProductFeatureNav.astro";
 import SectionBlock from "@components/SectionBlock.astro";
 import TitleBlock from "@components/TitleBlock.astro";
+import TechnicalGridDecoration from "@components/ui/TechnicalGridDecoration.astro";
+import surfaceGrain from "@assets/images/platform/surface-grain.png?url";
 import type {
   PlatformLandingContent,
   ProductDetailMedia,
@@ -21,6 +23,7 @@ interface Props {
   heroBackgroundImage?: string;
   heroAspectRatio?: string;
   heroLayout?: "split" | "stacked";
+  technicalGrid?: boolean;
   featureMedia?: readonly ProductDetailMedia[];
   featureActions?: readonly (
     { label: string; url: string; appearance?: "link" | "button" } | undefined
@@ -36,6 +39,7 @@ const {
   heroBackgroundImage,
   heroAspectRatio = "2760 / 1710",
   heroLayout = "split",
+  technicalGrid = false,
   featureMedia = [],
   featureActions = [],
   cards = content.cardCluster.cards,
@@ -45,13 +49,22 @@ const {
 const columns = content.cardCluster.columns ?? 3;
 ---
 
-<div class="grid-landing-page">
+<div
+  class:list={[
+    "grid-landing-page",
+    technicalGrid && "grid-landing-page--technical",
+  ]}
+  style={technicalGrid
+    ? `--grid-landing-grain: url("${surfaceGrain}")`
+    : undefined}
+>
   <header
     class:list={[
       "grid-landing-hero page-section page-section--hero",
       heroLayout === "stacked" && "grid-landing-hero--stacked",
     ]}
   >
+    {technicalGrid && <TechnicalGridDecoration />}
     <div class="grid-landing-hero__content">
       <TitleBlock
         variant="hero"
@@ -63,7 +76,7 @@ const columns = content.cardCluster.columns ?? 3;
       />
       <div class="grid-landing-hero__actions">
         <Button
-          label="Talk to sales"
+          label="Contact sales"
           url="/contact/"
           variant="olive"
           size="large"
@@ -127,6 +140,7 @@ const columns = content.cardCluster.columns ?? 3;
     >
       <EnterpriseLogoGrid placement="outline-row" />
     </section>
+    {technicalGrid && <div class="technical-grid-spacer" aria-hidden="true" />}
     {
       content.features.map((feature, index) => {
         const media = featureMedia[index];
@@ -134,72 +148,78 @@ const columns = content.cardCluster.columns ?? 3;
         const action = featureActions[index];
         const titleId = `${slug}-feature-${index}-title`;
         return (
-          <section
-            class:list={[
-              "grid-landing-feature",
-              index % 2 === 1 && "grid-landing-feature--reversed",
-            ]}
-            aria-labelledby={titleId}
-          >
-            <div class="grid-landing-feature__copy">
-              <TitleBlock
-                variant="section"
-                title={feature.headline}
-                titleId={titleId}
-                description={feature.body}
-              />
-              {action?.appearance === "button" ? (
-                <Button
-                  label={action.label}
-                  url={action.url}
-                  variant="cta"
-                  size="medium"
-                  icon="ArrowRight"
-                  iconPosition="end"
+          <>
+            <section
+              class:list={[
+                "grid-landing-feature",
+                index % 2 === 1 && "grid-landing-feature--reversed",
+              ]}
+              aria-labelledby={titleId}
+            >
+              {technicalGrid && <TechnicalGridDecoration />}
+              <div class="grid-landing-feature__copy">
+                <TitleBlock
+                  variant="section"
+                  title={feature.headline}
+                  titleId={titleId}
+                  description={feature.body}
                 />
-              ) : (
-                action && (
-                  <Link
+                {action?.appearance === "button" ? (
+                  <Button
                     label={action.label}
                     url={action.url}
-                    appearance="quiet"
-                    weight="medium"
-                  >
-                    <Icon name="ArrowRight" size="18" />
-                  </Link>
-                )
-              )}
-            </div>
-            <div class="grid-landing-feature__media">
-              <slot name={`feature-${index}`}>
-                {Demo ? (
-                  <Demo {...media.demoProps} />
-                ) : media?.video ? (
-                  <video
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    poster={media.image}
-                    aria-label={media.imageAlt ?? feature.headline}
-                  >
-                    <source
-                      src={media.video}
-                      type={media.videoType ?? "video/webm"}
-                    />
-                  </video>
+                    variant="cta"
+                    size="medium"
+                    icon="ArrowRight"
+                    iconPosition="end"
+                  />
                 ) : (
-                  media?.image && (
-                    <img
-                      src={media.image}
-                      alt={media.imageAlt ?? feature.headline}
-                      loading="lazy"
-                    />
+                  action && (
+                    <Link
+                      label={action.label}
+                      url={action.url}
+                      appearance="quiet"
+                      weight="medium"
+                    >
+                      <Icon name="ArrowRight" size="18" />
+                    </Link>
                   )
                 )}
-              </slot>
-            </div>
-          </section>
+              </div>
+              <div class="grid-landing-feature__media">
+                <slot name={`feature-${index}`}>
+                  {Demo ? (
+                    <Demo {...media.demoProps} />
+                  ) : media?.video ? (
+                    <video
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      poster={media.image}
+                      aria-label={media.imageAlt ?? feature.headline}
+                    >
+                      <source
+                        src={media.video}
+                        type={media.videoType ?? "video/webm"}
+                      />
+                    </video>
+                  ) : (
+                    media?.image && (
+                      <img
+                        src={media.image}
+                        alt={media.imageAlt ?? feature.headline}
+                        loading="lazy"
+                      />
+                    )
+                  )}
+                </slot>
+              </div>
+            </section>
+            {technicalGrid && (
+              <div class="technical-grid-spacer" aria-hidden="true" />
+            )}
+          </>
         );
       })
     }
@@ -208,11 +228,12 @@ const columns = content.cardCluster.columns ?? 3;
       aria-label={content.cardCluster.title}
       style={`--grid-landing-columns: ${columns}`}
     >
+      {technicalGrid && <TechnicalGridDecoration />}
       <SectionBlock
         title={content.cardCluster.title}
         description={content.cardCluster.description}
-        align="center"
-        maxWidth="3xl"
+        align={technicalGrid ? "left" : "center"}
+        maxWidth={technicalGrid ? "full" : "3xl"}
         spacing="compact"
         containerClass="grid-landing-uses__intro"
         descriptionClass="grid-landing-uses__description"
@@ -229,10 +250,12 @@ const columns = content.cardCluster.columns ?? 3;
         class="grid-landing-uses__cards card-cluster--feature"
       />
     </section>
+    {technicalGrid && <div class="technical-grid-spacer" aria-hidden="true" />}
     <slot name="before-faq" />
     {
       faqs.length > 0 && (
         <section class="grid-landing-faq" aria-labelledby={`${slug}-faq-title`}>
+          {technicalGrid && <TechnicalGridDecoration />}
           <TitleBlock
             variant="section"
             title={faqTitle}
@@ -253,10 +276,11 @@ const columns = content.cardCluster.columns ?? 3;
         </section>
       )
     }
-    <CTA variant="grid" primaryLabel="Talk to sales" insetActions />
+    <CTA variant="grid" primaryLabel="Contact sales" insetActions />
   </div>
   <div class="page-section grid-landing-platform-nav">
-    <ProductFeatureNav />
+    {technicalGrid && <TechnicalGridDecoration />}
+    <ProductFeatureNav lined={technicalGrid} />
   </div>
 </div>
 <style>
@@ -692,5 +716,152 @@ const columns = content.cardCluster.columns ?? 3;
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  .grid-landing-page--technical {
+    --platform-line: var(--bb-border-base);
+    --technical-inset: clamp(1.25rem, 3.5vw, 3rem);
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+  }
+
+  .grid-landing-page--technical::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image: var(--grid-landing-grain);
+    background-size: 180px 180px;
+    mix-blend-mode: multiply;
+    opacity: 0.03;
+    content: "";
+    pointer-events: none;
+  }
+
+  .grid-landing-page--technical
+    :is(
+      .grid-landing-hero,
+      .grid-landing-feature,
+      .grid-landing-uses,
+      .grid-landing-faq
+    ) {
+    position: relative;
+  }
+
+  .grid-landing-page--technical .grid-landing-hero__content {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(3.5rem, 7vw, 6rem) var(--technical-inset);
+  }
+
+  .grid-landing-page--technical .grid-landing-hero__content::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--platform-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--platform-line) 1px, transparent 1px);
+    background-size: 16px 16px;
+    mask-image: linear-gradient(to top, black, transparent 75%);
+    opacity: 0.45;
+    content: "";
+    pointer-events: none;
+  }
+
+  .grid-landing-page--technical .grid-landing-hero-media {
+    display: block;
+    padding: var(--technical-inset);
+    background: color-mix(in srgb, var(--bb-background-sand) 45%, transparent);
+  }
+
+  .grid-landing-page--technical .grid-landing-hero-media::before,
+  .grid-landing-page--technical .grid-landing-hero-media::after {
+    content: none;
+  }
+
+  .grid-landing-page--technical .grid-landing-hero-preview {
+    border: 0;
+    background: transparent;
+  }
+
+  .technical-grid-spacer {
+    position: relative;
+    height: clamp(2rem, 4vw, 3.5rem);
+    border-bottom: 1px solid var(--platform-line);
+  }
+
+  .technical-grid-spacer::before {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--platform-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--platform-line) 1px, transparent 1px);
+    background-size: 12px 12px;
+    mask-image: linear-gradient(
+      90deg,
+      black,
+      transparent 22%,
+      transparent 78%,
+      black
+    );
+    opacity: 0.45;
+    content: "";
+    pointer-events: none;
+  }
+
+  .grid-landing-page--technical .grid-landing-feature__media {
+    background: color-mix(in srgb, var(--bb-background-sand) 45%, transparent);
+  }
+
+  .grid-landing-page--technical .grid-landing-platform-nav {
+    position: relative;
+    width: 100%;
+    max-width: var(--site-container-max);
+    margin-inline: auto;
+    padding: 0;
+    border-inline: 1px solid var(--platform-line);
+    border-bottom: 1px solid var(--platform-line);
+  }
+
+  .grid-landing-page--technical :global(.grid-landing-uses__intro) {
+    padding: var(--technical-inset);
+    border-bottom: 1px solid var(--platform-line);
+    text-align: left;
+  }
+
+  .grid-landing-page--technical :global(.card-cluster__grid) {
+    gap: 0;
+    background: transparent;
+    border-top: 0;
+  }
+
+  .grid-landing-page--technical :global(.card-cluster__card) {
+    background: transparent;
+  }
+
+  .grid-landing-page--technical
+    :global(.card-cluster__card + .card-cluster__card) {
+    border-left: 1px solid var(--platform-line);
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .grid-landing-page--technical :global(.card-cluster__card:nth-child(odd)) {
+      border-left: 0;
+    }
+    .grid-landing-page--technical
+      :global(.card-cluster__card:nth-child(n + 3)) {
+      border-top: 1px solid var(--platform-line);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .grid-landing-page--technical .grid-landing-hero-media {
+      padding: 0.75rem;
+    }
+    .grid-landing-page--technical
+      :global(.card-cluster__card + .card-cluster__card) {
+      border-left: 0;
+      border-top: 1px solid var(--platform-line);
+    }
   }
 </style>

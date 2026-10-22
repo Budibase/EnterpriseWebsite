@@ -8,12 +8,12 @@ The template owns the split hero, olive background with staggered
 lime blocks, borderless customer logos, alternating feature rows, neutral
 use-case cards with 4:3 media, bordered FAQ, padded grid CTAs, and platform
 navigation. It uses the shared typography and cut-corner buttons. Page
-sections lead with Talk to sales, followed by Try Budibase.
+sections lead with Contact sales, followed by Try Budibase.
 Page titles/H1s use Geist at native width, retaining uppercase weight-700 heroes;
 H2–H6 headings, labels, buttons, body copy and navigation use Geist.
 Use alternate numbers (`ss09`) and tabular figures for numeric data.
 Shared primary actions use full Lime fills, sentence-case Geist labels and bold arrows.
-Hero Talk to sales actions use a square marker without an arrow. Other primary
+Hero Contact sales actions use a square marker without an arrow. Other primary
 hero and feature actions show plain arrows in the current trial;
 secondary actions use labels only. The closing demo CTA also uses a plain arrow. Secondary buttons use
 white fills and grey-800 outlines. Keep native font widths and the shared
@@ -42,11 +42,16 @@ For media-led product pages, `heroLayout="stacked"` centers the copy and
 actions above media flanked by empty bordered panels at desktop widths. The
 media occupies approximately 81.8% of the row, with 9.1% on each side; below 960px
 the panels disappear and media fills the row. Apps is the
-first adapter; Agents, Automations, Operations center, and Chat with agents
+first adapter; Agents, Activity, Automations, Operations center, and Chat with agents
 use the same variant. The split variant remains
 the default for existing feature pages.
 
 ## Page inputs
+
+Activity opts into `technicalGrid` to match the Platform overview's continuous
+rails, hero graph paper, grid spacers, shared intersection marks and edge rulers,
+and faint grain. Its demo fills the inset hero row on a neutral surround.
+The default template and its content contract stay the same for other pages.
 
 | Input             | Purpose                                                                                                                                                       |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |

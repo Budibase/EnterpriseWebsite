@@ -1,12 +1,20 @@
 ---
 import Layout from "../../layouts/MainLayout.astro";
 import CTA from "@components/CTA.astro";
-import HeroLarge from "@components/HeroLarge.astro";
-import MultiFeatureSection from "@components/MultiFeatureSection.astro";
+import Button from "@components/Button.astro";
+import TitleBlock from "@components/TitleBlock.astro";
 import CardCluster from "@components/cards/CardCluster.astro";
-import HomepageProducts from "../_components/landing-page/HomepageProducts.astro";
-import PlatformArchitectureDiagram from "./_components/PlatformArchitectureDiagram.astro";
-import PlatformUseCaseDiagram from "./_components/PlatformUseCaseDiagram.astro";
+import OnePlatformAgent from "@components/OnePlatformAgent.astro";
+import { homepageFeatureMedia } from "../../data/homepageFeatureMedia";
+import HomepageEquipmentInventoryDemo from "../_components/landing-page/HomepageEquipmentInventoryDemo.astro";
+import HomepageActionsDemo from "../_components/landing-page/HomepageActionsDemo.astro";
+import HomepagePermissionsDemo from "../_components/landing-page/HomepagePermissionsDemo.astro";
+import HumanApprovalsDemo from "@components/demos/HumanApprovalsDemo.astro";
+import APICapabilityVisual from "../product/_components/APICapabilityVisual.astro";
+import PlatformGridFrame from "./_components/PlatformGridFrame.astro";
+import surfaceGrain from "@assets/images/platform/surface-grain.png?url";
+import PlatformActivityDemo from "@components/demos/PlatformActivityDemo.astro";
+import PixelField from "@components/ui/PixelField.astro";
 
 const pageTitle = "Platform | Build and Run Enterprise Operations | Budibase";
 const pageDescription =
@@ -19,6 +27,7 @@ const products = [
     description:
       "Give people a secure interface to request, review, and complete operational work.",
     link: "/product/apps/",
+    mediaDemo: HomepageEquipmentInventoryDemo,
   },
   {
     number: "02",
@@ -26,6 +35,7 @@ const products = [
     description:
       "Route repeatable work, approvals, notifications, and system updates through visible workflows.",
     link: "/product/automations/",
+    ...homepageFeatureMedia.automations,
   },
   {
     number: "03",
@@ -33,86 +43,16 @@ const products = [
     description:
       "Handle context-dependent work with defined instructions, tools, and human oversight.",
     link: "/product/agents/",
+    mediaDemo: OnePlatformAgent,
+    mediaDemoProps: { embedded: true },
   },
   {
     number: "04",
-    title: "Functions",
+    title: "Requests & Approvals",
     description:
-      "Add reusable server-side logic for validation, transformation, and integrations.",
-    link: "/product/functions/",
-  },
-] as const;
-
-const operationalScenarios = [
-  {
-    id: "purchase-requests",
-    title: "Purchase requests",
-    description:
-      "Capture purchase needs through an app or chat, check supplier and budget data, route exceptions for approval, and create purchase orders in the system of record.",
-    action: {
-      label: "Explore purchase request flow",
-      href: "/process/purchase-order-request/",
-    },
-    media: {
-      demo: PlatformUseCaseDiagram,
-      demoProps: { scenario: "purchase-requests" },
-    },
-  },
-  {
-    id: "employee-onboarding",
-    title: "Employee onboarding",
-    description:
-      "Coordinate account setup, equipment, access, notifications, and hand-offs as one visible onboarding operation spanning HR, IT, workplace teams, and core systems.",
-    action: {
-      label: "Explore onboarding workflows",
-      href: "/process/new-starter-account-setup/",
-    },
-    media: {
-      demo: PlatformUseCaseDiagram,
-      demoProps: { scenario: "employee-onboarding" },
-    },
-  },
-  {
-    id: "it-service-requests",
-    title: "IT service requests",
-    description:
-      "Understand employee requests conversationally, gather the right context, complete permitted tasks, and involve IT when a decision or hands-on response is required.",
-    action: {
-      label: "Explore service requests",
-      href: "/process/password-reset-request/",
-    },
-    media: {
-      demo: PlatformUseCaseDiagram,
-      demoProps: { scenario: "it-service-requests" },
-    },
-  },
-  {
-    id: "asset-maintenance",
-    title: "Asset maintenance",
-    description:
-      "Capture frontline issues, schedule maintenance, route work orders, update asset records, and keep essential physical operations moving across teams and sites.",
-    action: {
-      label: "Explore operational apps",
-      href: "/product/apps/",
-    },
-    media: {
-      demo: PlatformUseCaseDiagram,
-      demoProps: { scenario: "asset-maintenance" },
-    },
-  },
-  {
-    id: "compliance-reviews",
-    title: "Compliance reviews",
-    description:
-      "Capture review evidence through an app or agent, check policies and connected data, route exceptions for approval, and record decisions in the system of record.",
-    action: {
-      label: "Explore activity and insights",
-      href: "/product/activity/",
-    },
-    media: {
-      demo: PlatformUseCaseDiagram,
-      demoProps: { scenario: "compliance-reviews" },
-    },
+      "Bring intake, accountable decisions, and human oversight into the workflow.",
+    link: "/product/requests/",
+    mediaDemo: HumanApprovalsDemo,
   },
 ] as const;
 
@@ -123,6 +63,7 @@ const platformFoundation = [
     description:
       "Keep structured operational data available to apps, automations, agents, and functions.",
     link: "/product/data/",
+    ...homepageFeatureMedia.data,
   },
   {
     number: "02",
@@ -130,6 +71,7 @@ const platformFoundation = [
     description:
       "Connect the databases, business systems, services, and models your organization already uses.",
     link: "/marketplace/connections/",
+    ...homepageFeatureMedia.apis,
   },
   {
     number: "03",
@@ -137,129 +79,338 @@ const platformFoundation = [
     description:
       "Configure and test the API actions that operational workflows can use.",
     link: "/product/apis/",
+    mediaDemo: APICapabilityVisual,
+    mediaDemoProps: { variant: "spec" },
   },
   {
     number: "04",
-    title: "Knowledge",
+    title: "Functions",
     description:
-      "Ground agents in the documents and operational context relevant to their work.",
-    link: "/product/knowledge/",
+      "Add reusable server-side logic for validation, transformation, and integrations.",
+    link: "/product/functions/",
+    ...homepageFeatureMedia.functions,
   },
   {
     number: "05",
-    title: "Requests & Approvals",
-    description:
-      "Bring intake, accountable decisions, and human oversight into the workflow.",
-    link: "/product/requests/",
-  },
-  {
-    number: "06",
     title: "Activity & Insights",
     description:
       "Review workflow activity, execution status, and the actions taken across operations.",
     link: "/product/activity/",
+    mediaDemo: HomepageActionsDemo,
   },
   {
-    number: "07",
+    number: "06",
     title: "Admin & Security",
     description:
       "Manage access, permissions, users, credentials, and platform administration.",
     link: "/product/admin-security/",
-  },
-  {
-    number: "08",
-    title: "Self-hosting",
-    description:
-      "Run Budibase in the environment that fits your architecture, policy, and data requirements.",
-    link: "/product/self-host/",
+    mediaDemo: HomepagePermissionsDemo,
   },
 ] as const;
 ---
 
 <Layout title={pageTitle} description={pageDescription} navTheme="surface">
-  <div class="platform-overview">
-    <HeroLarge
-      demo={PlatformArchitectureDiagram}
-      theme="surface"
-      title="Processes, securely modernised"
-      description="Run operations with solutions as dynamic and unique as your organization. Deploy fast and scale globally with a secure, governed, composable platform."
-      action={{ label: "Talk to sales", href: "/contact/" }}
-      secondaryAction={{
-        label: "Get started",
-        href: "https://account.budibase.app/register",
-        target: "_blank",
-        rel: "noopener noreferrer",
-      }}
-    />
+  <div
+    class="platform-surface"
+    style={`--platform-grain: url("${surfaceGrain}")`}
+  >
+    <div class="platform-overview">
+      <PlatformGridFrame class="platform-hero">
+        <PixelField />
+        <section class="platform-hero__copy" aria-labelledby="platform-title">
+          <TitleBlock
+            variant="hero"
+            title="Processes, securely modernised"
+            description="Run operations with solutions as dynamic and unique as your organization. Deploy fast and scale globally with a secure, governed, composable platform."
+            descriptionAlign="center"
+            titleId="platform-title"
+          />
+          <div class="platform-hero__actions">
+            <Button
+              label="Contact sales"
+              url="/contact/"
+              variant="olive"
+              size="large"
+            />
+            <Button
+              label="Get started"
+              url="https://account.budibase.app/register"
+              variant="secondary"
+              size="large"
+              target="_blank"
+              rel="noopener noreferrer"
+            />
+          </div>
+        </section>
+        <div class="platform-hero__diagram">
+          <PlatformActivityDemo />
+        </div>
+      </PlatformGridFrame>
 
-    <div class="page-section">
-      <HomepageProducts />
-    </div>
+      <div class="platform-grid-spacer" aria-hidden="true"></div>
 
-    <div class="page-section platform-overview__scenario-section">
-      <MultiFeatureSection
-        id="platform-operational-scenarios"
-        variant="light"
-        title="See how the platform works in practice"
-        description="Bring apps, agents, automations, approvals, data, and system actions together around the way each operation needs to run."
-        features={operationalScenarios}
-        initialFeatureId="purchase-requests"
-      />
-    </div>
+      {
+        [
+          {
+            id: "platform-products",
+            title: "One platform for every operation.",
+            description:
+              "Choose the right way to handle each part of an operation, then connect every part through shared data, actions, and controls.",
+            cards: products,
+          },
+          {
+            id: "platform-foundation",
+            title: "A shared foundation for every solution",
+            description:
+              "Bring the data, integrations, reusable logic, visibility, and access controls each operation needs into one platform.",
+            cards: platformFoundation,
+          },
+        ].map((group) => (
+          <>
+            <PlatformGridFrame>
+              <section aria-labelledby={group.id}>
+                <TitleBlock
+                  variant="section"
+                  title={group.title}
+                  description={group.description}
+                  titleId={group.id}
+                  containerClass="platform-section-heading"
+                />
+                <CardCluster
+                  columns={group.id === "platform-products" ? 2 : 3}
+                  Variant="white"
+                  CardBackgroundColor="olive"
+                  cards={group.cards}
+                  responsiveLayout="stack"
+                  imageAspectRatio="16/9"
+                  imagePresentation="solid"
+                  showArrowButton={true}
+                  class={`platform-feature-cards card-cluster--feature ${group.id === "platform-products" ? "platform-product-cards" : "platform-foundation-cards"}`}
+                />
+              </section>
+            </PlatformGridFrame>
+            <div class="platform-grid-spacer" aria-hidden="true" />
+          </>
+        ))
+      }
 
-    <div class="page-section page-section--no-top">
-      <CardCluster
-        class="card-cluster--feature"
-        columns={4}
-        Variant="white"
-        CardBackgroundColor="lime"
-        SectionTitle="One platform. More ways to deliver."
-        SectionDescription="Choose the right way to handle each part of an operation, then connect every part through shared data, actions, and controls."
-        cards={products}
-        responsiveLayout="stack"
-      />
-    </div>
-
-    <div class="page-section">
-      <CardCluster
-        class="card-cluster--feature"
-        columns={4}
-        Variant="white"
-        CardBackgroundColor="lime"
-        SectionTitle="A shared foundation for every solution"
-        SectionDescription="Bring the data, integrations, knowledge, oversight, visibility, and deployment controls each operation needs into one platform."
-        cards={platformFoundation}
-        responsiveLayout="stack"
-      />
-    </div>
-
-    <div class="page-section page-section--no-top">
-      <CTA />
+      <PlatformGridFrame class="platform-closing">
+        <CTA variant="grid" insetActions />
+      </PlatformGridFrame>
     </div>
   </div>
 </Layout>
 
 <style>
-  :global(.platform-overview),
-  :global(.platform-overview .hero-large--surface),
-  :global(.platform-overview__scenario-section),
-  :global(.platform-overview .multi-feature-section--light) {
+  .platform-surface {
+    --platform-line: var(--bb-border-base);
+    --platform-inset: clamp(1.25rem, 3.5vw, 3rem);
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
     background: var(--bb-background-base);
   }
 
-  :global(.platform-overview .hero-large .hero-large__media),
-  :global(.platform-overview .feature-section__image-panel--demo) {
-    border-radius: 0 !important;
+  .platform-surface::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image: var(--platform-grain);
+    background-size: 180px 180px;
+    mix-blend-mode: multiply;
+    opacity: 0.03;
+    content: "";
+    pointer-events: none;
   }
 
-  @media (min-width: 768px) and (max-width: 1023px) {
-    :global(.platform-overview .feature-section__container) {
-      grid-template-columns: minmax(0, 1fr);
+  .platform-overview {
+    width: min(100%, var(--site-container-max));
+    margin-inline: auto;
+    border-inline: 1px solid var(--platform-line);
+  }
+
+  .platform-grid-spacer {
+    height: clamp(2rem, 4vw, 3.5rem);
+    background-image:
+      linear-gradient(var(--platform-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--platform-line) 1px, transparent 1px);
+    background-size: 12px 12px;
+    mask-image: linear-gradient(
+      90deg,
+      black,
+      transparent 22%,
+      transparent 78%,
+      black
+    );
+    opacity: 0.45;
+  }
+
+  .platform-hero__copy {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(3.5rem, 7vw, 6rem) var(--platform-inset);
+    text-align: center;
+  }
+
+  .platform-hero__copy::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--platform-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--platform-line) 1px, transparent 1px);
+    background-size: 16px 16px;
+    mask-image: linear-gradient(to top, black, transparent 75%);
+    opacity: 0.45;
+    content: "";
+    pointer-events: none;
+  }
+
+  .platform-hero__copy :global(h1) {
+    max-width: 54rem;
+    margin-inline: auto;
+  }
+  .platform-hero__copy :global(.title-block__description) {
+    max-width: 46rem;
+  }
+
+  .platform-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+
+  .platform-hero__diagram {
+    padding: var(--platform-inset);
+    border-top: 1px solid var(--platform-line);
+    background: color-mix(in srgb, var(--bb-background-sand) 45%, transparent);
+  }
+
+  :global(.platform-overview .platform-section-heading) {
+    max-width: none;
+    margin: 0;
+    padding: var(--platform-inset);
+    border-bottom: 1px solid var(--platform-line);
+  }
+
+  :global(.platform-overview .platform-section-heading > *) {
+    max-width: 52rem;
+  }
+
+  :global(.platform-feature-cards.card-cluster) {
+    --card-cluster-automation-node-background: var(--bb-background-base);
+    --card-cluster-media-badge-background: var(--bb-background-base);
+  }
+
+  :global(.platform-feature-cards .card-cluster__container) {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  :global(.platform-feature-cards .card-cluster__grid) {
+    gap: 0;
+  }
+
+  :global(.platform-feature-cards .card-cluster__card) {
+    background: transparent;
+  }
+
+  :global(.platform-product-cards .card-cluster__card:nth-child(even)) {
+    border-left: 1px solid var(--platform-line);
+  }
+
+  :global(.platform-product-cards .card-cluster__card:nth-child(n + 3)) {
+    border-top: 1px solid var(--platform-line);
+  }
+
+  :global(
+    .platform-foundation-cards .card-cluster__card:not(:nth-child(3n + 1))
+  ) {
+    border-left: 1px solid var(--platform-line);
+  }
+
+  :global(.platform-foundation-cards .card-cluster__card:nth-child(n + 4)) {
+    border-top: 1px solid var(--platform-line);
+  }
+
+  :global(
+    .platform-overview
+      .platform-feature-cards.card-cluster
+      .card-cluster__image-wrap
+  ) {
+    min-height: 16rem;
+    aspect-ratio: 16 / 10;
+    margin: 1.5rem 1.5rem 0;
+    border-radius: 0;
+  }
+
+  :global(.platform-feature-cards .card-cluster__media-demo),
+  :global(.platform-feature-cards .card-cluster__media-scene) {
+    inset-block: clamp(1.25rem, 6cqi, 2.5rem);
+    inset-inline: clamp(1.25rem, 10cqi, 4rem);
+  }
+
+  :global(.platform-foundation-cards .card-cluster__media-badges) {
+    padding-block: clamp(1.25rem, 6cqi, 2.5rem);
+    padding-inline: clamp(1.25rem, 10cqi, 4rem);
+  }
+
+  :global(
+    .platform-overview
+      .platform-foundation-cards.card-cluster
+      .card-cluster__image-wrap
+  ) {
+    min-height: 20rem;
+  }
+
+  :global(.platform-feature-cards .card-cluster__content) {
+    min-height: 10rem;
+    padding: 1.5rem;
+    background: transparent;
+  }
+
+  :global(.platform-overview .cta-section--grid) {
+    border-bottom: 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    :global(
+      .platform-overview
+        .platform-product-cards.card-cluster
+        .card-cluster__image-wrap
+    ) {
+      /* Match the embedded chat's minimum height across each card row. */
+      min-height: 420px !important;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    :global(
+      .platform-foundation-cards .card-cluster__card:not(:nth-child(3n + 1))
+    ) {
+      border-left: 0;
+    }
+    :global(.platform-foundation-cards .card-cluster__card:nth-child(even)) {
+      border-left: 1px solid var(--platform-line);
+    }
+    :global(.platform-foundation-cards .card-cluster__card:nth-child(n + 3)) {
+      border-top: 1px solid var(--platform-line);
+    }
+  }
+
+  @media (max-width: 767px) {
+    :global(.platform-feature-cards .card-cluster__card:nth-child(even)) {
+      border-left: 0;
     }
 
-    :global(.platform-overview .feature-section__image-panel),
-    :global(.platform-overview .feature-section__content) {
-      order: initial;
+    :global(.platform-feature-cards .card-cluster__card + .card-cluster__card) {
+      border-top: 1px solid var(--platform-line);
+    }
+
+    .platform-hero__diagram {
+      padding: 0.75rem;
     }
   }
 </style>

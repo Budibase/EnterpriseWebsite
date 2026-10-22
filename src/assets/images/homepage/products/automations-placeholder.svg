@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#C8AFF0"/>
+  <g fill="none" stroke="#1E1919" stroke-opacity=".25" stroke-width="2">
+    <rect x="96" y="96" width="1008" height="708"/>
+    <path d="M96 96L1104 804M1104 96L96 804"/>
+  </g>
+  <rect x="285" y="368" width="630" height="164" fill="#C8AFF0"/>
+  <g fill="#1E1919" text-anchor="middle" font-family="Arial, sans-serif">
+    <text x="600" y="437" font-size="40">Automations</text>
+    <text x="600" y="483" font-size="22" opacity=".8">Product image placeholder</text>
+  </g>
+  <text x="96" y="66" fill="#1E1919" font-family="Arial, sans-serif" font-size="22">03</text>
+</svg>

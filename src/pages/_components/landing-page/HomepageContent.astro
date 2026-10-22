@@ -2,7 +2,7 @@
 import Hero from "./HomepageHero.astro";
 import HomepageCustomerLogoRow from "./HomepageCustomerLogoRow.astro";
 import HomepageCustomerProof from "./HomepageCustomerProof.astro";
-import HomepageProducts from "./HomepageProducts.astro";
+import HomepageProductOverview from "./HomepageProductOverview.astro";
 import HomepageSecuritySection from "./HomepageSecuritySection.astro";
 import HomepageUseCases from "./HomepageUseCases.astro";
 import CustomerStoriesFeature from "./CustomerStoriesFeature.astro";
@@ -20,12 +20,11 @@ import Divider from "@components/ui/Divider.astro";
     <HomepageCustomerLogoRow variant="cards" />
     <HomepageCustomerProof />
   </div>
+  <div class="page-section homepage-product-overview-section">
+    <HomepageProductOverview />
+  </div>
   <div class="page-section homepage-use-cases-section">
     <HomepageUseCases />
-  </div>
-  <Divider />
-  <div class="page-section homepage-products-section">
-    <HomepageProducts />
   </div>
   <HomepageSecuritySection />
   <div class="page-section">
@@ -63,7 +62,6 @@ import Divider from "@components/ui/Divider.astro";
     padding-top: clamp(0.5rem, 1.25vw, 1rem);
   }
 
-  .homepage-products-section,
   .homepage-use-cases-section {
     background: var(--bb-background-base);
   }

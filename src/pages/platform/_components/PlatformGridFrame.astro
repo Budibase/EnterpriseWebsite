@@ -1,0 +1,22 @@
+---
+import TechnicalGridDecoration from "@components/ui/TechnicalGridDecoration.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["platform-grid-frame", className]}>
+  <TechnicalGridDecoration />
+  <slot />
+</div>
+
+<style>
+  .platform-grid-frame {
+    position: relative;
+    min-width: 0;
+    border-block: 1px solid var(--platform-line);
+  }
+</style>

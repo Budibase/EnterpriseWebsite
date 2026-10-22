@@ -32,7 +32,7 @@ if (accept.includes("text/markdown")) {
     ]),
     "## Security details",
     ...securityFaqs.flatMap((faq) => [`### ${faq.question}`, faq.answer]),
-    "[Talk to sales](https://budibase.com/contact/)",
+    "[Contact sales](https://budibase.com/contact/)",
     "[Try Budibase](https://account.budibase.app/register)",
   ].join("\n\n");
   return new Response(markdown, {

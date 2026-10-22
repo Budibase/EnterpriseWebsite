@@ -6,6 +6,11 @@ import TitleBlock from "@components/TitleBlock.astro";
 import FeatureBadge from "@components/FeatureBadge.astro";
 import { platformDropdownMenu } from "@components/navDropdownData";
 
+interface Props {
+  lined?: boolean;
+}
+const { lined = false } = Astro.props;
+
 const normalizePath = (path: string) =>
   path.length > 1 ? path.replace(/\/+$/, "") : path;
 const currentPath = normalizePath(Astro.url.pathname);
@@ -16,7 +21,7 @@ const currentItem = items.find(
 ---
 
 <section
-  class="product-feature-nav"
+  class:list={["product-feature-nav", lined && "product-feature-nav--lined"]}
   aria-labelledby="product-feature-nav-title"
 >
   <div class="product-feature-nav__container">
@@ -200,6 +205,60 @@ const currentItem = items.find(
     .product-feature-nav__columns {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       column-gap: 1rem;
+    }
+  }
+  .product-feature-nav--lined {
+    --feature-nav-inset: var(--technical-inset, clamp(1.25rem, 3.5vw, 3rem));
+    background: transparent;
+  }
+
+  .product-feature-nav--lined .product-feature-nav__container {
+    padding-inline: 0;
+  }
+
+  .product-feature-nav--lined :global(.product-feature-nav__header) {
+    margin: 0;
+    padding: var(--feature-nav-inset);
+    border-bottom: 1px solid var(--bb-border-base);
+    text-align: left;
+  }
+
+  .product-feature-nav--lined :global(.product-feature-nav__title) {
+    text-align: left;
+  }
+
+  .product-feature-nav--lined .product-feature-nav__columns {
+    max-width: none;
+    gap: 0;
+  }
+
+  .product-feature-nav--lined .product-feature-nav__group {
+    padding: var(--feature-nav-inset);
+  }
+
+  .product-feature-nav--lined
+    .product-feature-nav__group
+    + .product-feature-nav__group {
+    border-top: 1px solid var(--bb-border-base);
+  }
+
+  .product-feature-nav--lined .product-feature-nav__footer-links {
+    max-width: none;
+    margin: 0;
+    padding: 1rem var(--feature-nav-inset);
+    border-top-color: var(--bb-border-base);
+  }
+
+  @media (min-width: 768px) {
+    .product-feature-nav--lined .product-feature-nav__columns {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .product-feature-nav--lined
+      .product-feature-nav__group
+      + .product-feature-nav__group {
+      border-top: 0;
+      border-left: 1px solid var(--bb-border-base);
     }
   }
 </style>

@@ -46,7 +46,7 @@ const solutions: readonly Solution[] = [
   {
     id: "purchase-approvals",
     label: "Purchase approvals",
-    color: "var(--bb-olive-800)",
+    color: "var(--bb-olive)",
     overview:
       "Employees submit purchase requests with the items, supplier and cost. Requests are automatically routed to the right approvers based on your approval rules, with employees notified when more information is needed or a decision is made. Approved requests can then be passed to your purchasing system to create the PO.",
     assets: [
@@ -87,7 +87,7 @@ const solutions: readonly Solution[] = [
   {
     id: "factory-inspections",
     label: "Factory inspections",
-    color: "var(--bb-orange-strong)",
+    color: "var(--bb-orange)",
     overview:
       "Operators complete scheduled inspections with readings, photos and notes at the point of work. Failed checks create follow-up actions automatically, notify the right owner and remain visible until corrective work is complete.",
     assets: [
@@ -147,7 +147,7 @@ const solutions: readonly Solution[] = [
   {
     id: "asset-tracking",
     label: "Asset tracking",
-    color: "var(--bb-teal)",
+    color: "var(--bb-cloud)",
     overview:
       "Give teams an asset register connected to your existing PostgreSQL database. Updates to equipment, ownership and location stay in the source data, with IT controlling access and automated reminders helping keep records accurate.",
     assets: [
@@ -172,7 +172,7 @@ const solutions: readonly Solution[] = [
   {
     id: "knowledge-assistant",
     label: "Knowledge assistant",
-    color: "var(--bb-orange-strong)",
+    color: "var(--bb-orchid)",
     overview:
       "Employees ask operational questions in plain language. The assistant searches approved company sources, returns grounded answers and routes uncertain or sensitive requests to a person for review.",
     assets: [
@@ -407,21 +407,21 @@ const sectionId = "homepage-operations-solutions";
   }
   .operations-solutions-split__tab {
     display: inline-flex;
-    min-height: 2.3125rem;
+    min-height: 3.5rem;
     flex: 0 0 auto;
     align-items: center;
     justify-content: center;
-    gap: 0.375rem;
+    gap: 0.625rem;
     border: 1px solid var(--bb-border-base);
     border-bottom: 0;
-    border-radius: 0.25rem 0.25rem 0 0;
+    border-radius: 0;
     background: var(--bb-background-surface-base);
-    padding: 0.625rem 0.75rem;
+    padding: 0.875rem 1rem;
     color: var(--bb-text-subtle);
     font: inherit;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.0625;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.25;
     white-space: nowrap;
     cursor: pointer;
   }
@@ -432,14 +432,13 @@ const sectionId = "homepage-operations-solutions";
     position: relative;
     z-index: 3;
     outline: 2px solid var(--bb-olive);
-    outline-offset: 2px;
+    outline-offset: -6px;
   }
   .operations-solutions-split__tab.is-active {
     z-index: 2;
     border-color: var(--bb-border-base);
     background: var(--bb-background-sand);
     color: var(--bb-text-base);
-    font-weight: 400;
   }
   .operations-solutions-split__tab-dot {
     width: 0.625rem;
@@ -618,7 +617,8 @@ const sectionId = "homepage-operations-solutions";
       scroll-padding-inline: var(--site-content-inset);
     }
     .operations-solutions-split__tab {
-      padding-inline: 0.625rem;
+      padding-inline: 0.875rem;
+      font-size: 1.125rem;
     }
     .operations-solutions-split__overview {
       font-size: 0.9375rem;

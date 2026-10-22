@@ -1,0 +1,72 @@
+<span class="technical-grid-decoration" aria-hidden="true">
+  <span class="technical-grid-decoration__corners">
+    <i></i><i></i><i></i><i></i>
+  </span>
+  <span class="technical-grid-decoration__ruler"></span>
+</span>
+
+<style>
+  .technical-grid-decoration,
+  .technical-grid-decoration__corners {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .technical-grid-decoration__corners i {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--bb-coconut);
+    transform: translate(-50%, -50%);
+  }
+  .technical-grid-decoration__corners i:nth-child(1) {
+    background: var(--technical-grid-corner-1, var(--bb-coconut));
+    top: 0;
+    left: 0;
+  }
+  .technical-grid-decoration__corners i:nth-child(2) {
+    background: var(--technical-grid-corner-2, var(--bb-coconut));
+    top: 0;
+    left: 100%;
+  }
+  .technical-grid-decoration__corners i:nth-child(3) {
+    background: var(--technical-grid-corner-3, var(--bb-coconut));
+    top: 100%;
+    left: 0;
+  }
+  .technical-grid-decoration__corners i:nth-child(4) {
+    background: var(--technical-grid-corner-4, var(--bb-coconut));
+    top: 100%;
+    left: 100%;
+  }
+  .technical-grid-decoration__ruler {
+    position: absolute;
+    inset-block: 0;
+    left: -17px;
+    width: 12px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--platform-line, var(--bb-border-base)) 0 1px,
+      transparent 1px 8px
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+  }
+  @media (max-width: 88rem) {
+    .technical-grid-decoration__corners {
+      inset-inline: 2px;
+    }
+  }
+  @media (max-width: 767px) {
+    .technical-grid-decoration__ruler {
+      display: none;
+    }
+  }
+</style>

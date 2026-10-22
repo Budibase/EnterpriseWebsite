@@ -32,7 +32,7 @@ export async function productLandingMarkdown(
     "[Explore the marketplace](/marketplace/)",
     "## Frequently asked questions",
     ...faqs.flatMap((faq) => [`### ${faq.question}`, faq.answer]),
-    "[Talk to sales](https://budibase.com/contact/)",
+    "[Contact sales](https://budibase.com/contact/)",
     "[Try Budibase](https://account.budibase.app/register)",
   ].join("\n\n");
 }

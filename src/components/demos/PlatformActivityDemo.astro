@@ -1,0 +1,660 @@
+---
+import appIcon from "@assets/images/platform/activity-demo/app.svg?url";
+import agentIcon from "@assets/images/platform/activity-demo/agent.svg?url";
+import automationIcon from "@assets/images/platform/activity-demo/automation.svg?url";
+
+// Illustrative records transcribed from Figma node 4369:4887, not customer data.
+const records = [
+  [
+    "automation",
+    "Ticket triage",
+    "User",
+    "Joe Johnston",
+    "Failed",
+    4,
+    "Days ago",
+  ],
+  [
+    "automation",
+    "Time off request",
+    "App",
+    "Holiday booking form",
+    "Waiting",
+    4,
+    "Hours ago",
+  ],
+  [
+    "agent",
+    "IT assistant",
+    "User",
+    "Joe Johnston",
+    "Waiting",
+    4,
+    "Seconds ago",
+  ],
+  [
+    "agent",
+    "HR assistant",
+    "User",
+    "Mike Shanks",
+    "Waiting",
+    12,
+    "Seconds ago",
+  ],
+  [
+    "automation",
+    "Time off request",
+    "Agent",
+    "HR assistant",
+    "In progress",
+    23,
+    "Seconds ago",
+  ],
+  [
+    "agent",
+    "IT assistant",
+    "Automation",
+    "Ticket triage",
+    "In progress",
+    2,
+    "Seconds ago",
+  ],
+  [
+    "automation",
+    "Time off request",
+    "Agent",
+    "HR assistant",
+    "In progress",
+    3,
+    "Minutes ago",
+  ],
+  [
+    "automation",
+    "Ticket triage",
+    "User",
+    "Mike Shanks",
+    "In progress",
+    5,
+    "Minutes ago",
+  ],
+  [
+    "app",
+    "Device request form",
+    "User",
+    "Mike Shanks",
+    "Completed",
+    6,
+    "Seconds ago",
+  ],
+  [
+    "agent",
+    "HR assistant",
+    "User",
+    "Mike Shanks",
+    "Completed",
+    14,
+    "Minutes ago",
+  ],
+  [
+    "automation",
+    "Ticket triage",
+    "User",
+    "Joe Johnston",
+    "Completed",
+    6,
+    "Minutes ago",
+  ],
+  [
+    "app",
+    "Device request form",
+    "User",
+    "Mike Shanks",
+    "Completed",
+    5,
+    "Minutes ago",
+  ],
+  [
+    "app",
+    "Device request form",
+    "User",
+    "Joe Johnston",
+    "Completed",
+    4,
+    "Minutes ago",
+  ],
+  [
+    "agent",
+    "IT assistant",
+    "Automation",
+    "Ticket triage",
+    "Completed",
+    5,
+    "Hours ago",
+  ],
+  [
+    "app",
+    "Device request form",
+    "User",
+    "Mike Shanks",
+    "Completed",
+    5,
+    "Weeks ago",
+  ],
+] as const;
+const types = {
+  automation: { label: "Automation run", icon: automationIcon, size: 14 },
+  agent: { label: "Agent session", icon: agentIcon, size: 14 },
+  app: { label: "App session", icon: appIcon, size: 18 },
+};
+const totals = [
+  ["All actions", "2,208"],
+  ["Completed", "2,184"],
+  ["In progress", "4"],
+  ["Waiting", "3"],
+  ["Failed", "1"],
+] as const;
+---
+
+<platform-activity-demo
+  class="activity-demo"
+  aria-label="Interactive activity demo with sample data"
+>
+  <nav class="activity-demo__tabs" aria-label="Activity navigation">
+    <a href="/product/activity/">Overview</a>
+    <span aria-current="page">Actions</span>
+    <a href="/product/requests/">Requests</a>
+  </nav>
+
+  <div class="activity-demo__stats" aria-label="Illustrative action totals">
+    {
+      totals.map(([label, value]) => (
+        <button
+          type="button"
+          data-status-filter={label === "All actions" ? "" : label}
+          aria-pressed={label === "All actions"}
+        >
+          <span>{label}</span>
+          <strong>{value}</strong>
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="activity-demo__log" role="region" aria-label="Sample action log">
+    <table>
+      <caption class="sr-only"
+        >Sample activity across automations, agents, and apps. Figures are
+        illustrative.</caption
+      >
+      <colgroup
+        ><col class="col-type" /><col class="col-asset" /><col
+          class="col-trigger"
+        /><col class="col-status" /><col class="col-count" /><col
+          class="col-updated"
+        /></colgroup
+      >
+      <thead
+        ><tr
+          >{
+            [
+              "Type",
+              "Asset",
+              "Triggered by",
+              "Status",
+              "Actions",
+              "Updated",
+            ].map((heading) => <th scope="col">{heading}</th>)
+          }</tr
+        ></thead
+      >
+      <tbody>
+        {
+          records.map(
+            ([type, asset, triggerType, trigger, status, count, updated]) => (
+              <tr
+                data-record
+                data-type={type}
+                data-asset={asset}
+                data-status={status}
+              >
+                <td>
+                  <span class="activity-demo__type">
+                    <span class="activity-demo__type-icon">
+                      <img
+                        src={types[type].icon}
+                        width={types[type].size}
+                        height={types[type].size}
+                        alt=""
+                      />
+                    </span>
+                    {types[type].label}
+                  </span>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="activity-demo__asset"
+                    data-details
+                    aria-label={`View ${asset} ${types[type].label.toLowerCase()} details`}
+                    title={asset}
+                  >
+                    {asset}
+                  </button>
+                </td>
+                <td>
+                  <span class="activity-demo__muted">{triggerType}: </span>
+                  {trigger}
+                </td>
+                <td>
+                  <span
+                    class:list={[
+                      "activity-demo__status",
+                      `activity-demo__status--${status.toLowerCase().replace(/\s+/g, "-")}`,
+                    ]}
+                  >
+                    <span
+                      class="activity-demo__status-symbol"
+                      aria-hidden="true"
+                    />
+                    {status}
+                  </span>
+                </td>
+                <td>{count}</td>
+                <td>{updated}</td>
+              </tr>
+            ),
+          )
+        }
+      </tbody>
+    </table>
+    <p class="activity-demo__empty" data-empty hidden>
+      No sample actions have this status.
+    </p>
+  </div>
+
+  <dialog class="activity-demo__dialog" aria-label="Sample action details">
+    <form method="dialog">
+      <button type="submit" aria-label="Close action details">Close</button>
+    </form>
+    <h2>Action details</h2>
+    <dl data-detail-content></dl>
+    <p>Sample data for this interactive demo.</p>
+  </dialog>
+</platform-activity-demo>
+
+<script>
+  class PlatformActivityDemo extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.initialized) return;
+      this.dataset.initialized = "true";
+      const rows = Array.from(
+        this.querySelectorAll<HTMLTableRowElement>("[data-record]"),
+      );
+      const empty = this.querySelector<HTMLElement>("[data-empty]")!;
+      const stats = Array.from(
+        this.querySelectorAll<HTMLButtonElement>("[data-status-filter]"),
+      );
+      const dialog = this.querySelector<HTMLDialogElement>("dialog")!;
+      let status = "";
+      const render = () => {
+        rows.forEach((row) => {
+          row.hidden = Boolean(status && row.dataset.status !== status);
+        });
+        empty.hidden = rows.some((row) => !row.hidden);
+        stats.forEach((button) =>
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.statusFilter === status),
+          ),
+        );
+      };
+      stats.forEach((button) =>
+        button.addEventListener("click", () => {
+          status = button.dataset.statusFilter || "";
+          render();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>("[data-details]").forEach(
+        (button) =>
+          button.addEventListener("click", () => {
+            const cells = Array.from(button.closest("tr")!.cells).slice(0, 6);
+            const content = this.querySelector("[data-detail-content]")!;
+            content.replaceChildren();
+            [
+              "Type",
+              "Asset",
+              "Triggered by",
+              "Status",
+              "Actions",
+              "Updated",
+            ].forEach((label, index) => {
+              const term = document.createElement("dt");
+              const detail = document.createElement("dd");
+              term.textContent = label;
+              detail.textContent = cells[index].textContent?.trim() || "";
+              content.append(term, detail);
+            });
+            dialog.showModal();
+          }),
+      );
+      render();
+    }
+  }
+  if (!customElements.get("platform-activity-demo"))
+    customElements.define("platform-activity-demo", PlatformActivityDemo);
+</script>
+
+<style>
+  /* Product colors match the supplied dark Figma screen in either site theme. */
+  .activity-demo {
+    --activity-bg: #1a1a1a;
+    --activity-raised: #1d1d1d;
+    --activity-line: #2c2c2c;
+    --activity-control-line: #4d4d4d;
+    --activity-text: #efefef;
+    --activity-secondary: #c8c8c8;
+    --activity-muted: #a2a2a2;
+    --bb-text-body: var(--activity-muted);
+    --text-primary: var(--activity-text);
+    display: block;
+    container-type: inline-size;
+    min-width: 0;
+    border: 1px solid var(--activity-line);
+    padding: 20px clamp(16px, 2.8vw, 40px) 16px;
+    background: var(--activity-bg);
+    color: var(--activity-text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 17px;
+    font-variant-numeric: tabular-nums;
+    color-scheme: dark;
+  }
+  .activity-demo [hidden] {
+    display: none !important;
+  }
+  .activity-demo img {
+    max-width: none;
+  }
+  .activity-demo button {
+    font: inherit;
+    color: inherit;
+  }
+  .activity-demo button {
+    cursor: pointer;
+  }
+  .activity-demo :is(button, a, [tabindex]):focus-visible {
+    outline: 2px solid var(--bb-lime);
+    outline-offset: 3px;
+  }
+  .activity-demo__tabs {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .activity-demo__tabs a {
+    display: flex;
+    align-items: center;
+    min-height: 28px;
+    color: var(--activity-muted);
+  }
+  .activity-demo__tabs a:hover {
+    color: var(--activity-text);
+    text-decoration: underline;
+  }
+  .activity-demo__stats {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .activity-demo__stats button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    min-width: 0;
+    padding: 12px 16px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: var(--activity-raised);
+    text-align: left;
+  }
+  .activity-demo__stats button:hover {
+    border-color: var(--activity-control-line);
+  }
+  .activity-demo__stats button[aria-pressed="true"]:not(:first-child) {
+    border-color: var(--activity-muted);
+  }
+  .activity-demo__stats span {
+    color: var(--activity-secondary);
+  }
+  .activity-demo__stats strong {
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 32px;
+  }
+  .activity-demo table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  .col-type {
+    width: 17%;
+  }
+  .col-asset {
+    width: 22%;
+  }
+  .col-trigger {
+    width: 23%;
+  }
+  .col-status {
+    width: 15%;
+  }
+  .col-count {
+    width: 8%;
+  }
+  .col-updated {
+    width: 15%;
+  }
+  .activity-demo :is(th, td) {
+    height: 37px;
+    overflow: hidden;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--activity-line);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .activity-demo th {
+    height: 33px;
+    color: var(--activity-muted);
+    font-weight: 400;
+  }
+  .activity-demo td {
+    color: var(--activity-secondary);
+  }
+  .activity-demo :is(th, td):nth-child(6) {
+    text-align: right;
+  }
+  .activity-demo tbody tr:hover {
+    background: var(--activity-raised);
+  }
+  .activity-demo__type {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--activity-text);
+    font-weight: 500;
+  }
+  .activity-demo__type-icon {
+    display: flex;
+    width: 16px;
+    flex: 0 0 16px;
+    align-items: center;
+    justify-content: center;
+  }
+  .activity-demo__type-icon img {
+    flex-shrink: 0;
+  }
+  .activity-demo__muted {
+    color: var(--activity-muted);
+  }
+  .activity-demo__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--activity-secondary);
+  }
+  .activity-demo__status-symbol {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    background: var(--status-color);
+  }
+  .activity-demo__status--failed {
+    --status-color: var(--bb-danger);
+  }
+  .activity-demo__status--waiting {
+    --status-color: var(--bb-orange);
+  }
+  .activity-demo__status--in-progress {
+    --status-color: var(--bb-teal);
+  }
+  .activity-demo__status--completed {
+    --status-color: var(--bb-lime);
+  }
+  .activity-demo__asset {
+    display: block;
+    width: 100%;
+    min-height: 36px;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .activity-demo__asset:hover {
+    color: var(--activity-text);
+    text-decoration: underline;
+  }
+  .activity-demo__asset:focus-visible {
+    outline-offset: -2px;
+  }
+  .activity-demo__dialog button {
+    min-height: 28px;
+    padding: 3px 6px;
+    border: 1px solid var(--activity-control-line);
+    border-radius: 4px;
+    background: var(--activity-raised);
+  }
+  .activity-demo__empty {
+    padding: 24px 12px;
+    color: var(--activity-secondary);
+  }
+  .activity-demo__dialog {
+    width: min(480px, calc(100vw - 32px));
+    margin: auto;
+    padding: 24px;
+    border: 1px solid var(--activity-control-line);
+    background: var(--activity-bg);
+    color: var(--activity-text);
+  }
+  .activity-demo__dialog::backdrop {
+    background: var(--bb-transparent-black-600);
+  }
+  .activity-demo__dialog form {
+    text-align: right;
+  }
+  .activity-demo__dialog h2 {
+    margin: 16px 0;
+    font-size: 20px;
+  }
+  .activity-demo__dialog dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px 24px;
+  }
+  .activity-demo__dialog :global(dt) {
+    color: var(--activity-muted);
+  }
+  .activity-demo__dialog :global(dd) {
+    margin: 0;
+  }
+  .activity-demo__dialog p {
+    margin: 24px 0 0;
+    color: var(--activity-muted);
+  }
+  @container (max-width: 760px) {
+    .activity-demo :is(col, th, td):is(:nth-child(1), :nth-child(3)) {
+      display: none;
+    }
+    .col-asset {
+      width: 38%;
+    }
+    .col-status {
+      width: 26%;
+    }
+    .col-count {
+      width: 14%;
+    }
+    .col-updated {
+      width: 22%;
+    }
+    .activity-demo :is(th, td) {
+      padding-inline: 8px;
+    }
+  }
+  @container (max-width: 480px) {
+    .activity-demo :is(col, th, td):nth-child(6) {
+      display: none;
+    }
+    .col-asset {
+      width: 48%;
+    }
+    .col-status {
+      width: 34%;
+    }
+    .col-count {
+      width: 18%;
+    }
+    .activity-demo__asset {
+      min-height: 44px;
+    }
+  }
+  @media (max-width: 767px) {
+    .activity-demo {
+      padding: 16px 12px 12px;
+    }
+    .activity-demo__stats {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .activity-demo__stats button {
+      grid-column: span 2;
+      padding: 10px;
+    }
+    .activity-demo__stats button:nth-child(-n + 2) {
+      grid-column: span 3;
+    }
+    .activity-demo__stats span {
+      font-size: 12px;
+    }
+    .activity-demo__tabs a,
+    .activity-demo__dialog button {
+      min-height: 44px;
+    }
+    .activity-demo__dialog dl {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .activity-demo__dialog :global(dd) {
+      margin-bottom: 10px;
+    }
+  }
+</style>

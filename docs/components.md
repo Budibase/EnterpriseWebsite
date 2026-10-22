@@ -124,9 +124,9 @@ sentence-case labels and compact product-interface sizing. Do not import
 
 - The Lime color family lives in `global.css` as `--bb-lime-100` through
   `--bb-lime-1600`. `--bb-lime` aliases lime 300 (`#A5FF00`).
-- When paired with another action, place **Talk to sales** first in markup and
+- When paired with another action, place **Contact sales** first in markup and
   visual order in page sections. The main navigation is the exception:
-  **Try Budibase** comes before **Talk to sales**.
+  **Try Budibase** comes before **Contact sales**.
 - Use `src/components/Button.astro` for styled actions. It can render either an
   anchor or a button and supports the production variants and sizes.
   All variants include a 10px top-right corner cut; outlined variants trace
@@ -138,7 +138,7 @@ sentence-case labels and compact product-interface sizing. Do not import
   `cta-on-base`, and `bright-on-dark` variants also use Lime defaults and the
   shared olive-mixed interaction states. Primary labels use Olive. The homepage navigation, hero, and
   solutions select the explicit variant.
-- Use `variant="olive"` for the Cloud pricing trial button and Talk to sales
+- Use `variant="olive"` for the Cloud pricing trial button and Contact sales
   in light-page navigation and primary actions in light landing-page heroes. It uses Olive, Coconut text, and Olive 1400/1500
   interaction states. The dark homepage navigation keeps its Lime demo button.
 - The `cta` and legacy `large` variants retain their APIs and now use the same
@@ -148,14 +148,14 @@ sentence-case labels and compact product-interface sizing. Do not import
   bold Phosphor variants; other icon choices retain their existing behavior.
   Desktop nav buttons are 32px tall; mobile menu targets remain at least 44px.
   In the current arrow trial, primary page actions show a plain right/up-right
-  arrow in the label color, except hero “Talk to sales” buttons, which keep
+  arrow in the label color, except hero “Contact sales” buttons, which keep
   their square marker without an arrow. Navigation and secondary/outlined actions omit
   directional arrows. Functional icons such as download or dropdown indicators
   retain their behavior. Both large closing CTA actions use plain arrows
   in the label color. The large closing CTA cards use a 24px top-right cut corner.
-- Shared buttons labeled “Try Budibase” or “Talk to sales” show a static 7px
+- Shared buttons labeled “Try Budibase” or “Contact sales” show a static 7px
   decorative square before the label, with a 7px gap. Try Budibase uses
-  Orange; Talk to sales matches the label (Graphite on Lime, Olive on white)
+  Orange; Contact sales matches the label (Graphite on Lime, Olive on white)
   and uses Lime on Olive fills.
   These markers are hidden from assistive technology and do not represent live status.
   Every button with a marker adds 2px to its size's normal right padding;
@@ -324,7 +324,7 @@ Olive/Lime pair. Decorative mosaics use the named supporting accents.
 ### Heroes
 
 Platform/product landing-page hero and feature buttons use trailing bold arrow
-tiles through `Button`, including both Talk to sales and Try Budibase. The large
+tiles through `Button`, including both Contact sales and Try Budibase. The large
 closing demo action uses a plain arrow; secondary actions use labels only.
 
 - The homepage hero keeps “Make critical work” above “move faster.” The latter
@@ -338,12 +338,47 @@ closing demo action uses a plain arrow; secondary actions use labels only.
   single-column mobile layout. Keep projected savings and first-draft delivery
   qualifiers alongside their statistics.
 
+- `HomepageProductOverview.astro` places a scroll-driven product overview after
+  customer proof and before use cases, numbered Apps, Agents, Automations,
+  and Requests & approvals. On desktop, sticky product navigation and the
+  active headline and product link occupy roughly 22% of the grid; large 4:3 graphics scroll
+  in the remaining space. Scrolling updates the active product, and clicking
+  a product jumps to its graphic. Below 960px, a sticky horizontal navigation
+  follows vertically stacked headlines, product links, and graphics. Omit the
+  per-product description paragraphs in both layouts. Scroll updates are
+  animation-frame throttled, and anchor navigation respects reduced motion.
+  Local SVG images in `src/assets/images/homepage/products/` are temporary
+  placeholders. Requests & approvals leads with the job; its product page can
+  introduce the Operations center workspace. The default feature-switcher
+  presentation is unchanged.
+
 - Use `src/components/BlockMosaic.astro` for static, decorative solid-color
   mosaics. The `marketplace` preset retains the varied rectangular composition
   with Teal and Orange, selective Pink, Orchid, and Cloud fills, Oat, and
   restrained Lime and Olive;
   the `hero` preset uses three columns of two blocks with varied heights. Parent
   wrappers control sizing and placement; the component owns the shared palette.
+
+- Use `src/components/ui/PixelField.astro` for the animated square field above
+  the Platform hero title. It recreates the canvas field at
+  [Craft, engineered](https://craft.wild.as/): 8px solid squares on a 9px grid,
+  layered sine waves, per-cell variation, a 1.6-second entrance, and a ragged
+  lower edge. Its first two bands both use Olive, followed by Teal, Orange,
+  and Lime. Olive dominates, with the brighter colors appearing selectively.
+  `src/lib/pixelField.ts` owns palette-independent sampling shared by the canvas
+  and the server-rendered SVG fallback. Optional `seed`, `cellSize`, and `class`
+  props allow reuse; `--pixel-field-height` sets its reserved responsive height
+  and `--pixel-field-color-0` through `-4` expose the band colors. Mouse movement
+  creates a small arrow-shaped fireball brush with a fading trail;
+  double-clicking creates an expanding circular ripple.
+  The pointer brush samples the original logo arrow at 9 × 7 cells with a soft
+  halo, retaining the fireball's additive heat, color blending, and decay.
+  Hovering maintains the heat, which fades when the pointer leaves. Keep colors
+  driven by the heat field rather than a solid logo overlay.
+  Both effects follow the same square grid and palette. Its background is
+  transparent so empty cells and gutters reveal the page surface and grain,
+  with no separate background grid or playback controls. Reduced motion renders a still
+  frame, and the animation stops off-screen, in hidden tabs, and on disconnection.
 
 - Use `src/components/HeroLarge.astro` for the media- or demo-led product hero.
 - Use `src/components/HeroSmall.astro` for the compact product hero with an
@@ -395,6 +430,17 @@ this treatment consistent across both shared landing-page compositions.
   for requests, and `ApprovalVisual` for deterministic approval conditions and
   policies. Secondary cards use existing model, tool, and channel logos.
   `agentsLandingPage.ts` supplies the HTML and negotiated Markdown copy.
+- `product/_components/ActivityLandingPage.astro` uses the stacked hero with
+  `GridLandingPage.technicalGrid`, matching the Platform overview's technical
+  drawing treatment: continuous rails, fading hero grid, grid spacers,
+  intersection marks, edge rulers, and subtle grain. Its full-width hero has
+  Orange intersection squares, set through the shared
+  decoration's four `--technical-grid-corner-*` custom properties, and
+  a neutral inset and the shared `demos/PlatformActivityDemo.astro` from
+  the Platform hero. The demo retains its dark interface, status filters,
+  action detail dialogs opened from asset names, and a log that fits its
+  container. Smaller previews omit supporting columns to keep assets, statuses,
+  and action counts readable without horizontal scrolling.
 - Automations, Chat with agents, and Operations center use the same stacked
   `GridLandingPage` composition with `ProductDemoFrame`, customer logos, two
   main benefits, three cards, the shared marketplace showcase, and FAQs.
@@ -461,6 +507,36 @@ layout behavior from the current URL.
 
 ### Page composition
 
+- `/platform/` owns its technical drawing layout and
+  `platform/_components/PlatformGridFrame.astro`. The frame adds section rules,
+  shared `ui/TechnicalGridDecoration.astro` with decorative 6px intersection squares filled with the shared Coconut token,
+  without borders, and edge ruler ticks. The page owns
+  continuous side rails, faint grain, and the fading hero grid. The grain
+  uses the small tiled `src/assets/images/platform/surface-grain.png` asset,
+  multiply-blended at 3% opacity beneath the content. Shared product
+  cards receive page-scoped grid styling. The hero leads directly into
+  “One platform for every operation.”, a 2×2 CardCluster with the existing
+  Apps inventory demo, embedded Chat with agents UI (`OnePlatformAgent`), shared
+  Automations scene, and Human approvals demo, stacking on mobile. The grouped
+  homepage product overview is omitted.
+  These previews have larger responsive insets inside their colored panels,
+  with more space horizontally than vertically to keep the demos bounded.
+  The shared foundation uses six illustrated cards in a 3-column, 2-row desktop grid,
+  two tablet columns, and one mobile column, with the same roomy demo insets.
+  It reuses existing product visuals for Data tables, Connections, API Explorer,
+  Functions, Activity & Insights, and Admin & Security.
+  Functions occupies the first card in the second row of the foundation grid;
+  Requests & Approvals occupies the fourth product card in the 2×2 grid.
+  Its main frame uses the shared
+  `--site-container-max` width without additional outer padding, matching
+  the other lined landing pages. Keep shared component defaults unchanged.
+  Its hero starts with `ui/PixelField.astro`, followed by the centered title,
+  description and actions. Below the copy it uses the shared
+  `demos/PlatformActivityDemo.astro`, implementing
+  Figma node `4369:4887` with local SVG assets. The dark product interface
+  retains its colors in either theme, with a responsive log that fits its
+  container without horizontal scrolling. Status cards and action detail dialogs operate on
+  illustrative sample records.
 - `ProductDetailBody.astro` is the shared Product and Platform body composition. It
   owns the card overview, feature sections, stats, page-section wrappers, and
   `ProductPageFooter`. Its sequence is overview, detail, proof, and next action.
@@ -469,6 +545,10 @@ layout behavior from the current URL.
   surfaces stay in sync. Its Explore the platform section uses uppercase group
   labels with geometric group marks and shared 8px Olive-1000 `NavStatusLight`
   squares before every link, including footer links, matching the dropdown.
+  Its optional `lined` treatment keeps the heading left-aligned and encloses
+  the three link groups and footer links in divided grid cells. Activity's
+  technical grid opts into this treatment within its continuous outer rails;
+  other pages retain the standard navigation layout.
 - `ProductLandingPage.astro` composes `HeroLarge` with `ProductDetailBody.astro`
   for the four primary product surfaces.
 - `PlatformLandingPage.astro` composes `HeroSmall` with

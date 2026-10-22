@@ -1,5 +1,6 @@
 ---
 import GridLandingPage from "@components/GridLandingPage.astro";
+import PlatformActivityDemo from "@components/demos/PlatformActivityDemo.astro";
 import ActivityVisual from "./ActivityVisual.astro";
 import type { PlatformLandingContent } from "../../../data/landingPageTypes";
 
@@ -40,21 +41,36 @@ const faqs = [
 <div class="activity-landing-page">
   <GridLandingPage
     slug="activity"
-    heroAspectRatio="var(--activity-hero-ratio, 3 / 2)"
+    heroLayout="stacked"
+    heroAspectRatio="auto"
+    technicalGrid
     {content}
     {cards}
     {faqs}
   >
-    <ActivityVisual slot="hero-media" variant="overview" />
+    <div slot="hero-media" class="activity-hero-media">
+      <PlatformActivityDemo />
+    </div>
     <ActivityVisual slot="feature-0" variant="actions" />
     <ActivityVisual slot="feature-1" variant="requests" />
   </GridLandingPage>
 </div>
 
 <style>
-  @media (max-width: 599px) {
-    .activity-landing-page {
-      --activity-hero-ratio: 5 / 4;
-    }
+  .activity-landing-page {
+    --technical-grid-corner-1: var(--bb-orange);
+    --technical-grid-corner-2: var(--bb-orange);
+    --technical-grid-corner-3: var(--bb-orange);
+    --technical-grid-corner-4: var(--bb-orange);
+  }
+
+  .activity-hero-media {
+    text-align: left;
+  }
+
+  .activity-landing-page :global(.grid-landing-page .grid-landing-hero__title) {
+    color: var(--bb-graphite);
+    text-transform: none;
+    font-weight: 600;
   }
 </style>
